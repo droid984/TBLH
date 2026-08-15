@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 3</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO DE TERMOS --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        /* --- SISTEMA VISUAL DE FALAS (TBLH COMPLETO) --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }       /* 🔵 Azul */
+        .fala-jesus { color: #b30000; font-weight: 500; }     /* 🔴 Vermelho */
+        .fala-celestial { color: #b8860b; font-weight: 500; } /* 🟡 Dourado */
+        .fala-demoniaca { color: #5d4037; font-weight: 500; } /* 🟤 Marrom */
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; } /* 🟣 Roxo */
+        .fala-outro { color: #6b6b6b; font-weight: 500; }     /* ⚪ Cinza */
+        .fala-anjo { color: #b8860b; font-weight: 500; }      /* 🟡 Dourado (anjos) */
+        .fala-joao { color: #6b6b6b; font-weight: 500; }      /* ⚪ Cinza (João) */
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 3</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">João Batista</span>
+                Do grego Iōannēs ho Baptistēs (Ἰωάννης ὁ Βαπτιστής). O termo "Batista" é um título, indicando sua prática de batizar. Não é sobrenome.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Reino dos Céus</span>
+                Do grego basileia tōn ouranōn (βασιλεία τῶν οὐρανῶν). Expressão típica de Mateus, usada como equivalente a "reino de Deus".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Arrependimento</span>
+                Do grego metanoia (μετάνοια), "mudar a mente". Implica transformação interior, não apenas remorso.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fariseus e Saduceus</span>
+                Fariseus: rigorosos na Lei. Saduceus: ligados ao templo e aristocracia sacerdotal. Ambos são confrontados por João.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Batismo com Fogo</span>
+                João batiza com água; o Messias batizará com Espírito Santo e fogo — purificação ou juízo, ou ambos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pomba</span>
+                O Espírito desceu "como pomba", não que era uma pomba. Símbolo de pureza, paz, ou a presença criadora do Espírito.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTO DO CAPÍTULO 3 -->
+    <div class="chapter-num">3</div>
+
+    <div class="pericope">A Pregação de João Batista</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, naqueles dias, apareceu João Batista, pregando no deserto da Judeia
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        e dizendo: <span class="fala-joao">"Arrependei-vos, porque está próximo o reino dos céus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque este é aquele de quem foi dito pelo profeta Isaías, que diz: "Voz do que clama no deserto: Preparai o caminho do Senhor, endireitai as suas veredas."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E este João tinha a sua veste de pelos de camelo, e um cinto de couro ao redor da cintura; e alimentava-se de gafanhotos e mel silvestre.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Então saíam a ele Jerusalém, e toda a Judeia, e toda a província ao redor do Jordão;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        e eram batizados por ele no Jordão, confessando os seus pecados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, vendo ele muitos dos fariseus e dos saduceus que vinham ao seu batismo, disse-lhes: <span class="fala-joao">"Raça de víboras, quem vos ensinou a fugir da ira futura?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-joao">Produzi, pois, frutos dignos de arrependimento;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-joao">e não penseis em dizer dentro de vós mesmos: 'Temos por pai a Abraão'; porque eu vos digo que Deus pode destas pedras suscitar filhos a Abraão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-joao">E também agora o machado está posto à raiz das árvores; toda árvore, pois, que não produz bom fruto é cortada e lançada no fogo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-joao">Eu, na verdade, vos batizo com água, para arrependimento; mas aquele que vem após mim é mais poderoso do que eu, cujas sandálias não sou digno de levar; ele vos batizará com o Espírito Santo e com fogo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-joao">A sua pá está na sua mão, e ele limpará completamente a sua eira; e recolherá o seu trigo no celeiro, mas queimará a palha com fogo que nunca se apaga."</span>
+    </p>
+
+    <div class="pericope">O Batismo de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então veio Jesus da Galileia ao Jordão, a João, para ser batizado por ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas João o impedia, dizendo: <span class="fala-joao">"Eu é que preciso ser batizado por ti, e tu vens a mim?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Deixa por agora; porque assim nos convém cumprir toda a justiça."</span> Então ele o deixou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, tendo Jesus sido batizado, subiu logo da água. E eis que os céus se lhe abriram, e viu o Espírito de Deus descendo como pomba e vindo sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E eis que uma voz dos céus dizia: <span class="fala-deus">"Este é o meu Filho amado, em quem me comprazo."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 3:1 — "João Batista"</span>
+            <div class="greek-text">Ἰωάννης ὁ Βαπτιστής</div>
+            <p><strong>Análise:</strong> O termo "Batista" é um título, indicando sua prática de batizar. Não é sobrenome.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "João Batista".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 3:2 — "Arrependei-vos"</span>
+            <div class="greek-text">μετανοεῖτε</div>
+            <p><strong>Análise:</strong> O verbo significa "mudar a mente", "mudar o entendimento", implicando transformação interior, não apenas remorso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "arrependei-vos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:2 — "Reino dos céus"</span>
+            <div class="greek-text">βασιλεία τῶν οὐρανῶν</div>
+            <p><strong>Análise:</strong> Expressão típica de Mateus, usada como equivalente a "reino de Deus". O uso de "céus" reflete a reverência judaica pelo nome divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão "reino dos céus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:3 — "Voz do que clama no deserto"</span>
+            <div class="greek-text">φωνὴ βοῶντος ἐν τῇ ἐρήμῳ</div>
+            <p><strong>Análise:</strong> Citação de Isaías 40:3. O texto grego segue a Septuaginta. A voz clama no deserto, ou seja, o deserto é o lugar de onde a voz é ouvida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Isaías 40:3.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 3:4 — "Veste de pelos de camelo"</span>
+            <p><strong>Análise:</strong> A indumentária de João lembra a do profeta Elias (2 Reis 1:8), sugerindo continuidade profética.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a descrição da veste.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 3:6 — "Confessando os seus pecados"</span>
+            <div class="greek-text">ἐξομολογούμενοι τὰς ἁμαρτίας αὐτῶν</div>
+            <p><strong>Análise:</strong> A confissão era pública e acompanhava o batismo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "confessando os seus pecados".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 3:7 — "Fariseus e saduceus"</span>
+            <div class="greek-text">Φαρισαίους καὶ Σαδδουκαίους</div>
+            <p><strong>Análise:</strong> Os fariseus eram conhecidos pelo rigor na interpretação da Lei. Os saduceus eram ligados ao templo e à aristocracia sacerdotal. A presença de ambos no batismo de João indica que sua pregação alcançava todos os grupos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantidas as transliterações "fariseus" e "saduceus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 3:7 — "Raça de víboras"</span>
+            <div class="greek-text">γεννήματα ἐχιδνῶν</div>
+            <p><strong>Análise:</strong> Literalmente "ninhada de víboras". Expressão forte de denúncia profética.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "raça de víboras".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:8 — "Frutos dignos de arrependimento"</span>
+            <div class="greek-text">καρποὺς ἀξίους τῆς μετανοίας</div>
+            <p><strong>Análise:</strong> A metáfora agrícola indica que o arrependimento verdadeiro se manifesta em obras visíveis.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "frutos dignos de arrependimento".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:9 — "Filhos a Abraão"</span>
+            <div class="greek-text">τέκνα τῷ Ἀβραάμ</div>
+            <p><strong>Análise:</strong> A descendência física de Abraão não era garantia de salvação. João anuncia que Deus pode suscitar filhos a Abraão até das pedras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filhos a Abraão".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:11 — "Batizará com o Espírito Santo e com fogo"</span>
+            <div class="greek-text">βαπτίσει ἐν Πνεύματι Ἁγίῳ καὶ πυρί</div>
+            <p><strong>Análise:</strong> O batismo de João era com água; o do Messias seria com Espírito Santo e fogo. O fogo pode indicar purificação ou juízo, ou ambos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batizará com o Espírito Santo e com fogo".</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 3:12 — "Fogo que nunca se apaga"</span>
+            <div class="greek-text">πυρὶ ἀσβέστῳ</div>
+            <p><strong>Análise:</strong> O adjetivo <em>asbestos</em> indica fogo inextinguível, imagem de juízo definitivo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fogo que nunca se apaga".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:15 — "Deixa por agora"</span>
+            <div class="greek-text">ἄφες ἄρτι</div>
+            <p><strong>Análise:</strong> Literalmente, "deixa agora". Jesus não nega a objeção de João, mas indica que aquele momento tinha um propósito específico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "deixa por agora".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:15 — "Cumprir toda a justiça"</span>
+            <div class="greek-text">πληρῶσαι πᾶσαν δικαιοσύνην</div>
+            <p><strong>Análise:</strong> Jesus não precisava de batismo para arrependimento, mas o batismo cumpria a vontade de Deus e identificava Jesus com o povo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cumprir toda a justiça".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:16 — "Os céus se lhe abriram"</span>
+            <div class="greek-text">ἠνεῴχθησαν οἱ οὐρανοί</div>
+            <p><strong>Análise:</strong> A abertura dos céus indica revelação divina.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os céus se lhe abriram".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:16 — "Como pomba"</span>
+            <div class="greek-text">ὡσεὶ περιστεράν</div>
+            <p><strong>Análise:</strong> O texto diz que o Espírito desceu "como pomba", não que era uma pomba. A comparação pode sugerir pureza, paz ou a presença criadora do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como pomba".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3:17 — "Este é o meu Filho amado"</span>
+            <div class="greek-text">οὗτός ἐστιν ὁ υἱός μου ὁ ἀγαπητός</div>
+            <p><strong>Análise:</strong> A voz celestial combina elementos do Salmo 2:7 ("Tu és meu Filho") e Isaías 42:1 ("o meu amado, em quem me comprazo"). A declaração identifica Jesus como Messias e Servo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Este é o meu Filho amado".</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 3 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 3 apresenta João Batista como o precursor do Messias. Estrutura: 1) A pregação de João (v.1-12) — chamado ao arrependimento e anúncio do que viria; 2) O batismo de Jesus (v.13-17) — Jesus se identifica com o povo e é confirmado pelo Pai. O capítulo estabelece a transição do ministério de João para o ministério de Jesus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
