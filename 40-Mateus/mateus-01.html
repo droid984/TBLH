@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 1</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- DOSSIÊ / INTRODUÇÃO --- */
+        .dossier-section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fdfcf9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dossier-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .dossier-item h4 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dossier-item p {
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        /* --- GLOSSÁRIO DE TERMOS --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        /* --- SISTEMA VISUAL DE FALAS (TBLH COMPLETO) --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }       /* 🔵 Azul */
+        .fala-jesus { color: #b30000; font-weight: 500; }     /* 🔴 Vermelho */
+        .fala-celestial { color: #b8860b; font-weight: 500; } /* 🟡 Dourado */
+        .fala-demoniaca { color: #5d4037; font-weight: 500; } /* 🟤 Marrom */
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; } /* 🟣 Roxo */
+        .fala-outro { color: #6b6b6b; font-weight: 500; }     /* ⚪ Cinza */
+        .fala-anjo { color: #b8860b; font-weight: 500; }      /* 🟡 Dourado (anjos) */
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        /* Link de Referência Cruzada */
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        /* --- TEXTO BASE (refinado) --- */
+.text-base-section {
+    margin: 10px auto 50px auto;
+    padding: 18px 30px;
+    max-width: 620px;
+    background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    color: #4a4a4a;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+}
+
+/* Linha dupla superior e inferior — estilo clássico */
+.text-base-section::before,
+.text-base-section::after {
+    content: "";
+    display: block;
+    height: 0;
+    border-top: 3px double var(--accent-red);
+    margin: 0 auto 12px auto;
+    width: 70%;
+}
+.text-base-section::after {
+    margin: 12px auto 0 auto;
+    border-top: 3px double var(--accent-red);
+}
+
+/* Rótulo "Texto Base:" em estilo solene */
+.text-base-section strong {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    margin-bottom: 6px;
+}
+
+/* Descrição em itálico elegante */
+.text-base-section em {
+    font-style: italic;
+    color: #2c2520;
+    font-weight: 500;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- DOSSIÊ INTRODUTÓRIO -->
+    <section class="dossier-section">
+        <h3 class="dossier-title">Dossiê do Evangelho de Mateus</h3>
+        <div class="dossier-grid">
+            <div class="dossier-item">
+                <h4>Autoria</h4>
+                <p><strong>Mateus</strong>, também chamado de Levi, foi um dos doze apóstolos e coletor de impostos antes de seguir a Jesus (Mateus 9:9; 10:3). A tradição antiga atribui a ele este Evangelho, escrito primariamente para uma audiência judaica.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Data e Contexto</h4>
+                <p>Provavelmente escrito entre <strong>50-70 d.C.</strong> O Evangelho reflete um contexto de tensão entre a comunidade cristã e o judaísmo rabínico emergente, enfatizando que Jesus é o cumprimento das Escrituras hebraicas.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Tema Central</h4>
+                <p><strong>Jesus é o Messias prometido, o Filho de Davi, o Emanuel — Deus conosco.</strong> Mateus demonstra que Jesus cumpre as profecias do Antigo Testamento e estabelece o Reino dos Céus.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Estrutura Literária</h4>
+                <p>O Evangelho é organizado em <strong>cinco grandes discursos</strong> intercalados com narrativas, ecoando os cinco livros da Torá: Sermão do Monte (caps. 5-7), Missão (cap. 10), Parábolas (cap. 13), Comunidade (cap. 18) e Fim dos Tempos (caps. 24-25).</p>
+            </div>
+        </div>
+    </section>
+
+<!-- TEXTO BASE -->
+<div class="text-base-section">
+    <strong>Texto Base</strong>
+    <em>Textus Receptus</em> — Edição Stephanus de 1550<br>
+    <small style="color:#8a7a66; font-size:12px;">Novo Testamento Grego</small>
+</div>
+
+    <!-- GLOSSÁRIO DE TERMOS -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 1</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Livro da Origem</span>
+                Do grego biblos geneseōs (βίβλος γενέσεως). Ecoa Gênesis 2:4 e 5:1, apresentando Jesus como o novo Adão e o início da nova criação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cristo</span>
+                Do grego Christos (Χριστός), equivalente ao hebraico Mashiach (מָשִׁיחַ), "Ungido". É título messiânico, não sobrenome.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Deportação para a Babilônia</span>
+                Refere-se ao exílio babilônico de Judá (586 a.C.), usado por Mateus como marco estrutural da genealogia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Desposada</span>
+                No contexto judaico, o noivado era vínculo legalmente vinculante, exigindo carta de divórcio para ser rompido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Emanuel</span>
+                Do hebraico Immanu El (עִמָּנוּ אֵל), "Deus conosco" ou literalmente "conosco [está] Deus". Citação de Isaías 7:14.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Anjo do Senhor</span>
+                Mensageiro enviado por Deus para comunicar sua vontade. Não deve ser automaticamente identificado com o "Anjo de YHWH" do Antigo Testamento.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTO DO CAPÍTULO 1 -->
+    <div class="chapter-num">1</div>
+
+    <div class="pericope">A Genealogia de Jesus Cristo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">L</span>ivro da origem de Jesus Cristo, filho de Davi, filho de Abraão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Abraão gerou a Isaque; e Isaque gerou a Jacó; e Jacó gerou a Judá e a seus irmãos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        e Judá gerou, de Tamar, a Perez e a Zerá; e Perez gerou a Esrom; e Esrom gerou a Aram;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        e Aram gerou a Aminadabe; e Aminadabe gerou a Nasom; e Nasom gerou a Salmom;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        e Salmom gerou, de Raabe, a Boaz; e Boaz gerou, de Rute, a Obede; e Obede gerou a Jessé;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        e Jessé gerou ao rei Davi; e o rei Davi gerou a Salomão, da que foi mulher de Urias;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        e Salomão gerou a Roboão; e Roboão gerou a Abias; e Abias gerou a Asa;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        e Asa gerou a Josafá; e Josafá gerou a Jorão; e Jorão gerou a Uzias;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        e Uzias gerou a Jotão; e Jotão gerou a Acaz; e Acaz gerou a Ezequias;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        e Ezequias gerou a Manassés; e Manassés gerou a Amom; e Amom gerou a Josias;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        e Josias gerou a Jeconias e a seus irmãos, no tempo da deportação para a Babilônia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, depois da deportação para a Babilônia, Jeconias gerou a Salatiel; e Salatiel gerou a Zorobabel;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        e Zorobabel gerou a Abiúde; e Abiúde gerou a Eliaquim; e Eliaquim gerou a Azor;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        e Azor gerou a Sadoque; e Sadoque gerou a Aquim; e Aquim gerou a Eliúde;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        e Eliúde gerou a Eleazar; e Eleazar gerou a Matã; e Matã gerou a Jacó;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        e Jacó gerou a José, marido de Maria, da qual nasceu Jesus, que é chamado Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        De modo que todas as gerações, desde Abraão até Davi, são catorze gerações; e desde Davi até a deportação para a Babilônia, catorze gerações; e desde a deportação para a Babilônia até Cristo, catorze gerações.
+    </p>
+
+    <div class="pericope">O Nascimento de Jesus Cristo</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Ora, o nascimento de Jesus Cristo foi assim: estando Maria, sua mãe, desposada com José, antes de se ajuntarem, achou-se ter ela concebido do Espírito Santo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Então José, seu marido, sendo justo e não a querendo expor à infâmia, resolveu divorciar-se dela secretamente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, pensando ele nessas coisas, eis que um anjo do Senhor lhe apareceu em sonho, dizendo: <span class="fala-anjo">"José, filho de Davi, não temas receber a Maria, tua mulher, pois o que nela foi gerado é do Espírito Santo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-anjo">"E ela dará à luz um filho, e tu lhe porás o nome de JESUS; porque ele salvará o seu povo dos seus pecados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Tudo isto aconteceu para que se cumprisse o que foi dito da parte do Senhor pelo profeta, que diz:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        "Eis que a virgem conceberá e dará à luz um filho, e chamarão o seu nome EMANUEL", que traduzido é: Deus conosco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E José, despertando do sono, fez como o anjo do Senhor lhe ordenara, e recebeu a sua mulher;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        e não a conheceu até que ela deu à luz o seu filho primogênito; e pôs-lhe o nome de JESUS.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:1 — "Livro da origem"</span>
+            <div class="greek-text">βίβλος γενέσεως</div>
+            <p><strong>Análise:</strong> A expressão ecoa Gênesis 2:4 e 5:1 na Septuaginta, apresentando Jesus como o novo Adão e o início da nova criação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Livro da origem" para preservar a conexão com Gênesis.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:1, 16, 17 — "Cristo"</span>
+            <div class="greek-text">Χριστός</div>
+            <p><strong>Análise:</strong> Do grego <em>Christos</em>, equivalente ao hebraico <em>Mashiach</em> (מָשִׁיחַ), "Ungido". É título messiânico, não sobrenome.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cristo" como título.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 1:8 — "Jorão gerou a Uzias"</span>
+            <div class="greek-text">Ἰωρὰμ δὲ ἐγέννησεν τὸν Ὀζίαν</div>
+            <p><strong>Análise:</strong> Mateus registra Jorão como antepassado direto de Uzias, embora 1 Crônicas 3:11-12 apresente Acazias, Joás e Amazias entre eles. A genealogia de Mateus é seletiva e condensada. A omissão desses reis também contribui para sua organização em grupos de catorze gerações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a genealogia seletiva de Mateus.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 1:11 — "Josias gerou a Jeconias"</span>
+            <div class="greek-text">Ἰωσίας δὲ ἐγέννησεν τὸν Ἰεχονίαν</div>
+            <p><strong>Análise:</strong> Historicamente, entre Josias e Jeconias está Jeoaquim (2 Reis 23:34-24:6). Mateus apresenta uma genealogia seletiva, não necessariamente exaustiva. A omissão de Jeoaquim e de outros nomes é intencional dentro da estrutura simbólica de catorze gerações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a estrutura seletiva de Mateus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:18 — "Desposada"</span>
+            <div class="greek-text">μνηστευθείσης</div>
+            <p><strong>Análise:</strong> No contexto judaico, o noivado era vínculo legalmente vinculante, exigindo carta de divórcio para ser rompido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desposada" para preservar a distinção entre noivado e casamento.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:18 — "Antes de se ajuntarem"</span>
+            <div class="greek-text">πρὶν ἢ συνελθεῖν αὐτούς</div>
+            <p><strong>Análise:</strong> Literalmente, "antes de se unirem", referindo-se à união conjugal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "antes de se ajuntarem".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 1:18, 20 — "Do Espírito Santo"</span>
+            <div class="greek-text">ἐκ Πνεύματος Ἁγίου</div>
+            <p><strong>Análise:</strong> A preposição <em>ek</em> indica origem direta da concepção. A concepção virginal é apresentada como ato criativo do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "do Espírito Santo".</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:19 — "Sendo justo"</span>
+            <div class="greek-text">δίκαιος ὤν</div>
+            <p><strong>Análise:</strong> O termo descreve José como justo. Sua decisão de não expor Maria publicamente demonstra que sua atitude não consistia simplesmente em buscar sua condenação ou humilhação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sendo justo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:19 — "Expor à infâmia"</span>
+            <div class="greek-text">δειγματίσαι</div>
+            <p><strong>Análise:</strong> Verbo raro no NT, aparece apenas aqui. Significa "fazer exemplo público" ou "expor à vergonha pública".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "expor à infâmia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+    <span class="note-label">Mateus 1:19 — "Divorciar-se"</span>
+    <div class="greek-text">ἀπολῦσαι</div>
+    <p><strong>Análise:</strong> Verbo que pode significar "mandar embora" ou "dispensar" e que, no contexto matrimonial, assume o sentido de dissolver o vínculo por divórcio. O noivado judaico possuía caráter legal e podia ser rompido mediante divórcio. A intenção de José era fazer isso secretamente (<em>lathra</em>), sem exposição pública (<em>deigmatisai</em>), preservando Maria do escândalo e da vergonha.</p>
+    <p><strong>Decisão TBLH:</strong> Mantida a tradução "divorciar-se".</p>
+</div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:19 — "Secretamente"</span>
+            <div class="greek-text">λάθρᾳ</div>
+            <p><strong>Análise:</strong> Advérbio que indica discrição. José optou por uma ação privada, preservando a dignidade de Maria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "secretamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:19 — "Resolveu"</span>
+            <div class="greek-text">ἐβουλήθη</div>
+            <p><strong>Análise:</strong> Forma do verbo <em>boulomai</em>, "querer", "pretender", "decidir". Indica que José tomou a decisão de maneira deliberada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "resolveu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:20 — "Anjo do Senhor"</span>
+            <div class="greek-text">ἄγγελος Κυρίου</div>
+            <p><strong>Análise:</strong> Literalmente "anjo do Senhor". Em Mateus 1, o anjo aparece como mensageiro enviado por Deus para comunicar sua vontade a José. A expressão não deve ser automaticamente identificada com o próprio Deus ou com o "Anjo de YHWH" de determinadas passagens do Antigo Testamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a distinção entre anjo e o próprio Senhor.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 1:21, 25 — "JESUS"</span>
+            <div class="greek-text">Ἰησοῦς</div>
+            <p><strong>Análise:</strong> Correspondente ao nome hebraico/aramaico <em>Yeshua</em>/<em>Yehoshua</em>. O nome está relacionado à ideia de salvação de YHWH, e Mateus explica seu significado no versículo 21: "porque ele salvará o seu povo dos seus pecados".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "JESUS" com nota sobre seu significado.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 1:23 — "EMANUEL" (Isaías 7:14)</span>
+            <div class="hebrew-text">עִמָּנוּ אֵל</div>
+            <p><strong>Análise:</strong> Do hebraico <em>Immanu El</em>, "Deus conosco" ou literalmente "conosco [está] Deus". Mateus cita Isaías 7:14, mostrando que o nascimento virginal de Jesus cumpre a profecia messiânica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "EMANUEL" com a tradução "Deus conosco".</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 1:25 — "Não a conheceu"</span>
+            <div class="greek-text">οὐκ ἐγίνωσκεν αὐτήν</div>
+            <p><strong>Análise:</strong> O verbo "conhecer" (<em>ginōskō</em>) funciona aqui como eufemismo para relação sexual, em paralelo com Gênesis 4:1. O texto afirma que José não teve relações com Maria antes do nascimento de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não a conheceu" como eufemismo.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 1:22-23 — O Cumprimento da Profecia</span>
+            <p><strong>Análise:</strong> Mateus enfatiza que o nascimento de Jesus cumpre a profecia de Isaías 7:14. A virgem conceberá e dará à luz um filho chamado Emanuel — "Deus conosco". Este é o tema central do Evangelho: Deus se fez presente no meio do seu povo na pessoa de Jesus Cristo.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 1 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 1 estabelece a identidade de Jesus como o Messias prometido. Estrutura: 1) Genealogia (v.1-17) — demonstra que Jesus é descendente de Abraão e Davi, cumprindo as promessas da aliança; 2) Nascimento virginal (v.18-25) — demonstra que Jesus é o Emanuel, "Deus conosco". A genealogia e o nascimento virginal são os dois pilares da identidade messiânica de Jesus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

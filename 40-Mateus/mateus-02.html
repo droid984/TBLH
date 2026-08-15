@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO DE TERMOS --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        /* --- SISTEMA VISUAL DE FALAS (TBLH COMPLETO) --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }       /* 🔵 Azul */
+        .fala-jesus { color: #b30000; font-weight: 500; }     /* 🔴 Vermelho */
+        .fala-celestial { color: #b8860b; font-weight: 500; } /* 🟡 Dourado */
+        .fala-demoniaca { color: #5d4037; font-weight: 500; } /* 🟤 Marrom */
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; } /* 🟣 Roxo */
+        .fala-outro { color: #6b6b6b; font-weight: 500; }     /* ⚪ Cinza */
+        .fala-anjo { color: #b8860b; font-weight: 500; }      /* 🟡 Dourado (anjos) */
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        /* Link de Referência Cruzada */
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Magos</span>
+                Do grego magoi (μάγοι). Designava sábios ou estudiosos vindos do Oriente, provavelmente relacionados à astrologia. O texto não diz que eram reis, nem informa quantos eram.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Belém da Judeia</span>
+                Cidade natal de Davi, profetizada por Miqueias como local de nascimento do Messias (Miqueias 5:2).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Herodes</span>
+                Herodes, o Grande, rei da Judeia sob domínio romano (37-4 a.C.). Conhecido por sua paranoia e crueldade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Emanuel / Nazareno</span>
+                Títulos de Jesus: "Deus conosco" (Isaías 7:14) e "Nazareno" (alusão profética ao Messias desprezado).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ouro, Incenso e Mirra</span>
+                Presentes dos magos, tradicionalmente interpretados como símbolos de realeza (ouro), divindade (incenso) e sofrimento/morte (mirra).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Arquelau</span>
+                Filho de Herodes, que recebeu o governo da Judeia após a morte de seu pai. Conhecido por seu comportamento severo.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTO DO CAPÍTULO 2 -->
+    <div class="chapter-num">2</div>
+
+    <div class="pericope">A Visita dos Magos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, tendo Jesus nascido em Belém da Judeia, nos dias do rei Herodes, eis que uns magos vieram do Oriente a Jerusalém,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        dizendo: <span class="fala-outro">"Onde está aquele que nasceu Rei dos judeus? Pois vimos a sua estrela no Oriente e viemos para adorá-lo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E o rei Herodes, ouvindo isso, perturbou-se, e toda Jerusalém com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, tendo reunido todos os principais dos sacerdotes e os escribas do povo, perguntou-lhes onde o Cristo havia de nascer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E eles lhe disseram: <span class="fala-outro">"Em Belém da Judeia; porque assim está escrito pelo profeta:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-outro">'E tu, Belém, terra de Judá, de modo nenhum és a menor entre as principais de Judá; porque de ti sairá um Governador, que apascentará o meu povo de Israel.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Então Herodes, chamando secretamente os magos, indagou deles com precisão acerca do tempo em que a estrela lhes aparecera.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, enviando-os a Belém, disse: <span class="fala-outro">"Ide e perguntai diligentemente pelo menino; e, quando o achardes, avisai-me, para que também eu vá e o adore."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, tendo eles ouvido o rei, partiram. E eis que a estrela que viram no Oriente ia adiante deles, até que, chegando, se deteve sobre o lugar onde estava o menino.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, vendo eles a estrela, alegraram-se com grandeíssima alegria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, entrando na casa, acharam o menino com Maria, sua mãe; e, prostrando-se, o adoraram. E, abrindo os seus tesouros, lhe ofereceram presentes: ouro, incenso e mirra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, sendo avisados em sonho para que não voltassem a Herodes, partiram para a sua terra por outro caminho.
+    </p>
+
+    <div class="pericope">A Fuga para o Egito</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, tendo eles partido, eis que um anjo do Senhor apareceu em sonho a José, dizendo: <span class="fala-anjo">"Levanta-te, toma o menino e sua mãe, e foge para o Egito; e fica lá até que eu te diga, porque Herodes há de procurar o menino para o matar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, levantando-se ele, tomou o menino e sua mãe, de noite, e partiu para o Egito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E esteve lá até a morte de Herodes, para que se cumprisse o que foi dito da parte do Senhor pelo profeta, que diz: "Do Egito chamei o meu Filho."
+    </p>
+
+    <div class="pericope">A Matança dos Inocentes</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Então Herodes, vendo que tinha sido enganado pelos magos, irou-se grandemente. E mandou matar todos os meninos que havia em Belém e em todos os seus arredores, de dois anos para baixo, conforme o tempo que tinha indagado com precisão dos magos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Então se cumpriu o que foi dito pelo profeta Jeremias, que diz:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        "Em Ramá se ouviu uma voz, lamentação, choro e grande pranto; Raquel chorando os seus filhos, e não quis ser consolada, porque já não existem."
+    </p>
+
+    <div class="pericope">O Retorno do Egito</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Mas, tendo Herodes morrido, eis que um anjo do Senhor apareceu em sonho a José no Egito,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        dizendo: <span class="fala-anjo">"Levanta-te, toma o menino e sua mãe, e vai para a terra de Israel; porque já morreram os que procuravam a morte do menino."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Então ele se levantou, tomou o menino e sua mãe, e veio para a terra de Israel.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas, ouvindo que Arquelau reinava na Judeia em lugar de seu pai Herodes, temeu ir para lá. E, sendo avisado em sonho, partiu para as regiões da Galileia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E chegou e habitou numa cidade chamada Nazaré, para que se cumprisse o que foi dito pelos profetas: "Ele será chamado Nazareno."
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:1, 7, 16 — "Magos"</span>
+            <div class="greek-text">μάγοι</div>
+            <p><strong>Análise:</strong> O termo designava sábios ou estudiosos vindos do Oriente, provavelmente relacionados à astrologia e a conhecimentos esotéricos. O texto não diz que eram reis, nem informa quantos eram. A tradição posterior acrescentou esses elementos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "magos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:2 — "Rei dos judeus"</span>
+            <div class="greek-text">βασιλεὺς τῶν Ἰουδαίων</div>
+            <p><strong>Análise:</strong> Título político e messiânico. A pergunta dos magos contrasta diretamente com Herodes, que era o rei político da Judeia sob domínio romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Rei dos judeus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:2 — "Sua estrela no Oriente"</span>
+            <div class="greek-text">αὐτοῦ τὸν ἀστέρα ἐν τῇ ἀνατολῇ</div>
+            <p><strong>Análise:</strong> A expressão pode indicar que viram a estrela quando estavam no Oriente, ou que viram a estrela surgir no Oriente. O texto não especifica que fenômeno astronômico era.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sua estrela no Oriente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:3 — "Perturbou-se"</span>
+            <div class="greek-text">ἐταράχθη</div>
+            <p><strong>Análise:</strong> O verbo indica agitação profunda, inquietação. Herodes era conhecido por sua paranoia e crueldade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perturbou-se".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:4 — "Principais dos sacerdotes"</span>
+            <div class="greek-text">ἀρχιερεῖς</div>
+            <p><strong>Análise:</strong> Eram os líderes das famílias sacerdotais, não apenas o sumo sacerdote.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "principais dos sacerdotes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:5-6 — "Belém da Judeia" / Citação de Miqueias 5:2</span>
+            <div class="greek-text">Βηθλέεμ τῆς Ἰουδαίας</div>
+            <p><strong>Análise:</strong> Citação de Miqueias 5:2. A profecia apontava Belém como local de nascimento do Messias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação e a referência a Belém.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:6 — "Governador"</span>
+            <div class="greek-text">ἡγούμενος</div>
+            <p><strong>Análise:</strong> Do grego <em>hēgoumenos</em>, particípio relacionado a "liderar" ou "governar". Na passagem de Miqueias citada por Mateus, o hebraico possui <em>moshel</em> (מוֹשֵׁל), "governante". A TBLH optou por "Governador" para expressar a função daquele que governará Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "Governador".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:7 — "Com precisão"</span>
+            <div class="greek-text">ἠκρίβωσεν</div>
+            <p><strong>Análise:</strong> Verbo que significa "indagar com exatidão". Herodes queria saber exatamente quando a estrela tinha aparecido, para calcular a idade do menino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com precisão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:11 — "Entrando na casa"</span>
+            <div class="greek-text">οἰκίαν</div>
+            <p><strong>Análise:</strong> O texto diz "casa", não "estábulo" ou "gruta". Isso sugere que algum tempo já tinha passado desde o nascimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "casa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:11 — "Ouro, incenso e mirra"</span>
+            <div class="greek-text">χρυσὸν καὶ λίβανον καὶ σμύρναν</div>
+            <p><strong>Análise:</strong> Os presentes têm sido interpretados simbolicamente: ouro para o rei, incenso para a divindade, mirra para a morte. O texto não explica o simbolismo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos três presentes.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:12 — "Avisados em sonho"</span>
+            <div class="greek-text">χρηματισθέντες</div>
+            <p><strong>Análise:</strong> Verbo que pode indicar comunicação de origem divina. A TBLH traduziu simplesmente como "avisados em sonho", sem adicionar no texto a interpretação de comunicação divina explícita.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "avisados em sonho".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 2:13 — "Foge para o Egito"</span>
+            <div class="greek-text">φεῦγε εἰς Αἴγυπτον</div>
+            <p><strong>Análise:</strong> O Egito era refúgio comum para judeus em tempos de perseguição. Havia comunidades judaicas estabelecidas lá. A fuga de Jesus para o Egito ecoa a história de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "foge para o Egito".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 2:15 — "Do Egito chamei o meu Filho"</span>
+            <div class="greek-text">ἐξ Αἰγύπτου ἐκάλεσα τὸν υἱόν μου</div>
+            <p><strong>Análise:</strong> Citação de Oseias 11:1. No contexto original, refere-se a Israel como filho de Deus. Mateus aplica o texto a Jesus, vendo nele o verdadeiro Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Oseias 11:1.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 2:16 — "Todos os meninos" / Santos Inocentes</span>
+            <div class="greek-text">πάντας τοὺς παῖδας</div>
+            <p><strong>Análise:</strong> O texto não especifica o número de vítimas. A designação tradicional "Santos Inocentes" surgiu posteriormente para se referir às crianças mortas nesse episódio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todos os meninos".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 2:16 — "De dois anos para baixo"</span>
+            <div class="greek-text">ἀπὸ διετοῦς καὶ κατωτέρω</div>
+            <p><strong>Análise:</strong> Herodes calculou a idade do menino com base no tempo da estrela, que ele tinha indagado "com precisão" dos magos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "de dois anos para baixo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 2:18 — "Raquel chorando os seus filhos"</span>
+            <div class="greek-text">Ῥαχὴλ κλαίουσα τὰ τέκνα αὐτῆς</div>
+            <p><strong>Análise:</strong> Citação de Jeremias 31:15. Raquel era figura materna associada a Israel. O túmulo tradicional de Raquel ficava perto de Belém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Jeremias 31:15.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 2:22 — "Arquelau"</span>
+            <div class="greek-text">Ἀρχέλαος</div>
+            <p><strong>Análise:</strong> Filho de Herodes, que recebeu o governo da Judeia após a morte de seu pai. Fontes históricas antigas o apresentam como um governante de comportamento severo. O texto de Mateus apresenta o temor de José ao saber que Arquelau governava a Judeia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Arquelau".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 2:22 — "Avisado em sonho"</span>
+            <div class="greek-text">χρηματισθείς</div>
+            <p><strong>Análise:</strong> Forma do mesmo verbo <em>chrēmatizō</em> usado no v. 12. Como lá, a TBLH traduz "avisado em sonho", sem adicionar no texto a interpretação de comunicação divina explícita.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "avisado em sonho".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 2:23 — "Nazareno"</span>
+            <div class="greek-text">Ναζωραῖος</div>
+            <p><strong>Análise:</strong> A declaração "Ele será chamado Nazareno" não aparece literalmente em nenhum dos profetas do Antigo Testamento. Mateus utiliza o plural "pelos profetas", indicando que pode estar resumindo um tema ou conjunto de referências proféticas, e não necessariamente citando um único versículo. Entre as propostas estão associações com a ideia do Messias desprezado e com termos hebraicos relacionados a "renovo" ou "consagrado", mas nenhuma identificação é unanimemente demonstrada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Nazareno" com nota sobre a dificuldade.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 2:2, 9-10 — "A estrela"</span>
+            <div class="greek-text">ὁ ἀστήρ</div>
+            <p><strong>Análise:</strong> O fenômeno descrito por Mateus como "estrela" tem sido objeto de diversas propostas históricas e astronômicas, incluindo conjunções planetárias, cometas e outros fenômenos celestes. Registros astronômicos chineses da época da dinastia Han também registram fenômenos celestes incomuns que foram posteriormente considerados por alguns pesquisadores em discussões sobre a estrela de Mateus. Entretanto, não é possível demonstrar que qualquer desses registros corresponda ao fenômeno descrito no Evangelho. O texto de Mateus não identifica sua natureza física, mas apresenta a estrela como sinal que conduziu os magos até Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a descrição do fenômeno como "estrela".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 2 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 2 apresenta Jesus como o Messias reconhecido pelos gentios (magos) e rejeitado por Israel (Herodes). Estrutura: 1) A visita dos magos (v.1-12) — os gentios adoram o Rei dos judeus; 2) A fuga para o Egito (v.13-15) — cumprimento de Oseias 11:1; 3) A matança dos inocentes (v.16-18) — cumprimento de Jeremias 31:15; 4) O retorno a Nazaré (v.19-23) — cumprimento das profecias sobre o Messias desprezado. O capítulo estabelece o padrão de rejeição e aceitação que acompanhará Jesus ao longo de todo o Evangelho.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
