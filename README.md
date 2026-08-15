@@ -1,2 +1,2 @@
-# Tradu-o-Brasileira-Literal-Harm-nica-TBLH-
+# TBLH
 tradução bíblica fiel aos textos originais, com linguagem clara e notas exegéticas.
