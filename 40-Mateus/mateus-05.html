@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 5</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 5</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Bem-aventurado</span>
+                Do grego makarios (μακάριος). Indica felicidade profunda e abençoada, não apenas emoção passageira.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pobres de Espírito</span>
+                Aqueles que reconhecem sua necessidade espiritual diante de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mansos</span>
+                Do grego praeis (πραεῖς). Descreve humildade e domínio próprio, não fraqueza.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Geena</span>
+                Do hebraico Ge-Hinom, "Vale de Hinom". Tornou-se símbolo do juízo final.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Iota e Til</span>
+                Iota: a menor letra do alfabeto grego (correspondente ao hebraico yod). Til: pequeno traço que distingue letras hebraicas semelhantes.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Raca</span>
+                Do aramaico reqa, termo de desprezo. Seu significado exato não é totalmente certo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">5</div>
+
+    <div class="pericope">O Sermão do Monte: As Bem-Aventuranças</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> Jesus, vendo as multidões, subiu a um monte. E, tendo se assentado, aproximaram-se dele os seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, abrindo a boca, os ensinava, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">"Bem-aventurados os pobres de espírito, porque deles é o reino dos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Bem-aventurados os que choram, porque eles serão consolados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Bem-aventurados os mansos, porque eles herdarão a terra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Bem-aventurados os que têm fome e sede de justiça, porque eles serão fartos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Bem-aventurados os misericordiosos, porque eles alcançarão misericórdia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Bem-aventurados os limpos de coração, porque eles verão a Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Bem-aventurados os pacificadores, porque eles serão chamados filhos de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Bem-aventurados os perseguidos por causa da justiça, porque deles é o reino dos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Bem-aventurados sois vós, quando vos injuriarem e perseguirem, e, mentindo, disserem todo mal contra vós por minha causa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Alegrai-vos e exultai, porque grande é o vosso galardão nos céus; porque assim perseguiram os profetas que foram antes de vós.</span>
+    </p>
+
+    <div class="pericope">Sal e Luz</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Vós sois o sal da terra. Mas, se o sal se tornar insípido, com que se há de salgar? Para nada mais presta, senão para ser lançado fora e pisado pelos homens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Vós sois a luz do mundo. Não se pode esconder uma cidade situada sobre um monte.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Nem se acende uma candeia e se coloca debaixo de um cesto, mas no candelabro, e assim ilumina a todos os que estão na casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Assim brilhe a vossa luz diante dos homens, para que vejam as vossas boas obras e glorifiquem o vosso Pai, que está nos céus.</span>
+    </p>
+
+    <div class="pericope">Jesus e a Lei</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Não penseis que vim destruir a lei ou os profetas. Não vim destruir, mas cumprir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Porque em verdade vos digo: até que o céu e a terra passem, de modo nenhum passará da lei um só iota ou um só til, até que tudo se cumpra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Portanto, qualquer que violar um destes menores mandamentos e assim ensinar os homens será chamado o menor no reino dos céus. Mas qualquer que os cumprir e ensinar, esse será chamado grande no reino dos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Porque eu vos digo: se a vossa justiça não exceder a dos escribas e fariseus, de modo nenhum entrareis no reino dos céus.</span>
+    </p>
+
+    <div class="pericope">Sobre o Homicídio e a Ira</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Ouvistes que foi dito aos antigos: 'Não matarás'; e: 'Qualquer que matar estará sujeito a juízo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Eu, porém, vos digo: qualquer que se irar contra seu irmão estará sujeito a juízo; e qualquer que disser a seu irmão: 'Raca', estará sujeito ao sinédrio; e qualquer que disser: 'Tolo', estará sujeito à Geena de fogo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Portanto, se trouxeres a tua oferta ao altar e aí te lembrares de que teu irmão tem alguma coisa contra ti,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">deixa ali a tua oferta diante do altar e vai. Primeiro reconcilia-te com teu irmão, e depois vem e apresenta a tua oferta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Entra em acordo depressa com o teu adversário, enquanto estás no caminho com ele, para que o adversário não te entregue ao juiz, e o juiz te entregue ao oficial, e sejas lançado na prisão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Em verdade te digo: de modo nenhum sairás dali até pagares o último quadrante.</span>
+    </p>
+
+    <div class="pericope">Sobre o Adultério e o Divórcio</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Ouvistes que foi dito: 'Não adulterarás.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Eu, porém, vos digo: qualquer que olhar para uma mulher para a cobiçar, já cometeu adultério com ela no seu coração.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Portanto, se o teu olho direito te faz tropeçar, arranca-o e lança-o de ti; porque te é melhor que se perca um dos teus membros do que todo o teu corpo seja lançado na Geena.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">E, se a tua mão direita te faz tropeçar, corta-a e lança-a de ti; porque te é melhor que se perca um dos teus membros do que todo o teu corpo seja lançado na Geena.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Também foi dito: 'Qualquer que deixar a sua mulher, dê-lhe carta de divórcio.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Eu, porém, vos digo: qualquer que se divorciar de sua mulher, exceto por causa de fornicação, faz com que ela cometa adultério; e qualquer que casar com a divorciada comete adultério.</span>
+    </p>
+
+    <div class="pericope">Sobre os Juramentos</div>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Outrossim, ouvistes que foi dito aos antigos: 'Não jurarás falso, mas cumprirás ao Senhor os teus juramentos.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Eu, porém, vos digo: de modo nenhum jureis; nem pelo céu, porque é o trono de Deus;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">nem pela terra, porque é o estrado de seus pés; nem por Jerusalém, porque é a cidade do grande Rei;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">nem jures pela tua cabeça, porque não podes tornar um só cabelo branco ou preto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Mas seja o vosso falar: Sim, sim; Não, não; porque o que passa disso vem do maligno.</span>
+    </p>
+
+    <div class="pericope">Sobre a Vingança e o Amor aos Inimigos</div>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Ouvistes que foi dito: 'Olho por olho, e dente por dente.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">Eu, porém, vos digo: não resistais ao mal; mas a qualquer que te ferir na face direita, volta-lhe também a outra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">E ao que quiser pleitear contigo e tirar-te a túnica, deixa-lhe também a capa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">E, se qualquer te obrigar a caminhar uma milha, vai com ele duas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">Dá a quem te pedir, e não te desvies daquele que quiser que lhe emprestes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Ouvistes que foi dito: 'Amarás o teu próximo, e odiarás o teu inimigo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Eu, porém, vos digo: amai os vossos inimigos, bendizei os que vos maldizem, fazei bem aos que vos odeiam, e orai pelos que vos maltratam e vos perseguem,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">para que sejais filhos do vosso Pai, que está nos céus; porque ele faz nascer o seu sol sobre maus e bons, e faz chover sobre justos e injustos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">Porque, se amardes os que vos amam, que galardão tereis? Não fazem os publicanos também o mesmo?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">E, se saudardes somente os vossos irmãos, que fazeis de mais? Não fazem os publicanos também assim?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">Sede vós, pois, perfeitos, como é perfeito o vosso Pai, que está nos céus."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:3-11 — "Bem-aventurados"</span>
+            <div class="greek-text">μακάριοι</div>
+            <p><strong>Análise:</strong> O termo indica felicidade profunda e abençoada, não apenas emoção passageira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Bem-aventurados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:3 — "Pobres de espírito"</span>
+            <div class="greek-text">πτωχοὶ τῷ πνεύματι</div>
+            <p><strong>Análise:</strong> A expressão descreve aqueles que reconhecem sua necessidade espiritual diante de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pobres de espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:4 — "Os que choram"</span>
+            <div class="greek-text">πενθοῦντες</div>
+            <p><strong>Análise:</strong> O lamento pode referir-se tanto à tristeza pessoal quanto ao lamento pelo pecado e pela condição do mundo. O texto não especifica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os que choram".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:5 — "Mansos"</span>
+            <div class="greek-text">πραεῖς</div>
+            <p><strong>Análise:</strong> O termo descreve humildade e domínio próprio, não fraqueza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mansos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:5 — "Herdarão a terra"</span>
+            <div class="greek-text">κληρονομήσουσιν τὴν γῆν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 37:11. A promessa ecoa a esperança de posse da terra, ampliada para a herança do reino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação do Salmo 37:11.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:6 — "Fome e sede de justiça"</span>
+            <div class="greek-text">δικαιοσύνην</div>
+            <p><strong>Análise:</strong> A expressão descreve um forte desejo pela justiça ou retidão. O contexto imediato determina como essa justiça deve ser compreendida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fome e sede de justiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:7 — "Misericordiosos"</span>
+            <div class="greek-text">ἐλεήμονες</div>
+            <p><strong>Análise:</strong> A misericórdia ativa é recompensada com misericórdia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "misericordiosos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:8 — "Limpos de coração"</span>
+            <div class="greek-text">καθαροὶ τῇ καρδίᾳ</div>
+            <p><strong>Análise:</strong> Refere-se à pureza interior, não apenas exterior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "limpos de coração".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:8 — "Verão a Deus"</span>
+            <div class="greek-text">ὄψονται τὸν Θεόν</div>
+            <p><strong>Análise:</strong> A expressão apresenta a visão de Deus como promessa aos limpos de coração. O texto não explica aqui de que modo essa visão ocorrerá.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "verão a Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:9 — "Pacificadores"</span>
+            <div class="greek-text">εἰρηνοποιοί</div>
+            <p><strong>Análise:</strong> Não são apenas os pacíficos, mas os que ativamente promovem a paz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pacificadores".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:13 — "Sal da terra"</span>
+            <p><strong>Análise:</strong> O sal era usado para conservar e dar sabor. A metáfora indica a influência dos discípulos no mundo. O sal puro não perde o sabor, mas o sal impuro da região podia se deteriorar. A imagem alerta contra a perda da identidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a metáfora do sal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:14 — "Luz do mundo"</span>
+            <p><strong>Análise:</strong> A luz representa a revelação de Deus e a vida justa diante dos homens.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a metáfora da luz.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:18 — "Iota e til"</span>
+            <div class="greek-text">ἰῶτα... κεραία</div>
+            <p><strong>Análise:</strong> <em>Iota</em> é a menor letra do alfabeto grego, correspondente ao hebraico <em>yod</em>, a menor letra do alfabeto hebraico. <em>Keraia</em> significa "pequeno traço", referindo-se aos pequenos traços que distinguem letras hebraicas semelhantes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantidas as transliterações "iota" e "til".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:22 — "Raca"</span>
+            <div class="greek-text">ρακά</div>
+            <p><strong>Análise:</strong> Do aramaico <em>reqa</em>, termo de desprezo. O significado exato não é totalmente certo, mas a expressão era usada como insulto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Raca".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:22 — "Tolo"</span>
+            <div class="greek-text">μωρέ</div>
+            <p><strong>Análise:</strong> Termo que implica condenação moral e espiritual, não apenas falta de inteligência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tolo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:22, 29, 30 — "Geena"</span>
+            <div class="greek-text">γέεννα</div>
+            <p><strong>Análise:</strong> O termo "Geena" deriva do hebraico <em>Ge-Hinom</em>, "Vale de Hinom", ao sul de Jerusalém. O vale tornou-se símbolo do juízo final. A TBLH optou por preservar "Geena" em vez de "inferno", por ser mais fiel ao termo grego.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a transliteração "Geena".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:32 — "Fornicação"</span>
+            <div class="greek-text">πορνεία</div>
+            <p><strong>Análise:</strong> O termo possui campo semântico amplo e não corresponde necessariamente a uma única prática sexual. A TBLH manteve "fornicação" como termo tradicional, sem restringir o sentido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fornicação".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:38 — "Olho por olho, dente por dente"</span>
+            <p><strong>Análise:</strong> Citação de Êxodo 21:24, Levítico 24:20 e Deuteronômio 19:21. A lei do talião estabelecia uma medida proporcional para a retribuição. Jesus apresenta em seguida uma instrução sobre como seus discípulos devem responder ao mal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação da lei do talião.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:39 — "Não resistais ao mal"</span>
+            <div class="greek-text">μὴ ἀντιστῆναι τῷ πονηρῷ</div>
+            <p><strong>Análise:</strong> A expressão pode referir-se a não resistir à pessoa má ou ao mal em geral.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não resistais ao mal".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 5:41 — "Milha"</span>
+            <div class="greek-text">μίλιον</div>
+            <p><strong>Análise:</strong> Referência à prática romana de obrigar alguém a carregar carga por uma milha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "milha".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5:48 — "Perfeitos"</span>
+            <div class="greek-text">τέλειοι</div>
+            <p><strong>Análise:</strong> O termo indica maturidade, integridade, plenitude, não perfeição sem falhas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perfeitos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 5 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 5 inicia o Sermão do Monte, a primeira grande coleção de ensinamentos de Jesus em Mateus. Estrutura: 1) As bem-aventuranças (v.3-12) — o caráter dos cidadãos do reino; 2) Sal e luz (v.13-16) — a influência dos discípulos; 3) Jesus e a lei (v.17-20) — a plenitude da justiça; 4) Seis antíteses (v.21-48) — a justiça que supera a dos escribas e fariseus. O capítulo estabelece o padrão de vida do reino dos céus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
