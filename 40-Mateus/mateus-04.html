@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 4</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO DE TERMOS --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        /* --- SISTEMA VISUAL DE FALAS (TBLH COMPLETO) --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }       /* 🔵 Azul */
+        .fala-jesus { color: #b30000; font-weight: 500; }     /* 🔴 Vermelho */
+        .fala-celestial { color: #b8860b; font-weight: 500; } /* 🟡 Dourado */
+        .fala-demoniaca { color: #5d4037; font-weight: 500; } /* 🟤 Marrom */
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; } /* 🟣 Roxo */
+        .fala-outro { color: #6b6b6b; font-weight: 500; }     /* ⚪ Cinza */
+        .fala-anjo { color: #b8860b; font-weight: 500; }      /* 🟡 Dourado (anjos) */
+        .fala-joao { color: #6b6b6b; font-weight: 500; }      /* ⚪ Cinza (João) */
+        .fala-diabo { color: #5d4037; font-weight: 500; }     /* 🟤 Marrom */
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 4</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Diabo / Satanás / Tentador</span>
+                O mesmo adversário é chamado por três nomes: diabo (v.1), tentador (v.3) e Satanás (v.10). Cada termo destaca um aspecto de sua oposição a Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Quarenta Dias e Noites</span>
+                Número com forte significado bíblico: Israel no deserto (40 anos), Moisés no Sinai (40 dias), Elias no Horebe (40 dias).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ponto Mais Alto do Templo</span>
+                Do grego pterygion tou hierou. Parte elevada, extremidade ou projeção do complexo do templo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cafarnaum</span>
+                Cidade às margens do mar da Galileia, na região de Zebulom e Naftali. Tornou-se base do ministério de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pescadores de Homens</span>
+                Metáfora para o chamado de discipulado: os seguidores de Jesus serão instrumentos para reunir pessoas no reino.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Decápolis</span>
+                "Dez Cidades". Região de cidades predominantemente gentias ao leste do Jordão.
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTO DO CAPÍTULO 4 -->
+    <div class="chapter-num">4</div>
+
+    <div class="pericope">A Tentação de Jesus no Deserto</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>ntão Jesus foi levado pelo Espírito ao deserto, para ser tentado pelo diabo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, tendo jejuado quarenta dias e quarenta noites, depois teve fome.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, chegando-se a ele o tentador, disse: <span class="fala-diabo">"Se tu és Filho de Deus, dize que estas pedras se tornem em pães."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas ele, respondendo, disse: <span class="fala-jesus">"Está escrito: Nem só de pão viverá o homem, mas de toda palavra que sai da boca de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Então o diabo o levou à cidade santa, e o colocou sobre o ponto mais alto do templo,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        e disse-lhe: <span class="fala-diabo">"Se tu és Filho de Deus, lança-te daqui abaixo; porque está escrito: Aos seus anjos dará ordens a teu respeito, e eles te sustentarão nas mãos, para que nunca tropeces em alguma pedra."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Disse-lhe Jesus: <span class="fala-jesus">"Também está escrito: Não tentarás o Senhor teu Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Novamente o diabo o levou a um monte muito alto, e mostrou-lhe todos os reinos do mundo e a glória deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E disse-lhe: <span class="fala-diabo">"Tudo isto te darei se, prostrado, me adorares."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Então Jesus lhe disse: <span class="fala-jesus">"Vai-te, Satanás; porque está escrito: Ao Senhor teu Deus adorarás, e só a ele servirás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Então o diabo o deixou; e eis que os anjos chegaram e o serviam.
+
+    <div class="pericope">O Início do Ministério na Galileia</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Ora, tendo Jesus ouvido que João fora entregue, retirou-se para a Galileia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, deixando Nazaré, foi habitar em Cafarnaum, cidade marítima, nos confins de Zebulom e Naftali,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        para que se cumprisse o que foi dito pelo profeta Isaías, que diz:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        "A terra de Zebulom e a terra de Naftali, caminho do mar, além do Jordão, a Galileia dos gentios —
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        o povo que estava assentado em trevas viu uma grande luz; e aos que estavam assentados na região e sombra da morte, a luz lhes raiou."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Desde então começou Jesus a pregar e a dizer: <span class="fala-jesus">"Arrependei-vos, porque está próximo o reino dos céus."</span>
+    </p>
+
+    <div class="pericope">O Chamado dos Primeiros Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E Jesus, andando junto ao mar da Galileia, viu dois irmãos: Simão, chamado Pedro, e André, seu irmão, que lançavam a rede ao mar, porque eram pescadores.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E disse-lhes: <span class="fala-jesus">"Vinde após mim, e eu vos farei pescadores de homens."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Então eles, deixando imediatamente as redes, o seguiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, passando adiante, viu outros dois irmãos: Tiago, filho de Zebedeu, e João, seu irmão, no barco com Zebedeu, seu pai, consertando as suas redes; e os chamou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Então eles, deixando imediatamente o barco e seu pai, o seguiram.
+
+    <div class="pericope">Jesus Ensina e Cura na Galileia</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E percorria Jesus toda a Galileia, ensinando nas sinagogas deles, e pregando o evangelho do reino, e curando toda enfermidade e toda doença entre o povo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E a sua fama correu por toda a Síria. E trouxeram-lhe todos os que estavam doentes, acometidos de várias enfermidades e tormentos, endemoninhados, lunáticos e paralíticos; e ele os curou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E seguiram-no grandes multidões da Galileia, de Decápolis, de Jerusalém, da Judeia e de além do Jordão.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:1 — "Levado pelo Espírito"</span>
+            <div class="greek-text">ἀνήχθη ὑπὸ τοῦ Πνεύματος</div>
+            <p><strong>Análise:</strong> O verbo significa "ser conduzido", "ser levado". A iniciativa é do Espírito, não de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "levado pelo Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:1 — "Para ser tentado pelo diabo"</span>
+            <div class="greek-text">πειρασθῆναι ὑπὸ τοῦ διαβόλου</div>
+            <p><strong>Análise:</strong> O termo "diabo" vem de <em>diabolos</em>, "caluniador", "acusador". Mateus apresenta o diabo como aquele que tenta Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "diabo".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 4:2 — "Quarenta dias e quarenta noites"</span>
+            <p><strong>Análise:</strong> O número quarenta tem forte significado bíblico: os quarenta anos de Israel no deserto, os quarenta dias de Moisés no Sinai e de Elias no Horebe.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão "quarenta dias e quarenta noites".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:3 — "Tentador"</span>
+            <div class="greek-text">πειράζων</div>
+            <p><strong>Análise:</strong> O mesmo ser é chamado de "diabo" (v. 1), "tentador" (v. 3) e "Satanás" (v. 10). São designações do mesmo adversário.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tentador".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:3, 6 — "Se tu és Filho de Deus"</span>
+            <div class="greek-text">εἰ υἱὸς εἶ τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> A expressão grega pode ser traduzida como "se tu és" ou "já que tu és". O diabo não nega a filiação, mas a usa como provocação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Se tu és Filho de Deus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:4 — "Nem só de pão viverá o homem"</span>
+            <div class="greek-text">οὐκ ἐπ' ἄρτῳ μόνῳ ζήσεται ὁ ἄνθρωπος</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 8:3. Jesus responde ao diabo citando a Escritura, mostrando que a obediência a Deus é mais fundamental que a satisfação física.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Deuteronômio 8:3.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:5 — "Ponto mais alto do templo"</span>
+            <div class="greek-text">πτερύγιον τοῦ ἱεροῦ</div>
+            <p><strong>Análise:</strong> Do grego <em>pterygion tou hierou</em>, termo que pode designar uma parte elevada, extremidade ou projeção do complexo do templo. O texto não permite determinar com certeza qual estrutura específica estava em vista.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "ponto mais alto do templo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:6 — "Aos seus anjos dará ordens a teu respeito"</span>
+            <div class="greek-text">τοῖς ἀγγέλοις αὐτοῦ ἐντελεῖται περὶ σοῦ</div>
+            <p><strong>Análise:</strong> Citação do Salmo 91:11-12. O diabo cita a Escritura, mas a aplica de forma distorcida, ignorando o contexto de confiança e obediência a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação do Salmo 91.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:7 — "Não tentarás o Senhor teu Deus"</span>
+            <div class="greek-text">οὐκ ἐκπειράσεις Κύριον τὸν Θεόν σου</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 6:16. Jesus contrapõe a Escritura à Escritura, mostrando que a verdadeira confiança em Deus não exige provas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Deuteronômio 6:16.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:8 — "Todos os reinos do mundo"</span>
+            <div class="greek-text">πάσας τὰς βασιλείας τοῦ κόσμου</div>
+            <p><strong>Análise:</strong> Mateus descreve o diabo mostrando a Jesus os reinos do mundo e sua glória. O texto não explica a natureza dessa visão nem especifica como todos os reinos foram apresentados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todos os reinos do mundo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:10 — "Ao Senhor teu Deus adorarás, e só a ele servirás"</span>
+            <div class="greek-text">Κύριον τὸν Θεόν σου προσκυνήσεις καὶ αὐτῷ μόνῳ λατρεύσεις</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 6:13. Jesus rejeita totalmente a proposta de adoração ao diabo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Deuteronômio 6:13.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:10 — "Vai-te, Satanás"</span>
+            <div class="greek-text">Ὕπαγε, Σατανᾶ</div>
+            <p><strong>Análise:</strong> O verbo <em>hypagō</em> significa "ir embora", "retirar-se". Jesus ordena a saída do adversário.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Vai-te, Satanás".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:11 — "Os anjos chegaram e o serviam"</span>
+            <div class="greek-text">διηκόνουν αὐτῷ</div>
+            <p><strong>Análise:</strong> O verbo indica serviço prestado a Jesus. Mateus não especifica em que consistiu esse serviço.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os anjos chegaram e o serviam".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 4:12 — "João fora entregue"</span>
+            <div class="greek-text">παρεδόθη</div>
+            <p><strong>Análise:</strong> O verbo "entregar" é usado para a prisão de João. Mais tarde, o mesmo verbo será usado para a entrega de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "João fora entregue".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 4:13 — "Cafarnaum, cidade marítima"</span>
+            <p><strong>Análise:</strong> Cafarnaum ficava às margens do mar da Galileia, na região de Zebulom e Naftali. Tornou-se base do ministério de Jesus na Galileia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a referência a Cafarnaum.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:15-16 — "Galileia dos gentios"</span>
+            <div class="greek-text">Γαλιλαία τῶν ἐθνῶν</div>
+            <p><strong>Análise:</strong> Citação de Isaías 9:1-2 segundo a forma grega utilizada por Mateus. A expressão caracteriza a região da Galileia em relação aos gentios e prepara o tema da luz alcançando uma região marcada pela presença das nações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Isaías 9:1-2.</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:17 — "Arrependei-vos, porque está próximo o reino dos céus"</span>
+            <div class="greek-text">μετανοεῖτε· ἤγγικεν γὰρ ἡ βασιλεία τῶν οὐρανῶν</div>
+            <p><strong>Análise:</strong> A mensagem inicial de Jesus é idêntica à de João Batista (Mateus 3:2). Jesus dá continuidade e aprofundamento à pregação do Batista.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a mensagem inicial de Jesus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4:19 — "Pescadores de homens"</span>
+            <div class="greek-text">ἁλιεῖς ἀνθρώπων</div>
+            <p><strong>Análise:</strong> A expressão é uma metáfora para o chamado de discipulado: os seguidores de Jesus serão instrumentos para reunir pessoas no reino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pescadores de homens".</p>
+            <span class="prop-status status-messianic">Cumprida em Cristo</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:21 — "Consertando as suas redes"</span>
+            <div class="greek-text">καταρτίζοντας τὰ δίκτυα αὐτῶν</div>
+            <p><strong>Análise:</strong> O verbo <em>katartizō</em> significa "restaurar", "preparar". As redes precisavam de manutenção constante.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "consertando as suas redes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 4:24 — "Lunáticos"</span>
+            <div class="greek-text">σεληνιαζομένους</div>
+            <p><strong>Análise:</strong> Termo relacionado à ideia de ser afetado pela lua. A palavra era usada para pessoas que apresentavam determinados sintomas, especialmente manifestações semelhantes a convulsões. Mateus não especifica a causa dessas condições.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lunáticos".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 4:25 — "Decápolis"</span>
+            <div class="greek-text">Δεκαπόλεως</div>
+            <p><strong>Análise:</strong> "Dez Cidades". Região de cidades predominantemente gentias ao leste do Jordão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Decápolis".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 4 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 4 apresenta três momentos fundamentais: 1) A tentação no deserto (v.1-11) — Jesus é provado como o Filho obediente; 2) O início do ministério na Galileia (v.12-17) — Jesus retoma a pregação de João e cumpre a profecia de Isaías; 3) O chamado dos primeiros discípulos (v.18-22) — o convite para seguir Jesus; 4) O ministério de cura (v.23-25) — Jesus demonstra seu poder sobre as enfermidades.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
