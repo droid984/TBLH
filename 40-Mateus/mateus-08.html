@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 8</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-leproso { color: #6b6b6b; font-weight: 500; }
+        .fala-centuriao { color: #6b6b6b; font-weight: 500; }
+        .fala-escriba { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulo { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-demonios { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 8</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Leproso</span>
+                Do grego lepros (λεπρός). O termo bíblico abrange várias doenças de pele, não apenas a hanseníase como conhecida hoje.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Centurião</span>
+                Do grego hekatontarchos (ἑκατόνταρχος). Oficial romano responsável por cerca de cem soldados.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filho do Homem</span>
+                Expressão usada por Jesus para referir-se a si mesmo, com raízes em Daniel 7:13-14.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Endemoninhados</span>
+                Do grego daimonizomenoi (δαιμονιζόμενοι). Pessoas descritas como estando sob ação ou domínio de demônios.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gadarenos</span>
+                Região onde ocorreu a cura dos endemoninhados. A localização exata é discutida.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tempestade</span>
+                Do grego seismos megas (σεισμὸς μέγας), literalmente "grande abalo". O mar da Galileia era conhecido por tempestades repentinas.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">8</div>
+
+    <div class="pericope">A Cura do Leproso</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, descendo ele do monte, grandes multidões o seguiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E eis que um leproso, aproximando-se, o adorou, dizendo: <span class="fala-leproso">"Senhor, se quiseres, podes tornar-me limpo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E Jesus, estendendo a mão, tocou-o, dizendo: <span class="fala-jesus">"Quero; sê limpo."</span> E imediatamente a sua lepra foi limpa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Então Jesus lhe disse: <span class="fala-jesus">"Vê que não o digas a ninguém; mas vai, mostra-te ao sacerdote e apresenta a oferta que Moisés ordenou, para lhes servir de testemunho."</span>
+    </p>
+
+    <div class="pericope">A Cura do Servo do Centurião</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, entrando Jesus em Cafarnaum, aproximou-se dele um centurião, rogando-lhe
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        e dizendo: <span class="fala-centuriao">"Senhor, o meu servo jaz em casa paralítico, terrivelmente atormentado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Eu irei e o curarei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas o centurião, respondendo, disse: <span class="fala-centuriao">"Senhor, não sou digno de que entres debaixo do meu telhado; mas dize somente uma palavra, e o meu servo será curado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-centuriao">Porque também eu sou homem sujeito a autoridade, e tenho soldados debaixo de mim; e digo a este: Vai, e ele vai; e a outro: Vem, e ele vem; e ao meu servo: Faze isto, e ele o faz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E Jesus, ouvindo isso, admirou-se e disse aos que o seguiam: <span class="fala-jesus">"Em verdade vos digo: nem mesmo em Israel encontrei tanta fé.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Mas eu vos digo que muitos virão do Oriente e do Ocidente, e se assentarão à mesa com Abraão, Isaque e Jacó no reino dos céus;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">mas os filhos do reino serão lançados nas trevas exteriores. Ali haverá pranto e ranger de dentes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então Jesus disse ao centurião: <span class="fala-jesus">"Vai; e como creste, assim te seja feito."</span> E naquela mesma hora o seu servo foi curado.
+
+    <div class="pericope">A Cura da Sogra de Pedro e Outros</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E Jesus, entrando na casa de Pedro, viu a sogra deste acamada e com febre.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E tocou-lhe na mão, e a febre a deixou. E ela se levantou e os servia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, chegada a tarde, trouxeram-lhe muitos endemoninhados; e ele expulsou os espíritos com a sua palavra, e curou todos os que estavam doentes,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        para que se cumprisse o que foi dito pelo profeta Isaías, que diz: "Ele tomou sobre si as nossas enfermidades, e levou as nossas doenças."
+    </p>
+
+    <div class="pericope">O Custo de Seguir Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E Jesus, vendo ao redor de si uma grande multidão, ordenou que passassem para a outra margem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, aproximando-se dele um escriba, disse-lhe: <span class="fala-escriba">"Mestre, seguir-te-ei para onde quer que fores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E Jesus lhe disse: <span class="fala-jesus">"As raposas têm covis, e as aves do céu têm ninhos; mas o Filho do homem não tem onde reclinar a cabeça."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E outro dos discípulos lhe disse: <span class="fala-discipulo">"Senhor, permite-me ir primeiro sepultar meu pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas Jesus lhe disse: <span class="fala-jesus">"Segue-me, e deixa os mortos sepultar os seus próprios mortos."</span>
+    </p>
+
+    <div class="pericope">A Tempestade Acalmada</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, entrando ele no barco, os seus discípulos o seguiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E eis que se levantou no mar uma grande tempestade, de modo que o barco era coberto pelas ondas; mas ele dormia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E os seus discípulos, aproximando-se, o despertaram, dizendo: <span class="fala-discipulos">"Senhor, salva-nos, que perecemos!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E ele lhes disse: <span class="fala-jesus">"Por que sois covardes, homens de pouca fé?"</span> Então, levantando-se, repreendeu os ventos e o mar, e houve grande bonança.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E aqueles homens se maravilharam, dizendo: <span class="fala-discipulos">"Quem é este, que até os ventos e o mar lhe obedecem?"</span>
+    </p>
+
+    <div class="pericope">Os Endemoninhados Gadarenos</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, tendo ele chegado à outra margem, à região dos gadarenos, saíram-lhe ao encontro dois endemoninhados, vindos dos sepulcros, tão ferozes que ninguém podia passar por aquele caminho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E eis que clamaram, dizendo: <span class="fala-demonios">"Que temos nós contigo, Jesus, Filho de Deus? Vieste aqui atormentar-nos antes do tempo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E andava longe deles uma manada de muitos porcos, pastando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E os demônios rogaram-lhe, dizendo: <span class="fala-demonios">"Se nos expulsas, permite-nos ir para aquela manada de porcos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E ele lhes disse: <span class="fala-jesus">"Ide."</span> E, saindo eles, entraram na manada de porcos. E eis que toda a manada de porcos se precipitou pelo despenhadeiro para o mar, e morreram nas águas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E os que apascentavam fugiram e, indo à cidade, contaram tudo, inclusive o que acontecera aos endemoninhados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E eis que toda a cidade saiu ao encontro de Jesus; e, vendo-o, rogaram-lhe que se retirasse dos seus termos.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 8:2 — "Adorou-o"</span>
+            <div class="greek-text">προσεκύνησεν</div>
+            <p><strong>Análise:</strong> Verbo relacionado a prostrar-se diante de alguém e prestar reverência. O contexto apresenta o gesto acompanhado de uma súplica a Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "adorou-o".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 8:3 — "Tocou-o"</span>
+            <p><strong>Análise:</strong> O toque de Jesus ocorre diante da condição de impureza ritual associada à lepra. A narrativa destaca que, imediatamente após o toque, o homem foi purificado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tocou-o".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 8:8 — "Não sou digno"</span>
+            <p><strong>Análise:</strong> O centurião declara não ser digno de receber Jesus sob seu teto e, em seguida, demonstra confiança na autoridade de sua palavra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não sou digno".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 8:20 — "Filho do homem"</span>
+            <div class="greek-text">υἱὸς τοῦ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> Expressão usada por Jesus para referir-se a si mesmo. A expressão possui relação importante com a linguagem de Daniel 7:13-14 e aparece repetidamente nos Evangelhos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Filho do homem".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 8:22 — "Deixa os mortos sepultar os seus próprios mortos"</span>
+            <p><strong>Análise:</strong> Expressão de difícil interpretação. A frase estabelece um contraste entre os "mortos" e aquele que é chamado a seguir Jesus. O texto não explica diretamente o sentido específico da expressão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal da expressão.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 8:28 — "Endemoninhados"</span>
+            <div class="greek-text">δαιμονιζόμενοι</div>
+            <p><strong>Análise:</strong> Termo usado para pessoas descritas no texto como estando sob ação ou domínio de demônios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "endemoninhados".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 8:34 — "Toda a cidade saiu"</span>
+            <p><strong>Análise:</strong> A reação dos habitantes é pedir que Jesus se retire de seus termos. O texto não especifica diretamente o motivo dessa reação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "toda a cidade saiu".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 8 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 8 inicia a seção de milagres de Mateus, demonstrando a autoridade de Jesus. Estrutura: 1) Cura do leproso (v.1-4) — autoridade sobre a impureza; 2) Cura do servo do centurião (v.5-13) — fé dos gentios; 3) Cura da sogra de Pedro e outros (v.14-17) — cumprimento de Isaías 53; 4) O custo de seguir Jesus (v.18-22); 5) A tempestade acalmada (v.23-27) — autoridade sobre a natureza; 6) Os endemoninhados gadarenos (v.28-34) — autoridade sobre os demônios.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

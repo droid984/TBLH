@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos-joao { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Cristo</span>
+                Do grego Christos (Χριστός), equivalente ao hebraico Mashiach (מָשִׁיחַ), "Ungido". Título messiânico.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Elias</span>
+                Profeta do Antigo Testamento (1 Reis 17-19; 2 Reis 1-2). Malaquias 4:5 anuncia seu retorno antes do "grande e terrível dia do SENHOR".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Jugo</span>
+                Do grego zygos (ζυγός). Usado para unir animais ao trabalho. Na tradição judaica, representava a submissão à Lei.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hades</span>
+                Do grego hadēs (ᾅδης). Termo associado ao domínio dos mortos, distinto de Geena (γέεννα).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Corazim e Betsaida</span>
+                Cidades da Galileia onde Jesus realizou milagres, mas que não se arrependeram.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tiro e Sidom</span>
+                Cidades gentias conhecidas na profecia como símbolos de orgulho e juízo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <div class="pericope">A Pergunta de João Batista</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, tendo Jesus acabado de dar instruções aos seus doze discípulos, partiu dali para ensinar e pregar nas cidades deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E João, ouvindo na prisão as obras de Cristo, enviou dois dos seus discípulos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        e disse-lhe: <span class="fala-discipulos-joao">"És tu aquele que havia de vir, ou esperamos outro?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Ide e anunciai a João o que ouvis e vedes:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">os cegos veem, os coxos andam, os leprosos são limpos, os surdos ouvem, os mortos ressuscitam, e aos pobres é anunciado o evangelho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">E bem-aventurado é aquele que não se escandalizar em mim."</span>
+    </p>
+
+    <div class="pericope">O Testemunho de Jesus sobre João</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, partindo eles, começou Jesus a dizer às multidões a respeito de João: <span class="fala-jesus">"O que fostes ver no deserto? Uma cana agitada pelo vento?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Mas o que fostes ver? Um homem vestido de roupas delicadas? Eis que os que vestem roupas delicadas estão nas casas dos reis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Mas, então, o que fostes ver? Um profeta? Sim, eu vos digo: e muito mais que profeta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Porque este é aquele de quem está escrito: 'Eis que envio o meu mensageiro diante da tua face, que preparará o teu caminho diante de ti.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Em verdade vos digo: entre os nascidos de mulheres, não surgiu outro maior que João Batista; mas aquele que é o menor no reino dos céus é maior do que ele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E, desde os dias de João Batista até agora, o reino dos céus sofre violência, e os violentos o tomam à força.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Porque todos os profetas e a lei profetizaram até João.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E, se quereis aceitar, ele é o Elias que havia de vir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Quem tem ouvidos para ouvir, ouça.</span>
+    </p>
+
+    <div class="pericope">A Geração que Rejeitou</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Mas a quem compararei esta geração? É semelhante a meninos sentados nas praças, que gritam aos seus companheiros,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">e dizem: 'Tocamos flauta para vós, e não dançastes; cantamos lamentações, e não chorastes.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Porque veio João, que não come nem bebe, e dizem: 'Ele tem demônio.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Veio o Filho do homem, que come e bebe, e dizem: 'Eis aí um homem comilão e beberrão, amigo de publicanos e pecadores.' Mas a sabedoria é justificada pelos seus filhos."</span>
+    </p>
+
+    <div class="pericope">Ai das Cidades que Não se Arrependeram</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Então começou ele a repreender as cidades nas quais a maior parte dos seus milagres tinha sido realizada, porque não se arrependeram:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">"Ai de ti, Corazim! Ai de ti, Betsaida! Porque, se em Tiro e em Sidom se tivessem realizado os milagres que em vós se realizaram, há muito que teriam se arrependido em saco e cinza.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Por isso eu vos digo: no dia do juízo haverá menos rigor para Tiro e Sidom do que para vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">E tu, Cafarnaum, que te elevas até o céu, serás abatida até ao Hades; porque, se em Sodoma se tivessem realizado os milagres que em ti se realizaram, teria permanecido até hoje.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Por isso eu vos digo: no dia do juízo haverá menos rigor para a terra de Sodoma do que para ti."</span>
+    </p>
+
+    <div class="pericope">O Convite de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Naquele tempo, Jesus, respondendo, disse: <span class="fala-jesus">"Graças te dou, ó Pai, Senhor do céu e da terra, porque escondeste estas coisas aos sábios e entendidos, e as revelaste aos pequeninos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Sim, ó Pai, porque assim foi do teu agrado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Todas as coisas me foram entregues por meu Pai. E ninguém conhece o Filho, senão o Pai; e ninguém conhece o Pai, senão o Filho, e aquele a quem o Filho o quiser revelar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos aliviarei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Tomai sobre vós o meu jugo, e aprendei de mim, que sou manso e humilde de coração; e achareis descanso para as vossas almas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Porque o meu jugo é suave, e o meu fardo é leve."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 11:2 — "As obras de Cristo"</span>
+            <div class="greek-text">τὰ ἔργα τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> O termo "obras" refere-se aos milagres e ensinos de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "obras de Cristo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 11:3 — "Aquele que havia de vir"</span>
+            <p><strong>Análise:</strong> Expressão messiânica. João pergunta se Jesus é o esperado ou se devem aguardar outro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aquele que havia de vir".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 11:5 — "Os cegos veem, os coxos andam"</span>
+            <p><strong>Análise:</strong> A resposta de Jesus ecoa Isaías 35:5-6 e 61:1, descrevendo os sinais do tempo messiânico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos sinais messiânicos.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 11:11 — "Menor no reino dos céus"</span>
+            <p><strong>Análise:</strong> A expressão é de difícil interpretação. Pode referir-se à grandeza daquele que pertence ao reino dos céus em relação à posição de João no período anterior, embora o sentido exato seja debatido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "menor no reino dos céus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 11:12 — "Sofre violência"</span>
+            <div class="greek-text">βιάζεται</div>
+            <p><strong>Análise:</strong> A construção é debatida. Pode ser entendida como o reino sofrendo violência ou como sendo avançado com força. A tradução mantém a leitura tradicional sem resolver a questão interpretativa no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sofre violência".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 11:14 — "Elias que havia de vir"</span>
+            <p><strong>Análise:</strong> Referência a Malaquias 4:5. Jesus relaciona João Batista à expectativa do retorno de Elias apresentada na profecia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a referência a Elias.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 11:19 — "A sabedoria é justificada pelos seus filhos"</span>
+            <div class="greek-text">ἐδικαιώθη ἡ σοφία ἀπὸ τῶν τέκνων αὐτῆς</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz "filhos" (teknōn, τέκνων), enquanto alguns manuscritos apresentam "obras". A tradução segue o Textus Receptus. A expressão pode indicar que a verdadeira sabedoria é demonstrada ou reconhecida por aqueles que dela procedem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a sabedoria é justificada pelos seus filhos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 11:23 — "Hades"</span>
+            <div class="greek-text">ᾅδης</div>
+            <p><strong>Análise:</strong> Do grego <em>hadēs</em>, termo associado ao domínio dos mortos. É distinto de <em>geenna</em> (γέεννα), termo usado em outros textos para o lugar do juízo.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a transliteração "Hades".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 11:28 — "Vinde a mim"</span>
+            <p><strong>Análise:</strong> Convite de Jesus aos cansados e sobrecarregados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Vinde a mim".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 11 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 11 contém a resposta de Jesus à dúvida de João, seu testemunho sobre João, e seu convite aos cansados. Estrutura: 1) A pergunta de João Batista (v.2-6); 2) O testemunho de Jesus sobre João (v.7-19); 3) As cidades que não se arrependeram (v.20-24); 4) O convite de Jesus aos cansados (v.25-30).</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

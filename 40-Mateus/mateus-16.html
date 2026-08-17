@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 16</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-pedro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 16</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Cesareia de Filipe</span>
+                Cidade ao norte da Galileia, próxima às nascentes do Jordão e ao monte Hermom. Local conhecido por cultos pagãos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fermento</span>
+                Representa a doutrina ou influência corruptora dos fariseus e saduceus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cristo, Filho do Deus Vivo</span>
+                Confissão de Pedro, reconhecendo Jesus como o Messias prometido e o Filho de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pedro e a Pedra</span>
+                Jogo de palavras entre Petros (Πέτρος) e petra (πέτρα). A relação é interpretada de diferentes formas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Chaves do Reino</span>
+                Imagem de autoridade dada a Pedro. O significado exato é debatido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hades</span>
+                O domínio dos mortos. As portas do Hades não prevalecerão contra a igreja.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">16</div>
+
+    <div class="pericope">O Sinal dos Tempos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, aproximando-se os fariseus e saduceus, para o tentarem, pediram-lhe que lhes mostrasse algum sinal do céu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"Quando é tarde, dizeis: 'Haverá bom tempo, porque o céu está avermelhado.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">E, pela manhã: 'Hoje haverá tempestade, porque o céu está avermelhado e sombrio.' Hipócritas, sabeis distinguir a aparência do céu, e não podeis discernir os sinais dos tempos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Uma geração má e adúltera pede um sinal, e nenhum sinal lhe será dado, senão o sinal do profeta Jonas."</span> E, deixando-os, retirou-se.
+
+    <div class="pericope">O Fermento dos Fariseus e Saduceus</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, quando os seus discípulos passaram para a outra margem, esqueceram-se de levar pão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Vede e guardai-vos do fermento dos fariseus e saduceus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E eles discorriam entre si, dizendo: <span class="fala-discipulos">"É porque não trouxemos pão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Jesus, percebendo isso, disse: <span class="fala-jesus">"Por que discorreis entre vós, homens de pouca fé, por não terdes pão?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Ainda não compreendeis, nem vos lembrais dos cinco pães para os cinco mil, e quantos cestos recolhestes?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Nem dos sete pães para os quatro mil, e quantos cestos recolhestes?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Como não entendeis que não vos falei de pão, mas que vos guardeis do fermento dos fariseus e saduceus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então entenderam que não dissera que se guardassem do fermento do pão, mas da doutrina dos fariseus e saduceus.
+
+    <div class="pericope">A Confissão de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, chegando Jesus às partes de Cesareia de Filipe, perguntou aos seus discípulos, dizendo: <span class="fala-jesus">"Quem dizem os homens ser o Filho do homem?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E eles disseram: <span class="fala-discipulos">"Uns dizem que é João Batista; outros, Elias; e outros, Jeremias, ou um dos profetas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Disse-lhes ele: <span class="fala-jesus">"E vós, quem dizeis que eu sou?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E Simão Pedro, respondendo, disse: <span class="fala-pedro">"Tu és o Cristo, o Filho do Deus vivo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Bem-aventurado és tu, Simão, filho de Jonas, porque não foi carne e sangue que te revelaram isto, mas meu Pai, que está nos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E também eu te digo: tu és Pedro, e sobre esta pedra edificarei a minha igreja, e as portas do Hades não prevalecerão contra ela.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E a ti darei as chaves do reino dos céus; e tudo o que ligares na terra será ligado nos céus; e tudo o que desligares na terra será desligado nos céus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Então ordenou aos seus discípulos que a ninguém dissessem que ele era Jesus, o Cristo.
+
+    <div class="pericope">A Primeira Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Desde então começou Jesus a mostrar aos seus discípulos que era necessário que ele fosse a Jerusalém, e padecesse muitas coisas dos anciãos, dos principais dos sacerdotes e dos escribas, e fosse morto, e ressuscitasse ao terceiro dia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E Pedro, tomando-o à parte, começou a repreendê-lo, dizendo: <span class="fala-pedro">"Senhor, tem compaixão de ti! De modo nenhum isso te acontecerá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas ele, voltando-se, disse a Pedro: <span class="fala-jesus">"Para trás de mim, Satanás! Tu me serves de tropeço, porque não pensas nas coisas de Deus, mas nas dos homens."</span>
+    </p>
+
+    <div class="pericope">O Caminho da Cruz</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Então Jesus disse aos seus discípulos: <span class="fala-jesus">"Se alguém quer vir após mim, negue-se a si mesmo, tome a sua cruz e siga-me.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Porque qualquer que quiser salvar a sua vida a perderá; e qualquer que perder a sua vida por minha causa a achará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Pois que aproveita ao homem ganhar o mundo inteiro e perder a sua alma? Ou que dará o homem em troca da sua alma?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Porque o Filho do homem virá na glória de seu Pai, com os seus anjos; e então retribuirá a cada um conforme as suas obras.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Em verdade vos digo: alguns dos que aqui estão não provarão a morte até que vejam o Filho do homem vindo no seu reino."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 16:1 — "Sinal do céu"</span>
+            <p><strong>Análise:</strong> Os fariseus e saduceus pedem uma prova sobrenatural da autoridade de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinal do céu".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 16:6, 11-12 — "Fermento dos fariseus e saduceus"</span>
+            <p><strong>Análise:</strong> O fermento representa a doutrina ou influência dos fariseus e saduceus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fermento dos fariseus e saduceus".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 16:13 — "Cesareia de Filipe"</span>
+            <p><strong>Análise:</strong> Cidade situada ao norte da Galileia, próxima às nascentes do Jordão e ao monte Hermom. O local era conhecido por seu ambiente religioso e pela presença de cultos pagãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cesareia de Filipe".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 16:16 — "Tu és o Cristo, o Filho do Deus vivo"</span>
+            <div class="greek-text">ὁ Χριστὸς ὁ υἱὸς τοῦ Θεοῦ τοῦ ζῶντος</div>
+            <p><strong>Análise:</strong> Confissão de Pedro reconhecendo Jesus como o Messias e o Filho do Deus vivo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tu és o Cristo, o Filho do Deus vivo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 16:17 — "Simão, filho de Jonas"</span>
+            <div class="greek-text">Σίμων Βαριωνᾶ</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz <em>Simōn Bariōna</em>, tradicionalmente entendido como "Simão, filho de Jonas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Simão, filho de Jonas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 16:18 — "Tu és Pedro, e sobre esta pedra"</span>
+            <div class="greek-text">σὺ εἶ Πέτρος, καὶ ἐπὶ ταύτῃ τῇ πέτρᾳ</div>
+            <p><strong>Análise:</strong> O grego emprega <em>Petros</em> (Πέτρος) e <em>petra</em> (πέτρα), respectivamente. A relação entre Pedro e "esta pedra" tem sido interpretada de diferentes formas; o texto apresenta o jogo de palavras, mas não explicita aqui todas as implicações teológicas da afirmação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tu és Pedro, e sobre esta pedra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 16:18 — "Igreja"</span>
+            <div class="greek-text">ἐκκλησία</div>
+            <p><strong>Análise:</strong> "Assembleia", "congregação". Primeira ocorrência da palavra em Mateus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "igreja".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 16:19 — "Chaves do reino"</span>
+            <p><strong>Análise:</strong> Imagem de autoridade. O significado exato é debatido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chaves do reino".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 16:21 — "Anciãos, principais dos sacerdotes e escribas"</span>
+            <p><strong>Análise:</strong> Grupos pertencentes à liderança religiosa e social judaica. Mateus os apresenta juntos em diversas passagens como opositores de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos três grupos.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 16:28 — "Não provarão a morte"</span>
+            <p><strong>Análise:</strong> Expressão de difícil interpretação. O texto relaciona essa promessa à manifestação do Filho do homem em seu reino. Sua relação exata com os acontecimentos posteriores é objeto de diferentes interpretações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não provarão a morte".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 16 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 16 contém momentos decisivos no ministério de Jesus: 1) O confronto sobre o sinal (v.1-4); 2) A advertência sobre o fermento (v.5-12); 3) A confissão de Pedro em Cesareia de Filipe (v.13-20); 4) A primeira predição da paixão (v.21-23); 5) O chamado ao discipulado da cruz (v.24-28). O capítulo marca a virada no evangelho de Mateus, com Jesus revelando claramente seu destino de sofrimento.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-escribas { color: #6b6b6b; font-weight: 500; }
+        .fala-fariseus { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos-joao { color: #6b6b6b; font-weight: 500; }
+        .fala-chefe { color: #6b6b6b; font-weight: 500; }
+        .fala-mulher { color: #6b6b6b; font-weight: 500; }
+        .fala-cegos { color: #6b6b6b; font-weight: 500; }
+        .fala-multidoes { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Filho do Homem</span>
+                Título usado por Jesus para referir-se a si mesmo, com autoridade para perdoar pecados na terra.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Publicanos</span>
+                Cobradores de impostos, desprezados pelos judeus por colaborarem com Roma.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Chefe (archōn)</span>
+                Líder da sinagoga. Nos relatos paralelos (Marcos 5:22; Lucas 8:41), é identificado como Jairo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fluxo de Sangue</span>
+                Condição que tornava a mulher ritualmente impura segundo Levítico 15:25-27.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Convidados do Noivo</span>
+                Do grego huioi tou nymphōnos (υἱοὶ τοῦ νυμφῶνος), literalmente "filhos do quarto nupcial". Companheiros do noivo durante a celebração.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Odres</span>
+                Recipientes de couro para armazenar líquidos. Vinho novo em fermentação rompia odres velhos.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <div class="pericope">A Cura do Paralítico</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, entrando no barco, passou para a outra margem, e chegou à sua própria cidade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E eis que lhe trouxeram um paralítico deitado numa cama. E Jesus, vendo a fé deles, disse ao paralítico: <span class="fala-jesus">"Tem ânimo, filho; os teus pecados te são perdoados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E eis que alguns dos escribas disseram entre si: <span class="fala-escribas">"Este blasfema."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas Jesus, conhecendo os seus pensamentos, disse: <span class="fala-jesus">"Por que pensais mal em vossos corações?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Pois qual é mais fácil? Dizer: 'Os teus pecados te são perdoados', ou dizer: 'Levanta-te e anda'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Ora, para que saibais que o Filho do homem tem na terra autoridade para perdoar pecados — disse então ao paralítico: Levanta-te, toma a tua cama e vai para tua casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E ele se levantou e foi para sua casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E as multidões, vendo isso, ficaram com temor e glorificaram a Deus, que dera tal autoridade aos homens.
+
+    <div class="pericope">O Chamado de Mateus</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E Jesus, passando adiante dali, viu um homem chamado Mateus, sentado na coletoria, e disse-lhe: <span class="fala-jesus">"Segue-me."</span> E ele se levantou e o seguiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E aconteceu que, estando Jesus à mesa na casa, eis que muitos publicanos e pecadores vieram e se assentaram com ele e com seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E os fariseus, vendo isso, disseram aos seus discípulos: <span class="fala-fariseus">"Por que come o vosso Mestre com publicanos e pecadores?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Mas Jesus, ouvindo, disse-lhes: <span class="fala-jesus">"Os sãos não precisam de médico, mas sim os doentes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Ide, porém, e aprendei o que significa: Misericórdia quero, e não sacrifício. Porque eu não vim chamar justos, mas pecadores ao arrependimento."</span>
+    </p>
+
+    <div class="pericope">A Questão do Jejum</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Então vieram a ele os discípulos de João, dizendo: <span class="fala-discipulos-joao">"Por que nós e os fariseus jejuamos muitas vezes, mas os teus discípulos não jejuam?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Podem por acaso os convidados do noivo estar tristes enquanto o noivo está com eles? Mas virão dias em que o noivo lhes será tirado, e então jejuarão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Ninguém põe remendo de pano novo em vestido velho; porque o remendo tira parte do vestido, e o rasgo fica pior.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Nem se põe vinho novo em odres velhos; de outro modo os odres se rompem, e o vinho se derrama, e os odres se perdem. Mas põe-se vinho novo em odres novos, e ambos se conservam."</span>
+    </p>
+
+    <div class="pericope">A Filha do Chefe e a Mulher com Fluxo de Sangue</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Enquanto ele lhes dizia estas coisas, eis que um chefe, aproximando-se, o adorou, dizendo: <span class="fala-chefe">"Minha filha faleceu agora; mas vem, impõe a tua mão sobre ela, e viverá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E Jesus, levantando-se, o seguiu, ele e os seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E eis que uma mulher que havia doze anos sofria de um fluxo de sangue aproximou-se por trás e tocou na borda da sua veste;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        porque dizia consigo mesma: <span class="fala-mulher">"Se eu apenas tocar a sua veste, serei curada."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E Jesus, voltando-se e vendo-a, disse: <span class="fala-jesus">"Tem ânimo, filha, a tua fé te salvou."</span> E a mulher ficou sã desde aquele instante.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E Jesus, chegando à casa do chefe e vendo os tocadores de flauta e a multidão que fazia alvoroço,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        disse-lhes: <span class="fala-jesus">"Retirai-vos, porque a menina não está morta, mas dorme."</span> E riam-se dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Mas, quando a multidão foi retirada, ele entrou, tomou a menina pela mão, e ela se levantou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E a fama disso divulgou-se por toda aquela terra.
+
+    <div class="pericope">A Cura dos Cegos e do Mudo</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, partindo Jesus dali, dois cegos o seguiram, clamando e dizendo: <span class="fala-cegos">"Tem compaixão de nós, Filho de Davi."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, chegando ele à casa, os cegos se aproximaram. E Jesus lhes disse: <span class="fala-jesus">"Credes que eu posso fazer isto?"</span> Eles lhe disseram: <span class="fala-cegos">"Sim, Senhor."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Então tocou-lhes os olhos, dizendo: <span class="fala-jesus">"Conforme a vossa fé, assim vos seja feito."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E os olhos deles se abriram. E Jesus lhes ordenou severamente, dizendo: <span class="fala-jesus">"Vede que ninguém o saiba."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Mas eles, saindo, divulgaram a sua fama por toda aquela terra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E, saindo eles, eis que lhe trouxeram um homem mudo e endemoninhado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, expulso o demônio, o mudo falou. E as multidões se maravilharam, dizendo: <span class="fala-multidoes">"Nunca se viu tal coisa em Israel."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Mas os fariseus diziam: <span class="fala-fariseus">"Pelo príncipe dos demônios expulsa os demônios."</span>
+    </p>
+
+    <div class="pericope">A Compaixão de Jesus e a Oração pelos Trabalhadores</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E Jesus percorria todas as cidades e vilas, ensinando nas sinagogas deles, e pregando o evangelho do reino, e curando toda enfermidade e toda doença entre o povo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, vendo as multidões, teve compaixão delas, porque estavam cansadas e dispersas, como ovelhas que não têm pastor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Então disse aos seus discípulos: <span class="fala-jesus">"A colheita é grande, mas os trabalhadores são poucos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Rogai, pois, ao Senhor da colheita que envie trabalhadores para a sua colheita."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 9:2 — "Tem ânimo, filho"</span>
+            <div class="greek-text">θάρσει, τέκνον</div>
+            <p><strong>Análise:</strong> Expressão de encorajamento. O termo "filho" é tratamento afetuoso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tem ânimo, filho".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 9:6 — "Filho do homem tem autoridade"</span>
+            <p><strong>Análise:</strong> Jesus usa o título "Filho do homem" e afirma ter autoridade para perdoar pecados na terra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Filho do homem tem autoridade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 9:13 — "Misericórdia quero, e não sacrifício"</span>
+            <div class="greek-text">ἔλεος θέλω καὶ οὐ θυσίαν</div>
+            <p><strong>Análise:</strong> Citação de Oseias 6:6. Jesus usa o texto para mostrar que a misericórdia é mais importante que o ritual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Oseias 6:6.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 9:15 — "Convidados do noivo"</span>
+            <div class="greek-text">υἱοὶ τοῦ νυμφῶνος</div>
+            <p><strong>Análise:</strong> Literalmente "filhos do quarto nupcial". A expressão se refere aos companheiros ou convidados associados ao noivo durante a celebração do casamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "convidados do noivo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 9:18 — "Chefe"</span>
+            <div class="greek-text">ἄρχων</div>
+            <p><strong>Análise:</strong> Nos relatos paralelos de Marcos 5:22 e Lucas 8:41, esse chefe é identificado como Jairo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chefe".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 9:20 — "Borda da sua veste"</span>
+            <div class="greek-text">κρασπέδου</div>
+            <p><strong>Análise:</strong> Refere-se à franja ou orla do manto, possivelmente as borlas prescritas em Números 15:38-39.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "borda da sua veste".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 9:22 — "A tua fé te salvou"</span>
+            <div class="greek-text">ἡ πίστις σου σέσωκέν σε</div>
+            <p><strong>Análise:</strong> O verbo <em>sōzō</em> pode significar "salvar" ou "curar".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a tua fé te salvou".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 9:34 — "Príncipe dos demônios"</span>
+            <p><strong>Análise:</strong> Os fariseus atribuem a expulsão dos demônios à autoridade do príncipe dos demônios. Em Mateus 12:24, essa acusação é explicitamente associada a Belzebu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "príncipe dos demônios".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 9 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 9 continua a seção de milagres de Mateus. Estrutura: 1) Cura do paralítico (v.1-8) — autoridade para perdoar; 2) Chamado de Mateus (v.9-13) — misericórdia sobre sacrifício; 3) Questão do jejum (v.14-17) — o novo e o velho; 4) Filha do chefe e mulher com fluxo (v.18-26) — fé e cura; 5) Cura dos cegos e do mudo (v.27-34) — fé messiânica e oposição; 6) Compaixão e oração pelos trabalhadores (v.35-38).</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

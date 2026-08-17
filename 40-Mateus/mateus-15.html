@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 15</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-escribas-fariseus { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-pedro { color: #6b6b6b; font-weight: 500; }
+        .fala-mulher-cananeia { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 15</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Tradição dos Anciãos</span>
+                Do grego paradosis tōn presbyterōn (παράδοσις τῶν πρεσβυτέρων). Conjunto de interpretações e práticas transmitidas oralmente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Contaminar</span>
+                Do grego koinoi (κοινοῖ). Literalmente "tornar comum" ou "profana"; refere-se à impureza ritual ou moral.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cananeia</span>
+                Termo usado por Mateus para designar a mulher gentia da região de Tiro e Sidom, associada aos antigos habitantes de Canaã.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cachorrinhos</span>
+                Do grego kynaria (κυνάρια), diminutivo de kyōn. Imagem na metáfora da mesa, contrastando "os filhos" e "os cachorrinhos".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Deus de Israel</span>
+                Expressão usada pelas multidões ao glorificarem a Deus pelas curas realizadas por Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Magdala</span>
+                Local associado à região de Magdala, na margem ocidental do mar da Galileia.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">15</div>
+
+    <div class="pericope">A Tradição dos Anciãos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>ntão aproximaram-se de Jesus os escribas e fariseus de Jerusalém, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-escribas-fariseus">"Por que os teus discípulos transgridem a tradição dos anciãos? Pois não lavam as mãos quando comem pão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"E por que vós transgredis o mandamento de Deus pela vossa tradição?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Porque Deus ordenou, dizendo: 'Honra a teu pai e a tua mãe'; e: 'Quem maldisser pai ou mãe, que morra de morte.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Mas vós dizeis: 'Qualquer que disser a seu pai ou a sua mãe: É oferta ao Senhor aquilo que de mim te poderia aproveitar' — e a seu pai ou a sua mãe já não honra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">E assim invalidastes o mandamento de Deus pela vossa tradição.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Hipócritas, bem profetizou de vós Isaías, dizendo:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">'Este povo se aproxima de mim com a sua boca e me honra com os lábios, mas o seu coração está longe de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Mas em vão me adoram, ensinando doutrinas que são mandamentos de homens.'"</span>
+    </p>
+
+    <div class="pericope">O que Contamina o Homem</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, chamando a si a multidão, disse-lhes: <span class="fala-jesus">"Ouvi e entendei:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Não é o que entra pela boca que contamina o homem; mas o que sai da boca, isso contamina o homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então os seus discípulos, aproximando-se, disseram-lhe: <span class="fala-discipulos">"Sabes que os fariseus, ouvindo essa palavra, se escandalizaram?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas ele, respondendo, disse: <span class="fala-jesus">"Toda planta que meu Pai celestial não plantou será arrancada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Deixai-os; são condutores cegos. E, se um cego guiar outro cego, ambos cairão na cova."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E Pedro, respondendo, disse-lhe: <span class="fala-pedro">"Explica-nos essa parábola."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas Jesus disse: <span class="fala-jesus">"Até vós mesmos ainda estais sem entendimento?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Ainda não compreendeis que tudo o que entra pela boca desce ao ventre e é lançado fora?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Mas o que sai da boca procede do coração, e isso contamina o homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Porque do coração procedem os maus pensamentos, homicídios, adultérios, fornicações, furtos, falsos testemunhos e blasfêmias.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">São estas coisas que contaminam o homem; mas comer sem lavar as mãos não contamina o homem."</span>
+    </p>
+
+    <div class="pericope">A Fé da Mulher Cananeia</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, partindo Jesus dali, retirou-se para as regiões de Tiro e Sidom.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E eis que uma mulher cananeia, vinda daquelas regiões, clamou, dizendo: <span class="fala-mulher-cananeia">"Senhor, Filho de Davi, tem compaixão de mim! Minha filha está terrivelmente endemoninhada."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas ele não lhe respondeu palavra. E os seus discípulos, aproximando-se, rogaram-lhe, dizendo: <span class="fala-discipulos">"Despede-a, porque vem clamando atrás de nós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Mas ele, respondendo, disse: <span class="fala-jesus">"Não fui enviado senão às ovelhas perdidas da casa de Israel."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Então ela veio e o adorou, dizendo: <span class="fala-mulher-cananeia">"Senhor, socorre-me!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Mas ele, respondendo, disse: <span class="fala-jesus">"Não é bom tomar o pão dos filhos e lançá-lo aos cachorrinhos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E ela disse: <span class="fala-mulher-cananeia">"Sim, Senhor, mas também os cachorrinhos comem das migalhas que caem da mesa dos seus senhores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Então Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Ó mulher, grande é a tua fé. Seja-te feito como queres."</span> E naquela mesma hora a sua filha ficou sã.
+
+    <div class="pericope">A Segunda Multiplicação dos Pães</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E Jesus, partindo dali, chegou junto ao mar da Galileia. E, subindo a um monte, assentou-se ali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E grandes multidões vieram a ele, trazendo consigo coxos, cegos, mudos, aleijados e muitos outros. E os puseram aos pés de Jesus, e ele os curou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        De modo que as multidões se maravilharam, vendo os mudos falar, os aleijados sãos, os coxos andar e os cegos ver. E glorificaram o Deus de Israel.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E Jesus, chamando os seus discípulos, disse: <span class="fala-jesus">"Tenho compaixão da multidão, porque já faz três dias que permanecem comigo e não têm o que comer. E não quero despedi-los em jejum, para que não desfaleçam no caminho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E os seus discípulos lhe disseram: <span class="fala-discipulos">"De onde nos viriam, num deserto, tantos pães para fartar tão grande multidão?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Quantos pães tendes?"</span> E eles disseram: <span class="fala-discipulos">"Sete, e uns poucos peixinhos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E mandou às multidões que se assentassem no chão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E tomou os sete pães e os peixes e, dando graças, partiu-os e deu aos seus discípulos, e os discípulos à multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E todos comeram e se fartaram. E recolheram os pedaços que sobraram: sete cestos cheios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E os que comeram foram quatro mil homens, além de mulheres e crianças.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, tendo despedido as multidões, entrou no barco e foi para as regiões de Magdala.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 15:2 — "Tradição dos anciãos"</span>
+            <div class="greek-text">παράδοσις τῶν πρεσβυτέρων</div>
+            <p><strong>Análise:</strong> Conjunto de interpretações e práticas transmitidas oralmente, não escritas na Lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tradição dos anciãos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 15:2 — "Não lavam as mãos"</span>
+            <p><strong>Análise:</strong> A questão envolve a tradição dos anciãos sobre a lavagem das mãos antes das refeições. Mateus apresenta essa prática como parte da tradição religiosa discutida por Jesus, e não como um mandamento explícito da Lei de Moisés.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não lavam as mãos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 15:5 — "Oferta ao Senhor"</span>
+            <div class="greek-text">δῶρον</div>
+            <p><strong>Análise:</strong> A declaração apresentada por Jesus descreve uma prática pela qual algo que poderia beneficiar os pais era declarado como oferta a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "oferta ao Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 15:11, 18, 20 — "Contamina"</span>
+            <div class="greek-text">κοινοῖ</div>
+            <p><strong>Análise:</strong> Literalmente "torna comum" ou "profana"; no contexto, refere-se àquilo que torna uma pessoa ritualmente ou moralmente impura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "contamina".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 15:22 — "Mulher cananeia"</span>
+            <div class="greek-text">Χαναναία</div>
+            <p><strong>Análise:</strong> Mateus utiliza o termo <em>Chananaia</em>, "cananeia", designação associada aos antigos habitantes da região de Canaã. A mulher era gentia e procedia da região de Tiro e Sidom.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mulher cananeia".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 15:26-27 — "Cachorrinhos"</span>
+            <div class="greek-text">κυνάρια</div>
+            <p><strong>Análise:</strong> Diminutivo de <em>kyōn</em>, "cão". A imagem contrasta "os filhos" e "os cachorrinhos" dentro da metáfora da mesa. A mulher aceita a imagem apresentada por Jesus e responde apelando às migalhas que caem da mesa dos senhores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cachorrinhos".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 15:39 — "Magdala"</span>
+            <div class="greek-text">Μαγδαλά</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz <em>Magdala</em>. O local é geralmente associado à região de Magdala, na margem ocidental do mar da Galileia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Magdala".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 15 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 15 contém: 1) O confronto sobre a tradição dos anciãos (v.1-20); 2) A fé da mulher cananeia (v.21-28); 3) A segunda multiplicação dos pães (v.29-39). O capítulo mostra a ênfase de Jesus na pureza interior sobre a tradição externa, a fé de uma gentia reconhecida como grande, e a compaixão contínua de Jesus pelas multidões.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

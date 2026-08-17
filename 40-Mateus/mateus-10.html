@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 10</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 10</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Apóstolos</span>
+                Do grego apostolōn (ἀποστόλων), "enviados". Os doze discípulos são assim chamados ao serem enviados em missão.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Iscariotes</span>
+                Sobrenome de Judas, provavelmente indicando origem: "homem de Queriote".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cananeu</span>
+                Do aramaico qan'an, "zeloso". Simão é chamado de "cananeu" em Mateus e "zelote" em Lucas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Belzebu</span>
+                Nome usado para designar o príncipe dos demônios. A origem e o sentido exato são discutidos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Geena</span>
+                Derivado do hebraico Ge-Hinom, "Vale de Hinom", associado ao juízo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tomar a Cruz</span>
+                Expressão que indica disposição para sofrer e morrer por seguir Jesus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">10</div>
+
+    <div class="pericope">A Escolha dos Doze</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, chamando os seus doze discípulos, deu-lhes autoridade sobre os espíritos imundos, para os expulsarem, e para curarem toda enfermidade e toda doença.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Ora, os nomes dos doze apóstolos são estes: o primeiro, Simão, chamado Pedro, e André, seu irmão; Tiago, filho de Zebedeu, e João, seu irmão;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Filipe e Bartolomeu; Tomé e Mateus, o publicano; Tiago, filho de Alfeu, e Lebeu, cujo sobrenome era Tadeu;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Simão, o cananeu, e Judas Iscariotes, aquele que o entregou.
+
+    <div class="pericope">A Missão dos Doze</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        A estes doze Jesus enviou, ordenando-lhes, dizendo: <span class="fala-jesus">"Não ireis pelo caminho dos gentios, nem entrareis em cidade de samaritanos;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">mas ide, antes, às ovelhas perdidas da casa de Israel.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E, indo, pregai, dizendo: 'Está próximo o reino dos céus.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Curai os enfermos, limpai os leprosos, ressuscitai os mortos, expulsai os demônios. De graça recebestes, de graça dai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Não possuais ouro, nem prata, nem cobre em vossos cintos;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">nem alforje para o caminho, nem duas túnicas, nem sandálias, nem bordão; porque digno é o trabalhador do seu alimento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E, em qualquer cidade ou vila em que entrardes, informai-vos de quem nela é digno, e ficai ali até que partais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E, ao entrardes na casa, saudai-a.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E, se a casa for digna, venha sobre ela a vossa paz; mas, se não for digna, torne para vós a vossa paz.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E, se alguém não vos receber, nem ouvir as vossas palavras, saindo daquela casa ou daquela cidade, sacudi o pó dos vossos pés.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Em verdade vos digo: no dia do juízo haverá menos rigor para a terra de Sodoma e Gomorra do que para aquela cidade.</span>
+    </p>
+
+    <div class="pericope">Advertências sobre Perseguição</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Eis que eu vos envio como ovelhas no meio de lobos. Portanto, sede prudentes como as serpentes e simples como as pombas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Guardai-vos, porém, dos homens; porque eles vos entregarão aos sinédrios e vos açoitarão nas suas sinagogas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E sereis levados até diante de governadores e reis por minha causa, para lhes servir de testemunho, a eles e aos gentios.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Mas, quando vos entregarem, não estejais ansiosos de como ou o que haveis de falar; porque naquela hora vos será dado o que haveis de dizer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Porque não sois vós que falais, mas o Espírito de vosso Pai é quem fala em vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">E o irmão entregará à morte o irmão, e o pai o filho; e os filhos se levantarão contra os pais e os matarão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E sereis odiados por todos por causa do meu nome; mas aquele que perseverar até o fim, esse será salvo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Quando, pois, vos perseguirem numa cidade, fugi para outra. Porque em verdade vos digo: não acabareis de percorrer as cidades de Israel até que venha o Filho do homem.</span>
+    </p>
+
+    <div class="pericope">O Discípulo e o Mestre</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">O discípulo não está acima do mestre, nem o servo acima do seu senhor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Basta ao discípulo ser como o seu mestre, e ao servo como o seu senhor. Se chamaram Belzebu ao pai de família, quanto mais aos seus domésticos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Portanto, não os temais. Porque nada há encoberto que não venha a ser revelado, e nada oculto que não venha a ser conhecido.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">O que vos digo em trevas, dizei-o em luz; e o que escutais ao ouvido, proclamai-o sobre os telhados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">E não temais os que matam o corpo, mas não podem matar a alma. Temei, antes, aquele que pode fazer perecer tanto a alma como o corpo na Geena.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Não se vendem dois passarinhos por um asse? E nenhum deles cairá em terra sem o vosso Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">E até os cabelos da vossa cabeça estão todos contados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Portanto, não temais; mais valeis vós do que muitos passarinhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Portanto, qualquer que me confessar diante dos homens, eu também o confessarei diante de meu Pai, que está nos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Mas qualquer que me negar diante dos homens, eu também o negarei diante de meu Pai, que está nos céus.</span>
+    </p>
+
+    <div class="pericope">A Espada e a Cruz</div>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Não penseis que vim trazer paz à terra. Não vim trazer paz, mas espada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Porque vim pôr em divisão o homem contra seu pai, e a filha contra sua mãe, e a nora contra sua sogra;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">e os inimigos do homem serão os seus próprios domésticos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Quem ama pai ou mãe mais do que a mim não é digno de mim; e quem ama filho ou filha mais do que a mim não é digno de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">E quem não toma a sua cruz e não segue após mim não é digno de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">Quem achar a sua vida a perderá; e quem perder a sua vida por minha causa a achará.</span>
+    </p>
+
+    <div class="pericope">Recompensa por Receber os Enviados</div>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Quem vos recebe, a mim me recebe; e quem me recebe, recebe aquele que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">Quem recebe um profeta na qualidade de profeta receberá galardão de profeta; e quem recebe um justo na qualidade de justo receberá galardão de justo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">E qualquer que der de beber, ainda que seja um copo de água fria, a um destes pequenos, na qualidade de discípulo, em verdade vos digo: de modo nenhum perderá o seu galardão."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 10:1 — "Doze discípulos"</span>
+            <div class="greek-text">δώδεκα μαθητάς</div>
+            <p><strong>Análise:</strong> O número doze corresponde às doze tribos de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "doze discípulos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 10:2 — "Apóstolos"</span>
+            <div class="greek-text">ἀποστόλων</div>
+            <p><strong>Análise:</strong> O termo significa "enviados". Aqui os discípulos passam a ser chamados apóstolos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "apóstolos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 10:3 — "Lebeu, cujo sobrenome era Tadeu"</span>
+            <div class="greek-text">Λεββαῖος ὁ ἐπικληθεὶς Θαδδαῖος</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz <em>Lebbaios ho epiklētheis Thaddaios</em>. Outras tradições textuais apresentam apenas "Tadeu".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a forma do Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 10:4 — "Simão, o cananeu"</span>
+            <div class="greek-text">Σίμων ὁ Κανανίτης</div>
+            <p><strong>Análise:</strong> O termo é geralmente entendido em relação ao aramaico <em>qan'an</em>, "zeloso". Lucas apresenta esse mesmo Simão como "zelote".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cananeu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 10:4 — "Judas Iscariotes"</span>
+            <div class="greek-text">Ἰούδας ὁ Ἰσκαριώτης</div>
+            <p><strong>Análise:</strong> O sobrenome provavelmente indica origem: "homem de Queriote".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Iscariotes".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 10:22 — "Perseverar até o fim"</span>
+            <p><strong>Análise:</strong> A expressão apresenta a perseverança até o fim como ligada à salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perseverar até o fim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 10:25 — "Belzebu"</span>
+            <div class="greek-text">Βεελζεβούλ</div>
+            <p><strong>Análise:</strong> Nome usado no contexto judaico para designar o príncipe dos demônios. A origem e o sentido exato do nome são discutidos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Belzebu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 10:28 — "Geena"</span>
+            <div class="greek-text">γέεννα</div>
+            <p><strong>Análise:</strong> Derivado do hebraico <em>Ge-Hinom</em>, "Vale de Hinom", associado ao juízo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Geena".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 10:34 — "Não vim trazer paz, mas espada"</span>
+            <div class="greek-text">οὐκ ἦλθον βαλεῖν εἰρήνην ἀλλὰ μάχαιραν</div>
+            <p><strong>Análise:</strong> A expressão utiliza "espada" como imagem de divisão e conflito decorrente da resposta à mensagem de Jesus. Os versículos seguintes exemplificam essa divisão nas relações familiares.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não vim trazer paz, mas espada".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 10 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 10 contém o segundo grande discurso de Mateus: o discurso missionário. Estrutura: 1) Escolha e autoridade dos doze (v.1-4); 2) Instruções para a missão (v.5-15); 3) Advertências sobre perseguição (v.16-23); 4) O discípulo e o mestre (v.24-33); 5) A espada e a cruz (v.34-39); 6) Recompensa por receber os enviados (v.40-42).</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

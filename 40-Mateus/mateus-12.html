@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-fariseus { color: #6b6b6b; font-weight: 500; }
+        .fala-multidoes { color: #6b6b6b; font-weight: 500; }
+        .fala-escribas { color: #6b6b6b; font-weight: 500; }
+        .fala-alguem { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Senhor do Sábado</span>
+                Jesus declara autoridade sobre o sábado, afirmando sua posição acima da lei sabática.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Belzebu</span>
+                Nome empregado no texto como designação do príncipe dos demônios. Sua relação etimológica com Baal-Zebube é discutida.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sinal do Profeta Jonas</span>
+                O único sinal dado à geração má e adúltera: a morte e ressurreição de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Blasfêmia contra o Espírito</span>
+                Atribuir a Satanás a obra que Jesus realiza pelo Espírito de Deus. É apresentada como não sendo perdoada.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Coração da Terra</span>
+                Expressão figurada tradicionalmente relacionada ao período entre a morte e a ressurreição de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pavio que Fumega</span>
+                Imagem de fragilidade. O servo não apaga o que está prestes a morrer, mas preserva.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <div class="pericope">O Sábado e os Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>aquele tempo, Jesus passou pelas searas em dia de sábado. E os seus discípulos tiveram fome e começaram a colher espigas e a comer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E os fariseus, vendo isso, disseram-lhe: <span class="fala-fariseus">"Eis que os teus discípulos fazem o que não é lícito fazer no sábado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas ele lhes disse: <span class="fala-jesus">"Não lestes o que fez Davi quando teve fome, ele e os que com ele estavam?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Como entrou na casa de Deus e comeu os pães da proposição, que não lhe era lícito comer, nem aos que com ele estavam, mas somente aos sacerdotes?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Ou não lestes na lei que, aos sábados, os sacerdotes no templo violam o sábado e ficam sem culpa?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Eu vos digo, porém: aqui está quem é maior que o templo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E, se vós soubésseis o que significa: Misericórdia quero, e não sacrifício, não teríeis condenado os inocentes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Porque o Filho do homem é senhor do sábado."</span>
+    </p>
+
+    <div class="pericope">A Cura do Homem da Mão Seca</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, partindo dali, chegou à sinagoga deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E eis que estava ali um homem que tinha uma das mãos seca. E perguntaram-lhe, dizendo: <span class="fala-fariseus">"É lícito curar aos sábados?"</span> — para o acusarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E ele lhes disse: <span class="fala-jesus">"Qual de vós será o homem que, tendo uma ovelha, se ela cair numa cova no sábado, não a agarrará e a levantará?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Ora, quanto mais vale um homem que uma ovelha? Portanto, é lícito fazer bem aos sábados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então disse ao homem: <span class="fala-jesus">"Estende a tua mão."</span> E ele a estendeu, e ela foi restaurada, sã como a outra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E os fariseus, saindo, conspiraram contra ele, para o matarem.
+
+    <div class="pericope">O Servo de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas Jesus, sabendo disso, retirou-se dali. E grandes multidões o seguiram, e ele curou a todos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E advertiu-lhes que não o tornassem conhecido,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        para que se cumprisse o que foi dito pelo profeta Isaías, que diz:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        "Eis o meu servo, a quem escolhi; o meu amado, em quem a minha alma se compraz. Porei sobre ele o meu Espírito, e ele anunciará juízo aos gentios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Não contenderá, nem gritará, nem alguém ouvirá a sua voz nas ruas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Não quebrará a cana rachada, nem apagará o pavio que fumega, até que leve o juízo à vitória.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E no seu nome os gentios esperarão."
+
+    <div class="pericope">Jesus e Belzebu</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Então trouxeram-lhe um endemoninhado, cego e mudo; e ele o curou, de modo que o cego e mudo falava e via.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E todas as multidões se admiravam e diziam: <span class="fala-multidoes">"Não é este o Filho de Davi?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Mas os fariseus, ouvindo isso, disseram: <span class="fala-fariseus">"Este não expulsa os demônios senão por Belzebu, príncipe dos demônios."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Mas Jesus, conhecendo os seus pensamentos, disse-lhes: <span class="fala-jesus">"Todo reino dividido contra si mesmo será assolado; e toda cidade ou casa dividida contra si mesma não subsistirá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E, se Satanás expulsa Satanás, está dividido contra si mesmo; como subsistirá, então, o seu reino?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E, se eu expulso os demônios por Belzebu, por quem os expulsam os vossos filhos? Portanto, eles mesmos serão os vossos juízes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Mas, se eu expulso os demônios pelo Espírito de Deus, então é chegado a vós o reino de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Ou como pode alguém entrar na casa do homem forte e saquear os seus bens, se primeiro não amarrar o homem forte? E então saqueará a sua casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Quem não é comigo é contra mim; e quem comigo não ajunta, espalha.</span>
+    </p>
+
+    <div class="pericope">A Blasfêmia contra o Espírito Santo</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Portanto, eu vos digo: todo pecado e blasfêmia se perdoará aos homens; mas a blasfêmia contra o Espírito não será perdoada aos homens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">E, se qualquer disser uma palavra contra o Filho do homem, ser-lhe-á perdoado; mas, se qualquer falar contra o Espírito Santo, não lhe será perdoado, nem neste mundo, nem no vindouro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Ou fazei a árvore boa, e o seu fruto bom; ou fazei a árvore má, e o seu fruto mau; porque pelo fruto se conhece a árvore.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Raça de víboras, como podeis falar coisas boas, sendo maus? Pois do que há em abundância no coração, disso fala a boca.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">O homem bom tira boas coisas do bom tesouro do coração, e o homem mau tira coisas más do mau tesouro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Mas eu vos digo: de toda palavra ociosa que os homens disserem, dela darão conta no dia do juízo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Porque pelas tuas palavras serás justificado, e pelas tuas palavras serás condenado."</span>
+    </p>
+
+    <div class="pericope">O Sinal de Jonas</div>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Então alguns dos escribas e fariseus responderam, dizendo: <span class="fala-escribas">"Mestre, queremos ver de ti algum sinal."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"Uma geração má e adúltera pede um sinal; mas nenhum sinal lhe será dado, senão o sinal do profeta Jonas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Porque, assim como Jonas esteve três dias e três noites no ventre do grande peixe, assim estará o Filho do homem três dias e três noites no coração da terra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">Os homens de Nínive se levantarão no juízo com esta geração e a condenarão, porque se arrependeram com a pregação de Jonas. E eis que aqui está quem é maior que Jonas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">A rainha do sul se levantará no juízo com esta geração e a condenará, porque veio dos confins da terra para ouvir a sabedoria de Salomão. E eis que aqui está quem é maior que Salomão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">E, quando o espírito imundo sai do homem, anda por lugares áridos, buscando repouso, e não o encontra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Então diz: 'Voltarei para a minha casa, de onde saí.' E, chegando, a encontra vazia, varrida e adornada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Então vai e leva consigo outros sete espíritos piores do que ele, e, entrando, habitam ali; e o último estado daquele homem fica pior que o primeiro. Assim acontecerá também a esta geração má."</span>
+    </p>
+
+    <div class="pericope">A Verdadeira Família de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        Enquanto ele ainda falava às multidões, eis que sua mãe e seus irmãos estavam do lado de fora, procurando falar-lhe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E disse-lhe alguém: <span class="fala-alguem">"Eis que tua mãe e teus irmãos estão lá fora, procurando falar-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        Mas ele, respondendo, disse ao que lhe falara: <span class="fala-jesus">"Quem é a minha mãe? E quem são os meus irmãos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E, estendendo a mão para os seus discípulos, disse: <span class="fala-jesus">"Eis a minha mãe e os meus irmãos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">Porque qualquer que fizer a vontade de meu Pai, que está nos céus, esse é meu irmão, e irmã, e mãe."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 12:1 — "Colher espigas"</span>
+            <p><strong>Análise:</strong> A ação dos discípulos era permitida para viajantes em condição de fome (Deuteronômio 23:25), mas os fariseus a consideravam violação do sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "colher espigas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 12:4 — "Pães da proposição"</span>
+            <div class="greek-text">ἄρτους τῆς προθέσεως</div>
+            <p><strong>Análise:</strong> Os pães sagrados eram colocados diante do SENHOR no tabernáculo e comidos somente pelos sacerdotes (Levítico 24:9).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pães da proposição".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:5 — "Violam o sábado e ficam sem culpa"</span>
+            <p><strong>Análise:</strong> Os sacerdotes realizavam no templo atividades prescritas pela própria Lei também no sábado. Jesus usa essa situação como parte de seu argumento sobre o sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução do argumento de Jesus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:6 — "Maior que o templo"</span>
+            <p><strong>Análise:</strong> A expressão é usada por Jesus para afirmar sua autoridade em relação ao templo. O texto não desenvolve aqui todos os desdobramentos dessa afirmação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "maior que o templo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:7 — "Misericórdia quero, e não sacrifício"</span>
+            <div class="greek-text">ἔλεος θέλω καὶ οὐ θυσίαν</div>
+            <p><strong>Análise:</strong> Citação de Oseias 6:6, já usada em Mateus 9:13.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Oseias 6:6.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:8 — "Senhor do sábado"</span>
+            <p><strong>Análise:</strong> Jesus declara autoridade sobre o sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Senhor do sábado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 12:24 — "Belzebu, príncipe dos demônios"</span>
+            <div class="greek-text">Βεελζεβούλ</div>
+            <p><strong>Análise:</strong> O nome é empregado no texto como designação do príncipe dos demônios. Sua relação etimológica com Baal-Zebube é discutida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Belzebu".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:27 — "Vossos filhos"</span>
+            <p><strong>Análise:</strong> A expressão pode referir-se aos próprios descendentes dos acusadores ou, por extensão, a pessoas pertencentes ao seu grupo, incluindo aqueles que praticavam exorcismos. O texto não especifica precisamente a identidade desses "filhos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vossos filhos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:31-32 — "Blasfêmia contra o Espírito"</span>
+            <p><strong>Análise:</strong> Jesus distingue a blasfêmia contra o Filho do homem da blasfêmia contra o Espírito Santo. Esta última é apresentada como não sendo perdoada. O texto não fornece aqui uma definição técnica completa da expressão; seu contexto imediato relaciona a advertência à atribuição a Satanás da obra que Jesus afirma realizar pelo Espírito de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "blasfêmia contra o Espírito".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:40 — "Coração da terra"</span>
+            <p><strong>Análise:</strong> Expressão figurada cuja referência é tradicionalmente relacionada ao período entre a morte e a ressurreição de Jesus. A tradução preserva a imagem do texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coração da terra".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:45 — "Sete outros espíritos piores"</span>
+            <p><strong>Análise:</strong> O texto afirma que outros sete espíritos, descritos como piores que o primeiro, entram com ele. O resultado é que o estado final do homem se torna pior que o inicial.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a descrição dos sete espíritos.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12:46-50 — "Sua mãe e seus irmãos"</span>
+            <p><strong>Análise:</strong> Jesus usa a ocasião para destacar que aqueles que fazem a vontade do Pai são reconhecidos por ele como irmão, irmã e mãe.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução sobre a verdadeira família.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 12 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 12 contém conflitos sobre o sábado, a cura do homem da mão seca, a acusação de expulsar demônios por Belzebu, a blasfêmia contra o Espírito Santo, o sinal de Jonas, e a verdadeira família de Jesus. O capítulo mostra a crescente oposição a Jesus e sua resposta.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

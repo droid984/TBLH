@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 6</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 6</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Esmola</span>
+                Do grego eleēmosynē (ἐλεημοσύνη). Prática de dar aos necessitados, expressão central da piedade judaica.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hipócritas</span>
+                Do grego hypokritai (ὑποκριταί). Originalmente, "atores". Refere-se aos que representam uma piedade que não corresponde ao coração.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pão Nosso de Cada Dia</span>
+                Do grego epiousion (ἐπιούσιον), termo raro e de significado debatido. Pode significar "de cada dia", "necessário" ou "para o futuro".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mamom</span>
+                Do grego mamōnas (μαμωνᾶς), termo de origem semítica relacionado a riqueza, bens ou recursos. Personificado como senhor que compete com Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Olho Simples / Mau</span>
+                "Simples" (haplous) pode significar generoso, sadio. "Mau" indica avareza ou inveja. Metáfora da disposição interior.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ansiedade</span>
+                Do grego merimnaō (μεριμνάω). Indica preocupação intensa e dividida, não o cuidado responsável.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">6</div>
+
+    <div class="pericope">A Esmola Secreta</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">G</span>uardai-vos de fazer a vossa esmola diante dos homens, para serdes vistos por eles; de outra forma, não tereis galardão junto de vosso Pai, que está nos céus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Portanto, quando deres esmola, não faças tocar trombeta diante de ti, como fazem os hipócritas nas sinagogas e nas ruas, para serem glorificados pelos homens. Em verdade vos digo: eles já receberam o seu galardão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas, quando tu deres esmola, não saiba a tua mão esquerda o que faz a tua direita;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        para que a tua esmola fique em secreto; e teu Pai, que vê em secreto, ele mesmo te recompensará.
+    </p>
+
+    <div class="pericope">A Oração Secreta</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, quando orares, não sejas como os hipócritas; porque gostam de orar em pé nas sinagogas e nas esquinas das ruas, para serem vistos pelos homens. Em verdade vos digo: eles já receberam o seu galardão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas tu, quando orares, entra no teu quarto e, fechando a tua porta, ora a teu Pai, que está em secreto; e teu Pai, que vê em secreto, te recompensará.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, orando, não useis de vãs repetições, como os gentios; porque pensam que pelo seu muito falar serão ouvidos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Não vos assemelheis, pois, a eles; porque vosso Pai sabe o que necessitais, antes de vós lho pedirdes.
+    </p>
+
+    <div class="pericope">O Pai Nosso</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Portanto, vós orareis assim: "Pai nosso, que estás nos céus, santificado seja o teu nome.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Venha o teu reino. Seja feita a tua vontade, assim na terra como no céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">O pão nosso de cada dia dá-nos hoje.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E perdoa-nos as nossas dívidas, assim como nós perdoamos aos nossos devedores.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E não nos conduzas à tentação, mas livra-nos do mal. Porque teu é o reino, e o poder, e a glória, para sempre. Amém."</span>
+    </p>
+
+    <div class="pericope">O Perdão</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Porque, se perdoardes aos homens as suas ofensas, também vosso Pai celestial vos perdoará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Mas, se não perdoardes aos homens as suas ofensas, também vosso Pai não perdoará as vossas ofensas.</span>
+    </p>
+
+    <div class="pericope">O Jejum Secreto</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, quando jejuardes, não vos mostreis de rosto triste como os hipócritas; porque desfiguram os seus rostos, para que aos homens pareçam que jejuam. Em verdade vos digo: eles já receberam o seu galardão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Mas tu, quando jejuares, unge a tua cabeça e lava o teu rosto,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        para que aos homens não pareça que jejuas, mas a teu Pai, que está em secreto; e teu Pai, que vê em secreto, te recompensará.
+    </p>
+
+    <div class="pericope">Tesouros no Céu</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Não ajunteis para vós tesouros na terra, onde a traça e a ferrugem os consomem, e onde os ladrões arrombam e furtam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Mas ajuntai para vós tesouros no céu, onde nem a traça nem a ferrugem os consomem, e onde os ladrões não arrombam nem furtam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Porque onde estiver o vosso tesouro, aí estará também o vosso coração.</span>
+    </p>
+
+    <div class="pericope">O Olho e a Luz</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">A candeia do corpo é o olho. Portanto, se o teu olho for simples, todo o teu corpo será luminoso.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Mas, se o teu olho for mau, todo o teu corpo será tenebroso. Portanto, se a luz que há em ti são trevas, quão grandes serão essas trevas!</span>
+    </p>
+
+    <div class="pericope">Deus e Mamom</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Ninguém pode servir a dois senhores; porque ou há de odiar um e amar o outro, ou se dedicará a um e desprezará o outro. Não podeis servir a Deus e a Mamom.</span>
+    </p>
+
+    <div class="pericope">Não Andeis Ansiosos</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Por isso vos digo: não andeis ansiosos pela vossa vida, pelo que haveis de comer ou pelo que haveis de beber; nem pelo vosso corpo, pelo que haveis de vestir. Não é a vida mais que o alimento, e o corpo mais que a vestimenta?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Olhai para as aves do céu: não semeiam, nem ceifam, nem ajuntam em celeiros; e vosso Pai celestial as alimenta. Não valeis vós muito mais do que elas?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E qual de vós, por mais ansioso que esteja, pode acrescentar um côvado à sua estatura?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">E por que andais ansiosos pela vestimenta? Considerai os lírios do campo, como crescem; não trabalham, nem fiam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">E eu vos digo que nem Salomão, em toda a sua glória, se vestiu como um deles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Pois, se Deus assim veste a erva do campo, que hoje existe e amanhã é lançada no forno, não vos vestirá muito mais a vós, homens de pouca fé?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Portanto, não andeis ansiosos, dizendo: Que comeremos? Ou: Que beberemos? Ou: Com que nos vestiremos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Porque os gentios procuram todas essas coisas; pois vosso Pai celestial sabe que precisais de todas elas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Mas buscai primeiro o reino de Deus e a sua justiça, e todas essas coisas vos serão acrescentadas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Portanto, não andeis ansiosos pelo amanhã, porque o amanhã trará as suas próprias ansiedades. Basta a cada dia o seu próprio mal.</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:1-4 — "Esmola"</span>
+            <div class="greek-text">ἐλεημοσύνη</div>
+            <p><strong>Análise:</strong> O termo refere-se à prática de dar aos necessitados, considerada expressão central da piedade judaica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esmola".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:2, 5, 16 — "Hipócritas"</span>
+            <div class="greek-text">ὑποκριταί</div>
+            <p><strong>Análise:</strong> Originalmente, o termo designava atores de teatro. No uso bíblico, refere-se aos que representam uma piedade que não corresponde ao coração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "hipócritas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:7 — "Vãs repetições"</span>
+            <div class="greek-text">βαττολογήσητε</div>
+            <p><strong>Análise:</strong> Termo raro que indica fala repetitiva e vazia. O texto não condena a repetição em si, mas a crença de que o muito falar garante resposta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vãs repetições".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 6:11 — "Pão nosso de cada dia"</span>
+            <div class="greek-text">ἐπιούσιον</div>
+            <p><strong>Análise:</strong> Termo raro e de significado debatido. Pode significar "de cada dia", "necessário" ou "para o futuro".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pão nosso de cada dia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:12 — "Dívidas"</span>
+            <div class="greek-text">ὀφειλήματα</div>
+            <p><strong>Análise:</strong> O termo refere-se a dívidas, mas é usado metaforicamente para pecados, como o versículo 14 deixa claro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dívidas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 6:13 — "Não nos conduzas à tentação"</span>
+            <div class="greek-text">μὴ εἰσενέγκῃς ἡμᾶς εἰς πειρασμόν</div>
+            <p><strong>Análise:</strong> A expressão pede livramento da provação ou teste, não que Deus seja tentador.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não nos conduzas à tentação".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 6:13 — A Doxologia</span>
+            <p><strong>Análise:</strong> A conclusão "Porque teu é o reino, e o poder, e a glória, para sempre. Amém" está presente no Textus Receptus. Em alguns manuscritos antigos, essa conclusão não aparece.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a doxologia conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:19-20 — "Traça e ferrugem"</span>
+            <p><strong>Análise:</strong> A traça destrói tecidos; a ferrugem consome metais. A imagem indica a corrupção dos bens terrenos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a imagem da traça e ferrugem.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:22 — "Olho simples"</span>
+            <div class="greek-text">ἁπλοῦς</div>
+            <p><strong>Análise:</strong> Termo que pode significar "simples", "generoso", "sadio". O oposto é o olho "mau", que pode indicar avareza ou inveja.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "simples".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 6:24 — "Mamom"</span>
+            <div class="greek-text">μαμωνᾶς</div>
+            <p><strong>Análise:</strong> Termo de origem semítica relacionado a riqueza, bens ou recursos. No contexto, aparece personificado como um senhor que compete com Deus pelo serviço do homem. A TBLH preserva "Mamom" para manter a forma do termo no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a transliteração "Mamom".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 6:25, 27, 28, 31, 34 — "Ansiosos"</span>
+            <div class="greek-text">μεριμνάω</div>
+            <p><strong>Análise:</strong> O verbo indica preocupação intensa e dividida, não o cuidado responsável.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ansiosos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:27 — "Côvado"</span>
+            <div class="greek-text">πῆχυς</div>
+            <p><strong>Análise:</strong> Medida de comprimento, aproximadamente o comprimento do antebraço. A expressão pode referir-se à estatura ou à duração da vida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "côvado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 6:28 — "Lírios do campo"</span>
+            <div class="greek-text">κρίνα</div>
+            <p><strong>Análise:</strong> O termo pode referir-se a flores silvestres variadas, não necessariamente ao lírio como conhecido hoje.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lírios do campo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 6:33 — "Buscai primeiro o reino de Deus"</span>
+            <div class="greek-text">ζητεῖτε πρῶτον τὴν βασιλείαν τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> A prioridade do discípulo é o reino e a justiça divina. O verbo "buscar" indica ação contínua.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "buscai primeiro o reino de Deus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 6:34 — "Basta a cada dia o seu próprio mal"</span>
+            <div class="greek-text">κακία</div>
+            <p><strong>Análise:</strong> O termo significa "mal", "dificuldade", "aflição". O texto reconhece a realidade das dificuldades diárias, sem ansiedade antecipada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "basta a cada dia o seu próprio mal".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 6 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 6 continua o Sermão do Monte, com três práticas de piedade: esmola, oração e jejum. A estrutura é: 1) A esmola secreta (v.1-4), 2) A oração secreta e o Pai Nosso (v.5-15), 3) O jejum secreto (v.16-18), 4) Tesouros no céu (v.19-24), 5) A ansiedade e a confiança no Pai (v.25-34). O capítulo enfatiza a autenticidade da fé e a confiança na providência divina.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

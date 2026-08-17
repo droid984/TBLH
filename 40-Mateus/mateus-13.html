@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 13</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-multidao { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 13</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Parábolas</span>
+                Do grego parabolais (παραβολαῖς). Comparações, ilustrações ou narrativas com sentido figurado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mistérios do Reino</span>
+                Do grego mystēria (μυστήρια). Algo que foi revelado, não algo esotérico ou oculto para sempre.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Joio</span>
+                Do grego zizania (ζιζάνια). Erva daninha semelhante ao trigo, provavelmente o joio.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Causas de Tropeço</span>
+                Do grego skandala (σκάνδαλα). Aquilo que provoca tropeço, queda ou desvio.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fim do Mundo</span>
+                Do grego synteleia tou aiōnos (συντέλεια τοῦ αἰῶνος). "Consumação do século" ou "fim da era".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tesouro Escondido</span>
+                Parábola que ilustra o valor supremo do reino dos céus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">13</div>
+
+    <div class="pericope">A Parábola do Semeador</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, naquele mesmo dia, Jesus saiu de casa e assentou-se junto ao mar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E ajuntaram-se a ele grandes multidões, de modo que entrou num barco e se assentou; e toda a multidão estava em pé na praia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E falou-lhes muitas coisas por parábolas, dizendo: <span class="fala-jesus">"Eis que o semeador saiu a semear.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">E, ao semear, uma parte caiu junto ao caminho, e vieram as aves e a comeram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E outra parte caiu em lugares pedregosos, onde não havia muita terra; e logo nasceu, porque a terra não era profunda.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Mas, saindo o sol, queimou-se e, porque não tinha raiz, secou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E outra parte caiu entre os espinhos; e os espinhos cresceram e a sufocaram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Mas outra parte caiu em boa terra e deu fruto: um grão produziu cem, outro sessenta e outro trinta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Quem tem ouvidos para ouvir, ouça."</span>
+    </p>
+
+    <div class="pericope">O Propósito das Parábolas</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, aproximando-se os discípulos, disseram-lhe: <span class="fala-discipulos">"Por que lhes falas por parábolas?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E ele, respondendo, disse-lhes: <span class="fala-jesus">"Porque a vós é dado conhecer os mistérios do reino dos céus, mas a eles não lhes é dado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Pois ao que tem, dar-se-lhe-á, e terá em abundância; mas ao que não tem, até o que tem lhe será tirado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Por isso lhes falo por parábolas: porque veem, e não veem; e ouvem, e não ouvem, nem entendem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E neles se cumpre a profecia de Isaías, que diz: 'Ouvindo, ouvireis, e não entendereis; e, vendo, vereis, e não percebereis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Porque o coração deste povo está endurecido, e ouviram de mau grado com os ouvidos, e fecharam os olhos; para que não vejam com os olhos, nem ouçam com os ouvidos, nem entendam com o coração, nem se convertam, e eu os cure.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Mas bem-aventurados os vossos olhos, porque veem; e os vossos ouvidos, porque ouvem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Porque em verdade vos digo: muitos profetas e justos desejaram ver o que vedes, e não viram; e ouvir o que ouvis, e não ouviram."</span>
+    </p>
+
+    <div class="pericope">A Explicação da Parábola do Semeador</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Ouvi, pois, vós a parábola do semeador.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Ouvindo alguém a palavra do reino e não a entendendo, vem o maligno e arrebata o que foi semeado no seu coração; este é o que foi semeado junto ao caminho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">E o que foi semeado em lugares pedregosos, este é o que ouve a palavra e logo a recebe com alegria;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">mas não tem raiz em si mesmo; antes, é de pouca duração. E, chegando a aflição ou a perseguição por causa da palavra, logo se escandaliza.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E o que foi semeado entre os espinhos, este é o que ouve a palavra; mas a preocupação deste mundo e o engano das riquezas sufocam a palavra, e ela fica infrutífera.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Mas o que foi semeado em boa terra, este é o que ouve a palavra e a entende; e dá fruto, e um produz cem, outro sessenta e outro trinta."</span>
+    </p>
+
+    <div class="pericope">A Parábola do Joio</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Outra parábola lhes propôs, dizendo: "O reino dos céus é semelhante a um homem que semeou boa semente no seu campo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Mas, enquanto os homens dormiam, veio o seu inimigo, semeou joio no meio do trigo e foi-se.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E, quando a erva cresceu e produziu fruto, então apareceu também o joio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E os servos do pai de família, chegando, disseram-lhe: 'Senhor, não semeaste boa semente no teu campo? De onde, pois, vem o joio?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">E ele lhes disse: 'Um inimigo fez isso.' E os servos lhe disseram: 'Queres, pois, que vamos e o arranquemos?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Mas ele disse: 'Não; para que, ao arrancares o joio, não arranqueis também o trigo com ele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Deixai crescer ambos juntos até a colheita. E, no tempo da colheita, direi aos ceifeiros: Recolhei primeiro o joio e atai-o em feixes para o queimar; mas ajuntai o trigo no meu celeiro.'"</span>
+    </p>
+
+    <div class="pericope">As Parábolas da Mostarda e do Fermento</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Outra parábola lhes propôs, dizendo: "O reino dos céus é semelhante a um grão de mostarda, que um homem tomou e semeou no seu campo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">O qual é, na verdade, a menor de todas as sementes; mas, quando cresce, é a maior das hortaliças, e se faz árvore, de modo que as aves do céu vêm e se aninham nos seus ramos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Outra parábola lhes disse: "O reino dos céus é semelhante ao fermento, que uma mulher tomou e escondeu em três medidas de farinha, até que tudo ficou levedado."</span>
+    </p>
+
+    <div class="pericope">O Cumprimento da Profecia</div>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Todas estas coisas Jesus falou às multidões por parábolas, e sem parábolas não lhes falava;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        para que se cumprisse o que foi dito pelo profeta, que diz: "Abrirei em parábolas a minha boca; publicarei coisas ocultas desde a fundação do mundo."
+    </p>
+
+    <div class="pericope">A Explicação da Parábola do Joio</div>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Então Jesus, despedindo as multidões, entrou em casa. E os seus discípulos aproximaram-se dele, dizendo: <span class="fala-discipulos">"Explica-nos a parábola do joio do campo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E ele, respondendo, disse-lhes: <span class="fala-jesus">"O que semeia a boa semente é o Filho do homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">O campo é o mundo; a boa semente são os filhos do reino; mas o joio são os filhos do maligno.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">O inimigo que o semeou é o diabo; a colheita é o fim do mundo; e os ceifeiros são os anjos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Portanto, assim como o joio é recolhido e queimado no fogo, assim será no fim deste mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">O Filho do homem enviará os seus anjos, e eles recolherão do seu reino todas as causas de tropeço e os que praticam a iniquidade,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">e os lançarão na fornalha de fogo. Ali haverá pranto e ranger de dentes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Então os justos resplandecerão como o sol no reino de seu Pai. Quem tem ouvidos para ouvir, ouça."</span>
+    </p>
+
+    <div class="pericope">As Parábolas do Tesouro e da Pérola</div>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">"Também o reino dos céus é semelhante a um tesouro escondido num campo, que um homem achou e escondeu; e, na sua alegria, foi, vendeu tudo o que tinha e comprou aquele campo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Também o reino dos céus é semelhante a um negociante que busca boas pérolas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">E, achando uma pérola de grande valor, foi, vendeu tudo o que tinha e a comprou.</span>
+    </p>
+
+    <div class="pericope">A Parábola da Rede</div>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">Também o reino dos céus é semelhante a uma rede lançada ao mar, que recolhe toda espécie de peixes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">E, quando cheia, os pescadores a arrastaram para a praia; e, assentando-se, recolheram os bons em cestos, mas os maus lançaram fora.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">Assim será no fim do mundo: os anjos sairão e separarão os maus de entre os justos,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">e os lançarão na fornalha de fogo. Ali haverá pranto e ranger de dentes."</span>
+    </p>
+
+    <div class="pericope">Coisas Novas e Velhas</div>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Entendestes todas estas coisas?"</span> Disseram-lhe: <span class="fala-discipulos">"Sim, Senhor."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E ele lhes disse: <span class="fala-jesus">"Por isso, todo escriba instruído no reino dos céus é semelhante a um pai de família que tira do seu tesouro coisas novas e velhas."</span>
+    </p>
+
+    <div class="pericope">Jesus em Nazaré</div>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E aconteceu que, tendo Jesus concluído estas parábolas, retirou-se dali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E, chegando à sua pátria, ensinava-os na sinagoga deles, de modo que se admiravam e diziam: <span class="fala-multidao">"De onde lhe vêm esta sabedoria e estes milagres?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        <span class="fala-multidao">Não é este o filho do carpinteiro? E não se chama sua mãe Maria, e seus irmãos Tiago, e José, e Simão, e Judas?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        <span class="fala-multidao">E não estão entre nós todas as suas irmãs? De onde, pois, lhe vem tudo isto?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        E escandalizavam-se nele. Mas Jesus lhes disse: <span class="fala-jesus">"Não há profeta sem honra, senão na sua pátria e na sua casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        E não fez ali muitos milagres, por causa da incredulidade deles.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 13:3 — "Parábolas"</span>
+            <div class="greek-text">παραβολαῖς</div>
+            <p><strong>Análise:</strong> O termo indica comparação, ilustração ou narrativa com sentido figurado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "parábolas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 13:11 — "Mistérios do reino"</span>
+            <div class="greek-text">μυστήρια</div>
+            <p><strong>Análise:</strong> O termo indica algo que foi revelado, não algo esotérico ou oculto para sempre.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mistérios do reino".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 13:12 — "Ao que tem, dar-se-lhe-á"</span>
+            <p><strong>Análise:</strong> A afirmação descreve uma progressão: aquele que possui recebe ainda mais, enquanto daquele que não possui é tirado até o que tem. O contexto imediato relaciona essa afirmação à recepção ou rejeição da revelação do reino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ao que tem, dar-se-lhe-á".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 13:14-15 — "Profecia de Isaías"</span>
+            <p><strong>Análise:</strong> Citação de Isaías 6:9-10. O texto descreve a dureza do coração do povo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação de Isaías 6:9-10.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 13:31-32 — "Grão de mostarda"</span>
+            <p><strong>Análise:</strong> A mostarda era conhecida por sua pequena semente e pelo crescimento significativo da planta. A imagem enfatiza o contraste entre o pequeno começo e o grande desenvolvimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a imagem do grão de mostarda.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 13:41 — "Causas de tropeço"</span>
+            <div class="greek-text">σκάνδαλα</div>
+            <p><strong>Análise:</strong> Plural de <em>skandalon</em>. Refere-se àquilo que provoca tropeço, queda ou desvio.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "causas de tropeço".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 13:39, 40, 49 — "Fim do mundo"</span>
+            <div class="greek-text">συντέλεια τοῦ αἰῶνος</div>
+            <p><strong>Análise:</strong> Literalmente "consumação do século" ou "fim da era". A expressão aponta para o encerramento da ordem presente e o momento da separação e juízo descrito por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fim do mundo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 13:55 — "Filho do carpinteiro"</span>
+            <div class="greek-text">τοῦ τέκτονος υἱός</div>
+            <p><strong>Análise:</strong> O termo <em>tektōn</em> pode designar um carpinteiro, artesão ou trabalhador especializado em construção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filho do carpinteiro".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 13 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 13 contém o terceiro grande discurso de Mateus: as parábolas do reino. Estrutura: 1) Parábola do semeador e explicação (v.1-23); 2) Parábola do joio (v.24-30); 3) Parábolas da mostarda e do fermento (v.31-33); 4) Explicação do joio (v.36-43); 5) Parábolas do tesouro, da pérola e da rede (v.44-50); 6) Jesus em Nazaré (v.53-58). O capítulo revela a natureza do reino dos céus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

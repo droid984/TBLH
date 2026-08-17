@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 7</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 7</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Argueiro</span>
+                Do grego karphos (κάρφος), "cisco", "partícula". Contrasta com a trave — o pequeno defeito do outro versus o grande defeito próprio.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Trave</span>
+                Do grego dokos (δοκός), "viga", "barra de madeira". Exagero intencional de Jesus para evidenciar a hipocrisia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Regra de Ouro</span>
+                "Tudo o que vós quereis que os homens vos façam, fazei-o também vós a eles." Resumo da ética do Sermão do Monte.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Porta Estreita</span>
+                O caminho de obediência a Jesus, em contraste com a porta larga que conduz à perdição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Falsos Profetas</span>
+                Do grego pseudoprophētōn (ψευδοπροφητῶν). Os que se apresentam como portadores de mensagem divina, mas ensinam falsidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Casa Sobre a Rocha</span>
+                Metáfora para a obediência às palavras de Jesus. A rocha representa estabilidade e segurança.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">7</div>
+
+    <div class="pericope">O Julgamento e a Hipocrisia</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>ão julgueis, para que não sejais julgados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque com o juízo com que julgais sereis julgados; e com a medida com que medis vos medirão a vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E por que reparas no argueiro que está no olho do teu irmão, e não percebes a trave que está no teu próprio olho?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Ou como dirás a teu irmão: Deixa-me tirar o argueiro do teu olho, quando tens uma trave no teu?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Hipócrita, tira primeiro a trave do teu olho, e então verás claramente para tirar o argueiro do olho do teu irmão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Não deis o que é santo aos cães, nem lanceis as vossas pérolas diante dos porcos, para que não as pisem com os pés e, voltando-se, vos despedacem.
+
+    <div class="pericope">Pedi, Buscai, Batei</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Pedi, e dar-se-vos-á; buscai, e encontrareis; batei, e abrir-se-vos-á.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Porque todo aquele que pede recebe; e o que busca encontra; e ao que bate, abrir-se-lhe-á.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">E qual de vós é o homem que, se seu filho lhe pedir pão, lhe dará uma pedra?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">E, se lhe pedir um peixe, lhe dará uma serpente?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Se vós, pois, sendo maus, sabeis dar boas dádivas aos vossos filhos, quanto mais vosso Pai, que está nos céus, dará bens aos que lhe pedirem?</span>
+    </p>
+
+    <div class="pericope">A Regra de Ouro</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Portanto, tudo o que vós quereis que os homens vos façam, fazei-o também vós a eles; porque esta é a lei e os profetas.</span>
+    </p>
+
+    <div class="pericope">As Duas Portas e os Falsos Profetas</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Entrai pela porta estreita; porque larga é a porta, e espaçoso é o caminho que conduz à perdição, e muitos são os que entram por ela.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Porque estreita é a porta, e apertado é o caminho que conduz à vida, e poucos são os que a encontram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Guardai-vos dos falsos profetas, que vêm a vós vestidos como ovelhas, mas por dentro são lobos vorazes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Pelos seus frutos os conhecereis. Porventura colhem-se uvas dos espinheiros, ou figos dos abrolhos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Assim, toda árvore boa produz bons frutos, mas a árvore má produz maus frutos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Não pode a árvore boa produzir maus frutos, nem a árvore má produzir bons frutos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Toda árvore que não produz bom fruto é cortada e lançada no fogo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Portanto, pelos seus frutos os conhecereis.</span>
+    </p>
+
+    <div class="pericope">Conhecer e Fazer a Vontade de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Nem todo o que me diz: 'Senhor, Senhor!' entrará no reino dos céus, mas aquele que faz a vontade de meu Pai, que está nos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Muitos me dirão naquele dia: 'Senhor, Senhor, não profetizamos nós em teu nome? E em teu nome não expulsamos demônios? E em teu nome não fizemos muitos milagres?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">E então lhes declararei: 'Nunca vos conheci. Apartai-vos de mim, vós que praticais a iniquidade.'</span>
+    </p>
+
+    <div class="pericope">A Casa Sobre a Rocha</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Portanto, todo aquele que ouve estas minhas palavras e as pratica, eu o compararei a um homem prudente, que edificou a sua casa sobre a rocha.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E desceu a chuva, e vieram os rios, e sopraram os ventos, e bateram contra aquela casa; e ela não caiu, porque estava fundada sobre a rocha.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E todo aquele que ouve estas minhas palavras e não as pratica será comparado a um homem insensato, que edificou a sua casa sobre a areia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E desceu a chuva, e vieram os rios, e sopraram os ventos, e bateram contra aquela casa; e ela caiu, e grande foi a sua queda.</span>
+    </p>
+
+    <div class="pericope">A Autoridade de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E aconteceu que, quando Jesus concluiu estas palavras, as multidões se admiravam da sua doutrina;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        porque ele as ensinava como quem tem autoridade, e não como os escribas.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 7:1 — "Não julgueis"</span>
+            <div class="greek-text">μὴ κρίνετε</div>
+            <p><strong>Análise:</strong> O verbo <em>krinō</em> pode significar "julgar", "condenar", "avaliar". O contexto indica que Jesus condena o juízo hipócrita e precipitado, não todo discernimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não julgueis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 7:3-5 — "Argueiro" e "Trave"</span>
+            <div class="greek-text">κάρφος / δοκός</div>
+            <p><strong>Análise:</strong> "Argueiro" (karphos) é um pequeno cisco ou partícula; "trave" (dokos) é uma viga ou barra de madeira. O exagero intencional de Jesus evidencia a hipocrisia de quem corrige o outro sem reconhecer o próprio erro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantidas as traduções "argueiro" e "trave".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 7:7-8 — "Pedi, buscai, batei"</span>
+            <div class="greek-text">αἰτεῖτε... ζητεῖτε... κρούετε</div>
+            <p><strong>Análise:</strong> Os verbos aparecem no presente do imperativo, podendo transmitir a ideia de ação contínua ou persistente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pedi, buscai, batei".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 7:12 — "A Regra de Ouro"</span>
+            <div class="greek-text">πάντα οὖν ὅσα ἂν θέλητε ἵνα ποιῶσιν ὑμῖν οἱ ἄνθρωποι</div>
+            <p><strong>Análise:</strong> A expressão "tudo o que vós quereis que os homens vos façam, fazei-o também vós a eles" resume a ética do Sermão do Monte. Jesus afirma que esta é "a lei e os profetas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução da Regra de Ouro.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 7:13-14 — "Porta estreita"</span>
+            <p><strong>Análise:</strong> A imagem das duas portas e dois caminhos era comum na tradição judaica. A porta estreita representa o caminho de obediência a Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a imagem da porta estreita.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 7:15 — "Falsos profetas"</span>
+            <div class="greek-text">ψευδοπροφητῶν</div>
+            <p><strong>Análise:</strong> O termo designa os que se apresentam como portadores de mensagem divina, mas ensinam falsidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falsos profetas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 7:16, 20 — "Pelos seus frutos os conhecereis"</span>
+            <div class="greek-text">ἀπὸ τῶν καρπῶν αὐτῶν ἐπιγνώσεσθε αὐτούς</div>
+            <p><strong>Análise:</strong> A metáfora agrícola indica que o caráter se manifesta pelas obras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pelos seus frutos os conhecereis".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 7:23 — "Nunca vos conheci"</span>
+            <div class="greek-text">οὐδέποτε ἔγνων ὑμᾶς</div>
+            <p><strong>Análise:</strong> O verbo "conhecer" no contexto bíblico pode indicar relacionamento pessoal, não apenas informação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nunca vos conheci".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 7:23 — "Praticais a iniquidade"</span>
+            <div class="greek-text">ἐργαζόμενοι τὴν ἀνομίαν</div>
+            <p><strong>Análise:</strong> <em>Anomia</em> significa literalmente "sem lei" ou "violação da lei", podendo ser traduzido no contexto como "iniquidade".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "praticais a iniquidade".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 7:24-27 — "A casa sobre a rocha"</span>
+            <p><strong>Análise:</strong> A rocha representa estabilidade e segurança. A casa fundada sobre a rocha resiste às tempestades. A parábola conclui o Sermão do Monte, enfatizando a necessidade de praticar as palavras de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a imagem da casa sobre a rocha.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 7:29 — "Como quem tem autoridade"</span>
+            <div class="greek-text">ὡς ἐξουσίαν ἔχων</div>
+            <p><strong>Análise:</strong> A expressão descreve a maneira como Jesus ensinava, em contraste com os escribas. O texto não detalha aqui a natureza dessa autoridade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como quem tem autoridade".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 7 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 7 conclui o Sermão do Monte. Estrutura: 1) O julgamento e a hipocrisia (v.1-6), 2) A oração e a confiança no Pai (v.7-11), 3) A Regra de Ouro (v.12), 4) As duas portas e os falsos profetas (v.13-23), 5) A casa sobre a rocha (v.24-27), 6) A autoridade de Jesus (v.28-29). O Sermão do Monte termina com uma chamada à ação: ouvir e praticar as palavras de Jesus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
