@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 24</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 24</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Abominação da Desolação</span>
+                Do grego bdelygma tēs erēmōseōs (βδέλυγμα τῆς ἐρημώσεως). Expressão que remete às profecias de Daniel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Consumação do Século</span>
+                Do grego synteleia tou aiōnos (συντέλεια τοῦ αἰῶνος). "Fim da era" ou "consumação do século".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Princípio das Dores</span>
+                Do grego archē ōdinōn (ἀρχὴ ὠδίνων). Imagem de dores de parto para os eventos que precedem o fim.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Grande Aflição</span>
+                Do grego thlipsis megalē (θλῖψις μεγάλη). Período de sofrimento extremo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Quatro Ventos</span>
+                Expressão de totalidade geográfica, referindo-se a todas as direções.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Figueira</span>
+                Parábola usada como sinal da proximidade do verão, aplicada à vinda do Filho do homem.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">24</div>
+
+    <div class="pericope">A Destruição do Templo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, saindo Jesus do templo, ia-se retirando, quando os seus discípulos se aproximaram dele para lhe mostrar as construções do templo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Mas Jesus lhes disse: <span class="fala-jesus">"Não vedes tudo isto? Em verdade vos digo: não ficará aqui pedra sobre pedra que não seja derrubada."</span>
+    </p>
+
+    <div class="pericope">O Sinal da Vinda</div>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, estando ele assentado no monte das Oliveiras, aproximaram-se dele os seus discípulos à parte, dizendo: <span class="fala-discipulos">"Dize-nos, quando serão estas coisas, e qual será o sinal da tua vinda e do fim do mundo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Vede que ninguém vos engane.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Porque muitos virão em meu nome, dizendo: 'Eu sou o Cristo'; e enganarão a muitos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">E ouvireis falar de guerras e de rumores de guerras. Vede que não vos perturbeis; porque é necessário que tudo isto aconteça, mas ainda não é o fim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Porque se levantará nação contra nação, e reino contra reino; e haverá fomes, e pestes, e terremotos em vários lugares.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Mas todas estas coisas são o princípio das dores.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Então vos entregarão para serdes afligidos e vos matarão; e sereis odiados de todas as nações por causa do meu nome.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">E muitos se escandalizarão, e se trairão uns aos outros, e uns aos outros se odiarão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E surgirão muitos falsos profetas, e enganarão a muitos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E, por se multiplicar a iniquidade, o amor de muitos esfriará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Mas aquele que perseverar até o fim, esse será salvo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E este evangelho do reino será pregado em todo o mundo, para testemunho a todas as nações; e então virá o fim."</span>
+    </p>
+
+    <div class="pericope">A Grande Aflição</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">"Quando, pois, virdes a abominação da desolação, de que falou o profeta Daniel, estar no lugar santo — quem lê, entenda —</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">então os que estiverem na Judeia fujam para os montes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Quem estiver sobre o telhado não desça para tirar o que há em sua casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E quem estiver no campo não volte atrás para buscar as suas vestes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Mas ai das que estiverem grávidas e das que amamentarem naqueles dias!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Orai para que a vossa fuga não aconteça no inverno nem no sábado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Porque haverá então grande aflição, como nunca houve desde o princípio do mundo até agora, nem jamais haverá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E, se aqueles dias não fossem abreviados, nenhuma carne se salvaria. Mas, por causa dos escolhidos, aqueles dias serão abreviados."</span>
+    </p>
+
+    <div class="pericope">Os Falsos Cristos</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">"Então, se alguém vos disser: 'Eis que o Cristo está aqui', ou 'ali', não acrediteis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Porque surgirão falsos cristos e falsos profetas, e farão grandes sinais e prodígios, para enganar, se possível fora, até os escolhidos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Eis que eu vo-lo tenho predito.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Portanto, se vos disserem: 'Eis que ele está no deserto', não saiais. 'Eis que ele está nos aposentos', não acrediteis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Porque, assim como o relâmpago sai do oriente e se mostra até o ocidente, assim será também a vinda do Filho do homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Pois onde estiver o cadáver, aí se ajuntarão as águias."</span>
+    </p>
+
+    <div class="pericope">A Vinda do Filho do Homem</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">"E, logo depois da aflição daqueles dias, o sol escurecerá, e a lua não dará a sua luz, e as estrelas cairão do céu, e os poderes dos céus serão abalados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Então aparecerá no céu o sinal do Filho do homem; e todas as tribos da terra se lamentarão, e verão o Filho do homem vindo sobre as nuvens do céu, com poder e grande glória.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E ele enviará os seus anjos com grande som de trombeta, e eles ajuntarão os seus escolhidos desde os quatro ventos, de uma a outra extremidade dos céus."</span>
+    </p>
+
+    <div class="pericope">A Parábola da Figueira</div>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">"Aprendei, pois, a parábola da figueira: quando já os seus ramos se tornam tenros e brotam folhas, sabeis que o verão está próximo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Assim também vós, quando virdes todas estas coisas, sabei que está próximo, às portas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Em verdade vos digo: não passará esta geração até que todas estas coisas aconteçam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">O céu e a terra passarão, mas as minhas palavras não passarão."</span>
+    </p>
+
+    <div class="pericope">O Dia e a Hora Desconhecidos</div>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">"Mas daquele dia e hora ninguém sabe, nem os anjos do céu, nem o Filho, mas somente o meu Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">E, como foram os dias de Noé, assim será também a vinda do Filho do homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Porque, como nos dias anteriores ao dilúvio, comiam e bebiam, casavam-se e davam-se em casamento, até o dia em que Noé entrou na arca,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">e não o perceberam, até que veio o dilúvio e levou a todos — assim será também a vinda do Filho do homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Então dois estarão no campo: um será levado, e o outro será deixado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">Duas estarão moendo no moinho: uma será levada, e a outra será deixada."</span>
+    </p>
+
+    <div class="pericope">Vigiai</div>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">"Vigiai, pois, porque não sabeis a que hora há de vir o vosso Senhor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Mas sabei isto: se o pai de família soubesse a que hora da noite viria o ladrão, vigiaria e não deixaria que a sua casa fosse arrombada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Por isso, também vós estai preparados; porque o Filho do homem virá na hora em que não pensais."</span>
+    </p>
+
+    <div class="pericope">O Servo Fiel e o Mau Servo</div>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">"Quem é, pois, o servo fiel e prudente, a quem o seu senhor constituiu sobre a sua casa, para dar o alimento a seu tempo?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">Bem-aventurado aquele servo a quem o seu senhor, quando vier, achar fazendo assim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">Em verdade vos digo: ele o constituirá sobre todos os seus bens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">Mas, se aquele mau servo disser no seu coração: 'O meu senhor tarda a vir',</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">e começar a espancar os seus conservos, e a comer e a beber com os ébrios,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">virá o senhor daquele servo no dia em que ele não espera, e na hora em que ele não sabe,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-jesus">e o separará, e porá a sua parte com os hipócritas. Ali haverá pranto e ranger de dentes."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 24:3 — "Fim do mundo"</span>
+            <div class="greek-text">συντέλεια τοῦ αἰῶνος</div>
+            <p><strong>Análise:</strong> A expressão traduz <em>synteleia tou aiōnos</em>, literalmente "consumação do século/era". <em>Aiōn</em> pode designar uma era, época ou ordem temporal, conforme o contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fim do mundo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 24:15 — "Abominação da desolação"</span>
+            <div class="greek-text">βδέλυγμα τῆς ἐρημώσεως</div>
+            <p><strong>Análise:</strong> A expressão remete às profecias de Daniel e sua aplicação neste contexto é objeto de diferentes interpretações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "abominação da desolação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 24:15 — "Quem lê, entenda"</span>
+            <div class="greek-text">ὁ ἀναγινώσκων νοείτω</div>
+            <p><strong>Análise:</strong> Literalmente "aquele que lê, entenda". A frase chama atenção para a compreensão da referência à profecia de Daniel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quem lê, entenda".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 24:28 — "Cadáver e águias"</span>
+            <div class="greek-text">πτῶμα... ἀετοί</div>
+            <p><strong>Análise:</strong> O grego utiliza <em>ptōma</em>, "cadáver", e <em>aetoi</em>, "águias". A relação entre a imagem e seu significado é discutida. "Abutres" é uma possível interpretação contextual de <em>aetoi</em>, mas a TBLH mantém "águias" por fidelidade lexical.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cadáver e águias".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 24:30 — "Tribos da terra"</span>
+            <div class="greek-text">φυλαὶ τῆς γῆς</div>
+            <p><strong>Análise:</strong> A expressão pode ser entendida de diferentes maneiras conforme a interpretação do contexto; a TBLH preserva a formulação do texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribos da terra".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 24:34 — "Esta geração"</span>
+            <div class="greek-text">γενεά</div>
+            <p><strong>Análise:</strong> O grego <em>genea</em> normalmente pode designar "geração", embora o termo admita diferentes usos conforme o contexto. A relação entre esta afirmação e "todas estas coisas" é objeto de debate interpretativo. A TBLH mantém "esta geração" sem antecipar uma interpretação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esta geração".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 24 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 24 contém o discurso escatológico de Jesus no monte das Oliveiras. Estrutura: 1) A destruição do templo (v.1-2); 2) Sinais do fim (v.3-14); 3) A grande aflição (v.15-28); 4) A vinda do Filho do homem (v.29-31); 5) A parábola da figueira (v.32-35); 6) O dia e a hora desconhecidos (v.36-44); 7) O servo fiel e o mau servo (v.45-51).</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

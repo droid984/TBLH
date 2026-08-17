@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 23</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 23</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Cadeira de Moisés</span>
+                Expressão associada à posição de ensino da Lei ocupada pelos escribas e fariseus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filactérios</span>
+                Pequenas caixas com trechos da Lei, usadas na testa e no braço, conforme Deuteronômio 6:8.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Geena</span>
+                Do grego geenna (γέεννα). Termo para o lugar de juízo, preservado na tradução.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filho da Geena</span>
+                Literalmente "filho da Geena", expressão que indica alguém destinado ao juízo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Prosélito</span>
+                Convertido ao judaísmo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sepulcros Caiados</span>
+                Sepulcros pintados de branco por fora, mas com interior impuro — metáfora da hipocrisia.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">23</div>
+
+    <div class="pericope">Os Escribas e Fariseus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>ntão Jesus falou às multidões e aos seus discípulos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        dizendo: <span class="fala-jesus">"Os escribas e os fariseus se assentam na cadeira de Moisés.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">Portanto, tudo o que vos disserem que guardeis, guardai-o e fazei-o; mas não façais conforme as suas obras, porque dizem e não fazem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Pois atam fardos pesados e difíceis de suportar, e os põem sobre os ombros dos homens; mas eles mesmos nem com o dedo querem movê-los.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E fazem todas as suas obras para serem vistos pelos homens; pois alargam os seus filactérios e alongam as franjas das suas vestes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Amam os primeiros lugares nos banquetes, as primeiras cadeiras nas sinagogas,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">as saudações nas praças e serem chamados pelos homens: 'Rabi, Rabi.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Mas vós não sejais chamados Rabi; porque um só é o vosso Mestre, o Cristo, e todos vós sois irmãos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">E a ninguém sobre a terra chameis vosso pai; porque um só é o vosso Pai, que está nos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Nem sejais chamados mestres; porque um só é o vosso Mestre, o Cristo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Mas o maior entre vós será vosso servo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E qualquer que a si mesmo se exaltar será humilhado; e qualquer que a si mesmo se humilhar será exaltado."</span>
+    </p>
+
+    <div class="pericope">Os Sete Ais</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">"Mas ai de vós, escribas e fariseus, hipócritas! Porque fechais o reino dos céus diante dos homens; pois nem vós entrais, nem deixais entrar os que estão entrando.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Ai de vós, escribas e fariseus, hipócritas! Porque devorais as casas das viúvas, e isso com pretexto de longas orações. Por isso recebereis maior condenação.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Ai de vós, escribas e fariseus, hipócritas! Porque percorreis o mar e a terra para fazer um prosélito; e, quando ele se torna, fazeis dele filho da Geena duas vezes mais do que vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Ai de vós, condutores cegos! Porque dizeis: 'Qualquer que jurar pelo templo, isso nada é; mas qualquer que jurar pelo ouro do templo, fica obrigado.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Insensatos e cegos! Pois qual é maior: o ouro, ou o templo que santifica o ouro?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E: 'Qualquer que jurar pelo altar, isso nada é; mas qualquer que jurar pela oferta que está sobre ele, fica obrigado.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Insensatos e cegos! Pois qual é maior: a oferta, ou o altar que santifica a oferta?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Portanto, o que jurar pelo altar jura por ele e por tudo o que está sobre ele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">E o que jurar pelo templo jura por ele e por aquele que nele habita.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E o que jurar pelo céu jura pelo trono de Deus e por aquele que nele está assentado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">"Ai de vós, escribas e fariseus, hipócritas! Porque dais o dízimo da hortelã, do endro e do cominho, e deixais o que é mais importante da lei: o juízo, a misericórdia e a fé. Era necessário fazer estas coisas, e não omitir aquelas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Condutores cegos! Coais o mosquito e engolis o camelo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Ai de vós, escribas e fariseus, hipócritas! Porque limpais o exterior do copo e do prato, mas por dentro estão cheios de rapina e de intemperança.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Fariseu cego! Limpa primeiro o interior do copo e do prato, para que também o exterior fique limpo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Ai de vós, escribas e fariseus, hipócritas! Porque sois semelhantes a sepulcros caiados, que por fora realmente parecem formosos, mas por dentro estão cheios de ossos de mortos e de toda imundícia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Assim também vós: por fora pareceis justos aos homens, mas por dentro estais cheios de hipocrisia e iniquidade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">"Ai de vós, escribas e fariseus, hipócritas! Porque edificais os sepulcros dos profetas e adornais os monumentos dos justos,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">e dizeis: 'Se tivéssemos vivido nos dias de nossos pais, não teríamos sido cúmplices no sangue dos profetas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Assim, contra vós mesmos testificais que sois filhos dos que mataram os profetas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Enchei vós, pois, a medida de vossos pais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Serpentes, raça de víboras! Como escapareis da condenação da Geena?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Portanto, eis que eu vos envio profetas, sábios e escribas; e a alguns deles matareis e crucificareis, e a outros deles açoitareis nas vossas sinagogas e perseguireis de cidade em cidade;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">para que sobre vós caia todo o sangue justo derramado sobre a terra, desde o sangue de Abel, o justo, até o sangue de Zacarias, filho de Baraquias, a quem matastes entre o templo e o altar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Em verdade vos digo: todas estas coisas virão sobre esta geração."</span>
+    </p>
+
+    <div class="pericope">O Lamento sobre Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">"Jerusalém, Jerusalém, que matas os profetas e apedrejas os que te são enviados! Quantas vezes quis eu ajuntar os teus filhos, como a galinha ajunta os seus pintinhos debaixo das asas, e não quiseste!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Eis que a vossa casa vos ficará deserta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">Porque eu vos digo: desde agora não me vereis mais, até que digais: 'Bendito o que vem em nome do Senhor.'"</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 23:2 — "Cadeira de Moisés"</span>
+            <div class="greek-text">καθέδρας Μωσέως</div>
+            <p><strong>Análise:</strong> A expressão está associada à posição de ensino da Lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cadeira de Moisés".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 23:8, 10 — "Um só é o vosso Mestre, o Cristo"</span>
+            <p><strong>Análise:</strong> Jesus contrasta a posição de mestre entre os discípulos com a autoridade única atribuída ao Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um só é o vosso Mestre, o Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 23:15 — "Filho da Geena"</span>
+            <div class="greek-text">υἱὸν γεέννης</div>
+            <p><strong>Análise:</strong> Literalmente "filho da Geena", expressão que indica alguém destinado à Geena.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filho da Geena".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 23:25 — "Rapina e intemperança"</span>
+            <div class="greek-text">ἁρπαγῆς καὶ ἀκρασίας</div>
+            <p><strong>Análise:</strong> Respectivamente "rapina" e "falta de domínio próprio/autocontrole".</p>
+            <p><strong>Decisão TBLH:</strong> Mantidas as traduções "rapina" e "intemperança".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 23:35 — "Zacarias, filho de Baraquias"</span>
+            <p><strong>Análise:</strong> O Textus Receptus apresenta essa identificação. A identidade histórica desse Zacarias é debatida, pois há personagens com nomes semelhantes no Antigo Testamento. A TBLH preserva a leitura do texto grego sem resolver a identificação por meio de interpretação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a leitura do Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 23 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 23 contém a denúncia profética de Jesus contra os escribas e fariseus. Estrutura: 1) Discurso sobre a hipocrisia dos líderes (v.1-12); 2) Os sete ais (v.13-36); 3) O lamento sobre Jerusalém (v.37-39). O capítulo é o mais severo discurso de juízo de Jesus no Evangelho de Mateus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

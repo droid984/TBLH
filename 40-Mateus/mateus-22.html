@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 22</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos-fariseus-herodianos { color: #6b6b6b; font-weight: 500; }
+        .fala-saduceus { color: #6b6b6b; font-weight: 500; }
+        .fala-doutor-lei { color: #6b6b6b; font-weight: 500; }
+        .fala-fariseus { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 22</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Bodas</span>
+                Imagem do banquete de casamento real, usado para descrever a salvação no reino de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Herodianos</span>
+                Grupo associado à casa dinástica de Herodes. Sua identificação política e religiosa é objeto de discussão histórica.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Denário</span>
+                Moeda romana com a imagem e inscrição de César, usada para o pagamento do tributo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Saduceus</span>
+                Grupo ligado ao templo e à aristocracia sacerdotal. Negavam a ressurreição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Doutor da Lei</span>
+                Do grego nomikos (νομικός). Pessoa especializada na Lei de Moisés, distinto de escriba.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Escabelo</span>
+                Apoio para os pés; imagem que representa a submissão dos inimigos.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">22</div>
+
+    <div class="pericope">A Parábola das Bodas</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> Jesus, respondendo, tornou a falar-lhes por parábolas, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-jesus">"O reino dos céus é semelhante a um rei que fez bodas para o seu filho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">E enviou os seus servos a chamar os convidados para as bodas; mas eles não quiseram vir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">De novo enviou outros servos, dizendo: 'Dizei aos convidados: Eis que preparei o meu jantar; os meus bois e os meus animais cevados já foram mortos, e tudo está pronto. Vinde às bodas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Mas eles, não fazendo caso, foram: um para o seu campo, outro para o seu negócio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">E os restantes, agarrando os seus servos, os maltrataram e mataram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E o rei, ouvindo isso, indignou-se. E, enviando os seus exércitos, destruiu aqueles assassinos e incendiou a sua cidade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Então disse aos seus servos: 'As bodas, na verdade, estão preparadas, mas os convidados não eram dignos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Ide, pois, às saídas dos caminhos e convidai para as bodas todos quantos encontrardes.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">E os servos, saindo pelos caminhos, reuniram todos quantos encontraram, tanto maus como bons; e as bodas se encheram de convidados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E o rei, entrando para ver os convidados, viu ali um homem que não estava trajado com veste de bodas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E disse-lhe: 'Amigo, como entraste aqui sem veste de bodas?' Mas ele emudeceu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Então o rei disse aos servos: 'Amarrai-o de pés e mãos, levai-o e lançai-o nas trevas exteriores. Ali haverá pranto e ranger de dentes.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Porque muitos são chamados, mas poucos escolhidos."</span>
+    </p>
+
+    <div class="pericope">O Tributo a César</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Então os fariseus se retiraram e conselharam entre si como o apanhariam em alguma palavra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E enviaram-lhe os seus discípulos, com os herodianos, dizendo: <span class="fala-discipulos-fariseus-herodianos">"Mestre, sabemos que és verdadeiro, e ensinas o caminho de Deus segundo a verdade, e não te importas com ninguém, porque não olhas a aparência dos homens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-discipulos-fariseus-herodianos">Dize-nos, pois, que te parece: é lícito dar tributo a César, ou não?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Mas Jesus, conhecendo a sua malícia, disse: <span class="fala-jesus">"Por que me tentais, hipócritas?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Mostrai-me a moeda do tributo."</span> E eles lhe apresentaram um denário.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E ele lhes disse: <span class="fala-jesus">"De quem é esta imagem e esta inscrição?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Disseram-lhe eles: <span class="fala-discipulos-fariseus-herodianos">"De César."</span> Então ele lhes disse: <span class="fala-jesus">"Dai, pois, a César o que é de César, e a Deus o que é de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E eles, ouvindo isso, se maravilharam e, deixando-o, foram-se.
+
+    <div class="pericope">A Questão da Ressurreição</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Naquele mesmo dia, aproximaram-se dele os saduceus, que dizem não haver ressurreição, e perguntaram-lhe,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        dizendo: <span class="fala-saduceus">"Mestre, Moisés disse: 'Se um homem morrer sem filhos, o seu irmão casará com a viúva e suscitará descendência a seu irmão.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-saduceus">Ora, houve entre nós sete irmãos. O primeiro, tendo casado, morreu e, não tendo descendência, deixou a sua mulher a seu irmão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-saduceus">Do mesmo modo também o segundo, e o terceiro, até o sétimo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-saduceus">E, por último, depois de todos, morreu também a mulher.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-saduceus">Na ressurreição, pois, de qual dos sete será ela a mulher? Porque todos a tiveram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Mas Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Errais, não conhecendo as Escrituras nem o poder de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Porque na ressurreição nem se casam, nem se dão em casamento; mas são como os anjos de Deus no céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E, acerca da ressurreição dos mortos, não lestes o que vos foi dito por Deus, que diz:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">'Eu sou o Deus de Abraão, o Deus de Isaque e o Deus de Jacó'? Deus não é Deus de mortos, mas de vivos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E as multidões, ouvindo isso, se admiravam da sua doutrina.
+
+    <div class="pericope">O Grande Mandamento</div>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Mas os fariseus, ouvindo que ele fizera emudecer os saduceus, reuniram-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E um deles, doutor da lei, perguntou-lhe, tentando-o e dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-doutor-lei">"Mestre, qual é o grande mandamento na lei?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E Jesus lhe disse: <span class="fala-jesus">"'Amarás o Senhor teu Deus com todo o teu coração, com toda a tua alma e com todo o teu entendimento.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Este é o primeiro e grande mandamento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">E o segundo, semelhante a este, é: 'Amarás o teu próximo como a ti mesmo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Destes dois mandamentos dependem toda a lei e os profetas."</span>
+    </p>
+
+    <div class="pericope">O Cristo, Filho e Senhor de Davi</div>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E, estando reunidos os fariseus, Jesus perguntou-lhes,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        dizendo: <span class="fala-jesus">"Que pensais vós do Cristo? De quem é filho?"</span> Disseram-lhe eles: <span class="fala-fariseus">"De Davi."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        Disse-lhes ele: <span class="fala-jesus">"Como, pois, Davi, em Espírito, o chama Senhor, dizendo:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">'Disse o Senhor ao meu Senhor: Assenta-te à minha direita, até que eu ponha os teus inimigos por escabelo dos teus pés'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Se Davi, pois, o chama Senhor, como é ele seu filho?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E ninguém podia responder-lhe palavra. E, desde aquele dia, ninguém ousou mais interrogá-lo.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 22:7 — "Destruiu aqueles assassinos"</span>
+            <p><strong>Análise:</strong> A parábola apresenta uma cena de juízo, sem especificar no próprio versículo uma identificação histórica da cidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a descrição do juízo na parábola.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 22:14 — "Muitos são chamados, mas poucos escolhidos"</span>
+            <div class="greek-text">πολλοὶ γάρ εἰσιν κλητοί, ὀλίγοι δὲ ἐκλεκτοί</div>
+            <p><strong>Análise:</strong> A expressão contrasta "chamados" e "escolhidos", sem que o versículo explique isoladamente todos os aspectos dessa distinção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muitos são chamados, mas poucos escolhidos".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 22:16 — "Herodianos"</span>
+            <p><strong>Análise:</strong> Grupo associado à casa dinástica de Herodes. Sua identificação política e religiosa exata é objeto de discussão histórica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Herodianos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 22:21 — "Dai a César o que é de César, e a Deus o que é de Deus"</span>
+            <p><strong>Análise:</strong> Jesus distingue aquilo que pertence a César daquilo que pertence a Deus. A frase não apresenta, neste contexto, uma explicação completa sobre a relação entre autoridade civil e dever religioso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Dai a César o que é de César, e a Deus o que é de Deus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 22:30 — "Anjos de Deus no céu"</span>
+            <p><strong>Análise:</strong> Jesus compara os ressuscitados aos anjos quanto à questão do casamento. O versículo não afirma que os ressuscitados se tornam anjos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a comparação com os anjos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 22:35 — "Doutor da lei"</span>
+            <div class="greek-text">νομικός</div>
+            <p><strong>Análise:</strong> Pessoa especializada na Lei de Moisés. O termo não é simplesmente equivalente a <em>grammateus</em> ("escriba").</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "doutor da lei".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 22:44 — "Escabelo dos teus pés"</span>
+            <p><strong>Análise:</strong> Apoio para os pés; a imagem representa a submissão dos inimigos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escabelo dos teus pés".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 22 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 22 contém: 1) A parábola das bodas (v.1-14); 2) A questão do tributo a César (v.15-22); 3) A questão da ressurreição (v.23-33); 4) O grande mandamento (v.34-40); 5) A pergunta sobre o Cristo (v.41-46). O capítulo mostra Jesus confrontando as autoridades com sabedoria e autoridade.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

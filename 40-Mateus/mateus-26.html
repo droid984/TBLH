@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 26</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-judas { color: #6b6b6b; font-weight: 500; }
+        .fala-pedro { color: #6b6b6b; font-weight: 500; }
+        .fala-principais-sacerdotes-escribas { color: #6b6b6b; font-weight: 500; }
+        .fala-caifas { color: #6b6b6b; font-weight: 500; }
+        .fala-testemunhas-falsas { color: #6b6b6b; font-weight: 500; }
+        .fala-serva { color: #6b6b6b; font-weight: 500; }
+        .fala-presentes { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 26</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Páscoa</span>
+                Do grego pascha (πάσχα), do hebraico pesach. Festa da libertação do Egito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Trinta Peças de Prata</span>
+                Do grego triakonta argyria (τριάκοντα ἀργύρια), literalmente "trinta pratas". O valor do escravo em Êxodo 21:32.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nova Aliança</span>
+                Do grego kainē diathēkē (καινὴ διαθήκη). A aliança estabelecida mediante o sangue de Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Getsêmani</span>
+                Lugar no monte das Oliveiras, tradicionalmente relacionado a "prensa de azeite".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cálice</span>
+                Imagem do sofrimento iminente de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Legião</span>
+                Unidade militar romana de cerca de seis mil homens.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">26</div>
+
+    <div class="pericope">A Conspiração Contra Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, tendo Jesus concluído todas estas palavras, disse aos seus discípulos:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-jesus">"Sabeis que depois de dois dias é a Páscoa, e o Filho do homem será entregue para ser crucificado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então os principais dos sacerdotes, e os escribas, e os anciãos do povo se reuniram no pátio do sumo sacerdote, chamado Caifás.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E conselharam entre si para prender Jesus com dolo e matá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas diziam: <span class="fala-principais-sacerdotes-escribas">"Não durante a festa, para que não haja tumulto entre o povo."</span>
+    </p>
+
+    <div class="pericope">A Unção em Betânia</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, estando Jesus em Betânia, na casa de Simão, o leproso,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        aproximou-se dele uma mulher com um vaso de alabastro cheio de unguento de grande valor, e derramou-o sobre a cabeça dele, estando ele assentado à mesa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E os seus discípulos, vendo isso, indignaram-se, dizendo: <span class="fala-discipulos">"Para que este desperdício?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-discipulos">Pois este unguento podia ser vendido por grande preço, e dar-se aos pobres."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas Jesus, percebendo isso, disse-lhes: <span class="fala-jesus">"Por que molestais esta mulher? Pois ela praticou uma boa obra para comigo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Porque sempre tendes os pobres convosco, mas a mim nem sempre me tendes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Pois, derramando este unguento sobre o meu corpo, ela o fez para o meu sepultamento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Em verdade vos digo: onde quer que este evangelho for pregado, em todo o mundo, também o que esta mulher fez será contado para memória dela."</span>
+    </p>
+
+    <div class="pericope">Judas Iscariotes e a Traição</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Então um dos doze, chamado Judas Iscariotes, foi aos principais dos sacerdotes
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        e disse: <span class="fala-judas">"Que me dareis, e eu vo-lo entregarei?"</span> E eles lhe pagaram trinta peças de prata.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E desde então buscava oportunidade para o entregar.
+
+    <div class="pericope">A Ceia Pascal</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, no primeiro dia da festa dos pães sem fermento, os discípulos aproximaram-se de Jesus, dizendo-lhe: <span class="fala-discipulos">"Onde queres que preparemos para comeres a Páscoa?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E ele disse: <span class="fala-jesus">"Ide à cidade, a um certo homem, e dizei-lhe: 'O Mestre diz: O meu tempo está próximo; em tua casa celebrarei a Páscoa com os meus discípulos.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E os discípulos fizeram como Jesus lhes ordenara e prepararam a Páscoa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, chegada a tarde, assentou-se à mesa com os doze.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, enquanto comiam, disse: <span class="fala-jesus">"Em verdade vos digo: um de vós me trairá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E eles, profundamente entristecidos, começaram cada um a dizer-lhe: <span class="fala-discipulos">"Por acaso sou eu, Senhor?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E ele, respondendo, disse: <span class="fala-jesus">"O que mete comigo a mão no prato, esse me trairá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Na verdade o Filho do homem vai, como está escrito a seu respeito; mas ai daquele homem por quem o Filho do homem é traído! Bom seria para aquele homem não haver nascido."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E Judas, que o traía, respondeu e disse: <span class="fala-judas">"Por acaso sou eu, Rabi?"</span> Ele lhe disse: <span class="fala-jesus">"Tu o disseste."</span>
+    </p>
+
+    <div class="pericope">A Instituição da Ceia</div>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E, enquanto comiam, Jesus tomou o pão e, tendo dado graças, partiu-o e deu-o aos discípulos, dizendo: <span class="fala-jesus">"Tomai, comei. Isto é o meu corpo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, tomando o cálice e tendo dado graças, deu-lhes, dizendo: <span class="fala-jesus">"Bebei dele todos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Porque isto é o meu sangue, o sangue da nova aliança, que é derramado por muitos, para remissão dos pecados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">E eu vos digo: desde agora não beberei deste fruto da videira até aquele dia em que o beba novo convosco no reino de meu Pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, tendo cantado um hino, saíram para o monte das Oliveiras.
+
+    <div class="pericope">A Predição da Negação de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Todos vós esta noite vos escandalizareis em mim, porque está escrito: 'Ferirei o pastor, e as ovelhas do rebanho se dispersarão.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Mas, depois que eu ressuscitar, irei adiante de vós para a Galileia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Mas Pedro, respondendo, disse-lhe: <span class="fala-pedro">"Ainda que todos se escandalizem em ti, eu nunca me escandalizarei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Disse-lhe Jesus: <span class="fala-jesus">"Em verdade te digo: nesta noite, antes que o galo cante, três vezes me negarás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Pedro lhe disse: <span class="fala-pedro">"Ainda que me seja necessário morrer contigo, de modo nenhum te negarei."</span> E todos os discípulos disseram o mesmo.
+
+    <div class="pericope">A Agonia no Getsêmani</div>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Então Jesus foi com eles a um lugar chamado Getsêmani, e disse aos discípulos: <span class="fala-jesus">"Assentai-vos aqui, enquanto eu vou ali orar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, levando consigo Pedro e os dois filhos de Zebedeu, começou a entristecer-se e a angustiar-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Então lhes disse: <span class="fala-jesus">"A minha alma está profundamente triste até a morte. Ficai aqui e vigiai comigo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, indo um pouco adiante, prostrou-se sobre o seu rosto, orando e dizendo: <span class="fala-jesus">"Meu Pai, se é possível, passa de mim este cálice. Todavia, não seja como eu quero, mas como tu queres."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E voltou para os discípulos e achou-os dormindo. E disse a Pedro: <span class="fala-jesus">"Assim não pudestes vigiar comigo nem uma hora?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">Vigiai e orai, para que não entreis em tentação. Na verdade o espírito está pronto, mas a carne é fraca."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E, indo pela segunda vez, orou, dizendo: <span class="fala-jesus">"Meu Pai, se este cálice não pode passar de mim sem que eu o beba, faça-se a tua vontade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E, voltando, achou-os outra vez dormindo, porque os seus olhos estavam pesados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E, deixando-os, foi outra vez e orou pela terceira vez, dizendo as mesmas palavras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Então voltou para os seus discípulos e disse-lhes: <span class="fala-jesus">"Dormi agora e descansai. Eis que a hora está próxima, e o Filho do homem está sendo entregue nas mãos dos pecadores.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">Levantai-vos, vamos. Eis que está próximo o que me trai."</span>
+    </p>
+
+    <div class="pericope">A Prisão de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E, estando ele ainda a falar, eis que chegou Judas, um dos doze, e com ele uma grande multidão com espadas e porretes, enviada pelos principais dos sacerdotes e pelos anciãos do povo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E o que o traía lhes tinha dado um sinal, dizendo: <span class="fala-judas">"Aquele que eu beijar, é esse; prendei-o."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E logo, aproximando-se de Jesus, disse: <span class="fala-judas">"Salve, Rabi!"</span> E o beijou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Mas Jesus lhe disse: <span class="fala-jesus">"Amigo, para que vieste?"</span> Então, aproximando-se eles, lançaram mão de Jesus e o prenderam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E eis que um dos que estavam com Jesus, estendendo a mão, puxou a sua espada e, ferindo o servo do sumo sacerdote, cortou-lhe uma orelha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        Então Jesus lhe disse: <span class="fala-jesus">"Guarda a tua espada no seu lugar; porque todos os que tomam a espada, pela espada morrerão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        <span class="fala-jesus">Ou pensas tu que eu não poderia agora orar a meu Pai, e ele me daria mais de doze legiões de anjos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        <span class="fala-jesus">Mas como se cumpririam as Escrituras, que dizem que assim deve acontecer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        Naquela hora, Jesus disse às multidões: <span class="fala-jesus">"Saístes com espadas e porretes para me prender, como contra um salteador? Todos os dias me assentava junto de vós, ensinando no templo, e não me prendestes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        <span class="fala-jesus">Mas tudo isto aconteceu para que se cumprissem as Escrituras dos profetas."</span> Então todos os discípulos, deixando-o, fugiram.
+
+    <div class="pericope">Jesus Diante do Sinédrio</div>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        E os que prenderam Jesus o levaram à casa de Caifás, o sumo sacerdote, onde os escribas e os anciãos estavam reunidos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        E Pedro o seguiu de longe até o pátio do sumo sacerdote. E, entrando, assentou-se com os servos para ver o fim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        E os principais dos sacerdotes, e os anciãos, e todo o sinédrio procuravam falso testemunho contra Jesus, para o matarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        E não o achavam. E, embora se apresentassem muitas testemunhas falsas, não o achavam. Mas, por fim, chegaram duas testemunhas falsas,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">61</span>
+        e disseram: <span class="fala-testemunhas-falsas">"Este disse: 'Posso destruir o templo de Deus e reedificá-lo em três dias.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">62</span>
+        E, levantando-se o sumo sacerdote, disse-lhe: <span class="fala-caifas">"Nada respondes ao que estes testificam contra ti?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">63</span>
+        Mas Jesus permaneceu calado. E o sumo sacerdote, insistindo, disse-lhe: <span class="fala-caifas">"Eu te conjuro pelo Deus vivo que nos digas se tu és o Cristo, o Filho de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">64</span>
+        Jesus lhe disse: <span class="fala-jesus">"Tu o disseste. Contudo eu vos digo: desde agora vereis o Filho do homem assentado à direita do Poder e vindo sobre as nuvens do céu."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">65</span>
+        Então o sumo sacerdote rasgou as suas vestes, dizendo: <span class="fala-caifas">"Blasfemou! Para que precisamos ainda de testemunhas? Eis que agora ouvistes a sua blasfêmia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">66</span>
+        <span class="fala-caifas">Que vos parece?"</span> E eles, respondendo, disseram: <span class="fala-principais-sacerdotes-escribas">"É réu de morte."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">67</span>
+        Então cuspiram-lhe no rosto e lhe deram socos, e outros o esbofeteavam,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">68</span>
+        dizendo: <span class="fala-testemunhas-falsas">"Profetiza-nos, Cristo: quem é o que te feriu?"</span>
+
+    <div class="pericope">A Negação de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">69</span>
+        E Pedro estava assentado fora, no pátio. E aproximou-se dele uma serva, dizendo: <span class="fala-serva">"Tu também estavas com Jesus, o galileu."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">70</span>
+        Mas ele negou diante de todos, dizendo: <span class="fala-pedro">"Não sei o que dizes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">71</span>
+        E, saindo para o alpendre, outra serva o viu e disse aos que ali estavam: <span class="fala-serva">"Este também estava com Jesus de Nazaré."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">72</span>
+        E ele negou outra vez com juramento: <span class="fala-pedro">"Não conheço esse homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">73</span>
+        E, pouco depois, aproximando-se os que ali estavam, disseram a Pedro: <span class="fala-presentes">"Verdadeiramente também tu és um deles, pois a tua fala te denuncia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">74</span>
+        Então ele começou a praguejar e a jurar, dizendo: <span class="fala-pedro">"Não conheço esse homem."</span> E imediatamente o galo cantou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">75</span>
+        E Pedro lembrou-se da palavra de Jesus, que lhe dissera: "Antes que o galo cante, três vezes me negarás." E, saindo dali, chorou amargamente.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 26:15 — "Trinta peças de prata"</span>
+            <div class="greek-text">τριάκοντα ἀργύρια</div>
+            <p><strong>Análise:</strong> Literalmente "trinta pratas" ou "trinta peças de prata". O texto não especifica uma denominação monetária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "trinta peças de prata".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 26:28 — "Sangue da nova aliança"</span>
+            <div class="greek-text">αἷμα τῆς καινῆς διαθήκης</div>
+            <p><strong>Análise:</strong> <em>Diathēkē</em> pode significar "aliança" ou "testamento"; neste contexto, "aliança" preserva a linguagem bíblica de uma aliança estabelecida mediante sangue.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "sangue da nova aliança".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 26:28 — "Derramado por muitos"</span>
+            <div class="greek-text">περὶ πολλῶν</div>
+            <p><strong>Análise:</strong> A expressão também aparece na linguagem profética de Isaías 53:12 na tradição grega.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "derramado por muitos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 26:29 — "Fruto da videira"</span>
+            <div class="greek-text">γέννημα τῆς ἀμπέλου</div>
+            <p><strong>Análise:</strong> Expressão que designa o produto da videira. O texto não utiliza aqui diretamente a palavra "vinho".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fruto da videira".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 26:36 — "Getsêmani"</span>
+            <p><strong>Análise:</strong> Nome do lugar situado no monte das Oliveiras. Tradicionalmente relacionado ao aramaico/hebraico <em>gat shemanim</em>, "prensa de azeite".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Getsêmani".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 26:55 — "Salteador"</span>
+            <div class="greek-text">λῃστής</div>
+            <p><strong>Análise:</strong> Termo que pode designar salteador, bandido ou assaltante, especialmente alguém associado à violência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "salteador".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 26:64 — "Assentado à direita do Poder"</span>
+            <div class="greek-text">τῆς δυνάμεως</div>
+            <p><strong>Análise:</strong> Literalmente "do Poder". A expressão funciona como uma referência reverente a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "assentado à direita do Poder".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 26 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 26 narra a preparação para a crucificação. Estrutura: 1) A conspiração contra Jesus (v.1-5); 2) A unção em Betânia (v.6-13); 3) Judas e a traição (v.14-16); 4) A ceia pascal (v.17-30); 5) A agonia no Getsêmani (v.31-46); 6) A prisão de Jesus (v.47-56); 7) Jesus diante do Sinédrio (v.57-68); 8) A negação de Pedro (v.69-75).</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

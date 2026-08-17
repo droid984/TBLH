@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 19</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-fariseus { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-jovem-rico { color: #6b6b6b; font-weight: 500; }
+        .fala-pedro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 19</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Carta de Divórcio</span>
+                Referência a Deuteronômio 24:1, documento que formalizava a dissolução do casamento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fornicação (porneia)</span>
+                Termo com campo semântico amplo relacionado a relações sexuais ilícitas ou imoralidade sexual.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Eunucos</span>
+                Do grego eunouchoi (εὐνοῦχοι). Pode designar homens castrados ou, no contexto, aqueles que renunciam ao casamento por causa do reino.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Regeneração</span>
+                Do grego palingenesia (παλιγγενεσία). "Renovação", "restauração" — o tempo futuro da restauração de todas as coisas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Camelo e o Fundo da Agulha</span>
+                Expressão hiperbólica usada por Jesus para ilustrar a dificuldade de um rico entrar no reino.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Primeiros e Últimos</span>
+                Declaração que prepara a parábola do capítulo 20 sobre a inversão de valores no reino.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">19</div>
+
+    <div class="pericope">O Divórcio</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, tendo Jesus concluído estas palavras, partiu da Galileia e foi para os confins da Judeia, além do Jordão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E grandes multidões o seguiram, e ele as curou ali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E aproximaram-se dele os fariseus, tentando-o e dizendo-lhe: <span class="fala-fariseus">"É lícito ao homem divorciar-se de sua mulher por qualquer motivo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"Não lestes que aquele que os fez no princípio, macho e fêmea os fez,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">e disse: 'Por isso o homem deixará pai e mãe e se unirá à sua mulher, e os dois serão uma só carne'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Assim já não são mais dois, mas uma só carne. Portanto, o que Deus ajuntou, não o separe o homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Disseram-lhe eles: <span class="fala-fariseus">"Então por que Moisés ordenou dar carta de divórcio e despedi-la?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Disse-lhes ele: <span class="fala-jesus">"Moisés, por causa da dureza do vosso coração, vos permitiu divorciar-vos de vossas mulheres; mas no princípio não foi assim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Eu vos digo, porém: qualquer que se divorciar de sua mulher, exceto por causa de fornicação, e casar com outra, comete adultério; e o que casar com a divorciada comete adultério."</span>
+    </p>
+
+    <div class="pericope">O Celibato por Causa do Reino</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Disseram-lhe os seus discípulos: <span class="fala-discipulos">"Se assim é a condição do homem com a mulher, não convém casar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas ele lhes disse: <span class="fala-jesus">"Nem todos aceitam esta palavra, mas somente aqueles a quem é dado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Porque há eunucos que nasceram assim desde o ventre da mãe; e há eunucos que foram feitos eunucos pelos homens; e há eunucos que a si mesmos se fizeram eunucos por causa do reino dos céus. Quem pode aceitar, aceite."</span>
+    </p>
+
+    <div class="pericope">Jesus e as Crianças</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então lhe trouxeram algumas crianças, para que lhes impusesse as mãos e orasse. Mas os discípulos os repreendiam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Jesus, porém, disse: <span class="fala-jesus">"Deixai as crianças e não as impeçais de vir a mim, porque dos tais é o reino dos céus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, tendo-lhes imposto as mãos, partiu dali.
+
+    <div class="pericope">O Jovem Rico</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E eis que, aproximando-se dele um homem, disse-lhe: <span class="fala-jovem-rico">"Bom Mestre, que bem farei para ter a vida eterna?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Ele lhe disse: <span class="fala-jesus">"Por que me chamas bom? Ninguém é bom, senão um, que é Deus. Mas, se queres entrar na vida, guarda os mandamentos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Disse-lhe ele: <span class="fala-jovem-rico">"Quais?"</span> E Jesus disse: <span class="fala-jesus">"Não matarás, não adulterarás, não furtarás, não darás falso testemunho,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">honra teu pai e tua mãe, e amarás o teu próximo como a ti mesmo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Disse-lhe o jovem: <span class="fala-jovem-rico">"Tudo isso tenho guardado desde a minha juventude. Que me falta ainda?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Disse-lhe Jesus: <span class="fala-jesus">"Se queres ser perfeito, vai, vende o que tens e dá aos pobres, e terás um tesouro no céu. Depois, vem e segue-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas o jovem, ouvindo esta palavra, retirou-se triste, porque possuía muitas propriedades.
+
+    <div class="pericope">O Perigo das Riquezas</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Então Jesus disse aos seus discípulos: <span class="fala-jesus">"Em verdade vos digo: é difícil um rico entrar no reino dos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">E outra vez vos digo: é mais fácil um camelo passar pelo fundo de uma agulha do que um rico entrar no reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E os seus discípulos, ouvindo isso, ficaram grandemente admirados, dizendo: <span class="fala-discipulos">"Quem poderá, então, salvar-se?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E Jesus, olhando para eles, disse-lhes: <span class="fala-jesus">"Para os homens isso é impossível, mas para Deus todas as coisas são possíveis."</span>
+    </p>
+
+    <div class="pericope">A Recompensa do Seguimento</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Então Pedro, respondendo, disse-lhe: <span class="fala-pedro">"Eis que nós deixamos tudo e te seguimos. Que haverá, pois, para nós?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Em verdade vos digo: vós que me seguistes, na regeneração, quando o Filho do homem se assentar no trono da sua glória, também vos assentareis sobre doze tronos, para julgar as doze tribos de Israel.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">E todo aquele que deixar casas, ou irmãos, ou irmãs, ou pai, ou mãe, ou mulher, ou filhos, ou terras, por causa do meu nome, receberá cem vezes tanto e herdará a vida eterna.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Mas muitos primeiros serão últimos, e os últimos, primeiros."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 19:3 — "É lícito ao homem divorciar-se?"</span>
+            <p><strong>Análise:</strong> A questão estava relacionada aos debates judaicos sobre as condições legítimas para o divórcio. As escolas associadas a Hillel e Shammai são posteriormente conhecidas por posições diferentes sobre a interpretação de Deuteronômio 24:1.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução da pergunta dos fariseus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 19:9 — "Fornicação"</span>
+            <div class="greek-text">πορνεία</div>
+            <p><strong>Análise:</strong> Termo que possui campo semântico amplo relacionado a relações sexuais ilícitas ou imoralidade sexual, conforme o contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fornicação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 19:12 — "Eunucos"</span>
+            <div class="greek-text">εὐνοῦχοι</div>
+            <p><strong>Análise:</strong> O termo pode designar homens castrados ou eunucos propriamente ditos; neste contexto, Jesus também fala de pessoas que permanecem sem casamento por causa do reino dos céus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "eunucos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 19:21 — "Vende o que tens e dá aos pobres"</span>
+            <p><strong>Análise:</strong> A instrução é dada especificamente ao jovem rico. O texto não generaliza para todos os discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a instrução específica ao jovem rico.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 19:24 — "Camelo passar pelo fundo de uma agulha"</span>
+            <p><strong>Análise:</strong> Expressão hiperbólica que ilustra a dificuldade de um rico entrar no reino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão hiperbólica.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 19:28 — "Regeneração"</span>
+            <div class="greek-text">παλιγγενεσία</div>
+            <p><strong>Análise:</strong> "Renovação", "restauração". O termo aparece apenas aqui e em Tito 3:5 no NT.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "regeneração".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 19 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 19 contém: 1) O ensino sobre o divórcio (v.1-12); 2) A bênção às crianças (v.13-15); 3) O encontro com o jovem rico (v.16-22); 4) O perigo das riquezas (v.23-26); 5) A recompensa do seguimento (v.27-30). O capítulo aborda questões de relacionamento humano, renúncia e recompensa.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

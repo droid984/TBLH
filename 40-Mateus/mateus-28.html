@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 28</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-principais-sacerdotes-anciãos { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 28</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Primeiro Dia da Semana</span>
+                Referência ao primeiro dia contado após o sábado, correspondente ao domingo na nomenclatura posterior.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Anjo do Senhor</span>
+                Mensageiro celestial que anuncia a ressurreição de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Grande Comissão</span>
+                A ordem de Jesus para fazer discípulos de todas as nações, batizando e ensinando.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fórmula Batismal</span>
+                "Em nome do Pai, e do Filho, e do Espírito Santo" — a fórmula trinitária do batismo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Consumação do Século</span>
+                Do grego synteleias tou aiōnos (συντελείας τοῦ αἰῶνος). "Fim da era" ou "consumação do século".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Amém</span>
+                Conclusão do Evangelho, presente no Textus Receptus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">28</div>
+
+    <div class="pericope">A Ressurreição</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, no fim do sábado, ao amanhecer do primeiro dia da semana, Maria Madalena e a outra Maria foram ver o sepulcro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E eis que houve um grande terremoto; porque um anjo do Senhor, descendo do céu, chegou e revolveu a pedra da entrada, e assentou-se sobre ela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E o seu aspecto era como relâmpago, e a sua veste branca como neve.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E os guardas, com medo dele, tremeram e ficaram como mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas o anjo, respondendo, disse às mulheres: <span class="fala-anjo">"Não temais vós; porque eu sei que buscais Jesus, que foi crucificado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-anjo">Ele não está aqui, porque já ressuscitou, como tinha dito. Vinde, vede o lugar onde o Senhor jazia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-anjo">E ide depressa, e dizei aos seus discípulos que já ressuscitou dos mortos. E eis que ele vai adiante de vós para a Galileia; ali o vereis. Eis que eu vo-lo tenho dito."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, saindo elas depressa do sepulcro, com temor e grande alegria, correram para anunciá-lo aos seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, indo elas para anunciá-lo aos discípulos, eis que Jesus lhes saiu ao encontro, dizendo: <span class="fala-jesus">"Salve!"</span> E elas, aproximando-se, abraçaram os seus pés e o adoraram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Não temais. Ide, anunciai a meus irmãos que vão para a Galileia, e lá me verão."</span>
+    </p>
+
+    <div class="pericope">A Reação dos Guardas</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, indo elas, eis que alguns da guarda foram à cidade e anunciaram aos principais dos sacerdotes tudo o que havia acontecido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, reunindo-se eles com os anciãos, e tendo conselho, deram muito dinheiro aos soldados,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        dizendo: <span class="fala-principais-sacerdotes-anciãos">"Dizei: Os seus discípulos vieram de noite e o furtaram enquanto dormíamos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-principais-sacerdotes-anciãos">E, se isto chegar aos ouvidos do governador, nós o persuadiremos e vos livraremos de preocupação."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E eles, tomando o dinheiro, fizeram como foram instruídos. E este dito se divulgou entre os judeus até o dia de hoje.
+
+    <div class="pericope">A Grande Comissão</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E os onze discípulos foram para a Galileia, para o monte que Jesus lhes tinha designado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, quando o viram, o adoraram; mas alguns duvidaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, aproximando-se Jesus, falou-lhes, dizendo: <span class="fala-jesus">"Toda a autoridade me foi dada no céu e na terra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Portanto, ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">ensinando-os a guardar todas as coisas que eu vos tenho ordenado. E eis que eu estou convosco todos os dias, até a consumação do século. Amém."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 28:1 — "Primeiro dia da semana"</span>
+            <p><strong>Análise:</strong> Referência ao primeiro dia contado após o sábado, correspondente ao domingo na nomenclatura posterior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primeiro dia da semana".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 28:2 — "Um anjo do Senhor"</span>
+            <div class="greek-text">ἄγγελος Κυρίου</div>
+            <p><strong>Análise:</strong> O anjo desce do céu e revolve a pedra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um anjo do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 28:9 — "Salve!"</span>
+            <div class="greek-text">χαίρετε</div>
+            <p><strong>Análise:</strong> Forma plural de <em>chairō</em>, literalmente relacionada a "alegrar-se", mas também usada como saudação: "Salve!" ou "Saudações!".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Salve!".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 28:12 — "Muito dinheiro"</span>
+            <div class="greek-text">ἀργύρια ἱκανά</div>
+            <p><strong>Análise:</strong> Literalmente "pratas suficientes" ou "uma quantia considerável de prata".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muito dinheiro".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 28:17 — "Alguns duvidaram"</span>
+            <div class="greek-text">οἱ δὲ ἐδίστασαν</div>
+            <p><strong>Análise:</strong> Indicando dúvida ou hesitação. O texto não identifica quais dos discípulos duvidaram.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alguns duvidaram".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 28:18 — "Toda a autoridade me foi dada"</span>
+            <div class="greek-text">ἐδόθη μοι πᾶσα ἐξουσία</div>
+            <p><strong>Análise:</strong> A declaração de autoridade universal de Jesus no céu e na terra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Toda a autoridade me foi dada".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 28:19 — "Fazei discípulos de todas as nações"</span>
+            <div class="greek-text">μαθητεύσατε πάντα τὰ ἔθνη</div>
+            <p><strong>Análise:</strong> O verbo é "fazer discípulos", não simplesmente "ensinar".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fazei discípulos de todas as nações".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 28 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 28 conclui o Evangelho de Mateus com a ressurreição e a Grande Comissão. Estrutura: 1) A ressurreição (v.1-10); 2) A reação dos guardas (v.11-15); 3) A Grande Comissão (v.16-20). O capítulo termina com a promessa de Jesus: "Eis que eu estou convosco todos os dias, até a consumação do século."</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

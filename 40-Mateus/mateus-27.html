@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 27</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-judas { color: #6b6b6b; font-weight: 500; }
+        .fala-principais-sacerdotes-anciãos { color: #6b6b6b; font-weight: 500; }
+        .fala-principais-sacerdotes { color: #6b6b6b; font-weight: 500; }
+        .fala-pilatos { color: #6b6b6b; font-weight: 500; }
+        .fala-mulher-pilatos { color: #6b6b6b; font-weight: 500; }
+        .fala-multidao { color: #6b6b6b; font-weight: 500; }
+        .fala-soldados { color: #6b6b6b; font-weight: 500; }
+        .fala-transeuntes { color: #6b6b6b; font-weight: 500; }
+        .fala-principais-escribas-anciãos { color: #6b6b6b; font-weight: 500; }
+        .fala-presentes { color: #6b6b6b; font-weight: 500; }
+        .fala-centuriao-guardas { color: #6b6b6b; font-weight: 500; }
+        .fala-principais-fariseus { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 27</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Barrabás</span>
+                Do aramaico Bar-Abba, "filho do pai". Preso notável solto por Pilatos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gólgota</span>
+                Do aramaico gulgolta, "caveira". O lugar da crucificação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Campo de Sangue</span>
+                Do grego Agros Haimatos (Ἀγρὸς Αἵματος). Campo comprado com as trinta peças de prata.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Centurião</span>
+                Do grego hekatontarchos (ἑκατόνταρχος). Oficial romano que comandava cerca de cem soldados.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Véu do Templo</span>
+                Rasgou-se em dois no momento da morte de Jesus, simbolizando o acesso a Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">José de Arimateia</span>
+                Homem rico, discípulo de Jesus, que pediu seu corpo para sepultamento.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">27</div>
+
+    <div class="pericope">Jesus Entregue a Pilatos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, chegando a manhã, todos os principais dos sacerdotes e os anciãos do povo conselharam contra Jesus, para o matarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, amarrando-o, levaram-no e o entregaram a Pôncio Pilatos, o governador.
+
+    <div class="pericope">A Morte de Judas</div>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então Judas, que o traíra, vendo que Jesus fora condenado, arrependeu-se e devolveu as trinta peças de prata aos principais dos sacerdotes e aos anciãos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        dizendo: <span class="fala-judas">"Pequei, traindo o sangue inocente."</span> Mas eles disseram: <span class="fala-principais-sacerdotes-anciãos">"Que nos importa? Isso é contigo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E ele, lançando as peças de prata no templo, retirou-se e foi enforcar-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E os principais dos sacerdotes, tomando as peças de prata, disseram: <span class="fala-principais-sacerdotes">"Não é lícito colocá-las no tesouro, porque é preço de sangue."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, tendo conselho, compraram com elas o campo do oleiro, para sepultura dos estrangeiros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Por isso aquele campo foi chamado Campo de Sangue, até o dia de hoje.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Então se cumpriu o que foi dito pelo profeta Jeremias, que diz: "E tomaram as trinta peças de prata, preço do que foi avaliado, a quem alguns dos filhos de Israel avaliaram;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        e deram-nas pelo campo do oleiro, como o Senhor me ordenou."
+
+    <div class="pericope">Jesus Diante de Pilatos</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E Jesus foi posto diante do governador. E o governador perguntou-lhe, dizendo: <span class="fala-pilatos">"És tu o Rei dos judeus?"</span> E Jesus lhe disse: <span class="fala-jesus">"Tu o dizes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, sendo acusado pelos principais dos sacerdotes e pelos anciãos, nada respondeu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então Pilatos lhe disse: <span class="fala-pilatos">"Não ouves quantas coisas testificam contra ti?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas ele não lhe respondeu nem uma palavra, de modo que o governador se admirava muito.
+
+    <div class="pericope">Barrabás e Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, por ocasião da festa, o governador costumava soltar um preso à multidão, aquele que quisessem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E tinham então um preso notável, chamado Barrabás.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Portanto, estando eles reunidos, Pilatos lhes disse: <span class="fala-pilatos">"Qual quereis que eu vos solte? Barrabás, ou Jesus, chamado Cristo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque ele sabia que por inveja o haviam entregado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, estando ele assentado no tribunal, sua mulher mandou dizer-lhe: <span class="fala-mulher-pilatos">"Não te envolvas com esse justo, porque hoje, em sonho, muito sofri por causa dele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Mas os principais dos sacerdotes e os anciãos persuadiram as multidões a pedirem Barrabás e a matarem Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E o governador, respondendo, disse-lhes: <span class="fala-pilatos">"Qual dos dois quereis que eu vos solte?"</span> E eles disseram: <span class="fala-multidao">"Barrabás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Pilatos lhes disse: <span class="fala-pilatos">"Que farei, então, de Jesus, chamado Cristo?"</span> Todos lhe disseram: <span class="fala-multidao">"Seja crucificado!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas o governador disse: <span class="fala-pilatos">"Pois que mal ele fez?"</span> Mas eles clamavam ainda mais, dizendo: <span class="fala-multidao">"Seja crucificado!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E Pilatos, vendo que nada aproveitava, mas antes o tumulto aumentava, tomou água e lavou as mãos diante da multidão, dizendo: <span class="fala-pilatos">"Estou inocente do sangue deste justo. Isso é convosco."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E todo o povo, respondendo, disse: <span class="fala-multidao">"O seu sangue caia sobre nós e sobre os nossos filhos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Então soltou-lhes Barrabás. E, depois de açoitar Jesus, entregou-o para ser crucificado.
+
+    <div class="pericope">A Crucificação</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Então os soldados do governador, levando Jesus ao pretório, reuniram toda a coorte ao redor dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, despindo-o, puseram-lhe uma capa escarlate.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, tecendo uma coroa de espinhos, puseram-na sobre a sua cabeça, e uma cana na sua mão direita. E, ajoelhando-se diante dele, zombavam dele, dizendo: <span class="fala-soldados">"Salve, Rei dos judeus!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, cuspindo nele, tomaram a cana e batiam-lhe na cabeça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E, depois de o terem escarnecido, tiraram-lhe a capa, vestiram-lhe as suas vestes e levaram-no para ser crucificado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E, quando saíam, encontraram um homem cireneu, chamado Simão. A este obrigaram a carregar a sua cruz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, chegando a um lugar chamado Gólgota, que se chama Lugar da Caveira,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        deram-lhe a beber vinagre misturado com fel. Mas ele, provando-o, não quis beber.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, depois de o crucificarem, repartiram as suas vestes, lançando sortes, para que se cumprisse o que foi dito pelo profeta: "Repartiram entre si as minhas vestes, e sobre a minha túnica lançaram sortes."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, assentados, o guardavam ali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E puseram sobre a sua cabeça a sua acusação escrita: ESTE É JESUS, O REI DOS JUDEUS.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Então foram crucificados com ele dois salteadores, um à direita e outro à esquerda.
+
+    <div class="pericope">O Escárnio na Cruz</div>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E os que passavam blasfemavam dele, meneando a cabeça
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        e dizendo: <span class="fala-transeuntes">"Tu, que destróis o templo e em três dias o reedificas, salva-te a ti mesmo. Se és Filho de Deus, desce da cruz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Do mesmo modo também os principais dos sacerdotes, com os escribas e os anciãos, zombando, diziam:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-principais-escribas-anciãos">"Salvou os outros; a si mesmo não pode salvar. Se é o Rei de Israel, desça agora da cruz, e creremos nele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-principais-escribas-anciãos">Confiou em Deus; livre-o agora, se lhe quer bem. Pois disse: 'Sou Filho de Deus.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E também os salteadores que com ele foram crucificados o insultavam.
+
+    <div class="pericope">A Morte de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, desde a hora sexta, houve trevas sobre toda a terra até a hora nona.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E, perto da hora nona, Jesus clamou em alta voz, dizendo: <span class="fala-jesus">"Eli, Eli, lamá sabactâni?"</span> Isto é: "Deus meu, Deus meu, por que me desamparaste?"
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E alguns dos que ali estavam, ouvindo isso, diziam: <span class="fala-presentes">"Este chama por Elias."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E logo um deles correu, tomou uma esponja, encheu-a de vinagre, pôs-na numa cana e deu-lhe de beber.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        Mas os outros diziam: <span class="fala-presentes">"Deixa, vejamos se Elias vem salvá-lo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        E Jesus, clamando outra vez com grande voz, entregou o espírito.
+
+    <div class="pericope">Sinais Após a Morte de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E eis que o véu do templo se rasgou em dois, de alto a baixo; e a terra tremeu, e as pedras se fenderam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E os sepulcros se abriram, e muitos corpos de santos que dormiam ressuscitaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E, saindo dos sepulcros, depois da ressurreição dele, entraram na cidade santa e apareceram a muitos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E o centurião e os que com ele guardavam Jesus, vendo o terremoto e as coisas que aconteciam, tiveram grande temor e disseram: <span class="fala-centuriao-guardas">"Verdadeiramente este era Filho de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        E estavam ali muitas mulheres, olhando de longe, as quais tinham seguido Jesus desde a Galileia, para o servirem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        Entre elas estavam Maria Madalena, Maria, mãe de Tiago e de José, e a mãe dos filhos de Zebedeu.
+
+    <div class="pericope">O Sepultamento de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        E, chegando a tarde, veio um homem rico de Arimateia, chamado José, que também era discípulo de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        Este foi a Pilatos e pediu o corpo de Jesus. Então Pilatos ordenou que o corpo lhe fosse entregue.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        E José, tomando o corpo, envolveu-o num lençol limpo de linho,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        e o pôs no seu sepulcro novo, que tinha escavado na rocha. E, rolando uma grande pedra para a entrada do sepulcro, retirou-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">61</span>
+        E estavam ali Maria Madalena e a outra Maria, assentadas diante do sepulcro.
+
+    <div class="pericope">A Guarda no Sepulcro</div>
+
+    <p class="verse">
+        <span class="v-num">62</span>
+        E, no dia seguinte, que é o dia depois da preparação, reuniram-se os principais dos sacerdotes e os fariseus diante de Pilatos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">63</span>
+        dizendo: <span class="fala-principais-fariseus">"Senhor, lembramo-nos de que aquele enganador, quando ainda vivo, disse: 'Depois de três dias ressuscitarei.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">64</span>
+        <span class="fala-principais-fariseus">Ordena, pois, que o sepulcro seja guardado com segurança até o terceiro dia, para que não venham os seus discípulos de noite, o furtem e digam ao povo: 'Ressuscitou dos mortos.' E assim será o último engano pior que o primeiro."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">65</span>
+        Pilatos lhes disse: <span class="fala-pilatos">"Tendes uma guarda. Ide e guardai-o como entendeis."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">66</span>
+        E eles foram e, selando a pedra, asseguraram o sepulcro com a guarda.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 27:3 — "Arrependeu-se"</span>
+            <div class="greek-text">μεταμεληθείς</div>
+            <p><strong>Análise:</strong> Forma de <em>metamelomai</em>, indicando pesar, remorso ou mudança de sentimento. O termo é distinto de <em>metanoeō</em>, frequentemente usado para arrependimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "arrependeu-se".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Mateus 27:9 — "Profeta Jeremias"</span>
+            <p><strong>Análise:</strong> Mateus atribui a palavra a Jeremias. A passagem apresenta correspondências textuais especialmente discutidas em relação a Zacarias 11:12-13, além de possíveis relações com textos de Jeremias. A identificação exata da combinação das referências é debatida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a atribuição a Jeremias conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 27:52-53 — "Muitos corpos de santos"</span>
+            <p><strong>Análise:</strong> Mateus relata que sepulcros foram abertos e que muitos corpos de santos que dormiam ressuscitaram; depois da ressurreição de Jesus, eles saíram dos sepulcros e apareceram a muitos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a sequência do texto conforme o relato de Mateus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 27:46 — "Eli, Eli, lamá sabactâni?"</span>
+            <div class="greek-text">Ἠλὶ Ἠλὶ λεμὰ σαβαχθανί</div>
+            <p><strong>Análise:</strong> Do hebraico/aramaico, "Deus meu, Deus meu, por que me desamparaste?" Citação do Salmo 22:1.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração da expressão aramaica.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 27 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 27 narra a crucificação e morte de Jesus. Estrutura: 1) Jesus entregue a Pilatos (v.1-2); 2) A morte de Judas (v.3-10); 3) Jesus diante de Pilatos (v.11-14); 4) Barrabás e Jesus (v.15-26); 5) A crucificação (v.27-44); 6) A morte de Jesus (v.45-56); 7) O sepultamento (v.57-61); 8) A guarda no sepulcro (v.62-66).</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

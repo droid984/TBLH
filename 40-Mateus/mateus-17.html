@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 17</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-pedro { color: #6b6b6b; font-weight: 500; }
+        .fala-pai-menino { color: #6b6b6b; font-weight: 500; }
+        .fala-cobradores { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 17</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Transfiguração</span>
+                Do grego metemorphōthē (μετεμορφώθη). Mudança de forma ou aparência de Jesus diante dos discípulos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Moisés e Elias</span>
+                Representantes da Lei e dos Profetas, aparecem com Jesus na transfiguração.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lunático</span>
+                Do grego selēniazetai (σεληνιάζεται). Termo relacionado à ideia de influência da lua. O menino apresentava episódios recorrentes de sofrimento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Didracmas</span>
+                Do grego didrachma (δίδραχμα), "duas dracmas". Contribuição relacionada ao tributo do templo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Estáter</span>
+                Do grego statēr (στατήρ). Moeda cujo valor correspondia a quatro dracmas, suficiente para o pagamento de duas didracmas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Grão de Mostarda</span>
+                Imagem usada por Jesus para falar da fé: pequena semente que pode mover montanhas.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">17</div>
+
+    <div class="pericope">A Transfiguração</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, seis dias depois, Jesus tomou consigo Pedro, Tiago e João, seu irmão, e os levou à parte a um alto monte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E transfigurou-se diante deles. E o seu rosto resplandeceu como o sol, e as suas vestes tornaram-se brancas como a luz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E eis que lhes apareceram Moisés e Elias, falando com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E Pedro, respondendo, disse a Jesus: <span class="fala-pedro">"Senhor, bom é que estejamos aqui. Se queres, façamos aqui três tendas: uma para ti, uma para Moisés e uma para Elias."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Enquanto ele ainda falava, eis que uma nuvem luminosa os cobriu. E eis que uma voz da nuvem dizia: <span class="fala-deus">"Este é o meu Filho amado, em quem me comprazo; a ele ouvi."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E os discípulos, ouvindo isso, caíram sobre o seu rosto e tiveram grande temor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E Jesus, aproximando-se, tocou-os e disse: <span class="fala-jesus">"Levantai-vos e não temais."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, erguendo eles os olhos, a ninguém viram senão somente Jesus.
+
+    <div class="pericope">A Vinda de Elias</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, descendo eles do monte, Jesus lhes ordenou, dizendo: <span class="fala-jesus">"A ninguém conteis a visão, até que o Filho do homem ressuscite dos mortos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E os seus discípulos o interrogaram, dizendo: <span class="fala-discipulos">"Por que dizem, então, os escribas que Elias deve vir primeiro?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Elias, na verdade, virá primeiro e restaurará todas as coisas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Mas eu vos digo que Elias já veio, e não o conheceram; antes, fizeram-lhe tudo o que quiseram. Assim também o Filho do homem há de padecer por eles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então os discípulos entenderam que lhes falara de João Batista.
+
+    <div class="pericope">A Cura do Menino Lunático</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, quando chegaram à multidão, aproximou-se dele um homem, ajoelhando-se diante dele e dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-pai-menino">"Senhor, tem compaixão de meu filho, porque é lunático e sofre muito; pois muitas vezes cai no fogo e muitas vezes na água.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-pai-menino">E trouxe-o aos teus discípulos, e não o puderam curar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Jesus, respondendo, disse: <span class="fala-jesus">"Ó geração incrédula e perversa! Até quando estarei convosco? Até quando vos sofrerei? Trazei-mo aqui."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E Jesus repreendeu o demônio, e ele saiu do menino; e o menino ficou são desde aquela hora.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Então os discípulos, aproximando-se de Jesus à parte, disseram: <span class="fala-discipulos">"Por que não pudemos nós expulsá-lo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Por causa da vossa incredulidade. Pois em verdade vos digo: se tiverdes fé como um grão de mostarda, direis a este monte: Passa daqui para lá, e ele passará; e nada vos será impossível.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Mas esta espécie não sai senão por oração e jejum."</span>
+    </p>
+
+    <div class="pericope">A Segunda Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, enquanto estavam na Galileia, disse-lhes Jesus: <span class="fala-jesus">"O Filho do homem será entregue nas mãos dos homens,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">e o matarão, e ao terceiro dia ressuscitará."</span> E eles se entristeceram grandemente.
+
+    <div class="pericope">O Imposto do Templo</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, quando chegaram a Cafarnaum, aproximaram-se de Pedro os que cobravam as didracmas e disseram: <span class="fala-cobradores">"O vosso mestre não paga as didracmas?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Ele disse: <span class="fala-pedro">"Sim."</span> E, entrando em casa, Jesus antecipou-se, dizendo: <span class="fala-jesus">"Que te parece, Simão? De quem cobram os reis da terra os tributos ou o censo? Dos seus filhos ou dos estranhos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Pedro disse-lhe: <span class="fala-pedro">"Dos estranhos."</span> Jesus lhe disse: <span class="fala-jesus">"Logo, estão livres os filhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Mas, para que não os escandalizemos, vai ao mar, lança o anzol, e o primeiro peixe que subir, toma-o. E, abrindo-lhe a boca, acharás um estáter. Toma-o e dá-lhes por mim e por ti."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 17:2 — "Transfigurou-se"</span>
+            <div class="greek-text">μετεμορφώθη</div>
+            <p><strong>Análise:</strong> Verbo relacionado à mudança de forma ou aparência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "transfigurou-se".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 17:5 — "Este é o meu Filho amado"</span>
+            <p><strong>Análise:</strong> A declaração retoma Mateus 3:17 e acrescenta a ordem: "a ele ouvi".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Este é o meu Filho amado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 17:15 — "Lunático"</span>
+            <div class="greek-text">σεληνιάζεται</div>
+            <p><strong>Análise:</strong> Termo relacionado à ideia de influência da lua. O menino apresentava episódios recorrentes de sofrimento e quedas. Mateus não fornece aqui uma explicação médica para sua condição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lunático".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 17:21 — "Esta espécie não sai senão por oração e jejum"</span>
+            <p><strong>Análise:</strong> A frase está presente no Textus Receptus. Alguns manuscritos gregos antigos não possuem este versículo. Como a TBLH utiliza o Textus Receptus como base do Novo Testamento, o versículo é mantido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o versículo conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 17:24 — "Didracmas"</span>
+            <div class="greek-text">δίδραχμα</div>
+            <p><strong>Análise:</strong> Literalmente "duas dracmas". Refere-se à contribuição relacionada ao tributo do templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "didracmas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 17:26 — "Estão livres os filhos"</span>
+            <p><strong>Análise:</strong> Jesus conclui a comparação dizendo que os filhos estão livres.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "estão livres os filhos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 17:27 — "Estáter"</span>
+            <div class="greek-text">στατήρ</div>
+            <p><strong>Análise:</strong> Moeda cujo valor correspondia a quatro dracmas, suficiente para o pagamento de duas didracmas, uma por Jesus e outra por Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a transliteração "estáter".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 17 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 17 contém três narrativas principais: 1) A transfiguração (v.1-8); 2) A cura do menino lunático e o ensino sobre a fé (v.14-21); 3) A segunda predição da paixão (v.22-23); 4) O imposto do templo (v.24-27). O capítulo revela a glória de Jesus, a necessidade da fé, e a preocupação prática com as obrigações do templo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

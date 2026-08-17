@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 18</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-pedro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 18</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Pedra de Moinho</span>
+                Do grego mylos onikos (μύλος ὀνικός), literalmente "moinho de jumento", uma grande pedra de moinho movida por animal.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Geena de Fogo</span>
+                Do grego geennan tou pyros (γέενναν τοῦ πυρός). Termo preservado para distinguir de Hades.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gentio e Publicano</span>
+                "Gentio" (ethnikos, ἐθνικός) e "publicano" (telōnēs, τελώνης). Termos usados para designar aqueles fora da comunidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dez Mil Talentos</span>
+                Quantia extraordinariamente grande na parábola do servo impiedoso.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cem Denários</span>
+                Dívida muito menor em comparação com os dez mil talentos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Atormentadores</span>
+                Do grego basanistais (βασανισταῖς). O texto não especifica sua função.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">18</div>
+
+    <div class="pericope">Quem é o Maior no Reino</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>aquela hora, os discípulos aproximaram-se de Jesus, dizendo: <span class="fala-discipulos">"Quem é, pois, o maior no reino dos céus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E Jesus, chamando a si uma criança, colocou-a no meio deles
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        e disse: <span class="fala-jesus">"Em verdade vos digo: se não vos converterdes e não vos tornardes como crianças, de modo nenhum entrareis no reino dos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Portanto, qualquer que se humilhar como esta criança, esse é o maior no reino dos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E qualquer que receber uma criança como esta em meu nome, a mim me recebe.</span>
+    </p>
+
+    <div class="pericope">Tropeços e o Cuidado com os Pequenos</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Mas qualquer que fizer tropeçar um destes pequenos que creem em mim, melhor lhe fora que se lhe pendurasse ao pescoço uma pedra de moinho, e fosse afundado na profundeza do mar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Ai do mundo por causa dos tropeços! Porque é necessário que venham os tropeços; mas ai do homem por quem o tropeço vem!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Portanto, se a tua mão ou o teu pé te faz tropeçar, corta-o e lança-o de ti. Melhor te é entrar na vida manco ou aleijado do que, tendo duas mãos ou dois pés, ser lançado no fogo eterno.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">E, se o teu olho te faz tropeçar, arranca-o e lança-o de ti. Melhor te é entrar na vida com um só olho do que, tendo dois olhos, ser lançado na Geena de fogo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Vede que não desprezeis um destes pequenos; porque eu vos digo que os seus anjos nos céus sempre veem a face de meu Pai, que está nos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Porque o Filho do homem veio salvar o que estava perdido.</span>
+    </p>
+
+    <div class="pericope">A Parábola da Ovelha Perdida</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Que vos parece? Se um homem tiver cem ovelhas, e uma delas se desgarrar, não deixa ele as noventa e nove nos montes e vai buscar a que se desgarrou?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E, se a encontra, em verdade vos digo que se alegra mais por ela do que pelas noventa e nove que não se desgarraram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Assim também não é da vontade de vosso Pai, que está nos céus, que um destes pequenos se perca.</span>
+    </p>
+
+    <div class="pericope">A Disciplina na Igreja</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E, se teu irmão pecar contra ti, vai e repreende-o entre ti e ele somente. Se te ouvir, ganhaste o teu irmão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Mas, se não te ouvir, leva ainda contigo um ou dois, para que pela boca de duas ou três testemunhas toda palavra seja confirmada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">E, se recusar ouvi-los, dize-o à igreja. E, se também recusar ouvir a igreja, considera-o como gentio e publicano.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Em verdade vos digo: tudo o que ligardes na terra será ligado no céu; e tudo o que desligardes na terra será desligado no céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Outra vez vos digo: se dois de vós concordarem na terra acerca de qualquer coisa que pedirem, isso lhes será feito por meu Pai, que está nos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles."</span>
+    </p>
+
+    <div class="pericope">O Perdão Ilimitado e a Parábola do Servo Impiedoso</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Então Pedro, aproximando-se dele, disse: <span class="fala-pedro">"Senhor, quantas vezes pecará meu irmão contra mim, e eu lhe perdoarei? Até sete vezes?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Jesus lhe disse: <span class="fala-jesus">"Não te digo até sete vezes, mas até setenta vezes sete.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Por isso o reino dos céus é semelhante a um rei que quis ajustar contas com os seus servos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">E, começando a ajustar, foi-lhe apresentado um que lhe devia dez mil talentos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E, não tendo ele com que pagar, o seu senhor ordenou que fosse vendido, ele, a sua mulher, os seus filhos e tudo o que tinha, para que a dívida fosse paga.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Então aquele servo, prostrando-se, o reverenciava, dizendo: 'Senhor, tem paciência comigo, e tudo te pagarei.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E o senhor daquele servo, movido de compaixão, soltou-o e perdoou-lhe a dívida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Mas aquele servo, saindo, encontrou um dos seus conservos que lhe devia cem denários. E, agarrando-o, o sufocava, dizendo: 'Paga-me o que me deves.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Então o seu conservo, prostrando-se aos seus pés, rogava-lhe, dizendo: 'Tem paciência comigo, e tudo te pagarei.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Mas ele não quis. Antes, foi e lançou-o na prisão, até que pagasse a dívida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E os seus conservos, vendo o que acontecia, entristeceram-se muito e foram declarar ao seu senhor tudo o que se passara.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Então o seu senhor, chamando-o, disse-lhe: 'Servo mau, perdoei-te toda aquela dívida, porque me suplicaste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Não devias tu também ter compaixão do teu conservo, como eu tive compaixão de ti?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">E, indignado, o seu senhor o entregou aos atormentadores, até que pagasse tudo o que devia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Assim também meu Pai celestial vos fará, se de coração não perdoardes cada um a seu irmão as suas ofensas."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 18:6 — "Pedra de moinho"</span>
+            <div class="greek-text">μύλος ὀνικός</div>
+            <p><strong>Análise:</strong> Literalmente "moinho de jumento", referindo-se a uma grande pedra de moinho movida por animal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pedra de moinho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 18:9 — "Geena de fogo"</span>
+            <div class="greek-text">γέενναν τοῦ πυρός</div>
+            <p><strong>Análise:</strong> "Geena" é preservada na tradução para distinguir o termo de Hades.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Geena".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 18:11 — "O Filho do homem veio salvar o que estava perdido"</span>
+            <p><strong>Análise:</strong> Este versículo está presente no Textus Receptus. Entretanto, não aparece em diversos manuscritos gregos antigos de Mateus. Sua formulação é semelhante a Lucas 19:10. A TBLH mantém o versículo por adotar o Textus Receptus como texto-base do Novo Testamento, registrando a existência da variante textual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o versículo conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 18:17 — "Gentio e publicano"</span>
+            <div class="greek-text">ἐθνικός... τελώνης</div>
+            <p><strong>Análise:</strong> "Gentio" traduz <em>ethnikos</em> (ἐθνικός), pessoa pertencente às nações e não à comunidade judaica; "publicano" traduz <em>telōnēs</em> (τελώνης), cobrador de impostos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantidas as traduções "gentio" e "publicano".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 18:22 — "Setenta vezes sete"</span>
+            <div class="greek-text">ἑβδομηκοντάκις ἑπτά</div>
+            <p><strong>Análise:</strong> A expressão pode ser entendida como "setenta vezes sete" ou, conforme outra possibilidade, "setenta e sete vezes". O contexto enfatiza a extensão do perdão em contraste com o limite proposto por Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "setenta vezes sete".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 18:24 — "Dez mil talentos"</span>
+            <div class="greek-text">μυρίων ταλάντων</div>
+            <p><strong>Análise:</strong> Trata-se de uma quantia extraordinariamente grande.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dez mil talentos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 18:28 — "Cem denários"</span>
+            <div class="greek-text">ἑκατὸν δηνάρια</div>
+            <p><strong>Análise:</strong> Uma dívida muito menor em comparação com os dez mil talentos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cem denários".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 18:34 — "Atormentadores"</span>
+            <div class="greek-text">βασανισταῖς</div>
+            <p><strong>Análise:</strong> Termo relacionado a pessoas que infligem tormento ou sofrimento. O texto não especifica sua função.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "atormentadores".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 18 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 18 é o quarto grande discurso de Mateus: o discurso sobre a comunidade. Estrutura: 1) A grandeza no reino (v.1-5); 2) Os pequenos e os tropeços (v.6-14); 3) A disciplina na igreja (v.15-20); 4) O perdão ilimitado e a parábola do servo impiedoso (v.21-35). O capítulo trata da vida comunitária, do perdão e da disciplina.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

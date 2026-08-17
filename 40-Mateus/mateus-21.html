@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 21</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-multidoes { color: #6b6b6b; font-weight: 500; }
+        .fala-multidao { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-principais-escribas { color: #6b6b6b; font-weight: 500; }
+        .fala-principais-anciãos { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 21</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Betfagé</span>
+                Aldeia próxima a Jerusalém, no monte das Oliveiras.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hosana</span>
+                Transliteração de uma expressão hebraica relacionada a hoshia na, originalmente uma súplica por salvação que passou a aclamação de louvor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Covil de Salteadores</span>
+                Citação de Isaías 56:7 e Jeremias 7:11, aplicada à corrupção do templo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Vinha</span>
+                Imagem profética que evoca Isaías 5:1-2, relacionada a Israel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cabeça da Esquina</span>
+                Citação do Salmo 118:22-23, aplicada a Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Publicanos e Prostitutas</span>
+                Grupos marginalizados que creram em João, entrando adiante dos líderes no reino.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">21</div>
+
+    <div class="pericope">A Entrada Triunfal</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, quando se aproximaram de Jerusalém e chegaram a Betfagé, junto ao monte das Oliveiras, Jesus enviou dois discípulos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        dizendo-lhes: <span class="fala-jesus">"Ide à aldeia que está em frente de vós, e logo encontrareis uma jumenta amarrada e um jumentinho com ela. Desamarrai-os e trazei-mos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">E, se alguém vos disser alguma coisa, direis: 'O Senhor precisa deles.' E logo os enviará."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Ora, tudo isto aconteceu para que se cumprisse o que foi dito pelo profeta, que diz:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        "Dizei à filha de Sião: Eis que o teu Rei vem a ti, manso, montado sobre uma jumenta e sobre um jumentinho, filho de animal de carga."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E os discípulos foram e fizeram como Jesus lhes ordenara.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E trouxeram a jumenta e o jumentinho, e puseram sobre eles as suas vestes, e ele assentou-se sobre elas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E a maior parte da multidão estendeu as suas vestes pelo caminho; e outros cortavam ramos das árvores e os espalhavam pelo caminho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E as multidões, tanto as que iam adiante como as que seguiam, clamavam, dizendo: <span class="fala-multidoes">"Hosana ao Filho de Davi! Bendito o que vem em nome do Senhor! Hosana nas alturas!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, entrando ele em Jerusalém, toda a cidade se alvoroçou, dizendo: <span class="fala-multidao">"Quem é este?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E as multidões diziam: <span class="fala-multidoes">"Este é Jesus, o profeta de Nazaré da Galileia."</span>
+    </p>
+
+    <div class="pericope">A Purificação do Templo</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E Jesus entrou no templo de Deus, e expulsou todos os que vendiam e compravam no templo, e derrubou as mesas dos cambistas e as cadeiras dos que vendiam pombas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E disse-lhes: <span class="fala-jesus">"Está escrito: 'A minha casa será chamada casa de oração'; mas vós a fizestes covil de salteadores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E vieram a ele, no templo, cegos e coxos, e ele os curou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas os principais dos sacerdotes e os escribas, vendo as maravilhas que ele fazia e as crianças que clamavam no templo, dizendo: "Hosana ao Filho de Davi", indignaram-se
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        e disseram-lhe: <span class="fala-principais-escribas">"Ouves o que estes dizem?"</span> E Jesus lhes disse: <span class="fala-jesus">"Sim. Nunca lestes: 'Da boca de pequeninos e de crianças de peito preparaste o louvor'?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, deixando-os, saiu da cidade para Betânia e passou a noite ali.
+
+    <div class="pericope">A Figueira Seca</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, de manhã, voltando para a cidade, teve fome.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, vendo uma figueira junto ao caminho, aproximou-se dela e nada achou nela, senão somente folhas. E disse-lhe: <span class="fala-jesus">"Nunca mais nasça fruto de ti, para sempre."</span> E a figueira secou imediatamente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E os discípulos, vendo isso, se maravilharam, dizendo: <span class="fala-discipulos">"Como secou imediatamente a figueira?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Mas Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Em verdade vos digo: se tiverdes fé e não duvidardes, não só fareis o que foi feito à figueira, mas até se disserdes a este monte: 'Levanta-te e lança-te no mar', assim será feito.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E tudo o que pedirdes em oração, crendo, recebereis."</span>
+    </p>
+
+    <div class="pericope">A Autoridade de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, chegando ele ao templo, aproximaram-se dele, enquanto ensinava, os principais dos sacerdotes e os anciãos do povo, dizendo: <span class="fala-principais-anciãos">"Com que autoridade fazes estas coisas? E quem te deu essa autoridade?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Eu também vos perguntarei uma coisa. Se me responderdes, também eu vos direi com que autoridade faço estas coisas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">O batismo de João, de onde era? Do céu ou dos homens?"</span> E eles discorriam entre si, dizendo: "Se dissermos: Do céu, ele nos dirá: Então por que não crestes nele?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Mas, se dissermos: Dos homens, tememos a multidão, porque todos consideram João como profeta."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, respondendo a Jesus, disseram: <span class="fala-principais-anciãos">"Não sabemos."</span> E ele lhes disse: <span class="fala-jesus">"Nem eu vos digo com que autoridade faço estas coisas."</span>
+    </p>
+
+    <div class="pericope">A Parábola dos Dois Filhos</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">"Mas que vos parece? Um homem tinha dois filhos. E, chegando ao primeiro, disse: 'Filho, vai trabalhar hoje na minha vinha.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Mas ele, respondendo, disse: 'Não quero.' Depois, porém, arrependendo-se, foi.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">E, chegando ao segundo, falou-lhe do mesmo modo. E ele, respondendo, disse: 'Eu vou, senhor.' Mas não foi.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Qual dos dois fez a vontade do pai?"</span> Disseram-lhe eles: <span class="fala-principais-anciãos">"O primeiro."</span> Jesus lhes disse: <span class="fala-jesus">"Em verdade vos digo: os publicanos e as prostitutas entram adiante de vós no reino de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Porque João veio a vós no caminho da justiça, e não crestes nele; mas os publicanos e as prostitutas creram. E vós, vendo isso, nem depois vos arrependestes para crer nele."</span>
+    </p>
+
+    <div class="pericope">A Parábola dos Lavradores Maus</div>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">"Ouvi outra parábola: Havia um homem, pai de família, que plantou uma vinha, cercou-a com uma sebe, cavou nela um lagar e edificou uma torre. E, arrendando-a a uns lavradores, partiu para fora da terra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">E, quando se aproximou o tempo dos frutos, enviou os seus servos aos lavradores, para receber os seus frutos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">E os lavradores, agarrando os servos, feriram um, mataram outro e apedrejaram outro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">De novo enviou outros servos, em maior número que os primeiros; e fizeram-lhes o mesmo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">E, por último, enviou-lhes o seu filho, dizendo: 'Terão respeito ao meu filho.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Mas os lavradores, vendo o filho, disseram entre si: 'Este é o herdeiro. Vinde, matemo-lo e apoderemo-nos da sua herança.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">E, agarrando-o, lançaram-no fora da vinha e o mataram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Quando, pois, vier o senhor da vinha, que fará àqueles lavradores?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Disseram-lhe eles: <span class="fala-principais-anciãos">"Aos maus dará má morte, e arrendará a vinha a outros lavradores, que lhe entreguem os frutos nos seus devidos tempos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        Jesus lhes disse: <span class="fala-jesus">"Nunca lestes nas Escrituras: 'A pedra que os edificadores rejeitaram, essa se tornou a cabeça da esquina. Da parte do Senhor se fez isto, e é maravilhoso aos nossos olhos'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Portanto eu vos digo: o reino de Deus vos será tirado e será dado a uma nação que produza os seus frutos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">E quem cair sobre esta pedra se quebrará; mas aquele sobre quem ela cair será reduzido a pó."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E os principais dos sacerdotes e os fariseus, ouvindo as suas parábolas, entenderam que falava deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E, procurando prendê-lo, temeram as multidões, porque o consideravam profeta.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 21:3 — "O Senhor precisa deles"</span>
+            <div class="greek-text">ὁ Κύριος</div>
+            <p><strong>Análise:</strong> O texto não obriga a decidir se o termo significa simplesmente "o senhor/proprietário" dos animais ou se possui referência específica a Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "O Senhor precisa deles".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 21:5 — "Dizei à filha de Sião"</span>
+            <p><strong>Análise:</strong> Citação de Isaías 62:11 e Zacarias 9:9. A entrada de Jesus em Jerusalém cumpre a profecia de Zacarias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação profética.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 21:9 — "Hosana"</span>
+            <div class="greek-text">ὡσαννά</div>
+            <p><strong>Análise:</strong> Transliteração de uma expressão hebraica relacionada a hoshia na, originalmente uma súplica por salvação. No uso litúrgico judaico, a expressão também passou a funcionar como aclamação de louvor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Hosana".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 21:13 — "Covil de salteadores"</span>
+            <p><strong>Análise:</strong> Citação de Isaías 56:7 e Jeremias 7:11.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação combinada.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 21:16 — "Da boca de pequeninos"</span>
+            <div class="greek-text">κατηρτίσω αἶνον</div>
+            <p><strong>Análise:</strong> Citação do Salmo 8:2. No texto grego, Mateus emprega a expressão relacionada a "preparar/aperfeiçoar louvor".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "preparaste o louvor".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 21:33 — "Vinha, sebe, lagar e torre"</span>
+            <p><strong>Análise:</strong> Elementos que evocam Isaías 5:1-2, onde a vinha é utilizada na imagem profética relacionada a Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a imagem da vinha.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 21:42 — "A pedra que os edificadores rejeitaram"</span>
+            <p><strong>Análise:</strong> Citação do Salmo 118:22-23. A pedra rejeitada tornou-se a principal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação do Salmo 118.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 21:44 — "Quem cair sobre esta pedra"</span>
+            <p><strong>Análise:</strong> O versículo está presente no Textus Receptus. Há variação textual em alguns manuscritos antigos quanto à sua presença. A TBLH mantém o versículo por seguir o Textus Receptus como texto-base.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o versículo conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 21 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 21 contém: 1) A entrada triunfal (v.1-11); 2) A purificação do templo (v.12-17); 3) A figueira seca (v.18-22); 4) A autoridade de Jesus (v.23-27); 5) A parábola dos dois filhos (v.28-32); 6) A parábola dos lavradores maus (v.33-46). O capítulo marca a chegada de Jesus a Jerusalém e seu confronto com as autoridades do templo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 20</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-mae-tiago-joao { color: #6b6b6b; font-weight: 500; }
+        .fala-tiago-joao { color: #6b6b6b; font-weight: 500; }
+        .fala-cegos { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 20</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Pai de Família</span>
+                Do grego oikodespotēs (οἰκοδεσπότης), literalmente "senhor da casa", designando o chefe ou proprietário.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Denário</span>
+                Salário comum de um dia de trabalho na época.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mordomo</span>
+                Do grego epitropos (ἐπίτροπος), administrador ou supervisor responsável pelo pagamento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cálice</span>
+                Imagem de sofrimento e destino que Jesus usou para se referir à sua paixão.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Resgate</span>
+                Do grego lytron (λύτρον). O preço de resgate dado por Cristo em favor de muitos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filho de Davi</span>
+                Título messiânico usado pelos cegos ao se dirigirem a Jesus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">20</div>
+
+    <div class="pericope">A Parábola dos Trabalhadores na Vinha</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>orque o reino dos céus é semelhante a um homem, pai de família, que saiu de madrugada a contratar trabalhadores para a sua vinha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, tendo ajustado com os trabalhadores um denário por dia, enviou-os para a sua vinha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, saindo perto da hora terceira, viu outros que estavam ociosos na praça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E disse-lhes: 'Ide também vós para a vinha, e eu vos darei o que for justo.' E eles foram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Saindo outra vez, perto da hora sexta e da hora nona, fez o mesmo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, saindo perto da hora undécima, encontrou outros que estavam ociosos e disse-lhes: 'Por que estais aqui ociosos o dia todo?'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Disseram-lhe eles: 'Porque ninguém nos contratou.' Disse-lhes ele: 'Ide também vós para a vinha, e recebereis o que for justo.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, chegada a tarde, o senhor da vinha disse ao seu mordomo: 'Chama os trabalhadores e paga-lhes o salário, começando dos últimos até os primeiros.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, chegando os que tinham ido perto da hora undécima, receberam um denário cada um.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas, chegando os primeiros, pensaram que receberiam mais; e também eles receberam um denário cada um.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, ao receberem, murmuravam contra o pai de família,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        dizendo: 'Estes últimos trabalharam uma só hora, e tu os igualaste a nós, que suportamos o peso do dia e o calor.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas ele, respondendo, disse a um deles: 'Amigo, não te faço injustiça. Não ajustaste comigo um denário?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Toma o que é teu e vai. Eu quero dar a este último o mesmo que a ti.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Ou não me é lícito fazer o que quero com o que é meu? Ou o teu olho é mau porque eu sou bom?'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Assim os últimos serão primeiros, e os primeiros serão últimos; porque muitos são chamados, mas poucos escolhidos."
+
+    <div class="pericope">A Terceira Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, subindo Jesus a Jerusalém, tomou consigo os doze discípulos à parte, no caminho, e disse-lhes:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">"Eis que subimos a Jerusalém, e o Filho do homem será entregue aos principais dos sacerdotes e aos escribas, e o condenarão à morte.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E o entregarão aos gentios para que o escarneçam, o açoitem e o crucifiquem; e ao terceiro dia ressuscitará."</span>
+    </p>
+
+    <div class="pericope">O Pedido da Mãe de Tiago e João</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Então se aproximou dele a mãe dos filhos de Zebedeu, com os seus filhos, adorando-o e pedindo-lhe alguma coisa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E ele lhe disse: <span class="fala-jesus">"Que queres?"</span> Ela lhe disse: <span class="fala-mae-tiago-joao">"Dize que estes meus dois filhos se assentem, um à tua direita e outro à tua esquerda, no teu reino."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas Jesus, respondendo, disse: <span class="fala-jesus">"Não sabeis o que pedis. Podeis vós beber o cálice que eu hei de beber, e ser batizados com o batismo com que eu sou batizado?"</span> Disseram-lhe eles: <span class="fala-tiago-joao">"Podemos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E ele lhes disse: <span class="fala-jesus">"Na verdade bebereis o meu cálice, e sereis batizados com o batismo com que eu sou batizado; mas o assentar-se à minha direita e à minha esquerda não me pertence dá-lo, mas é para aqueles para quem está preparado por meu Pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E os dez, ouvindo isso, indignaram-se contra os dois irmãos.
+
+    <div class="pericope">O Serviço como Caminho para a Grandeza</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Então Jesus, chamando-os, disse: <span class="fala-jesus">"Sabeis que os governantes dos gentios os dominam, e os grandes exercem autoridade sobre eles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Mas entre vós não será assim. Antes, qualquer que entre vós quiser tornar-se grande será vosso servo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E qualquer que entre vós quiser ser o primeiro será vosso escravo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Assim como o Filho do homem não veio para ser servido, mas para servir e dar a sua vida em resgate por muitos."</span>
+    </p>
+
+    <div class="pericope">A Cura dos Dois Cegos</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, saindo eles de Jericó, uma grande multidão o seguiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E eis que dois cegos, sentados junto ao caminho, ouvindo que Jesus passava, clamaram, dizendo: <span class="fala-cegos">"Senhor, Filho de Davi, tem compaixão de nós!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E a multidão os repreendia, para que se calassem. Mas eles clamavam ainda mais, dizendo: <span class="fala-cegos">"Senhor, Filho de Davi, tem compaixão de nós!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E Jesus, parando, chamou-os e disse: <span class="fala-jesus">"Que quereis que eu vos faça?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Disseram-lhe eles: <span class="fala-cegos">"Senhor, que os nossos olhos sejam abertos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E Jesus, movido de compaixão, tocou-lhes os olhos, e imediatamente os seus olhos viram; e eles o seguiram.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 20:1 — "Pai de família"</span>
+            <div class="greek-text">οἰκοδεσπότης</div>
+            <p><strong>Análise:</strong> Literalmente "senhor da casa", podendo designar o chefe ou proprietário da casa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pai de família".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 20:8 — "Mordomo"</span>
+            <div class="greek-text">ἐπίτροπος</div>
+            <p><strong>Análise:</strong> "Administrador", "encarregado" ou "supervisor". O termo designa aquele responsável por administrar os trabalhadores e efetuar o pagamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mordomo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 20:15 — "O teu olho é mau porque eu sou bom?"</span>
+            <p><strong>Análise:</strong> A expressão "olho mau" pode indicar inveja ou avareza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "olho mau".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 20:16 — "Muitos são chamados, mas poucos escolhidos"</span>
+            <div class="greek-text">πολλοὶ γάρ εἰσιν κλητοί, ὀλίγοι δὲ ἐκλεκτοί</div>
+            <p><strong>Análise:</strong> O versículo está presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o versículo conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 20:22-23 — "Cálice" e "Batismo"</span>
+            <p><strong>Análise:</strong> O cálice e o batismo são imagens de sofrimento e destino que Jesus usou para se referir à sua paixão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantidas as imagens do cálice e do batismo.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 20:28 — "Resgate por muitos"</span>
+            <div class="greek-text">λύτρον ἀντὶ πολλῶν</div>
+            <p><strong>Análise:</strong> <em>Lytron</em> significa "resgate" ou "preço de resgate"; <em>anti</em> pode indicar ideia de "em lugar de" ou "em favor de". A expressão descreve a entrega da vida do Filho do homem em favor de muitos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "resgate por muitos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 20 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 20 contém: 1) A parábola dos trabalhadores na vinha (v.1-16); 2) A terceira predição da paixão (v.17-19); 3) O pedido da mãe de Tiago e João (v.20-28); 4) A cura dos dois cegos (v.29-34). O capítulo enfatiza a graça de Deus, o serviço como caminho para a grandeza, e a compaixão de Jesus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

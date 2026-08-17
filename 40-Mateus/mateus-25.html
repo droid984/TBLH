@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Mateus 25</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MATEUS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 25</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Lâmpadas</span>
+                Do grego lampadas (λαμπάδας), termo que pode designar lâmpadas ou tochas. O contexto menciona azeite e vasilhas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Talento</span>
+                Do grego talanton (τάλαντον). Unidade de peso usada também como medida de valor monetário. A parábola não especifica o metal ou valor exato.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Banqueiros</span>
+                Do grego trapezitai (τραπεζίταις). Pessoas que trabalhavam com dinheiro e câmbio, relacionados a cambistas/banqueiros da época.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Santos Anjos</span>
+                Do grego hoi hagioi angeloi (οἱ ἅγιοι ἄγγελοι). Os anjos que acompanham o Filho do homem em sua glória.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fogo Eterno</span>
+                Do grego to pyr to aiōnion (τὸ πῦρ τὸ αἰώνιον). Fogo preparado para o diabo e seus anjos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Castigo Eterno / Vida Eterna</span>
+                Do grego kolasin aiōnion (κόλασιν αἰώνιον) e zōēn aiōnion (ζωὴν αἰώνιον). Contraste final do julgamento.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">25</div>
+
+    <div class="pericope">A Parábola das Dez Virgens</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>ntão o reino dos céus será semelhante a dez virgens que, tomando as suas lâmpadas, saíram ao encontro do noivo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E cinco delas eram prudentes, e cinco insensatas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        As insensatas, ao tomarem as suas lâmpadas, não levaram azeite consigo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas as prudentes levaram azeite em suas vasilhas, juntamente com as suas lâmpadas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, tardando o noivo, todas cochilaram e adormeceram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas, à meia-noite, ouviu-se um clamor: 'Eis o noivo! Saí ao seu encontro.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Então todas aquelas virgens se levantaram e prepararam as suas lâmpadas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E as insensatas disseram às prudentes: 'Dai-nos do vosso azeite, porque as nossas lâmpadas estão se apagando.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Mas as prudentes responderam, dizendo: 'Não, para que não falte a nós e a vós. Ide, antes, aos que o vendem, e comprai para vós.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, enquanto foram comprar, chegou o noivo; e as que estavam preparadas entraram com ele para as bodas, e a porta foi fechada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, depois, chegaram também as outras virgens, dizendo: 'Senhor, Senhor, abre-nos!'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Mas ele, respondendo, disse: 'Em verdade vos digo: não vos conheço.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Vigiai, pois, porque não sabeis o dia nem a hora em que o Filho do homem há de vir.
+
+    <div class="pericope">A Parábola dos Talentos</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque é como um homem que, partindo para fora da terra, chamou os seus servos e entregou-lhes os seus bens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E a um deu cinco talentos, a outro dois, e a outro um, a cada um conforme a sua capacidade; e partiu logo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E o que recebera cinco talentos foi, negociou com eles e ganhou outros cinco talentos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Do mesmo modo, o que recebera dois ganhou também outros dois.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Mas o que recebera um foi, cavou na terra e escondeu o dinheiro do seu senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, depois de muito tempo, veio o senhor daqueles servos e ajustou contas com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, aproximando-se o que recebera cinco talentos, trouxe outros cinco talentos, dizendo: 'Senhor, cinco talentos me entregaste; eis que ganhei outros cinco talentos.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E o seu senhor lhe disse: 'Bem está, servo bom e fiel. Sobre o pouco foste fiel, sobre o muito te colocarei. Entra no gozo do teu senhor.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, aproximando-se também o que recebera dois talentos, disse: 'Senhor, dois talentos me entregaste; eis que ganhei outros dois talentos.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        O seu senhor lhe disse: 'Bem está, servo bom e fiel. Sobre o pouco foste fiel, sobre o muito te colocarei. Entra no gozo do teu senhor.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Mas, aproximando-se também o que recebera um talento, disse: 'Senhor, eu te conhecia, que és homem duro, que ceifas onde não semeaste e ajuntas onde não espalhaste.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, atemorizado, fui e escondi o teu talento na terra. Eis aqui o que é teu.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Mas o seu senhor, respondendo, disse-lhe: 'Servo mau e negligente, sabias que ceifo onde não semeei e ajunto onde não espalhei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Devias, então, ter entregado o meu dinheiro aos banqueiros, e, vindo eu, receberia o que é meu com juros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Tirai-lhe, pois, o talento, e dai-o ao que tem dez talentos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Porque a todo o que tem, dar-se-lhe-á, e terá em abundância; mas ao que não tem, até o que tem lhe será tirado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E lançai o servo inútil nas trevas exteriores. Ali haverá pranto e ranger de dentes.
+
+    <div class="pericope">O Julgamento das Nações</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E, quando o Filho do homem vier na sua glória, e todos os santos anjos com ele, então se assentará no trono da sua glória.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E todas as nações serão reunidas diante dele, e ele apartará uns dos outros, como o pastor aparta as ovelhas dos cabritos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E porá as ovelhas à sua direita, mas os cabritos à esquerda.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Então o Rei dirá aos que estiverem à sua direita: 'Vinde, benditos de meu Pai, herdai o reino que vos está preparado desde a fundação do mundo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Porque tive fome, e destes-me de comer; tive sede, e destes-me de beber; era estrangeiro, e acolhestes-me;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        estava nu, e vestistes-me; adoeci, e visitastes-me; estive na prisão, e viestes a mim.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Então os justos lhe responderão, dizendo: 'Senhor, quando te vimos com fome e te demos de comer? Ou com sede e te demos de beber?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E quando te vimos estrangeiro e te acolhemos? Ou nu e te vestimos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E quando te vimos enfermo ou na prisão e fomos a ti?'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E o Rei, respondendo, lhes dirá: 'Em verdade vos digo: quando o fizestes a um destes meus pequeninos irmãos, a mim o fizestes.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Então dirá também aos que estiverem à esquerda: 'Apartai-vos de mim, malditos, para o fogo eterno, preparado para o diabo e seus anjos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        Porque tive fome, e não me destes de comer; tive sede, e não me destes de beber;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        era estrangeiro, e não me acolhestes; estava nu, e não me vestistes; enfermo e na prisão, e não me visitastes.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        Então também eles lhe responderão, dizendo: 'Senhor, quando te vimos com fome, ou com sede, ou estrangeiro, ou nu, ou enfermo, ou na prisão, e não te servimos?'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Então lhes responderá, dizendo: 'Em verdade vos digo: quando não o fizestes a um destes pequeninos, a mim não o fizestes.'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E estes irão para o castigo eterno, mas os justos para a vida eterna.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 25:1-8 — "Lâmpadas"</span>
+            <div class="greek-text">λαμπάδας</div>
+            <p><strong>Análise:</strong> Do grego <em>lampadas</em>, termo que pode designar lâmpadas ou tochas. O contexto menciona azeite e vasilhas associadas às lâmpadas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lâmpadas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 25:15-28 — "Talento"</span>
+            <div class="greek-text">τάλαντον</div>
+            <p><strong>Análise:</strong> Unidade de peso usada também como medida de valor monetário. A parábola não especifica aqui qual metal ou valor monetário exato estava envolvido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "talento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Mateus 25:27 — "Banqueiros"</span>
+            <div class="greek-text">τραπεζίταις</div>
+            <p><strong>Análise:</strong> Literalmente pessoas que trabalhavam com dinheiro e câmbio; o termo está relacionado aos cambistas/banqueiros da época.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "banqueiros".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 25:31 — "Todos os santos anjos"</span>
+            <div class="greek-text">πάντες οἱ ἅγιοι ἄγγελοι</div>
+            <p><strong>Análise:</strong> A cena apresenta o Filho do homem vindo em glória acompanhado por seus anjos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todos os santos anjos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 25:40, 45 — "Meus pequeninos irmãos"</span>
+            <p><strong>Análise:</strong> Expressão usada por Jesus para se referir a "estes" pequeninos; o texto não especifica nesta passagem, de forma explícita, sua identidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "meus pequeninos irmãos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 25:41 — "Fogo eterno"</span>
+            <div class="greek-text">τὸ πῦρ τὸ αἰώνιον</div>
+            <p><strong>Análise:</strong> A expressão descreve o fogo preparado para o diabo e seus anjos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fogo eterno".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Mateus 25 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 25 contém três parábolas sobre o juízo e a vinda do Filho do homem: 1) A parábola das dez virgens (v.1-13) — vigilância; 2) A parábola dos talentos (v.14-30) — fidelidade; 3) O julgamento das nações (v.31-46) — separação entre justos e ímpios. O capítulo encerra o discurso escatológico de Jesus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
