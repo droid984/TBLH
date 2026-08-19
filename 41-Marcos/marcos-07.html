@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 7</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        /* --- SISTEMA DE CORES TBLH --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS DO CAPÍTULO 7 -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 7</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Tradição dos anciãos</span>
+                O conjunto de práticas transmitidas oralmente pelos líderes religiosos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Corbã</span>
+                Do aramaico, "oferta". Marcos explica: "isto é, oferta ao Senhor".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Latrina</span>
+                Do grego <em>aphedrōn</em> (ἀφεδρών), lugar destinado à evacuação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Olho mau</span>
+                Do grego <em>ophthalmos ponēros</em> (ὀφθαλμὸς πονηρός), expressão para inveja ou avareza.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Siro-fenícia</span>
+                Mulher grega, natural da região da Fenícia (Síria-Fenícia).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Efatá</span>
+                Do aramaico, "Abre-te". Marcos traduz para seus leitores.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Atadura da língua</span>
+                Do grego <em>desmos tēs glōssēs</em> (δεσμὸς τῆς γλώσσης), a condição que impedia o homem de falar claramente.
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPÍTULO 7 -->
+    <div class="chapter-num">7</div>
+
+    <!-- PERÍCOPE 1: A TRADIÇÃO DOS ANCIÃOS (7.1-23) -->
+    <div class="pericope">A Tradição dos Anciãos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> ajuntaram-se a ele os fariseus e alguns dos escribas que tinham vindo de Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, vendo que alguns dos seus discípulos comiam pão com mãos impuras, isto é, não lavadas, censuraram-nos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque os fariseus, e todos os judeus, se não lavarem cuidadosamente as mãos, não comem, guardando a tradição dos anciãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, quando voltam da praça, se não se lavarem, não comem. E muitas outras coisas há que receberam para guardar: a lavagem de copos, de jarros, de vasos de cobre e de camas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Então os fariseus e os escribas perguntaram-lhe: <span class="fala-outro">"Por que os teus discípulos não andam conforme a tradição dos anciãos, mas comem pão com mãos impuras?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"Bem profetizou Isaías acerca de vós, hipócritas, como está escrito: 'Este povo me honra com os lábios, mas o seu coração está longe de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Em vão, porém, me adoram, ensinando doutrinas que são mandamentos de homens.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Porque, deixando o mandamento de Deus, retendes a tradição dos homens: a lavagem de jarros e de copos. E fazeis muitas outras coisas semelhantes a estas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E dizia-lhes: <span class="fala-jesus">"Bem invalidais o mandamento de Deus para guardardes a vossa tradição.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Pois Moisés disse: 'Honra teu pai e tua mãe'; e: 'Quem maldisser pai ou mãe, morra de morte.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Mas vós dizeis: 'Se um homem disser a seu pai ou a sua mãe: Aquilo que de mim poderias receber é Corbã' — isto é, oferta ao Senhor —</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">e não o deixais mais fazer nada por seu pai ou por sua mãe,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">invalidando a palavra de Deus pela vossa tradição, que vós transmitistes. E fazeis muitas coisas semelhantes a estas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, chamando a si toda a multidão, disse-lhes: <span class="fala-jesus">"Ouvi-me todos e entendei:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Nada há fora do homem que, entrando nele, o possa contaminar; mas o que sai dele, isso é o que contamina o homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Se alguém tem ouvidos para ouvir, ouça."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, entrando em casa, longe da multidão, os seus discípulos perguntaram-lhe acerca da parábola.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E ele lhes disse: <span class="fala-jesus">"Assim também vós estais sem entendimento? Não compreendeis que tudo o que de fora entra no homem não o pode contaminar,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">porque não entra no seu coração, mas no ventre, e sai para a latrina, purificando todos os alimentos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E dizia: <span class="fala-jesus">"O que sai do homem, isso contamina o homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Porque de dentro, do coração dos homens, saem os maus pensamentos, os adultérios, as fornicações, os homicídios,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">os furtos, a avareza, as maldades, o engano, a lascívia, o olho mau, a blasfêmia, a soberba, a insensatez.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Todos estes males procedem de dentro e contaminam o homem."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A MULHER SIRO-FENÍCIA (7.24-30) -->
+    <div class="pericope">A Mulher Siro-Fenícia</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, levantando-se dali, foi para as regiões de Tiro e Sidom. E, entrando numa casa, não queria que ninguém o soubesse; mas não pôde ficar oculto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Porque uma mulher, cuja filha tinha um espírito imundo, ouvindo falar dele, veio e prostrou-se aos seus pés.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E a mulher era grega, siro-fenícia de nação. E rogava-lhe que expulsasse de sua filha o demônio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Mas Jesus lhe disse: <span class="fala-jesus">"Deixa primeiro que os filhos se fartem; porque não é bom tomar o pão dos filhos e lançá-lo aos cachorrinhos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Mas ela respondeu e disse-lhe: <span class="fala-outro">"Sim, Senhor; mas também os cachorrinhos, debaixo da mesa, comem das migalhas dos filhos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Então ele lhe disse: <span class="fala-jesus">"Por causa desta palavra, vai; o demônio já saiu de tua filha."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, indo ela para sua casa, achou a filha deitada sobre a cama, e que o demônio já tinha saído.
+    </p>
+
+    <!-- PERÍCOPE 3: A CURA DO SURDO (7.31-37) -->
+    <div class="pericope">A Cura do Surdo</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E ele, saindo outra vez das regiões de Tiro e Sidom, foi até o mar da Galileia, pelo meio das regiões de Decápolis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E trouxeram-lhe um surdo, que também falava com dificuldade; e rogaram-lhe que impusesse a mão sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, tomando-o à parte, longe da multidão, pôs-lhe os dedos nos ouvidos; e, cuspindo, tocou-lhe na língua.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E, erguendo os olhos ao céu, suspirou e disse-lhe: <span class="fala-jesus">"Efatá"</span>, isto é, <span class="fala-jesus">"Abre-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E imediatamente os seus ouvidos se abriram, e a atadura da sua língua se desfez, e falava claramente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E ordenou-lhes que a ninguém o dissessem; mas, quanto mais lhes ordenava, tanto mais o divulgavam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, admirando-se sobremaneira, diziam: <span class="fala-outro">"Ele tudo tem feito bem; faz até os surdos ouvir e os mudos falar."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <!-- NOTA 1 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:2 — "Mãos impuras, isto é, não lavadas"</span>
+            <div class="greek-text">κοιναῖς χερσίν, τοῦτ' ἔστιν ἀνίπτοις</div>
+            <p><strong>Análise:</strong> Marcos explica o termo "impuras" para seus leitores não judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 2 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 7:3 — "Lavarem cuidadosamente as mãos"</span>
+            <div class="greek-text">πυγμῇ</div>
+            <p><strong>Análise:</strong> O grego traz <em>pygmē</em> (πυγμῇ), termo de interpretação discutida, relacionado à maneira ou extensão da lavagem ritual das mãos. A tradução "até o cotovelo" é tradicional, mas não é a única possibilidade.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "cuidadosamente as mãos".</p>
+        </div>
+
+        <!-- NOTA 3 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:3 — "Tradição dos anciãos"</span>
+            <div class="greek-text">τὴν παράδοσιν τῶν πρεσβυτέρων</div>
+            <p><strong>Análise:</strong> O conjunto de práticas transmitidas oralmente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tradição dos anciãos".</p>
+        </div>
+
+        <!-- NOTA 4 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:4 — "Da praça"</span>
+            <div class="greek-text">ἀγορᾶς</div>
+            <p><strong>Análise:</strong> Mercado, praça pública.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "da praça".</p>
+        </div>
+
+        <!-- NOTA 5 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 7:4 — "Camas"</span>
+            <div class="greek-text">κλινῶν</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui "camas" (κλινῶν) na lista de lavagens.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "camas".</p>
+        </div>
+
+        <!-- NOTA 6 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 7:6-7 — "Bem profetizou Isaías"</span>
+            <div class="greek-text">καλῶς ἐπροφήτευσεν Ἠσαΐας</div>
+            <p><strong>Análise:</strong> Citação de Isaías 29:13.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <!-- NOTA 7 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:6 — "Hipócritas"</span>
+            <div class="greek-text">ὑποκριταί</div>
+            <p><strong>Análise:</strong> Como em Mateus 23, Jesus denuncia a hipocrisia dos líderes religiosos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "hipócritas".</p>
+        </div>
+
+        <!-- NOTA 8 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:11 — "Corbã"</span>
+            <div class="hebrew-text">קָרְבָּן</div>
+            <p><strong>Análise:</strong> Do aramaico, "oferta". Marcos explica: "isto é, oferta ao Senhor".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Corbã" com a explicação.</p>
+        </div>
+
+        <!-- NOTA 9 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:10 — "Morra de morte"</span>
+            <div class="greek-text">θανάτῳ τελευτάτω</div>
+            <p><strong>Análise:</strong> Hebraísmo já visto em Mateus 15:4, indicando pena capital.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "morra de morte".</p>
+        </div>
+
+        <!-- NOTA 10 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:15 — "Nada há fora do homem"</span>
+            <div class="greek-text">οὐδέν ἐστιν ἔξωθεν τοῦ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre a contaminação ritual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 11 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 7:16 — "Se alguém tem ouvidos para ouvir, ouça"</span>
+            <div class="greek-text">εἴ τις ἔχει ὦτα ἀκούειν ἀκουέτω</div>
+            <p><strong>Análise:</strong> O versículo está presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o versículo.</p>
+        </div>
+
+        <!-- NOTA 12 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:19 — "Latrina"</span>
+            <div class="greek-text">ἀφεδρών</div>
+            <p><strong>Análise:</strong> Lugar destinado à evacuação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "latrina".</p>
+        </div>
+
+        <!-- NOTA 13 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 7:19 — "Purificando todos os alimentos"</span>
+            <div class="greek-text">καθαρίζων πάντα τὰ βρώματα</div>
+            <p><strong>Análise:</strong> A construção grega permite discussão sobre a relação dessa expressão com a fala anterior. Algumas traduções a entendem como comentário de Marcos; outras a integram à fala de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão sem acrescentar uma interpretação ao texto.</p>
+        </div>
+
+        <!-- NOTA 14 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:22 — "Olho mau"</span>
+            <div class="greek-text">ὀφθαλμὸς πονηρός</div>
+            <p><strong>Análise:</strong> Expressão para inveja ou avareza, como em Mateus 20:15.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "olho mau".</p>
+        </div>
+
+        <!-- NOTA 15 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 7:26 — "Siro-fenícia de nação"</span>
+            <div class="greek-text">Συροφοινίκισσα τῷ γένει</div>
+            <p><strong>Análise:</strong> Mulher grega, siro-fenícia de origem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "siro-fenícia de nação".</p>
+        </div>
+
+        <!-- NOTA 16 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:27-28 — "Cachorrinhos"</span>
+            <div class="greek-text">κυναρίοις</div>
+            <p><strong>Análise:</strong> Diminutivo de "cães".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cachorrinhos".</p>
+        </div>
+
+        <!-- NOTA 17 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:29 — "Por causa desta palavra, vai"</span>
+            <div class="greek-text">διὰ τοῦτον τὸν λόγον ὕπαγε</div>
+            <p><strong>Análise:</strong> A resposta de Jesus à mulher, reconhecendo sua fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 18 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 7:31 — "Decápolis"</span>
+            <div class="greek-text">Δεκαπόλεως</div>
+            <p><strong>Análise:</strong> Região de dez cidades greco-romanas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Decápolis".</p>
+        </div>
+
+        <!-- NOTA 19 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:34 — "Efatá"</span>
+            <div class="hebrew-text">אֶפְתַּח</div>
+            <p><strong>Análise:</strong> Do aramaico, "Abre-te". Marcos traduz para seus leitores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Efatá" com a tradução.</p>
+        </div>
+
+        <!-- NOTA 20 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:35 — "Atadura da sua língua"</span>
+            <div class="greek-text">δεσμὸς τῆς γλώσσης</div>
+            <p><strong>Análise:</strong> Literalmente "atadura" ou "ligação da língua", indicando a condição que impedia o homem de falar claramente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "atadura da sua língua".</p>
+        </div>
+
+        <!-- NOTA 21 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 7:37 — "Ele tudo tem feito bem"</span>
+            <div class="greek-text">καλῶς πάντα πεποίηκεν</div>
+            <p><strong>Análise:</strong> A reação da multidão diante das obras de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Ele tudo tem feito bem".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

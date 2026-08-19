@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Transfiguração</span>
+                Do grego <em>metemorphōthē</em> (μετεμορφώθη). A transformação gloriosa de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Rabi</span>
+                Título usado por Pedro para se dirigir a Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Geena</span>
+                Do grego <em>geenna</em> (γέεννα), vale de Hinom, associado ao juízo e ao fogo eterno.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sal</span>
+                Símbolo de preservação e pureza, usado por Jesus em sua exortação final.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <!-- PERÍCOPE 1: A TRANSFIGURAÇÃO (9.1-13) -->
+    <div class="pericope">A Transfiguração</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> dizia-lhes: <span class="fala-jesus">"Em verdade vos digo: alguns dos que aqui estão não provarão a morte até que vejam o reino de Deus vindo com poder."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, seis dias depois, Jesus tomou consigo Pedro, Tiago e João, e os levou à parte, sós, a um alto monte. E transfigurou-se diante deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E as suas vestes tornaram-se resplandecentes, muito brancas como neve, tais como nenhum lavandeiro sobre a terra as poderia branquear.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E apareceram-lhes Elias com Moisés, e estavam falando com Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Pedro, respondendo, disse a Jesus: <span class="fala-outro">"Rabi, bom é que estejamos aqui. Façamos três tendas: uma para ti, uma para Moisés e uma para Elias."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Porque não sabia o que dizer, pois estavam aterrorizados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E veio uma nuvem que os cobriu com a sua sombra. E da nuvem saiu uma voz, que dizia: <span class="fala-deus">"Este é o meu Filho amado; a ele ouvi."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, olhando de repente ao redor, a ninguém mais viram, senão somente Jesus com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, descendo eles do monte, ordenou-lhes que a ninguém contassem o que tinham visto, até que o Filho do homem ressuscitasse dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E eles guardaram a palavra, perguntando entre si o que seria ressuscitar dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E perguntaram-lhe, dizendo: <span class="fala-outro">"Por que dizem os escribas que Elias deve vir primeiro?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E ele, respondendo, disse-lhes: <span class="fala-jesus">"Elias, na verdade, vindo primeiro, restaura todas as coisas. E como está escrito a respeito do Filho do homem que ele deve padecer muitas coisas e ser desprezado?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Mas eu vos digo que Elias já veio, e fizeram-lhe tudo o que quiseram, como está escrito dele."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A CURA DO MENINO ENDEMONINHADO (9.14-29) -->
+    <div class="pericope">A Cura do Menino Endemoninhado</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, quando chegaram aos discípulos, viram uma grande multidão ao redor deles, e escribas discutindo com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E logo toda a multidão, vendo-o, ficou admirada e, correndo para ele, o saudava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E ele perguntou aos escribas: <span class="fala-jesus">"Que discutis com eles?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E um da multidão, respondendo, disse: <span class="fala-outro">"Mestre, trouxe-te o meu filho, que tem um espírito mudo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">E, onde quer que o apanha, o derruba; e ele espuma, e range os dentes, e vai definhando. E eu disse aos teus discípulos que o expulsassem, e não puderam."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E ele, respondendo-lhes, disse: <span class="fala-jesus">"Ó geração incrédula! Até quando estarei convosco? Até quando vos sofrerei? Trazei-mo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E trouxeram-lho. E, quando o viu, logo o espírito o convulsionou; e, caindo em terra, revolvia-se, espumando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E perguntou ao pai dele: <span class="fala-jesus">"Quanto tempo há que isto lhe acontece?"</span> E ele disse: <span class="fala-outro">"Desde a infância.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">E muitas vezes o tem lançado no fogo e na água, para o destruir. Mas, se tu podes alguma coisa, tem compaixão de nós e ajuda-nos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Se podes crer, tudo é possível ao que crê."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E logo o pai do menino, clamando com lágrimas, disse: <span class="fala-outro">"Creio, Senhor! Ajuda a minha incredulidade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E Jesus, vendo que a multidão concorria, repreendeu o espírito imundo, dizendo-lhe: <span class="fala-jesus">"Espírito mudo e surdo, eu te ordeno: sai dele, e nunca mais entres nele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E ele, clamando e convulsionando-o muito, saiu. E o menino ficou como morto, de modo que muitos diziam: <span class="fala-outro">"Está morto."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Mas Jesus, tomando-o pela mão, levantou-o; e ele se pôs em pé.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, entrando ele em casa, os seus discípulos perguntaram-lhe à parte: <span class="fala-outro">"Por que não pudemos nós expulsá-lo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E ele lhes disse: <span class="fala-jesus">"Esta espécie não pode sair por coisa alguma, senão por oração e jejum."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A SEGUNDA PREDIÇÃO DA PAIXÃO (9.30-32) -->
+    <div class="pericope">A Segunda Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, saindo dali, passavam pela Galileia. E ele não queria que ninguém o soubesse.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Porque ensinava os seus discípulos e lhes dizia: <span class="fala-jesus">"O Filho do homem será entregue nas mãos dos homens, e o matarão; e, depois de morto, ao terceiro dia ressuscitará."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Mas eles não entendiam esta palavra, e temiam perguntar-lhe.
+    </p>
+
+    <!-- PERÍCOPE 4: QUEM É O MAIOR (9.33-37) -->
+    <div class="pericope">Quem é o Maior</div>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E chegou a Cafarnaum. E, estando em casa, perguntou-lhes: <span class="fala-jesus">"O que discutíeis entre vós no caminho?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Mas eles se calaram; porque no caminho tinham discutido entre si quem seria o maior.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E ele, assentando-se, chamou os doze e disse-lhes: <span class="fala-jesus">"Se alguém quiser ser o primeiro, será o último de todos e o servo de todos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, tomando uma criança, pô-la no meio deles. E, tomando-a nos braços, disse-lhes:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">"Qualquer que receber uma destas crianças em meu nome, a mim me recebe; e qualquer que me recebe, não recebe a mim, mas aquele que me enviou."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: QUEM NÃO É CONTRA NÓS É POR NÓS (9.38-41) -->
+    <div class="pericope">Quem Não é Contra Nós é Por Nós</div>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E João lhe respondeu, dizendo: <span class="fala-outro">"Mestre, vimos um que em teu nome expulsava demônios, e ele não nos segue; e nós lho proibimos, porque não nos segue."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Mas Jesus disse: <span class="fala-jesus">"Não lho proibais; porque ninguém há que faça milagre em meu nome e possa logo falar mal de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Pois quem não é contra nós é por nós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">"Porque qualquer que vos der a beber um copo de água em meu nome, porque sois de Cristo, em verdade vos digo: não perderá o seu galardão."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: AVISOS SOBRE TROPEÇOS E O SAL (9.42-50) -->
+    <div class="pericope">Avisos sobre Tropeços e o Sal</div>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">"E qualquer que fizer tropeçar um destes pequenos que creem em mim, melhor lhe fora que se lhe pendurasse ao pescoço uma pedra de moinho, e fosse lançado no mar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">"E, se a tua mão te faz tropeçar, corta-a. Melhor te é entrar na vida manco do que, tendo duas mãos, ir para a Geena, para o fogo que nunca se apaga,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">onde o seu verme não morre, e o fogo não se apaga."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">"E, se o teu pé te faz tropeçar, corta-o. Melhor te é entrar na vida aleijado do que, tendo dois pés, ser lançado na Geena, no fogo que nunca se apaga,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">onde o seu verme não morre, e o fogo não se apaga."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">"E, se o teu olho te faz tropeçar, arranca-o. Melhor te é entrar no reino de Deus com um só olho do que, tendo dois olhos, ser lançado na Geena de fogo,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">onde o seu verme não morre, e o fogo não se apaga."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">"Porque cada um será salgado com fogo, e todo sacrifício será salgado com sal.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">Bom é o sal; mas, se o sal se tornar insípido, com que o temperareis? Tende sal em vós mesmos, e paz uns com os outros."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:1 — "Vindo com poder"</span>
+            <div class="greek-text">ἐληλυθυῖαν ἐν δυνάμει</div>
+            <p><strong>Análise:</strong> Expressão de difícil interpretação, como em Mateus 16:28. A TBLH adotou "vindo com poder".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vindo com poder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:2 — "Transfigurou-se"</span>
+            <div class="greek-text">μετεμορφώθη</div>
+            <p><strong>Análise:</strong> A transformação gloriosa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "transfigurou-se".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 9:3 — "Nenhum lavandeiro sobre a terra"</span>
+            <div class="greek-text">οἷα γναφεὺς ἐπὶ τῆς γῆς οὐ δύναται λευκᾶναι</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 9:4 — "Elias com Moisés"</span>
+            <div class="greek-text">Ἠλίας σὺν Μωϋσεῖ</div>
+            <p><strong>Análise:</strong> Marcos apresenta Elias antes de Moisés na ordem dos nomes. Mateus 17:3 apresenta Moisés antes de Elias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a ordem de Marcos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:5 — "Rabi"</span>
+            <div class="greek-text">ῥαββί</div>
+            <p><strong>Análise:</strong> Pedro chama Jesus de Rabi, em vez de "Senhor".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Rabi".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:7 — "Este é o meu Filho amado; a ele ouvi"</span>
+            <div class="greek-text">οὗτός ἐστιν ὁ υἱός μου ὁ ἀγαπητός, αὐτοῦ ἀκούετε</div>
+            <p><strong>Análise:</strong> A voz da nuvem, ecoando a declaração batismal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:12 — "A respeito do Filho do homem"</span>
+            <div class="greek-text">περὶ τοῦ υἱοῦ τοῦ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> A TBLH adotou "a respeito do Filho do homem" para maior clareza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a respeito do Filho do homem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:18 — "Vai definhando"</span>
+            <div class="greek-text">ξηραίνεται</div>
+            <p><strong>Análise:</strong> Literalmente "seca", "vai secando". No contexto, descreve o enfraquecimento progressivo do menino. A TBLH adotou "vai definhando".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vai definhando".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:23 — "Se podes crer, tudo é possível ao que crê"</span>
+            <div class="greek-text">τὸ εἰ δύνασαι πιστεῦσαι, πάντα δυνατὰ τῷ πιστεύοντι</div>
+            <p><strong>Análise:</strong> A frase de Jesus ao pai do menino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Se podes crer, tudo é possível ao que crê".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:25 — "Nunca mais entres nele"</span>
+            <div class="greek-text">μηκέτι εἰσέλθῃς εἰς αὐτόν</div>
+            <p><strong>Análise:</strong> A ordem de saída definitiva do espírito imundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nunca mais entres nele".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 9:29 — "Por oração e jejum"</span>
+            <div class="greek-text">ἐν προσευχῇ καὶ νηστείᾳ</div>
+            <p><strong>Análise:</strong> O versículo está presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por oração e jejum".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 9:31 — "Ao terceiro dia"</span>
+            <div class="greek-text">τῇ τρίτῃ ἡμέρᾳ</div>
+            <p><strong>Análise:</strong> A segunda predição da paixão em Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ao terceiro dia".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:35 — "O último de todos e o servo de todos"</span>
+            <div class="greek-text">ἔσται πάντων ἔσχατος καὶ πάντων διάκονος</div>
+            <p><strong>Análise:</strong> O ensino de Jesus sobre a grandeza no reino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:40 — "Quem não é contra nós é por nós"</span>
+            <div class="greek-text">ὃς γὰρ οὐκ ἔστιν καθ' ἡμῶν, ὑπὲρ ἡμῶν ἐστιν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre os que operam em seu nome.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:43, 45, 47 — "Geena"</span>
+            <div class="greek-text">γέενναν</div>
+            <p><strong>Análise:</strong> O termo grego preservado, como em Mateus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Geena".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:44, 46, 48 — "Onde o seu verme não morre, e o fogo não se apaga"</span>
+            <div class="greek-text">ὅπου ὁ σκώληξ αὐτῶν οὐ τελευτᾷ καὶ τὸ πῦρ οὐ σβέννυται</div>
+            <p><strong>Análise:</strong> Citação de Isaías 66:24.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:49 — "Cada um será salgado com fogo"</span>
+            <div class="greek-text">πᾶς γὰρ πυρὶ ἁλισθήσεται</div>
+            <p><strong>Análise:</strong> Expressão de difícil interpretação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 9:50 — "Tende sal em vós mesmos"</span>
+            <div class="greek-text">ἔχετε ἐν ἑαυτοῖς ἅλα</div>
+            <p><strong>Análise:</strong> A exortação final sobre o sal e a paz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tende sal em vós mesmos".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

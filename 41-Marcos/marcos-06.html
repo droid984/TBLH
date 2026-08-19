@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 6</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        /* --- SISTEMA DE CORES TBLH --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS DO CAPÍTULO 6 -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 6</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Carpinteiro</span>
+                Do grego <em>tektōn</em> (τέκτων). Marcos diz "o carpinteiro", diferente de Mateus 13:55.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Bordão</span>
+                Do grego <em>rabdos</em> (ῥάβδος). Cajado ou vara.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Herodes</span>
+                Herodes Antipas, governante da Galileia e da Pereia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Herodias</span>
+                Esposa ilegítima de Herodes Antipas, anteriormente casada com Filipe.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Denário</span>
+                Moeda romana, equivalente a um dia de trabalho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Betsaida</span>
+                Cidade na margem norte do mar da Galileia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Genesaré</span>
+                Região fértil na margem noroeste do mar da Galileia.
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPÍTULO 6 -->
+    <div class="chapter-num">6</div>
+
+    <!-- PERÍCOPE 1: JESUS EM NAZARÉ (6.1-6) -->
+    <div class="pericope">Jesus em Nazaré</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> saiu dali e foi para a sua pátria; e os seus discípulos o seguiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, chegando o sábado, começou a ensinar na sinagoga. E muitos, ouvindo-o, se admiravam, dizendo: <span class="fala-outro">"De onde lhe vêm estas coisas? E que sabedoria é esta que lhe foi dada? E como se fazem tais maravilhas por suas mãos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-outro">Não é este o carpinteiro, filho de Maria, e irmão de Tiago, e de José, e de Judas, e de Simão? E não estão aqui entre nós suas irmãs?"</span> E escandalizavam-se nele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Não há profeta sem honra, senão na sua pátria, entre os seus parentes e na sua casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E não podia fazer ali nenhuma maravilha, exceto que impôs as mãos sobre uns poucos enfermos e os curou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E admirava-se da incredulidade deles. E percorria as aldeias ao redor, ensinando.
+    </p>
+
+    <!-- PERÍCOPE 2: O ENVIO DOS DOZE (6.7-13) -->
+    <div class="pericope">O Envio dos Doze</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E chamou os doze, e começou a enviá-los de dois em dois, e deu-lhes autoridade sobre os espíritos imundos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E ordenou-lhes que nada levassem para o caminho, senão somente um bordão; nem alforje, nem pão, nem dinheiro no cinto;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        mas que calçassem sandálias, e que não vestissem duas túnicas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E dizia-lhes: <span class="fala-jesus">"Onde quer que entrardes numa casa, ficai nela até que saiais dali.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E, se alguns não vos receberem, nem vos ouvirem, saindo dali, sacudi o pó que estiver debaixo dos vossos pés, para testemunho contra eles. Em verdade vos digo: no dia do juízo haverá menos rigor para Sodoma e Gomorra do que para aquela cidade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, saindo, pregavam que os homens se arrependessem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E expulsavam muitos demônios, e ungiam com azeite muitos enfermos, e os curavam.
+    </p>
+
+    <!-- PERÍCOPE 3: A MORTE DE JOÃO BATISTA (6.14-29) -->
+    <div class="pericope">A Morte de João Batista</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E o rei Herodes ouviu falar de Jesus, porque o seu nome se tornara conhecido. E dizia: <span class="fala-outro">"João Batista ressuscitou dos mortos, e por isso operam nele poderes milagrosos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Outros diziam: <span class="fala-outro">"É Elias."</span> E outros diziam: <span class="fala-outro">"É profeta, como um dos profetas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas Herodes, ouvindo isso, dizia: <span class="fala-outro">"Este é João, a quem eu decapitei; ele ressuscitou dos mortos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque o mesmo Herodes tinha enviado e prendido João, e o amarrara na prisão, por causa de Herodias, mulher de Filipe, seu irmão, porque tinha casado com ela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Pois João dizia a Herodes: <span class="fala-outro">"Não te é lícito ter a mulher de teu irmão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E Herodias o espiava, e queria matá-lo, mas não podia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque Herodes temia João, sabendo que era homem justo e santo, e o protegia. E, ouvindo-o, fazia muitas coisas e o ouvia de boa mente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, chegando um dia oportuno, quando Herodes, no seu aniversário, deu uma ceia aos seus grandes, aos tribunos e aos principais da Galileia,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        entrou a filha da mesma Herodias, e dançou, e agradou a Herodes e aos que estavam com ele à mesa. Então o rei disse à jovem: <span class="fala-outro">"Pede-me o que quiseres, e eu te darei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E jurou-lhe: <span class="fala-outro">"Tudo o que me pedires te darei, até metade do meu reino."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, saindo ela, perguntou à sua mãe: <span class="fala-outro">"Que pedirei?"</span> E ela disse: <span class="fala-outro">"A cabeça de João Batista."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, entrando logo apressadamente ao rei, pediu, dizendo: <span class="fala-outro">"Quero que imediatamente me dês num prato a cabeça de João Batista."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E o rei entristeceu-se muito; mas, por causa do juramento e dos que estavam com ele à mesa, não quis negar-lhe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E logo o rei enviou um executor, e ordenou que trouxessem a sua cabeça. E ele foi e o decapitou na prisão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E trouxe a sua cabeça num prato e a deu à jovem; e a jovem a deu à sua mãe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, ouvindo isso os seus discípulos, vieram, tomaram o seu corpo e o puseram num sepulcro.
+    </p>
+
+    <!-- PERÍCOPE 4: A MULTIPLICAÇÃO DOS PÃES (6.30-44) -->
+    <div class="pericope">A Multiplicação dos Pães</div>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E os apóstolos reuniram-se a Jesus e contaram-lhe tudo, tanto o que tinham feito como o que tinham ensinado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E ele lhes disse: <span class="fala-jesus">"Vinde vós, à parte, para um lugar deserto, e descansai um pouco."</span> Porque eram muitos os que vinham e iam, e não tinham tempo nem para comer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E foram num barco, à parte, para um lugar deserto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E as multidões os viram partir, e muitos o reconheceram; e correram para lá a pé, de todas as cidades, e chegaram antes deles, e ajuntaram-se a ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E Jesus, saindo, viu uma grande multidão, e teve compaixão deles, porque eram como ovelhas que não têm pastor. E começou a ensinar-lhes muitas coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, como já fosse muito tarde, os seus discípulos aproximaram-se dele, dizendo: <span class="fala-outro">"O lugar é deserto, e já é muito tarde.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Despede-os, para que vão aos campos e aldeias ao redor e comprem pão para si, porque não têm o que comer."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"Dai-lhes vós de comer."</span> E eles lhe disseram: <span class="fala-outro">"Iremos e compraremos duzentos denários de pão, para lhes darmos de comer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E ele lhes disse: <span class="fala-jesus">"Quantos pães tendes? Ide ver."</span> E, sabendo-o, disseram: <span class="fala-outro">"Cinco pães e dois peixes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E ordenou-lhes que fizessem assentar todos, em grupos, sobre a erva verde.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E assentaram-se em grupos de cem em cem, e de cinquenta em cinquenta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E, tomando os cinco pães e os dois peixes, erguendo os olhos ao céu, abençoou; e partiu os pães, e deu-os aos seus discípulos, para que os distribuíssem. E os dois peixes repartiu com todos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E todos comeram e se fartaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E recolheram doze cestos cheios de pedaços, e também dos peixes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E os que comeram os pães eram cinco mil homens.
+    </p>
+
+    <!-- PERÍCOPE 5: JESUS ANDA SOBRE O MAR (6.45-52) -->
+    <div class="pericope">Jesus Anda sobre o Mar</div>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E logo obrigou os seus discípulos a entrar no barco e a ir adiante para a outra margem, a Betsaida, enquanto ele despedia a multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E, tendo-os despedido, foi ao monte para orar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E, chegada a tarde, o barco estava no meio do mar, e ele sozinho em terra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E viu que eles se fatigavam remando, porque o vento era contrário. E, perto da quarta vigília da noite, foi até eles, andando sobre o mar; e queria passar adiante deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        Mas eles, vendo-o andar sobre o mar, pensaram que era um fantasma e gritaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Porque todos o viram e se perturbaram. Mas logo ele falou com eles e disse-lhes: <span class="fala-jesus">"Tende ânimo, sou eu. Não temais."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E subiu para junto deles no barco, e o vento cessou. E eles ficaram muito admirados e se maravilharam entre si.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        Pois não tinham compreendido o milagre dos pães; porque o seu coração estava endurecido.
+    </p>
+
+    <!-- PERÍCOPE 6: CURAS EM GENESARÉ (6.53-56) -->
+    <div class="pericope">Curas em Genesaré</div>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E, tendo passado para a outra margem, chegaram à terra de Genesaré e ali atracaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E, saindo eles do barco, logo o reconheceram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        E, percorrendo toda aquela região, começaram a trazer em camas os enfermos, para onde ouviam que ele estava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        E, onde quer que entrava, nas aldeias, cidades ou campos, colocavam os enfermos nas praças e rogavam-lhe que ao menos pudessem tocar a borda da sua veste; e todos os que lhe tocavam ficavam sãos.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <!-- NOTA 1 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:1 — "Sua pátria"</span>
+            <div class="greek-text">πατρίδα αὐτοῦ</div>
+            <p><strong>Análise:</strong> Refere-se a Nazaré, onde Jesus cresceu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sua pátria".</p>
+        </div>
+
+        <!-- NOTA 2 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 6:3 — "Carpinteiro"</span>
+            <div class="greek-text">τέκτων</div>
+            <p><strong>Análise:</strong> Marcos diz "o carpinteiro" (τέκτων), diferente de Mateus 13:55, que traz "filho do carpinteiro".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "carpinteiro".</p>
+        </div>
+
+        <!-- NOTA 3 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:3 — "Irmão de Tiago, e de José, e de Judas, e de Simão"</span>
+            <div class="greek-text">ἀδελφὸς Ἰακώβου καὶ Ἰωσῆτος καὶ Ἰούδα καὶ Σίμωνος</div>
+            <p><strong>Análise:</strong> Os nomes dos irmãos de Jesus conforme Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 4 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:4 — "Profeta sem honra"</span>
+            <div class="greek-text">οὐκ ἔστιν προφήτης ἄτιμος</div>
+            <p><strong>Análise:</strong> O ditado sobre o profeta rejeitado em sua própria terra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Não há profeta sem honra".</p>
+        </div>
+
+        <!-- NOTA 5 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:5 — "Não podia fazer ali nenhuma maravilha"</span>
+            <div class="greek-text">οὐκ ἠδύνατο ἐκεῖ ποιῆσαι οὐδεμίαν δύναμιν</div>
+            <p><strong>Análise:</strong> O texto afirma que Jesus não fez ali nenhuma maravilha, exceto curar alguns enfermos, e relaciona o episódio à incredulidade deles.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 6 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:7 — "De dois em dois"</span>
+            <div class="greek-text">δύο δύο</div>
+            <p><strong>Análise:</strong> O envio dos doze em pares.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "de dois em dois".</p>
+        </div>
+
+        <!-- NOTA 7 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 6:8 — "Somente um bordão"</span>
+            <div class="greek-text">εἰ μὴ ῥάβδον μόνον</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz "somente um bordão" (ῥάβδον), enquanto Mateus 10:10 apresenta formulação diferente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "somente um bordão".</p>
+        </div>
+
+        <!-- NOTA 8 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:11 — "Sacudi o pó"</span>
+            <div class="greek-text">ἐκτινάξατε τὸν χοῦν</div>
+            <p><strong>Análise:</strong> O gesto de testemunho contra os que rejeitam a mensagem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sacudi o pó".</p>
+        </div>
+
+        <!-- NOTA 9 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:11 — "Haverá menos rigor"</span>
+            <div class="greek-text">ἀνεκτότερον</div>
+            <p><strong>Análise:</strong> Do grego <em>anektoteron</em> (ἀνεκτότερον), comparativo de "suportável", indicando maior tolerância ou menor rigor no juízo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "haverá menos rigor".</p>
+        </div>
+
+        <!-- NOTA 10 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:13 — "Ungiam com azeite"</span>
+            <div class="greek-text">ἤλειφον ἐλαίῳ</div>
+            <p><strong>Análise:</strong> A prática de ungir enfermos com azeite.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ungiam com azeite".</p>
+        </div>
+
+        <!-- NOTA 11 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 6:14 — "Herodes"</span>
+            <div class="greek-text">Ἡρῴδης</div>
+            <p><strong>Análise:</strong> Refere-se a Herodes Antipas, governante da Galileia e da Pereia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Herodes".</p>
+        </div>
+
+        <!-- NOTA 12 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 6:17 — "Herodias, mulher de Filipe"</span>
+            <div class="greek-text">Ἡρῳδιάδα τὴν γυναῖκα Φιλίππου</div>
+            <p><strong>Análise:</strong> O casamento ilícito de Herodes com a mulher de seu irmão Filipe.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 13 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:18 — "Não te é lícito ter a mulher de teu irmão"</span>
+            <div class="greek-text">οὐκ ἔξεστίν σοι ἔχειν τὴν γυναῖκα τοῦ ἀδελφοῦ σου</div>
+            <p><strong>Análise:</strong> A denúncia de João Batista contra o casamento ilegítimo de Herodes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 14 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:20 — "Herodes temia João"</span>
+            <div class="greek-text">Ἡρῴδης ἐφοβεῖτο τὸν Ἰωάννην</div>
+            <p><strong>Análise:</strong> O temor e a proteção de Herodes, que ouvia João com prazer.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Herodes temia João".</p>
+        </div>
+
+        <!-- NOTA 15 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 6:21 — "Tribunos"</span>
+            <div class="greek-text">χιλιάρχοις</div>
+            <p><strong>Análise:</strong> Oficiais militares romanos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribunos".</p>
+        </div>
+
+        <!-- NOTA 16 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:27 — "Executor"</span>
+            <div class="greek-text">σπεκουλάτορα</div>
+            <p><strong>Análise:</strong> Termo latino para um guarda ou executor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "executor".</p>
+        </div>
+
+        <!-- NOTA 17 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:30 — "Apóstolos"</span>
+            <div class="greek-text">ἀπόστολοι</div>
+            <p><strong>Análise:</strong> O termo usado para os doze após o envio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "apóstolos".</p>
+        </div>
+
+        <!-- NOTA 18 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:34 — "Como ovelhas que não têm pastor"</span>
+            <div class="greek-text">ὡς πρόβατα μὴ ἔχοντα ποιμένα</div>
+            <p><strong>Análise:</strong> A compaixão de Jesus diante da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 19 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:37 — "Duzentos denários"</span>
+            <div class="greek-text">διακοσίων δηναρίων</div>
+            <p><strong>Análise:</strong> Quantia significativa, cerca de duzentos dias de trabalho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "duzentos denários".</p>
+        </div>
+
+        <!-- NOTA 20 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 6:40 — "Grupos de cem em cem, e de cinquenta em cinquenta"</span>
+            <div class="greek-text">πρασιαὶ πρασιαὶ ... ἀνὰ ἑκατὸν καὶ ἀνὰ πεντήκοντα</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 21 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 6:39 — "Erva verde"</span>
+            <div class="greek-text">ἐπὶ τῷ χλωρῷ χόρτῳ</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "erva verde".</p>
+        </div>
+
+        <!-- NOTA 22 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:44 — "Cinco mil homens"</span>
+            <div class="greek-text">πεντακισχίλιοι ἄνδρες</div>
+            <p><strong>Análise:</strong> A contagem dos que comeram, sem contar mulheres e crianças.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cinco mil homens".</p>
+        </div>
+
+        <!-- NOTA 23 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 6:45 — "Betsaida"</span>
+            <div class="greek-text">Βηθσαϊδάν</div>
+            <p><strong>Análise:</strong> Cidade na margem norte do mar da Galileia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Betsaida".</p>
+        </div>
+
+        <!-- NOTA 24 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 6:48 — "Queria passar adiante deles"</span>
+            <div class="greek-text">καὶ ἤθελεν παρελθεῖν αὐτούς</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "queria passar adiante deles".</p>
+        </div>
+
+        <!-- NOTA 25 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:52 — "O seu coração estava endurecido"</span>
+            <div class="greek-text">ἦν αὐτῶν ἡ καρδία πεπωρωμένη</div>
+            <p><strong>Análise:</strong> A observação sobre os discípulos, que não compreenderam o milagre.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o seu coração estava endurecido".</p>
+        </div>
+
+        <!-- NOTA 26 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 6:56 — "Borda da sua veste"</span>
+            <div class="greek-text">κρασπέδου τοῦ ἱματίου</div>
+            <p><strong>Análise:</strong> Como em Marcos 5:27. As bordas da veste de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "borda da sua veste".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

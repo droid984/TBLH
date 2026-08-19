@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 1</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- DOSSIÊ / INTRODUÇÃO --- */
+        .dossier-section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fdfcf9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dossier-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .dossier-item h4 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dossier-item p {
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        /* --- TEXTO BASE (refinado) --- */
+.text-base-section {
+    margin: 10px auto 50px auto;
+    padding: 18px 30px;
+    max-width: 620px;
+    background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    color: #4a4a4a;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+}
+
+/* Linha dupla superior e inferior — estilo clássico */
+.text-base-section::before,
+.text-base-section::after {
+    content: "";
+    display: block;
+    height: 0;
+    border-top: 3px double var(--accent-red);
+    margin: 0 auto 12px auto;
+    width: 70%;
+}
+.text-base-section::after {
+    margin: 12px auto 0 auto;
+    border-top: 3px double var(--accent-red);
+}
+
+/* Rótulo "Texto Base:" em estilo solene */
+.text-base-section strong {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    margin-bottom: 6px;
+}
+
+/* Descrição em itálico elegante */
+.text-base-section em {
+    font-style: italic;
+    color: #2c2520;
+    font-weight: 500;
+}
+
+
+        /* --- GLOSSÁRIO DE TERMOS --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+        
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-joao { color: #6b6b6b; font-weight: 500; }
+        .fala-discipulos { color: #6b6b6b; font-weight: 500; }
+        .fala-demonio { color: #5d4037; font-weight: 500; }
+        .fala-multidao { color: #6b6b6b; font-weight: 500; }
+        .fala-leproso { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- DOSSIÊ INTRODUTÓRIO -->
+    <section class="dossier-section">
+        <h3 class="dossier-title">Dossiê do Evangelho de Marcos</h3>
+        <div class="dossier-grid">
+            <div class="dossier-item">
+                <h4>Autoria</h4>
+                <p><strong>João Marcos</strong>, também chamado apenas de Marcos, foi companheiro de Pedro e de Paulo (Atos 12:12; 1 Pedro 5:13). A tradição antiga atribui a ele este Evangelho, baseado na pregação de Pedro.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Data e Contexto</h4>
+                <p>Provavelmente escrito entre <strong>55-65 d.C.</strong>, sendo considerado o mais antigo dos Evangelhos. Escrito para uma audiência gentia em Roma, enfatiza a ação e o poder de Jesus.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Tema Central</h4>
+                <p><strong>Jesus é o Filho de Deus, o Servo sofredor.</strong> Marcos apresenta Jesus como o Messias poderoso que age com autoridade, mas também como o Servo que veio para dar a sua vida em resgate.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Estrutura Literária</h4>
+                <p>Evangelho de ação, com ritmo acelerado. A palavra "imediatamente" (euthys) aparece cerca de 40 vezes. O livro é dividido em duas metades: ministério na Galileia (caps. 1-8) e caminho para Jerusalém (caps. 8-16).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTO BASE -->
+<div class="text-base-section">
+    <strong>Texto Base</strong>
+    <em>Textus Receptus</em> — Edição Stephanus de 1550<br>
+    <small style="color:#8a7a66; font-size:12px;">Novo Testamento Grego</small>
+</div>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 1</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Evangelho</span>
+                Do grego euangelion (εὐαγγέλιον), "boa notícia". O anúncio da salvação em Jesus Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Batismo de Arrependimento</span>
+                Expressão que relaciona o batismo de João à mudança de mente e de vida.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Santo de Deus</span>
+                Título usado pelo demônio para reconhecer Jesus, indicando sua natureza divina e separada.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espírito Imundo</span>
+                Do grego pneumati akathartō (πνεύματι ἀκαθάρτῳ). Termo para demônios ou espíritos malignos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Empregados</span>
+                Do grego misthōtōn (μισθωτῶν), "assalariados". Detalhe exclusivo de Marcos sobre os trabalhadores de Zebedeu.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lugares Desertos</span>
+                Jesus retirava-se para lugares ermos para orar, mas as multidões o procuravam ali também.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">1</div>
+
+    <div class="pericope">O Evangelho de Jesus Cristo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>rincípio do evangelho de Jesus Cristo, Filho de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Como está escrito nos profetas: "Eis que eu envio o meu mensageiro diante da tua face, que preparará o teu caminho diante de ti."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        "Voz do que clama no deserto: Preparai o caminho do Senhor, endireitai as suas veredas."
+    </p>
+
+    <div class="pericope">A Pregação de João Batista</div>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        João batizava no deserto e pregava o batismo de arrependimento, para remissão dos pecados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E saíam a ele toda a província da Judeia e os de Jerusalém; e todos eram batizados por ele no rio Jordão, confessando os seus pecados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E João andava vestido de pelos de camelo, e com um cinto de couro ao redor da cintura; e comia gafanhotos e mel silvestre.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E pregava, dizendo: <span class="fala-joao">"Após mim vem aquele que é mais poderoso do que eu, do qual não sou digno de, inclinando-me, desatar a correia das suas sandálias.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-joao">Eu, na verdade, vos batizei com água; mas ele vos batizará com o Espírito Santo."</span>
+    </p>
+
+    <div class="pericope">O Batismo de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E aconteceu, naqueles dias, que Jesus veio de Nazaré da Galileia e foi batizado por João no Jordão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, logo ao subir da água, viu os céus se abrirem e o Espírito, como pomba, descer sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E uma voz veio dos céus: <span class="fala-deus">"Tu és o meu Filho amado, em quem me comprazo."</span>
+    </p>
+
+    <div class="pericope">A Tentação no Deserto</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E logo o Espírito o impeliu para o deserto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E ele esteve ali no deserto quarenta dias, sendo tentado por Satanás. E estava com as feras, e os anjos o serviam.
+
+    <div class="pericope">O Início do Ministério na Galileia</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, depois que João foi entregue, Jesus veio para a Galileia, pregando o evangelho do reino de Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        e dizendo: <span class="fala-jesus">"O tempo está cumprido, e o reino de Deus está próximo. Arrependei-vos e crede no evangelho."</span>
+    </p>
+
+    <div class="pericope">O Chamado dos Primeiros Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, andando junto ao mar da Galileia, viu Simão e André, seu irmão, que lançavam a rede ao mar, pois eram pescadores.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Vinde após mim, e eu farei que sejais pescadores de homens."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, deixando logo as suas redes, o seguiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, passando um pouco adiante, viu Tiago, filho de Zebedeu, e João, seu irmão, que estavam no barco consertando as redes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E logo os chamou. E eles, deixando o seu pai Zebedeu no barco com os empregados, o seguiram.
+
+    <div class="pericope">Jesus na Sinagoga de Cafarnaum</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E entraram em Cafarnaum. E, logo no sábado, entrando na sinagoga, ensinava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E admiravam-se da sua doutrina, porque os ensinava como quem tem autoridade, e não como os escribas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E estava na sinagoga deles um homem com um espírito imundo, e clamou,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        dizendo: <span class="fala-demonio">"Ah! Que temos nós contigo, Jesus Nazareno? Vieste destruir-nos? Bem sei quem és: o Santo de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E Jesus o repreendeu, dizendo: <span class="fala-jesus">"Cala-te e sai dele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E o espírito imundo, convulsionando-o e clamando com grande voz, saiu dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E todos se admiraram, de modo que perguntavam entre si, dizendo: <span class="fala-multidao">"Que é isto? Que nova doutrina é esta? Pois com autoridade ordena até aos espíritos imundos, e eles lhe obedecem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E logo a sua fama se divulgou por toda a região ao redor da Galileia.
+
+    <div class="pericope">A Cura da Sogra de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, saindo logo da sinagoga, foram à casa de Simão e André, com Tiago e João.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E a sogra de Simão estava deitada com febre; e logo lhe falaram dela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então, aproximando-se, tomou-a pela mão e levantou-a; e a febre a deixou, e ela os servia.
+
+    <div class="pericope">Curas ao Entardecer</div>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E, chegada a tarde, quando o sol se pôs, trouxeram-lhe todos os que estavam doentes e os endemoninhados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E toda a cidade se ajuntou à porta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E ele curou muitos que estavam doentes de várias enfermidades, e expulsou muitos demônios; e não permitia que os demônios falassem, porque o conheciam.
+
+    <div class="pericope">Jesus em Oração e a Missão de Pregar</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, levantando-se de madrugada, muito antes do amanhecer, saiu e foi para um lugar deserto, e ali orava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E Simão e os que com ele estavam foram procurá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, achando-o, disseram-lhe: <span class="fala-discipulos">"Todos te procuram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E ele lhes disse: <span class="fala-jesus">"Vamos às aldeias vizinhas, para que eu pregue também ali; pois para isso vim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E pregava nas sinagogas deles, por toda a Galileia, e expulsava os demônios.
+
+    <div class="pericope">A Cura do Leproso</div>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E veio a ele um leproso, rogando-lhe e pondo-se de joelhos, dizendo: <span class="fala-leproso">"Se quiseres, podes tornar-me limpo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E Jesus, movido de compaixão, estendeu a mão, tocou-o e disse-lhe: <span class="fala-jesus">"Quero; sê limpo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E, tendo ele dito isto, logo a lepra saiu dele, e ficou limpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E, advertindo-o severamente, logo o despediu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E disse-lhe: <span class="fala-jesus">"Vê que não digas nada a ninguém; mas vai, mostra-te ao sacerdote e oferece pela tua purificação o que Moisés ordenou, para lhes servir de testemunho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Mas ele, saindo, começou a proclamar muitas coisas e a divulgar o ocorrido, de modo que Jesus já não podia entrar publicamente na cidade; mas ficava fora, em lugares desertos. E vinham a ele de todas as partes.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 1:1 — "Princípio do evangelho"</span>
+            <div class="greek-text">Ἀρχὴ τοῦ εὐαγγελίου</div>
+            <p><strong>Análise:</strong> "Princípio" pode indicar começo ou início.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Princípio do evangelho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 1:4 — "Batismo de arrependimento"</span>
+            <div class="greek-text">βάπτισμα μετανοίας</div>
+            <p><strong>Análise:</strong> Expressão que relaciona o batismo de João ao arrependimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batismo de arrependimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 1:12 — "O Espírito o impeliu"</span>
+            <div class="greek-text">ἐκβάλλω</div>
+            <p><strong>Análise:</strong> Verbo forte que pode significar "expulsar", "lançar para fora" ou "impelir".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "impeliu".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 1:13 — "Com as feras"</span>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos. O texto não explica o significado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a referência às feras.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 1:43 — "Advertindo-o severamente"</span>
+            <div class="greek-text">ἐμβριμησάμενος</div>
+            <p><strong>Análise:</strong> Verbo de sentido forte, que pode transmitir a ideia de advertir severamente ou repreender com firmeza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "advertindo-o severamente".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 1 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 1 de Marcos é marcado pela ação acelerada. Estrutura: 1) Pregação de João Batista (v.1-8); 2) Batismo e tentação de Jesus (v.9-13); 3) Chamado dos discípulos (v.16-20); 4) Ensinos e curas em Cafarnaum (v.21-34); 5) Jesus em oração e missão de pregar (v.35-39); 6) Cura do leproso (v.40-45). Marcos enfatiza a autoridade de Jesus sobre demônios, doenças e a natureza.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

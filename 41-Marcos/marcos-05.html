@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 5</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        /* --- SISTEMA DE CORES TBLH --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS DO CAPÍTULO 5 -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 5</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Gadarenos</span>
+                Habitantes de Gadara, região na margem sudeste do mar da Galileia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espírito imundo</span>
+                Do grego <em>pneuma akatharton</em> (πνεῦμα ἀκάθαρτον). Espírito impuro ou demoníaco.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Legião</span>
+                Do grego <em>legiōn</em> (λεγιών). Termo de origem latina para uma grande unidade militar romana.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Decápolis</span>
+                Região de dez cidades greco-romanas ao leste do Jordão.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Jairo</span>
+                Nome do principal da sinagoga, registrado apenas em Marcos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fluxo de sangue</span>
+>
+                Hemorragia contínua que tornava a mulher impura segundo a Lei (Lv 15:25-27).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Talitá cumi</span>
+                Do aramaico <em>ṭalīṯā qūmī</em>. Aramaico para "Menina, levanta-te".
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPÍTULO 5 -->
+    <div class="chapter-num">5</div>
+
+    <!-- PERÍCOPE 1: O ENDEMONINHADO DE GADARA (5.1-20) -->
+    <div class="pericope">O Endemoninhado de Gadara</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> chegaram à outra margem do mar, à região dos gadarenos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, saindo ele do barco, logo lhe saiu ao encontro, vindo dos sepulcros, um homem com espírito imundo,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        que tinha a sua morada nos sepulcros; e nem mesmo com correntes alguém podia amarrá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque, tendo sido muitas vezes amarrado com grilhões e correntes, quebrava as correntes e despedaçava os grilhões; e ninguém o podia domar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E sempre, de dia e de noite, andava pelos montes e pelos sepulcros, clamando e ferindo-se com pedras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, vendo Jesus de longe, correu e o adorou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, clamando com grande voz, disse: <span class="fala-demoniaca">"Que tenho eu contigo, Jesus, Filho do Deus Altíssimo? Conjuro-te por Deus que não me atormentes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque Jesus lhe dizia: <span class="fala-jesus">"Sai deste homem, espírito imundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E perguntou-lhe: <span class="fala-jesus">"Qual é o teu nome?"</span> E ele respondeu, dizendo: <span class="fala-demoniaca">"Legião é o meu nome, porque somos muitos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E rogava-lhe muito que não os enviasse para fora daquela região.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E andava ali, junto ao monte, uma grande manada de porcos, pastando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E todos os demônios rogaram-lhe, dizendo: <span class="fala-demoniaca">"Envia-nos aos porcos, para que entremos neles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E Jesus logo lhes permitiu. E, saindo os espíritos imundos, entraram nos porcos. E a manada se precipitou pelo despenhadeiro para o mar (eram cerca de dois mil) e se afogaram no mar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E os que apascentavam os porcos fugiram e o anunciaram na cidade e nos campos. E saíram para ver o que tinha acontecido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E foram a Jesus e viram o endemoninhado, o que tivera a legião, assentado, vestido e em perfeito juízo; e temeram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E os que tinham visto contaram-lhes o que acontecera ao endemoninhado e acerca dos porcos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E começaram a rogar-lhe que se retirasse dos seus termos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, entrando ele no barco, o que tinha estado endemoninhado rogou-lhe que o deixasse estar com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Mas Jesus não lho permitiu; antes, disse-lhe: <span class="fala-jesus">"Vai para tua casa, para os teus, e anuncia-lhes quão grandes coisas o Senhor te fez, e como teve compaixão de ti."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E ele partiu e começou a proclamar em Decápolis quão grandes coisas Jesus lhe tinha feito; e todos se admiravam.
+    </p>
+
+    <!-- PERÍCOPE 2: A MULHER DO FLUXO DE SANGUE E A FILHA DE JAIRO (5.21-43) -->
+    <div class="pericope">A Mulher do Fluxo de Sangue e a Filha de Jairo</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, passando Jesus outra vez de barco para a outra margem, ajuntou-se a ele uma grande multidão; e ele estava junto ao mar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E eis que chegou um dos principais da sinagoga, chamado Jairo. E, vendo-o, prostrou-se aos seus pés
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        e rogava-lhe muito, dizendo: <span class="fala-outro">"Minha filhinha está à morte. Vem, impõe as tuas mãos sobre ela, para que seja salva e viva."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E Jesus foi com ele. E uma grande multidão o seguia e o apertava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E certa mulher, que havia doze anos tinha um fluxo de sangue,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        e que muito sofrera com muitos médicos, e gastara tudo o que tinha, sem proveito algum, antes indo a pior,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        ouvindo falar de Jesus, veio por trás, entre a multidão, e tocou na sua veste.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Porque dizia: <span class="fala-outro">"Se eu apenas tocar nas suas vestes, serei curada."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E imediatamente a fonte do seu sangue se secou; e ela sentiu no corpo que estava curada daquele flagelo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E imediatamente Jesus, conhecendo em si mesmo que saíra dele poder, voltou-se para a multidão e disse: <span class="fala-jesus">"Quem tocou nas minhas vestes?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E os seus discípulos lhe disseram: <span class="fala-outro">"Vês que a multidão te aperta, e perguntas: 'Quem me tocou?'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E ele olhava ao redor para ver quem o fizera.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Então a mulher, temendo e tremendo, sabendo o que lhe tinha acontecido, veio, prostrou-se diante dele e declarou-lhe toda a verdade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E ele lhe disse: <span class="fala-jesus">"Filha, a tua fé te salvou. Vai em paz, e fica sã do teu flagelo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Enquanto ele ainda falava, chegaram alguns da casa do principal da sinagoga, dizendo: <span class="fala-outro">"A tua filha já morreu. Por que ainda incomodas o Mestre?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E Jesus, ouvindo logo a palavra que se falava, disse ao principal da sinagoga: <span class="fala-jesus">"Não temas; crê somente."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E não permitiu que ninguém o seguisse, senão Pedro, Tiago e João, irmão de Tiago.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E chegaram à casa do principal da sinagoga. E viu o alvoroço, e os que choravam e faziam grande pranto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, entrando, disse-lhes: <span class="fala-jesus">"Por que fazeis alvoroço e chorais? A menina não está morta, mas dorme."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E riam-se dele. Mas ele, retirando a todos, tomou consigo o pai e a mãe da menina e os que com ele estavam, e entrou onde a menina estava deitada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E, tomando a mão da menina, disse-lhe: <span class="fala-jesus">"Talitá cumi"</span>, que traduzido é: <span class="fala-jesus">"Menina, a ti te digo, levanta-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E imediatamente a menina se levantou e andava, pois tinha doze anos. E ficaram assombrados com grande assombro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E ordenou-lhes severamente que ninguém o soubesse; e mandou que lhe dessem de comer.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <!-- NOTA 1 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 5:1 — "Gadarenos"</span>
+            <div class="greek-text">Γαδαρηνῶν</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz <em>Gadarēnōn</em> (Γαδαρηνῶν). Mateus 8:28 também utiliza "gadarenos" no TR.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "gadarenos".</p>
+        </div>
+
+        <!-- NOTA 2 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:2 — "Espírito imundo"</span>
+            <div class="greek-text">πνεῦμα ἀκάθαρτον</div>
+            <p><strong>Análise:</strong> O homem estava possesso por espírito imundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espírito imundo".</p>
+        </div>
+
+        <!-- NOTA 3 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:3 — "Morada nos sepulcros"</span>
+            <div class="greek-text">τὴν κατοίκησιν ἐν τοῖς μνήμασιν</div>
+            <p><strong>Análise:</strong> O homem vivia entre os sepulcros, lugar de impureza ritual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "morada nos sepulcros".</p>
+        </div>
+
+        <!-- NOTA 4 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:4 — "Grilhões e correntes"</span>
+            <div class="greek-text">πέδαις καὶ ἁλύσεσιν</div>
+            <p><strong>Análise:</strong> A força do homem sob a possessão demoníaca.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grilhões e correntes".</p>
+        </div>
+
+        <!-- NOTA 5 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:5 — "Ferindo-se com pedras"</span>
+            <div class="greek-text">κατακόπτων ἑαυτὸν λίθοις</div>
+            <p><strong>Análise:</strong> Descrição do sofrimento do endemoninhado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ferindo-se com pedras".</p>
+        </div>
+
+        <!-- NOTA 6 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:6 — "Correu e o adorou"</span>
+            <div class="greek-text">προσέδραμεν καὶ προσεκύνησεν αὐτῷ</div>
+            <p><strong>Análise:</strong> O homem corre e se prostra diante de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "correu e o adorou".</p>
+        </div>
+
+        <!-- NOTA 7 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 5:7 — "Filho do Deus Altíssimo"</span>
+            <div class="greek-text">υἱὲ τοῦ θεοῦ τοῦ ὑψίστου</div>
+            <p><strong>Análise:</strong> O demônio reconhece Jesus como Filho do Deus Altíssimo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <!-- NOTA 8 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:9 — "Legião"</span>
+            <div class="greek-text">λεγιών</div>
+            <p><strong>Análise:</strong> Termo de origem latina usado para uma grande unidade militar romana. No relato, o nome é explicado pela afirmação: "porque somos muitos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Legião".</p>
+        </div>
+
+        <!-- NOTA 9 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:11 — "Manada de porcos"</span>
+            <div class="greek-text">ἀγέλη χοίρων</div>
+            <p><strong>Análise:</strong> Animais impuros segundo a Lei (Lv 11:7).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "manada de porcos".</p>
+        </div>
+
+        <!-- NOTA 10 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 5:13 — "Cerca de dois mil"</span>
+            <div class="greek-text">ὡς δισχίλιοι</div>
+            <p><strong>Análise:</strong> Literalmente "cerca de dois mil". Detalhe numérico exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cerca de dois mil".</p>
+        </div>
+
+        <!-- NOTA 11 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:15 — "Perfeito juízo"</span>
+            <div class="greek-text">σωφρονοῦντα</div>
+            <p><strong>Análise:</strong> O termo indica que o homem estava em seu juízo normal, em contraste com seu estado anterior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perfeito juízo".</p>
+        </div>
+
+        <!-- NOTA 12 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:17 — "Rogar-lhe que se retirasse"</span>
+            <div class="greek-text">παρεκάλεσαν αὐτὸν ἀπελθεῖν</div>
+            <p><strong>Análise:</strong> A reação da população gadarena, que pede a Jesus que se retire.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 13 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:19 — "Anuncia-lhes quão grandes coisas o Senhor te fez"</span>
+            <div class="greek-text">ἀνάγγειλον αὐτοῖς ὅσα ὁ κύριός σοι πεποίηκεν</div>
+            <p><strong>Análise:</strong> Jesus manda o homem testemunhar. O termo "Senhor" (κύριος) aqui pode se referir a Jesus, mas mantém a ambiguidade do texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 14 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 5:20 — "Decápolis"</span>
+            <div class="greek-text">Δεκαπόλει</div>
+            <p><strong>Análise:</strong> Região de dez cidades greco-romanas ao leste do Jordão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Decápolis".</p>
+        </div>
+
+        <!-- NOTA 15 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:22 — "Jairo"</span>
+            <div class="greek-text">Ἰάειρος</div>
+            <p><strong>Análise:</strong> Um dos principais da sinagoga. O texto o nomeia como Jairo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Jairo".</p>
+        </div>
+
+        <!-- NOTA 16 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:23 — "Minha filhinha está à morte"</span>
+            <div class="greek-text">τὸ θυγάτριόν μου ἐσχάτως ἔχει</div>
+            <p><strong>Análise:</strong> Literalmente "minha filhinha está em seu último estado", ou seja, à morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Minha filhinha está à morte".</p>
+        </div>
+
+        <!-- NOTA 17 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:25 — "Fluxo de sangue"</span>
+            <div class="greek-text">ῥύσει αἵματος</div>
+            <p><strong>Análise:</strong> Como em Mateus 9:20. A condição tornava a mulher impura segundo a Lei (Lv 15:25-27).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fluxo de sangue".</p>
+        </div>
+
+        <!-- NOTA 18 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 5:26 — "Muitos médicos"</span>
+            <div class="greek-text">πολλὰ παθοῦσα ὑπὸ πολλῶν ἰατρῶν</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos sobre o sofrimento da mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muitos médicos".</p>
+        </div>
+
+        <!-- NOTA 19 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:29 — "Fonte do seu sangue"</span>
+            <div class="greek-text">πηγὴ τοῦ αἵματος</div>
+            <p><strong>Análise:</strong> A fonte da hemorragia se secou imediatamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fonte do seu sangue".</p>
+        </div>
+
+        <!-- NOTA 20 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:30 — "Saiu dele poder"</span>
+            <div class="greek-text">δύναμιν ἐξελθοῦσαν</div>
+            <p><strong>Análise:</strong> Jesus sentiu que poder saíra dele para curar a mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "saiu dele poder".</p>
+        </div>
+
+        <!-- NOTA 21 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:34 — "A tua fé te salvou"</span>
+            <div class="greek-text">ἡ πίστις σου σέσωκέν σε</div>
+            <p><strong>Análise:</strong> A fé da mulher foi o meio pelo qual ela recebeu a cura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a tua fé te salvou".</p>
+        </div>
+
+        <!-- NOTA 22 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:34 — "Vai em paz"</span>
+            <div class="greek-text">ὕπαγε εἰς εἰρήνην</div>
+            <p><strong>Análise:</strong> A despedida de Jesus, que concede paz à mulher curada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Vai em paz".</p>
+        </div>
+
+        <!-- NOTA 23 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:41 — "Talitá cumi"</span>
+            <div class="hebrew-text">טַלְיְתָא קוּמִי</div>
+            <p><strong>Análise:</strong> Do aramaico. O texto traduz: "Menina, a ti te digo, levanta-te."</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Talitá cumi" com a tradução.</p>
+        </div>
+
+        <!-- NOTA 24 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:42 — "Doze anos"</span>
+            <div class="greek-text">ἦν γὰρ ἐτῶν δώδεκα</div>
+            <p><strong>Análise:</strong> A menina tinha doze anos, mesma duração do fluxo de sangue da mulher (v. 25).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "doze anos".</p>
+        </div>
+
+        <!-- NOTA 25 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 5:43 — "Mandou que lhe dessem de comer"</span>
+            <div class="greek-text">εἶπεν δοθῆναι αὐτῇ φαγεῖν</div>
+            <p><strong>Análise:</strong> Jesus ordena que dessem alimento à menina depois de ela se levantar e andar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mandou que lhe dessem de comer".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

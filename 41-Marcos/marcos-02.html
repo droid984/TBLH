@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        /* --- SISTEMA DE CORES TBLH --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS DO CAPÍTULO 2 -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Paralítico</span>
+                Do grego <em>paralytikós</em> (παραλυτικὸς). Designa aquele que sofre de paralisia, impossibilitado de andar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Leito / Cama</span>
+                Do grego <em>krábattos</em> (κράβαττος). Esteira ou cama portátil usada por pessoas enfermas ou pobres.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Blasfêmia</span>
+                Do grego <em>blasphēmía</em> (βλασφημία). Discurso que ultraja a Deus. Os escribas acusam Jesus de blasfêmia por perdoar pecados.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filho do Homem</span>
+                Do grego <em>hyiós toû anthrṓpou</em> (υἱὸς τοῦ ἀνθρώπου). Título favorito de Jesus em Marcos, com fundo em Daniel 7:13-14.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Publicano</span>
+                Do grego <em>telṓnēs</em> (τελώνης). Cobrador de impostos, desprezado pela sociedade judaica por sua associação com Roma e práticas frequentemente corruptas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Arrependimento</span>
+                Do grego <em>metánoia</em> (μετάνοια). Mudança radical de mente e direção, voltando-se para Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Convidados das bodas</span>
+                Do grego <em>huioi tou nymphōnos</em> (υἱοὶ τοῦ νυμφῶνος), literalmente "filhos da câmara nupcial".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Odres</span>
+                Do grego <em>askós</em> (ἀσκός). Recipientes de couro para armazenar vinho; com o tempo, ressecam e perdem elasticidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pães da proposição</span>
+                Do grego <em>ártoi tēs prothéseōs</em> (ἄρτοι τῆς προθέσεως). Os "pães da presença", colocados diante de Deus no Tabernáculo/Templo, consumidos apenas pelos sacerdotes.
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPÍTULO 2 -->
+    <div class="chapter-num">2</div>
+
+    <!-- PERÍCOPE 1: A CURA DO PARALÍTICO (2.1-12) -->
+    <div class="pericope">A Cura do Paralítico</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, depois de alguns dias, entrou novamente em Cafarnaum, e ouviu-se que ele estava em casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E logo muitos se ajuntaram, de modo que nem mesmo junto à porta havia lugar. E ele lhes pregava a palavra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E vieram ter com ele, trazendo um paralítico, carregado por quatro homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, não podendo aproximar-se dele por causa da multidão, descobriram o telhado onde ele estava e, abrindo uma abertura, baixaram a cama em que jazia o paralítico.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Jesus, vendo a fé deles, disse ao paralítico: <span class="fala-jesus">"Filho, os teus pecados te são perdoados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E estavam ali assentados alguns dos escribas, e discorriam em seus corações:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-outro">"Por que este fala assim? Ele blasfema. Quem pode perdoar pecados, senão somente Deus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Jesus, conhecendo logo em seu espírito que assim discorriam entre si, disse-lhes: <span class="fala-jesus">"Por que discorreis assim em vossos corações?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Qual é mais fácil? Dizer ao paralítico: 'Os teus pecados te são perdoados', ou dizer: 'Levanta-te, toma a tua cama e anda'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Ora, para que saibais que o Filho do homem tem autoridade para perdoar pecados na terra"</span> — disse ao paralítico —
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">"A ti te digo: Levanta-te, toma a tua cama e vai para tua casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E imediatamente ele se levantou e, tomando a cama, saiu diante de todos, de modo que todos se admiravam e glorificavam a Deus, dizendo: <span class="fala-outro">"Nunca vimos coisa assim."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A CHAMADA DE LEVI (2.13-17) -->
+    <div class="pericope">A Chamada de Levi</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E saiu outra vez para junto do mar. E toda a multidão vinha a ele, e ele os ensinava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, passando, viu Levi, filho de Alfeu, sentado na coletoria, e disse-lhe: <span class="fala-jesus">"Segue-me."</span> E, levantando-se, o seguiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E aconteceu que, estando Jesus à mesa em casa, muitos publicanos e pecadores se assentaram com Jesus e seus discípulos, pois eram muitos e o seguiam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E os escribas e fariseus, vendo-o comer com publicanos e pecadores, disseram aos seus discípulos: <span class="fala-outro">"Por que ele come e bebe com publicanos e pecadores?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Jesus, ouvindo isso, disse-lhes: <span class="fala-jesus">"Os sãos não precisam de médico, mas sim os doentes. Eu não vim chamar justos, mas pecadores ao arrependimento."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: O JEJUM E AS PARÁBOLAS (2.18-22) -->
+    <div class="pericope">O Jejum e as Parábolas</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E os discípulos de João e os dos fariseus jejuavam. E vieram e disseram-lhe: <span class="fala-outro">"Por que jejuam os discípulos de João e os dos fariseus, mas os teus discípulos não jejuam?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Podem por acaso os convidados das bodas jejuar enquanto o noivo está com eles? Enquanto têm consigo o noivo, não podem jejuar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Mas virão dias em que o noivo lhes será tirado; e então jejuarão naqueles dias.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Ninguém costura remendo de pano novo em vestido velho; de outra forma, o remendo novo tira parte do velho, e o rasgo fica pior.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E ninguém põe vinho novo em odres velhos; de outra forma, o vinho novo rompe os odres, e o vinho se derrama, e os odres se perdem. Mas o vinho novo deve ser posto em odres novos."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A CEIFA NO SÁBADO (2.23-28) -->
+    <div class="pericope">A Ceifa no Sábado</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E aconteceu que, passando ele pelos campos de trigo em dia de sábado, os seus discípulos, enquanto caminhavam, começaram a colher espigas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E os fariseus lhe disseram: <span class="fala-outro">"Vê, por que fazem no sábado o que não é lícito?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E ele lhes disse: <span class="fala-jesus">"Nunca lestes o que fez Davi quando teve necessidade e teve fome, ele e os que com ele estavam?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Como entrou na casa de Deus, no tempo de Abiatar, o sumo sacerdote, e comeu os pães da proposição, dos quais não é lícito comer senão aos sacerdotes, e deu também aos que com ele estavam?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E disse-lhes: <span class="fala-jesus">"O sábado foi feito por causa do homem, e não o homem por causa do sábado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Assim, o Filho do homem é senhor também do sábado."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <!-- NOTA 1 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:1 — "Em casa"</span>
+            <div class="greek-text">ἐν οἴκῳ</div>
+            <p><strong>Análise:</strong> Provavelmente a casa de Pedro, base de Jesus em Cafarnaum (cf. Mc 1:29), mas o texto não especifica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em casa".</p>
+        </div>
+
+        <!-- NOTA 2 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:4 — "Descobriram o telhado"</span>
+            <div class="greek-text">ἀπεστέγασαν τὴν στέγην</div>
+            <p><strong>Análise:</strong> As casas da região tinham telhados planos acessíveis por escadas. O verbo indica que removeram parte da cobertura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "descobriram o telhado".</p>
+        </div>
+
+        <!-- NOTA 3 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:5 — "Vendo a fé deles"</span>
+            <div class="greek-text">ἰδὼν τὴν πίστιν αὐτῶν</div>
+            <p><strong>Análise:</strong> A fé dos que carregavam o paralítico é mencionada antes do perdão. A fé é ativa e demonstrada por ações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vendo a fé deles".</p>
+        </div>
+
+        <!-- NOTA 4 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:7 — "Ele blasfema"</span>
+            <div class="greek-text">βλασφημίας</div>
+            <p><strong>Análise:</strong> Para os escribas, perdoar pecados era prerrogativa exclusiva de Deus. A acusação revela que eles não reconhecem Jesus como divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "blasfema".</p>
+        </div>
+
+        <!-- NOTA 5 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 2:10 — "Autoridade para perdoar pecados na terra"</span>
+            <div class="greek-text">ἐξουσίαν ἔχει ὁ υἱὸς τοῦ ἀνθρώπου ἀφιέναι ἐπὶ τῆς γῆς ἁμαρτίας</div>
+            <p><strong>Análise:</strong> Jesus reivindica autoridade que os escribas atribuíam somente a Deus. O título "Filho do homem" ecoa Daniel 7:13-14.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <!-- NOTA 6 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:12 — "Nunca vimos coisa assim"</span>
+            <div class="greek-text">οὐδέποτε οὕτως εἴδομεν</div>
+            <p><strong>Análise:</strong> A reação da multidão à cura e ao perdão. O espanto reflete o reconhecimento de algo extraordinário.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Nunca vimos coisa assim".</p>
+        </div>
+
+        <!-- NOTA 7 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 2:14 — "Levi, filho de Alfeu"</span>
+            <div class="greek-text">Λευῒν τὸν τοῦ Ἀλφαίου</div>
+            <p><strong>Análise:</strong> O texto de Marcos identifica o homem chamado por Jesus como Levi, filho de Alfeu. Em Mateus 9:9, o cobrador de impostos chamado por Jesus é identificado como Mateus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a identificação "Levi, filho de Alfeu".</p>
+        </div>
+
+        <!-- NOTA 8 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:15 — "Em casa"</span>
+            <div class="greek-text">ἐν τῇ οἰκίᾳ αὐτοῦ</div>
+            <p><strong>Análise:</strong> O texto não especifica se é a casa de Levi ou de Jesus. A ambiguidade é preservada na TBLH.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em casa".</p>
+        </div>
+
+        <!-- NOTA 9 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:15-16 — "Publicanos e pecadores"</span>
+            <div class="greek-text">τελῶναι καὶ ἁμαρτωλοί</div>
+            <p><strong>Análise:</strong> Os publicanos eram cobradores de impostos; "pecadores" era termo usado para os que não seguiam rigorosamente a Lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "publicanos e pecadores".</p>
+        </div>
+
+        <!-- NOTA 10 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 2:17 — "Pecadores ao arrependimento"</span>
+            <div class="greek-text">ἁμαρτωλοὺς εἰς μετάνοιαν</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui "ao arrependimento" (εἰς μετάνοιαν). A expressão enfatiza o propósito da chamada de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pecadores ao arrependimento".</p>
+        </div>
+
+        <!-- NOTA 11 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:19 — "Convidados das bodas"</span>
+            <div class="greek-text">οἱ υἱοὶ τοῦ νυμφῶνος</div>
+            <p><strong>Análise:</strong> Literalmente "filhos da câmara nupcial", expressão usada para os participantes da celebração nupcial.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "convidados das bodas".</p>
+        </div>
+
+        <!-- NOTA 12 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 2:20 — "O noivo lhes será tirado"</span>
+            <div class="greek-text">ἀπαρθῇ ἀπ' αὐτῶν ὁ νυμφίος</div>
+            <p><strong>Análise:</strong> A referência ao tempo em que Jesus não estará mais presente — uma alusão à sua morte e partida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o noivo lhes será tirado".</p>
+        </div>
+
+        <!-- NOTA 13 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:21 — "Remendo de pano novo"</span>
+            <div class="greek-text">ἐπίβλημα ῥάκους ἀγνάφου</div>
+            <p><strong>Análise:</strong> A parábola do remendo novo em vestido velho. O pano novo encolhe e rasga o velho, tornando o rasgo pior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 14 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 2:22 — "Vinho novo em odres velhos"</span>
+            <div class="greek-text">οἶνον νέον εἰς ἀσκοὺς παλαιούς</div>
+            <p><strong>Análise:</strong> A parábola do vinho novo e dos odres. O Textus Receptus de Marcos não traz "e ambos se conservam", presente em Mateus 9:17.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução sem o acréscimo.</p>
+        </div>
+
+        <!-- NOTA 15 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:23 — "Colher espigas"</span>
+            <div class="greek-text">τίλλοντες τοὺς στάχυας</div>
+            <p><strong>Análise:</strong> A ação dos discípulos em dia de sábado. A Lei permitia colher espigas com as mãos (Dt 23:25), mas a questão era a violação do sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "colher espigas".</p>
+        </div>
+
+        <!-- NOTA 16 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:24 — "O que não é lícito"</span>
+            <div class="greek-text">ὃ οὐκ ἔξεστι</div>
+            <p><strong>Análise:</strong> A acusação dos fariseus baseava-se na interpretação estrita da Lei. A colheita no sábado era considerada trabalho proibido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o que não é lícito".</p>
+        </div>
+
+        <!-- NOTA 17 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 2:26 — "No tempo de Abiatar, o sumo sacerdote"</span>
+            <div class="greek-text">ἐπὶ Ἀβιάθαρ τοῦ ἀρχιερέως</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz "Abiatar, o sumo sacerdote". Em 1 Samuel 21, o sacerdote envolvido no episódio é identificado como Aimeleque, pai de Abiatar.</p>
+            <p><strong>Possíveis explicações:</strong></p>
+            <ul style="margin:5px 0 0 20px; color:#4a4a4a;">
+                <li>Abiatar era mais conhecido, então seu nome substituiu o do pai</li>
+                <li>Ambos atuavam juntos (Aimeleque como sumo sacerdote, Abiatar como coadjuvante)</li>
+                <li>Marcos usa Abiatar como referência à casa sacerdotal (comum na literatura rabínica)</li>
+            </ul>
+            <p><strong>Decisão TBLH:</strong> Mantido "no tempo de Abiatar" — Marcos registra a tradição recebida.</p>
+        </div>
+
+        <!-- NOTA 18 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:26 — "Pães da proposição"</span>
+            <div class="greek-text">τοὺς ἄρτους τῆς προθέσεως</div>
+            <p><strong>Análise:</strong> Os pães sagrados, colocados diante de Deus no Tabernáculo/Templo, comidos somente pelos sacerdotes (Lv 24:5-9).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pães da proposição".</p>
+        </div>
+
+        <!-- NOTA 19 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 2:27 — "O sábado foi feito por causa do homem"</span>
+            <div class="greek-text">τὸ σάββατον διὰ τὸν ἄνθρωπον ἐγένετο</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre o propósito do sábado. O sábado é um dom de Deus para o bem do homem, não uma carga.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 20 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 2:28 — "Senhor também do sábado"</span>
+            <div class="greek-text">κύριός ἐστιν ὁ υἱὸς τοῦ ἀνθρώπου καὶ τοῦ σαββάτου</div>
+            <p><strong>Análise:</strong> A autoridade de Jesus sobre o sábado. Como Senhor, Ele está acima da Lei que instituiu o sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "senhor também do sábado".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

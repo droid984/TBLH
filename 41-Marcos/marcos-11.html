@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Betfagé</span>
+                Aldeia próxima a Jerusalém, mencionada em conexão com a entrada triunfal.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Betânia</span>
+                Aldeia a cerca de 3 km de Jerusalém, onde Jesus frequentemente se hospedava.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hosana</span>
+                Do hebraico, expressão de aclamação que significa "Salva, agora!"
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Covil de salteadores</span>
+                Expressão usada por Jesus para denunciar a corrupção no templo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <!-- PERÍCOPE 1: A ENTRADA TRIUNFAL (11.1-11) -->
+    <div class="pericope">A Entrada Triunfal</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, quando se aproximaram de Jerusalém, de Betfagé e de Betânia, junto ao monte das Oliveiras, enviou dois dos seus discípulos
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        e disse-lhes: <span class="fala-jesus">"Ide à aldeia que está em frente de vós; e, logo ao entrar nela, achareis um jumentinho amarrado, sobre o qual nenhum homem se assentou ainda. Desamarrai-o e trazei-o.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">E, se alguém vos disser: 'Por que fazeis isso?', dizei: 'O Senhor precisa dele', e logo o enviará para cá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E eles foram, e acharam o jumentinho amarrado junto à porta, do lado de fora, no caminho. E o desamarraram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E alguns dos que ali estavam lhes disseram: <span class="fala-outro">"Que fazeis, desamarrando o jumentinho?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas eles lhes disseram como Jesus tinha ordenado; e os deixaram ir.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E trouxeram o jumentinho a Jesus, e lançaram sobre ele as suas vestes, e ele se assentou sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E muitos estendiam as suas vestes pelo caminho; e outros cortavam ramos das árvores e os espalhavam pelo caminho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E os que iam adiante e os que seguiam clamavam, dizendo: <span class="fala-outro">"Hosana! Bendito o que vem em nome do Senhor!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">Bendito o reino do nosso pai Davi, que vem em nome do Senhor! Hosana nas alturas!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E Jesus entrou em Jerusalém, no templo. E, tendo olhado ao redor para tudo, e como já fosse tarde, saiu para Betânia com os doze.
+    </p>
+
+    <!-- PERÍCOPE 2: A FIGUEIRA AMALDIÇOADA E A PURIFICAÇÃO DO TEMPLO (11.12-19) -->
+    <div class="pericope">A Figueira Amaldiçoada e a Purificação do Templo</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, no dia seguinte, saindo eles de Betânia, teve fome.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, vendo de longe uma figueira que tinha folhas, foi ver se nela acharia alguma coisa. E, chegando a ela, nada achou senão folhas, porque não era tempo de figos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Nunca mais coma alguém fruto de ti, para sempre."</span> E os seus discípulos o ouviam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E vieram a Jerusalém. E Jesus, entrando no templo, começou a expulsar os que vendiam e compravam no templo; e derrubou as mesas dos cambistas e as cadeiras dos que vendiam pombas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E não permitia que alguém atravessasse o templo carregando algum vaso.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E ensinava, dizendo-lhes: <span class="fala-jesus">"Não está escrito: 'A minha casa será chamada casa de oração para todas as nações'? Mas vós a fizestes covil de salteadores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E os escribas e os principais dos sacerdotes ouviram isso, e procuravam como o matariam; pois o temiam, porque toda a multidão se admirava da sua doutrina.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, quando já era tarde, saiu para fora da cidade.
+    </p>
+
+    <!-- PERÍCOPE 3: A FIGUEIRA SECA E A LIÇÃO SOBRE A FÉ (11.20-26) -->
+    <div class="pericope">A Figueira Seca e a Lição sobre a Fé</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, de manhã, passando, viram que a figueira se secara desde as raízes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E Pedro, lembrando-se, disse-lhe: <span class="fala-outro">"Rabi, eis que a figueira que amaldiçoaste se secou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Tende fé em Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Porque em verdade vos digo: qualquer que disser a este monte: 'Levanta-te e lança-te no mar', e não duvidar em seu coração, mas crer que se fará aquilo que diz, tudo o que disser lhe será feito.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Por isso vos digo: tudo o que pedirdes, orando, crede que o recebereis, e tê-lo-eis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E, quando estiverdes orando, perdoai, se tendes alguma coisa contra alguém, para que também vosso Pai, que está nos céus, vos perdoe as vossas ofensas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Mas, se vós não perdoardes, também vosso Pai, que está nos céus, não perdoará as vossas ofensas."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A AUTORIDADE DE JESUS QUESTIONADA (11.27-33) -->
+    <div class="pericope">A Autoridade de Jesus Questionada</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E vieram outra vez a Jerusalém. E, andando ele pelo templo, aproximaram-se dele os principais dos sacerdotes, os escribas e os anciãos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        e disseram-lhe: <span class="fala-outro">"Com que autoridade fazes estas coisas? E quem te deu autoridade para fazeres estas coisas?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Mas Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Eu também vos perguntarei uma coisa; respondei-me, e eu vos direi com que autoridade faço estas coisas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">O batismo de João era do céu ou dos homens? Respondei-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E eles discorriam entre si, dizendo: <span class="fala-outro">"Se dissermos: Do céu, ele dirá: Então por que não crestes nele?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">Mas, se dissermos: Dos homens..."</span> — temiam o povo, porque todos consideravam João verdadeiramente um profeta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, respondendo, disseram a Jesus: <span class="fala-outro">"Não sabemos."</span> E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Nem eu vos digo com que autoridade faço estas coisas."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:1 — "Betfagé e Betânia"</span>
+            <div class="greek-text">Βηθφαγὴ καὶ Βηθανία</div>
+            <p><strong>Análise:</strong> Aldeias próximas a Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Betfagé" e "Betânia".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 11:2, 4-7 — "Jumentinho"</span>
+            <div class="greek-text">πῶλον</div>
+            <p><strong>Análise:</strong> Marcos menciona apenas o jumentinho, diferente de Mateus 21:2, que menciona jumenta e jumentinho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "jumentinho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:3 — "O Senhor"</span>
+            <div class="greek-text">ὁ κύριος</div>
+            <p><strong>Análise:</strong> A expressão é preservada como no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "O Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:4 — "No caminho"</span>
+            <div class="greek-text">ἀμφόδου</div>
+            <p><strong>Análise:</strong> Termo relacionado a caminho, passagem ou via.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "no caminho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:9-10 — "Hosana"</span>
+            <div class="hebrew-text">הוֹשִׁיעָה נָּא</div>
+            <p><strong>Análise:</strong> Do hebraico, expressão de aclamação que significa "Salva, agora!".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Hosana".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 11:10 — "Bendito o reino do nosso pai Davi"</span>
+            <div class="greek-text">εὐλογημένη ἡ βασιλεία τοῦ πατρὸς ἡμῶν Δαυίδ</div>
+            <p><strong>Análise:</strong> Aclamação específica de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 11:11 — "Tendo olhado ao redor para tudo"</span>
+            <div class="greek-text">περιβλεψάμενος πάντα</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tendo olhado ao redor para tudo".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 11:13 — "Não era tempo de figos"</span>
+            <div class="greek-text">οὐ γὰρ ἦν καιρὸς σύκων</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não era tempo de figos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:14 — "Nunca mais coma alguém fruto de ti"</span>
+            <div class="greek-text">μηκέτι εἰς τὸν αἰῶνα ἐκ σοῦ μηδεὶς καρπὸν φάγοι</div>
+            <p><strong>Análise:</strong> A palavra de Jesus à figueira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 11:16 — "Não permitia que alguém atravessasse o templo carregando algum vaso"</span>
+            <div class="greek-text">οὐκ ἤφιεν ἵνα τις διενέγκῃ σκεῦος διὰ τοῦ ἱεροῦ</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 11:17 — "Casa de oração para todas as nações"</span>
+            <div class="greek-text">ὁ οἶκός μου οἶκος προσευχῆς κληθήσεται πᾶσιν τοῖς ἔθνεσιν</div>
+            <p><strong>Análise:</strong> A citação de Isaías 56:7 inclui "para todas as nações", específico de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme Marcos.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:17 — "Covil de salteadores"</span>
+            <div class="greek-text">σπήλαιον λῃστῶν</div>
+            <p><strong>Análise:</strong> Como em Mateus 21:13.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "covil de salteadores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:20 — "Secara desde as raízes"</span>
+            <div class="greek-text">ἐξηραμμένην ἐκ ῥιζῶν</div>
+            <p><strong>Análise:</strong> A figueira seca desde as raízes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "secara desde as raízes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:22 — "Tende fé em Deus"</span>
+            <div class="greek-text">ἔχετε πίστιν Θεοῦ</div>
+            <p><strong>Análise:</strong> Literalmente, "tende fé de Deus"; a tradução "fé em Deus" expressa naturalmente o sentido em português.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tende fé em Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:24 — "Crede que o recebereis"</span>
+            <div class="greek-text">πιστεύετε ὅτι ἐλάβετε</div>
+            <p><strong>Análise:</strong> A promessa sobre a oração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 11:26 — "Se vós não perdoardes"</span>
+            <div class="greek-text">εἰ δὲ ὑμεῖς οὐκ ἀφίετε</div>
+            <p><strong>Análise:</strong> O versículo está presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o versículo.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:30 — "Batismo de João"</span>
+            <div class="greek-text">τὸ βάπτισμα τὸ Ἰωάννου</div>
+            <p><strong>Análise:</strong> A pergunta de Jesus aos líderes religiosos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batismo de João".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 11:32 — "Todos consideravam João verdadeiramente um profeta"</span>
+            <div class="greek-text">ἅπαντες γὰρ εἶχον τὸν Ἰωάννην ὅτι ὄντως προφήτης ἦν</div>
+            <p><strong>Análise:</strong> O temor dos líderes diante da opinião pública.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

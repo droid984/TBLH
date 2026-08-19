@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 15</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 15</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Sinédrio</span>
+                O conselho supremo judaico, composto por sacerdotes, anciãos e escribas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pretório</span>
+                Local associado à autoridade do governador romano.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gólgota</span>
+                Do aramaico, "Lugar da Caveira". Local da crucificação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dia da preparação</span>
+                O dia que antecedia o sábado, quando os preparativos para a Páscoa eram feitos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Véu do templo</span>
+                A cortina que separava o Lugar Santo do Lugar Santíssimo no templo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">15</div>
+
+    <!-- PERÍCOPE 1: JESUS PERANTE PILATOS (15.1-5) -->
+    <div class="pericope">Jesus Perante Pilatos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, logo ao amanhecer, os principais dos sacerdotes, com os anciãos, os escribas e todo o sinédrio, tiveram conselho. E, amarrando Jesus, levaram-no e o entregaram a Pilatos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E Pilatos perguntou-lhe: <span class="fala-outro">"És tu o Rei dos judeus?"</span> E ele, respondendo, disse-lhe: <span class="fala-jesus">"Tu o dizes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E os principais dos sacerdotes o acusavam de muitas coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E Pilatos tornou a perguntar-lhe, dizendo: <span class="fala-outro">"Nada respondes? Vê quantas coisas testificam contra ti."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas Jesus nada mais respondeu, de modo que Pilatos se admirava.
+    </p>
+
+    <!-- PERÍCOPE 2: BARABÁS E A SENTENÇA DE MORTE (15.6-15) -->
+    <div class="pericope">Barabás e a Sentença de Morte</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, por ocasião da festa, soltava-lhes um preso, qualquer que pedissem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E havia um chamado Barrabás, preso com outros amotinadores que, numa sedição, tinham cometido homicídio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E a multidão, clamando, começou a pedir que fizesse como sempre lhes tinha feito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E Pilatos respondeu-lhes, dizendo: <span class="fala-outro">"Quereis que eu vos solte o Rei dos judeus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Porque ele bem sabia que, por inveja, os principais dos sacerdotes o tinham entregado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas os principais dos sacerdotes incitaram a multidão para que lhes soltasse antes Barrabás.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E Pilatos, respondendo, disse-lhes outra vez: <span class="fala-outro">"Que quereis, pois, que eu faça daquele a quem chamais Rei dos judeus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E eles clamaram outra vez: <span class="fala-outro">"Crucifica-o!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas Pilatos lhes disse: <span class="fala-outro">"Pois que mal ele fez?"</span> E eles clamavam ainda mais: <span class="fala-outro">"Crucifica-o!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E Pilatos, querendo satisfazer a multidão, soltou-lhes Barrabás. E, depois de açoitar Jesus, entregou-o para ser crucificado.
+    </p>
+
+    <!-- PERÍCOPE 3: A ZOMBARIA DOS SOLDADOS (15.16-20) -->
+    <div class="pericope">A Zombaria dos Soldados</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E os soldados o levaram para dentro do pátio, que é o pretório, e convocaram toda a coorte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E vestiram-no de púrpura, e tecendo uma coroa de espinhos, puseram-lha na cabeça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E começaram a saudá-lo: <span class="fala-outro">"Salve, Rei dos judeus!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E batiam-lhe na cabeça com uma cana, e cuspiam nele, e, ajoelhando-se, o adoravam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, depois de o terem escarnecido, tiraram-lhe a púrpura, vestiram-lhe as suas próprias vestes e levaram-no para fora, para o crucificarem.
+    </p>
+
+    <!-- PERÍCOPE 4: A CRUCIFICAÇÃO (15.21-32) -->
+    <div class="pericope">A Crucificação</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E obrigaram um certo Simão, cireneu, pai de Alexandre e de Rufo, que passava vindo do campo, a carregar a sua cruz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E levaram-no ao lugar chamado Gólgota, que traduzido é: Lugar da Caveira.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E deram-lhe a beber vinho com mirra; mas ele não o tomou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, crucificando-o, repartiram as suas vestes, lançando sortes sobre elas, para saber quem levaria cada uma.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E era a hora terceira, e o crucificaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E a inscrição com a sua acusação estava escrita por cima: O REI DOS JUDEUS.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E com ele crucificaram dois salteadores, um à sua direita e outro à sua esquerda.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E cumpriu-se a Escritura, que diz: "E com os transgressores foi contado."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E os que passavam blasfemavam dele, meneando a cabeça e dizendo: <span class="fala-outro">"Ah! Tu, que destróis o templo e em três dias o reedificas,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">salva-te a ti mesmo e desce da cruz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Do mesmo modo também os principais dos sacerdotes, com os escribas, zombando, diziam uns aos outros: <span class="fala-outro">"Salvou os outros; a si mesmo não pode salvar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">O Cristo, o Rei de Israel, desça agora da cruz, para que vejamos e creiamos."</span> E também os que com ele foram crucificados o insultavam.
+    </p>
+
+    <!-- PERÍCOPE 5: A MORTE DE JESUS (15.33-41) -->
+    <div class="pericope">A Morte de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, chegada a hora sexta, houve trevas sobre toda a terra até a hora nona.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E, à hora nona, Jesus clamou em alta voz, dizendo: <span class="fala-jesus">"Eloí, Eloí, lamá sabactâni?"</span> que traduzido é: <span class="fala-jesus">"Deus meu, Deus meu, por que me desamparaste?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E alguns dos que ali estavam, ouvindo isso, diziam: <span class="fala-outro">"Eis que chama por Elias."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E um deles correu, encheu uma esponja de vinagre, pôs-na numa cana e deu-lhe de beber, dizendo: <span class="fala-outro">"Deixai, vejamos se Elias vem tirá-lo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E Jesus, dando um grande brado, expirou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E o véu do templo rasgou-se em dois, de alto a baixo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E o centurião, que estava diante dele, vendo que ele havia expirado depois de clamar assim, disse: <span class="fala-outro">"Verdadeiramente este homem era o Filho de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E também estavam ali mulheres, olhando de longe. Entre elas estavam Maria Madalena, Maria, mãe de Tiago, o menor, e de José, e Salomé;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        as quais, quando ele estava na Galileia, o seguiam e o serviam. E muitas outras, que tinham subido com ele a Jerusalém.
+    </p>
+
+    <!-- PERÍCOPE 6: O SEPULTAMENTO (15.42-47) -->
+    <div class="pericope">O Sepultamento</div>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E, chegada já a tarde, porque era o dia da preparação, isto é, a véspera do sábado,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        veio José de Arimateia, ilustre membro do conselho, que também esperava o reino de Deus. E, tomando coragem, foi a Pilatos e pediu o corpo de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E Pilatos admirou-se de que já tivesse morrido. E, chamando o centurião, perguntou-lhe se já havia muito que tinha morrido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, sabendo-o pelo centurião, deu o corpo a José.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E ele comprou um lençol de linho e, descendo-o da cruz, envolveu-o no lençol, e o pôs num sepulcro que tinha sido escavado numa rocha. E rolou uma pedra para a entrada do sepulcro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E Maria Madalena e Maria, mãe de José, olhavam onde o punham.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:1 — "Todo o sinédrio"</span>
+            <div class="greek-text">ὅλον τὸ συνέδριον</div>
+            <p><strong>Análise:</strong> O conselho reunido pela manhã.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todo o sinédrio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:7 — "Amotinadores"</span>
+            <div class="greek-text">στασιαστῶν</div>
+            <p><strong>Análise:</strong> Relacionado a revoltosos ou pessoas envolvidas em sedição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "amotinadores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:16 — "Pretório"</span>
+            <div class="greek-text">πραιτώριον</div>
+            <p><strong>Análise:</strong> Local associado à autoridade do governador romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "pretório".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:17, 20 — "Púrpura"</span>
+            <div class="greek-text">πορφύραν</div>
+            <p><strong>Análise:</strong> Cor associada à realeza e utilizada pelos soldados na zombaria de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "púrpura".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 15:21 — "Alexandre e Rufo"</span>
+            <div class="greek-text">Ἀλεξάνδρου καὶ Ῥούφου</div>
+            <p><strong>Análise:</strong> Os dois filhos de Simão, o cireneu, mencionados nominalmente por Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a menção nominal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:22 — "Gólgota"</span>
+            <div class="greek-text">Γολγοθᾶ</div>
+            <p><strong>Análise:</strong> Nome de origem semítica, traduzido pelo próprio Marcos como "Lugar da Caveira".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Gólgota" com a tradução.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:23 — "Vinho com mirra"</span>
+            <div class="greek-text">ἐσμυρνισμένον οἶνον</div>
+            <p><strong>Análise:</strong> Marcos menciona vinho misturado com mirra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vinho com mirra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:25 — "Era a hora terceira"</span>
+            <div class="greek-text">ἦν δὲ ὥρα τρίτη</div>
+            <p><strong>Análise:</strong> A terceira hora correspondia aproximadamente às nove horas da manhã segundo a contagem judaica do dia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "era a hora terceira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:26 — "A inscrição"</span>
+            <div class="greek-text">ἡ ἐπιγραφὴ</div>
+            <p><strong>Análise:</strong> O título colocado sobre a cruz identificava Jesus como "O Rei dos Judeus".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a inscrição".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 15:28 — "E com os transgressores foi contado"</span>
+            <div class="greek-text">καὶ μετὰ ἀνόμων ἐλογίσθη</div>
+            <p><strong>Análise:</strong> Citação de Isaías 53:12. O versículo é mantido de acordo com o Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o versículo conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:34 — "Eloí, Eloí, lamá sabactâni?"</span>
+            <div class="hebrew-text">אֵלִי אֵלִי לָמָה עֲזַבְתָּנִי</div>
+            <p><strong>Análise:</strong> Marcos preserva a expressão semítica e imediatamente apresenta sua tradução.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração com a tradução.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:38 — "O véu do templo rasgou-se"</span>
+            <div class="greek-text">τὸ καταπέτασμα τοῦ ναοῦ ἐσχίσθη</div>
+            <p><strong>Análise:</strong> O texto registra o rasgar do véu do templo após a morte de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 15:39 — "Verdadeiramente este homem era o Filho de Deus"</span>
+            <div class="greek-text">ἀληθῶς οὗτος ὁ ἄνθρωπος υἱὸς ἦν θεοῦ</div>
+            <p><strong>Análise:</strong> Declaração do centurião ao presenciar a morte de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:40 — "Tiago, o menor"</span>
+            <div class="greek-text">Ἰακώβου τοῦ μικροῦ</div>
+            <p><strong>Análise:</strong> Literalmente "Tiago, o pequeno".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tiago, o menor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:42 — "Dia da preparação"</span>
+            <div class="greek-text">παρασκευή</div>
+            <p><strong>Análise:</strong> O dia que antecedia o sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dia da preparação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:43 — "Ilustre membro do conselho"</span>
+            <div class="greek-text">εὐσχήμων βουλευτής</div>
+            <p><strong>Análise:</strong> Indicando um membro respeitado ou distinto do conselho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ilustre membro do conselho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:43 — "Tomando coragem"</span>
+            <div class="greek-text">τολμήσας</div>
+            <p><strong>Análise:</strong> Literalmente "ousando" ou "tomando coragem".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tomando coragem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:46 — "Lençol de linho"</span>
+            <div class="greek-text">σινδόνα</div>
+            <p><strong>Análise:</strong> José envolve o corpo de Jesus em um tecido de linho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lençol de linho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 15:46 — "Sepulcro escavado numa rocha"</span>
+            <div class="greek-text">μνημείον ὃ ἦν λελατομημένον ἐκ πέτρας</div>
+            <p><strong>Análise:</strong> O sepulcro é descrito como tendo sido escavado em uma rocha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

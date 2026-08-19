@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 3</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        /* --- SISTEMA DE CORES TBLH --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS DO CAPÍTULO 3 -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 3</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Mão seca</span>
+                Do grego <em>cheira echōn xēran</em> (χεῖρα ἔχων ξηράν). Condição visível de atrofia ou paralisia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Herodianos</span>
+                Grupo político associado à casa de Herodes, mencionado também em Mateus 22:16.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Idumeia</span>
+                Região ao sul da Judeia, correspondente à antiga Edom.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Boanerges</span>
+                Do aramaico, significa "Filhos do Trovão". Nome dado por Jesus a Tiago e João.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cananeu</span>
+                Do grego <em>Kananitēs</em> (Κανανίτης). Designação de Simão, distinta do termo étnico "cananeu".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Belzebu</span>
+                Nome associado a Satanás ou ao príncipe dos demônios, usado pelos escribas para acusar Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Homem forte</span>
+                Na parábola, refere-se a Satanás, cuja casa precisa ser saqueada pelo mais forte (Jesus).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Blasfêmia contra o Espírito</span>
+                Pecado imperdoável, mencionado por Jesus como rejeição deliberada da obra do Espírito Santo.
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPÍTULO 3 -->
+    <div class="chapter-num">3</div>
+
+    <!-- PERÍCOPE 1: A CURA DO HOMEM DA MÃO SECA (3.1-6) -->
+    <div class="pericope">A Cura do Homem da Mão Seca</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> entrou outra vez na sinagoga. E estava ali um homem que tinha uma das mãos seca.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E eles o observavam, para ver se o curaria no sábado, a fim de o acusarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E disse ao homem que tinha a mão seca: <span class="fala-jesus">"Levanta-te e vem para o meio."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E disse-lhes: <span class="fala-jesus">"É lícito no sábado fazer bem ou fazer mal? Salvar uma vida ou matar?"</span> Mas eles se calavam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, olhando para eles ao redor com indignação, entristecido pela dureza do seu coração, disse ao homem: <span class="fala-jesus">"Estende a tua mão."</span> E ele a estendeu; e a sua mão foi restaurada, sã como a outra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E os fariseus, saindo, logo tomaram conselho com os herodianos contra ele, para o matarem.
+    </p>
+
+    <!-- PERÍCOPE 2: A MULTIDÃO À BEIRA-MAR (3.7-12) -->
+    <div class="pericope">A Multidão à Beira-Mar</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E Jesus se retirou com os seus discípulos para o mar. E uma grande multidão da Galileia o seguiu, e também da Judeia,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        e de Jerusalém, e da Idumeia, e de além do Jordão, e dos arredores de Tiro e Sidom; uma grande multidão, ouvindo quantas coisas ele fazia, veio a ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E ele disse aos seus discípulos que um pequeno barco estivesse pronto para ele, por causa da multidão, para que não o apertassem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Pois curara a muitos, de modo que todos os que tinham enfermidades se lançavam sobre ele, para lhe tocarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E os espíritos imundos, quando o viam, prostravam-se diante dele e clamavam, dizendo: <span class="fala-outro">"Tu és o Filho de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E ele os advertia severamente para que não o dessem a conhecer.
+    </p>
+
+    <!-- PERÍCOPE 3: A ESCOLHA DOS DOZE (3.13-19) -->
+    <div class="pericope">A Escolha dos Doze</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E subiu ao monte, e chamou a si os que ele quis; e vieram a ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E designou doze, para que estivessem com ele, e para enviá-los a pregar,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        e para terem autoridade de curar enfermidades e expulsar demônios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        A Simão, a quem pôs o nome de Pedro;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        e Tiago, filho de Zebedeu, e João, irmão de Tiago, aos quais pôs o nome de Boanerges, que significa "Filhos do Trovão";
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        e André, e Filipe, e Bartolomeu, e Mateus, e Tomé, e Tiago, filho de Alfeu, e Tadeu, e Simão, o cananeu,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        e Judas Iscariotes, que também o entregou.
+    </p>
+
+    <p class="verse" style="margin-top: 20px;">
+        E foram para uma casa.
+    </p>
+
+    <!-- PERÍCOPE 4: A ACUSAÇÃO DE BELZEBU (3.20-30) -->
+    <div class="pericope">A Acusação de Belzebu</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E novamente a multidão se ajuntou, de modo que nem sequer podiam comer pão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, quando os seus parentes ouviram isso, saíram para o prender; porque diziam: <span class="fala-outro">"Ele está fora de si."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E os escribas que tinham descido de Jerusalém diziam: <span class="fala-outro">"Ele tem Belzebu", e: "Pelo príncipe dos demônios expulsa os demônios."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, chamando-os a si, disse-lhes por parábolas: <span class="fala-jesus">"Como pode Satanás expulsar Satanás?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">E, se um reino estiver dividido contra si mesmo, tal reino não pode subsistir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E, se uma casa estiver dividida contra si mesma, tal casa não pode subsistir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E, se Satanás se levantar contra si mesmo e estiver dividido, não pode subsistir; antes, tem fim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Ninguém pode entrar na casa do homem forte e saquear os seus bens, se primeiro não amarrar o homem forte; e então saqueará a sua casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Em verdade vos digo: todos os pecados serão perdoados aos filhos dos homens, e as blasfêmias com que blasfemarem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Mas aquele que blasfemar contra o Espírito Santo nunca obterá perdão, mas é réu de eterno juízo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Porque diziam: <span class="fala-outro">"Ele tem um espírito imundo."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: A VERDADEIRA FAMÍLIA DE JESUS (3.31-35) -->
+    <div class="pericope">A Verdadeira Família de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E chegaram então seus irmãos e sua mãe; e, ficando do lado de fora, mandaram chamá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E a multidão estava assentada ao redor dele, e disseram-lhe: <span class="fala-outro">"Eis que tua mãe e teus irmãos estão lá fora e te procuram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E ele lhes respondeu, dizendo: <span class="fala-jesus">"Quem é a minha mãe, ou os meus irmãos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E, olhando ao redor para os que estavam assentados em círculo, disse: <span class="fala-jesus">"Eis a minha mãe e os meus irmãos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Porque qualquer que fizer a vontade de Deus, esse é meu irmão, e irmã, e mãe."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <!-- NOTA 1 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:1 — "Mão seca"</span>
+            <div class="greek-text">χεῖρα ἔχων ξηράν</div>
+            <p><strong>Análise:</strong> A condição da mão era visível. O termo <em>xēran</em> (ξηράν) indica atrofia ou paralisia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mão seca".</p>
+        </div>
+
+        <!-- NOTA 2 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:2 — "Para ver se o curaria no sábado"</span>
+            <div class="greek-text">παρετήρουν αὐτὸν εἰ ἐν τοῖς σάββασιν θεραπεύσει αὐτόν</div>
+            <p><strong>Análise:</strong> A observação dos adversários, buscando acusação contra Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 3 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:3 — "Levanta-te e vem para o meio"</span>
+            <div class="greek-text">ἔγειρε εἰς τὸ μέσον</div>
+            <p><strong>Análise:</strong> Jesus coloca o homem em evidência pública, desafiando os adversários.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 4 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:4 — "É lícito no sábado fazer bem ou fazer mal?"</span>
+            <div class="greek-text">ἔξεστιν τοῖς σάββασιν ἀγαθὸν ποιῆσαι ἢ κακοποιῆσαι;</div>
+            <p><strong>Análise:</strong> A pergunta de Jesus expõe a inconsistência dos adversários.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 5 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:5 — "Com indignação, entristecido pela dureza do seu coração"</span>
+            <div class="greek-text">μετ' ὀργῆς, συλλυπούμενος ἐπὶ τῇ πωρώσει τῆς καρδίας αὐτῶν</div>
+            <p><strong>Análise:</strong> A reação de Jesus diante do silêncio dos adversários — indignação e tristeza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 6 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 3:6 — "Herodianos"</span>
+            <div class="greek-text">Ἡρωδιανοί</div>
+            <p><strong>Análise:</strong> Grupo associado à casa de Herodes, como em Mateus 22:16. Aliados dos fariseus contra Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "herodianos".</p>
+        </div>
+
+         <!-- NOTA 7 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 3:8 — "Idumeia"</span>
+            <div class="greek-text">Ἰδουμαία</div>
+            <p><strong>Análise:</strong> Região ao sul da Judeia, correspondente à antiga Edom.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Idumeia".</p>
+        </div>
+
+        <!-- NOTA 8 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:9 — "Pequeno barco"</span>
+            <div class="greek-text">πλοιάριον</div>
+            <p><strong>Análise:</strong> O barco seria usado para Jesus se afastar da multidão e evitar ser apertado por ela.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pequeno barco".</p>
+        </div>
+
+        <!-- NOTA 9 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 3:11 — "Tu és o Filho de Deus"</span>
+            <div class="greek-text">σὺ εἶ ὁ υἱὸς τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A confissão dos espíritos imundos, que reconhecem a identidade divina de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <!-- NOTA 10 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:12 — "Não o dessem a conhecer"</span>
+            <div class="greek-text">μὴ φανερὸν ποιήσωσιν</div>
+            <p><strong>Análise:</strong> Jesus adverte os demônios para não revelarem sua identidade — o chamado "segredo messiânico" em Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não o dessem a conhecer".</p>
+        </div>
+
+        <!-- NOTA 11 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:14 — "Designou doze"</span>
+            <div class="greek-text">ἐποίησεν δώδεκα</div>
+            <p><strong>Análise:</strong> Literalmente "fez doze". A escolha dos doze apóstolos é um ato de autoridade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "designou doze".</p>
+        </div>
+
+        <!-- NOTA 12 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:17 — "Boanerges"</span>
+            <div class="greek-text">Βοανηργές</div>
+            <p><strong>Análise:</strong> Do aramaico. O texto diz que significa "Filhos do Trovão".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Boanerges".</p>
+        </div>
+
+        <!-- NOTA 13 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:18 — "Simão, o cananeu"</span>
+            <div class="greek-text">Σίμωνα τὸν Κανανίτην</div>
+            <p><strong>Análise:</strong> O termo <em>Kananitēs</em> é diferente de "cananeu" como designação étnica dos habitantes de Canaã; a forma grega também aparece na identificação de Simão em Mateus 10:4.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Simão, o cananeu".</p>
+        </div>
+
+        <!-- NOTA 14 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 3:19-20 — "E foram para uma casa"</span>
+            <div class="greek-text">καὶ ἔρχονται εἰς οἶκον</div>
+            <p><strong>Análise:</strong> A frase inicia uma nova cena no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "E foram para uma casa".</p>
+        </div>
+
+        <!-- NOTA 15 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:21 — "Ele está fora de si"</span>
+            <div class="greek-text">ἐξέστη</div>
+            <p><strong>Análise:</strong> A reação dos parentes de Jesus, que pensam que ele perdeu o juízo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Ele está fora de si".</p>
+        </div>
+
+        <!-- NOTA 16 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:22 — "Ele tem Belzebu"</span>
+            <div class="greek-text">Βεελζεβοὺλ ἔχει</div>
+            <p><strong>Análise:</strong> A acusação dos escribas de que Jesus opera pelo poder de Belzebu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Belzebu".</p>
+        </div>
+
+        <!-- NOTA 17 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:22 — "Pelo príncipe dos demônios expulsa os demônios"</span>
+            <div class="greek-text">ἐν τῷ ἄρχοντι τῶν δαιμονίων ἐκβάλλει τὰ δαιμόνια</div>
+            <p><strong>Análise:</strong> A mesma acusação de Mateus 12:24. Os escribas atribuem o poder de Jesus a Satanás.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 18 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:23 — "Como pode Satanás expulsar Satanás?"</span>
+            <div class="greek-text">πῶς δύναται Σατανᾶς Σατανᾶν ἐκβάλλειν;</div>
+            <p><strong>Análise:</strong> O argumento de Jesus: um reino dividido não pode subsistir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 19 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:27 — "Homem forte"</span>
+            <div class="greek-text">ἰσχυρός</div>
+            <p><strong>Análise:</strong> A parábola do homem forte, como em Mateus 12:29. O homem forte é Satanás; Jesus é o mais forte que o amarra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "homem forte".</p>
+        </div>
+
+        <!-- NOTA 20 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 3:29 — "Blasfemar contra o Espírito Santo"</span>
+            <div class="greek-text">βλασφημήσῃ εἰς τὸ πνεῦμα τὸ ἅγιον</div>
+            <p><strong>Análise:</strong> A advertência sobre a blasfêmia contra o Espírito — o pecado imperdoável.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Juízo</span>
+        </div>
+
+        <!-- NOTA 21 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:29 — "É réu de eterno juízo"</span>
+            <div class="greek-text">ἔνοχός ἐστιν αἰωνίου κρίσεως</div>
+            <p><strong>Análise:</strong> Literalmente "é culpado de juízo eterno". A expressão indica condenação eterna.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "é réu de eterno juízo".</p>
+        </div>
+
+        <!-- NOTA 22 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:30 — "Ele tem um espírito imundo"</span>
+            <div class="greek-text">πνεῦμα ἀκάθαρτον ἔχει</div>
+            <p><strong>Análise:</strong> A explicação de por que Jesus falou da blasfêmia contra o Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Ele tem um espírito imundo".</p>
+        </div>
+
+        <!-- NOTA 23 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:21 — "Seus parentes"</span>
+            <div class="greek-text">οἱ παρ' αὐτοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "os que eram dele". A tradução "seus parentes" é tradicional e contextual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seus parentes".</p>
+        </div>
+
+        <!-- NOTA 24 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:33 — "Quem é a minha mãe, ou os meus irmãos?"</span>
+            <div class="greek-text">τίς ἐστιν ἡ μήτηρ μου ἢ οἱ ἀδελφοί μου;</div>
+            <p><strong>Análise:</strong> A pergunta de Jesus redefine os laços familiares com base na obediência a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 25 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 3:35 — "Qualquer que fizer a vontade de Deus"</span>
+            <div class="greek-text">ὃς ἂν ποιήσῃ τὸ θέλημα τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A verdadeira família de Jesus é definida pela obediência a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 8</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        /* --- CABEÇALHO DO LIVRO --- */
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        /* --- GLOSSÁRIO --- */
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* --- TEXTO BÍBLICO --- */
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        /* --- SISTEMA DE CORES TBLH --- */
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+
+        /* --- APARATO TÉCNICO --- */
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO GERAL -->
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <!-- GLOSSÁRIO DE TERMOS DO CAPÍTULO 8 -->
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 8</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Dalmanuta</span>
+                Nome da região, presente no Textus Receptus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cesto</span>
+                Do grego <em>spyris</em> (σπυρίς), cesto grande, usado na segunda multiplicação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fermento dos fariseus</span>
+                A hipocrisia e falsa doutrina dos fariseus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fermento de Herodes</span>
+                A influência mundana e corrupta da casa de Herodes.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cesareia de Filipe</span>
+                Cidade ao norte da Galileia, onde Pedro confessou Jesus como Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cristo</span>
+                Do grego <em>Christos</em> (Χριστός), o Messias ungido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Alma</span>
+                Do grego <em>psychē</em> (ψυχή), termo que pode assumir sentidos como "alma" ou "vida" conforme o contexto.
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPÍTULO 8 -->
+    <div class="chapter-num">8</div>
+
+    <!-- PERÍCOPE 1: A SEGUNDA MULTIPLICAÇÃO DOS PÃES (8.1-10) -->
+    <div class="pericope">A Segunda Multiplicação dos Pães</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>aqueles dias, havendo uma grande multidão e não tendo o que comer, Jesus chamou a si os seus discípulos e disse-lhes:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-jesus">"Tenho compaixão da multidão, porque já faz três dias que permanecem comigo e não têm o que comer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">E, se eu os despedir em jejum para suas casas, desfalecerão no caminho, porque alguns deles vieram de longe."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E os seus discípulos responderam-lhe: <span class="fala-outro">"De onde poderá alguém fartá-los de pão aqui no deserto?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E perguntou-lhes: <span class="fala-jesus">"Quantos pães tendes?"</span> E eles disseram: <span class="fala-outro">"Sete."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E ordenou à multidão que se assentasse no chão. E, tomando os sete pães e tendo dado graças, partiu-os e deu-os aos seus discípulos, para que os distribuíssem; e eles os distribuíram à multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Tinham também uns poucos peixinhos; e, tendo dado graças, mandou que também os distribuíssem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E comeram e se fartaram; e levantaram, dos pedaços que sobraram, sete cestos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E os que comeram eram cerca de quatro mil. E ele os despediu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, entrando logo no barco com os seus discípulos, foi para as regiões de Dalmanuta.
+    </p>
+
+    <!-- PERÍCOPE 2: O FERMENTO DOS FARISEUS E DE HERODES (8.11-21) -->
+    <div class="pericope">O Fermento dos Fariseus e de Herodes</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E os fariseus saíram e começaram a discutir com ele, pedindo-lhe um sinal do céu, tentando-o.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, suspirando profundamente em seu espírito, disse: <span class="fala-jesus">"Por que esta geração pede um sinal? Em verdade vos digo: nenhum sinal será dado a esta geração."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, deixando-os, entrou outra vez no barco e foi para a outra margem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E os discípulos se esqueceram de levar pão; e não tinham consigo, no barco, senão um pão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E Jesus os advertiu, dizendo: <span class="fala-jesus">"Vede, guardai-vos do fermento dos fariseus e do fermento de Herodes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E discorriam entre si, dizendo: <span class="fala-outro">"É porque não temos pão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Jesus, percebendo isso, disse-lhes: <span class="fala-jesus">"Por que discorreis por não terdes pão? Ainda não percebeis nem entendeis? Ainda tendes o vosso coração endurecido?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Tendo olhos, não vedes? E, tendo ouvidos, não ouvis? E não vos lembrais?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Quando parti os cinco pães entre os cinco mil, quantos cestos cheios de pedaços levantastes?"</span> Disseram-lhe: <span class="fala-outro">"Doze."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">"E quando parti os sete pães entre os quatro mil, quantos cestos cheios de pedaços levantastes?"</span> E disseram-lhe: <span class="fala-outro">"Sete."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E ele lhes disse: <span class="fala-jesus">"Como ainda não entendeis?"</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A CURA DO CEGO DE BETSAIDA (8.22-26) -->
+    <div class="pericope">A Cura do Cego de Betsaida</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E chegaram a Betsaida. E trouxeram-lhe um cego, e rogaram-lhe que o tocasse.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, tomando o cego pela mão, levou-o para fora da aldeia. E, cuspindo-lhe nos olhos e impondo-lhe as mãos, perguntou-lhe: <span class="fala-jesus">"Vês alguma coisa?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, levantando ele os olhos, disse: <span class="fala-outro">"Vejo os homens, porque os vejo como árvores, andando."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Então Jesus pôs outra vez as mãos sobre os seus olhos, e ele olhou atentamente; e foi restaurado, e via claramente a todos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E enviou-o para sua casa, dizendo: <span class="fala-jesus">"Não entres na aldeia, nem o digas a ninguém na aldeia."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A CONFISSÃO DE PEDRO E A PRIMEIRA PREDIÇÃO DA PAIXÃO (8.27-38) -->
+    <div class="pericope">A Confissão de Pedro e a Primeira Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E saiu Jesus e os seus discípulos para as aldeias de Cesareia de Filipe. E no caminho perguntou aos seus discípulos, dizendo-lhes: <span class="fala-jesus">"Quem dizem os homens que eu sou?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E eles responderam: <span class="fala-outro">"João Batista; e outros, Elias; mas outros, um dos profetas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E ele lhes disse: <span class="fala-jesus">"E vós, quem dizeis que eu sou?"</span> E Pedro, respondendo, disse-lhe: <span class="fala-outro">"Tu és o Cristo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E advertiu-os para que a ninguém dissessem a seu respeito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E começou a ensinar-lhes que era necessário que o Filho do homem padecesse muitas coisas, e fosse rejeitado pelos anciãos, e pelos principais dos sacerdotes, e pelos escribas, e fosse morto, e depois de três dias ressuscitasse.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E dizia abertamente esta palavra. E Pedro, tomando-o à parte, começou a repreendê-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Mas ele, voltando-se e olhando para os seus discípulos, repreendeu Pedro, dizendo: <span class="fala-jesus">"Para trás de mim, Satanás; porque não pensas nas coisas que são de Deus, mas nas que são dos homens."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E, chamando a si a multidão, com os seus discípulos, disse-lhes: <span class="fala-jesus">"Qualquer que quiser vir após mim, negue-se a si mesmo, tome a sua cruz e siga-me.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Porque qualquer que quiser salvar a sua vida a perderá; mas qualquer que perder a sua vida por amor de mim e do evangelho, esse a salvará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Pois que aproveitaria ao homem ganhar o mundo inteiro e perder a sua alma?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Ou que daria o homem em troca da sua alma?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Porque qualquer que se envergonhar de mim e das minhas palavras, nesta geração adúltera e pecadora, também o Filho do homem se envergonhará dele, quando vier na glória de seu Pai, com os santos anjos."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <!-- NOTA 1 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:1 — "Grande multidão"</span>
+            <div class="greek-text">πολλοῦ ὄχλου</div>
+            <p><strong>Análise:</strong> A segunda multiplicação de pães em Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grande multidão".</p>
+        </div>
+
+        <!-- NOTA 2 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:5-6 — "Sete pães"</span>
+            <div class="greek-text">ἑπτὰ ἄρτους</div>
+            <p><strong>Análise:</strong> A segunda multiplicação, como em Mateus 15.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sete pães".</p>
+        </div>
+
+        <!-- NOTA 3 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 8:8 — "Sete cestos"</span>
+            <div class="greek-text">σπυρίδας ἑπτά</div>
+            <p><strong>Análise:</strong> Marcos utiliza <em>spyrides</em> (σπυρίδες), termo que designa cestos grandes. Na primeira multiplicação, em Marcos 6:43, aparecem <em>kophinoi</em> (κόφινοι), cestos menores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a distinção entre os dois termos.</p>
+        </div>
+
+        <!-- NOTA 4 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:9 — "Cerca de quatro mil"</span>
+            <div class="greek-text">τετρακισχίλιοι</div>
+            <p><strong>Análise:</strong> A contagem dos que comeram.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cerca de quatro mil".</p>
+        </div>
+
+        <!-- NOTA 5 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:10 — "Dalmanuta"</span>
+            <div class="greek-text">Δαλμανουθά</div>
+            <p><strong>Análise:</strong> Nome da região, presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Dalmanuta".</p>
+        </div>
+
+        <!-- NOTA 6 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:11 — "Sinal do céu"</span>
+            <div class="greek-text">σημεῖον ἀπὸ τοῦ οὐρανοῦ</div>
+            <p><strong>Análise:</strong> A demanda dos fariseus por um sinal miraculoso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinal do céu".</p>
+        </div>
+
+        <!-- NOTA 7 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 8:12 — "Nenhum sinal será dado"</span>
+            <div class="greek-text">εἰ δοθήσεται τῇ γενεᾷ ταύτῃ σημεῖον</div>
+            <p><strong>Análise:</strong> A resposta de Jesus em Marcos, diferente de Mateus 12:39, que menciona Jonas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Marcos.</p>
+        </div>
+
+        <!-- NOTA 8 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:15 — "Fermento dos fariseus e fermento de Herodes"</span>
+            <div class="greek-text">τῆς ζύμης τῶν Φαρισαίων καὶ τῆς ζύμης Ἡρῴδου</div>
+            <p><strong>Análise:</strong> Marcos menciona também Herodes, ao contrário de Mateus 16:6, que menciona apenas o fermento dos fariseus e saduceus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a menção a Herodes.</p>
+        </div>
+
+        <!-- NOTA 9 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 8:14 — "Um pão"</span>
+            <div class="greek-text">ἕνα ἄρτον</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um pão".</p>
+        </div>
+
+        <!-- NOTA 10 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:19 — "Doze"</span>
+            <div class="greek-text">δώδεκα</div>
+            <p><strong>Análise:</strong> Os cestos da primeira multiplicação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Doze".</p>
+        </div>
+
+        <!-- NOTA 11 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:20 — "Sete"</span>
+            <div class="greek-text">ἑπτά</div>
+            <p><strong>Análise:</strong> Os cestos da segunda multiplicação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Sete".</p>
+        </div>
+
+        <!-- NOTA 12 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 8:22-25 — "Cego de Betsaida"</span>
+            <div class="greek-text">τυφλόν</div>
+            <p><strong>Análise:</strong> A cura gradual, exclusiva de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a narrativa exclusiva de Marcos.</p>
+        </div>
+
+        <!-- NOTA 13 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:24 — "Vejo os homens, porque os vejo como árvores, andando"</span>
+            <div class="greek-text">βλέπω τοὺς ἀνθρώπους ὅτι ὡς δένδρα ὁρῶ περιπατοῦντας</div>
+            <p><strong>Análise:</strong> A visão parcial do cego antes da cura completa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <!-- NOTA 14 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:26 — "Não entres na aldeia"</span>
+            <div class="greek-text">μήτε εἰς τὴν κώμην εἰσέλθῃς</div>
+            <p><strong>Análise:</strong> A ordem de Jesus para que o homem não entrasse na aldeia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Não entres na aldeia".</p>
+        </div>
+
+        <!-- NOTA 15 -->
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 8:27 — "Cesareia de Filipe"</span>
+            <div class="greek-text">Καισαρείας τῆς Φιλίππου</div>
+            <p><strong>Análise:</strong> Cidade ao norte da Galileia, como em Mateus 16:13.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cesareia de Filipe".</p>
+        </div>
+
+        <!-- NOTA 16 -->
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 8:29 — "Tu és o Cristo"</span>
+            <div class="greek-text">σὺ εἶ ὁ Χριστός</div>
+            <p><strong>Análise:</strong> A confissão de Pedro, sem o acréscimo "Filho do Deus vivo" como em Mateus 16:16.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a confissão conforme Marcos.</p>
+        </div>
+
+        <!-- NOTA 17 -->
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 8:31 — "Depois de três dias"</span>
+            <div class="greek-text">μετὰ τρεῖς ἡμέρας</div>
+            <p><strong>Análise:</strong> A primeira predição da paixão em Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "depois de três dias".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <!-- NOTA 18 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:32 — "Dizia abertamente esta palavra"</span>
+            <div class="greek-text">παρρησίᾳ τὸν λόγον ἐλάλει</div>
+            <p><strong>Análise:</strong> Jesus falava abertamente sobre sua morte e ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dizia abertamente esta palavra".</p>
+        </div>
+
+        <!-- NOTA 19 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:33 — "Para trás de mim, Satanás"</span>
+            <div class="greek-text">ὕπαγε ὀπίσω μου, Σατανᾶ</div>
+            <p><strong>Análise:</strong> A repreensão a Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Para trás de mim, Satanás".</p>
+        </div>
+
+        <!-- NOTA 20 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:36-37 — "Alma"</span>
+            <div class="greek-text">ψυχή</div>
+            <p><strong>Análise:</strong> Termo que pode assumir sentidos como "alma" ou "vida" conforme o contexto. Aqui a TBLH mantém "alma", preservando a repetição do termo nos dois versículos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alma".</p>
+        </div>
+
+        <!-- NOTA 21 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:38 — "Geração adúltera e pecadora"</span>
+            <div class="greek-text">γενεᾷ ταύτῃ τῇ μοιχαλίδι καὶ ἁμαρτωλῷ</div>
+            <p><strong>Análise:</strong> A descrição da geração que rejeita Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "geração adúltera e pecadora".</p>
+        </div>
+
+        <!-- NOTA 22 -->
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 8:38 — "Santos anjos"</span>
+            <div class="greek-text">τῶν ἀγγέλων τῶν ἁγίων</div>
+            <p><strong>Análise:</strong> Como em Mateus 25:31.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "santos anjos".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

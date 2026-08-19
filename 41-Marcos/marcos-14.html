@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 14</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 14</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Nardo puro</span>
+                Do grego <em>nardou pistikēs</em> (νάρδου πιστικῆς). Unguento de grande valor, de origem indiana.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Denário</span>
+                Moeda romana equivalente a um dia de trabalho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aba</span>
+                Do aramaico, termo de tratamento familiar para "Pai".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Getsêmani</span>
+                Do aramaico, "lago de imprensa de azeite", local da oração de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sinédrio</span>
+                O conselho supremo judaico, composto por sacerdotes, anciãos e escribas.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">14</div>
+
+    <!-- PERÍCOPE 1: A UNÇÃO EM BETÂNIA (14.1-11) -->
+    <div class="pericope">A Unção em Betânia</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, dali a dois dias, era a Páscoa e a festa dos pães sem fermento. E os principais dos sacerdotes e os escribas procuravam como o prender com dolo e matar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Mas diziam: <span class="fala-outro">"Não durante a festa, para que não haja tumulto entre o povo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, estando ele em Betânia, na casa de Simão, o leproso, assentado à mesa, veio uma mulher com um vaso de alabastro de unguento de nardo puro, de grande valor; e, quebrando o vaso, derramou-lho sobre a cabeça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E alguns se indignaram entre si e disseram: <span class="fala-outro">"Para que se fez este desperdício de unguento?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">Porque podia vender-se este unguento por mais de trezentos denários, e dar-se aos pobres."</span> E murmuravam contra ela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas Jesus disse: <span class="fala-jesus">"Deixai-a. Por que a molestais? Ela praticou uma boa obra para comigo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Porque sempre tendes os pobres convosco, e podeis fazer-lhes bem quando quiserdes; mas a mim nem sempre me tendes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Ela fez o que podia; antecipou-se a ungir o meu corpo para o sepultamento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Em verdade vos digo: onde quer que este evangelho for pregado, em todo o mundo, também o que ela fez será contado para memória dela."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E Judas Iscariotes, um dos doze, foi aos principais dos sacerdotes para lho entregar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E eles, ouvindo-o, alegraram-se e prometeram dar-lhe dinheiro. E ele buscava como o entregaria em ocasião oportuna.
+    </p>
+
+    <!-- PERÍCOPE 2: A PREPARAÇÃO DA PÁSCOA (14.12-16) -->
+    <div class="pericope">A Preparação da Páscoa</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, no primeiro dia dos pães sem fermento, quando sacrificavam a Páscoa, os seus discípulos lhe disseram: <span class="fala-outro">"Onde queres que vamos preparar para comeres a Páscoa?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E ele enviou dois dos seus discípulos e disse-lhes: <span class="fala-jesus">"Ide à cidade, e um homem vos sairá ao encontro, carregando um cântaro de água; segui-o.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E, onde ele entrar, dizei ao dono da casa: 'O Mestre diz: Onde está o aposento em que hei de comer a Páscoa com os meus discípulos?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E ele vos mostrará uma grande sala superior, mobiliada e preparada. Fazei ali os preparativos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E os discípulos saíram e foram à cidade, e acharam como lhes tinha dito; e prepararam a Páscoa.
+    </p>
+
+    <!-- PERÍCOPE 3: A ÚLTIMA CEIA (14.17-26) -->
+    <div class="pericope">A Última Ceia</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, chegada a tarde, foi com os doze.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, estando eles assentados e comendo, Jesus disse: <span class="fala-jesus">"Em verdade vos digo: um de vós, que come comigo, me trairá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E eles começaram a entristecer-se e a dizer-lhe um após outro: <span class="fala-outro">"Por acaso sou eu?"</span> E outro: <span class="fala-outro">"Por acaso sou eu?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"É um dos doze, o que mete comigo a mão no prato.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Na verdade o Filho do homem vai, como está escrito a seu respeito; mas ai daquele homem por quem o Filho do homem é traído! Bom seria para aquele homem não haver nascido."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, comendo eles, Jesus tomou o pão e, tendo dado graças, partiu-o e deu-lhes, dizendo: <span class="fala-jesus">"Tomai, comei. Isto é o meu corpo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, tomando o cálice e tendo dado graças, deu-lhes; e todos beberam dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E disse-lhes: <span class="fala-jesus">"Isto é o meu sangue, o sangue do novo testamento, que é derramado por muitos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Em verdade vos digo: não beberei mais do fruto da videira até aquele dia em que o beba novo no reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E, tendo cantado um hino, saíram para o monte das Oliveiras.
+    </p>
+
+    <!-- PERÍCOPE 4: A PREDIÇÃO DA NEGAÇÃO DE PEDRO (14.27-31) -->
+    <div class="pericope">A Predição da Negação de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Todos vós vos escandalizareis em mim esta noite; porque está escrito: 'Ferirei o pastor, e as ovelhas se dispersarão.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Mas, depois que eu ressuscitar, irei adiante de vós para a Galileia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E Pedro lhe disse: <span class="fala-outro">"Ainda que todos se escandalizem, eu, porém, não."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Em verdade te digo: hoje, nesta noite, antes que o galo cante duas vezes, três vezes me negarás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Mas ele dizia com mais veemência: <span class="fala-outro">"Ainda que me seja necessário morrer contigo, de modo nenhum te negarei."</span> E da mesma forma diziam todos.
+    </p>
+
+    <!-- PERÍCOPE 5: A ORAÇÃO NO GETSÊMANI (14.32-42) -->
+    <div class="pericope">A Oração no Getsêmani</div>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E foram a um lugar chamado Getsêmani. E ele disse aos seus discípulos: <span class="fala-jesus">"Assentai-vos aqui, enquanto eu oro."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E levou consigo Pedro, Tiago e João. E começou a espantar-se e a angustiar-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E disse-lhes: <span class="fala-jesus">"A minha alma está profundamente triste até a morte. Ficai aqui e vigiai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, indo um pouco adiante, prostrou-se em terra e orou para que, se fosse possível, passasse dele aquela hora.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E disse: <span class="fala-jesus">"Aba, Pai, todas as coisas te são possíveis. Afasta de mim este cálice; mas não seja o que eu quero, e sim o que tu queres."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E veio e achou-os dormindo. E disse a Pedro: <span class="fala-jesus">"Simão, dormes? Não pudeste vigiar nem uma hora?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Vigiai e orai, para que não entreis em tentação. Na verdade o espírito está pronto, mas a carne é fraca."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E foi outra vez e orou, dizendo as mesmas palavras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E, voltando, achou-os outra vez dormindo, porque os seus olhos estavam pesados. E não sabiam o que lhe responder.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E veio pela terceira vez e disse-lhes: <span class="fala-jesus">"Dormi agora e descansai. Basta. A hora chegou. Eis que o Filho do homem está sendo entregue nas mãos dos pecadores.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">Levantai-vos, vamos. Eis que está próximo o que me trai."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: A PRISÃO DE JESUS (14.43-52) -->
+    <div class="pericope">A Prisão de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E logo, enquanto ele ainda falava, chegou Judas, um dos doze, e com ele uma grande multidão com espadas e porretes, enviada pelos principais dos sacerdotes, escribas e anciãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E o que o traía lhes tinha dado um sinal, dizendo: <span class="fala-outro">"Aquele que eu beijar, é esse; prendei-o e levai-o com segurança."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, assim que chegou, aproximou-se dele e disse: <span class="fala-outro">"Rabi, Rabi!"</span> E o beijou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E eles lançaram mão dele e o prenderam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E um dos que ali estavam, puxando a espada, feriu o servo do sumo sacerdote e cortou-lhe a orelha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Saístes com espadas e porretes para me prender, como contra um salteador?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">Todos os dias eu estava convosco no templo, ensinando, e não me prendestes. Mas isto é para que as Escrituras se cumpram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Então, deixando-o, todos fugiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E um jovem o seguia, envolto apenas num lençol de linho sobre o corpo nu. E os jovens o prenderam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        Mas ele, largando o lençol, fugiu nu.
+    </p>
+
+    <!-- PERÍCOPE 7: O JULGAMENTO PERANTE O SINÉDRIO (14.53-65) -->
+    <div class="pericope">O Julgamento Perante o Sinédrio</div>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E levaram Jesus ao sumo sacerdote. E reuniram-se com ele todos os principais dos sacerdotes, os anciãos e os escribas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E Pedro o seguiu de longe até dentro do pátio do sumo sacerdote. E estava assentado com os servos, aquecendo-se ao fogo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        E os principais dos sacerdotes e todo o sinédrio procuravam testemunho contra Jesus para o matar, e não o achavam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        Porque muitos testificavam falsamente contra ele, mas os testemunhos não eram coerentes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        E alguns, levantando-se, testificavam falsamente contra ele, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        <span class="fala-outro">"Nós o ouvimos dizer: 'Eu destruirei este templo feito por mãos, e em três dias edificarei outro não feito por mãos.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        E nem assim o testemunho deles era coerente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        E o sumo sacerdote, levantando-se no meio, perguntou a Jesus, dizendo: <span class="fala-outro">"Nada respondes? Que é isto que estes testificam contra ti?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">61</span>
+        Mas ele permaneceu calado, e nada respondeu. O sumo sacerdote tornou a perguntar-lhe e disse-lhe: <span class="fala-outro">"És tu o Cristo, o Filho do Bendito?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">62</span>
+        E Jesus disse: <span class="fala-jesus">"Eu sou. E vereis o Filho do homem assentado à direita do Poder, e vindo com as nuvens do céu."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">63</span>
+        E o sumo sacerdote, rasgando as suas vestes, disse: <span class="fala-outro">"Que necessidade temos ainda de testemunhas?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">64</span>
+        <span class="fala-outro">Ouvistes a blasfêmia. Que vos parece?"</span> E todos o condenaram como réu de morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">65</span>
+        E alguns começaram a cuspir nele, e a cobrir-lhe o rosto, e a esbofeteá-lo, e a dizer-lhe: <span class="fala-outro">"Profetiza!"</span> E os servos o feriam com as palmas das mãos.
+    </p>
+
+    <!-- PERÍCOPE 8: A NEGAÇÃO DE PEDRO (14.66-72) -->
+    <div class="pericope">A Negação de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">66</span>
+        E, estando Pedro embaixo, no pátio, veio uma das servas do sumo sacerdote.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">67</span>
+        E, vendo Pedro, que se aquecia, olhou para ele e disse: <span class="fala-outro">"Tu também estavas com Jesus, o Nazareno."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">68</span>
+        Mas ele negou, dizendo: <span class="fala-outro">"Não o conheço, nem sei o que dizes."</span> E saiu para fora, ao alpendre. E o galo cantou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">69</span>
+        E a serva, vendo-o outra vez, começou a dizer aos que ali estavam: <span class="fala-outro">"Este é um deles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">70</span>
+        Mas ele o negou outra vez. E, pouco depois, os que ali estavam disseram outra vez a Pedro: <span class="fala-outro">"Verdadeiramente tu és um deles, porque és galileu, e a tua fala é semelhante."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">71</span>
+        E ele começou a praguejar e a jurar: <span class="fala-outro">"Não conheço esse homem de quem falais."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">72</span>
+        E o galo cantou segunda vez. E Pedro lembrou-se da palavra que Jesus lhe dissera: "Antes que o galo cante duas vezes, três vezes me negarás." E, pensando nisso, chorava.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:1 — "Páscoa e festa dos pães sem fermento"</span>
+            <div class="greek-text">τὸ πάσχα καὶ τὰ ἄζυμα</div>
+            <p><strong>Análise:</strong> As duas festas aparecem associadas no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 14:3 — "Nardo puro"</span>
+            <div class="greek-text">νάρδου πιστικῆς</div>
+            <p><strong>Análise:</strong> Expressão cujo sentido exato é discutido; "nardo puro" é uma tradução tradicional.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nardo puro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:5 — "Mais de trezentos denários"</span>
+            <div class="greek-text">τριακοσίων δηναρίων</div>
+            <p><strong>Análise:</strong> Valor elevado para o unguento mencionado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mais de trezentos denários".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:8 — "Antecipou-se a ungir"</span>
+            <div class="greek-text">προέλαβεν μυρίσαι</div>
+            <p><strong>Análise:</strong> Jesus interpreta o ato da mulher em relação ao seu sepultamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:11 — "Dinheiro"</span>
+            <div class="greek-text">ἀργύριον</div>
+            <p><strong>Análise:</strong> Literalmente relacionado à prata; pode designar dinheiro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dinheiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:13 — "Cântaro de água"</span>
+            <div class="greek-text">κεράμιον</div>
+            <p><strong>Análise:</strong> Recipiente usado para transportar água.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cântaro de água".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:15 — "Sala superior"</span>
+            <div class="greek-text">ἀνώγεον</div>
+            <p><strong>Análise:</strong> Aposento situado na parte superior da casa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sala superior".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:24 — "Novo testamento"</span>
+            <div class="greek-text">καινῆς διαθήκης</div>
+            <p><strong>Análise:</strong> Expressão tradicionalmente traduzida como "novo testamento" ou "nova aliança".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "novo testamento".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 14:27 — "Ferirei o pastor"</span>
+            <div class="greek-text">πατάξω τὸν ποιμένα</div>
+            <p><strong>Análise:</strong> Citação de Zacarias 13:7.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:30 — "Antes que o galo cante duas vezes"</span>
+            <div class="greek-text">πρὶν ἢ δὶς ἀλέκτορα φωνῆσαι</div>
+            <p><strong>Análise:</strong> A predição específica de Jesus sobre as três negações de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:36 — "Aba, Pai"</span>
+            <div class="greek-text">Ἀββᾶ ὁ πατήρ</div>
+            <p><strong>Análise:</strong> Marcos preserva o termo aramaico <em>Abba</em> e acrescenta "Pai".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Aba" com a tradução "Pai".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:36 — "Afasta de mim este cálice"</span>
+            <div class="greek-text">παρένεγκε τὸ ποτήριον τοῦτο ἀπ' ἐμοῦ</div>
+            <p><strong>Análise:</strong> A oração de Jesus no Getsêmani.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 14:41 — "Basta"</span>
+            <div class="greek-text">ἀπέχει</div>
+            <p><strong>Análise:</strong> Expressão de interpretação discutida; o sentido exato neste contexto é incerto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Basta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:48 — "Salteador"</span>
+            <div class="greek-text">λῃστής</div>
+            <p><strong>Análise:</strong> Termo usado para alguém que pratica roubo ou violência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "salteador".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 14:51-52 — "Jovem envolto num lençol"</span>
+            <div class="greek-text">νεανίσκος ... περιβεβλημένος σινδόνα</div>
+            <p><strong>Análise:</strong> Episódio exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a narrativa exclusiva.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:61 — "Filho do Bendito"</span>
+            <div class="greek-text">υἱὸς τοῦ εὐλογητοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "Filho do Bendito".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Filho do Bendito".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 14:62 — "Eu sou"</span>
+            <div class="greek-text">ἐγώ εἰμι</div>
+            <p><strong>Análise:</strong> Resposta direta de Jesus à pergunta do sumo sacerdote.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Eu sou".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:62 — "À direita do Poder"</span>
+            <div class="greek-text">ἐκ δεξιῶν τῆς δυνάμεως</div>
+            <p><strong>Análise:</strong> Expressão que se refere à posição de autoridade junto ao Poder.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "à direita do Poder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:64 — "Réu de morte"</span>
+            <div class="greek-text">ἔνοχον θανάτου</div>
+            <p><strong>Análise:</strong> A decisão do conselho contra Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "réu de morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 14:68, 72 — "O galo cantou"</span>
+            <div class="greek-text">ὁ ἀλέκτωρ ἐφώνησεν</div>
+            <p><strong>Análise:</strong> O segundo canto do galo marca o cumprimento da palavra de Jesus a Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

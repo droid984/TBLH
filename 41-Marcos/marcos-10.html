@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 10</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 10</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Carta de divórcio</span>
+                Do grego <em>biblion apostasiou</em> (βιβλίον ἀποστασίου). Documento legal de separação, conforme Deuteronômio 24:1.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cálice</span>
+                Símbolo do sofrimento e da morte que Jesus haveria de enfrentar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Batismo</span>
+                Símbolo da imersão no sofrimento e na morte.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Resgate</span>
+                Do grego <em>lytron</em> (λύτρον). Preço pago para libertar alguém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Rabôni</span>
+                Termo aramaico de tratamento, geralmente entendido como "meu Mestre".
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">10</div>
+
+    <!-- PERÍCOPE 1: O DIVÓRCIO (10.1-12) -->
+    <div class="pericope">O Divórcio</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, levantando-se dali, foi para os confins da Judeia, além do Jordão. E as multidões se ajuntaram outra vez a ele; e, como costumava, tornou a ensiná-las.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, aproximando-se os fariseus, perguntaram-lhe, para o tentarem: <span class="fala-outro">"É lícito ao homem divorciar-se de sua mulher?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"Que vos ordenou Moisés?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E eles disseram: <span class="fala-outro">"Moisés permitiu escrever carta de divórcio e despedir."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Pela dureza do vosso coração ele vos escreveu este mandamento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Porém, desde o princípio da criação, Deus os fez macho e fêmea.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Por isso o homem deixará seu pai e sua mãe, e se unirá à sua mulher,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">e os dois serão uma só carne. Assim já não são mais dois, mas uma só carne.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Portanto, o que Deus ajuntou, não o separe o homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, em casa, os seus discípulos tornaram a perguntar-lhe acerca do mesmo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E ele lhes disse: <span class="fala-jesus">"Qualquer que se divorciar de sua mulher e casar com outra comete adultério contra ela.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E, se a mulher se divorciar de seu marido e casar com outro, comete adultério."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS E AS CRIANÇAS (10.13-16) -->
+    <div class="pericope">Jesus e as Crianças</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E traziam-lhe crianças para que as tocasse; mas os discípulos repreendiam os que as traziam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E Jesus, vendo isso, indignou-se e disse-lhes: <span class="fala-jesus">"Deixai vir a mim as crianças, e não as impeçais; porque dos tais é o reino de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Em verdade vos digo: qualquer que não receber o reino de Deus como uma criança, de modo nenhum entrará nele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, tomando-as nos braços, impondo-lhes as mãos, as abençoava.
+    </p>
+
+    <!-- PERÍCOPE 3: O HOMEM RICO (10.17-31) -->
+    <div class="pericope">O Homem Rico</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, saindo ele para o caminho, correu um homem, e ajoelhou-se diante dele, e perguntou-lhe: <span class="fala-outro">"Bom Mestre, que farei para herdar a vida eterna?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Por que me chamas bom? Ninguém é bom, senão um, que é Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Conheces os mandamentos: Não adulterarás, não matarás, não furtarás, não darás falso testemunho, não defraudarás, honra teu pai e tua mãe."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Mas ele, respondendo, disse-lhe: <span class="fala-outro">"Mestre, tudo isso tenho guardado desde a minha juventude."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E Jesus, olhando para ele, o amou e disse-lhe: <span class="fala-jesus">"Uma coisa te falta: vai, vende tudo o que tens e dá aos pobres, e terás um tesouro no céu; depois vem, toma a cruz e segue-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas ele, entristecido com esta palavra, retirou-se triste, porque possuía muitas propriedades.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Então Jesus, olhando ao redor, disse aos seus discípulos: <span class="fala-jesus">"Quão dificilmente entrarão no reino de Deus os que têm riquezas!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E os discípulos se admiravam das suas palavras. Mas Jesus, respondendo outra vez, disse-lhes: <span class="fala-jesus">"Filhos, quão difícil é para os que confiam nas riquezas entrar no reino de Deus!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">É mais fácil um camelo passar pelo fundo de uma agulha do que um rico entrar no reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E eles se admiravam ainda mais, dizendo entre si: <span class="fala-outro">"Quem poderá, então, salvar-se?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Mas Jesus, olhando para eles, disse: <span class="fala-jesus">"Para os homens é impossível, mas não para Deus; porque para Deus todas as coisas são possíveis."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E Pedro começou a dizer-lhe: <span class="fala-outro">"Eis que nós deixamos tudo e te seguimos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E Jesus, respondendo, disse: <span class="fala-jesus">"Em verdade vos digo: ninguém há que tenha deixado casa, ou irmãos, ou irmãs, ou pai, ou mãe, ou mulher, ou filhos, ou terras, por amor de mim e do evangelho,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">que não receba cem vezes tanto, já neste tempo, em casas, e irmãos, e irmãs, e mães, e filhos, e terras, com perseguições; e, no mundo vindouro, a vida eterna.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Mas muitos primeiros serão últimos, e os últimos, primeiros."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A TERCEIRA PREDIÇÃO DA PAIXÃO (10.32-34) -->
+    <div class="pericope">A Terceira Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E estavam no caminho, subindo para Jerusalém; e Jesus ia adiante deles. E eles se admiravam e, seguindo-o, temiam. E, tomando outra vez os doze, começou a dizer-lhes o que lhe havia de acontecer:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">"Eis que subimos a Jerusalém, e o Filho do homem será entregue aos principais dos sacerdotes e aos escribas, e o condenarão à morte, e o entregarão aos gentios.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">E o escarnecerão, e o açoitarão, e cuspirão nele, e o matarão; e ao terceiro dia ressuscitará."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: O PEDIDO DE TIAGO E JOÃO (10.35-45) -->
+    <div class="pericope">O Pedido de Tiago e João</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E aproximaram-se dele Tiago e João, filhos de Zebedeu, dizendo: <span class="fala-outro">"Mestre, queremos que nos faças o que te pedirmos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E ele lhes disse: <span class="fala-jesus">"Que quereis que eu vos faça?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E eles lhe disseram: <span class="fala-outro">"Concede-nos que, na tua glória, nos assentemos, um à tua direita e outro à tua esquerda."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Mas Jesus lhes disse: <span class="fala-jesus">"Não sabeis o que pedis. Podeis vós beber o cálice que eu bebo, e ser batizados com o batismo com que eu sou batizado?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E eles lhe disseram: <span class="fala-outro">"Podemos."</span> E Jesus lhes disse: <span class="fala-jesus">"Na verdade bebereis o cálice que eu bebo, e sereis batizados com o batismo com que eu sou batizado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Mas o assentar-se à minha direita ou à minha esquerda não me pertence dá-lo; mas será para aqueles para quem está preparado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E os dez, ouvindo isso, começaram a indignar-se contra Tiago e João.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        Mas Jesus, chamando-os a si, disse-lhes: <span class="fala-jesus">"Sabeis que os que parecem governar os gentios os dominam, e os seus grandes exercem autoridade sobre eles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Mas entre vós não será assim. Antes, qualquer que quiser tornar-se grande entre vós será vosso servo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">E qualquer que entre vós quiser ser o primeiro será servo de todos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Porque também o Filho do homem não veio para ser servido, mas para servir e dar a sua vida em resgate por muitos."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: BARTIMEU (10.46-52) -->
+    <div class="pericope">Bartimeu</div>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E chegaram a Jericó. E, saindo ele de Jericó com os seus discípulos e uma grande multidão, Bartimeu, o cego, filho de Timeu, estava assentado junto ao caminho, mendigando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E, ouvindo que era Jesus de Nazaré, começou a clamar e a dizer: <span class="fala-outro">"Jesus, Filho de Davi, tem compaixão de mim!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E muitos o repreendiam, para que se calasse. Mas ele clamava ainda mais: <span class="fala-outro">"Filho de Davi, tem compaixão de mim!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E Jesus, parando, disse que o chamassem. E chamaram o cego, dizendo-lhe: <span class="fala-outro">"Tem ânimo; levanta-te, ele te chama."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        E ele, lançando de si a sua capa, levantou-se e foi a Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Que queres que eu te faça?"</span> E o cego lhe disse: <span class="fala-outro">"Rabôni, que eu veja."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Vai, a tua fé te salvou."</span> E imediatamente ele viu, e seguia a Jesus pelo caminho.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:4 — "Carta de divórcio"</span>
+            <div class="greek-text">βιβλίον ἀποστασίου</div>
+            <p><strong>Análise:</strong> Referência a Deuteronômio 24:1.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "carta de divórcio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:5 — "Pela dureza do vosso coração"</span>
+            <div class="greek-text">πρὸς τὴν σκληροκαρδίαν ὑμῶν</div>
+            <p><strong>Análise:</strong> A explicação de Jesus sobre a permissão de Moisés.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:6 — "Desde o princípio da criação"</span>
+            <div class="greek-text">ἀπὸ δὲ ἀρχῆς κτίσεως</div>
+            <p><strong>Análise:</strong> A referência ao relato da criação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:7-8 — "Uma só carne"</span>
+            <div class="greek-text">ἔσονται οἱ δύο εἰς σάρκα μίαν</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 2:24.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 10:12 — "Se a mulher se divorciar"</span>
+            <div class="greek-text">ἐὰν γυνὴ ἀπολύσῃ τὸν ἄνδρα αὐτῆς</div>
+            <p><strong>Análise:</strong> Marcos menciona o caso da mulher que se divorcia, particularidade presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:19 — "Não defraudarás"</span>
+            <div class="greek-text">μὴ ἀποστερήσῃς</div>
+            <p><strong>Análise:</strong> Mandamento citado por Jesus, específico em Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não defraudarás".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 10:21 — "Toma a cruz"</span>
+            <div class="greek-text">ἆρον τὸν σταυρόν</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz a expressão "toma a cruz" após "vem" e antes de "segue-me".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 10:24 — "Os que confiam nas riquezas"</span>
+            <div class="greek-text">τοὺς πεποιθότας ἐπὶ χρήμασιν</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui a expressão "os que confiam nas riquezas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:30 — "Com perseguições"</span>
+            <div class="greek-text">μετὰ διωγμῶν</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com perseguições".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 10:34 — "Cuspirão nele"</span>
+            <div class="greek-text">ἐμπτύσουσιν αὐτῷ</div>
+            <p><strong>Análise:</strong> Detalhe da predição da paixão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cuspirão nele".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:38 — "Cálice" e "batismo"</span>
+            <div class="greek-text">τὸ ποτήριον ... τὸ βάπτισμα</div>
+            <p><strong>Análise:</strong> Símbolos do sofrimento e da morte que Jesus haveria de enfrentar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:42 — "Os que parecem governar"</span>
+            <div class="greek-text">οἱ δοκοῦντες ἄρχειν</div>
+            <p><strong>Análise:</strong> Literalmente "os que parecem governar".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os que parecem governar".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 10:45 — "Resgate por muitos"</span>
+            <div class="greek-text">λύτρον ἀντὶ πολλῶν</div>
+            <p><strong>Análise:</strong> Como em Mateus 20:28. O termo <em>lytron</em> indica o preço pago para libertar alguém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "resgate por muitos".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 10:46 — "Bartimeu, o cego, filho de Timeu"</span>
+            <div class="greek-text">Βαρτιμαῖος ὁ τυφλός, υἱὸς Τιμαίου</div>
+            <p><strong>Análise:</strong> O nome do cego, exclusivo de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Bartimeu, o cego, filho de Timeu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 10:51 — "Rabôni"</span>
+            <div class="hebrew-text">רַבּוֹנִי</div>
+            <p><strong>Análise:</strong> Termo aramaico de tratamento, geralmente entendido como "meu Mestre". O termo também aparece em João 20:16.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Rabôni".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

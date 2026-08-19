@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 13</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 13</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Abominação da desolação</span>
+                Do grego <em>bdeligma tēs erēmōseōs</em> (βδέλυγμα τῆς ἐρημώσεως). Termo profético de Daniel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sinédrios</span>
+                Do grego <em>synedria</em> (συνέδρια). Conselhos ou tribunais judaicos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Princípio das dores</span>
+                Do grego <em>archē ōdinōn</em> (ἀρχὴ ὠδίνων). Metáfora para os sofrimentos que precedem o fim.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Porteiro</span>
+                Do grego <em>thyrōros</em> (θυρωρός). Responsável pela porta na parábola.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">13</div>
+
+    <!-- PERÍCOPE 1: A DESTRUIÇÃO DO TEMPLO PREDITA (13.1-2) -->
+    <div class="pericope">A Destruição do Templo Preditada</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, saindo ele do templo, disse-lhe um dos seus discípulos: <span class="fala-outro">"Mestre, vê que pedras e que construções!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Vês estas grandes construções? Não ficará pedra sobre pedra que não seja derrubada."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: O SINAL E OS AVISOS (13.3-13) -->
+    <div class="pericope">O Sinal e os Avisos</div>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, estando ele assentado no monte das Oliveiras, diante do templo, Pedro, Tiago, João e André perguntaram-lhe à parte:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-outro">"Dize-nos quando serão estas coisas, e qual será o sinal quando todas estas coisas estiverem para se cumprir."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Jesus, respondendo-lhes, começou a dizer: <span class="fala-jesus">"Vede que ninguém vos engane.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Porque muitos virão em meu nome, dizendo: 'Eu sou'; e enganarão a muitos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E, quando ouvirdes falar de guerras e de rumores de guerras, não vos perturbeis; porque é necessário que isso aconteça, mas ainda não será o fim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Porque se levantará nação contra nação, e reino contra reino; e haverá terremotos em vários lugares, e haverá fomes e tumultos. Estas coisas são o princípio das dores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">"Mas vós, vede por vós mesmos; porque vos entregarão aos sinédrios e às sinagogas; sereis açoitados, e sereis levados diante de governadores e reis por minha causa, para lhes servir de testemunho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">E é necessário que primeiro o evangelho seja pregado a todas as nações.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E, quando vos conduzirem e vos entregarem, não estejais ansiosos pelo que haveis de dizer, nem premediteis; mas o que vos for dado naquela hora, isso falai; porque não sois vós que falais, mas o Espírito Santo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E o irmão entregará à morte o irmão, e o pai, o filho; e os filhos se levantarão contra os pais e os farão morrer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E sereis odiados por todos por causa do meu nome; mas aquele que perseverar até o fim, esse será salvo."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A ABOMINAÇÃO DA DESOLAÇÃO (13.14-23) -->
+    <div class="pericope">A Abominação da Desolação</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">"E, quando virdes a abominação da desolação, de que falou o profeta Daniel, estar onde não deve — quem lê, entenda — então os que estiverem na Judeia fujam para os montes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E quem estiver sobre o telhado não desça para casa, nem entre para tirar alguma coisa de sua casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">E quem estiver no campo não volte atrás para buscar a sua veste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Mas ai das que estiverem grávidas e das que amamentarem naqueles dias!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Orai para que a vossa fuga não aconteça no inverno.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Porque naqueles dias haverá aflição, como nunca houve desde o princípio da criação, que Deus criou, até agora, nem jamais haverá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">E, se o Senhor não abreviasse aqueles dias, nenhuma carne se salvaria; mas, por causa dos escolhidos que ele escolheu, abreviou aqueles dias."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">"E, então, se alguém vos disser: 'Eis que o Cristo está aqui', ou: 'Eis que está ali', não acrediteis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Porque se levantarão falsos cristos e falsos profetas, e farão sinais e prodígios, para enganar, se possível fora, até os escolhidos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Mas vós, vede; eis que eu vo-lo tenho predito tudo."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A VINDA DO FILHO DO HOMEM (13.24-27) -->
+    <div class="pericope">A Vinda do Filho do Homem</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">"Mas naqueles dias, depois daquela aflição, o sol escurecerá, e a lua não dará a sua luz.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E as estrelas do céu cairão, e os poderes que estão nos céus serão abalados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E então verão o Filho do homem vindo nas nuvens, com grande poder e glória.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E ele enviará os seus anjos, e ajuntará os seus escolhidos desde os quatro ventos, desde a extremidade da terra até a extremidade do céu."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: A PARÁBOLA DA FIGUEIRA (13.28-31) -->
+    <div class="pericope">A Parábola da Figueira</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">"Aprendei, pois, a parábola da figueira: quando já os seus ramos se tornam tenros e brotam folhas, sabeis que o verão está próximo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Assim também vós, quando virdes acontecer estas coisas, sabei que está próximo, às portas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Em verdade vos digo: não passará esta geração até que todas estas coisas aconteçam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">O céu e a terra passarão, mas as minhas palavras não passarão."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: A EXORTAÇÃO À VIGILÂNCIA (13.32-37) -->
+    <div class="pericope">A Exortação à Vigilância</div>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">"Mas daquele dia e hora ninguém sabe, nem os anjos que estão no céu, nem o Filho, mas somente o Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Vede, vigiai e orai; porque não sabeis quando é o tempo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">É como um homem que, partindo para longe, deixou a sua casa, e deu autoridade aos seus servos, e a cada um a sua obra, e ordenou ao porteiro que vigiasse.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Vigiai, pois, porque não sabeis quando virá o senhor da casa: se à tarde, se à meia-noite, se ao cantar do galo, se pela manhã;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">para que, vindo de repente, não vos ache dormindo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">E o que vos digo, digo a todos: Vigiai."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:1 — "Que pedras e que construções!"</span>
+            <div class="greek-text">ποταποὶ λίθοι καὶ ποταπαὶ οἰκοδομαί</div>
+            <p><strong>Análise:</strong> A admiração do discípulo diante da grandiosidade do templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:2 — "Não ficará pedra sobre pedra"</span>
+            <div class="greek-text">οὐ μὴ ἀφεθῇ ὧδε λίθος ἐπὶ λίθον</div>
+            <p><strong>Análise:</strong> A declaração de destruição do templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 13:3 — "Pedro, Tiago, João e André"</span>
+            <div class="greek-text">Πέτρος καὶ Ἰάκωβος καὶ Ἰωάννης καὶ Ἀνδρέας</div>
+            <p><strong>Análise:</strong> Os quatro discípulos que perguntam à parte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a lista dos quatro.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:6 — "Eu sou"</span>
+            <div class="greek-text">ἐγώ εἰμι</div>
+            <p><strong>Análise:</strong> A expressão é mantida sem acrescentar interpretação ao texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Eu sou".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 13:8 — "Tumultos"</span>
+            <div class="greek-text">ταραχαί</div>
+            <p><strong>Análise:</strong> "Tumultos", "agitações" ou "perturbações". Em Marcos, o termo aparece junto às fomes; Mateus 24:7 apresenta "pestes" em sua formulação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tumultos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:8 — "Princípio das dores"</span>
+            <div class="greek-text">ἀρχὴ ὠδίνων</div>
+            <p><strong>Análise:</strong> Como em Mateus 24:8. Metáfora para os sofrimentos que precedem o fim.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "princípio das dores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:9 — "Sinédrios"</span>
+            <div class="greek-text">συνέδρια</div>
+            <p><strong>Análise:</strong> Plural de <em>synedrion</em>; conselhos ou tribunais judaicos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "sinédrios".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 13:11 — "Espírito Santo"</span>
+            <div class="greek-text">τὸ πνεῦμα τὸ ἅγιον</div>
+            <p><strong>Análise:</strong> A assistência do Espírito na fala dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Espírito Santo".</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:14 — "Abominação da desolação"</span>
+            <div class="greek-text">τὸ βδέλυγμα τῆς ἐρημώσεως</div>
+            <p><strong>Análise:</strong> Como em Mateus 24:15. Termo profético de Daniel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "abominação da desolação".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 13:18 — "Orai para que a vossa fuga não aconteça no inverno"</span>
+            <div class="greek-text">προσεύχεσθε ἵνα μὴ γένηται ἡ φυγὴ ὑμῶν χειμῶνος</div>
+            <p><strong>Análise:</strong> Marcos não menciona o sábado, diferente de Mateus 24:20.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Marcos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:19 — "Desde o princípio da criação, que Deus criou"</span>
+            <div class="greek-text">ἀπ' ἀρχῆς κτίσεως ἣν ἔκτισεν ὁ θεός</div>
+            <p><strong>Análise:</strong> A formulação de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:20 — "Abreviou"</span>
+            <div class="greek-text">ἐκολόβωσεν</div>
+            <p><strong>Análise:</strong> O verbo no passado em Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "abreviou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:22 — "Falsos cristos e falsos profetas"</span>
+            <div class="greek-text">ψευδόχριστοι καὶ ψευδοπροφῆται</div>
+            <p><strong>Análise:</strong> Como em Mateus 24:24.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falsos cristos e falsos profetas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 13:24 — "O sol escurecerá"</span>
+            <div class="greek-text">ὁ ἥλιος σκοτισθήσεται</div>
+            <p><strong>Análise:</strong> A linguagem cósmica associada à vinda do Filho do Homem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 13:26 — "Filho do homem vindo nas nuvens"</span>
+            <div class="greek-text">τὸν υἱὸν τοῦ ἀνθρώπου ἐρχόμενον ἐν νεφέλαις</div>
+            <p><strong>Análise:</strong> A imagem de Daniel 7:13-14.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:27 — "Extremidade da terra até a extremidade do céu"</span>
+            <div class="greek-text">ἄκρου γῆς ἕως ἄκρου οὐρανοῦ</div>
+            <p><strong>Análise:</strong> A formulação de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:28 — "Parábola da figueira"</span>
+            <div class="greek-text">τὴν παραβολὴν τῆς συκῆς</div>
+            <p><strong>Análise:</strong> Como em Mateus 24:32.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "parábola da figueira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:30 — "Esta geração"</span>
+            <div class="greek-text">ἡ γενεὰ αὕτη</div>
+            <p><strong>Análise:</strong> Expressão preservada conforme o texto de Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esta geração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:32 — "Nem o Filho, mas somente o Pai"</span>
+            <div class="greek-text">οὐδὲ ὁ υἱός, εἰ μὴ ὁ πατήρ</div>
+            <p><strong>Análise:</strong> A declaração sobre o dia e a hora.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 13:34 — "Porteiro"</span>
+            <div class="greek-text">θυρωρῷ</div>
+            <p><strong>Análise:</strong> O responsável pela porta; elemento próprio da parábola apresentada por Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "porteiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 13:35 — "Ao cantar do galo"</span>
+            <div class="greek-text">ἀλεκτοροφωνίας</div>
+            <p><strong>Análise:</strong> A terceira vigília da noite, expressa em termos cotidianos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ao cantar do galo".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

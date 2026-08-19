@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Marcos 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">MARCOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Vinha</span>
+                Símbolo de Israel, com elementos que evocam Isaías 5:1-2.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cabeça da esquina</span>
+                Do grego <em>kephalēn gōnias</em> (κεφαλὴν γωνίας). A pedra angular, citada do Salmo 118.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Shema</span>
+                Do hebraico, a confissão central do judaísmo: "Ouve, Israel".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Quadrante</span>
+                Do grego <em>kodrantēs</em> (κοδράντης). Moeda romana de pouco valor.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <!-- PERÍCOPE 1: A PARÁBOLA DOS LAVRADORES MAUS (12.1-12) -->
+    <div class="pericope">A Parábola dos Lavradores Maus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> começou a falar-lhes por parábolas: <span class="fala-jesus">"Um homem plantou uma vinha, e cercou-a com uma sebe, e cavou nela um lagar, e edificou uma torre. E, arrendando-a a uns lavradores, partiu para longe.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-jesus">E, no tempo dos frutos, enviou aos lavradores um servo, para receber deles do fruto da vinha.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">Mas eles, agarrando-o, o feriram e o mandaram embora vazio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">E tornou a enviar-lhes outro servo; e eles, apedrejando-o, o feriram na cabeça e o mandaram embora, desonrado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E enviou outro, e a este mataram; e a muitos outros: a uns feriram e a outros mataram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Portanto, tendo ainda um filho, seu amado, enviou-lho também por último, dizendo: 'Terão respeito ao meu filho.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Mas aqueles lavradores disseram entre si: 'Este é o herdeiro. Vinde, matemo-lo, e a herança será nossa.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">E, agarrando-o, mataram-no e lançaram-no fora da vinha.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Que fará, pois, o senhor da vinha? Virá, e destruirá os lavradores, e dará a vinha a outros.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Nunca lestes esta Escritura: 'A pedra que os edificadores rejeitaram, essa se tornou a cabeça da esquina.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Da parte do Senhor se fez isto, e é maravilhoso aos nossos olhos'?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E procuravam prendê-lo, mas temiam a multidão; porque entenderam que contra eles dissera esta parábola. E, deixando-o, foram-se.
+    </p>
+
+    <!-- PERÍCOPE 2: O TRIBUTO A CÉSAR (12.13-17) -->
+    <div class="pericope">O Tributo a César</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E enviaram-lhe alguns dos fariseus e dos herodianos, para o apanharem em alguma palavra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, chegando, disseram-lhe: <span class="fala-outro">"Mestre, sabemos que és verdadeiro, e não te importas com ninguém; porque não olhas a aparência dos homens, mas ensinas o caminho de Deus segundo a verdade. É lícito dar tributo a César, ou não? Daremos, ou não daremos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas ele, conhecendo a hipocrisia deles, disse-lhes: <span class="fala-jesus">"Por que me tentais? Trazei-me um denário, para que eu o veja."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E eles lho trouxeram. E ele lhes disse: <span class="fala-jesus">"De quem é esta imagem e esta inscrição?"</span> E eles lhe disseram: <span class="fala-outro">"De César."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Dai a César o que é de César, e a Deus o que é de Deus."</span> E admiravam-se dele.
+    </p>
+
+    <!-- PERÍCOPE 3: A QUESTÃO DA RESSURREIÇÃO (12.18-27) -->
+    <div class="pericope">A Questão da Ressurreição</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E os saduceus, que dizem não haver ressurreição, aproximaram-se dele e perguntaram-lhe, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">"Mestre, Moisés nos deixou escrito: 'Se o irmão de alguém morrer, e deixar mulher, e não deixar filhos, o irmão dele tomará a mulher e suscitará descendência a seu irmão.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">Houve sete irmãos. O primeiro tomou mulher e, ao morrer, não deixou descendência.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">E o segundo a tomou, e morreu, e também não deixou descendência. E o terceiro da mesma forma.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">E os sete a tomaram, e também não deixaram descendência. Por último, depois de todos, morreu também a mulher.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">Na ressurreição, quando ressuscitarem, de qual deles será ela a mulher? Porque os sete a tiveram por mulher."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Não errais vós por não saberdes as Escrituras nem o poder de Deus?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Porque, quando ressuscitarem dos mortos, nem se casam, nem se dão em casamento; mas são como os anjos que estão nos céus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E, acerca dos mortos que hão de ressuscitar, não lestes no livro de Moisés, no relato da sarça, como Deus lhe falou, dizendo: 'Eu sou o Deus de Abraão, o Deus de Isaque e o Deus de Jacó'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Ele não é Deus de mortos, mas Deus de vivos. Portanto, vós muito errais."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: O GRANDE MANDAMENTO (12.28-34) -->
+    <div class="pericope">O Grande Mandamento</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, aproximando-se um dos escribas, que os tinha ouvido discutir e percebera que lhes tinha respondido bem, perguntou-lhe: <span class="fala-outro">"Qual é o primeiro de todos os mandamentos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E Jesus respondeu-lhe: <span class="fala-jesus">"O primeiro de todos os mandamentos é: 'Ouve, Israel: O Senhor nosso Deus é o único Senhor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">E amarás o Senhor teu Deus com todo o teu coração, com toda a tua alma, com todo o teu entendimento e com toda a tua força.' Este é o primeiro mandamento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E o segundo, semelhante a este, é: 'Amarás o teu próximo como a ti mesmo.' Não há outro mandamento maior que estes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E o escriba lhe disse: <span class="fala-outro">"Muito bem, Mestre! Com verdade disseste que há um só Deus, e que não há outro senão ele;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">e que amá-lo com todo o coração, com todo o entendimento, com toda a alma e com toda a força, e amar o próximo como a si mesmo, é mais do que todos os holocaustos e sacrifícios."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E Jesus, vendo que ele tinha respondido sabiamente, disse-lhe: <span class="fala-jesus">"Não estás longe do reino de Deus."</span> E já ninguém ousava interrogá-lo.
+    </p>
+
+    <!-- PERÍCOPE 5: O CRISTO É FILHO DE DAVI? (12.35-37) -->
+    <div class="pericope">O Cristo é Filho de Davi?</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E Jesus, respondendo, dizia, ensinando no templo: <span class="fala-jesus">"Como dizem os escribas que o Cristo é filho de Davi?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Porque o próprio Davi disse pelo Espírito Santo: 'Disse o Senhor ao meu Senhor: Assenta-te à minha direita, até que eu ponha os teus inimigos por escabelo dos teus pés.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Portanto, o próprio Davi o chama Senhor; como é ele seu filho?"</span> E a grande multidão o ouvia de boa mente.
+    </p>
+
+    <!-- PERÍCOPE 6: A CONDENAÇÃO DOS ESCRIBAS (12.38-40) -->
+    <div class="pericope">A Condenação dos Escribas</div>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E ele lhes dizia na sua doutrina: <span class="fala-jesus">"Guardai-vos dos escribas, que gostam de andar com vestes compridas, e de saudações nas praças,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">e das primeiras cadeiras nas sinagogas, e dos primeiros lugares nos banquetes;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">que devoram as casas das viúvas, e isso com pretexto de longas orações. Estes receberão maior condenação."</span>
+    </p>
+
+    <!-- PERÍCOPE 7: A OFERTA DA VIÚVA (12.41-44) -->
+    <div class="pericope">A Oferta da Viúva</div>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E Jesus, estando assentado diante do tesouro, observava como a multidão lançava dinheiro no tesouro. E muitos ricos lançavam muito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E, chegando uma viúva pobre, lançou duas pequenas moedas, que valem um quadrante.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E, chamando os seus discípulos, disse-lhes: <span class="fala-jesus">"Em verdade vos digo: esta viúva pobre lançou mais do que todos os que lançaram no tesouro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Porque todos lançaram do que lhes sobrava; mas esta, da sua pobreza, lançou tudo o que tinha, todo o seu sustento."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:1 — "Vinha, sebe, lagar e torre"</span>
+            <div class="greek-text">ἀμπελῶνα, φραγμόν, ὑπολήνιον, πύργον</div>
+            <p><strong>Análise:</strong> Elementos que evocam Isaías 5:1-2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:2-5 — "Servo"</span>
+            <div class="greek-text">δοῦλον</div>
+            <p><strong>Análise:</strong> Os servos enviados pelo senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "servo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:6 — "Filho, seu amado"</span>
+            <div class="greek-text">υἱόν, ἀγαπητόν</div>
+            <p><strong>Análise:</strong> O filho enviado por último.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filho, seu amado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:7 — "Herdeiro"</span>
+            <div class="greek-text">κληρονόμος</div>
+            <p><strong>Análise:</strong> Os lavradores reconhecem o filho como herdeiro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "herdeiro".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 12:10 — "Cabeça da esquina"</span>
+            <div class="greek-text">κεφαλὴν γωνίας</div>
+            <p><strong>Análise:</strong> Citação do Salmo 118:22-23.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cabeça da esquina".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 12:13 — "Fariseus e herodianos"</span>
+            <div class="greek-text">Φαρισαίων καὶ τῶν Ἡρῳδιανῶν</div>
+            <p><strong>Análise:</strong> Como em Marcos 3:6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fariseus e herodianos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:17 — "Dai a César o que é de César"</span>
+            <div class="greek-text">τὰ Καίσαρος ἀπόδοτε Καίσαρι</div>
+            <p><strong>Análise:</strong> A resposta de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Marcos 12:18 — "Saduceus"</span>
+            <div class="greek-text">Σαδδουκαῖοι</div>
+            <p><strong>Análise:</strong> Grupo que negava a ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Saduceus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:26 — "Livro de Moisés, no relato da sarça"</span>
+            <div class="greek-text">ἐν τῇ βίβλῳ Μωϋσέως, ἐπὶ τοῦ βάτου</div>
+            <p><strong>Análise:</strong> A referência a Êxodo 3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:29 — "Ouve, Israel"</span>
+            <div class="hebrew-text">שְׁמַע יִשְׂרָאֵל</div>
+            <p><strong>Análise:</strong> Do hebraico <em>Shema Yisrael</em>. Citação de Deuteronômio 6:4-5.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Ouve, Israel".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Marcos 12:29 — "O Senhor nosso Deus é o único Senhor"</span>
+            <div class="greek-text">Κύριος ὁ θεὸς ἡμῶν Κύριος εἷς ἐστιν</div>
+            <p><strong>Análise:</strong> Marcos apresenta a citação do Shema com esta formulação grega, distinta na forma da redação hebraica de Deuteronômio 6:4.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação conforme Marcos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:30 — "Com toda a tua força"</span>
+            <div class="greek-text">ἐξ ὅλης τῆς ἰσχύος σου</div>
+            <p><strong>Análise:</strong> O acréscimo de "força", presente em Deuteronômio 6:5.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com toda a tua força".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:33 — "Holocaustos e sacrifícios"</span>
+            <div class="greek-text">ὁλοκαυτωμάτων καὶ θυσιῶν</div>
+            <p><strong>Análise:</strong> A fala do escriba.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "holocaustos e sacrifícios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:34 — "Não estás longe do reino de Deus"</span>
+            <div class="greek-text">οὐ μακρὰν εἶ ἀπὸ τῆς βασιλείας τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A resposta de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Marcos 12:36 — "Pelo Espírito Santo"</span>
+            <div class="greek-text">ἐν τῷ πνεύματι τῷ ἁγίῳ</div>
+            <p><strong>Análise:</strong> A citação do Salmo 110:1 é apresentada por Jesus como palavra de Davi pelo Espírito Santo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pelo Espírito Santo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:38 — "Vestes compridas"</span>
+            <div class="greek-text">στολαῖς</div>
+            <p><strong>Análise:</strong> Vestes talares usadas pelos escribas como sinal de status.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vestes compridas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:41, 43 — "Tesouro"</span>
+            <div class="greek-text">γαζοφυλάκιον</div>
+            <p><strong>Análise:</strong> O local de ofertas no templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tesouro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:42 — "Duas pequenas moedas, que valem um quadrante"</span>
+            <div class="greek-text">λεπτὰ δύο, ὅ ἐστιν κοδράντης</div>
+            <p><strong>Análise:</strong> A menor moeda em circulação, de valor ínfimo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Marcos 12:44 — "Todo o seu sustento"</span>
+            <div class="greek-text">ὅλον τὸν βίον</div>
+            <p><strong>Análise:</strong> Literalmente "todo o seu viver". A tradução "sustento" expressa o sentido no contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todo o seu sustento".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
