@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 5</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 5</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Lago de Genesaré</span>
+                O mar da Galileia, também chamado de lago de Tiberíades.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Publicano</span>
+                Cobrador de impostos, desprezado pela sociedade judaica.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Levi</span>
+                O publicano chamado por Jesus, também conhecido como Mateus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Convidados das bodas</span>
+                Do grego <em>huioi tou nymphōnos</em> (υἱοὶ τοῦ νυμφῶνος), literalmente "filhos da câmara nupcial".
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">5</div>
+
+    <!-- PERÍCOPE 1: A PESCA MILAGROSA (5.1-11) -->
+    <div class="pericope">A Pesca Milagrosa</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, apertando-se a multidão sobre ele para ouvir a palavra de Deus, estava ele junto ao lago de Genesaré.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E viu dois barcos junto à margem do lago; mas os pescadores, tendo descido deles, lavavam as suas redes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, entrando num dos barcos, que era o de Simão, pediu-lhe que o afastasse um pouco da terra. E, assentando-se, ensinava as multidões desde o barco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, quando acabou de falar, disse a Simão: <span class="fala-jesus">"Faze-te ao largo, e lançai as vossas redes para pescar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, respondendo Simão, disse-lhe: <span class="fala-outro">"Mestre, trabalhamos toda a noite, e nada apanhamos; mas, sobre a tua palavra, lançarei a rede."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, fazendo assim, recolheram uma grande quantidade de peixes, e a sua rede se rompia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E fizeram sinal aos companheiros que estavam no outro barco, para que viessem ajudá-los. E eles vieram, e encheram ambos os barcos, de modo que quase iam a pique.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, vendo isso Simão Pedro, prostrou-se aos pés de Jesus, dizendo: <span class="fala-outro">"Retira-te de mim, Senhor, porque sou homem pecador."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Pois o espanto tinha tomado a ele e a todos os que com ele estavam, por causa da pesca que tinham feito;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        e também a Tiago e João, filhos de Zebedeu, que eram companheiros de Simão. E Jesus disse a Simão: <span class="fala-jesus">"Não temas; de agora em diante serás pescador de homens."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, levando os barcos para a terra, deixaram tudo e o seguiram.
+    </p>
+
+    <!-- PERÍCOPE 2: A CURA DO LEPROSO (5.12-16) -->
+    <div class="pericope">A Cura do Leproso</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E aconteceu que, estando ele numa das cidades, eis que um homem cheio de lepra, vendo Jesus, prostrou-se sobre o rosto e rogou-lhe, dizendo: <span class="fala-outro">"Senhor, se quiseres, podes tornar-me limpo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E ele, estendendo a mão, tocou-o, dizendo: <span class="fala-jesus">"Quero; sê limpo."</span> E imediatamente a lepra saiu dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E ordenou-lhe que a ninguém o dissesse; mas disse: <span class="fala-jesus">"Vai, mostra-te ao sacerdote e oferece pela tua purificação, conforme Moisés ordenou, para lhes servir de testemunho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas a sua fama se espalhava ainda mais, e grandes multidões se ajuntavam para o ouvir e para serem curadas por ele das suas enfermidades.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas ele se retirava para lugares desertos, e orava.
+    </p>
+
+    <!-- PERÍCOPE 3: A CURA DO PARALÍTICO (5.17-26) -->
+    <div class="pericope">A Cura do Paralítico</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E aconteceu, naqueles dias, que ele estava ensinando. E estavam assentados fariseus e doutores da lei, que tinham vindo de todas as aldeias da Galileia, da Judeia e de Jerusalém. E o poder do Senhor estava ali para os curar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E eis que uns homens, trazendo num leito um paralítico, procuravam fazê-lo entrar e pô-lo diante dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, não achando por onde o introduzir, por causa da multidão, subiram ao telhado e, por entre as telhas, o desceram com o leito para o meio, diante de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, vendo a fé deles, disse-lhe: <span class="fala-jesus">"Homem, os teus pecados te são perdoados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E os escribas e fariseus começaram a discorrer, dizendo: <span class="fala-outro">"Quem é este que fala blasfêmias? Quem pode perdoar pecados, senão somente Deus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas Jesus, conhecendo os seus pensamentos, respondeu e disse-lhes: <span class="fala-jesus">"Por que discorreis em vossos corações?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Qual é mais fácil? Dizer: 'Os teus pecados te são perdoados', ou dizer: 'Levanta-te e anda'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Ora, para que saibais que o Filho do homem tem autoridade sobre a terra para perdoar pecados"</span> — disse ao paralítico: <span class="fala-jesus">"A ti te digo: Levanta-te, toma o teu leito e vai para tua casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, levantando-se imediatamente diante deles, tomou o leito em que jazia e foi para sua casa, glorificando a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E todos ficaram admirados, e glorificavam a Deus; e ficaram cheios de temor, dizendo: <span class="fala-outro">"Hoje vimos coisas extraordinárias."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A CHAMADA DE LEVI (5.27-32) -->
+    <div class="pericope">A Chamada de Levi</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, depois destas coisas, saiu e viu um publicano, chamado Levi, assentado na coletoria, e disse-lhe: <span class="fala-jesus">"Segue-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E ele, deixando tudo, levantou-se e o seguiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E Levi lhe fez um grande banquete em sua casa. E havia muitos publicanos e outros que estavam com eles à mesa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E os escribas e fariseus deles murmuravam contra os seus discípulos, dizendo: <span class="fala-outro">"Por que comeis e bebeis com publicanos e pecadores?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Os sãos não precisam de médico, mas sim os doentes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Eu não vim chamar justos, mas pecadores ao arrependimento."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: O JEJUM E AS PARÁBOLAS (5.33-39) -->
+    <div class="pericope">O Jejum e as Parábolas</div>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Então eles lhe disseram: <span class="fala-outro">"Por que os discípulos de João jejuam muitas vezes e fazem orações, e também os dos fariseus, mas os teus comem e bebem?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E ele lhes disse: <span class="fala-jesus">"Podeis vós fazer jejuar os convidados das bodas enquanto o noivo está com eles?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Mas virão dias em que o noivo lhes será tirado; então, naqueles dias, jejuarão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E disse-lhes também uma parábola: <span class="fala-jesus">"Ninguém põe remendo de pano novo em vestido velho; de outra forma, o novo rasga o velho, e o remendo do novo não combina com o velho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">E ninguém põe vinho novo em odres velhos; de outra forma, o vinho novo romperá os odres, e se derramará, e os odres se perderão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Mas o vinho novo deve ser posto em odres novos; e ambos se conservam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">E ninguém que bebeu o velho quer logo o novo; porque diz: 'O velho é melhor.'"</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:1 — "Lago de Genesaré"</span>
+            <div class="greek-text">λίμνην Γεννησαρέτ</div>
+            <p><strong>Análise:</strong> O mar da Galileia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lago de Genesaré".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:5 — "Trabalhamos toda a noite"</span>
+            <div class="greek-text">δι' ὅλης νυκτὸς κοπιάσαντες</div>
+            <p><strong>Análise:</strong> A fala de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:5 — "Sobre a tua palavra"</span>
+            <div class="greek-text">ἐπὶ δὲ τῷ ῥήματί σου</div>
+            <p><strong>Análise:</strong> A expressão de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:10 — "Pescador de homens"</span>
+            <div class="greek-text">ζωγρῶν ἀνθρώπους</div>
+            <p><strong>Análise:</strong> Literalmente "apanhando homens vivos". Lucas emprega a forma verbal no singular, dirigida a Simão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pescador de homens".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:12 — "Cheio de lepra"</span>
+            <div class="greek-text">πλήρης λέπρας</div>
+            <p><strong>Análise:</strong> Literalmente "cheio de lepra".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cheio de lepra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:14 — "Conforme Moisés ordenou"</span>
+            <div class="greek-text">καθὼς προσέταξεν Μωϋσῆς</div>
+            <p><strong>Análise:</strong> Referência a Levítico 14.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 5:16 — "Para lugares desertos"</span>
+            <div class="greek-text">εἰς τὰς ἐρήμους</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Lucas sobre a oração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "para lugares desertos".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 5:19 — "Entre as telhas"</span>
+            <div class="greek-text">διὰ τῶν κεράμων</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "entre as telhas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:20 — "Homem, os teus pecados te são perdoados"</span>
+            <div class="greek-text">ἄνθρωπε, ἀφέωνταί σοι αἱ ἁμαρτίαι σου</div>
+            <p><strong>Análise:</strong> A fala de Jesus ao paralítico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:26 — "Coisas extraordinárias"</span>
+            <div class="greek-text">παράδοξα</div>
+            <p><strong>Análise:</strong> "Coisas extraordinárias", "coisas inesperadas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coisas extraordinárias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:27, 29 — "Levi"</span>
+            <div class="greek-text">Λευΐν</div>
+            <p><strong>Análise:</strong> O publicano chamado por Jesus, também conhecido como Mateus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Levi".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:29 — "Grande banquete"</span>
+            <div class="greek-text">δοχὴν μεγάλην</div>
+            <p><strong>Análise:</strong> A festa na casa de Levi.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grande banquete".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 5:32 — "Pecadores ao arrependimento"</span>
+            <div class="greek-text">ἁμαρτωλοὺς εἰς μετάνοιαν</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui "ao arrependimento".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pecadores ao arrependimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 5:34 — "Convidados das bodas"</span>
+            <div class="greek-text">τοὺς υἱοὺς τοῦ νυμφῶνος</div>
+            <p><strong>Análise:</strong> Literalmente "os filhos da câmara nupcial".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "convidados das bodas".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 5:36 — "Não combina com o velho"</span>
+            <div class="greek-text">οὐ συμφωνήσει τῷ παλαιῷ</div>
+            <p><strong>Análise:</strong> A formulação de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não combina com o velho".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 5:39 — "O velho é melhor"</span>
+            <div class="greek-text">ὁ παλαιὸς χρηστότερός ἐστιν</div>
+            <p><strong>Análise:</strong> A frase final sobre o vinho velho, exclusiva de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "O velho é melhor".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

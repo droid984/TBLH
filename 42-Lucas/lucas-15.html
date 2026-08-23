@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 15</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 15</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Dracma</span>
+                Do grego <em>drachmē</em> (δραχμή), unidade monetária grega.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Alfarrobas</span>
+                Do grego <em>keratia</em> (κεράτια), frutos ou vagens da alfarrobeira.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Bezerro cevado</span>
+                Do grego <em>moschos siteutos</em> (μόσχος σιτευτός), bezerro engordado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Com saúde</span>
+                Do grego <em>hygiainonta</em> (ὑγιαίνοντα), "sadio", "bem".
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">15</div>
+
+    <!-- PERÍCOPE 1: A OVELHA PERDIDA (15.1-7) -->
+    <div class="pericope">A Ovelha Perdida</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aproximavam-se dele todos os publicanos e pecadores, para o ouvir.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E os fariseus e os escribas murmuravam, dizendo: <span class="fala-outro">"Este recebe pecadores e come com eles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E ele lhes contou esta parábola, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">"Que homem dentre vós, tendo cem ovelhas, e perdendo uma delas, não deixa as noventa e nove no deserto, e vai após a perdida, até achá-la?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E, achando-a, põe-na sobre os seus ombros, cheio de alegria.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">E, chegando a casa, convoca os amigos e vizinhos, dizendo-lhes: 'Alegrai-vos comigo, porque achei a minha ovelha perdida.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Eu vos digo que assim haverá alegria no céu por um pecador que se arrepende, mais do que por noventa e nove justos que não necessitam de arrependimento."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A DRACMA PERDIDA (15.8-10) -->
+    <div class="pericope">A Dracma Perdida</div>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">"Ou qual mulher, tendo dez dracmas, se perder uma dracma, não acende a candeia, e varre a casa, e procura diligentemente até achá-la?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">E, achando-a, convoca as amigas e vizinhas, dizendo: 'Alegrai-vos comigo, porque achei a dracma que tinha perdido.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Assim, eu vos digo, há alegria diante dos anjos de Deus por um pecador que se arrepende."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: O FILHO PRÓDIGO (15.11-32) -->
+    <div class="pericope">O Filho Pródigo</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E disse: <span class="fala-jesus">"Um homem tinha dois filhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E o mais novo deles disse ao pai: 'Pai, dá-me a parte dos bens que me pertence.' E ele repartiu entre eles os bens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E, poucos dias depois, o filho mais novo, ajuntando tudo, partiu para uma terra distante, e ali desperdiçou os seus bens, vivendo dissolutamente.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E, tendo gastado tudo, houve uma grande fome naquela terra, e ele começou a passar necessidade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E foi e se chegou a um dos cidadãos daquela terra, e este o enviou aos seus campos para apascentar porcos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">E desejava encher o estômago com as alfarrobas que os porcos comiam, mas ninguém lhas dava.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">E, caindo em si, disse: 'Quantos empregados de meu pai têm pão em abundância, e eu aqui pereço de fome!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Levantar-me-ei, e irei a meu pai, e lhe direi: Pai, pequei contra o céu e diante de ti.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Já não sou digno de ser chamado teu filho. Faze-me como um dos teus empregados.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">E, levantando-se, foi para seu pai. E, quando ainda estava longe, seu pai o viu, e se moveu de compaixão, e correndo, lançou-se-lhe ao pescoço e o beijou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">E o filho lhe disse: 'Pai, pequei contra o céu e diante de ti, e já não sou digno de ser chamado teu filho.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Mas o pai disse aos seus servos: 'Trazei depressa a melhor veste, e vesti-o; e ponde-lhe um anel na mão e sandálias nos pés.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">E trazei o bezerro cevado, e matai-o. Comamos e alegremo-nos,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">porque este meu filho estava morto e reviveu; tinha se perdido e foi achado.' E começaram a alegrar-se."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">"E o filho mais velho estava no campo. E, quando veio e se aproximou da casa, ouviu a música e as danças.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E, chamando um dos servos, perguntou-lhe o que era aquilo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E ele lhe disse: 'Teu irmão voltou; e teu pai matou o bezerro cevado, porque o recebeu com saúde.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Mas ele se indignou e não queria entrar. E, saindo o pai, rogava-lhe.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Mas ele, respondendo, disse ao pai: 'Eis que te sirvo há tantos anos, e nunca transgredi o teu mandamento; e nunca me deste um cabrito para me alegrar com os meus amigos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Mas, vindo este teu filho, que consumiu os teus bens com prostitutas, mataste-lhe o bezerro cevado.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E ele lhe disse: 'Filho, tu sempre estás comigo, e todas as minhas coisas são tuas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Mas era necessário alegrarmo-nos e regozijarmo-nos, porque este teu irmão estava morto e reviveu; e tinha se perdido e foi achado.'"</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:1 — "Publicanos e pecadores"</span>
+            <div class="greek-text">τελῶναι καὶ ἁμαρτωλοί</div>
+            <p><strong>Análise:</strong> Os que se aproximavam de Jesus para ouvi-lo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "publicanos e pecadores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:2 — "Este recebe pecadores e come com eles"</span>
+            <div class="greek-text">οὗτος ἁμαρτωλοὺς προσδέχεται καὶ συνεσθίει αὐτοῖς</div>
+            <p><strong>Análise:</strong> A murmuração dos fariseus e escribas contra Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:4 — "Cem ovelhas"</span>
+            <div class="greek-text">ἑκατὸν πρόβατα</div>
+            <p><strong>Análise:</strong> A parábola da ovelha perdida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:7 — "Noventa e nove justos"</span>
+            <div class="greek-text">ἐνενήκοντα ἐννέα δικαίοις</div>
+            <p><strong>Análise:</strong> A comparação apresentada por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:8 — "Dez dracmas"</span>
+            <div class="greek-text">δραχμὰς δέκα</div>
+            <p><strong>Análise:</strong> A dracma era uma unidade monetária grega.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "dracmas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:13 — "Vivendo dissolutamente"</span>
+            <div class="greek-text">ζῶν ἀσώτως</div>
+            <p><strong>Análise:</strong> Vivendo de maneira dissoluta, desregrada ou desperdiçadora.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vivendo dissolutamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:16 — "Alfarrobas"</span>
+            <div class="greek-text">κερατίων</div>
+            <p><strong>Análise:</strong> Frutos ou vagens da alfarrobeira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alfarrobas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:17 — "Caindo em si"</span>
+            <div class="greek-text">εἰς ἑαυτὸν δὲ ἐλθών</div>
+            <p><strong>Análise:</strong> Literalmente "vindo a si mesmo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "caindo em si".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:18, 21 — "Pequei contra o céu e diante de ti"</span>
+            <div class="greek-text">ἥμαρτον εἰς τὸν οὐρανὸν καὶ ἐνώπιόν σου</div>
+            <p><strong>Análise:</strong> A confissão do filho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:20 — "Moveu-se de compaixão"</span>
+            <div class="greek-text">ἐσπλαγχνίσθη</div>
+            <p><strong>Análise:</strong> Expressão de profunda compaixão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "moveu-se de compaixão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:23, 27, 30 — "Bezerro cevado"</span>
+            <div class="greek-text">μόσχον τὸν σιτευτόν</div>
+            <p><strong>Análise:</strong> Bezerro engordado ou cevado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bezerro cevado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:24, 32 — "Estava morto e reviveu"</span>
+            <div class="greek-text">νεκρὸς ἦν καὶ ἀνέζησεν</div>
+            <p><strong>Análise:</strong> A declaração do pai acerca do filho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:25 — "Música e danças"</span>
+            <div class="greek-text">συμφωνίας καὶ χορῶν</div>
+            <p><strong>Análise:</strong> Música e danças.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "música e danças".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:27 — "Com saúde"</span>
+            <div class="greek-text">ὑγιαίνοντα</div>
+            <p><strong>Análise:</strong> "Sádio", "com saúde", "bem".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com saúde".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:29 — "Nunca transgredi o teu mandamento"</span>
+            <div class="greek-text">οὐδέποτε ἐντολήν σου παρῆλθον</div>
+            <p><strong>Análise:</strong> A fala do filho mais velho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:30 — "Com prostitutas"</span>
+            <div class="greek-text">μετὰ πορνῶν</div>
+            <p><strong>Análise:</strong> A acusação do filho mais velho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com prostitutas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 15:32 — "Era necessário alegrarmo-nos"</span>
+            <div class="greek-text">εὐφρανθῆναι δὲ καὶ χαρῆναι ἔδει</div>
+            <p><strong>Análise:</strong> A declaração final do pai sobre a necessidade de celebrar o retorno do filho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

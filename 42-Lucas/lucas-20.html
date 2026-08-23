@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 20</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 20</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Espias</span>
+                Do grego <em>enkathetos</em> (ἐγκάθετος), pessoas infiltradas para vigiar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Denário</span>
+                Moeda romana equivalente a um dia de trabalho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Saduceus</span>
+                Grupo religioso judaico que negava a ressurreição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Era vindoura</span>
+                Do grego <em>ho aiōn ekeinos</em> (ὁ αἰὼν ἐκεῖνος), a era futura.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">20</div>
+
+    <!-- PERÍCOPE 1: A AUTORIDADE DE JESUS QUESTIONADA (20.1-8) -->
+    <div class="pericope">A Autoridade de Jesus Questionada</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu, num daqueles dias, que, ensinando ele o povo no templo e anunciando o evangelho, sobrevieram os principais dos sacerdotes e os escribas, com os anciãos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        e falaram-lhe, dizendo: <span class="fala-outro">"Dize-nos: com que autoridade fazes estas coisas? Ou quem é que te deu esta autoridade?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E ele, respondendo, disse-lhes: <span class="fala-jesus">"Eu também vos perguntarei uma coisa; dizei-me:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">O batismo de João era do céu ou dos homens?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E eles discorriam entre si, dizendo: <span class="fala-outro">"Se dissermos: Do céu, ele dirá: Por que, então, não crestes nele?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-outro">Mas, se dissermos: Dos homens, todo o povo nos apedrejará, porque estão convencidos de que João era profeta."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E responderam que não sabiam de onde era.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Nem eu vos digo com que autoridade faço estas coisas."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A PARÁBOLA DOS LAVRADORES MAUS (20.9-19) -->
+    <div class="pericope">A Parábola dos Lavradores Maus</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E começou a dizer ao povo esta parábola: <span class="fala-jesus">"Um homem plantou uma vinha, e arrendou-a a uns lavradores, e partiu para fora da terra por muito tempo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">E, no tempo devido, enviou um servo aos lavradores, para que lhe dessem do fruto da vinha. Mas os lavradores, espancando-o, mandaram-no embora vazio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E tornou a enviar outro servo; mas eles, espancando também a este e ultrajando-o, mandaram-no embora vazio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E tornou a enviar um terceiro; mas eles, ferindo também a este, o expulsaram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E o senhor da vinha disse: 'Que farei? Enviarei o meu filho amado; talvez, vendo-o, o respeitem.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Mas os lavradores, vendo-o, discorriam entre si, dizendo: 'Este é o herdeiro. Vinde, matemo-lo, para que a herança seja nossa.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E, lançando-o fora da vinha, mataram-no. Que lhes fará, pois, o senhor da vinha?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Virá, e destruirá estes lavradores, e dará a vinha a outros."</span> E, ouvindo eles isso, disseram: <span class="fala-outro">"Não seja assim!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Mas ele, olhando para eles, disse: <span class="fala-jesus">"Que é isto, então, que está escrito: 'A pedra que os edificadores rejeitaram, essa se tornou a cabeça da esquina'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Qualquer que cair sobre aquela pedra se quebrará; mas aquele sobre quem ela cair será reduzido a pó."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E os principais dos sacerdotes e os escribas procuravam lançar mão dele naquela mesma hora, mas temeram o povo; porque entenderam que contra eles dissera esta parábola.
+    </p>
+
+    <!-- PERÍCOPE 3: O TRIBUTO A CÉSAR (20.20-26) -->
+    <div class="pericope">O Tributo a César</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, observando-o, enviaram espias, que se fingiam justos, para o apanharem em alguma palavra, a fim de o entregarem ao poder e à autoridade do governador.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E perguntaram-lhe, dizendo: <span class="fala-outro">"Mestre, sabemos que falas e ensinas corretamente, e que não olhas a aparência, mas ensinas o caminho de Deus segundo a verdade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">É-nos lícito dar tributo a César, ou não?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas ele, percebendo a astúcia deles, disse-lhes: <span class="fala-jesus">"Por que me tentais?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Mostrai-me um denário. De quem é a imagem e a inscrição?"</span> E eles, respondendo, disseram: <span class="fala-outro">"De César."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Então ele lhes disse: <span class="fala-jesus">"Dai, pois, a César o que é de César, e a Deus o que é de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E não puderam apanhá-lo em palavra alguma diante do povo; e, admirados da sua resposta, calaram-se.
+    </p>
+
+    <!-- PERÍCOPE 4: A QUESTÃO DA RESSURREIÇÃO (20.27-40) -->
+    <div class="pericope">A Questão da Ressurreição</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, chegando-se alguns dos saduceus, que negam haver ressurreição, perguntaram-lhe,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        dizendo: <span class="fala-outro">"Mestre, Moisés nos deixou escrito: 'Se o irmão de alguém morrer, tendo mulher, e morrer sem filhos, o seu irmão tomará a mulher, e suscitará descendência a seu irmão.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">Houve, pois, sete irmãos. O primeiro tomou mulher e morreu sem filhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">E o segundo tomou a mulher, e também morreu sem filhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">E o terceiro a tomou; e, do mesmo modo, também os sete, e não deixaram filhos, e morreram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">E, por último, morreu também a mulher.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">Na ressurreição, pois, de qual deles será ela a mulher? Porque os sete a tiveram por mulher."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Os filhos deste mundo casam-se e dão-se em casamento;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">mas os que forem julgados dignos de alcançar a era vindoura e a ressurreição dos mortos, nem se casam, nem se dão em casamento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Pois também já não podem morrer, porque são iguais aos anjos, e são filhos de Deus, sendo filhos da ressurreição.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">E que os mortos ressuscitam, o próprio Moisés o mostrou na sarça, quando chama ao Senhor: 'Deus de Abraão, e Deus de Isaque, e Deus de Jacó.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Porque ele não é Deus de mortos, mas de vivos, porque para ele todos vivem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, respondendo alguns dos escribas, disseram: <span class="fala-outro">"Mestre, disseste bem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E não ousavam mais perguntar-lhe coisa alguma.
+    </p>
+
+    <!-- PERÍCOPE 5: O CRISTO É FILHO DE DAVI? (20.41-44) -->
+    <div class="pericope">O Cristo é Filho de Davi?</div>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E ele lhes disse: <span class="fala-jesus">"Como dizem que o Cristo é filho de Davi?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">Porque o próprio Davi diz no livro dos Salmos: 'Disse o Senhor ao meu Senhor: Assenta-te à minha direita,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">até que eu ponha os teus inimigos por escabelo dos teus pés.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Davi, pois, o chama Senhor; como é ele seu filho?"</span>
+    </p>
+
+    <!-- PERÍCOPE 6: A CONDENAÇÃO DOS ESCRIBAS (20.45-47) -->
+    <div class="pericope">A Condenação dos Escribas</div>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, ouvindo-o todo o povo, disse aos seus discípulos:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">"Guardai-vos dos escribas, que gostam de andar com vestes compridas, e amam as saudações nas praças, e os primeiros assentos nas sinagogas, e os primeiros lugares nos banquetes;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">que devoram as casas das viúvas, e isso com pretexto de longas orações. Estes receberão maior condenação."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:2 — "Com que autoridade fazes estas coisas?"</span>
+            <div class="greek-text">ἐν ποίᾳ ἐξουσίᾳ</div>
+            <p><strong>Análise:</strong> A pergunta das autoridades.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:4 — "Batismo de João"</span>
+            <div class="greek-text">τὸ βάπτισμα Ἰωάννου</div>
+            <p><strong>Análise:</strong> A pergunta de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:9 — "Vinha arrendada"</span>
+            <div class="greek-text">ἀμπελῶνα</div>
+            <p><strong>Análise:</strong> A parábola dos lavradores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:13 — "Filho amado"</span>
+            <div class="greek-text">τὸν υἱόν μου τὸν ἀγαπητόν</div>
+            <p><strong>Análise:</strong> O filho enviado pelo senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filho amado".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 20:17 — "Cabeça da esquina"</span>
+            <div class="greek-text">κεφαλὴν γωνίας</div>
+            <p><strong>Análise:</strong> Citação do Salmo 118:22.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:20 — "Espias"</span>
+            <div class="greek-text">ἐγκαθέτους</div>
+            <p><strong>Análise:</strong> "Espiões", "pessoas infiltradas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:20 — "Fingiam-se justos"</span>
+            <div class="greek-text">ὑποκρινομένους ἑαυτοὺς δικαίους εἶναι</div>
+            <p><strong>Análise:</strong> Literalmente "fingindo-se justos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:22 — "Tributo a César"</span>
+            <div class="greek-text">φόρον Καίσαρι</div>
+            <p><strong>Análise:</strong> Como em Mateus 22:17.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tributo a César".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:24 — "Denário"</span>
+            <div class="greek-text">δηνάριον</div>
+            <p><strong>Análise:</strong> A moeda romana.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "denário".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:25 — "Dai a César"</span>
+            <div class="greek-text">τὰ Καίσαρος ... τῷ θεῷ</div>
+            <p><strong>Análise:</strong> A resposta de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:27 — "Saduceus"</span>
+            <div class="greek-text">Σαδδουκαῖοι</div>
+            <p><strong>Análise:</strong> Os que negavam a ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Saduceus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:35 — "Era vindoura"</span>
+            <div class="greek-text">τοῦ αἰῶνος ἐκείνου</div>
+            <p><strong>Análise:</strong> Literalmente "daquela era" ou "da era vindoura".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "era vindoura".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:36 — "Iguais aos anjos"</span>
+            <div class="greek-text">ἰσάγγελοι</div>
+            <p><strong>Análise:</strong> Literalmente "iguais aos anjos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "iguais aos anjos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:36 — "Filhos da ressurreição"</span>
+            <div class="greek-text">υἱοὶ ... τῆς ἀναστάσεως</div>
+            <p><strong>Análise:</strong> A expressão de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filhos da ressurreição".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 20:37 — "Na sarça"</span>
+            <div class="greek-text">ἐπὶ τῆς βάτου</div>
+            <p><strong>Análise:</strong> A referência a Êxodo 3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "na sarça".</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:43 — "Escabelo"</span>
+            <div class="greek-text">ὑποπόδιον</div>
+            <p><strong>Análise:</strong> Como em Mateus 22:44.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escabelo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:46 — "Vestes compridas"</span>
+            <div class="greek-text">στολαῖς</div>
+            <p><strong>Análise:</strong> Como em Marcos 12:38.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vestes compridas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 20:47 — "Devoram as casas das viúvas"</span>
+            <div class="greek-text">κατεσθίουσιν τὰς οἰκίας τῶν χηρῶν</div>
+            <p><strong>Análise:</strong> A advertência de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

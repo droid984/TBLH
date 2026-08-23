@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 10</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 10</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Hades</span>
+                Do grego <em>hadēs</em> (ᾅδης), termo para o lugar dos mortos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filho de paz</span>
+                Do grego <em>huios eirēnēs</em> (υἱὸς εἰρήνης), expressão semítica para uma pessoa digna de paz.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Samaritano</span>
+                Habitante da Samaria, frequentemente desprezado pelos judeus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Denário</span>
+                Moeda romana equivalente a um dia de trabalho.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">10</div>
+
+    <!-- PERÍCOPE 1: O ENVIO DOS SETENTA (10.1-16) -->
+    <div class="pericope">O Envio dos Setenta</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, depois disto, designou o Senhor ainda outros setenta, e enviou-os de dois em dois, adiante da sua face, a todas as cidades e lugares aonde ele mesmo havia de ir.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E dizia-lhes: <span class="fala-jesus">"A colheita é grande, mas os trabalhadores são poucos. Rogai, pois, ao Senhor da colheita que envie trabalhadores para a sua colheita.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">Ide. Eis que eu vos envio como cordeiros no meio de lobos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Não leveis bolsa, nem alforje, nem sandálias; e a ninguém saudeis pelo caminho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E, em qualquer casa em que entrardes, dizei primeiro: 'Paz seja nesta casa.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">E, se ali houver um filho de paz, repousará sobre ele a vossa paz; e, se não, voltará para vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E permanecei na mesma casa, comendo e bebendo do que eles tiverem, pois digno é o trabalhador do seu salário. Não andeis de casa em casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">E, em qualquer cidade em que entrardes, e vos receberem, comei do que vos puserem diante.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">E curai os enfermos que nela houver, e dizei-lhes: 'O reino de Deus está próximo de vós.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Mas, em qualquer cidade em que entrardes, e não vos receberem, saí às suas ruas e dizei:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">'Até o pó da vossa cidade, que se apegou a nós, sacudimos contra vós. Sabei, contudo, isto: que o reino de Deus está próximo de vós.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E eu vos digo: naquele dia haverá menos rigor para Sodoma do que para aquela cidade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">"Ai de ti, Corazim! Ai de ti, Betsaida! Porque, se em Tiro e em Sidom se tivessem realizado os milagres que em vós se realizaram, há muito que teriam se arrependido, assentados em saco e cinza.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Portanto, no juízo haverá menos rigor para Tiro e Sidom do que para vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E tu, Cafarnaum, que te elevas até o céu, serás abatida até o Hades."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">"Quem vos ouve, a mim me ouve; e quem vos rejeita, a mim me rejeita; e quem me rejeita, rejeita aquele que me enviou."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: O RETORNO DOS SETENTA (10.17-24) -->
+    <div class="pericope">O Retorno dos Setenta</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E os setenta voltaram com alegria, dizendo: <span class="fala-outro">"Senhor, até os demônios se sujeitam a nós em teu nome."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E ele lhes disse: <span class="fala-jesus">"Eu via Satanás, como raio, cair do céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Eis que eu vos dou autoridade para pisar serpentes e escorpiões, e sobre todo o poder do inimigo; e nada vos fará dano.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Contudo, não vos alegreis porque os espíritos se vos sujeitam; mas alegrai-vos porque os vossos nomes estão escritos nos céus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Naquela hora, Jesus exultou no espírito e disse: <span class="fala-jesus">"Graças te dou, ó Pai, Senhor do céu e da terra, porque escondeste estas coisas aos sábios e entendidos, e as revelaste aos pequeninos. Sim, ó Pai, porque assim foi do teu agrado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">"Todas as coisas me foram entregues por meu Pai. E ninguém conhece quem é o Filho, senão o Pai; nem quem é o Pai, senão o Filho, e aquele a quem o Filho o quiser revelar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, voltando-se para os discípulos, disse-lhes em particular: <span class="fala-jesus">"Bem-aventurados os olhos que veem o que vós vedes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Pois eu vos digo: muitos profetas e reis desejaram ver o que vós vedes, e não viram; e ouvir o que ouvis, e não ouviram."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: O BOM SAMARITANO (10.25-37) -->
+    <div class="pericope">O Bom Samaritano</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E eis que um certo doutor da lei se levantou, tentando-o e dizendo: <span class="fala-outro">"Mestre, que farei para herdar a vida eterna?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E ele lhe disse: <span class="fala-jesus">"Que está escrito na lei? Como lês?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E ele, respondendo, disse: <span class="fala-outro">"Amarás o Senhor teu Deus com todo o teu coração, com toda a tua alma, com toda a tua força e com todo o teu entendimento; e o teu próximo como a ti mesmo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E disse-lhe: <span class="fala-jesus">"Respondeste corretamente. Faze isto, e viverás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Mas ele, querendo justificar-se a si mesmo, disse a Jesus: <span class="fala-outro">"E quem é o meu próximo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E Jesus, respondendo, disse: <span class="fala-jesus">"Um homem descia de Jerusalém para Jericó, e caiu nas mãos de salteadores, que o despojaram e, espancando-o, se retiraram, deixando-o meio morto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E, por acaso, descia pelo mesmo caminho um sacerdote; e, vendo-o, passou de largo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">E do mesmo modo também um levita, chegando àquele lugar e vendo-o, passou de largo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Mas um samaritano, que ia de viagem, chegou perto dele e, vendo-o, moveu-se de compaixão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">E, aproximando-se, ligou-lhe as feridas, derramando nelas azeite e vinho. E, pondo-o sobre o seu próprio animal, levou-o para uma hospedaria e cuidou dele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">E, no dia seguinte, ao partir, tirou dois denários e deu-os ao hospedeiro, dizendo-lhe: 'Cuida dele; e tudo o que gastares a mais, eu te pagarei quando voltar.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Qual, pois, destes três te parece que foi o próximo daquele que caiu nas mãos dos salteadores?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E ele disse: <span class="fala-outro">"O que usou de misericórdia para com ele."</span> Então Jesus lhe disse: <span class="fala-jesus">"Vai, e faze da mesma forma."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: MARTA E MARIA (10.38-42) -->
+    <div class="pericope">Marta e Maria</div>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E aconteceu que, indo eles de caminho, ele entrou numa aldeia. E uma mulher, chamada Marta, recebeu-o em sua casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E tinha esta uma irmã, chamada Maria, que, assentando-se aos pés de Jesus, ouvia a sua palavra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Mas Marta estava distraída com muito serviço. E, aproximando-se, disse: <span class="fala-outro">"Senhor, não te importas que a minha irmã me deixe servir sozinha? Dize-lhe, pois, que me ajude."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Marta, Marta, estás ansiosa e perturbada com muitas coisas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">Mas uma só é necessária. E Maria escolheu a boa parte, a qual não lhe será tirada."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 10:1, 17 — "Setenta"</span>
+            <div class="greek-text">ἑβδομήκοντα</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz <em>hebdomēkonta</em> (ἑβδομήκοντα), "setenta". Há uma variante textual em que aparece "setenta e dois".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a leitura "setenta" conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:3 — "Cordeiros no meio de lobos"</span>
+            <div class="greek-text">ἀρνὰς ἐν μέσῳ λύκων</div>
+            <p><strong>Análise:</strong> A imagem do envio dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:6 — "Filho de paz"</span>
+            <div class="greek-text">υἱὸς εἰρήνης</div>
+            <p><strong>Análise:</strong> Expressão semítica para uma pessoa digna de paz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filho de paz".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:7 — "Digno é o trabalhador do seu salário"</span>
+            <div class="greek-text">ἄξιος γὰρ ὁ ἐργάτης τοῦ μισθοῦ αὐτοῦ</div>
+            <p><strong>Análise:</strong> O princípio do sustento dos que proclamam o evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:9, 11 — "O reino de Deus está próximo de vós"</span>
+            <div class="greek-text">ἤγγικεν ἐφ' ὑμᾶς ἡ βασιλεία τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A mensagem do reino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:13 — "Corazim e Betsaida"</span>
+            <div class="greek-text">Χοραζίν, Βηθσαϊδά</div>
+            <p><strong>Análise:</strong> As cidades repreendidas por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Corazim" e "Betsaida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:15 — "Hades"</span>
+            <div class="greek-text">ᾅδης</div>
+            <p><strong>Análise:</strong> Termo grego para o lugar dos mortos, preservado na TBLH.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Hades".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 10:18 — "Eu via Satanás, como raio, cair do céu"</span>
+            <div class="greek-text">ἐθεώρουν τὸν Σατανᾶν ὡς ἀστραπὴν ἐκ τοῦ οὐρανοῦ πεσόντα</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre a queda de Satanás.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:19 — "Escorpiões"</span>
+            <div class="greek-text">σκορπίοι</div>
+            <p><strong>Análise:</strong> Animais venenosos, símbolo de poder maligno.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escorpiões".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:20 — "Escritos nos céus"</span>
+            <div class="greek-text">ἐγγέγραπται ἐν τοῖς οὐρανοῖς</div>
+            <p><strong>Análise:</strong> A alegria verdadeira dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escritos nos céus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:21 — "Exultou no espírito"</span>
+            <div class="greek-text">ἠγαλλιάσατο τῷ πνεύματι</div>
+            <p><strong>Análise:</strong> A alegria de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "exultou no espírito".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 10:22 — "Ninguém conhece quem é o Filho, senão o Pai"</span>
+            <div class="greek-text">οὐδεὶς γινώσκει τίς ἐστιν ὁ υἱός, εἰ μὴ ὁ πατήρ</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre seu relacionamento único com o Pai.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:25 — "Doutor da lei"</span>
+            <div class="greek-text">νομικός</div>
+            <p><strong>Análise:</strong> Especialista na Lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "doutor da lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:30, 36 — "Salteadores"</span>
+            <div class="greek-text">λῃσταῖς</div>
+            <p><strong>Análise:</strong> Como em Mateus 26:55.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "salteadores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:33 — "Samaritano"</span>
+            <div class="greek-text">Σαμαρίτης</div>
+            <p><strong>Análise:</strong> O samaritano da parábola, figura de compaixão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "samaritano".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:34 — "Hospedaria"</span>
+            <div class="greek-text">πανδοχεῖον</div>
+            <p><strong>Análise:</strong> Estabelecimento para hospedar viajantes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "hospedaria".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:35 — "Dois denários"</span>
+            <div class="greek-text">δύο δηνάρια</div>
+            <p><strong>Análise:</strong> Pagamento ao hospedeiro, equivalente a dois dias de trabalho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dois denários".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:38-42 — "Marta e Maria"</span>
+            <div class="greek-text">Μάρθα, Μαρία</div>
+            <p><strong>Análise:</strong> As duas mulheres mencionadas no relato de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Marta" e "Maria".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:41 — "Ansiosa e perturbada"</span>
+            <div class="greek-text">μεριμνᾷς καὶ τυρβάζῃ</div>
+            <p><strong>Análise:</strong> A palavra de Jesus a Marta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ansiosa e perturbada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 10:42 — "Boa parte"</span>
+            <div class="greek-text">ἀγαθὴν μερίδα</div>
+            <p><strong>Análise:</strong> Literalmente "boa parte" ou "boa porção".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "boa parte".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

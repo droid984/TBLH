@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Pão necessário</span>
+                Do grego <em>epiousios</em> (ἐπιούσιος), termo de significado discutido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Belzebu</span>
+                Nome associado ao príncipe dos demônios.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dedo de Deus</span>
+                Do grego <em>daktylō Theou</em> (δακτύλῳ Θεοῦ), expressão do poder divino.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Rainha do sul</span>
+                A rainha de Sabá, que visitou Salomão.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Chave do conhecimento</span>
+                A chave que abre o entendimento das Escrituras.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <!-- PERÍCOPE 1: O PAI NOSSO (11.1-4) -->
+    <div class="pericope">O Pai Nosso</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, estando ele a orar num certo lugar, quando terminou, um dos seus discípulos disse-lhe: <span class="fala-outro">"Senhor, ensina-nos a orar, como também João ensinou aos seus discípulos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E ele lhes disse: <span class="fala-jesus">"Quando orardes, dizei: Pai nosso, que estás nos céus, santificado seja o teu nome. Venha o teu reino. Seja feita a tua vontade, assim na terra como no céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">Dá-nos cada dia o nosso pão necessário.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">E perdoa-nos os nossos pecados, porque também nós perdoamos a todo aquele que nos deve. E não nos conduzas à tentação, mas livra-nos do mal."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A PARÁBOLA DO AMIGO INSISTENTE (11.5-13) -->
+    <div class="pericope">A Parábola do Amigo Insistente</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E disse-lhes: <span class="fala-jesus">"Qual de vós terá um amigo, e irá a ele à meia-noite, e lhe dirá: 'Amigo, empresta-me três pães,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">porque um amigo meu chegou de viagem a minha casa, e não tenho o que lhe pôr diante.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E o de dentro, respondendo, diga: 'Não me importunes. A porta já está fechada, e os meus filhos estão comigo na cama. Não posso levantar-me para te dar.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Eu vos digo: ainda que não se levante a dar-lhos por ser seu amigo, levantar-se-á, ao menos, por causa da sua insistência, e lhe dará tudo o que necessitar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">"E eu vos digo: Pedi, e dar-se-vos-á; buscai, e achareis; batei, e abrir-se-vos-á.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Pois todo aquele que pede recebe; e o que busca acha; e ao que bate, abrir-se-lhe-á.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E qual de vós, sendo pai, se o filho lhe pedir pão, lhe dará uma pedra? Ou, se pedir peixe, lhe dará em lugar de peixe uma serpente?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Ou, se pedir um ovo, lhe dará um escorpião?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Pois, se vós, sendo maus, sabeis dar boas dádivas aos vossos filhos, quanto mais o Pai celestial dará o Espírito Santo aos que lho pedirem?"</span>
+    </p>
+
+    <!-- PERÍCOPE 3: JESUS E BELZEBU (11.14-26) -->
+    <div class="pericope">Jesus e Belzebu</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E ele estava expulsando um demônio, e este era mudo. E aconteceu que, saindo o demônio, o mudo falou; e as multidões se admiraram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas alguns deles disseram: <span class="fala-outro">"Ele expulsa os demônios por Belzebu, príncipe dos demônios."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E outros, tentando-o, pediam-lhe um sinal do céu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Mas ele, conhecendo os seus pensamentos, disse-lhes: <span class="fala-jesus">"Todo reino dividido contra si mesmo será assolado, e uma casa cairá sobre a outra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E, se também Satanás está dividido contra si mesmo, como subsistirá o seu reino? Pois dizeis que eu expulso os demônios por Belzebu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E, se eu expulso os demônios por Belzebu, por quem os expulsam os vossos filhos? Portanto, eles mesmos serão os vossos juízes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Mas, se eu expulso os demônios pelo dedo de Deus, certamente o reino de Deus chegou a vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Quando o homem forte, bem armado, guarda a sua casa, os seus bens estão em segurança.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Mas, sobrevindo outro mais forte do que ele, o vence, e tira-lhe a sua armadura em que confiava, e reparte os seus despojos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Quem não é comigo é contra mim; e quem comigo não ajunta, espalha."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">"Quando o espírito imundo sai do homem, anda por lugares áridos, buscando repouso. E, não o achando, diz: 'Voltarei para a minha casa, de onde saí.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E, chegando, acha-a varrida e adornada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Então vai, e leva consigo outros sete espíritos piores do que ele, e, entrando, habitam ali. E o último estado daquele homem fica pior que o primeiro."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A BEM-AVENTURANÇA VERDADEIRA (11.27-28) -->
+    <div class="pericope">A Bem-Aventurança Verdadeira</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E aconteceu que, dizendo ele estas coisas, uma mulher dentre a multidão, levantando a voz, disse-lhe: <span class="fala-outro">"Bem-aventurado o ventre que te trouxe, e os peitos que mamaste."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Mas ele disse: <span class="fala-jesus">"Antes, bem-aventurados os que ouvem a palavra de Deus e a guardam."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: O SINAL DE JONAS (11.29-32) -->
+    <div class="pericope">O Sinal de Jonas</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, ajuntando-se as multidões, começou a dizer: <span class="fala-jesus">"Esta geração é má. Ela pede um sinal; mas nenhum sinal lhe será dado, senão o sinal do profeta Jonas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Porque, assim como Jonas foi sinal para os ninivitas, assim também o Filho do homem o será para esta geração.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">A rainha do sul se levantará no juízo com os homens desta geração, e os condenará; porque veio dos confins da terra para ouvir a sabedoria de Salomão. E eis que aqui está quem é maior que Salomão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Os homens de Nínive se levantarão no juízo com esta geração, e a condenarão; porque se arrependeram com a pregação de Jonas. E eis que aqui está quem é maior que Jonas."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: A CANDELA DO CORPO (11.33-36) -->
+    <div class="pericope">A Candela do Corpo</div>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">"E ninguém, acendendo uma candeia, a põe em lugar oculto, nem debaixo do cesto, mas no candelabro, para que os que entram vejam a luz.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">A candeia do corpo é o olho. Portanto, se o teu olho for simples, todo o teu corpo será luminoso; mas, se for mau, também o teu corpo será tenebroso.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Vê, pois, que a luz que há em ti não sejam trevas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Se, pois, todo o teu corpo é luminoso, não tendo parte alguma tenebrosa, todo ele será luminoso, como quando a candeia te ilumina com o seu resplendor."</span>
+    </p>
+
+    <!-- PERÍCOPE 7: CONTRA OS FARISEUS E DOUTORES DA LEI (11.37-54) -->
+    <div class="pericope">Contra os Fariseus e Doutores da Lei</div>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, enquanto ele falava, um fariseu rogou-lhe que fosse jantar com ele. E, entrando, assentou-se à mesa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Mas o fariseu, vendo isso, admirou-se de que ele não se lavara primeiro antes do jantar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E o Senhor lhe disse: <span class="fala-jesus">"Vós, fariseus, limpais o exterior do copo e do prato, mas o vosso interior está cheio de rapina e maldade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Insensatos! Aquele que fez o exterior não fez também o interior?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">Dai, porém, de esmola o que está dentro, e eis que tudo vos será limpo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">"Mas ai de vós, fariseus, porque dais o dízimo da hortelã, da arruda e de toda hortaliça, e desprezais o juízo e o amor de Deus. Era necessário fazer estas coisas, e não omitir aquelas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Ai de vós, fariseus, porque amais os primeiros assentos nas sinagogas, e as saudações nas praças.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Ai de vós, escribas e fariseus, hipócritas, porque sois como sepulcros que não aparecem, e os homens que sobre eles andam não o sabem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, respondendo um dos doutores da lei, disse-lhe: <span class="fala-outro">"Mestre, quando dizes isso, também nos insultas a nós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E ele disse: <span class="fala-jesus">"Ai de vós também, doutores da lei, porque carregais os homens com cargas difíceis de suportar, e vós mesmos nem com um dos vossos dedos tocais as cargas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">Ai de vós, porque edificais os sepulcros dos profetas, e os vossos pais os mataram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">Assim, testificais que consentis nas obras dos vossos pais; porque eles os mataram, e vós edificais os seus sepulcros.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">Por isso também a sabedoria de Deus disse: 'Enviar-lhes-ei profetas e apóstolos, e a alguns deles matarão e perseguirão',</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">para que desta geração seja requerido o sangue de todos os profetas, que foi derramado desde a fundação do mundo,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-jesus">desde o sangue de Abel até o sangue de Zacarias, que pereceu entre o altar e o templo. Sim, eu vos digo: será requerido desta geração.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        <span class="fala-jesus">Ai de vós, doutores da lei, porque tirastes a chave do conhecimento; vós mesmos não entrastes, e impedistes os que entravam."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E, dizendo-lhes ele estas coisas, os escribas e os fariseus começaram a pressioná-lo fortemente, e a fazê-lo falar sobre muitas coisas,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        armando-lhe ciladas, e procurando apanhar algo da sua boca, para o acusarem.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 11:2-4 — "Pai nosso"</span>
+            <div class="greek-text">Πάτερ ἡμῶν ...</div>
+            <p><strong>Análise:</strong> A oração ensinada por Jesus, em forma mais breve que Mateus 6:9-13.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a forma de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:3 — "Pão necessário"</span>
+            <div class="greek-text">ἐπιούσιον</div>
+            <p><strong>Análise:</strong> Termo de significado discutido, tradicionalmente traduzido como "diário" ou "de cada dia". A TBLH mantém "necessário" para preservar a amplitude do termo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pão necessário".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:4 — "A todo aquele que nos deve"</span>
+            <div class="greek-text">παντὶ ὀφείλοντι ἡμῖν</div>
+            <p><strong>Análise:</strong> Lucas apresenta o perdão dos pecados em relação àqueles que são devedores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:8 — "Insistência"</span>
+            <div class="greek-text">ἀναίδεια</div>
+            <p><strong>Análise:</strong> Termo que pode expressar insistência, ousadia ou importunação persistente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "insistência".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 11:13 — "Pai celestial dará o Espírito Santo"</span>
+            <div class="greek-text">τὸν πατέρα ... δώσει πνεῦμα ἅγιον</div>
+            <p><strong>Análise:</strong> Lucas menciona o Espírito Santo, diferente de Mateus 7:11, que menciona "bens".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:15 — "Belzebu, príncipe dos demônios"</span>
+            <div class="greek-text">Βεελζεβοὺλ τῷ ἄρχοντι τῶν δαιμονίων</div>
+            <p><strong>Análise:</strong> Como em Mateus 12:24.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Belzebu".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 11:20 — "Dedo de Deus"</span>
+            <div class="greek-text">δακτύλῳ Θεοῦ</div>
+            <p><strong>Análise:</strong> Lucas usa "dedo de Deus", diferente de Mateus 12:28, que usa "Espírito de Deus".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:21-22 — "Homem forte"</span>
+            <div class="greek-text">ἰσχυρός ... ἰσχυρότερος</div>
+            <p><strong>Análise:</strong> A parábola do homem forte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "homem forte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:27 — "Bem-aventurado o ventre que te trouxe"</span>
+            <div class="greek-text">μακαρία ἡ κοιλία ἡ βαστάσασά σε</div>
+            <p><strong>Análise:</strong> A exclamação da mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 11:29-30 — "Sinal do profeta Jonas"</span>
+            <div class="greek-text">τὸ σημεῖον Ἰωνᾶ</div>
+            <p><strong>Análise:</strong> Como em Mateus 12:39.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:31 — "Rainha do sul"</span>
+            <div class="greek-text">βασίλισσα νότου</div>
+            <p><strong>Análise:</strong> A rainha de Sabá.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "rainha do sul".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:34-36 — "Candeia do corpo é o olho"</span>
+            <div class="greek-text">ὁ λύχνος τοῦ σώματός ἐστιν ὁ ὀφθαλμός</div>
+            <p><strong>Análise:</strong> O ensino sobre o olho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:39 — "Rapina e maldade"</span>
+            <div class="greek-text">ἁρπαγῆς καὶ πονηρίας</div>
+            <p><strong>Análise:</strong> Literalmente "rapina e maldade".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "rapina e maldade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:41 — "Dai, porém, de esmola o que está dentro"</span>
+            <div class="greek-text">πλὴν τὰ ἐνόντα δότε ἐλεημοσύνην</div>
+            <p><strong>Análise:</strong> A instrução de Jesus sobre a esmola interior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Dai, porém, de esmola o que está dentro".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 11:42 — "Hortelã, arruda e toda hortaliça"</span>
+            <div class="greek-text">ἡδύοσμον, πήγανον, πᾶν λάχανον</div>
+            <p><strong>Análise:</strong> A lista de Lucas, diferente de Mateus 23:23.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a lista de Lucas.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 11:44 — "Sepulcros que não aparecem"</span>
+            <div class="greek-text">τάφοι ... ἄδηλοι</div>
+            <p><strong>Análise:</strong> A imagem de Lucas, diferente de Mateus 23:27.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:51 — "Zacarias"</span>
+            <div class="greek-text">Ζαχαρίου</div>
+            <p><strong>Análise:</strong> Jesus menciona o sangue de Zacarias, desde Abel até Zacarias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Zacarias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:52 — "Chave do conhecimento"</span>
+            <div class="greek-text">τὴν κλεῖδα τῆς γνώσεως</div>
+            <p><strong>Análise:</strong> A chave que abre o entendimento das Escrituras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chave do conhecimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 11:53 — "Pressioná-lo fortemente"</span>
+            <div class="greek-text">δεινῶς ἐνέχειν</div>
+            <p><strong>Análise:</strong> A reação dos escribas e fariseus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pressioná-lo fortemente".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

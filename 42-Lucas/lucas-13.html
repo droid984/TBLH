@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 13</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 13</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Torre de Siloé</span>
+                Torre mencionada por Jesus ao citar os dezoito que morreram em sua queda.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espírito de enfermidade</span>
+                Do grego <em>pneuma astheneias</em> (πνεῦμα ἀσθενείας), literalmente "espírito de enfermidade".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filha de Abraão</span>
+                Expressão utilizada por Jesus para se referir à mulher curada.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Raposa</span>
+                Do grego <em>alōpēx</em> (ἀλώπηξ), expressão dirigida a Herodes.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">13</div>
+
+    <!-- PERÍCOPE 1: ARREPENDIMENTO E A FIGUEIRA (13.1-9) -->
+    <div class="pericope">Arrependimento e a Figueira</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, naquele mesmo tempo, estavam presentes alguns que lhe contaram acerca dos galileus cujo sangue Pilatos tinha misturado com os seus sacrifícios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Pensais vós que esses galileus eram mais pecadores do que todos os outros galileus, por terem sofrido tais coisas?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">Não, eu vos digo; mas, se não vos arrependerdes, todos de igual modo perecereis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Ou aqueles dezoito, sobre os quais caiu a torre de Siloé e os matou, pensais que eram mais culpados do que todos os outros homens que habitavam em Jerusalém?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Não, eu vos digo; mas, se não vos arrependerdes, todos de igual modo perecereis."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E dizia esta parábola: <span class="fala-jesus">"Certo homem tinha uma figueira plantada na sua vinha. E foi procurar fruto nela, e não o achou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Então disse ao vinhateiro: 'Eis que há três anos venho procurar fruto nesta figueira, e não o acho. Corta-a. Por que ocupa ainda a terra?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">E ele, respondendo, disse-lhe: 'Senhor, deixa-a ainda este ano, até que eu cave ao redor dela e lhe ponha esterco.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">E, se der fruto, ficará; e, se não, depois a cortarás.'"</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A MULHER ENCURVADA (13.10-17) -->
+    <div class="pericope">A Mulher Encurvada</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E ele ensinava numa das sinagogas no sábado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E eis que estava ali uma mulher que tinha um espírito de enfermidade havia dezoito anos; e andava encurvada, e de modo nenhum podia endireitar-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E Jesus, vendo-a, chamou-a a si e disse-lhe: <span class="fala-jesus">"Mulher, estás livre da tua enfermidade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E impôs as mãos sobre ela, e imediatamente ela se endireitou, e glorificava a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E o principal da sinagoga, indignado de que Jesus tivesse curado no sábado, disse à multidão: <span class="fala-outro">"Seis dias há em que se deve trabalhar; vinde, pois, nesses dias e sede curados, e não no dia de sábado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas o Senhor lhe respondeu e disse: <span class="fala-jesus">"Hipócrita! Cada um de vós não desamarra no sábado o seu boi ou o seu jumento do estábulo, e não o leva a beber?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">E esta filha de Abraão, que Satanás tinha presa havia já dezoito anos, não devia ser solta desta prisão no dia de sábado?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, dizendo ele estas coisas, todos os seus adversários ficaram envergonhados; e toda a multidão se alegrava por todas as coisas gloriosas que eram feitas por ele.
+    </p>
+
+    <!-- PERÍCOPE 3: O REINO DE DEUS (13.18-21) -->
+    <div class="pericope">O Reino de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E dizia: <span class="fala-jesus">"A que é semelhante o reino de Deus? E a que o compararei?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">É semelhante a um grão de mostarda, que um homem tomou e lançou na sua horta. E cresceu, e se fez uma grande árvore, e as aves do céu se aninharam nos seus ramos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E disse outra vez: <span class="fala-jesus">"A que compararei o reino de Deus?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">É semelhante ao fermento, que uma mulher tomou e escondeu em três medidas de farinha, até que tudo ficou levedado."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A PORTA ESTREITA (13.22-30) -->
+    <div class="pericope">A Porta Estreita</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E percorria as cidades e as aldeias, ensinando, e caminhava para Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E alguém lhe disse: <span class="fala-outro">"Senhor, são poucos os que se salvam?"</span> E ele lhes disse:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">"Esforçai-vos por entrar pela porta estreita; porque eu vos digo: muitos procurarão entrar, e não poderão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Quando o pai de família se levantar e fechar a porta, e vós, do lado de fora, começardes a bater à porta, dizendo: 'Senhor, Senhor, abre-nos', e ele, respondendo, vos disser: 'Não sei de onde sois',</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">então começareis a dizer: 'Comemos e bebemos diante de ti, e tu ensinaste nas nossas ruas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E ele vos dirá: 'Eu vos digo: não sei de onde sois. Apartai-vos de mim, todos vós, que praticais a iniquidade.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Ali haverá choro e ranger de dentes, quando virdes Abraão, Isaque, Jacó e todos os profetas no reino de Deus, e vós lançados fora.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">E virão do oriente, e do ocidente, e do norte, e do sul, e se assentarão à mesa no reino de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">E eis que há últimos que serão primeiros, e primeiros que serão últimos."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: O LAMENTO SOBRE JERUSALÉM (13.31-35) -->
+    <div class="pericope">O Lamento sobre Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Naquele mesmo dia, chegaram alguns fariseus, dizendo-lhe: <span class="fala-outro">"Sai, e vai-te daqui, porque Herodes quer matar-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E ele lhes disse: <span class="fala-jesus">"Ide e dizei àquela raposa: Eis que eu expulso demônios e realizo curas hoje e amanhã, e no terceiro dia serei aperfeiçoado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Contudo, é necessário que eu caminhe hoje, amanhã e depois, porque não convém que um profeta pereça fora de Jerusalém."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">"Jerusalém, Jerusalém, que matas os profetas e apedrejas os que te são enviados! Quantas vezes quis eu ajuntar os teus filhos, como a galinha ajunta os seus pintinhos debaixo das asas, e não quiseste!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Eis que a vossa casa vos ficará deserta. E em verdade vos digo: não me vereis até que venha o tempo em que digais: 'Bendito o que vem em nome do Senhor.'"</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:1 — "Pilatos tinha misturado com os seus sacrifícios"</span>
+            <div class="greek-text">ὧν τὸ αἷμα Πιλάτος ἔμιξεν μετὰ τῶν θυσιῶν αὐτῶν</div>
+            <p><strong>Análise:</strong> O relato dos galileus cujo sangue Pilatos misturou com os seus sacrifícios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:4 — "Torre de Siloé"</span>
+            <div class="greek-text">ὁ πύργος ἐν τῷ Σιλωὰμ</div>
+            <p><strong>Análise:</strong> A torre mencionada por Jesus ao citar os dezoito que morreram em sua queda.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "torre de Siloé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:6-9 — "Figueira plantada na vinha"</span>
+            <div class="greek-text">συκῆν ... ἐν τῷ ἀμπελῶνι</div>
+            <p><strong>Análise:</strong> A parábola da figueira que não produzia fruto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:11 — "Espírito de enfermidade"</span>
+            <div class="greek-text">πνεῦμα ἀσθενείας</div>
+            <p><strong>Análise:</strong> Literalmente "espírito de enfermidade".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espírito de enfermidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:11, 16 — "Dezoito anos"</span>
+            <div class="greek-text">ὀκτωκαίδεκα</div>
+            <p><strong>Análise:</strong> O período indicado para a condição da mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dezoito anos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:16 — "Filha de Abraão"</span>
+            <div class="greek-text">θυγατέρα Ἀβραάμ</div>
+            <p><strong>Análise:</strong> Expressão utilizada por Jesus para se referir à mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filha de Abraão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:19 — "Grão de mostarda"</span>
+            <div class="greek-text">κόκκῳ σινάπεως</div>
+            <p><strong>Análise:</strong> A primeira comparação de Jesus sobre o reino de Deus neste trecho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grão de mostarda".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:21 — "Três medidas de farinha"</span>
+            <div class="greek-text">σάτα τρία</div>
+            <p><strong>Análise:</strong> Uma medida antiga de farinha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "três medidas de farinha".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:24 — "Porta estreita"</span>
+            <div class="greek-text">στενῆς θύρας</div>
+            <p><strong>Análise:</strong> Jesus ordena que seus ouvintes se esforcem para entrar pela porta estreita.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "porta estreita".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:27 — "Praticais a iniquidade"</span>
+            <div class="greek-text">ἐργάται ἀδικίας</div>
+            <p><strong>Análise:</strong> Literalmente "trabalhadores da iniquidade".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "praticais a iniquidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:30 — "Últimos serão primeiros"</span>
+            <div class="greek-text">ἔσονται πρῶτοι ... ἔσονται ἔσχατοι</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre a inversão entre primeiros e últimos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:32 — "Àquela raposa"</span>
+            <div class="greek-text">τῇ ἀλώπεκι ταύτῃ</div>
+            <p><strong>Análise:</strong> Expressão dirigida a Herodes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "àquela raposa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 13:32 — "Serei aperfeiçoado"</span>
+            <div class="greek-text">τελειοῦμαι</div>
+            <p><strong>Análise:</strong> Relacionado a "aperfeiçoar", "completar" ou "levar à consumação".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "serei aperfeiçoado".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 13:34-35 — "Jerusalém, Jerusalém"</span>
+            <div class="greek-text">Ἰερουσαλὴμ Ἰερουσαλήμ</div>
+            <p><strong>Análise:</strong> O lamento de Jesus sobre Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 13:35 — "Bendito o que vem em nome do Senhor"</span>
+            <div class="greek-text">εὐλογημένος ὁ ἐρχόμενος ἐν ὀνόματι κυρίου</div>
+            <p><strong>Análise:</strong> Citação do Salmo 118:26.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

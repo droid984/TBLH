@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 21</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 21</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Tesouro</span>
+                Local de ofertas no templo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lepton</span>
+                Pequena moeda de baixo valor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sedição</span>
+                Do grego <em>akatastasia</em> (ἀκαταστασία), tumulto ou agitação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Laço</span>
+                Do grego <em>pagis</em> (παγίς), armadilha.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">21</div>
+
+    <!-- PERÍCOPE 1: A OFERTA DA VIÚVA (21.1-4) -->
+    <div class="pericope">A Oferta da Viúva</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, olhando ele, viu os ricos lançarem as suas ofertas no tesouro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E viu também uma viúva pobre, que lançava ali duas pequenas moedas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E disse: <span class="fala-jesus">"Em verdade vos digo: esta viúva pobre lançou mais do que todos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Porque todos estes lançaram para as ofertas de Deus do que lhes sobra; mas esta, da sua pobreza, lançou todo o sustento que tinha."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A DESTRUIÇÃO DO TEMPLO PREDITA (21.5-6) -->
+    <div class="pericope">A Destruição do Templo Preditada</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, dizendo alguns do templo que estava adornado de belas pedras e de ofertas, ele disse:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">"Quanto a estas coisas que vedes, virão dias em que não ficará pedra sobre pedra, que não seja derrubada."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: O SINAL E OS AVISOS (21.7-19) -->
+    <div class="pericope">O Sinal e os Avisos</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E perguntaram-lhe, dizendo: <span class="fala-outro">"Mestre, quando serão, pois, estas coisas? E que sinal haverá quando estas coisas estiverem para acontecer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E ele disse: <span class="fala-jesus">"Vede que não vos enganem; porque muitos virão em meu nome, dizendo: 'Eu sou', e: 'O tempo está próximo.' Não vades, pois, após eles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">E, quando ouvirdes falar de guerras e de sedições, não vos assusteis. Porque é necessário que primeiro aconteçam estas coisas, mas o fim não será logo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Então lhes disse: <span class="fala-jesus">"Levantar-se-á nação contra nação, e reino contra reino.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E haverá grandes terremotos, e fomes, e pestes em vários lugares; e haverá coisas espantosas e grandes sinais do céu."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">"Mas antes de todas estas coisas, lançarão mão de vós, e vos perseguirão, entregando-vos às sinagogas e às prisões, levando-vos diante de reis e governadores, por causa do meu nome.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E isso vos acontecerá para testemunho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Ponde, pois, nos vossos corações: não premediteis como haveis de responder.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Porque eu vos darei boca e sabedoria, a que nenhum dos vossos adversários poderá resistir nem contradizer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">E sereis entregues até por pais, e irmãos, e parentes, e amigos; e matarão alguns de vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">E sereis odiados por todos, por causa do meu nome.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Mas nem um cabelo da vossa cabeça se perderá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Na vossa perseverança possuí as vossas almas."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A ABOMINAÇÃO DA DESOLAÇÃO (21.20-24) -->
+    <div class="pericope">A Abominação da Desolação</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">"E, quando virdes Jerusalém cercada de exércitos, sabei então que a sua desolação está próxima.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Então, os que estiverem na Judeia fujam para os montes; e os que estiverem no meio dela, retirem-se; e os que estiverem nos campos, não entrem nela.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Porque estes são dias de vingança, para que se cumpram todas as coisas que estão escritas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Mas ai das que estiverem grávidas, e das que amamentarem naqueles dias! Porque haverá grande aflição na terra, e ira sobre este povo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">E cairão ao fio da espada, e serão levados cativos para todas as nações; e Jerusalém será pisada pelos gentios, até que os tempos dos gentios se completem."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: A VINDA DO FILHO DO HOMEM (21.25-28) -->
+    <div class="pericope">A Vinda do Filho do Homem</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">"E haverá sinais no sol, e na lua, e nas estrelas; e, na terra, angústia das nações, em perplexidade, com o bramido do mar e das ondas;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">os homens desmaiando de terror, e na expectativa das coisas que sobrevirão ao mundo; porque os poderes dos céus serão abalados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E então verão o Filho do homem vindo numa nuvem, com poder e grande glória.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">E, quando estas coisas começarem a acontecer, olhai para cima e levantai as vossas cabeças, porque a vossa redenção está próxima."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: A PARÁBOLA DA FIGUEIRA (21.29-33) -->
+    <div class="pericope">A Parábola da Figueira</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E disse-lhes uma parábola: <span class="fala-jesus">"Olhai para a figueira e para todas as árvores.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Quando já brotam, vós, vendo-as, sabeis por vós mesmos que o verão já está próximo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Assim também vós, quando virdes acontecer estas coisas, sabei que o reino de Deus está próximo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Em verdade vos digo: não passará esta geração até que tudo aconteça.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">O céu e a terra passarão, mas as minhas palavras não passarão."</span>
+    </p>
+
+    <!-- PERÍCOPE 7: A EXORTAÇÃO À VIGILÂNCIA (21.34-38) -->
+    <div class="pericope">A Exortação à Vigilância</div>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">"E tende cuidado de vós mesmos, para que os vossos corações não se carreguem de glutonaria, de embriaguez e dos cuidados desta vida, e aquele dia não venha sobre vós de repente.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Porque virá como um laço sobre todos os que habitam na face de toda a terra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Vigiai, pois, orando em todo o tempo, para que sejais considerados dignos de escapar de todas estas coisas que hão de acontecer, e de estar em pé diante do Filho do homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E de dia ensinava no templo; e, à noite, saindo, ficava no monte chamado das Oliveiras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E todo o povo ia de manhã até ele, para o ouvir no templo.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:1 — "Tesouro"</span>
+            <div class="greek-text">γαζοφυλάκιον</div>
+            <p><strong>Análise:</strong> O local de ofertas no templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tesouro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:2 — "Duas pequenas moedas"</span>
+            <div class="greek-text">λεπτά</div>
+            <p><strong>Análise:</strong> Plural de <em>lepton</em>, uma pequena moeda de baixo valor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "duas pequenas moedas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:4 — "Todo o sustento que tinha"</span>
+            <div class="greek-text">ὅλον τὸν βίον</div>
+            <p><strong>Análise:</strong> Literalmente "todo o seu viver".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todo o sustento que tinha".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:5 — "Belas pedras e ofertas"</span>
+            <div class="greek-text">λίθοις καλοῖς καὶ ἀναθήμασιν</div>
+            <p><strong>Análise:</strong> A admiração pelo templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 21:6 — "Não ficará pedra sobre pedra"</span>
+            <div class="greek-text">οὐκ ἀφεθήσεται λίθος ἐπὶ λίθῳ</div>
+            <p><strong>Análise:</strong> A predição da destruição do templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:8 — "Eu sou"</span>
+            <div class="greek-text">ἐγώ εἰμι</div>
+            <p><strong>Análise:</strong> A advertência contra os falsos messias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Eu sou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:8 — "O tempo está próximo"</span>
+            <div class="greek-text">ὁ καιρὸς ἤγγικεν</div>
+            <p><strong>Análise:</strong> A advertência contra os falsos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:9 — "Sedição"</span>
+            <div class="greek-text">ἀκαταστασίας</div>
+            <p><strong>Análise:</strong> "Tumultos", "sedições".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sedição".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:11 — "Coisas espantosas"</span>
+            <div class="greek-text">φόβητρα</div>
+            <p><strong>Análise:</strong> "Coisas terríveis", "espantosas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coisas espantosas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 21:15 — "Vos darei boca e sabedoria"</span>
+            <div class="greek-text">δώσω ὑμῖν στόμα καὶ σοφίαν</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:19 — "Na vossa perseverança possuí as vossas almas"</span>
+            <div class="greek-text">κτήσασθε</div>
+            <p><strong>Análise:</strong> "Possuí", "adquiri".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 21:20 — "Jerusalém cercada de exércitos"</span>
+            <div class="greek-text">κυκλουμένην ὑπὸ στρατοπέδων</div>
+            <p><strong>Análise:</strong> A predição do cerco de Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:22 — "Dias de vingança"</span>
+            <div class="greek-text">ἡμέραι ἐκδικήσεως</div>
+            <p><strong>Análise:</strong> Dias de juízo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dias de vingança".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:24 — "Tempos dos gentios"</span>
+            <div class="greek-text">καιροὶ ἐθνῶν</div>
+            <p><strong>Análise:</strong> O período em que Jerusalém seria pisada pelos gentios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tempos dos gentios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:25 — "Bramido do mar e das ondas"</span>
+            <div class="greek-text">ἤχους θαλάσσης καὶ σάλου</div>
+            <p><strong>Análise:</strong> O som agitado do mar e das ondas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:26 — "Desmaiando de terror"</span>
+            <div class="greek-text">ἀποψυχόντων</div>
+            <p><strong>Análise:</strong> "Desmaiando", "perdendo o fôlego".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desmaiando de terror".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 21:27 — "Filho do homem vindo numa nuvem"</span>
+            <div class="greek-text">τὸν υἱὸν τοῦ ἀνθρώπου ἐρχόμενον ἐν νεφέλῃ</div>
+            <p><strong>Análise:</strong> A vinda gloriosa do Filho do Homem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:35 — "Laço"</span>
+            <div class="greek-text">παγίς</div>
+            <p><strong>Análise:</strong> "Armadilha", "laço".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "laço".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 21:36 — "Estar em pé diante do Filho do homem"</span>
+            <div class="greek-text">σταθῆναι ἔμπροσθεν τοῦ υἱοῦ τοῦ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> A exortação final.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

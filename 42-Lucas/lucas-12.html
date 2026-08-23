@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Geena</span>
+                Do grego <em>geenna</em> (γέεννα), termo preservado na tradução.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Asses</span>
+                Do grego <em>assarion</em> (ἀσσάριον), pequena denominação monetária romana.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Côvado</span>
+                Do grego <em>pēchys</em> (πῆχυς), medida de comprimento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lepto</span>
+                Do grego <em>lepton</em> (λεπτόν), pequena denominação monetária.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <!-- PERÍCOPE 1: O FERMENTO DOS FARISEUS (12.1-12) -->
+    <div class="pericope">O Fermento dos Fariseus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>nquanto isso, ajuntando-se uma multidão de muitos milhares, de modo que se pisavam uns aos outros, começou a dizer primeiro aos seus discípulos: <span class="fala-jesus">"Guardai-vos do fermento dos fariseus, que é a hipocrisia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-jesus">Porque nada há encoberto que não venha a ser revelado, nem oculto que não venha a ser conhecido.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">Por isso, tudo o que dissestes em trevas será ouvido na luz; e o que falastes ao ouvido nos aposentos será proclamado sobre os telhados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">"E eu vos digo, amigos meus: não temais os que matam o corpo e, depois disso, nada mais podem fazer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Mas eu vos mostrarei a quem deveis temer: temei aquele que, depois de matar, tem autoridade para lançar na Geena. Sim, eu vos digo, a esse temei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">Não se vendem cinco passarinhos por dois asses? E nenhum deles está esquecido diante de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E até os cabelos da vossa cabeça estão todos contados. Não temais, pois; mais valeis vós do que muitos passarinhos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">"E eu vos digo: todo aquele que me confessar diante dos homens, também o Filho do homem o confessará diante dos anjos de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Mas aquele que me negar diante dos homens será negado diante dos anjos de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">E todo aquele que disser uma palavra contra o Filho do homem, ser-lhe-á perdoado; mas ao que blasfemar contra o Espírito Santo, não lhe será perdoado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E, quando vos levarem às sinagogas, e aos magistrados, e às autoridades, não estejais ansiosos de como ou do que haveis de responder, ou do que haveis de dizer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Porque o Espírito Santo vos ensinará naquela mesma hora o que deveis dizer."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A PARÁBOLA DO RICO INSENSATO (12.13-21) -->
+    <div class="pericope">A Parábola do Rico Insensato</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E disse-lhe um da multidão: <span class="fala-outro">"Mestre, dize a meu irmão que reparta comigo a herança."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas ele lhe disse: <span class="fala-jesus">"Homem, quem me constituiu juiz ou repartidor entre vós?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E disse-lhes: <span class="fala-jesus">"Vede e guardai-vos da avareza; porque a vida de um homem não consiste na abundância dos bens que ele possui."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E contou-lhes uma parábola, dizendo: <span class="fala-jesus">"O campo de um homem rico produziu abundantemente.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">E ele discorria consigo mesmo, dizendo: 'Que farei? Pois não tenho onde guardar os meus frutos.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E disse: 'Isto farei: derrubarei os meus celeiros, e edificarei maiores, e ali guardarei todos os meus frutos e os meus bens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E direi à minha alma: Alma, tens muitos bens em depósito para muitos anos. Descansa, come, bebe e alegra-te.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Mas Deus lhe disse: 'Insensato! Esta noite te pedirão a tua alma; e o que tens preparado, para quem será?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Assim é aquele que para si ajunta tesouros, e não é rico para com Deus."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: NÃO ANDEIS ANSIOSOS (12.22-34) -->
+    <div class="pericope">Não Andeis Ansiosos</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E disse aos seus discípulos: <span class="fala-jesus">"Por isso vos digo: não andeis ansiosos pela vossa vida, quanto ao que haveis de comer; nem pelo corpo, quanto ao que haveis de vestir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">A vida é mais que o alimento, e o corpo mais que a vestimenta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Considerai os corvos: não semeiam, nem ceifam, não têm despensa nem celeiro; e Deus os alimenta. Quanto mais valeis vós do que as aves?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E qual de vós, por mais ansioso que esteja, pode acrescentar um côvado à sua estatura?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Pois, se nem as coisas mínimas podeis fazer, por que estais ansiosos pelas demais?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Considerai os lírios, como crescem: não trabalham, nem fiam. E eu vos digo: nem Salomão, em toda a sua glória, se vestiu como um deles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">E, se Deus assim veste a erva, que hoje está no campo e amanhã é lançada no forno, quanto mais a vós, homens de pouca fé?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">E não procureis o que haveis de comer, ou o que haveis de beber, e não andeis inquietos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Porque todas estas coisas os gentios do mundo procuram; mas vosso Pai sabe que necessitais delas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Buscai, antes, o reino de Deus, e todas estas coisas vos serão acrescentadas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">"Não temas, pequeno rebanho, porque a vosso Pai agradou dar-vos o reino.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Vendei os vossos bens e dai esmolas. Fazei para vós bolsas que não envelhecem, um tesouro nos céus que não se esgota, onde o ladrão não chega, nem a traça corrói.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Porque onde estiver o vosso tesouro, ali estará também o vosso coração."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: VIGIAI (12.35-48) -->
+    <div class="pericope">Vigiai</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">"Estejam cingidos os vossos lombos, e acesas as vossas candeias.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">E vós, sede semelhantes a homens que esperam o seu senhor, quando voltar das bodas, para que, quando vier e bater, logo lhe abram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Bem-aventurados aqueles servos, aos quais o senhor, quando vier, achar vigiando. Em verdade vos digo: ele se cingirá, e os fará assentar à mesa, e, aproximando-se, os servirá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">E, se vier na segunda vigília, ou vier na terceira vigília, e assim os achar, bem-aventurados são aqueles servos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">Mas sabei isto: se o pai de família soubesse a que hora viria o ladrão, vigiaria e não deixaria que a sua casa fosse arrombada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Portanto, estai vós também preparados; porque o Filho do homem virá na hora em que não pensais."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E Pedro lhe disse: <span class="fala-outro">"Senhor, dizes esta parábola a nós, ou também a todos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E o Senhor disse: <span class="fala-jesus">"Quem é, pois, o mordomo fiel e prudente, ao qual o senhor constituirá sobre os seus servos, para lhes dar a porção de alimento no tempo devido?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Bem-aventurado aquele servo, a quem o seu senhor, quando vier, achar fazendo assim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Em verdade vos digo: ele o constituirá sobre todos os seus bens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Mas, se aquele servo disser no seu coração: 'O meu senhor tarda a vir', e começar a espancar os servos e as servas, e a comer, e a beber, e a embriagar-se,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">virá o senhor daquele servo no dia em que não espera, e na hora em que não sabe, e o cortará ao meio, e porá a sua parte com os infiéis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">E o servo que soube a vontade do seu senhor, e não se preparou, nem fez conforme a sua vontade, será castigado com muitos açoites.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">Mas o que não a soube, e fez coisas dignas de açoites, será castigado com poucos açoites. E a todo aquele a quem muito foi dado, muito lhe será requerido; e a quem muito foi confiado, mais ainda lhe será pedido."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: DIVISÃO NA TERRA (12.49-53) -->
+    <div class="pericope">Divisão na Terra</div>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">"Eu vim lançar fogo na terra; e o que quero, se já está aceso?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">Mas tenho de ser batizado com um batismo; e como me angustio até que se cumpra!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-jesus">Pensais vós que vim dar paz na terra? Não, eu vos digo, mas antes divisão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        <span class="fala-jesus">Porque daqui em diante, haverá cinco em uma casa divididos: três contra dois, e dois contra três.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        <span class="fala-jesus">Estarão divididos: o pai contra o filho, e o filho contra o pai; a mãe contra a filha, e a filha contra a mãe; a sogra contra a sua nora, e a nora contra a sua sogra."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: DISCERNINDO OS TEMPOS (12.54-59) -->
+    <div class="pericope">Discernindo os Tempos</div>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E dizia também às multidões: <span class="fala-jesus">"Quando vedes uma nuvem que se levanta do ocidente, logo dizeis: 'Vem chuva'; e assim acontece.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        <span class="fala-jesus">E, quando sopra o vento sul, dizeis: 'Haverá calor'; e acontece.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        <span class="fala-jesus">Hipócritas, sabeis discernir a face do céu e da terra; como não discernis este tempo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        <span class="fala-jesus">"E por que não julgais por vós mesmos o que é justo?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        <span class="fala-jesus">Quando, pois, vais com o teu adversário ao magistrado, faze o possível para te livrares dele no caminho, para que não te arraste ao juiz, e o juiz te entregue ao oficial, e o oficial te lance na prisão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        <span class="fala-jesus">Eu te digo: não sairás dali, até pagares o último lepto."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:1 — "Fermento dos fariseus, que é a hipocrisia"</span>
+            <div class="greek-text">τῆς ζύμης τῶν Φαρισαίων, ἥτις ἐστὶν ὑπόκρισις</div>
+            <p><strong>Análise:</strong> Lucas identifica explicitamente o fermento dos fariseus com a hipocrisia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:5 — "Geena"</span>
+            <div class="greek-text">γέεννα</div>
+            <p><strong>Análise:</strong> Termo preservado na tradução.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Geena".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:6 — "Asses"</span>
+            <div class="greek-text">ἀσσαρίων</div>
+            <p><strong>Análise:</strong> <em>Assarion</em>, pequena denominação monetária romana.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "asses".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:8-9 — "Anjos de Deus"</span>
+            <div class="greek-text">τῶν ἀγγέλων τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> Jesus menciona a confissão e a negação diante dos anjos de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "anjos de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:10 — "Blasfemar contra o Espírito Santo"</span>
+            <div class="greek-text">τὸ εἰς τὸ πνεῦμα τὸ ἅγιον βλασφημήσαντι</div>
+            <p><strong>Análise:</strong> A advertência de Jesus sobre a blasfêmia contra o Espírito Santo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:11 — "Magistrados"</span>
+            <div class="greek-text">ἀρχάς</div>
+            <p><strong>Análise:</strong> "Autoridades" ou "governantes".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "magistrados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:14 — "Quem me constituiu juiz ou repartidor?"</span>
+            <div class="greek-text">τός με κατέστησεν κριτὴν ἢ μεριστὴν ἐφ' ὑμᾶς</div>
+            <p><strong>Análise:</strong> Jesus rejeita a função de juiz ou repartidor daquela herança naquele contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:15 — "Avareza"</span>
+            <div class="greek-text">πλεονεξίας</div>
+            <p><strong>Análise:</strong> Relacionado a cobiça, ganância ou avareza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "avareza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:20 — "Insensato!"</span>
+            <div class="greek-text">ἄφρων</div>
+            <p><strong>Análise:</strong> A avaliação de Deus sobre o homem rico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Insensato!".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 12:24 — "Corvos"</span>
+            <div class="greek-text">κόρακας</div>
+            <p><strong>Análise:</strong> Lucas menciona especificamente os corvos, enquanto Mateus 6:26 fala genericamente das aves do céu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:25 — "Côvado"</span>
+            <div class="greek-text">πῆχυν</div>
+            <p><strong>Análise:</strong> Medida de comprimento. A aplicação da medida à "estatura" é mantida conforme o texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "côvado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:27 — "Lírios"</span>
+            <div class="greek-text">κρίνα</div>
+            <p><strong>Análise:</strong> Jesus utiliza os lírios como exemplo da provisão de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lírios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:32 — "Pequeno rebanho"</span>
+            <div class="greek-text">τὸ μικρὸν ποίμνιον</div>
+            <p><strong>Análise:</strong> A expressão utilizada por Jesus para se dirigir aos seus discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pequeno rebanho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:35 — "Cingidos os vossos lombos"</span>
+            <div class="greek-text">περιεζωσμέναι αἱ ὀσφύες ὑμῶν</div>
+            <p><strong>Análise:</strong> Imagem de prontidão, baseada no costume de prender as vestes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:38 — "Segunda vigília, terceira vigília"</span>
+            <div class="greek-text">δευτέρᾳ φυλακῇ, τρίτῃ φυλακῇ</div>
+            <p><strong>Análise:</strong> Divisões da noite utilizadas para indicar diferentes períodos de vigilância.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segunda vigília, terceira vigília".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:46 — "Cortará ao meio"</span>
+            <div class="greek-text">διχοτομήσει</div>
+            <p><strong>Análise:</strong> Literalmente "cortará em dois" ou "dividirá em duas partes".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cortará ao meio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:46 — "Infiéis"</span>
+            <div class="greek-text">ἀπίστων</div>
+            <p><strong>Análise:</strong> Pode significar "incrédulos" ou "infiéis". A tradução mantém o contraste com o servo fiel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "infiéis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:47-48 — "Muitos açoites... poucos açoites"</span>
+            <div class="greek-text">πολλὰς ... ὀλίγας</div>
+            <p><strong>Análise:</strong> Jesus estabelece uma distinção na responsabilidade e no castigo conforme o conhecimento recebido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:49 — "Eu vim lançar fogo na terra"</span>
+            <div class="greek-text">πῦρ ἦλθον βαλεῖν ἐπὶ τὴν γῆν</div>
+            <p><strong>Análise:</strong> Declaração de Jesus mantida sem inserir interpretação sobre o significado do "fogo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:51-53 — "Divisão"</span>
+            <div class="greek-text">διαμερισμόν</div>
+            <p><strong>Análise:</strong> Jesus anuncia que sua vinda produziria divisão até mesmo dentro das famílias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "divisão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 12:59 — "Último lepto"</span>
+            <div class="greek-text">λεπτόν</div>
+            <p><strong>Análise:</strong> Pequena denominação monetária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "lepto".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

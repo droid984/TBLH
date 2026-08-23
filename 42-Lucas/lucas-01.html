@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 1</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .dossier-section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fdfcf9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dossier-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .dossier-item h4 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dossier-item p {
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        .text-base-section {
+            margin: 10px auto 50px auto;
+            padding: 18px 30px;
+            max-width: 620px;
+            background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #4a4a4a;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+        }
+        .text-base-section::before,
+        .text-base-section::after {
+            content: "";
+            display: block;
+            height: 0;
+            border-top: 3px double var(--accent-red);
+            margin: 0 auto 12px auto;
+            width: 70%;
+        }
+        .text-base-section::after {
+            margin: 12px auto 0 auto;
+            border-top: 3px double var(--accent-red);
+        }
+        .text-base-section strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            margin-bottom: 6px;
+        }
+        .text-base-section em {
+            font-style: italic;
+            color: #2c2520;
+            font-weight: 500;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="dossier-section">
+        <h3 class="dossier-title">Dossiê do Evangelho de Lucas</h3>
+        <div class="dossier-grid">
+            <div class="dossier-item">
+                <h4>Autoria</h4>
+                <p><strong>Lucas</strong>, o médico amado, é tradicionalmente reconhecido como o autor deste Evangelho e dos Atos dos Apóstolos. Foi companheiro de Paulo em suas viagens missionárias (Colossenses 4:14; 2 Timóteo 4:11).</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Data e Contexto</h4>
+                <p>Provavelmente escrito entre <strong>58-62 d.C.</strong> Dirigido a Teófilo, um gentio de posição, mostrando que o evangelho é para todas as pessoas — judeus e gentios, ricos e pobres, homens e mulheres.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Tema Central</h4>
+                <p><strong>Jesus é o Salvador de todos.</strong> Lucas enfatiza a compaixão de Jesus pelos marginalizados — pobres, mulheres, samaritanos, gentios, pecadores — e apresenta o evangelho como boas-novas de grande alegria para todo o povo.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Características Literárias</h4>
+                <p>Lucas é um historiador cuidadoso. Seu Evangelho contém <strong>material exclusivo</strong>: as parábolas do Bom Samaritano, do Filho Pródigo, do Fariseu e do Publicano, além dos hinos do Magnificat, Benedictus e Nunc Dimittis.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-base-section">
+        <strong>Texto Base</strong>
+        <em>Textus Receptus</em> — Edição Stephanus de 1550<br>
+        <small style="color:#8a7a66; font-size:12px;">Novo Testamento Grego</small>
+    </div>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 1</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Turma de Abias</span>
+                Uma das divisões sacerdotais estabelecidas por Davi (1 Crônicas 24).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nazaré</span>
+                Cidade da Galileia, onde Maria e José residiam.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Agraciada</span>
+                Do grego <em>kecharitōmenē</em> (κεχαριτωμένη), aquela que recebeu graça/favor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Chifre de salvação</span>
+                Do grego <em>keras sōtērias</em> (κέρας σωτηρίας), imagem de força e poder.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Oriente do alto</span>
+                Do grego <em>anatolē ex hypsous</em> (ἀνατολὴ ἐξ ὕψους), imagem de luz que surge.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">1</div>
+
+    <!-- PERÍCOPE 1: PRÓLOGO (1.1-4) -->
+    <div class="pericope">Prólogo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">V</span>isto que muitos empreenderam compor uma narrativa das coisas que entre nós se cumpriram,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        como nos transmitiram os que desde o princípio foram testemunhas oculares e ministros da palavra,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        pareceu-me também a mim, depois de haver investigado tudo cuidadosamente desde o começo, escrevê-las a ti em ordem, excelentíssimo Teófilo,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        para que conheças a certeza das coisas em que foste instruído.
+    </p>
+
+    <!-- PERÍCOPE 2: ANÚNCIO A ZACARIAS (1.5-25) -->
+    <div class="pericope">Anúncio a Zacarias</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Houve nos dias de Herodes, rei da Judeia, um sacerdote chamado Zacarias, da turma de Abias. E a sua mulher era das filhas de Arão, e chamava-se Isabel.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E ambos eram justos diante de Deus, andando irrepreensíveis em todos os mandamentos e ordenanças do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E não tinham filhos, porque Isabel era estéril, e ambos já eram avançados em idade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E aconteceu que, exercendo ele o sacerdócio diante de Deus, na ordem da sua turma,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        conforme o costume do sacerdócio, coube-lhe por sorte entrar no templo do Senhor para oferecer o incenso.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E toda a multidão do povo orava fora, à hora do incenso.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E apareceu-lhe um anjo do Senhor, em pé, à direita do altar do incenso.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E Zacarias, vendo-o, perturbou-se, e o temor caiu sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas o anjo lhe disse: <span class="fala-anjo">"Não temas, Zacarias, porque a tua oração foi ouvida. E Isabel, tua mulher, te dará um filho, e lhe porás o nome de João.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-anjo">E terás alegria e regozijo, e muitos se alegrarão no seu nascimento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-anjo">Porque será grande diante do Senhor, e não beberá vinho nem bebida forte, e será cheio do Espírito Santo já desde o ventre de sua mãe.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-anjo">E converterá muitos dos filhos de Israel ao Senhor seu Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-anjo">E irá adiante dele no espírito e poder de Elias, para converter os corações dos pais aos filhos, e os desobedientes à prudência dos justos, a fim de preparar para o Senhor um povo preparado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Então Zacarias disse ao anjo: <span class="fala-outro">"Como saberei isto? Pois eu sou velho, e a minha mulher é avançada em idade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E o anjo, respondendo, disse-lhe: <span class="fala-anjo">"Eu sou Gabriel, que assisto diante de Deus. E fui enviado para te falar e te anunciar estas boas novas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-anjo">E eis que ficarás mudo, e não poderás falar, até o dia em que estas coisas aconteçam, porque não creste nas minhas palavras, que se cumprirão no seu tempo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E o povo esperava Zacarias, e se admirava de que ele tardava tanto no templo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, quando saiu, não lhes podia falar. Então entenderam que tinha tido uma visão no templo. E ele lhes falava por acenos, e permanecia mudo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E aconteceu que, terminados os dias do seu ministério, voltou para sua casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, depois daqueles dias, Isabel, sua mulher, concebeu. E se ocultou por cinco meses, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">"Assim me fez o Senhor, nos dias em que olhou para mim, para tirar o meu opróbrio entre os homens."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: ANÚNCIO A MARIA (1.26-38) -->
+    <div class="pericope">Anúncio a Maria</div>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E, no sexto mês, o anjo Gabriel foi enviado por Deus a uma cidade da Galileia, chamada Nazaré,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        a uma virgem desposada com um homem chamado José, da casa de Davi. E o nome da virgem era Maria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, entrando o anjo onde ela estava, disse: <span class="fala-anjo">"Salve, agraciada! O Senhor é contigo. Bendita és tu entre as mulheres."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E ela, vendo-o, perturbou-se com as suas palavras, e considerava que saudação seria esta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Então o anjo lhe disse: <span class="fala-anjo">"Não temas, Maria, porque achaste graça diante de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-anjo">E eis que conceberás no ventre, e darás à luz um filho, e lhe porás o nome de JESUS.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-anjo">Este será grande, e será chamado Filho do Altíssimo. E o Senhor Deus lhe dará o trono de Davi, seu pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-anjo">E reinará eternamente sobre a casa de Jacó, e o seu reino não terá fim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Então Maria disse ao anjo: <span class="fala-outro">"Como se fará isto, pois não conheço homem?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E o anjo, respondendo, disse-lhe: <span class="fala-anjo">"O Espírito Santo virá sobre ti, e o poder do Altíssimo te cobrirá com a sua sombra. Por isso também o Santo que de ti nascer será chamado Filho de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-anjo">E eis que também Isabel, tua parenta, concebeu um filho na sua velhice; e este é o sexto mês para aquela que era chamada estéril.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-anjo">Porque para Deus nada é impossível."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Então Maria disse: <span class="fala-outro">"Eis aqui a serva do Senhor. Faça-se em mim conforme a tua palavra."</span> E o anjo se retirou dela.
+    </p>
+
+    <!-- PERÍCOPE 4: MARIA VISITA ISABEL (1.39-56) -->
+    <div class="pericope">Maria Visita Isabel</div>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, naqueles dias, Maria se levantou e foi apressadamente à região montanhosa, a uma cidade de Judá.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E entrou na casa de Zacarias, e saudou Isabel.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E aconteceu que, ao ouvir Isabel a saudação de Maria, a criança saltou no seu ventre. E Isabel foi cheia do Espírito Santo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E exclamou em alta voz e disse: <span class="fala-outro">"Bendita és tu entre as mulheres, e bendito é o fruto do teu ventre.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-outro">E de onde me vem isto, que a mãe do meu Senhor venha a mim?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-outro">Pois eis que, ao chegar aos meus ouvidos a voz da tua saudação, a criança saltou de alegria no meu ventre.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-outro">E bem-aventurada é a que creu, porque se cumprirão as coisas que lhe foram ditas da parte do Senhor."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        Então Maria disse: <span class="fala-outro">"A minha alma engrandece ao Senhor,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-outro">e o meu espírito se alegra em Deus, meu Salvador.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-outro">Porque olhou para a baixeza da sua serva. Pois eis que desde agora todas as gerações me chamarão bem-aventurada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-outro">Porque o Poderoso me fez grandes coisas, e santo é o seu nome.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-outro">E a sua misericórdia é de geração em geração sobre os que o temem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-outro">Com o seu braço agiu poderosamente; dissipou os soberbos no pensamento dos seus corações.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        <span class="fala-outro">Derrubou os poderosos dos seus tronos, e exaltou os humildes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        <span class="fala-outro">Encheu de bens os famintos, e despediu vazios os ricos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        <span class="fala-outro">Amparou a Israel, seu servo, lembrando-se da sua misericórdia</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        <span class="fala-outro">— como falou a nossos pais — para com Abraão e a sua descendência, para sempre."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        E Maria ficou com ela cerca de três meses, e depois voltou para a sua casa.
+    </p>
+
+    <!-- PERÍCOPE 5: NASCIMENTO DE JOÃO (1.57-80) -->
+    <div class="pericope">Nascimento de João</div>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        E completou-se para Isabel o tempo de dar à luz, e teve um filho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        E os seus vizinhos e parentes ouviram que o Senhor lhe tinha mostrado grande misericórdia, e se alegravam com ela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        E aconteceu que, no oitavo dia, vieram circuncidar o menino. E o chamavam pelo nome de seu pai, Zacarias.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        Mas sua mãe, respondendo, disse: <span class="fala-outro">"Não! Antes será chamado João."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">61</span>
+        E disseram-lhe: <span class="fala-outro">"Ninguém há na tua parentela que se chame por este nome."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">62</span>
+        E perguntavam por acenos ao pai como queria que lhe chamassem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">63</span>
+        E, pedindo ele uma tabuinha de escrever, escreveu, dizendo: <span class="fala-outro">"O seu nome é João."</span> E todos se maravilharam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">64</span>
+        E imediatamente a sua boca se abriu, e a sua língua se soltou; e falava, louvando a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">65</span>
+        E veio temor sobre todos os seus vizinhos. E todas estas coisas eram comentadas por toda a região montanhosa da Judeia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">66</span>
+        E todos os que as ouviam as guardavam no seu coração, dizendo: <span class="fala-outro">"Quem será, pois, este menino?"</span> E a mão do Senhor estava com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">67</span>
+        E Zacarias, seu pai, foi cheio do Espírito Santo, e profetizou, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">68</span>
+        <span class="fala-outro">"Bendito seja o Senhor Deus de Israel, porque visitou e realizou a redenção para o seu povo;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">69</span>
+        <span class="fala-outro">e nos levantou um chifre de salvação na casa de Davi, seu servo;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">70</span>
+        <span class="fala-outro">como falou pela boca dos seus santos profetas, desde o princípio do mundo;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">71</span>
+        <span class="fala-outro">salvação dos nossos inimigos e da mão de todos os que nos odeiam;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">72</span>
+        <span class="fala-outro">para manifestar misericórdia a nossos pais, e lembrar-se da sua santa aliança,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">73</span>
+        <span class="fala-outro">o juramento que jurou a Abraão, nosso pai,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">74</span>
+        <span class="fala-outro">de nos conceder que, libertados da mão dos nossos inimigos, o sirvamos sem temor,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">75</span>
+        <span class="fala-outro">em santidade e justiça diante dele, todos os dias da nossa vida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">76</span>
+        <span class="fala-outro">E tu, menino, serás chamado profeta do Altíssimo; porque irás adiante da face do Senhor, para preparar os seus caminhos;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">77</span>
+        <span class="fala-outro">para dar ao seu povo conhecimento da salvação, na remissão dos seus pecados,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">78</span>
+        <span class="fala-outro">pelas entranhas de misericórdia do nosso Deus, com que nos visitou o Oriente do alto;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">79</span>
+        <span class="fala-outro">para iluminar os que estão assentados em trevas e na sombra da morte, e dirigir os nossos pés pelo caminho da paz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">80</span>
+        E o menino crescia, e se fortalecia em espírito. E esteve nos desertos até o dia da sua manifestação a Israel.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:1 — "Narrativa das coisas que entre nós se cumpriram"</span>
+            <div class="greek-text">περὶ τῶν πεπληροφορημένων ἐν ἡμῖν πραγμάτων</div>
+            <p><strong>Análise:</strong> Lucas inicia com um prólogo formal, seguindo o estilo dos historiadores gregos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:2 — "Testemunhas oculares e ministros da palavra"</span>
+            <div class="greek-text">αὐτόπται καὶ ὑπηρέται τοῦ λόγου</div>
+            <p><strong>Análise:</strong> A fonte do relato de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:3 — "Excelentíssimo Teófilo"</span>
+            <div class="greek-text">κράτιστε Θεόφιλε</div>
+            <p><strong>Análise:</strong> O destinatário do Evangelho. O título "excelentíssimo" indica pessoa de posição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "excelentíssimo Teófilo".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Lucas 1:5 — "Turma de Abias"</span>
+            <div class="greek-text">ἐφημερία Ἀβιά</div>
+            <p><strong>Análise:</strong> Uma das divisões sacerdotais estabelecidas em 1 Crônicas 24.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "turma de Abias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:6 — "Justos diante de Deus"</span>
+            <div class="greek-text">δίκαιοι ἀμφότεροι ἐνώπιον τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A descrição de Zacarias e Isabel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:15 — "Não beberá vinho nem bebida forte"</span>
+            <div class="greek-text">οἶνον καὶ σίκερα οὐ μὴ πίῃ</div>
+            <p><strong>Análise:</strong> Abstinência de vinho e bebida forte anunciada pelo anjo a respeito de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:17 — "No espírito e poder de Elias"</span>
+            <div class="greek-text">ἐν πνεύματι καὶ δυνάμει Ἠλίου</div>
+            <p><strong>Análise:</strong> Expressão que descreve a missão de João em relação à de Elias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:19 — "Eu sou Gabriel"</span>
+            <div class="greek-text">ἐγώ εἰμι Γαβριήλ</div>
+            <p><strong>Análise:</strong> O anjo se identifica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Gabriel".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:20 — "Ficarás mudo"</span>
+            <div class="greek-text">ἔσῃ σιωπῶν καὶ μὴ δυνάμενος λαλῆσαι</div>
+            <p><strong>Análise:</strong> A consequência da incredulidade de Zacarias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:28 — "Salve, agraciada"</span>
+            <div class="greek-text">Χαῖρε, κεχαριτωμένη</div>
+            <p><strong>Análise:</strong> <em>Chaire</em> funciona como saudação; <em>kecharitōmenē</em> refere-se àquela que recebeu graça/favor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Salve, agraciada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:34 — "Não conheço homem"</span>
+            <div class="greek-text">ἄνδρα οὐ γινώσκω</div>
+            <p><strong>Análise:</strong> Literalmente "não conheço homem".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 1:37 — "Para Deus nada é impossível"</span>
+            <div class="greek-text">οὐκ ἀδυνατήσει παρὰ τοῦ θεοῦ πᾶν ῥῆμα</div>
+            <p><strong>Análise:</strong> A declaração do anjo sobre o poder de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:38 — "Eis aqui a serva do Senhor"</span>
+            <div class="greek-text">ἰδοὺ ἡ δούλη κυρίου</div>
+            <p><strong>Análise:</strong> A resposta de Maria em submissão à vontade de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:41, 44 — "A criança saltou no seu ventre"</span>
+            <div class="greek-text">ἐσκίρτησεν τὸ βρέφος ἐν τῇ κοιλίᾳ</div>
+            <p><strong>Análise:</strong> A reação de João no ventre de Isabel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:46-55 — "Minha alma engrandece ao Senhor"</span>
+            <div class="greek-text">Μεγαλύνει ἡ ψυχή μου τὸν κύριον</div>
+            <p><strong>Análise:</strong> O cântico de Maria, conhecido como Magnificat.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:69 — "Chifre de salvação"</span>
+            <div class="greek-text">κέρας σωτηρίας</div>
+            <p><strong>Análise:</strong> Expressão que utiliza a imagem do chifre como símbolo de força.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chifre de salvação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:78 — "Oriente do alto"</span>
+            <div class="greek-text">ἀνατολὴ ἐξ ὕψους</div>
+            <p><strong>Análise:</strong> Literalmente "oriente/nascimento do alto", expressão associada à imagem de luz que surge.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Oriente do alto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 1:80 — "Menino crescia e se fortalecia em espírito"</span>
+            <div class="greek-text">τὸ παιδίον ηὔξανε καὶ ἐκραταιοῦτο πνεύματι</div>
+            <p><strong>Análise:</strong> O crescimento de João Batista.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

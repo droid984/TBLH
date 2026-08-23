@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 7</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 7</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Centurião</span>
+                Oficial romano que comandava cerca de cem soldados.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Naim</span>
+                Cidade ao sul da Galileia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Esquife</span>
+                Do grego <em>soros</em> (σορός), caixão ou esquife funerário.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Publicano</span>
+                Cobrador de impostos, desprezado pela sociedade judaica.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">7</div>
+
+    <!-- PERÍCOPE 1: A CURA DO SERVO DO CENTURIÃO (7.1-10) -->
+    <div class="pericope">A Cura do Servo do Centurião</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, quando terminou todas as suas palavras diante do povo, entrou em Cafarnaum.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E o servo de um centurião, a quem este muito estimava, estava doente e quase à morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, ouvindo falar de Jesus, enviou-lhe alguns anciãos dos judeus, rogando-lhe que viesse curar o seu servo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, chegando eles a Jesus, rogavam-lhe com insistência, dizendo: <span class="fala-outro">"É digno de que lhe concedas isto;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">porque ama a nossa nação, e ele mesmo nos edificou a sinagoga."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E Jesus foi com eles. Mas, quando já estava perto da casa, o centurião enviou-lhe amigos, dizendo-lhe: <span class="fala-outro">"Senhor, não te incomodes; porque não sou digno de que entres debaixo do meu telhado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-outro">Por isso, nem ainda me julguei digno de ir a ti. Mas dize uma palavra, e o meu servo será curado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">Pois também eu sou homem sujeito à autoridade, e tenho soldados debaixo de mim; e digo a este: 'Vai', e ele vai; e a outro: 'Vem', e ele vem; e ao meu servo: 'Faze isto', e ele o faz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, ouvindo isso, Jesus admirou-se dele e, voltando-se, disse à multidão que o seguia: <span class="fala-jesus">"Eu vos digo: nem mesmo em Israel encontrei tão grande fé."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, voltando para casa, os que foram enviados acharam são o servo que estivera doente.
+    </p>
+
+    <!-- PERÍCOPE 2: A RESSURREIÇÃO DO FILHO DA VIÚVA DE NAIM (7.11-17) -->
+    <div class="pericope">A Ressurreição do Filho da Viúva de Naim</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E aconteceu, no dia seguinte, que ele foi a uma cidade chamada Naim. E iam com ele muitos dos seus discípulos e uma grande multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, quando chegou perto da porta da cidade, eis que levavam para fora um morto, filho único de sua mãe, que era viúva. E com ela ia uma grande multidão da cidade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, vendo-a, o Senhor se compadeceu dela e disse-lhe: <span class="fala-jesus">"Não chores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, aproximando-se, tocou o esquife; e os que o levavam pararam. E disse: <span class="fala-jesus">"Jovem, a ti te digo: levanta-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E o morto se assentou e começou a falar. E ele o entregou à sua mãe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E de todos se apoderou o temor; e glorificavam a Deus, dizendo: <span class="fala-outro">"Um grande profeta se levantou entre nós"</span>, e: <span class="fala-outro">"Deus visitou o seu povo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E esta notícia a respeito dele se divulgou por toda a Judeia e por toda a região ao redor.
+    </p>
+
+    <!-- PERÍCOPE 3: JOÃO BATISTA E JESUS (7.18-35) -->
+    <div class="pericope">João Batista e Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E os discípulos de João anunciaram-lhe todas estas coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E João, chamando dois dos seus discípulos, enviou-os a Jesus, dizendo: <span class="fala-outro">"És tu aquele que havia de vir, ou esperamos outro?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, quando aqueles homens chegaram a ele, disseram: <span class="fala-outro">"João Batista nos enviou a ti, dizendo: 'És tu aquele que havia de vir, ou esperamos outro?'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, naquela mesma hora, curou muitos de enfermidades, e de flagelos, e de espíritos malignos; e a muitos cegos deu a vista.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Ide e anunciai a João o que vistes e ouvistes: os cegos veem, os coxos andam, os leprosos são limpos, os surdos ouvem, os mortos ressuscitam, e aos pobres é anunciado o evangelho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">E bem-aventurado é aquele que não se escandalizar em mim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, retirando-se os mensageiros de João, começou a dizer às multidões acerca de João: <span class="fala-jesus">"O que fostes ver no deserto? Uma cana agitada pelo vento?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Mas o que fostes ver? Um homem vestido de roupas delicadas? Eis que os que vestem roupas esplêndidas e vivem em delícias estão nos palácios reais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Mas o que fostes ver? Um profeta? Sim, eu vos digo, e muito mais que profeta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Este é aquele de quem está escrito: 'Eis que envio o meu mensageiro diante da tua face, que preparará o teu caminho diante de ti.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Porque eu vos digo: entre os nascidos de mulheres, não há profeta maior que João Batista; mas o menor no reino de Deus é maior do que ele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E todo o povo que o ouviu, e os publicanos, justificaram a Deus, sendo batizados com o batismo de João.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Mas os fariseus e os doutores da lei rejeitaram o conselho de Deus contra si mesmos, não sendo batizados por ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E o Senhor disse: <span class="fala-jesus">"A quem, pois, compararei os homens desta geração? E a quem são semelhantes?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">São semelhantes a meninos sentados na praça, que clamam uns aos outros e dizem: 'Tocamos flauta para vós, e não dançastes; cantamos lamentações para vós, e não chorastes.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Porque veio João Batista, que não come pão nem bebe vinho, e dizeis: 'Ele tem demônio.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Veio o Filho do homem, que come e bebe, e dizeis: 'Eis aí um homem comilão e beberrão, amigo de publicanos e pecadores.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Mas a sabedoria é justificada por todos os seus filhos."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A MULHER PECADORA UNGE OS PÉS DE JESUS (7.36-50) -->
+    <div class="pericope">A Mulher Pecadora Unge os Pés de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E um dos fariseus rogou-lhe que comesse com ele. E, entrando na casa do fariseu, assentou-se à mesa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E eis que uma mulher da cidade, que era pecadora, sabendo que Jesus estava à mesa na casa do fariseu, trouxe um vaso de alabastro com unguento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E, estando por trás, aos seus pés, chorando, começou a molhar-lhe os pés com lágrimas, e os enxugava com os cabelos da sua cabeça; e beijava-lhe os pés, e os ungia com o unguento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, vendo isso o fariseu que o tinha convidado, falava consigo mesmo, dizendo: <span class="fala-outro">"Se este fosse profeta, saberia quem e qual é a mulher que lhe toca, porque é uma pecadora."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E Jesus, respondendo, disse-lhe: <span class="fala-jesus">"Simão, tenho uma coisa a dizer-te."</span> E ele disse: <span class="fala-outro">"Dize-a, Mestre."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">"Certo credor tinha dois devedores: um devia quinhentos denários, e o outro cinquenta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">E, não tendo eles com que pagar, perdoou a ambos. Dize, pois: qual deles o amará mais?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E Simão, respondendo, disse: <span class="fala-outro">"Suponho que aquele a quem mais perdoou."</span> E ele lhe disse: <span class="fala-jesus">"Julgaste corretamente."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E, voltando-se para a mulher, disse a Simão: <span class="fala-jesus">"Vês esta mulher? Entrei na tua casa, e não me deste água para os pés; mas esta, com lágrimas, molhou os meus pés, e com os seus cabelos os enxugou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Não me deste beijo; mas esta, desde que entrei, não parou de beijar os meus pés.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">Não ungiste a minha cabeça com óleo; mas esta ungiu os meus pés com unguento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">Por isso te digo: os seus muitos pecados lhe são perdoados, porque muito amou; mas aquele a quem pouco é perdoado, pouco ama."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E disse a ela: <span class="fala-jesus">"Os teus pecados te são perdoados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E os que estavam com ele à mesa começaram a dizer entre si: <span class="fala-outro">"Quem é este, que até perdoa pecados?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        E ele disse à mulher: <span class="fala-jesus">"A tua fé te salvou; vai em paz."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:2 — "Servo"</span>
+            <div class="greek-text">δοῦλος</div>
+            <p><strong>Análise:</strong> O termo pode significar "servo" ou "escravo". A TBLH adota "servo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "servo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:5 — "Ama a nossa nação"</span>
+            <div class="greek-text">ἀγαπᾷ τὸ ἔθνος ἡμῶν</div>
+            <p><strong>Análise:</strong> O testemunho dos anciãos sobre o centurião.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 7:9 — "Nem mesmo em Israel encontrei tão grande fé"</span>
+            <div class="greek-text">οὐδὲ ἐν τῷ Ἰσραὴλ τοσαύτην πίστιν εὗρον</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre a fé do centurião.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:11 — "Naim"</span>
+            <div class="greek-text">Ναΐν</div>
+            <p><strong>Análise:</strong> Cidade ao sul da Galileia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Naim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:14 — "Esquife"</span>
+            <div class="greek-text">σοροῦ</div>
+            <p><strong>Análise:</strong> "Esquife", "caixão".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esquife".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 7:16 — "Deus visitou o seu povo"</span>
+            <div class="greek-text">ἐπεσκέψατο ὁ θεὸς τὸν λαὸν αὐτοῦ</div>
+            <p><strong>Análise:</strong> A reação da multidão ao milagre.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 7:19-20 — "És tu aquele que havia de vir?"</span>
+            <div class="greek-text">σὺ εἶ ὁ ἐρχόμενος</div>
+            <p><strong>Análise:</strong> A pergunta de João Batista.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 7:22 — "Os cegos veem, os coxos andam"</span>
+            <div class="greek-text">τυφλοὶ ἀναβλέπουσιν, χωλοὶ περιπατοῦσιν</div>
+            <p><strong>Análise:</strong> A resposta de Jesus a João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 7:27 — "Envio o meu mensageiro diante da tua face"</span>
+            <div class="greek-text">ἰδοὺ ἐγὼ ἀποστέλλω τὸν ἄγγελόν μου πρὸ προσώπου σου</div>
+            <p><strong>Análise:</strong> Citação de Malaquias 3:1.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:28 — "Menor no reino de Deus"</span>
+            <div class="greek-text">ὁ μικρότερος ... ἐν τῇ βασιλείᾳ τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:29 — "Justificaram a Deus"</span>
+            <div class="greek-text">ἐδικαίωσαν τὸν θεόν</div>
+            <p><strong>Análise:</strong> Literalmente "justificaram a Deus".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justificaram a Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:30 — "Rejeitaram o conselho de Deus contra si mesmos"</span>
+            <div class="greek-text">τὴν βουλὴν τοῦ θεοῦ ἠθέτησαν εἰς ἑαυτούς</div>
+            <p><strong>Análise:</strong> A rejeição dos fariseus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:35 — "A sabedoria é justificada por todos os seus filhos"</span>
+            <div class="greek-text">ἐδικαιώθη ἡ σοφία ἀπὸ πάντων τῶν τέκνων αὐτῆς</div>
+            <p><strong>Análise:</strong> A formulação de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:37 — "Mulher da cidade, que era pecadora"</span>
+            <div class="greek-text">γυνὴ ἐν τῇ πόλει, ἥτις ἦν ἁμαρτωλός</div>
+            <p><strong>Análise:</strong> A descrição da mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:45 — "Beijo"</span>
+            <div class="greek-text">φίλημα</div>
+            <p><strong>Análise:</strong> "Beijo". A TBLH utiliza "beijo" em português natural.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "beijo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:47 — "Os seus muitos pecados lhe são perdoados, porque muito amou"</span>
+            <div class="greek-text">αἱ ἁμαρτίαι αὐτῆς αἱ πολλαὶ ἀφέωνται, ὅτι ἠγάπησεν πολύ</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 7:50 — "A tua fé te salvou; vai em paz"</span>
+            <div class="greek-text">ἡ πίστις σου σέσωκέν σε· πορεύου εἰς εἰρήνην</div>
+            <p><strong>Análise:</strong> A despedida de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

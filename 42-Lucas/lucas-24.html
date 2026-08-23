@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 24</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 24</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Emaús</span>
+                Aldeia a cerca de 60 estádios (cerca de 11 km) de Jerusalém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cleopas</span>
+                Um dos discípulos a caminho de Emaús.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Forasteiro</span>
+                Do grego <em>paroikeis</em> (παροικεῖς), "habitas como estrangeiro".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Partir do pão</span>
+                O momento em que Jesus foi reconhecido pelos discípulos de Emaús.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">24</div>
+
+    <!-- PERÍCOPE 1: A RESSURREIÇÃO (24.1-12) -->
+    <div class="pericope">A Ressurreição</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, no primeiro dia da semana, muito cedo, foram ao sepulcro, levando as especiarias que tinham preparado, e algumas outras com elas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E acharam a pedra removida do sepulcro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, entrando, não acharam o corpo do Senhor Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E aconteceu que, estando elas perplexas a esse respeito, eis que dois homens se puseram junto delas, com vestes resplandecentes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, estando elas com medo e abaixando o rosto para a terra, eles lhes disseram: <span class="fala-anjo">"Por que buscais entre os mortos aquele que vive?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-anjo">Ele não está aqui, mas ressuscitou. Lembrai-vos de como vos falou, estando ainda na Galileia,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-anjo">dizendo: 'É necessário que o Filho do homem seja entregue nas mãos de homens pecadores, e seja crucificado, e ressuscite ao terceiro dia.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E lembraram-se das suas palavras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, voltando do sepulcro, anunciaram todas estas coisas aos onze e a todos os demais.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E eram Maria Madalena, e Joana, e Maria, mãe de Tiago, e as outras que estavam com elas, que diziam estas coisas aos apóstolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E as suas palavras lhes pareciam como desvario, e não as creram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Mas Pedro, levantando-se, correu ao sepulcro; e, abaixando-se, viu somente os lençóis postos ali; e retirou-se, admirando consigo mesmo o que tinha acontecido.
+    </p>
+
+    <!-- PERÍCOPE 2: O CAMINHO DE EMAÚS (24.13-35) -->
+    <div class="pericope">O Caminho de Emaús</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E eis que, naquele mesmo dia, dois deles iam para uma aldeia chamada Emaús, que ficava a sessenta estádios de Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E conversavam entre si sobre todas estas coisas que tinham acontecido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E aconteceu que, enquanto conversavam e discutiam entre si, o próprio Jesus se aproximou e ia com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas os seus olhos estavam como que impedidos de o reconhecerem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E ele lhes disse: <span class="fala-jesus">"Que palavras são estas que trocais entre vós enquanto caminhais, e estais tristes?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E um deles, chamado Cleopas, respondendo, disse-lhe: <span class="fala-outro">"És tu o único forasteiro em Jerusalém que não soube das coisas que nela têm acontecido nestes dias?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E ele lhes disse: <span class="fala-jesus">"Quais?"</span> E eles lhe disseram: <span class="fala-outro">"As coisas a respeito de Jesus, o Nazareno, que foi homem profeta, poderoso em obras e palavras diante de Deus e de todo o povo;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">e como os principais dos sacerdotes e os nossos magistrados o entregaram para ser condenado à morte, e o crucificaram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">E nós esperávamos que fosse ele quem havia de redimir Israel. E, além de tudo isto, é já hoje o terceiro dia desde que essas coisas aconteceram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">É verdade que também algumas mulheres dentre nós nos assombraram, as quais foram de madrugada ao sepulcro;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">e, não achando o seu corpo, voltaram, dizendo que também tinham tido uma visão de anjos, os quais dizem que ele vive.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">E alguns dos que estavam conosco foram ao sepulcro, e acharam ser assim como as mulheres tinham dito; porém, a ele não viram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E ele lhes disse: <span class="fala-jesus">"Ó insensatos e tardos de coração para crer em tudo o que os profetas falaram!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Não era necessário que o Cristo padecesse estas coisas e entrasse na sua glória?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, começando por Moisés e por todos os profetas, explicava-lhes em todas as Escrituras as coisas que a seu respeito estavam escritas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E aproximaram-se da aldeia para onde iam, e ele fez menção de ir mais adiante.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E eles o constrangeram, dizendo: <span class="fala-outro">"Fica conosco, porque já é tarde, e o dia já declinou."</span> E entrou para ficar com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E aconteceu que, estando ele assentado à mesa com eles, tomou o pão, e abençoou, e partiu-o, e lho deu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então os olhos deles foram abertos, e o reconheceram; e ele desapareceu deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E disseram um ao outro: <span class="fala-outro">"Não ardia em nós o nosso coração, enquanto ele nos falava pelo caminho, e nos abria as Escrituras?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, levantando-se naquela mesma hora, voltaram para Jerusalém, e acharam reunidos os onze e os que estavam com eles,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        os quais diziam: <span class="fala-outro">"O Senhor ressuscitou verdadeiramente, e apareceu a Simão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E eles contaram o que tinha acontecido no caminho, e como o tinham reconhecido no partir do pão.
+    </p>
+
+    <!-- PERÍCOPE 3: JESUS APARECE AOS DISCÍPULOS (24.36-49) -->
+    <div class="pericope">Jesus Aparece aos Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, falando eles estas coisas, o próprio Jesus se apresentou no meio deles e disse-lhes: <span class="fala-jesus">"Paz seja convosco."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Mas eles, espantados e atemorizados, pensavam que viam algum espírito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E ele lhes disse: <span class="fala-jesus">"Por que estais perturbados? E por que sobem pensamentos aos vossos corações?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">Vede as minhas mãos e os meus pés, que sou eu mesmo. Tocai-me e vede; porque um espírito não tem carne nem ossos, como vedes que eu tenho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E, dizendo isto, mostrou-lhes as mãos e os pés.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E, não crendo eles ainda, por causa da alegria, e estando admirados, disse-lhes: <span class="fala-jesus">"Tendes aqui alguma coisa para comer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E eles lhe deram parte de um peixe assado e de um favo de mel.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E ele o tomou e comeu diante deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E disse-lhes: <span class="fala-jesus">"Estas são as palavras que eu vos falei, estando ainda convosco: que era necessário que se cumprisse tudo o que de mim está escrito na lei de Moisés, e nos profetas, e nos salmos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Então lhes abriu o entendimento, para que compreendessem as Escrituras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E disse-lhes: <span class="fala-jesus">"Assim está escrito, e assim foi necessário que o Cristo padecesse e ressuscitasse dos mortos ao terceiro dia;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">e que em seu nome se pregasse o arrependimento e a remissão dos pecados a todas as nações, começando por Jerusalém.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">E vós sois testemunhas destas coisas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">E eis que eu envio sobre vós a promessa de meu Pai. Permanecei, porém, na cidade de Jerusalém, até que do alto sejais revestidos de poder."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A ASCENSÃO (24.50-53) -->
+    <div class="pericope">A Ascensão</div>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        E ele os levou para fora, até Betânia. E, levantando as suas mãos, os abençoou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E aconteceu que, enquanto os abençoava, apartou-se deles e foi elevado ao céu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E eles, depois de o adorarem, voltaram com grande alegria para Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E estavam sempre no templo, louvando e bendizendo a Deus. Amém.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:1 — "Primeiro dia da semana"</span>
+            <div class="greek-text">μία τῶν σαββάτων</div>
+            <p><strong>Análise:</strong> O domingo, após o sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primeiro dia da semana".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:4 — "Dois homens com vestes resplandecentes"</span>
+            <div class="greek-text">δύο ἄνδρες ... ἐν ἐσθῆτι ἀστραπτούσῃ</div>
+            <p><strong>Análise:</strong> Lucas descreve os seres celestiais inicialmente como "dois homens", com vestes resplandecentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a descrição textual.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 24:5 — "Buscais entre os mortos aquele que vive?"</span>
+            <div class="greek-text">τί ζητεῖτε τὸν ζῶντα μετὰ τῶν νεκρῶν</div>
+            <p><strong>Análise:</strong> A pergunta dos anjos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 24:7, 46 — "Ao terceiro dia"</span>
+            <div class="greek-text">τῇ τρίτῃ ἡμέρᾳ</div>
+            <p><strong>Análise:</strong> A predição da ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:9, 33 — "Onze"</span>
+            <div class="greek-text">ἕνδεκα</div>
+            <p><strong>Análise:</strong> Os doze menos Judas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "onze".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:11 — "Desvario"</span>
+            <div class="greek-text">λῆρος</div>
+            <p><strong>Análise:</strong> "Desvario", "tolice".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desvario".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:13 — "Emaús"</span>
+            <div class="greek-text">Ἐμμαούς</div>
+            <p><strong>Análise:</strong> Aldeia mencionada em Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Emaús".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:13 — "Sessenta estádios"</span>
+            <div class="greek-text">σταδίους ἑξήκοντα</div>
+            <p><strong>Análise:</strong> Cerca de 11 km.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:16 — "Impedidos de o reconhecerem"</span>
+            <div class="greek-text">ἐκρατοῦντο</div>
+            <p><strong>Análise:</strong> "Estavam impedidos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:18 — "Cleopas"</span>
+            <div class="greek-text">Κλεοπᾶς</div>
+            <p><strong>Análise:</strong> O nome de um dos discípulos a caminho de Emaús.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cleopas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:18 — "Forasteiro"</span>
+            <div class="greek-text">παροικεῖς</div>
+            <p><strong>Análise:</strong> "Habitas como estrangeiro".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "forasteiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:21 — "Redimir Israel"</span>
+            <div class="greek-text">λυτροῦσθαι</div>
+            <p><strong>Análise:</strong> "Redimir", "libertar".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "redimir Israel".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:25 — "Insensatos e tardos de coração"</span>
+            <div class="greek-text">ἀνόητοι καὶ βραδεῖς τῇ καρδίᾳ</div>
+            <p><strong>Análise:</strong> A repreensão de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:28 — "Fez menção de ir mais adiante"</span>
+            <div class="greek-text">προσεποιεῖτο</div>
+            <p><strong>Análise:</strong> "Fez como se fosse".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fez menção de ir mais adiante".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:31 — "Desapareceu deles"</span>
+            <div class="greek-text">ἄφαντος ἐγένετο</div>
+            <p><strong>Análise:</strong> "Tornou-se invisível".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desapareceu deles".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:35 — "Partir do pão"</span>
+            <div class="greek-text">τῇ κλάσει τοῦ ἄρτου</div>
+            <p><strong>Análise:</strong> O reconhecimento no partir do pão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "partir do pão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:37, 39 — "Um espírito"</span>
+            <div class="greek-text">πνεῦμα</div>
+            <p><strong>Análise:</strong> Os discípulos pensavam ver um espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:42 — "Peixe assado e favo de mel"</span>
+            <div class="greek-text">ὀψάριον ... κηρίον</div>
+            <p><strong>Análise:</strong> O alimento oferecido a Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 24:45 — "Abriu o entendimento"</span>
+            <div class="greek-text">διήνοιξεν τὸν νοῦν</div>
+            <p><strong>Análise:</strong> Jesus abriu o entendimento dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 24:49 — "Revestidos de poder"</span>
+            <div class="greek-text">ἐνδύσησθε δύναμιν</div>
+            <p><strong>Análise:</strong> A promessa do revestimento de poder.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "revestidos de poder".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 24:51 — "Foi elevado ao céu"</span>
+            <div class="greek-text">ἀνερέρετο εἰς τὸν οὐρανόν</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui a declaração da ascensão de Jesus neste versículo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a declaração conforme o TR.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

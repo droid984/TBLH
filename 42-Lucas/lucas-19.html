@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 19</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 19</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Sicômoro</span>
+                Do grego <em>sykomorea</em> (συκομορέα), árvore conhecida como sicômoro ou figueira-sicômoro.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mina</span>
+                Do grego <em>mna</em> (μνᾶ), unidade monetária.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Banco</span>
+                Do grego <em>trapeza</em> (τράπεζα), literalmente "mesa", local de câmbio.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Trincheiras</span>
+                Do grego <em>charax</em> (χάραξ), estrutura de cerco ou paliçada.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">19</div>
+
+    <!-- PERÍCOPE 1: ZAQUEU (19.1-10) -->
+    <div class="pericope">Zaqueu</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, tendo Jesus entrado em Jericó, ia passando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E eis que havia ali um homem chamado Zaqueu, e era chefe dos publicanos, e era rico.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E procurava ver quem era Jesus, e não podia, por causa da multidão, porque era de pequena estatura.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, correndo adiante, subiu num sicômoro, para o ver, porque havia de passar por ali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, quando Jesus chegou àquele lugar, olhando para cima, viu-o e disse-lhe: <span class="fala-jesus">"Zaqueu, desce depressa, porque hoje me convém ficar em tua casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, apressando-se, desceu e o recebeu com alegria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E todos, vendo isso, murmuravam, dizendo: <span class="fala-outro">"Ele entrou para hospedar-se na casa de um homem pecador."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Zaqueu, ficando de pé, disse ao Senhor: <span class="fala-outro">"Senhor, eis que eu dou aos pobres metade dos meus bens; e, se em alguma coisa tenho defraudado alguém, eu lho restituo quadruplicado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Hoje veio a salvação a esta casa, pois também este é filho de Abraão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Porque o Filho do homem veio buscar e salvar o que estava perdido."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A PARÁBOLA DAS MINAS (19.11-27) -->
+    <div class="pericope">A Parábola das Minas</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, ouvindo eles estas coisas, ele prosseguiu e contou uma parábola, por estar perto de Jerusalém, e por pensarem eles que o reino de Deus se manifestaria imediatamente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Disse, pois: <span class="fala-jesus">"Um homem nobre partiu para uma terra distante, a fim de receber para si um reino e depois voltar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E, chamando dez dos seus servos, deu-lhes dez minas, e disse-lhes: 'Negociai até que eu venha.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Mas os seus cidadãos o odiavam, e enviaram após ele uma embaixada, dizendo: 'Não queremos que este reine sobre nós.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E aconteceu que, quando ele voltou, depois de ter recebido o reino, mandou chamar aqueles servos a quem tinha dado o dinheiro, para saber o que cada um tinha ganhado negociando.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">E veio o primeiro, dizendo: 'Senhor, a tua mina rendeu dez minas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">E ele lhe disse: 'Bem está, servo bom; porque no pouco foste fiel, terás autoridade sobre dez cidades.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E veio o segundo, dizendo: 'Senhor, a tua mina rendeu cinco minas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E a este também disse: 'Sê tu também sobre cinco cidades.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">E veio outro, dizendo: 'Senhor, aqui está a tua mina, que guardei num lenço.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Pois tive medo de ti, porque és homem severo; tomas o que não puseste, e ceifas o que não semeaste.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Mas ele lhe disse: 'Pela tua boca te julgarei, servo mau. Sabias que eu sou homem severo, que tomo o que não pus, e ceifo o que não semeei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Por que, pois, não deste o meu dinheiro ao banco, para que, vindo eu, o recebesse com juros?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">E disse aos que estavam ali: 'Tirai-lhe a mina, e dai-a ao que tem dez minas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">E eles disseram-lhe: 'Senhor, ele já tem dez minas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Pois eu vos digo: a todo aquele que tem, dar-se-lhe-á; mas ao que não tem, até o que tem lhe será tirado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E, quanto àqueles meus inimigos, que não quiseram que eu reinasse sobre eles, trazei-os aqui e matai-os diante de mim.'"</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A ENTRADA TRIUNFAL (19.28-40) -->
+    <div class="pericope">A Entrada Triunfal</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, dito isto, ia adiante, subindo para Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E aconteceu que, chegando perto de Betfagé e de Betânia, junto ao monte chamado das Oliveiras, enviou dois dos seus discípulos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        dizendo: <span class="fala-jesus">"Ide à aldeia que está defronte, e, ao entrar nela, achareis um jumentinho amarrado, no qual nenhum homem jamais se assentou. Desamarrai-o e trazei-o.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E, se alguém vos perguntar: 'Por que o desamarrais?', assim lhe direis: 'O Senhor precisa dele.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E, indo os que foram enviados, acharam como lhes tinha dito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, desamarrando eles o jumentinho, os seus donos lhes disseram: <span class="fala-outro">"Por que desamarrais o jumentinho?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E eles disseram: <span class="fala-outro">"O Senhor precisa dele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E trouxeram-no a Jesus. E, lançando as suas vestes sobre o jumentinho, puseram Jesus em cima.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, enquanto ele ia, estendiam as suas vestes pelo caminho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, quando já se aproximava da descida do monte das Oliveiras, toda a multidão dos discípulos, alegrando-se, começou a louvar a Deus em alta voz por todas as maravilhas que tinham visto,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        dizendo: <span class="fala-outro">"Bendito o Rei que vem em nome do Senhor! Paz no céu, e glória nas alturas!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E alguns dos fariseus dentre a multidão lhe disseram: <span class="fala-outro">"Mestre, repreende os teus discípulos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E ele, respondendo, disse-lhes: <span class="fala-jesus">"Eu vos digo: se estes se calarem, as próprias pedras clamarão."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: O LAMENTO SOBRE JERUSALÉM (19.41-44) -->
+    <div class="pericope">O Lamento sobre Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E, quando chegou perto, vendo a cidade, chorou sobre ela,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        dizendo: <span class="fala-jesus">"Ah! Se tu conhecesses também, ao menos neste teu dia, o que é para a tua paz! Mas agora isto está encoberto aos teus olhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Porque virão dias sobre ti, em que os teus inimigos te cercarão de trincheiras, e te sitiarão, e te apertarão de todos os lados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">E te derrubarão a ti e a teus filhos dentro de ti, e não deixarão em ti pedra sobre pedra, porque não conheceste o tempo da tua visitação."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: A PURIFICAÇÃO DO TEMPLO (19.45-48) -->
+    <div class="pericope">A Purificação do Templo</div>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, entrando no templo, começou a expulsar os que nele vendiam e compravam,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        dizendo-lhes: <span class="fala-jesus">"Está escrito: A minha casa é casa de oração; mas vós a fizestes covil de salteadores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E ensinava todos os dias no templo. Mas os principais dos sacerdotes, e os escribas, e os principais do povo procuravam matá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E não achavam o que fazer, porque todo o povo estava pendurado aos seus lábios, ouvindo-o.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:2 — "Zaqueu"</span>
+            <div class="greek-text">Ζακχαῖος</div>
+            <p><strong>Análise:</strong> Chefe dos publicanos e homem rico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Zaqueu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:4 — "Sicômoro"</span>
+            <div class="greek-text">συκομορέαν</div>
+            <p><strong>Análise:</strong> Árvore conhecida como sicômoro ou figueira-sicômoro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sicômoro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:5 — "Me convém ficar"</span>
+            <div class="greek-text">δεῖ με μεῖναι</div>
+            <p><strong>Análise:</strong> "É necessário que eu fique".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "me convém ficar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:8 — "Defraudado"</span>
+            <div class="greek-text">ἐσυκοφάντησα</div>
+            <p><strong>Análise:</strong> "Defraudar", "extorquir".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "defraudado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:8 — "Restituo quadruplicado"</span>
+            <div class="greek-text">ἀποδίδωμι τετραπλοῦν</div>
+            <p><strong>Análise:</strong> A declaração de Zaqueu sobre a restituição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "restituo quadruplicado".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 19:9 — "Filho de Abraão"</span>
+            <div class="greek-text">υἱὸς Ἀβραάμ</div>
+            <p><strong>Análise:</strong> A expressão usada por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filho de Abraão".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:13, 16-25 — "Mina"</span>
+            <div class="greek-text">μνᾶ</div>
+            <p><strong>Análise:</strong> Unidade monetária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "mina".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:21-22 — "Homem severo"</span>
+            <div class="greek-text">αὐστηρός</div>
+            <p><strong>Análise:</strong> "Severo", "austero".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "severo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:23 — "Banco"</span>
+            <div class="greek-text">τράπεζαν</div>
+            <p><strong>Análise:</strong> Literalmente "mesa", podendo designar uma mesa de banqueiro ou local de câmbio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "banco".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:30, 33, 35 — "Jumentinho"</span>
+            <div class="greek-text">πῶλον</div>
+            <p><strong>Análise:</strong> O animal utilizado na entrada de Jesus em Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "jumentinho".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 19:38 — "Bendito o Rei que vem em nome do Senhor"</span>
+            <div class="greek-text">εὐλογημένος ὁ βασιλεὺς ἐν ὀνόματι κυρίου</div>
+            <p><strong>Análise:</strong> A aclamação da multidão dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:40 — "As próprias pedras clamarão"</span>
+            <div class="greek-text">οἱ λίθοι κράξουσιν</div>
+            <p><strong>Análise:</strong> A resposta de Jesus aos fariseus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:43 — "Trincheiras"</span>
+            <div class="greek-text">χάρακα</div>
+            <p><strong>Análise:</strong> Estrutura de cerco, paliçada ou fortificação levantada contra uma cidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "trincheiras".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 19:44 — "Tempo da tua visitação"</span>
+            <div class="greek-text">τὸν καιρὸν τῆς ἐπισκοπῆς σου</div>
+            <p><strong>Análise:</strong> "O tempo da tua visitação".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 19:46 — "Covil de salteadores"</span>
+            <div class="greek-text">σπήλαιον λῃστῶν</div>
+            <p><strong>Análise:</strong> Citação de Isaías 56:7 e Jeremias 7:11.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 19:48 — "Pendurado aos seus lábios"</span>
+            <div class="greek-text">ἐξεκρέματο</div>
+            <p><strong>Análise:</strong> Imagem de grande atenção ao que alguém diz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pendurado aos seus lábios".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

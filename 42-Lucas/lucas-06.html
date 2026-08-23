@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 6</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 6</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Zelote</span>
+                Do grego <em>Zēlōtēs</em> (Ζηλωτής). Designação de Simão, indicando seu zelo ou pertencimento ao partido dos zelotes.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Apóstolos</span>
+                Do grego <em>apostoloi</em> (ἀπόστολοι), "enviados". Nome dado por Jesus aos doze.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Regaço</span>
+                Do grego <em>kolpos</em> (κόλπος), o colo ou dobra da roupa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Enchente</span>
+                Do grego <em>plēmmyrēs</em> (πλημμύρης), inundação ou cheia.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">6</div>
+
+    <!-- PERÍCOPE 1: O SÁBADO E AS ESPIGAS (6.1-5) -->
+    <div class="pericope">O Sábado e as Espigas</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, no segundo sábado após o primeiro, ele passava pelas searas; e os seus discípulos arrancavam espigas e, esfregando-as com as mãos, as comiam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E alguns dos fariseus lhes disseram: <span class="fala-outro">"Por que fazeis o que não é lícito nos sábados?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E Jesus, respondendo, disse-lhes: <span class="fala-jesus">"Nem isto lestes, o que fez Davi quando teve fome, ele e os que com ele estavam?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Como entrou na casa de Deus, e tomou os pães da proposição, e comeu, e deu também aos que com ele estavam, os quais não é lícito comer, senão somente aos sacerdotes?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E dizia-lhes: <span class="fala-jesus">"O Filho do homem é senhor também do sábado."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A CURA DO HOMEM DA MÃO SECA (6.6-11) -->
+    <div class="pericope">A Cura do Homem da Mão Seca</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E aconteceu também, em outro sábado, que ele entrou na sinagoga e ensinava. E estava ali um homem que tinha a mão direita seca.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E os escribas e fariseus observavam-no, para ver se ele curaria no sábado, a fim de acharem de que o acusar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas ele, conhecendo os seus pensamentos, disse ao homem que tinha a mão seca: <span class="fala-jesus">"Levanta-te, e põe-te em pé no meio."</span> E ele, levantando-se, pôs-se em pé.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Eu vos pergunto: É lícito nos sábados fazer bem ou fazer mal? Salvar uma vida ou matar?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, olhando para todos ao redor, disse ao homem: <span class="fala-jesus">"Estende a tua mão."</span> E ele assim o fez; e a sua mão foi restaurada, sã como a outra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E eles ficaram cheios de fúria, e falavam entre si sobre o que fariam a Jesus.
+    </p>
+
+    <!-- PERÍCOPE 3: A ESCOLHA DOS DOZE (6.12-16) -->
+    <div class="pericope">A Escolha dos Doze</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E aconteceu, naqueles dias, que ele subiu ao monte para orar, e passou a noite em oração a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, quando amanheceu, chamou a si os seus discípulos, e escolheu doze deles, aos quais também deu o nome de apóstolos:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Simão, ao qual também chamou Pedro, e André, seu irmão; Tiago e João; Filipe e Bartolomeu;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mateus e Tomé; Tiago, filho de Alfeu, e Simão, chamado Zelote;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Judas, filho de Tiago, e Judas Iscariotes, que também foi o traidor.
+    </p>
+
+    <!-- PERÍCOPE 4: O SERMÃO DA PLANÍCIE (6.17-49) -->
+    <div class="pericope">O Sermão da Planície</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, descendo com eles, parou num lugar plano, com a multidão dos seus discípulos e grande número de pessoas de toda a Judeia e Jerusalém, e do litoral de Tiro e Sidom, que vieram para o ouvir e para serem curados das suas enfermidades;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        e também os que eram atormentados por espíritos imundos eram curados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E toda a multidão procurava tocar-lhe, porque saía dele poder, e curava a todos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E ele, levantando os olhos para os seus discípulos, dizia: <span class="fala-jesus">"Bem-aventurados vós, os pobres, porque vosso é o reino de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Bem-aventurados vós, que agora tendes fome, porque sereis fartos. Bem-aventurados vós, que agora chorais, porque haveis de rir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Bem-aventurados sois quando os homens vos odiarem, e quando vos separarem, e vos insultarem, e rejeitarem o vosso nome como mau, por causa do Filho do homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Alegrai-vos naquele dia e exultai, porque eis que é grande o vosso galardão no céu; pois assim faziam os seus pais aos profetas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">"Mas ai de vós, ricos, porque já recebestes a vossa consolação.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Ai de vós, que estais fartos, porque tereis fome. Ai de vós, que agora rides, porque vos lamentareis e chorareis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Ai de vós, quando todos os homens falarem bem de vós, porque assim faziam os seus pais aos falsos profetas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">"Mas a vós, que ouvis, digo: Amai os vossos inimigos, fazei bem aos que vos odeiam,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">bendizei os que vos maldizem, e orai pelos que vos caluniam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Ao que te ferir numa face, oferece-lhe também a outra; e ao que te tirar a capa, não lhe impeças também a túnica.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Dá a todo aquele que te pedir; e ao que tirar o que é teu, não lho reclames.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">E, como quereis que os homens vos façam, da mesma forma fazei-lhes também vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">E, se amais os que vos amam, que mérito tendes? Porque também os pecadores amam os que os amam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">E, se fazeis bem aos que vos fazem bem, que mérito tendes? Também os pecadores fazem o mesmo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">E, se emprestais àqueles de quem esperais receber, que mérito tendes? Também os pecadores emprestam aos pecadores, para receberem outro tanto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Amai, porém, os vossos inimigos, e fazei bem, e emprestai, sem nada esperardes; e será grande o vosso galardão, e sereis filhos do Altíssimo, porque ele é benigno até para com os ingratos e maus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Sede, pois, misericordiosos, como também vosso Pai é misericordioso."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">"Não julgueis, e não sereis julgados. Não condeneis, e não sereis condenados. Perdoai, e sereis perdoados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Dai, e dar-se-vos-á; boa medida, recalcada, sacudida e transbordante vos darão no vosso regaço. Porque com a mesma medida com que medis vos medirão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">"E dizia-lhes uma parábola: Pode um cego guiar outro cego? Não cairão ambos na cova?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">O discípulo não é acima do seu mestre; mas todo aquele que for aperfeiçoado será como o seu mestre.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">E por que reparas no argueiro que está no olho do teu irmão, e não percebes a trave que está no teu próprio olho?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">Ou como podes dizer a teu irmão: 'Irmão, deixa-me tirar o argueiro que está no teu olho', não vendo tu mesmo a trave que está no teu olho? Hipócrita, tira primeiro a trave do teu olho, e então verás claramente para tirar o argueiro que está no olho do teu irmão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">"Porque não há árvore boa que dê mau fruto, nem árvore má que dê bom fruto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Porque cada árvore se conhece pelo seu próprio fruto. Pois não se colhem figos dos espinheiros, nem se vindimam uvas dos abrolhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">O homem bom, do bom tesouro do seu coração, tira o bem; e o homem mau, do mau tesouro do seu coração, tira o mal. Porque da abundância do coração fala a boca."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">"E por que me chamais: 'Senhor, Senhor', e não fazeis o que eu digo?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">Todo aquele que vem a mim, e ouve as minhas palavras, e as pratica, eu vos mostrarei a quem é semelhante:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">É semelhante a um homem que, edificando uma casa, cavou, e aprofundou, e pôs os alicerces sobre a rocha. E, vindo a enchente, a corrente deu com ímpeto contra aquela casa, e não a pôde abalar, porque estava fundada sobre a rocha.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">Mas o que ouve e não pratica é semelhante a um homem que edificou uma casa sobre a terra, sem alicerces; e a corrente deu com ímpeto contra ela, e logo caiu, e foi grande a ruína daquela casa."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 6:1 — "Segundo sábado após o primeiro"</span>
+            <div class="greek-text">σαββάτῳ δευτεροπρώτῳ</div>
+            <p><strong>Análise:</strong> A expressão é rara e de significado discutido. O Textus Receptus a preserva.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo sábado após o primeiro".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 6:1 — "Esfregando-as com as mãos"</span>
+            <div class="greek-text">ψώχοντες ταῖς χερσίν</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esfregando-as com as mãos".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 6:6 — "Mão direita seca"</span>
+            <div class="greek-text">ἡ χεὶρ αὐτοῦ ἡ δεξιὰ ἦν ξηρά</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mão direita seca".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 6:12 — "Passou a noite em oração a Deus"</span>
+            <div class="greek-text">διανυκτερεύων ἐν τῇ προσευχῇ τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> Detalhe exclusivo de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "passou a noite em oração a Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:13 — "Apóstolos"</span>
+            <div class="greek-text">ἀποστόλους</div>
+            <p><strong>Análise:</strong> O nome dado aos doze.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "apóstolos".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 6:15 — "Simão, chamado Zelote"</span>
+            <div class="greek-text">Σίμωνα τὸν καλούμενον Ζηλωτήν</div>
+            <p><strong>Análise:</strong> Lucas usa "Zelote", diferente de Mateus e Marcos, que usam "cananeu".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Simão, chamado Zelote".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:16 — "Judas, filho de Tiago"</span>
+            <div class="greek-text">Ἰούδαν Ἰακώβου</div>
+            <p><strong>Análise:</strong> Literalmente "Judas de Tiago".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Judas, filho de Tiago".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:17 — "Lugar plano"</span>
+            <div class="greek-text">τόπου πεδινοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "lugar plano", "planície".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lugar plano".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:20 — "Bem-aventurados vós, os pobres"</span>
+            <div class="greek-text">μακάριοι οἱ πτωχοί</div>
+            <p><strong>Análise:</strong> A formulação de Lucas, diferente de Mateus 5:3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 6:24 — "Ai de vós, ricos"</span>
+            <div class="greek-text">οὐαὶ ὑμῖν τοῖς πλουσίοις</div>
+            <p><strong>Análise:</strong> As advertências, exclusivas de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:31 — "Como quereis que os homens vos façam"</span>
+            <div class="greek-text">καθὼς θέλετε ἵνα ποιῶσιν ὑμῖν οἱ ἄνθρωποι</div>
+            <p><strong>Análise:</strong> A regra de ouro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:38 — "Regaço"</span>
+            <div class="greek-text">κόλπον</div>
+            <p><strong>Análise:</strong> "Regaço", "colo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "regaço".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:38 — "Com a mesma medida com que medis vos medirão"</span>
+            <div class="greek-text">ᾧ γὰρ μέτρῳ μετρεῖτε ἀντιμετρηθήσεται ὑμῖν</div>
+            <p><strong>Análise:</strong> O princípio da medida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com a mesma medida com que medis vos medirão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:39 — "Pode um cego guiar outro cego?"</span>
+            <div class="greek-text">μὴ δύναται τυφλὸς τυφλὸν ὁδηγεῖν;</div>
+            <p><strong>Análise:</strong> A parábola.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:40 — "Todo aquele que for aperfeiçoado"</span>
+            <div class="greek-text">κατηρτισμένος</div>
+            <p><strong>Análise:</strong> Particípio perfeito passivo de <em>katartizō</em>.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todo aquele que for aperfeiçoado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:48 — "Enchente"</span>
+            <div class="greek-text">πλημμύρης</div>
+            <p><strong>Análise:</strong> Relacionado a uma inundação ou enchente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "enchente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:48 — "Fundada sobre a rocha"</span>
+            <div class="greek-text">τεθεμελιωμένην ἐπὶ τὴν πέτραν</div>
+            <p><strong>Análise:</strong> A casa sobre a rocha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fundada sobre a rocha".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 6:49 — "Sem alicerces"</span>
+            <div class="greek-text">μὴ τεθεμελιωμένην</div>
+            <p><strong>Análise:</strong> A casa sobre a terra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem alicerces".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

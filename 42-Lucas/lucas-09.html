@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Betsaida</span>
+                Cidade na margem norte do mar da Galileia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Transfiguração</span>
+                A transformação gloriosa de Jesus no monte.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Partida</span>
+                Do grego <em>exodos</em> (ἔξοδος) ou <em>analēmpsis</em> (ἀνάλημψις), referindo-se à saída/partida de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Arado</span>
+                Do grego <em>arotron</em> (ἄροτρον), instrumento de lavoura.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <!-- PERÍCOPE 1: O ENVIO DOS DOZE (9.1-6) -->
+    <div class="pericope">O Envio dos Doze</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, reunindo os seus doze discípulos, deu-lhes poder e autoridade sobre todos os demônios, e para curarem enfermidades.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E enviou-os a pregar o reino de Deus e a curar os enfermos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E disse-lhes: <span class="fala-jesus">"Nada leveis para o caminho: nem bordão, nem alforje, nem pão, nem dinheiro; nem tenhais duas túnicas cada um.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">E, em qualquer casa em que entrardes, ficai ali e dali saí.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E, se alguns não vos receberem, saindo daquela cidade, sacudi até o pó dos vossos pés, para testemunho contra eles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, saindo, percorriam as aldeias, anunciando o evangelho e curando por toda parte.
+    </p>
+
+    <!-- PERÍCOPE 2: HERODES E A MULTIPLICAÇÃO DOS PÃES (9.7-17) -->
+    <div class="pericope">Herodes e a Multiplicação dos Pães</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E Herodes, o tetrarca, ouviu falar de tudo o que era feito por ele, e estava perplexo, porque alguns diziam que João tinha ressuscitado dos mortos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        e outros, que Elias tinha aparecido; e outros, que um dos antigos profetas tinha ressuscitado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E Herodes disse: <span class="fala-outro">"A João eu decapitei. Mas quem é este, de quem ouço tais coisas?"</span> E procurava vê-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, voltando os apóstolos, contaram-lhe tudo o que tinham feito. E, tomando-os consigo, retirou-se à parte para um lugar deserto de uma cidade chamada Betsaida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas as multidões, sabendo disso, o seguiram. E ele, recebendo-as, falava-lhes do reino de Deus e curava os que necessitavam de cura.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E o dia já começava a declinar. Então os doze, aproximando-se, disseram-lhe: <span class="fala-outro">"Despede a multidão, para que vão às aldeias e campos ao redor, e se hospedem e achem alimento; porque aqui estamos em lugar deserto."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas ele lhes disse: <span class="fala-jesus">"Dai-lhes vós de comer."</span> E eles disseram: <span class="fala-outro">"Não temos mais que cinco pães e dois peixes, a não ser que nós mesmos vamos comprar alimento para todo este povo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque havia cerca de cinco mil homens. Então ele disse aos seus discípulos: <span class="fala-jesus">"Fazei-os assentar em grupos de cinquenta."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E assim o fizeram, fazendo assentar a todos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, tomando os cinco pães e os dois peixes, erguendo os olhos ao céu, abençoou-os, e partiu-os, e deu-os aos discípulos para os distribuírem à multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E todos comeram e se fartaram. E foram recolhidos doze cestos de pedaços que sobraram.
+    </p>
+
+    <!-- PERÍCOPE 3: A CONFISSÃO DE PEDRO E A PREDIÇÃO DA PAIXÃO (9.18-27) -->
+    <div class="pericope">A Confissão de Pedro e a Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E aconteceu que, estando ele a orar em particular, os discípulos estavam com ele. E perguntou-lhes, dizendo: <span class="fala-jesus">"Quem dizem as multidões que eu sou?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E eles, respondendo, disseram: <span class="fala-outro">"João Batista; outros, Elias; e outros, que um dos antigos profetas ressuscitou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E disse-lhes: <span class="fala-jesus">"E vós, quem dizeis que eu sou?"</span> E Pedro, respondendo, disse: <span class="fala-outro">"O Cristo de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Mas ele, advertindo-os severamente, ordenou-lhes que a ninguém dissessem isso,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        dizendo: <span class="fala-jesus">"É necessário que o Filho do homem padeça muitas coisas, e seja rejeitado pelos anciãos, e pelos principais dos sacerdotes, e pelos escribas, e seja morto, e ressuscite ao terceiro dia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E dizia a todos: <span class="fala-jesus">"Se alguém quer vir após mim, negue-se a si mesmo, e tome a sua cruz cada dia, e siga-me.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Porque qualquer que quiser salvar a sua vida a perderá; mas qualquer que perder a sua vida por minha causa, esse a salvará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Pois que aproveita ao homem ganhar o mundo inteiro, e perder-se, ou causar dano a si mesmo?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Porque qualquer que se envergonhar de mim e das minhas palavras, dele se envergonhará o Filho do homem, quando vier na sua glória, e na do Pai, e dos santos anjos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E em verdade vos digo: alguns dos que aqui estão não provarão a morte até que vejam o reino de Deus."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A TRANSFIGURAÇÃO (9.28-36) -->
+    <div class="pericope">A Transfiguração</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E aconteceu, cerca de oito dias depois destas palavras, que ele tomou consigo Pedro, João e Tiago, e subiu ao monte para orar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, enquanto orava, a aparência do seu rosto se alterou, e a sua veste ficou branca e resplandecente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E eis que dois homens falavam com ele, que eram Moisés e Elias,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        os quais apareceram em glória, e falavam da sua partida, que ele havia de cumprir em Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E Pedro e os que estavam com ele estavam carregados de sono; e, despertando, viram a sua glória e os dois homens que estavam com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E aconteceu que, quando aqueles se apartavam dele, Pedro disse a Jesus: <span class="fala-outro">"Mestre, bom é que estejamos aqui. Façamos três tendas: uma para ti, uma para Moisés e uma para Elias."</span> — sem saber o que dizia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E, dizendo ele isto, veio uma nuvem e os cobriu com a sua sombra. E eles temeram ao entrarem na nuvem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E saiu da nuvem uma voz, que dizia: <span class="fala-deus">"Este é o meu Filho amado; a ele ouvi."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, tendo soado a voz, Jesus foi achado sozinho. E eles calaram-se, e por aqueles dias não contaram a ninguém nada do que tinham visto.
+    </p>
+
+    <!-- PERÍCOPE 5: A CURA DO MENINO ENDEMONINHADO (9.37-43a) -->
+    <div class="pericope">A Cura do Menino Endemoninhado</div>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E aconteceu, no dia seguinte, que, descendo eles do monte, uma grande multidão saiu ao encontro de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E eis que um homem da multidão clamou, dizendo: <span class="fala-outro">"Mestre, rogo-te que olhes para o meu filho, porque é o único que tenho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-outro">E eis que um espírito o toma, e de repente clama, e o convulsiona com espuma; e dificilmente se retira dele, deixando-o muito machucado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-outro">E roguei aos teus discípulos que o expulsassem, e não puderam."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E Jesus, respondendo, disse: <span class="fala-jesus">"Ó geração incrédula e perversa! Até quando estarei convosco e vos sofrerei? Traze aqui o teu filho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E, quando ele ainda se aproximava, o demônio o derrubou e o convulsionou. Mas Jesus repreendeu o espírito imundo, e curou o menino, e o entregou a seu pai.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E todos ficaram admirados com a grandeza de Deus.
+    </p>
+
+    <!-- PERÍCOPE 6: A SEGUNDA PREDIÇÃO DA PAIXÃO (9.43b-50) -->
+    <div class="pericope">A Segunda Predição da Paixão</div>
+
+    <p class="verse">
+        <span class="v-num">43b</span>
+        E, admirando-se todos de tudo o que Jesus fazia, disse aos seus discípulos:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">"Ponde estas palavras nos vossos ouvidos: porque o Filho do homem será entregue nas mãos dos homens."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Mas eles não entendiam esta palavra, e estava-lhes encoberta, para que não a compreendessem. E temiam perguntar-lhe acerca desta palavra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E surgiu entre eles uma discussão sobre qual deles seria o maior.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        Mas Jesus, vendo o pensamento do coração deles, tomou uma criança, pô-la junto de si
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        e disse-lhes: <span class="fala-jesus">"Qualquer que receber esta criança em meu nome, a mim me recebe; e qualquer que me recebe, recebe aquele que me enviou. Porque aquele que entre vós for o menor, esse será grande."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E João, respondendo, disse: <span class="fala-outro">"Mestre, vimos um que em teu nome expulsava demônios, e nós lho proibimos, porque não te segue conosco."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Não o proibais; porque quem não é contra vós é por vós."</span>
+    </p>
+
+    <!-- PERÍCOPE 7: O CAMINHO PARA JERUSALÉM (9.51-62) -->
+    <div class="pericope">O Caminho para Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E aconteceu que, completando-se os dias para a sua partida, ele firmou o seu rosto para ir a Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E enviou mensageiros adiante de si. E, indo eles, entraram numa aldeia de samaritanos, para lhe preparar hospedagem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        Mas não o receberam, porque o seu rosto era como de quem ia para Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E os seus discípulos, Tiago e João, vendo isso, disseram: <span class="fala-outro">"Senhor, queres que digamos que desça fogo do céu e os consuma, como também fez Elias?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        Mas ele, voltando-se, repreendeu-os e disse: <span class="fala-jesus">"Vós não sabeis de que espírito sois.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        <span class="fala-jesus">Porque o Filho do homem não veio para destruir as almas dos homens, mas para salvá-las."</span> E foram para outra aldeia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        E aconteceu que, indo eles pelo caminho, alguém lhe disse: <span class="fala-outro">"Senhor, seguir-te-ei para onde quer que fores."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        E Jesus lhe disse: <span class="fala-jesus">"As raposas têm covis, e as aves do céu têm ninhos; mas o Filho do homem não tem onde reclinar a cabeça."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        E disse a outro: <span class="fala-jesus">"Segue-me."</span> Mas ele disse: <span class="fala-outro">"Senhor, permite-me ir primeiro sepultar meu pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Deixa os mortos sepultar os seus próprios mortos; mas tu vai e anuncia o reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">61</span>
+        E outro também disse: <span class="fala-outro">"Senhor, seguir-te-ei, mas permite-me primeiro despedir-me dos que estão em minha casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">62</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Ninguém que põe a mão no arado e olha para trás é apto para o reino de Deus."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:1 — "Poder e autoridade"</span>
+            <div class="greek-text">δύναμιν καὶ ἐξουσίαν</div>
+            <p><strong>Análise:</strong> Lucas menciona ambos os termos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "poder e autoridade".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 9:3 — "Nem bordão"</span>
+            <div class="greek-text">μήτε ῥάβδον</div>
+            <p><strong>Análise:</strong> Lucas diz "nem bordão", diferindo da formulação de Marcos 6:8.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nem bordão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:4 — "Dali saí"</span>
+            <div class="greek-text">ἐκεῖθεν ἐξέρχεσθε</div>
+            <p><strong>Análise:</strong> A instrução sobre permanecer na casa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dali saí".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Lucas 9:7 — "Herodes, o tetrarca"</span>
+            <div class="greek-text">Ἡρῴδης ὁ τετράρχης</div>
+            <p><strong>Análise:</strong> Herodes Antipas, governante da Galileia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Herodes, o tetrarca".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 9:10 — "Betsaida"</span>
+            <div class="greek-text">Βηθσαϊδά</div>
+            <p><strong>Análise:</strong> O local do retiro, conforme o Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Betsaida".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 9:14 — "Grupos de cinquenta"</span>
+            <div class="greek-text">πεντήκοντα</div>
+            <p><strong>Análise:</strong> Lucas menciona grupos de cinquenta, enquanto Marcos menciona grupos de cem e de cinquenta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 9:20 — "O Cristo de Deus"</span>
+            <div class="greek-text">τὸν χριστὸν τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A confissão de Pedro em Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "O Cristo de Deus".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 9:23 — "Tome a sua cruz cada dia"</span>
+            <div class="greek-text">καθ' ἡμέραν</div>
+            <p><strong>Análise:</strong> O acréscimo "cada dia", exclusivo de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tome a sua cruz cada dia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:25 — "Perder-se, ou causar dano a si mesmo"</span>
+            <div class="greek-text">ζημιωθῆναι</div>
+            <p><strong>Análise:</strong> A formulação de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 9:28 — "Cerca de oito dias depois"</span>
+            <div class="greek-text">ὡσεὶ ἡμέραι ὀκτώ</div>
+            <p><strong>Análise:</strong> Lucas menciona oito dias, enquanto Mateus e Marcos mencionam seis.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:29 — "Aparência do seu rosto se alterou"</span>
+            <div class="greek-text">τὸ εἶδος τοῦ προσώπου αὐτοῦ ἕτερον</div>
+            <p><strong>Análise:</strong> A transfiguração em Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:31 — "Partida"</span>
+            <div class="greek-text">ἔξοδον</div>
+            <p><strong>Análise:</strong> "Saída", "partida".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "partida".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 9:35 — "Este é o meu Filho amado"</span>
+            <div class="greek-text">οὗτός ἐστιν ὁ υἱός μου ὁ ἀγαπητός</div>
+            <p><strong>Análise:</strong> A voz da nuvem na transfiguração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:41 — "Geração incrédula e perversa"</span>
+            <div class="greek-text">γενεὰ ἄπιστος καὶ διεστραμμένη</div>
+            <p><strong>Análise:</strong> A expressão de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:43 — "A grandeza de Deus"</span>
+            <div class="greek-text">μεγαλειότητι</div>
+            <p><strong>Análise:</strong> Literalmente "grandeza" ou "majestade".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a grandeza de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:46 — "Surgiu entre eles uma discussão"</span>
+            <div class="greek-text">εἰσῆλθεν διαλογισμὸς ἐν αὐτοῖς</div>
+            <p><strong>Análise:</strong> A discussão sobre o maior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:48 — "Aquele que entre vós for o menor"</span>
+            <div class="greek-text">ὁ μικρότερος ἐν πᾶσιν ὑμῖν</div>
+            <p><strong>Análise:</strong> O ensino de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:50 — "Quem não é contra vós é por vós"</span>
+            <div class="greek-text">ὃς γὰρ οὐκ ἔστιν καθ' ὑμῶν, ὑπὲρ ὑμῶν ἐστιν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:51 — "Partida"</span>
+            <div class="greek-text">ἀναλήμψεως</div>
+            <p><strong>Análise:</strong> Termo relacionado a "recebimento" ou "elevação"; no contexto, refere-se aos dias que se aproximavam para a partida de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "partida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:51 — "Firmou o seu rosto"</span>
+            <div class="greek-text">τὸ πρόσωπον ἐστήριξε</div>
+            <p><strong>Análise:</strong> Literalmente "firmou o rosto".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "firmou o seu rosto".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 9:55 — "Vós não sabeis de que espírito sois"</span>
+            <div class="greek-text">οὐκ οἴδατε ποίου πνεύματός ἐστε ὑμεῖς</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui a frase.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a frase conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 9:56 — "O Filho do homem não veio para destruir as almas dos homens, mas para salvá-las"</span>
+            <div class="greek-text">ὁ υἱὸς τοῦ ἀνθρώπου οὐκ ἦλθεν ψυχὰς ἀνθρώπων ἀπολέσαι, ἀλλὰ σῶσαι</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui a frase.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a frase conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 9:62 — "Arado"</span>
+            <div class="greek-text">ἄροτρον</div>
+            <p><strong>Análise:</strong> Instrumento de lavoura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "arado".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 17</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 17</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Tropeços</span>
+                Do grego <em>skandala</em> (σκάνδαλα), ocasiões de pecado ou queda.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Amoreira</span>
+                Do grego <em>sykaminos</em> (συκάμινος), árvore mencionada por Lucas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Estrangeiro</span>
+                Do grego <em>allogenēs</em> (ἀλλογενής), alguém de outro povo/origem.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Águias</span>
+                Do grego <em>aetoi</em> (ἀετοί), aves de rapina.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">17</div>
+
+    <!-- PERÍCOPE 1: TROPEÇOS E PERDÃO (17.1-4) -->
+    <div class="pericope">Tropeços e Perdão</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> disse Jesus aos seus discípulos: <span class="fala-jesus">"É impossível que não venham os tropeços; mas ai daquele por quem eles vêm!</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-jesus">Melhor lhe fora que uma pedra de moinho lhe fosse pendurada ao pescoço, e fosse lançado ao mar, do que fazer tropeçar um destes pequenos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">"Tende cuidado de vós mesmos. E, se teu irmão pecar contra ti, repreende-o; e, se ele se arrepender, perdoa-lhe.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">E, se pecar contra ti sete vezes no dia, e sete vezes no dia voltar a ti, dizendo: 'Arrependo-me', perdoa-lhe."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: FÉ E SERVIÇO (17.5-10) -->
+    <div class="pericope">Fé e Serviço</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E os apóstolos disseram ao Senhor: <span class="fala-outro">"Aumenta-nos a fé."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E o Senhor disse: <span class="fala-jesus">"Se tivésseis fé como um grão de mostarda, diríeis a esta amoreira: 'Arranca-te e planta-te no mar', e ela vos obedeceria."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">"E qual de vós, tendo um servo que lavra ou apascenta, quando ele voltar do campo, lhe dirá logo: 'Vem e assenta-te à mesa'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Antes, não lhe dirá: 'Prepara-me a ceia, e cinge-te, e serve-me, enquanto eu como e bebo; e depois comerás e beberás tu'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Por acaso agradece ao servo porque fez o que lhe foi ordenado? Eu penso que não.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Assim também vós, quando fizerdes tudo o que vos for ordenado, dizei: 'Somos servos inúteis, porque fizemos somente o que devíamos fazer.'"</span>
+    </p>
+
+    <!-- PERÍCOPE 3: OS DEZ LEPROSOS (17.11-19) -->
+    <div class="pericope">Os Dez Leprosos</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E aconteceu que, indo ele a Jerusalém, passava pelo meio de Samaria e da Galileia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, entrando numa certa aldeia, saíram-lhe ao encontro dez homens leprosos, que pararam de longe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E levantaram a voz, dizendo: <span class="fala-outro">"Jesus, Mestre, tem compaixão de nós!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E ele, vendo-os, disse-lhes: <span class="fala-jesus">"Ide e mostrai-vos aos sacerdotes."</span> E aconteceu que, indo eles, ficaram limpos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E um deles, vendo que estava curado, voltou glorificando a Deus em alta voz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E prostrou-se sobre o rosto aos pés de Jesus, agradecendo-lhe. E este era samaritano.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Jesus, respondendo, disse: <span class="fala-jesus">"Não foram dez os que ficaram limpos? E onde estão os nove?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Não houve quem voltasse para dar glória a Deus, senão este estrangeiro?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E disse-lhe: <span class="fala-jesus">"Levanta-te e vai. A tua fé te salvou."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A VINDA DO REINO (17.20-37) -->
+    <div class="pericope">A Vinda do Reino</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, interrogado pelos fariseus sobre quando viria o reino de Deus, respondeu-lhes e disse: <span class="fala-jesus">"O reino de Deus não vem com aparência exterior.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Nem dirão: 'Ei-lo aqui' ou 'Ei-lo ali'; porque eis que o reino de Deus está entre vós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E disse aos discípulos: <span class="fala-jesus">"Virão dias em que desejareis ver um dos dias do Filho do homem, e não o vereis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">E dir-vos-ão: 'Ei-lo aqui' ou 'Ei-lo ali'. Não vades, nem os sigais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Porque, como o relâmpago que relampeja de uma extremidade à outra debaixo do céu, assim também será o Filho do homem no seu dia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Mas primeiro é necessário que ele padeça muitas coisas, e seja rejeitado por esta geração."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">"E, como aconteceu nos dias de Noé, assim será também nos dias do Filho do homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Comiam, bebiam, casavam-se e davam-se em casamento, até o dia em que Noé entrou na arca, e veio o dilúvio e destruiu a todos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Como também aconteceu nos dias de Ló: comiam, bebiam, compravam, vendiam, plantavam e edificavam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Mas, no dia em que Ló saiu de Sodoma, choveu do céu fogo e enxofre, e destruiu a todos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Assim será no dia em que o Filho do homem se manifestar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">"Naquele dia, quem estiver no telhado, e os seus bens em casa, não desça para os levar; e, do mesmo modo, quem estiver no campo, não volte atrás.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Lembrai-vos da mulher de Ló.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Qualquer que procurar salvar a sua vida a perderá; e qualquer que a perder a salvará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Eu vos digo: naquela noite, estarão dois numa cama; um será tomado, e o outro será deixado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Duas estarão moendo juntas; uma será tomada, e a outra será deixada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Dois estarão no campo; um será tomado, e o outro será deixado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, respondendo, disseram-lhe: <span class="fala-outro">"Onde, Senhor?"</span> E ele lhes disse: <span class="fala-jesus">"Onde estiver o corpo, ali se ajuntarão as águias."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:1 — "Tropeços"</span>
+            <div class="greek-text">σκάνδαλα</div>
+            <p><strong>Análise:</strong> Como em Mateus 18:7.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tropeços".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:2 — "Pedra de moinho"</span>
+            <div class="greek-text">μύλος ὀνικός</div>
+            <p><strong>Análise:</strong> Como em Mateus 18:6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pedra de moinho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:4 — "Sete vezes no dia"</span>
+            <div class="greek-text">ἑπτάκις ... ἑπτάκις</div>
+            <p><strong>Análise:</strong> A instrução sobre o perdão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:5 — "Aumenta-nos a fé"</span>
+            <div class="greek-text">πρόσθες ἡμῖν πίστιν</div>
+            <p><strong>Análise:</strong> O pedido dos apóstolos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 17:6 — "Amoreira"</span>
+            <div class="greek-text">συκαμίνῳ</div>
+            <p><strong>Análise:</strong> Lucas utiliza esta imagem, enquanto Mateus 17:20 utiliza a imagem de um monte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "amoreira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:10 — "Servos inúteis"</span>
+            <div class="greek-text">δοῦλοι ἀχρεῖοι</div>
+            <p><strong>Análise:</strong> "Servos inúteis".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "servos inúteis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:12 — "Dez homens leprosos"</span>
+            <div class="greek-text">δέκα λεπροὶ ἄνδρες</div>
+            <p><strong>Análise:</strong> O encontro com os leprosos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:14 — "Mostrai-vos aos sacerdotes"</span>
+            <div class="greek-text">δείξατε ἑαυτοὺς τοῖς ἱερεῦσιν</div>
+            <p><strong>Análise:</strong> A instrução de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:18 — "Estrangeiro"</span>
+            <div class="greek-text">ἀλλογενής</div>
+            <p><strong>Análise:</strong> Literalmente alguém de outro povo/origem; termo usado para designar um estrangeiro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "estrangeiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:19 — "A tua fé te salvou"</span>
+            <div class="greek-text">ἡ πίστις σου σέσωκέν σε</div>
+            <p><strong>Análise:</strong> Como em outros relatos de cura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:20 — "Aparência exterior"</span>
+            <div class="greek-text">μετὰ παρατηρήσεως</div>
+            <p><strong>Análise:</strong> "Com observação", no sentido de observação exterior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com aparência exterior".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:21 — "Entre vós"</span>
+            <div class="greek-text">ἐντὸς ὑμῶν</div>
+            <p><strong>Análise:</strong> Expressão que pode ser entendida como "dentro de vós" ou "entre vós".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "entre vós".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 17:24 — "Como o relâmpago"</span>
+            <div class="greek-text">ἡ ἀστραπὴ</div>
+            <p><strong>Análise:</strong> A imagem do relâmpago.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 17:26-27 — "Dias de Noé"</span>
+            <div class="greek-text">ἐν ταῖς ἡμέραις Νῶε</div>
+            <p><strong>Análise:</strong> A comparação com Noé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 17:28-30 — "Dias de Ló"</span>
+            <div class="greek-text">ἐν ταῖς ἡμέραις Λώτ</div>
+            <p><strong>Análise:</strong> A comparação com Ló.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:32 — "Mulher de Ló"</span>
+            <div class="greek-text">γυναικὸς Λώτ</div>
+            <p><strong>Análise:</strong> A referência à mulher de Ló.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 17:34-36 — "Um será tomado, e o outro será deixado"</span>
+            <div class="greek-text">οἱ δύο ἐπὶ τῆς κλίνης ... αἱ δύο ... οἱ δύο</div>
+            <p><strong>Análise:</strong> O v. 36 é preservado no Textus Receptus: "Dois estarão no campo; um será tomado, e o outro será deixado."</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 17:37 — "Onde estiver o corpo, ali se ajuntarão as águias"</span>
+            <div class="greek-text">ὅπου τὸ σῶμα, ἐκεῖ συναχθήσονται οἱ ἀετοί</div>
+            <p><strong>Análise:</strong> Há discussão sobre a possibilidade de referência a aves de rapina, mas o termo do TR é traduzido aqui como "águias".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "águias".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

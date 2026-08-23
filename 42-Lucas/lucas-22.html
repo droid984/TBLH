@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 22</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 22</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Capitães</span>
+                Do grego <em>stratēgoi</em> (στρατηγοί), chefes ou comandantes.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cenáculo</span>
+                Do grego <em>anōgeon</em> (ἀνώγεον), sala superior.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Benfeitores</span>
+                Do grego <em>euergetai</em> (εὐεργέται), título de honra.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Peneirar</span>
+                Do grego <em>siniazō</em> (σινιάζω), passar pela peneira.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">22</div>
+
+    <!-- PERÍCOPE 1: A TRADIÇÃO DE JUDAS (22.1-6) -->
+    <div class="pericope">A Tradição de Judas</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aproximava-se a festa dos pães sem fermento, que se chama Páscoa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E os principais dos sacerdotes e os escribas procuravam como o matariam, porque temiam o povo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então Satanás entrou em Judas, que tinha por sobrenome Iscariotes, que era um dos doze.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E ele foi e falou com os principais dos sacerdotes e com os capitães sobre como lho entregaria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E eles se alegraram, e pactuaram dar-lhe dinheiro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E ele concordou, e buscava oportunidade para lho entregar sem tumulto.
+    </p>
+
+    <!-- PERÍCOPE 2: A PREPARAÇÃO DA PÁSCOA (22.7-13) -->
+    <div class="pericope">A Preparação da Páscoa</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E chegou o dia dos pães sem fermento, em que era necessário sacrificar a Páscoa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Jesus enviou Pedro e João, dizendo: <span class="fala-jesus">"Ide, preparai-nos a Páscoa, para que a comamos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E eles lhe disseram: <span class="fala-outro">"Onde queres que a preparemos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E ele lhes disse: <span class="fala-jesus">"Eis que, ao entrardes na cidade, vos sairá ao encontro um homem carregando um cântaro de água; segui-o até a casa em que ele entrar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E direis ao dono da casa: 'O Mestre te diz: Onde está o aposento em que hei de comer a Páscoa com os meus discípulos?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E ele vos mostrará um grande cenáculo mobiliado; ali fazei os preparativos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, indo eles, acharam como lhes tinha dito, e prepararam a Páscoa.
+    </p>
+
+    <!-- PERÍCOPE 3: A ÚLTIMA CEIA (22.14-20) -->
+    <div class="pericope">A Última Ceia</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, quando chegou a hora, assentou-se à mesa, e os doze apóstolos com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E disse-lhes: <span class="fala-jesus">"Desejei ardentemente comer esta Páscoa convosco, antes de padecer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Porque eu vos digo: não a comerei mais, até que ela se cumpra no reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, tomando o cálice, deu graças e disse: <span class="fala-jesus">"Tomai-o e reparti-o entre vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Porque eu vos digo: não beberei mais do fruto da videira, até que venha o reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, tomando o pão, deu graças, e partiu-o, e deu-lhes, dizendo: <span class="fala-jesus">"Isto é o meu corpo, que é dado por vós. Fazei isto em memória de mim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Do mesmo modo, depois da ceia, tomou o cálice, dizendo: <span class="fala-jesus">"Este cálice é o novo testamento no meu sangue, que é derramado por vós."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A PREDIÇÃO DA TRADIÇÃO (22.21-23) -->
+    <div class="pericope">A Predição da Tradição</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">"Mas eis que a mão do que me trai está comigo à mesa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E, na verdade, o Filho do homem vai, segundo o que está determinado; mas ai daquele homem por quem ele é traído!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E eles começaram a perguntar entre si qual deles seria o que havia de fazer isto.
+    </p>
+
+    <!-- PERÍCOPE 5: A DISCUSSÃO SOBRE O MAIOR (22.24-30) -->
+    <div class="pericope">A Discussão sobre o Maior</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E houve também entre eles uma discussão sobre qual deles parecia ser o maior.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E ele lhes disse: <span class="fala-jesus">"Os reis dos gentios dominam sobre eles, e os que exercem autoridade sobre eles são chamados benfeitores.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Mas vós não sereis assim. Antes, o maior entre vós seja como o menor; e o que governa, como o que serve.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Pois qual é maior: quem está à mesa, ou quem serve? Não é quem está à mesa? Mas eu estou entre vós como quem serve.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">E vós sois os que tendes permanecido comigo nas minhas tentações.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">E eu vos destino um reino, como meu Pai o destinou a mim,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">para que comais e bebais à minha mesa no meu reino, e vos assenteis sobre tronos, julgando as doze tribos de Israel."</span>
+    </p>
+
+    <!-- PERÍCOPE 6: A PREDIÇÃO DA NEGAÇÃO DE PEDRO (22.31-34) -->
+    <div class="pericope">A Predição da Negação de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E disse o Senhor: <span class="fala-jesus">"Simão, Simão, eis que Satanás vos pediu para vos peneirar como trigo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Mas eu orei por ti, para que a tua fé não desfaleça. E tu, quando te converteres, fortalece os teus irmãos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E ele lhe disse: <span class="fala-outro">"Senhor, estou pronto a ir contigo, tanto para a prisão como para a morte."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Mas ele disse: <span class="fala-jesus">"Eu te digo, Pedro: o galo não cantará hoje antes que três vezes negares que me conheces."</span>
+    </p>
+
+    <!-- PERÍCOPE 7: A ESPADA E O GETSÊMANI (22.35-46) -->
+    <div class="pericope">A Espada e o Getsêmani</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E disse-lhes: <span class="fala-jesus">"Quando vos enviei sem bolsa, e sem alforje, e sem sandálias, faltou-vos por acaso alguma coisa?"</span> E eles disseram: <span class="fala-outro">"Nada."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Então lhes disse: <span class="fala-jesus">"Mas agora, o que tem bolsa, tome-a; e do mesmo modo o alforje. E o que não tem espada, venda a sua veste e compre uma.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Porque eu vos digo: é necessário que se cumpra em mim ainda isto que está escrito: 'E com os transgressores foi contado.' Porque o que está escrito a meu respeito tem cumprimento."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E eles disseram: <span class="fala-outro">"Senhor, eis aqui duas espadas."</span> E ele lhes disse: <span class="fala-jesus">"Basta."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, saindo, foi, como de costume, para o monte das Oliveiras; e os seus discípulos o seguiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E, quando chegou àquele lugar, disse-lhes: <span class="fala-jesus">"Orai, para que não entreis em tentação."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E ele se apartou deles cerca de um tiro de pedra; e, pondo-se de joelhos, orava,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        dizendo: <span class="fala-jesus">"Pai, se queres, passa de mim este cálice; contudo, não se faça a minha vontade, mas a tua."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E apareceu-lhe um anjo do céu, que o fortalecia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E, estando em agonia, orava mais intensamente. E o seu suor tornou-se como grandes gotas de sangue, que caíam sobre a terra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, levantando-se da oração, veio para os seus discípulos, e achou-os dormindo de tristeza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E disse-lhes: <span class="fala-jesus">"Por que dormis? Levantai-vos e orai, para que não entreis em tentação."</span>
+    </p>
+
+    <!-- PERÍCOPE 8: A PRISÃO DE JESUS (22.47-53) -->
+    <div class="pericope">A Prisão de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E, estando ele ainda a falar, eis que chegou uma multidão; e o que se chamava Judas, um dos doze, ia adiante deles e aproximou-se de Jesus para o beijar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        Mas Jesus lhe disse: <span class="fala-jesus">"Judas, com um beijo entregas o Filho do homem?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E os que estavam ao redor dele, vendo o que ia acontecer, disseram-lhe: <span class="fala-outro">"Senhor, feriremos à espada?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        E um deles feriu o servo do sumo sacerdote, e cortou-lhe a orelha direita.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E Jesus, respondendo, disse: <span class="fala-jesus">"Deixai. Basta."</span> E, tocando na orelha, o curou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E Jesus disse aos principais dos sacerdotes, e aos capitães do templo, e aos anciãos, que tinham vindo contra ele: <span class="fala-jesus">"Saístes com espadas e porretes, como contra um salteador?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        <span class="fala-jesus">Estando eu todos os dias convosco no templo, não estendestes as mãos contra mim. Mas esta é a vossa hora e o poder das trevas."</span>
+    </p>
+
+    <!-- PERÍCOPE 9: A NEGAÇÃO DE PEDRO (22.54-62) -->
+    <div class="pericope">A Negação de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        Então, prendendo-o, levaram-no e o introduziram na casa do sumo sacerdote. E Pedro seguia de longe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        E, acendendo fogo no meio do pátio e assentando-se juntos, Pedro assentou-se entre eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        E uma serva, vendo-o assentado junto ao fogo, fitou-o e disse: <span class="fala-outro">"Este também estava com ele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        Mas ele o negou, dizendo: <span class="fala-outro">"Mulher, não o conheço."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        E, pouco depois, outro o viu e disse: <span class="fala-outro">"Tu também és um deles."</span> Mas Pedro disse: <span class="fala-outro">"Homem, não sou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        E, passada quase uma hora, outro afirmava, dizendo: <span class="fala-outro">"Na verdade, também este estava com ele, pois também é galileu."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        Mas Pedro disse: <span class="fala-outro">"Homem, não sei o que dizes."</span> E imediatamente, estando ele ainda a falar, o galo cantou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">61</span>
+        E, voltando-se o Senhor, olhou para Pedro. E Pedro lembrou-se da palavra do Senhor, como lhe dissera: "Antes que o galo cante, negar-me-ás três vezes."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">62</span>
+        E Pedro, saindo dali, chorou amargamente.
+    </p>
+
+    <!-- PERÍCOPE 10: O JULGAMENTO PERANTE O SINÉDRIO (22.63-71) -->
+    <div class="pericope">O Julgamento Perante o Sinédrio</div>
+
+    <p class="verse">
+        <span class="v-num">63</span>
+        E os homens que detinham Jesus zombavam dele e o feriam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">64</span>
+        E, vendando-lhe os olhos, batiam-lhe no rosto e perguntavam-lhe, dizendo: <span class="fala-outro">"Profetiza: quem é que te feriu?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">65</span>
+        E muitas outras coisas diziam contra ele, blasfemando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">66</span>
+        E, logo que amanheceu, ajuntaram-se os anciãos do povo, e os principais dos sacerdotes, e os escribas, e o levaram ao seu conselho, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">67</span>
+        <span class="fala-outro">"És tu o Cristo? Dize-nos."</span> E ele lhes disse: <span class="fala-jesus">"Se eu vos disser, não crereis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">68</span>
+        <span class="fala-jesus">E, se eu vos perguntar, não me respondereis, nem me deixareis ir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">69</span>
+        <span class="fala-jesus">Desde agora, o Filho do homem estará assentado à direita do poder de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">70</span>
+        E todos disseram: <span class="fala-outro">"Então és tu o Filho de Deus?"</span> E ele lhes disse: <span class="fala-jesus">"Vós dizeis que eu sou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">71</span>
+        Então disseram: <span class="fala-outro">"Que necessidade temos ainda de testemunho? Porque nós mesmos o ouvimos da sua boca."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:3 — "Satanás entrou em Judas"</span>
+            <div class="greek-text">εἰσῆλθεν ... Σατανᾶς εἰς Ἰούδαν</div>
+            <p><strong>Análise:</strong> A introdução da traição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:4, 52 — "Capitães"</span>
+            <div class="greek-text">στρατηγοῖς</div>
+            <p><strong>Análise:</strong> "Capitães", "chefes".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "capitães".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:6 — "Sem tumulto"</span>
+            <div class="greek-text">ἄτερ ὄχλου</div>
+            <p><strong>Análise:</strong> "Sem multidão".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem tumulto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:10 — "Cântaro de água"</span>
+            <div class="greek-text">κεράμιον</div>
+            <p><strong>Análise:</strong> O sinal para encontrar o local da Páscoa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cântaro de água".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:12 — "Cenáculo"</span>
+            <div class="greek-text">ἀνώγεον</div>
+            <p><strong>Análise:</strong> "Sala superior".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cenáculo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:15 — "Desejei ardentemente"</span>
+            <div class="greek-text">ἐπιθυμίᾳ ἐπεθύμησα</div>
+            <p><strong>Análise:</strong> Expressão intensificada de desejo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Desejei ardentemente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:20 — "Novo testamento"</span>
+            <div class="greek-text">καινὴ διαθήκη</div>
+            <p><strong>Análise:</strong> Como em Mateus 26:28.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "novo testamento".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 22:20 — "Derramado por vós"</span>
+            <div class="greek-text">ὑπὲρ ὑμῶν</div>
+            <p><strong>Análise:</strong> Lucas diz "por vós", enquanto Mateus e Marcos dizem "por muitos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:25 — "Benfeitores"</span>
+            <div class="greek-text">εὐεργέται</div>
+            <p><strong>Análise:</strong> Título de honra usado por governantes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "benfeitores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:27 — "Como quem serve"</span>
+            <div class="greek-text">ὡς ὁ διακονῶν</div>
+            <p><strong>Análise:</strong> Jesus se apresenta como servo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como quem serve".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:28 — "Tentações"</span>
+            <div class="greek-text">πειρασμοῖς</div>
+            <p><strong>Análise:</strong> Provas, tentações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tentações".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:29 — "Eu vos destino um reino"</span>
+            <div class="greek-text">διατίθεμαι</div>
+            <p><strong>Análise:</strong> "Destino", "estabeleço".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:31 — "Peneirar como trigo"</span>
+            <div class="greek-text">σινιάσαι</div>
+            <p><strong>Análise:</strong> "Peneirar", "passar pela peneira".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "peneirar como trigo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:32 — "Quando te converteres"</span>
+            <div class="greek-text">ἐπιστρέψας</div>
+            <p><strong>Análise:</strong> "Voltando-te", "converte-te".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quando te converteres".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:34 — "Negares que me conheces"</span>
+            <div class="greek-text">ἀρνήσῃ μὴ εἰδέναι με</div>
+            <p><strong>Análise:</strong> A predição da negação de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 22:37 — "E com os transgressores foi contado"</span>
+            <div class="greek-text">καὶ μετὰ ἀνόμων ἐλογίσθη</div>
+            <p><strong>Análise:</strong> Citação de Isaías 53:12.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 22:38 — "Basta"</span>
+            <div class="greek-text">ἱκανόν ἐστιν</div>
+            <p><strong>Análise:</strong> "É suficiente".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Basta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:41 — "Um tiro de pedra"</span>
+            <div class="greek-text">λίθου βολήν</div>
+            <p><strong>Análise:</strong> Distância aproximada de um lançamento de pedra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um tiro de pedra".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 22:44 — "Grandes gotas de sangue"</span>
+            <div class="greek-text">θρόμβοι αἵματος</div>
+            <p><strong>Análise:</strong> Literalmente "coágulos/gotas de sangue". O versículo está presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grandes gotas de sangue".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 22:53 — "Poder das trevas"</span>
+            <div class="greek-text">ἐξουσία τοῦ σκότους</div>
+            <p><strong>Análise:</strong> O poder das trevas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "poder das trevas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 22:69 — "À direita do poder de Deus"</span>
+            <div class="greek-text">ἐκ δεξιῶν τῆς δυνάμεως τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> Como em Mateus 26:64.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

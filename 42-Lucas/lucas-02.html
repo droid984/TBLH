@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">César Augusto</span>
+                O imperador romano na época do nascimento de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Quirino</span>
+                Governador da Síria mencionado no recenseamento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Manjedoura</span>
+                Cocho ou comedouro de animais, onde Jesus foi deitado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lugar de hospedagem</span>
+                Do grego <em>katalyma</em> (κατάλυμα), local de alojamento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nunc Dimittis</span>
+                O cântico de Simeão (Lucas 2:29-32).
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">2</div>
+
+    <!-- PERÍCOPE 1: O NASCIMENTO DE JESUS (2.1-7) -->
+    <div class="pericope">O Nascimento de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu, naqueles dias, que saiu um decreto da parte de César Augusto, para que todo o mundo fosse recenseado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Este primeiro recenseamento foi feito quando Quirino era governador da Síria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E todos iam para se registrar, cada um à sua própria cidade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E subiu também José da Galileia, da cidade de Nazaré, à Judeia, à cidade de Davi, chamada Belém, por ser da casa e família de Davi,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        para se registrar com Maria, sua esposa, que estava grávida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E aconteceu que, estando eles ali, completaram-se os dias para ela dar à luz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E deu à luz o seu filho primogênito, e envolveu-o em panos, e deitou-o numa manjedoura, porque não havia lugar para eles no lugar de hospedagem.
+    </p>
+
+    <!-- PERÍCOPE 2: OS PASTORES E OS ANJOS (2.8-20) -->
+    <div class="pericope">Os Pastores e os Anjos</div>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E havia na mesma região pastores que estavam no campo, e guardavam os seus rebanhos durante as vigílias da noite.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E eis que um anjo do Senhor apareceu-lhes, e a glória do Senhor brilhou ao redor deles; e tiveram grande temor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E o anjo lhes disse: <span class="fala-anjo">"Não temais, porque eis que vos anuncio uma grande alegria, que será para todo o povo:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-anjo">que hoje vos nasceu, na cidade de Davi, o Salvador, que é Cristo, o Senhor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-anjo">E isto vos será por sinal: achareis o menino envolto em panos e deitado numa manjedoura."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, de repente, apareceu com o anjo uma multidão do exército celestial, louvando a Deus e dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-celestial">"Glória a Deus nas alturas, e paz na terra, boa vontade para com os homens!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E aconteceu que, quando os anjos se retiraram deles para o céu, os pastores disseram uns aos outros: <span class="fala-outro">"Vamos até Belém e vejamos isto que aconteceu, e que o Senhor nos deu a conhecer."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E foram apressadamente, e acharam Maria, e José, e o menino deitado na manjedoura.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, vendo-o, divulgaram a palavra que lhes fora dita acerca deste menino.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E todos os que ouviram se admiraram das coisas que os pastores lhes diziam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Mas Maria guardava todas estas coisas, ponderando-as no seu coração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E os pastores voltaram, glorificando e louvando a Deus por tudo o que tinham ouvido e visto, como lhes fora dito.
+    </p>
+
+    <!-- PERÍCOPE 3: CIRCUNCISÃO E APRESENTAÇÃO (2.21-24) -->
+    <div class="pericope">Circuncisão e Apresentação no Templo</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, completados oito dias para circuncidar o menino, foi-lhe dado o nome de JESUS, como fora chamado pelo anjo, antes de ser concebido no ventre.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, cumpridos os dias da purificação deles, segundo a lei de Moisés, levaram-no a Jerusalém, para o apresentarem ao Senhor
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        — como está escrito na lei do Senhor: Todo macho que abrir a madre será chamado santo ao Senhor —
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        e para oferecerem sacrifício conforme o que está dito na lei do Senhor: um par de rolas, ou dois pombinhos.
+    </p>
+
+    <!-- PERÍCOPE 4: SIMEÃO E ANA (2.25-38) -->
+    <div class="pericope">Simeão e Ana</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E eis que havia em Jerusalém um homem cujo nome era Simeão. E este homem era justo e piedoso, e esperava a consolação de Israel. E o Espírito Santo estava sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E tinha sido revelado a ele pelo Espírito Santo que não veria a morte antes de ter visto o Cristo do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E veio pelo Espírito ao templo. E, quando os pais trouxeram o menino Jesus, para fazerem com ele conforme o costume da lei,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        ele o tomou nos braços, e louvou a Deus, e disse:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">"Agora, Senhor, despedes em paz o teu servo, conforme a tua palavra;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">porque os meus olhos já viram a tua salvação,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">a qual preparaste diante da face de todos os povos;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">luz para revelação aos gentios, e para glória do teu povo Israel."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E José e a mãe dele se maravilhavam das coisas que dele se diziam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E Simeão os abençoou, e disse a Maria, sua mãe: <span class="fala-outro">"Eis que este menino está posto para queda e elevação de muitos em Israel, e para sinal que será contradito</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-outro">— e uma espada traspassará a tua própria alma — para que os pensamentos de muitos corações sejam revelados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E havia também Ana, profetisa, filha de Fanuel, da tribo de Aser. Esta era de idade muito avançada, e tinha vivido com o marido sete anos desde a sua virgindade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E era viúva, de cerca de oitenta e quatro anos. E não se afastava do templo, servindo a Deus com jejuns e orações, de dia e de noite.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E ela, chegando naquela hora, dava graças ao Senhor, e falava dele a todos os que esperavam a redenção em Jerusalém.
+    </p>
+
+    <!-- PERÍCOPE 5: O MENINO JESUS NO TEMPLO (2.39-52) -->
+    <div class="pericope">O Menino Jesus no Templo</div>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, quando terminaram todas as coisas conforme a lei do Senhor, voltaram para a Galileia, para a sua cidade de Nazaré.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E o menino crescia, e se fortalecia em espírito, cheio de sabedoria; e a graça de Deus estava sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E os seus pais iam todos os anos a Jerusalém, na festa da Páscoa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E, quando ele tinha doze anos, subiram a Jerusalém, conforme o costume da festa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E, terminados os dias, ao voltarem, o menino Jesus ficou em Jerusalém; e José e a sua mãe não o perceberam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        Pensando, porém, que viesse entre os companheiros de viagem, andaram caminho de um dia, e procuravam-no entre os parentes e conhecidos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E, não o achando, voltaram a Jerusalém, procurando-o.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E aconteceu que, depois de três dias, o acharam no templo, assentado no meio dos doutores, ouvindo-os e interrogando-os.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        E todos os que o ouviam se admiravam da sua inteligência e das suas respostas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E, quando o viram, ficaram admirados. E sua mãe lhe disse: <span class="fala-outro">"Filho, por que nos fizeste isto? Eis que teu pai e eu, aflitos, te procurávamos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E ele lhes disse: <span class="fala-jesus">"Por que me procuráveis? Não sabíeis que me convém estar na casa de meu Pai?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Mas eles não entenderam a palavra que lhes dizia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E desceu com eles, e veio para Nazaré, e era-lhes sujeito. E sua mãe guardava todas estas coisas no seu coração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E Jesus crescia em sabedoria, e em estatura, e em graça para com Deus e os homens.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Lucas 2:1 — "César Augusto"</span>
+            <div class="greek-text">Καίσαρος Αὐγούστου</div>
+            <p><strong>Análise:</strong> O imperador romano na época do nascimento de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "César Augusto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:1 — "Todo o mundo"</span>
+            <div class="greek-text">πᾶσαν τὴν οἰκουμένην</div>
+            <p><strong>Análise:</strong> Literalmente "toda a terra habitada", referindo-se ao mundo romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todo o mundo".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Lucas 2:2 — "Quirino"</span>
+            <div class="greek-text">Κυρηνίου</div>
+            <p><strong>Análise:</strong> A referência histórica a Quirino é objeto de discussão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Quirino".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:7 — "Primogênito"</span>
+            <div class="greek-text">πρωτότοκον</div>
+            <p><strong>Análise:</strong> Termo que indica o primeiro filho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primogênito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:7 — "Lugar de hospedagem"</span>
+            <div class="greek-text">κατάλυμα</div>
+            <p><strong>Análise:</strong> "Lugar de hospedagem", "aposento" ou "lugar de alojamento".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lugar de hospedagem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:8 — "Vigílias da noite"</span>
+            <div class="greek-text">φύλακας τῆς νυκτός</div>
+            <p><strong>Análise:</strong> Os pastores guardavam os rebanhos à noite.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vigílias da noite".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 2:11 — "Cristo, o Senhor"</span>
+            <div class="greek-text">Χριστὸς Κύριος</div>
+            <p><strong>Análise:</strong> A declaração do anjo sobre a identidade de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Cristo, o Senhor".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 2:14 — "Boa vontade para com os homens"</span>
+            <div class="greek-text">εὐδοκία ἐν ἀνθρώποις</div>
+            <p><strong>Análise:</strong> A doxologia angelical conforme o Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "boa vontade para com os homens".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:21 — "Circuncidar o menino"</span>
+            <div class="greek-text">περιτεμεῖν τὸ παιδίον</div>
+            <p><strong>Análise:</strong> O oitavo dia, conforme a Lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 2:22 — "Purificação deles"</span>
+            <div class="greek-text">καθαρισμοῦ αὐτῶν</div>
+            <p><strong>Análise:</strong> A expressão plural "deles" é a forma encontrada no texto grego do TR.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "purificação deles".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:24 — "Um par de rolas, ou dois pombinhos"</span>
+            <div class="greek-text">ζεῦγος τρυγόνων ἢ δύο νοσσοὺς περιστερῶν</div>
+            <p><strong>Análise:</strong> A oferta dos pobres, conforme Levítico 12:8.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:25 — "Consolação de Israel"</span>
+            <div class="greek-text">παράκλησιν τοῦ Ἰσραήλ</div>
+            <p><strong>Análise:</strong> Expressão messiânica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "consolação de Israel".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 2:29-32 — Nunc Dimittis</span>
+            <div class="greek-text">νῦν ἀπολύεις τὸν δοῦλόν σου</div>
+            <p><strong>Análise:</strong> O cântico de Simeão, conhecido como <em>Nunc Dimittis</em>.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:34 — "Sinal que será contradito"</span>
+            <div class="greek-text">σημεῖον ἀντιλεγόμενον</div>
+            <p><strong>Análise:</strong> A profecia de Simeão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinal que será contradito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:35 — "Uma espada traspassará a tua própria alma"</span>
+            <div class="greek-text">ῥομφαία διελεύσεται σου τὴν ψυχήν</div>
+            <p><strong>Análise:</strong> A palavra a Maria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:36 — "Ana, profetisa"</span>
+            <div class="greek-text">Ἅννα προφῆτις</div>
+            <p><strong>Análise:</strong> A profetisa viúva.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ana".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 2:37 — "Cerca de oitenta e quatro anos"</span>
+            <div class="greek-text">ἕως ἐτῶν ὀγδοήκοντα τεσσάρων</div>
+            <p><strong>Análise:</strong> O texto grego registra "até oitenta e quatro anos", havendo discussão sobre se a expressão indica a idade de Ana ou o período de sua viuvez.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cerca de oitenta e quatro anos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Lucas 2:49 — "Na casa de meu Pai"</span>
+            <div class="greek-text">ἐν τοῖς τοῦ πατρός μου</div>
+            <p><strong>Análise:</strong> A primeira fala registrada de Jesus em Lucas, referindo-se ao templo como a casa do Pai.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "na casa de meu Pai".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 2:51 — "Era-lhes sujeito"</span>
+            <div class="greek-text">ἦν ὑποτασσόμενος αὐτοῖς</div>
+            <p><strong>Análise:</strong> A submissão de Jesus a seus pais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "era-lhes sujeito".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

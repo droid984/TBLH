@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 14</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 14</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Hidrópico</span>
+                Do grego <em>hydrōpikos</em> (ὑδρωπικός), pessoa que sofria de hidropisia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Jumento ou boi</span>
+                Do grego <em>onos</em> (ὄνος) e <em>bous</em> (βοῦς), conforme o Textus Receptus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Valados</span>
+                Do grego <em>phragmous</em> (φραγμούς), cercas ou sebes.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Monturo</span>
+                Do grego <em>koprian</em> (κοπρίαν), monte de esterco.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">14</div>
+
+    <!-- PERÍCOPE 1: A CURA DO HIDRÓPICO (14.1-6) -->
+    <div class="pericope">A Cura do Hidrópico</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, ao entrar ele num sábado na casa de um dos principais dos fariseus para comer pão, eles o observavam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E eis que estava diante dele um homem hidrópico.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E Jesus, respondendo, falou aos doutores da lei e aos fariseus, dizendo: <span class="fala-jesus">"É lícito curar no sábado?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas eles ficaram calados. E ele, tomando-o, curou-o e o despediu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E disse-lhes: <span class="fala-jesus">"Qual de vós, se um jumento ou um boi cair num poço, não o tirará logo, mesmo em dia de sábado?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E não lhe podiam responder a estas coisas.
+    </p>
+
+    <!-- PERÍCOPE 2: A LIÇÃO SOBRE OS LUGARES (14.7-14) -->
+    <div class="pericope">A Lição sobre os Lugares</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E contou uma parábola aos convidados, observando como escolhiam os primeiros assentos, dizendo-lhes:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">"Quando fores convidado por alguém para um casamento, não te assentes no primeiro lugar, para que não esteja convidado outro mais digno do que tu,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">e, vindo o que te convidou a ti e a ele, te diga: 'Dá o lugar a este'; e então, com vergonha, tenhas de ocupar o último lugar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Mas, quando fores convidado, vai, e assenta-te no último lugar, para que, quando vier o que te convidou, te diga: 'Amigo, sobe mais para cima.' Então terás honra diante dos que estiverem assentados contigo à mesa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Porque qualquer que a si mesmo se exaltar será humilhado, e aquele que a si mesmo se humilhar será exaltado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E dizia também ao que o tinha convidado: <span class="fala-jesus">"Quando deres um jantar ou uma ceia, não chames os teus amigos, nem os teus irmãos, nem os teus parentes, nem vizinhos ricos, para que também eles te não convidem de volta, e te seja isso recompensado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Mas, quando fizeres um banquete, chama os pobres, os aleijados, os coxos e os cegos,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">e serás bem-aventurado, porque eles não têm com que te recompensar; pois te será recompensado na ressurreição dos justos."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A GRANDE CEIA (14.15-24) -->
+    <div class="pericope">A Grande Ceia</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, ouvindo isso um dos que estavam com ele à mesa, disse-lhe: <span class="fala-outro">"Bem-aventurado aquele que comer pão no reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas ele lhe disse: <span class="fala-jesus">"Um homem fez uma grande ceia e convidou a muitos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">E, à hora da ceia, enviou o seu servo a dizer aos convidados: 'Vinde, porque já tudo está preparado.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">E todos, à uma, começaram a se desculpar. O primeiro lhe disse: 'Comprei um campo, e preciso ir vê-lo. Rogo-te que me tenhas por desculpado.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E outro disse: 'Comprei cinco juntas de bois, e vou experimentá-los. Rogo-te que me tenhas por desculpado.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">E outro disse: 'Casei-me, e por isso não posso ir.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">E, voltando aquele servo, anunciou estas coisas ao seu senhor. Então o pai de família, indignado, disse ao seu servo: 'Sai depressa pelas ruas e pelas praças da cidade, e traze para cá os pobres, os aleijados, os coxos e os cegos.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E disse o servo: 'Senhor, está feito como ordenaste, e ainda há lugar.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">E o senhor disse ao servo: 'Sai pelos caminhos e valados, e força-os a entrar, para que a minha casa se encha.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Pois eu vos digo: nenhum daqueles homens que foram convidados provará a minha ceia.'"</span>
+    </p>
+
+    <!-- PERÍCOPE 4: O CUSTO DO DISCIPULADO (14.25-35) -->
+    <div class="pericope">O Custo do Discipulado</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E grandes multidões iam com ele; e, voltando-se, disse-lhes:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">"Se alguém vem a mim, e não odeia seu pai, e mãe, e mulher, e filhos, e irmãos, e irmãs, e até a sua própria vida, não pode ser meu discípulo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E qualquer que não carrega a sua cruz e não vem após mim, não pode ser meu discípulo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Pois qual de vós, querendo edificar uma torre, não se assenta primeiro e calcula o custo, para ver se tem com que a terminar?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Para que não aconteça que, depois de ter posto o alicerce, e não a podendo terminar, todos os que a virem comecem a zombar dele,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">dizendo: 'Este homem começou a edificar e não pôde terminar.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Ou qual é o rei que, saindo para fazer guerra contra outro rei, não se assenta primeiro e consulta se com dez mil pode enfrentar aquele que vem contra ele com vinte mil?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">De outra forma, enquanto o outro ainda está longe, envia embaixadores e pede condições de paz.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Assim, pois, qualquer de vós que não renuncia a tudo o que tem não pode ser meu discípulo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">"Bom é o sal; mas, se o sal se tornar insípido, com que se há de temperar?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Nem para a terra, nem para o monturo serve; lançam-no fora. Quem tem ouvidos para ouvir, ouça."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:2 — "Hidrópico"</span>
+            <div class="greek-text">ὑδρωπικός</div>
+            <p><strong>Análise:</strong> Pessoa que sofria de hidropisia, condição associada ao acúmulo anormal de líquido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "hidrópico".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 14:5 — "Jumento ou boi"</span>
+            <div class="greek-text">ὄνος ... βοῦς</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz <em>onos</em> (ὄνος), "jumento", e <em>bous</em> (βοῦς), "boi". Algumas tradições textuais trazem <em>huios</em> (υἱός), "filho", no lugar de <em>onos</em>.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a leitura "jumento ou boi" conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:7-8 — "Primeiros assentos"</span>
+            <div class="greek-text">τὰς πρωτοκλισίας</div>
+            <p><strong>Análise:</strong> A observação de Jesus sobre a escolha dos lugares à mesa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primeiros assentos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:12 — "Não chames os teus amigos"</span>
+            <div class="greek-text">μὴ φώνει τοὺς φίλους σου</div>
+            <p><strong>Análise:</strong> A instrução de Jesus sobre convidar aqueles que não podem retribuir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:14 — "Ressurreição dos justos"</span>
+            <div class="greek-text">ἐν τῇ ἀναστάσει τῶν δικαίων</div>
+            <p><strong>Análise:</strong> A recompensa mencionada por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ressurreição dos justos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:16 — "Grande ceia"</span>
+            <div class="greek-text">δεῖπνον μέγα</div>
+            <p><strong>Análise:</strong> A parábola da grande ceia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grande ceia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:19 — "Cinco juntas de bois"</span>
+            <div class="greek-text">ζεύγη βοῶν πέντε</div>
+            <p><strong>Análise:</strong> Cinco pares de bois.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cinco juntas de bois".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:23 — "Valados"</span>
+            <div class="greek-text">φραγμούς</div>
+            <p><strong>Análise:</strong> Cercas, sebes ou valados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "valados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:23 — "Força-os a entrar"</span>
+            <div class="greek-text">ἀνάγκασον εἰσελθεῖν</div>
+            <p><strong>Análise:</strong> Literalmente "força-os/compeli-os a entrar".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "força-os a entrar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:26 — "Não odeia"</span>
+            <div class="greek-text">οὐ μισεῖ</div>
+            <p><strong>Análise:</strong> Literalmente "não odeia".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não odeia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:27 — "Não carrega a sua cruz"</span>
+            <div class="greek-text">οὐ βαστάζει τὸν σταυρὸν ἑαυτοῦ</div>
+            <p><strong>Análise:</strong> A condição apresentada por Jesus para ser seu discípulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:28 — "Calcula o custo"</span>
+            <div class="greek-text">ψηφίζει τὴν δαπάνην</div>
+            <p><strong>Análise:</strong> A ilustração da construção de uma torre.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "calcula o custo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:31 — "Dez mil... vinte mil"</span>
+            <div class="greek-text">μυρίοις ... εἴκοσι χιλιάσιν</div>
+            <p><strong>Análise:</strong> A ilustração do rei que avalia suas forças antes da guerra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:33 — "Renuncia a tudo o que tem"</span>
+            <div class="greek-text">ἀποτάσσεται πᾶσιν τοῖς ἑαυτοῦ ὑπάρχουσιν</div>
+            <p><strong>Análise:</strong> A exigência apresentada por Jesus no contexto do discipulado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "renuncia a tudo o que tem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 14:35 — "Monturo"</span>
+            <div class="greek-text">κοπρίαν</div>
+            <p><strong>Análise:</strong> Lugar ou monte de esterco.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "monturo".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

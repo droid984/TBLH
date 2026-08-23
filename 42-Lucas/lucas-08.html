@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Lucas 8</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">LUCAS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 8</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Madalena</span>
+                Maria de Magdala, da qual Jesus expulsou sete demônios.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gadarenos</span>
+                Habitantes de Gadara, região na margem sudeste do mar da Galileia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Abismo</span>
+                Do grego <em>abyssos</em> (ἄβυσσος), lugar de aprisionamento dos demônios.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Jairo</span>
+                Principal da sinagoga, cuja filha foi ressuscitada por Jesus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">8</div>
+
+    <!-- PERÍCOPE 1: AS MULHERES QUE SERVEM JESUS (8.1-3) -->
+    <div class="pericope">As Mulheres que Servem Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu, depois disto, que ele percorria cada cidade e aldeia, pregando e anunciando o evangelho do reino de Deus. E os doze estavam com ele,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        e também algumas mulheres que tinham sido curadas de espíritos malignos e de enfermidades: Maria, chamada Madalena, da qual saíram sete demônios,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        e Joana, mulher de Cuza, procurador de Herodes, e Susana, e muitas outras que os serviam com os seus bens.
+    </p>
+
+    <!-- PERÍCOPE 2: A PARÁBOLA DO SEMEADOR (8.4-15) -->
+    <div class="pericope">A Parábola do Semeador</div>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, ajuntando-se uma grande multidão, e vindo a ele gente de todas as cidades, disse por parábola:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">"O semeador saiu a semear a sua semente. E, ao semear, uma parte caiu junto ao caminho, e foi pisada, e as aves do céu a comeram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">E outra parte caiu sobre pedra; e, nascida, secou-se, porque não tinha umidade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">E outra parte caiu entre espinhos; e os espinhos, crescendo com ela, a sufocaram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">E outra parte caiu em boa terra e, nascida, produziu fruto, cem por um."</span> Dizendo ele estas coisas, clamava: <span class="fala-jesus">"Quem tem ouvidos para ouvir, ouça."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E os seus discípulos perguntaram-lhe, dizendo: <span class="fala-outro">"Que parábola é esta?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E ele disse: <span class="fala-jesus">"A vós é dado conhecer os mistérios do reino de Deus; mas aos outros se fala por parábolas, para que, vendo, não vejam, e, ouvindo, não entendam."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">"Esta é, pois, a parábola: A semente é a palavra de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E os que estão junto ao caminho são os que ouvem; depois vem o diabo e tira a palavra do seu coração, para que não creiam e se salvem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E os que estão sobre a pedra são os que, ouvindo, recebem a palavra com alegria; mas estes não têm raiz, pois creem por algum tempo e, no tempo da tentação, se desviam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E a que caiu entre espinhos, estes são os que ouviram e, indo adiante, são sufocados pelos cuidados, e riquezas, e prazeres da vida, e não dão fruto maduro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Mas a que caiu em boa terra, estes são os que, ouvindo a palavra, a guardam num coração bom e honesto, e dão fruto com perseverança."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A CANDELA (8.16-18) -->
+    <div class="pericope">A Candela</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">"E ninguém, acendendo uma candeia, a cobre com algum vaso, ou a põe debaixo da cama; mas põe-na no candelabro, para que os que entram vejam a luz.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Porque nada há oculto que não venha a ser revelado, nem escondido que não venha a ser conhecido e não venha à luz.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Portanto, vede como ouvis. Porque ao que tem, dar-se-lhe-á; e ao que não tem, até o que pensa ter lhe será tirado."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A VERDADEIRA FAMÍLIA DE JESUS (8.19-21) -->
+    <div class="pericope">A Verdadeira Família de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E foram ter com ele sua mãe e seus irmãos, e não podiam aproximar-se dele, por causa da multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E foi-lhe anunciado, dizendo: <span class="fala-outro">"Tua mãe e teus irmãos estão lá fora e querem ver-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Mas ele, respondendo, disse-lhes: <span class="fala-jesus">"Minha mãe e meus irmãos são estes, que ouvem a palavra de Deus e a praticam."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: A TEMPESTADE ACALMADA (8.22-25) -->
+    <div class="pericope">A Tempestade Acalmada</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E aconteceu, num daqueles dias, que ele entrou num barco com os seus discípulos e disse-lhes: <span class="fala-jesus">"Passemos para a outra margem do lago."</span> E partiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, enquanto navegavam, ele adormeceu. E sobreveio uma tempestade de vento no lago, e o barco se enchia de água, e estavam em perigo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, aproximando-se, o despertaram, dizendo: <span class="fala-outro">"Mestre, Mestre, estamos perecendo!"</span> E ele, levantando-se, repreendeu o vento e a fúria das águas; e cessaram, e houve bonança.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E disse-lhes: <span class="fala-jesus">"Onde está a vossa fé?"</span> E eles, temendo, se admiravam, dizendo uns aos outros: <span class="fala-outro">"Quem é este, que até aos ventos e à água ordena, e eles lhe obedecem?"</span>
+    </p>
+
+    <!-- PERÍCOPE 6: O ENDEMONINHADO DE GADARA (8.26-39) -->
+    <div class="pericope">O Endemoninhado de Gadara</div>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E navegaram para a região dos gadarenos, que está defronte da Galileia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, quando ele desceu para terra, saiu-lhe ao encontro da cidade um homem que tinha demônios havia muito tempo, e não vestia roupa, e não habitava em casa, mas nos sepulcros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, vendo Jesus, clamou, e prostrou-se diante dele, e disse em alta voz: <span class="fala-demoniaca">"Que tenho eu contigo, Jesus, Filho do Deus Altíssimo? Rogo-te que não me atormentes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Porque Jesus ordenava ao espírito imundo que saísse daquele homem; pois havia muito tempo que o arrebatava. E, ainda que o guardassem preso com correntes e grilhões, quebrava as prisões, e era impelido pelo demônio para os desertos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E Jesus perguntou-lhe, dizendo: <span class="fala-jesus">"Qual é o teu nome?"</span> E ele disse: <span class="fala-demoniaca">"Legião"</span>, porque muitos demônios tinham entrado nele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E rogavam-lhe que não os mandasse para o abismo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E andava ali, no monte, uma manada de muitos porcos, pastando; e rogavam-lhe que lhes permitisse entrar neles. E ele lhes permitiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, saindo os demônios do homem, entraram nos porcos; e a manada se precipitou pelo despenhadeiro para o lago, e se afogou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E os que apascentavam os porcos, vendo o que acontecera, fugiram e foram anunciá-lo na cidade e nos campos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E saíram para ver o que tinha acontecido, e vieram a Jesus, e acharam o homem de quem os demônios tinham saído, assentado aos pés de Jesus, vestido e em perfeito juízo; e temeram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E os que tinham visto contaram-lhes como o endemoninhado tinha sido salvo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E toda a multidão da região ao redor dos gadarenos rogou-lhe que se retirasse deles, porque estavam tomados de grande temor. E ele, entrando no barco, voltou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E o homem de quem os demônios tinham saído rogou-lhe que o deixasse estar com ele; mas Jesus o despediu, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">"Volta para tua casa, e conta quão grandes coisas Deus te fez."</span> E ele se foi, proclamando por toda a cidade quão grandes coisas Jesus lhe tinha feito.
+    </p>
+
+    <!-- PERÍCOPE 7: JAIRO E A MULHER DO FLUXO DE SANGUE (8.40-56) -->
+    <div class="pericope">Jairo e a Mulher do Fluxo de Sangue</div>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E aconteceu que, quando Jesus voltou, a multidão o recebeu, porque todos o estavam esperando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E eis que veio um homem chamado Jairo, que era principal da sinagoga. E, prostrando-se aos pés de Jesus, rogava-lhe que fosse à sua casa,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        porque tinha uma filha única, de cerca de doze anos, que estava à morte. E, enquanto ele ia, as multidões o apertavam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E uma mulher, que havia doze anos tinha um fluxo de sangue, e que gastara com os médicos todos os seus recursos, e nenhum a pudera curar,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        aproximou-se por trás e tocou na borda da sua veste; e imediatamente o fluxo do seu sangue se estancou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E Jesus disse: <span class="fala-jesus">"Quem me tocou?"</span> E, negando todos, Pedro e os que com ele estavam disseram: <span class="fala-outro">"Mestre, a multidão te aperta e te oprime, e dizes: 'Quem me tocou?'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E Jesus disse: <span class="fala-jesus">"Alguém me tocou, porque percebi que saiu de mim poder."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        Então a mulher, vendo que não tinha passado despercebida, veio tremendo e, prostrando-se diante dele, declarou-lhe diante de todo o povo por que causa lhe tinha tocado, e como imediatamente tinha sido curada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E ele lhe disse: <span class="fala-jesus">"Tem ânimo, filha; a tua fé te salvou. Vai em paz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        Enquanto ele ainda falava, veio alguém da casa do principal da sinagoga, dizendo-lhe: <span class="fala-outro">"A tua filha está morta; não incomodes mais o Mestre."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Mas Jesus, ouvindo isso, respondeu-lhe, dizendo: <span class="fala-jesus">"Não temas; crê somente, e ela será salva."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E, entrando na casa, não permitiu que ninguém entrasse com ele, senão Pedro, Tiago e João, e o pai e a mãe da menina.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E todos choravam e se lamentavam por ela. Mas ele disse: <span class="fala-jesus">"Não choreis; ela não está morta, mas dorme."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E riam-se dele, sabendo que estava morta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        Mas ele, tomando-a pela mão, chamou em alta voz, dizendo: <span class="fala-jesus">"Menina, levanta-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        E o seu espírito voltou, e ela se levantou imediatamente. E ele mandou que lhe dessem de comer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        E os seus pais ficaram admirados. Mas ele lhes ordenou que a ninguém dissessem o que tinha acontecido.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:2 — "Maria, chamada Madalena"</span>
+            <div class="greek-text">Μαρία ἡ καλουμένη Μαγδαληνή</div>
+            <p><strong>Análise:</strong> A menção de Maria Madalena.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Maria, chamada Madalena".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:3 — "Joana, mulher de Cuza"</span>
+            <div class="greek-text">Ἰωάννα γυνὴ Χουζᾶ</div>
+            <p><strong>Análise:</strong> A mulher mencionada entre as que serviam Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Joana, mulher de Cuza".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 8:8 — "Cem por um"</span>
+            <div class="greek-text">ἐκατονταπλασίονα</div>
+            <p><strong>Análise:</strong> Lucas usa "cem por um", diferente de Mateus e Marcos, que mencionam trinta, sessenta e cem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a formulação de Lucas.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:10 — "Mistérios do reino de Deus"</span>
+            <div class="greek-text">τὰ μυστήρια τῆς βασιλείας τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> No plural, como Mateus 13:11.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mistérios do reino de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:11 — "A semente é a palavra de Deus"</span>
+            <div class="greek-text">ὁ σπόρος ἐστὶν ὁ λόγος τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A interpretação da parábola.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:15 — "Coração bom e honesto"</span>
+            <div class="greek-text">καλῇ καὶ ἀγαθῇ</div>
+            <p><strong>Análise:</strong> Expressão que descreve a disposição do coração daqueles que recebem a palavra e produzem fruto com perseverança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coração bom e honesto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:18 — "Ao que não tem, até o que pensa ter lhe será tirado"</span>
+            <div class="greek-text">ὃ δοκεῖ ἔχειν ἀρθήσεται ἀπ' αὐτοῦ</div>
+            <p><strong>Análise:</strong> A formulação de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:24 — "Fúria das águas"</span>
+            <div class="greek-text">τῷ κλύδωνι τοῦ ὕδατος</div>
+            <p><strong>Análise:</strong> A repreensão de Jesus ao vento e à água.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fúria das águas".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Lucas 8:26, 37 — "Gadarenos"</span>
+            <div class="greek-text">Γαδαρηνῶν</div>
+            <p><strong>Análise:</strong> Conforme o Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "gadarenos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:31 — "Abismo"</span>
+            <div class="greek-text">ἄβυσσον</div>
+            <p><strong>Análise:</strong> Lugar de aprisionamento dos demônios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "abismo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:36 — "O endemoninhado tinha sido salvo"</span>
+            <div class="greek-text">ἐσώθη</div>
+            <p><strong>Análise:</strong> Forma do verbo <em>sōzō</em>, "salvar", "livrar". O texto do TR emprega "salvo", não simplesmente "curado".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tinha sido salvo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:39 — "Conta quão grandes coisas Deus te fez"</span>
+            <div class="greek-text">ὑπόστρεφε εἰς τὸν οἶκόν σου, διηγούμενος ὅσα ἐποίησέν σοι ὁ θεός</div>
+            <p><strong>Análise:</strong> A ordem de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:41 — "Jairo"</span>
+            <div class="greek-text">Ἰάειρος</div>
+            <p><strong>Análise:</strong> Principal da sinagoga.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Jairo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:43 — "Gastara com os médicos todos os seus recursos"</span>
+            <div class="greek-text">προσαναλώσασα ὅλον τὸν βίον</div>
+            <p><strong>Análise:</strong> O texto grego afirma que ela havia gasto todo o seu sustento/meios de vida com médicos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "gastara com os médicos todos os seus recursos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:46 — "Percebi que saiu de mim poder"</span>
+            <div class="greek-text">ἔγνων δύναμιν ἐξελθοῦσαν ἀπ' ἐμοῦ</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:55 — "O seu espírito voltou"</span>
+            <div class="greek-text">ἐπέστρεψεν τὸ πνεῦμα αὐτῆς</div>
+            <p><strong>Análise:</strong> A ressurreição da menina.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o seu espírito voltou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Lucas 8:55 — "Mandou que lhe dessem de comer"</span>
+            <div class="greek-text">εἶπεν δοθῆναι αὐτῇ φαγεῖν</div>
+            <p><strong>Análise:</strong> Como em Marcos 5:43.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mandou que lhe dessem de comer".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
