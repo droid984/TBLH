@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 20</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 20</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Rabôni</span>
+                Do aramaico, "Mestre". João traduz o termo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Panos de linho</span>
+                Do grego <em>othonia</em> (ὀθόνια), os panos que envolviam o corpo de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lenço</span>
+                Do grego <em>soudarion</em> (σουδάριον), pano que cobria o rosto.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dídimo</span>
+                Do grego <em>Didymos</em> (Δίδυμος), "gêmeo" — cognome de Tomé.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">20</div>
+
+    <!-- PERÍCOPE 1: O SEPULCRO VAZIO (20.1-10) -->
+    <div class="pericope">O Sepulcro Vazio</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, no primeiro dia da semana, Maria Madalena foi ao sepulcro de madrugada, sendo ainda escuro, e viu a pedra removida do sepulcro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Então correu e foi a Simão Pedro, e ao outro discípulo a quem Jesus amava, e disse-lhes: <span class="fala-outro">"Levaram o Senhor do sepulcro, e não sabemos onde o puseram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então Pedro saiu, e o outro discípulo, e foram ao sepulcro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E os dois corriam juntos; mas o outro discípulo correu mais depressa do que Pedro, e chegou primeiro ao sepulcro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, abaixando-se, viu os panos de linho postos ali, mas não entrou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Chegou, pois, Simão Pedro, que o seguia, e entrou no sepulcro, e viu os panos de linho postos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        e o lenço, que estivera sobre a sua cabeça, não posto com os panos, mas dobrado num lugar à parte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Então entrou também o outro discípulo, que chegara primeiro ao sepulcro, e viu, e creu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque ainda não conheciam a Escritura, que era necessário que ele ressuscitasse dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Então os discípulos voltaram para casa.
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS APARECE A MARIA MADALENA (20.11-18) -->
+    <div class="pericope">Jesus Aparece a Maria Madalena</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas Maria estava em pé, chorando, junto ao sepulcro. E, chorando, abaixou-se para olhar o sepulcro,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        e viu dois anjos vestidos de branco, assentados onde o corpo de Jesus tinha sido posto, um à cabeceira e outro aos pés.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E eles lhe disseram: <span class="fala-anjo">"Mulher, por que choras?"</span> Ela lhes disse: <span class="fala-outro">"Porque levaram o meu Senhor, e não sei onde o puseram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, tendo dito isto, voltou-se para trás, e viu Jesus em pé, mas não sabia que era Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Jesus lhe disse: <span class="fala-jesus">"Mulher, por que choras? A quem procuras?"</span> Ela, pensando que era o jardineiro, disse-lhe: <span class="fala-outro">"Senhor, se tu o levaste, dize-me onde o puseste, e eu o levarei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Jesus lhe disse: <span class="fala-jesus">"Maria."</span> Ela, voltando-se, disse-lhe: <span class="fala-outro">"Rabôni!"</span> — que quer dizer: Mestre.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Jesus lhe disse: <span class="fala-jesus">"Não me detenhas, porque ainda não subi para meu Pai. Mas vai a meus irmãos, e dize-lhes: Subo para meu Pai e vosso Pai, meu Deus e vosso Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Maria Madalena foi e anunciou aos discípulos: <span class="fala-outro">"Vi o Senhor"</span> — e que ele lhe dissera estas coisas.
+    </p>
+
+    <!-- PERÍCOPE 3: JESUS APARECE AOS DISCÍPULOS (20.19-23) -->
+    <div class="pericope">Jesus Aparece aos Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, ao entardecer daquele dia, no primeiro dia da semana, estando as portas fechadas onde os discípulos estavam reunidos, por medo dos judeus, Jesus veio, pôs-se no meio, e disse-lhes: <span class="fala-jesus">"Paz seja convosco."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, dizendo isto, mostrou-lhes as suas mãos e o seu lado. Então os discípulos se alegraram, vendo o Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Então Jesus lhes disse outra vez: <span class="fala-jesus">"Paz seja convosco. Assim como o Pai me enviou, também eu vos envio."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, tendo dito isto, soprou sobre eles, e disse-lhes: <span class="fala-jesus">"Recebei o Espírito Santo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Àqueles a quem perdoardes os pecados, lhes são perdoados; e àqueles a quem os retiverdes, lhes são retidos."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: JESUS E TOMÉ (20.24-29) -->
+    <div class="pericope">Jesus e Tomé</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E Tomé, um dos doze, chamado Dídimo, não estava com eles quando Jesus veio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Então os outros discípulos lhe disseram: <span class="fala-outro">"Vimos o Senhor."</span> Mas ele lhes disse: <span class="fala-outro">"Se eu não vir o sinal dos cravos nas suas mãos, e não puser o meu dedo no lugar dos cravos, e não puser a minha mão no seu lado, de modo nenhum crerei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E, oito dias depois, estavam outra vez os seus discípulos dentro, e Tomé com eles. E Jesus veio, estando as portas fechadas, e pôs-se no meio, e disse: <span class="fala-jesus">"Paz seja convosco."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Então disse a Tomé: <span class="fala-jesus">"Põe aqui o teu dedo, e vê as minhas mãos; e chega a tua mão, e põe-na no meu lado. E não sejas incrédulo, mas crente."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E Tomé respondeu e disse-lhe: <span class="fala-outro">"Senhor meu, e Deus meu!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Jesus lhe disse: <span class="fala-jesus">"Tomé, porque me viste, creste. Bem-aventurados os que não viram, e creram."</span>
+    </p>
+
+    <!-- PERÍCOPE 5: O PROPÓSITO DO EVANGELHO (20.30-31) -->
+    <div class="pericope">O Propósito do Evangelho</div>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Na verdade, Jesus fez também diante dos seus discípulos muitos outros sinais, que não estão escritos neste livro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Estes, porém, foram escritos para que creiais que Jesus é o Cristo, o Filho de Deus, e para que, crendo, tenhais vida em seu nome.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 20:1, 19 — "Primeiro dia da semana"</span>
+            <div class="greek-text">μία τῶν σαββάτων</div>
+            <p><strong>Análise:</strong> O domingo, após o sábado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primeiro dia da semana".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 20:1 — "A pedra removida"</span>
+            <div class="greek-text">τὸν λίθον ἠρμένον</div>
+            <p><strong>Análise:</strong> A observação de Maria Madalena.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 20:2 — "Outro discípulo a quem Jesus amava"</span>
+            <div class="greek-text">τὸν ἄλλον μαθητὴν ὃν ἐφίλει ὁ Ἰησοῦς</div>
+            <p><strong>Análise:</strong> A expressão usada por João para se referir a si mesmo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 20:5-7 — "Panos de linho"</span>
+            <div class="greek-text">ὀθόνια</div>
+            <p><strong>Análise:</strong> Os panos que envolviam o corpo de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "panos de linho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 20:7 — "Lenço dobrado num lugar à parte"</span>
+            <div class="greek-text">σουδάριον</div>
+            <p><strong>Análise:</strong> Pano que cobria o rosto de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lenço".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:12 — "Dois anjos vestidos de branco"</span>
+            <div class="greek-text">δύο ἀγγέλους ἐν λευκοῖς</div>
+            <p><strong>Análise:</strong> A visão de Maria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 20:16 — "Rabôni"</span>
+            <div class="hebrew-text">רַבּוֹנִי</div>
+            <p><strong>Análise:</strong> Do aramaico, "Mestre". João traduz o termo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Rabôni".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 20:17 — "Não me detenhas"</span>
+            <div class="greek-text">μή μου ἅπτου</div>
+            <p><strong>Análise:</strong> O verbo <em>haptomai</em> pode envolver tocar, segurar ou apegar-se; no contexto, a expressão é traduzida como "não me detenhas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Não me detenhas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:17 — "Subo para meu Pai e vosso Pai"</span>
+            <div class="greek-text">ἀναβαίνω πρὸς τὸν πατέρα μου καὶ πατέρα ὑμῶν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:19, 21, 26 — "Paz seja convosco"</span>
+            <div class="greek-text">εἰρήνη ὑμῖν</div>
+            <p><strong>Análise:</strong> A saudação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Paz seja convosco".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:22 — "Soprou sobre eles"</span>
+            <div class="greek-text">ἐνεφύσησεν</div>
+            <p><strong>Análise:</strong> O sopro de Jesus sobre os discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "soprou sobre eles".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:22 — "Recebei o Espírito Santo"</span>
+            <div class="greek-text">λάβετε πνεῦμα ἅγιον</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:23 — "Àqueles a quem perdoardes... retiverdes"</span>
+            <div class="greek-text">ἄν τινων ἀφῆτε ... ἄν τινων κρατῆτε</div>
+            <p><strong>Análise:</strong> A construção verbal grega é preservada na tradução.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:28 — "Senhor meu, e Deus meu!"</span>
+            <div class="greek-text">ὁ κύριός μου καὶ ὁ θεός μου</div>
+            <p><strong>Análise:</strong> A confissão de Tomé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 20:29 — "Bem-aventurados os que não viram, e creram"</span>
+            <div class="greek-text">μακάριοι οἱ μὴ ἰδόντες καὶ πιστεύσαντες</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

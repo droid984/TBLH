@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 18</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 18</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Coorte</span>
+                Do grego <em>speira</em> (σπεῖρα), unidade militar romana.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tribuno</span>
+                Do grego <em>chiliarchos</em> (χιλίαρχος), oficial romano de alta patente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pretório</span>
+                Local da residência oficial do governador romano.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Salteador</span>
+                Do grego <em>lēstēs</em> (λῃστής), bandido ou assaltante.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">18</div>
+
+    <!-- PERÍCOPE 1: A PRISÃO DE JESUS (18.1-12) -->
+    <div class="pericope">A Prisão de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">T</span>endo Jesus dito estas coisas, saiu com os seus discípulos para além do ribeiro de Cedrom, onde havia um jardim, no qual ele entrou com os seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E Judas, que o traía, também conhecia aquele lugar, porque Jesus muitas vezes se tinha reunido ali com os seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então Judas, tendo recebido a coorte e os servos dos principais dos sacerdotes e dos fariseus, veio para ali com lanternas, tochas e armas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Jesus, pois, sabendo todas as coisas que lhe haviam de sobrevir, adiantou-se e disse-lhes: <span class="fala-jesus">"A quem buscais?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Responderam-lhe: <span class="fala-outro">"A Jesus, o Nazareno."</span> Jesus lhes disse: <span class="fala-jesus">"Sou eu."</span> E Judas, que o traía, também estava com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Quando, pois, ele lhes disse: "Sou eu", recuaram e caíram por terra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Então ele lhes perguntou outra vez: <span class="fala-jesus">"A quem buscais?"</span> E eles disseram: <span class="fala-outro">"A Jesus, o Nazareno."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Jesus respondeu: <span class="fala-jesus">"Já vos disse que sou eu. Se, pois, me buscais a mim, deixai ir estes";</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        para que se cumprisse a palavra que tinha dito: "Dos que me deste, nenhum deles perdi."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Então Simão Pedro, que tinha espada, puxou-a e feriu o servo do sumo sacerdote, e cortou-lhe a orelha direita. E o nome do servo era Malco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas Jesus disse a Pedro: <span class="fala-jesus">"Mete a tua espada na bainha. Não beberei eu o cálice que o Pai me deu?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então a coorte, e o tribuno, e os servos dos judeus prenderam Jesus e o amarraram.
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS PERANTE ANÁS E CAIFÁS (18.13-27) -->
+    <div class="pericope">Jesus Perante Anás e Caifás</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E levaram-no primeiramente a Anás, porque era sogro de Caifás, que era o sumo sacerdote naquele ano.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E Caifás era aquele que tinha aconselhado aos judeus que era conveniente que um homem morresse pelo povo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E Simão Pedro seguia Jesus, e também outro discípulo. E aquele discípulo era conhecido do sumo sacerdote, e entrou com Jesus no pátio do sumo sacerdote.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas Pedro ficou de fora, à porta. Então saiu o outro discípulo, que era conhecido do sumo sacerdote, e falou à porteira, e levou Pedro para dentro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Então a porteira disse a Pedro: <span class="fala-outro">"Não és tu também dos discípulos deste homem?"</span> Ele disse: <span class="fala-outro">"Não sou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E os servos e os guardas estavam ali, tendo feito um braseiro, porque fazia frio, e se aqueciam. E Pedro estava em pé com eles, aquecendo-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E o sumo sacerdote interrogou Jesus acerca dos seus discípulos e da sua doutrina.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Jesus respondeu-lhe: <span class="fala-jesus">"Eu falei abertamente ao mundo; sempre ensinei na sinagoga e no templo, onde os judeus sempre se reúnem, e nada falei em oculto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Por que me interrogas? Interroga os que ouviram o que eu lhes disse. Eis que eles sabem o que eu tenho dito."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, tendo ele dito isto, um dos guardas que ali estavam deu uma bofetada em Jesus, dizendo: <span class="fala-outro">"Assim respondes ao sumo sacerdote?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Jesus respondeu-lhe: <span class="fala-jesus">"Se falei mal, testifica do mal; mas, se bem, por que me feres?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E Anás o enviou, amarrado, a Caifás, o sumo sacerdote.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E Simão Pedro estava em pé, aquecendo-se. Disseram-lhe, pois: <span class="fala-outro">"Não és tu também dos seus discípulos?"</span> Ele negou e disse: <span class="fala-outro">"Não sou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E um dos servos do sumo sacerdote, parente daquele a quem Pedro tinha cortado a orelha, disse: <span class="fala-outro">"Não te vi eu no jardim com ele?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Pedro negou outra vez, e imediatamente o galo cantou.
+    </p>
+
+    <!-- PERÍCOPE 3: JESUS PERANTE PILATOS (18.28-40) -->
+    <div class="pericope">Jesus Perante Pilatos</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Então levaram Jesus de Caifás ao pretório. E era de manhã. E eles não entraram no pretório, para não se contaminarem, mas para poderem comer a Páscoa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Então Pilatos saiu a eles e disse: <span class="fala-outro">"Que acusação trazeis contra este homem?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Responderam e disseram-lhe: <span class="fala-outro">"Se este não fosse malfeitor, não o entregaríamos a ti."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então Pilatos lhes disse: <span class="fala-outro">"Tomai-o vós, e julgai-o segundo a vossa lei."</span> Disseram-lhe, pois, os judeus: <span class="fala-outro">"A nós não nos é lícito matar ninguém."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Para que se cumprisse a palavra que Jesus tinha dito, indicando de que morte havia de morrer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Então Pilatos entrou outra vez no pretório, e chamou Jesus, e disse-lhe: <span class="fala-outro">"És tu o Rei dos judeus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Jesus respondeu-lhe: <span class="fala-jesus">"Dizes tu isto de ti mesmo, ou outros te disseram de mim?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Pilatos respondeu: <span class="fala-outro">"Sou eu, porventura, judeu? A tua nação e os principais dos sacerdotes entregaram-te a mim. Que fizeste?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Jesus respondeu: <span class="fala-jesus">"O meu reino não é deste mundo. Se o meu reino fosse deste mundo, os meus servos lutariam para que eu não fosse entregue aos judeus; mas agora o meu reino não é daqui."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Então Pilatos lhe disse: <span class="fala-outro">"Então tu és rei?"</span> Jesus respondeu: <span class="fala-jesus">"Tu dizes que eu sou rei. Eu para isso nasci, e para isso vim ao mundo, a fim de testificar da verdade. Todo aquele que é da verdade ouve a minha voz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Pilatos lhe disse: <span class="fala-outro">"Que é a verdade?"</span> E, tendo dito isto, saiu outra vez aos judeus, e disse-lhes: <span class="fala-outro">"Eu não acho nele crime algum.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-outro">Mas vós tendes por costume que eu vos solte um preso na Páscoa. Quereis, pois, que eu vos solte o Rei dos judeus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Então todos clamaram outra vez, dizendo: <span class="fala-outro">"Este não, mas Barrabás!"</span> E Barrabás era salteador.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:1 — "Ribeiro de Cedrom"</span>
+            <div class="greek-text">χειμάρρου τῶν Κέδρων</div>
+            <p><strong>Análise:</strong> Referência ao curso de água do Cedrom.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ribeiro de Cedrom".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:3, 12 — "Coorte"</span>
+            <div class="greek-text">σπεῖραν</div>
+            <p><strong>Análise:</strong> Unidade militar romana.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coorte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:3 — "Lanternas, tochas e armas"</span>
+            <div class="greek-text">λαμπάδων καὶ φανῶν καὶ ὅπλων</div>
+            <p><strong>Análise:</strong> A descrição do grupo que veio prender Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 18:5, 6, 8 — "Sou eu"</span>
+            <div class="greek-text">ἐγώ εἰμι</div>
+            <p><strong>Análise:</strong> Literalmente "eu sou".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Sou eu".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 18:6 — "Recuaram e caíram por terra"</span>
+            <div class="greek-text">ἀπῆλθον εἰς τὰ ὀπίσω καὶ ἔπεσον χαμαί</div>
+            <p><strong>Análise:</strong> A reação dos que vieram prender Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:10 — "Malco"</span>
+            <div class="greek-text">Μάλχος</div>
+            <p><strong>Análise:</strong> O nome do servo do sumo sacerdote ferido por Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Malco".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:12 — "Tribuno"</span>
+            <div class="greek-text">χιλίαρχος</div>
+            <p><strong>Análise:</strong> Oficial romano de alta patente, associado ao comando de mil soldados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribuno".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:13, 24 — "Anás"</span>
+            <div class="greek-text">Ἄννας</div>
+            <p><strong>Análise:</strong> Sogro de Caifás, ex-sumo sacerdote.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Anás".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:16-17 — "Porteira"</span>
+            <div class="greek-text">θυρωρός</div>
+            <p><strong>Análise:</strong> Pessoa encarregada da porta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "porteira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:22 — "Bofetada"</span>
+            <div class="greek-text">ῥάπισμα</div>
+            <p><strong>Análise:</strong> Golpe ou bofetada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bofetada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:28, 33 — "Pretório"</span>
+            <div class="greek-text">πραιτώριον</div>
+            <p><strong>Análise:</strong> Local da residência oficial do governador romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pretório".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:28 — "Para não se contaminarem"</span>
+            <div class="greek-text">ἵνα μὴ μιανθῶσιν</div>
+            <p><strong>Análise:</strong> Referência à preocupação com a pureza ritual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 18:36 — "O meu reino não é deste mundo"</span>
+            <div class="greek-text">ἡ βασιλεία ἡ ἐμὴ οὐκ ἔστιν ἐκ τοῦ κόσμου τούτου</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre a natureza de seu reino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:38 — "Que é a verdade?"</span>
+            <div class="greek-text">τί ἐστιν ἀλήθεια</div>
+            <p><strong>Análise:</strong> A pergunta de Pilatos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 18:40 — "Barrabás era salteador"</span>
+            <div class="greek-text">λῃστής</div>
+            <p><strong>Análise:</strong> "Salteador", "bandido".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "salteador".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 15</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 15</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Videira verdadeira</span>
+                Declaração de Jesus sobre si mesmo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ramo</span>
+                Do grego <em>klēma</em> (κλῆμα), ramificação da videira.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lavrador</span>
+                Do grego <em>geōrgos</em> (γεωργός), agricultor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Consolador</span>
+                Do grego <em>paraklētos</em> (παράκλητος), auxiliador.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">15</div>
+
+    <!-- PERÍCOPE 1: A VIDEIRA E OS RAMOS (15.1-17) -->
+    <div class="pericope">A Videira e os Ramos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>u sou a videira verdadeira, e meu Pai é o lavrador.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Todo ramo em mim que não dá fruto, ele o tira; e todo ramo que dá fruto, ele o limpa, para que dê mais fruto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Vós já estais limpos, pela palavra que vos tenho falado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Permanecei em mim, e eu permanecerei em vós. Como o ramo de si mesmo não pode dar fruto, se não permanecer na videira, assim também vós, se não permanecerdes em mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Eu sou a videira, vós sois os ramos. Quem permanece em mim, e eu nele, esse dá muito fruto; porque sem mim nada podeis fazer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Se alguém não permanecer em mim, será lançado fora, como o ramo, e secará; e os ajuntam, e os lançam no fogo, e ardem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Se vós permanecerdes em mim, e as minhas palavras permanecerem em vós, pedireis o que quiserdes, e vos será feito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Nisto é glorificado meu Pai: que deis muito fruto; e assim sereis meus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">"Como o Pai me amou, também eu vos amei a vós. Permanecei no meu amor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Se guardardes os meus mandamentos, permanecereis no meu amor; assim como eu tenho guardado os mandamentos de meu Pai, e permaneço no seu amor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Estas coisas vos tenho dito, para que a minha alegria permaneça em vós, e a vossa alegria seja completa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">"Este é o meu mandamento: que vos ameis uns aos outros, assim como eu vos amei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Ninguém tem maior amor do que este: de dar alguém a sua vida pelos seus amigos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Vós sois meus amigos, se fizerdes o que eu vos mando.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Já não vos chamo servos, porque o servo não sabe o que faz o seu senhor; mas tenho-vos chamado amigos, porque tudo quanto ouvi de meu Pai vos tenho feito conhecer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Não me escolhestes vós a mim; mas eu vos escolhi a vós, e vos designei, para que vades e deis fruto, e o vosso fruto permaneça; a fim de que tudo quanto pedirdes ao Pai em meu nome, ele vo-lo dê.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Isto vos mando: que vos ameis uns aos outros."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: O ÓDIO DO MUNDO (15.18-27) -->
+    <div class="pericope">O Ódio do Mundo</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">"Se o mundo vos odeia, sabei que, antes de vós, me odiou a mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Se vós fôsseis do mundo, o mundo amaria o que era seu; mas, porque não sois do mundo, antes eu vos escolhi do mundo, por isso o mundo vos odeia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Lembrai-vos da palavra que eu vos disse: 'O servo não é maior do que o seu senhor.' Se a mim me perseguiram, também a vós vos perseguirão; se guardaram a minha palavra, também guardarão a vossa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Mas tudo isto vos farão por causa do meu nome, porque não conhecem aquele que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Se eu não viera e não lhes falara, não teriam pecado; mas agora não têm desculpa para o seu pecado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Aquele que me odeia, odeia também a meu Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Se eu não fizesse entre eles obras como nenhum outro fez, não teriam pecado; mas agora, eles as viram e me odiaram, tanto a mim como a meu Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Mas isto é para que se cumpra a palavra que está escrita na lei deles: 'Odiaram-me sem causa.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">"Mas, quando vier o Consolador, que eu da parte do Pai vos enviarei, o Espírito da verdade, que procede do Pai, ele testificará de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">E vós também testificareis, porque estais comigo desde o princípio."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:1, 5 — "Eu sou a videira verdadeira"</span>
+            <div class="greek-text">ἐγώ εἰμι ἡ ἄμπελος ἡ ἀληθινή</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 15:1 — "Lavrador"</span>
+            <div class="greek-text">γεωργός</div>
+            <p><strong>Análise:</strong> "Agricultor", "lavrador".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lavrador".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 15:2, 4-6 — "Ramo"</span>
+            <div class="greek-text">κλῆμα</div>
+            <p><strong>Análise:</strong> "Ramo", "ramificação" da videira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ramo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 15:2 — "Ele o limpa"</span>
+            <div class="greek-text">καθαίρει</div>
+            <p><strong>Análise:</strong> "Limpa", "purifica"; no contexto da videira, o termo também pode se referir à poda.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "limpa".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:4 — "Permanecei em mim"</span>
+            <div class="greek-text">μείνατε ἐν ἐμοί</div>
+            <p><strong>Análise:</strong> A exortação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:5 — "Sem mim nada podeis fazer"</span>
+            <div class="greek-text">χωρὶς ἐμοῦ οὐ δύνασθε ποιεῖν οὐδέν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:6 — "Será lançado fora"</span>
+            <div class="greek-text">ἐβλήθη ἔξω</div>
+            <p><strong>Análise:</strong> A consequência de não permanecer em Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:7 — "Pedireis o que quiserdes"</span>
+            <div class="greek-text">ὃ ἐὰν θέλητε αἰτήσασθε</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:13 — "Ninguém tem maior amor"</span>
+            <div class="greek-text">μείζονα ταύτης ἀγάπην οὐδεὶς ἔχει</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:15 — "Servos... amigos"</span>
+            <div class="greek-text">δοῦλος ... φίλοι</div>
+            <p><strong>Análise:</strong> A relação de Jesus com os discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:16 — "Não me escolhestes vós a mim"</span>
+            <div class="greek-text">οὐχ ὑμεῖς με ἐξελέξασθε</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:18-19 — "Se o mundo vos odeia"</span>
+            <div class="greek-text">εἰ ὁ κόσμος ὑμᾶς μισεῖ</div>
+            <p><strong>Análise:</strong> A advertência de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:25 — "Odiaram-me sem causa"</span>
+            <div class="greek-text">ἐμίσησάν με δωρεάν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 35:19 e 69:4.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 15:26 — "O Consolador, o Espírito da verdade"</span>
+            <div class="greek-text">ὁ παράκλητος ... τὸ πνεῦμα τῆς ἀληθείας</div>
+            <p><strong>Análise:</strong> A promessa do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 15:26 — "Que procede do Pai"</span>
+            <div class="greek-text">ὃ παρὰ τοῦ Πατρὸς ἐκπορεύεται</div>
+            <p><strong>Análise:</strong> A origem do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que procede do Pai".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

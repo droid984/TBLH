@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Caná da Galileia</span>
+                Local do primeiro sinal de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mestre-sala</span>
+                Do grego <em>architriklinos</em> (ἀρχιτρίκλινος), encarregado da mesa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Chicote</span>
+                Do grego <em>phragellion</em> (φραγέλλιον), instrumento semelhante a um flagelo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Páscoa</span>
+                A festa judaica mencionada por João.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">2</div>
+
+    <!-- PERÍCOPE 1: O CASAMENTO EM CANÁ (2.1-12) -->
+    <div class="pericope">O Casamento em Caná</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, ao terceiro dia, houve um casamento em Caná da Galileia; e a mãe de Jesus estava ali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E também Jesus e os seus discípulos foram convidados para o casamento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, faltando vinho, a mãe de Jesus lhe disse: <span class="fala-outro">"Eles não têm vinho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Jesus lhe disse: <span class="fala-jesus">"Mulher, que tenho eu contigo? Ainda não é chegada a minha hora."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Sua mãe disse aos servos: <span class="fala-outro">"Fazei tudo o que ele vos disser."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E estavam ali seis talhas de pedra, para a purificação dos judeus, cada uma cabendo duas ou três medidas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Jesus lhes disse: <span class="fala-jesus">"Enchei as talhas de água."</span> E eles as encheram até em cima.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E disse-lhes: <span class="fala-jesus">"Tirai agora, e levai ao mestre-sala."</span> E eles levaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, quando o mestre-sala provou a água tornada em vinho, não sabendo de onde era — mas os servos que tinham tirado a água sabiam —, chamou o mestre-sala ao esposo
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        e disse-lhe: <span class="fala-outro">"Todo homem põe primeiro o bom vinho e, quando já beberam bem, então o inferior; mas tu guardaste o bom vinho até agora."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Este princípio de sinais Jesus fez em Caná da Galileia, e manifestou a sua glória; e os seus discípulos creram nele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Depois disto, desceu a Cafarnaum, ele, e sua mãe, e seus irmãos, e seus discípulos; e ficaram ali não muitos dias.
+    </p>
+
+    <!-- PERÍCOPE 2: A PURIFICAÇÃO DO TEMPLO (2.13-25) -->
+    <div class="pericope">A Purificação do Templo</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E estava próxima a Páscoa dos judeus, e Jesus subiu a Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E encontrou no templo os que vendiam bois, e ovelhas, e pombas, e os cambistas assentados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, tendo feito um chicote de cordas, expulsou a todos do templo, também as ovelhas e os bois; e espalhou o dinheiro dos cambistas, e derrubou as mesas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E disse aos que vendiam pombas: <span class="fala-jesus">"Tirai daqui estas coisas; não façais da casa de meu Pai casa de comércio."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E os seus discípulos lembraram-se do que está escrito: "O zelo da tua casa me consumiu."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Responderam, pois, os judeus e disseram-lhe: <span class="fala-outro">"Que sinal nos mostras, para fazeres estas coisas?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Jesus respondeu e disse-lhes: <span class="fala-jesus">"Derribai este templo, e em três dias o levantarei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Disseram, pois, os judeus: <span class="fala-outro">"Em quarenta e seis anos foi edificado este templo, e tu o levantarás em três dias?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Mas ele falava do templo do seu corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Portanto, quando ressuscitou dos mortos, os seus discípulos lembraram-se de que lhes tinha dito isto; e creram na Escritura, e na palavra que Jesus tinha dito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, estando ele em Jerusalém na Páscoa, durante a festa, muitos creram no seu nome, vendo os sinais que fazia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Mas o próprio Jesus não se confiava a eles, porque conhecia a todos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        e não necessitava de que alguém testificasse do homem, porque ele bem sabia o que havia no homem.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:1, 11 — "Caná da Galileia"</span>
+            <div class="greek-text">Κανὰ τῆς Γαλιλαίας</div>
+            <p><strong>Análise:</strong> O local do primeiro sinal de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Caná da Galileia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:4 — "Mulher, que tenho eu contigo?"</span>
+            <div class="greek-text">Τί ἐμοὶ καὶ σοί, γύναι</div>
+            <p><strong>Análise:</strong> Expressão idiomática, sem conotação necessariamente hostil.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Mulher, que tenho eu contigo?".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 2:4 — "Ainda não é chegada a minha hora"</span>
+            <div class="greek-text">οὔπω ἥκει ἡ ὥρα μου</div>
+            <p><strong>Análise:</strong> A referência à hora de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:6 — "Talhas de pedra"</span>
+            <div class="greek-text">λίθιναι ὑδρίαι</div>
+            <p><strong>Análise:</strong> Recipientes de pedra para água.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "talhas de pedra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:6 — "Duas ou três medidas"</span>
+            <div class="greek-text">μετρητάς</div>
+            <p><strong>Análise:</strong> Medida de capacidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "duas ou três medidas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:8-9 — "Mestre-sala"</span>
+            <div class="greek-text">ἀρχιτρικλίνῳ</div>
+            <p><strong>Análise:</strong> "Encarregado da mesa".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mestre-sala".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:9 — "Esposo"</span>
+            <div class="greek-text">νυμφίος</div>
+            <p><strong>Análise:</strong> "Noivo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esposo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 2:11 — "Princípio de sinais"</span>
+            <div class="greek-text">ἀρχὴν τῶν σημείων</div>
+            <p><strong>Análise:</strong> O primeiro sinal de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "princípio de sinais".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:13 — "Páscoa dos judeus"</span>
+            <div class="greek-text">τὸ πάσχα τῶν Ἰουδαίων</div>
+            <p><strong>Análise:</strong> A festa da Páscoa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Páscoa dos judeus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:15 — "Chicote"</span>
+            <div class="greek-text">φραγέλλιον</div>
+            <p><strong>Análise:</strong> Instrumento semelhante a um chicote ou flagelo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chicote".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:16 — "Casa de comércio"</span>
+            <div class="greek-text">οἶκον ἐμπορίου</div>
+            <p><strong>Análise:</strong> Literalmente "casa de comércio".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "casa de comércio".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 2:17 — "O zelo da tua casa me consumiu"</span>
+            <div class="greek-text">ὁ ζῆλος τοῦ οἴκου σου κατέφαγέν με</div>
+            <p><strong>Análise:</strong> Citação do Salmo 69:9.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 2:19 — "Derribai este templo, e em três dias o levantarei"</span>
+            <div class="greek-text">λύσατε τὸν ναὸν τοῦτον καὶ ἐν τρισὶν ἡμέραις ἐγερῶ αὐτόν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre o templo do seu corpo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:21 — "Templo do seu corpo"</span>
+            <div class="greek-text">τὸν ναὸν τοῦ σώματος αὐτοῦ</div>
+            <p><strong>Análise:</strong> A explicação de João sobre a declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "templo do seu corpo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 2:24 — "Não se confiava a eles"</span>
+            <div class="greek-text">οὐκ ἐπίστευεν ἑαυτὸν αὐτοῖς</div>
+            <p><strong>Análise:</strong> Jesus não se entregava à confiança deles.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não se confiava a eles".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

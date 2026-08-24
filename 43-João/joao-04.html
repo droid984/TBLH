@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 4</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 4</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Sicar</span>
+                Cidade de Samaria, junto à herdade de Jacó.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Água viva</span>
+                Do grego <em>hydōr zōn</em> (ὕδωρ ζῶν), água corrente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Oficial do rei</span>
+                Do grego <em>basilikos</em> (βασιλικός), oficial real.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Caná da Galileia</span>
+                Local do primeiro sinal de Jesus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">4</div>
+
+    <!-- PERÍCOPE 1: A MULHER SAMARITANA (4.1-42) -->
+    <div class="pericope">A Mulher Samaritana</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, quando o Senhor soube que os fariseus tinham ouvido que Jesus fazia e batizava mais discípulos do que João
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        — ainda que Jesus mesmo não batizava, mas os seus discípulos —,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        deixou a Judeia e foi outra vez para a Galileia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E era-lhe necessário passar por Samaria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Foi, pois, a uma cidade de Samaria, chamada Sicar, junto à herdade que Jacó deu a seu filho José.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E estava ali a fonte de Jacó. Jesus, pois, cansado da viagem, assentou-se assim junto à fonte. Era isso quase à hora sexta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Veio uma mulher de Samaria tirar água. Jesus disse-lhe: <span class="fala-jesus">"Dá-me de beber."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque os seus discípulos tinham ido à cidade comprar alimento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Então a mulher samaritana lhe disse: <span class="fala-outro">"Como, sendo tu judeu, me pedes de beber a mim, que sou mulher samaritana?"</span> — porque os judeus não se comunicam com os samaritanos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Jesus respondeu e disse-lhe: <span class="fala-jesus">"Se tu conhecesses o dom de Deus, e quem é o que te diz: 'Dá-me de beber', tu lhe pedirias, e ele te daria água viva."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        A mulher lhe disse: <span class="fala-outro">"Senhor, tu não tens com que tirá-la, e o poço é fundo. De onde, pois, tens essa água viva?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-outro">És tu maior do que o nosso pai Jacó, que nos deu o poço, e ele mesmo bebeu dele, e os seus filhos, e o seu gado?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Jesus respondeu e disse-lhe: <span class="fala-jesus">"Qualquer que beber desta água tornará a ter sede.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Mas aquele que beber da água que eu lhe der nunca mais terá sede, porque a água que eu lhe der se fará nele uma fonte de água que salte para a vida eterna."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        A mulher lhe disse: <span class="fala-outro">"Senhor, dá-me dessa água, para que eu não tenha mais sede, e não venha aqui tirá-la."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Jesus lhe disse: <span class="fala-jesus">"Vai, chama o teu marido, e vem cá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        A mulher respondeu e disse: <span class="fala-outro">"Não tenho marido."</span> Jesus lhe disse: <span class="fala-jesus">"Disseste bem: 'Não tenho marido.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Porque tiveste cinco maridos, e o que agora tens não é teu marido. Isto disseste com verdade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        A mulher lhe disse: <span class="fala-outro">"Senhor, vejo que és profeta.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">Nossos pais adoraram neste monte, e vós dizeis que em Jerusalém é o lugar onde se deve adorar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Jesus lhe disse: <span class="fala-jesus">"Mulher, crê-me: a hora vem em que nem neste monte, nem em Jerusalém, adorareis o Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Vós adorais o que não conheceis; nós adoramos o que conhecemos, porque a salvação vem dos judeus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Mas a hora vem, e agora é, em que os verdadeiros adoradores adorarão o Pai em espírito e em verdade; porque o Pai procura tais que assim o adorem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Deus é Espírito, e os que o adoram devem adorá-lo em espírito e em verdade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        A mulher lhe disse: <span class="fala-outro">"Eu sei que o Messias vem"</span> — que se chama Cristo —; <span class="fala-outro">"quando ele vier, nos anunciará todas as coisas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Jesus lhe disse: <span class="fala-jesus">"Eu o sou, eu que falo contigo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E nisto chegaram os seus discípulos, e se admiraram de que ele falasse com uma mulher. Contudo, ninguém lhe disse: "Que procuras?" ou: "Por que falas com ela?"
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        A mulher, pois, deixou o seu cântaro, e foi à cidade, e disse aos homens:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">"Vinde, vede um homem que me disse tudo quanto tenho feito. Não é este, porventura, o Cristo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Saíram, pois, da cidade e vieram a ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E, entretanto, os discípulos lhe rogavam, dizendo: <span class="fala-outro">"Rabi, come."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Mas ele lhes disse: <span class="fala-jesus">"Eu tenho um alimento para comer que vós não conheceis."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Então os discípulos diziam uns aos outros: <span class="fala-outro">"Terá alguém lhe trazido de comer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Jesus lhes disse: <span class="fala-jesus">"O meu alimento é fazer a vontade daquele que me enviou, e cumprir a sua obra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Não dizeis vós que ainda há quatro meses até a colheita? Eis que eu vos digo: levantai os vossos olhos e vede os campos, porque já estão brancos para a colheita.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">E o que ceifa recebe salário, e ajunta fruto para a vida eterna; para que, assim o que semeia como o que ceifa, ambos se alegrem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Porque nisto é verdadeiro o ditado: um é o que semeia, e outro é o que ceifa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Eu vos enviei a ceifar o que vós não trabalhastes; outros trabalharam, e vós entrastes no trabalho deles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E muitos dos samaritanos daquela cidade creram nele, pela palavra da mulher, que testificou: <span class="fala-outro">"Ele me disse tudo quanto tenho feito."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E, quando os samaritanos vieram a ele, rogaram-lhe que ficasse com eles; e ficou ali dois dias.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E muitos mais creram por causa da sua palavra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E diziam à mulher: <span class="fala-outro">"Já não cremos somente pela tua fala; porque nós mesmos temos ouvido, e sabemos que este é verdadeiramente o Cristo, o Salvador do mundo."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A CURA DO FILHO DO OFICIAL (4.43-54) -->
+    <div class="pericope">A Cura do Filho do Oficial</div>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E, depois de dois dias, partiu dali e foi para a Galileia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        Porque o próprio Jesus testificou que um profeta não tem honra na sua pátria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Quando, pois, chegou à Galileia, os galileus o receberam, porque tinham visto todas as coisas que fizera em Jerusalém na festa; porque também eles tinham ido à festa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E Jesus veio outra vez a Caná da Galileia, onde tinha feito da água vinho. E havia ali um oficial do rei, cujo filho estava doente em Cafarnaum.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        Este, ouvindo que Jesus vinha da Judeia para a Galileia, foi a ele e rogou-lhe que descesse e curasse o seu filho, porque já estava à morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        Então Jesus lhe disse: <span class="fala-jesus">"Se não virdes sinais e prodígios, não crereis."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        O oficial do rei lhe disse: <span class="fala-outro">"Senhor, desce antes que o meu filho morra."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Jesus lhe disse: <span class="fala-jesus">"Vai, o teu filho vive."</span> E o homem creu na palavra que Jesus lhe disse, e foi-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E, descendo ele já, os seus servos lhe saíram ao encontro, e anunciaram-lhe, dizendo: <span class="fala-outro">"O teu filho vive."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        Então perguntou-lhes a que hora ele tinha melhorado. E disseram-lhe: <span class="fala-outro">"Ontem, à hora sétima, a febre o deixou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        Então o pai reconheceu que fora naquela mesma hora em que Jesus lhe dissera: "O teu filho vive." E creu ele, e toda a sua casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        Este foi o segundo sinal que Jesus fez, quando veio da Judeia para a Galileia.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:5 — "Sicar"</span>
+            <div class="greek-text">Συχάρ</div>
+            <p><strong>Análise:</strong> A cidade de Samaria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Sicar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:6 — "Fonte de Jacó"</span>
+            <div class="greek-text">πηγὴ τοῦ Ἰακώβ</div>
+            <p><strong>Análise:</strong> A fonte de Jacó em Samaria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fonte de Jacó".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:10-11, 14 — "Água viva"</span>
+            <div class="greek-text">ὕδωρ ζῶν</div>
+            <p><strong>Análise:</strong> Expressão que pode designar água corrente e que Jesus emprega no diálogo com a mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "água viva".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:9 — "Os judeus não se comunicam com os samaritanos"</span>
+            <div class="greek-text">οὐ συγχρῶνται Ἰουδαῖοι Σαμαρίταις</div>
+            <p><strong>Análise:</strong> A explicação de João sobre a relação entre judeus e samaritanos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 4:14 — "Fonte de água que salte"</span>
+            <div class="greek-text">πηγὴ ὕδατος ἁλλομένου</div>
+            <p><strong>Análise:</strong> A água que jorra para a vida eterna.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:20-21 — "Neste monte"</span>
+            <div class="greek-text">ἐν τῷ ὄρει τούτῳ</div>
+            <p><strong>Análise:</strong> O monte Gerizim, na tradição samaritana.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "neste monte".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 4:22 — "Salvação vem dos judeus"</span>
+            <div class="greek-text">ἡ σωτηρία ἐκ τῶν Ἰουδαίων ἐστίν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 4:23-24 — "Em espírito e em verdade"</span>
+            <div class="greek-text">πνεύματι καὶ ἀληθείᾳ</div>
+            <p><strong>Análise:</strong> A adoração verdadeira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:24 — "Deus é Espírito"</span>
+            <div class="greek-text">Πνεῦμα ὁ Θεός</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre a natureza de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus é Espírito".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 4:26 — "Eu o sou, eu que falo contigo"</span>
+            <div class="greek-text">ἐγώ εἰμι, ὁ λαλῶν σοι</div>
+            <p><strong>Análise:</strong> A auto-revelação de Jesus como o Messias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 4:35 — "Campos brancos para a colheita"</span>
+            <div class="greek-text">ὅτι λευκαί εἰσιν πρὸς θερισμόν</div>
+            <p><strong>Análise:</strong> A imagem da colheita.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 4:42 — "Salvador do mundo"</span>
+            <div class="greek-text">σωτὴρ τοῦ κόσμου</div>
+            <p><strong>Análise:</strong> A confissão dos samaritanos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Salvador do mundo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:46, 49 — "Oficial do rei"</span>
+            <div class="greek-text">βασιλικός</div>
+            <p><strong>Análise:</strong> Termo relacionado ao rei ou à casa real; pode designar um oficial real.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "oficial do rei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 4:52 — "Ontem, à hora sétima"</span>
+            <div class="greek-text">χθὲς ὥρᾳ ἑβδόμῃ</div>
+            <p><strong>Análise:</strong> A referência temporal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 4:54 — "Segundo sinal"</span>
+            <div class="greek-text">δεύτερον σημεῖον</div>
+            <p><strong>Análise:</strong> A numeração dos sinais em João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo sinal".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

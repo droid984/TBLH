@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 10</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 10</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Aprisco</span>
+                Do grego <em>aulē</em> (αὐλή), curral ou aprisco de ovelhas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Bom pastor</span>
+                Declaração de Jesus sobre si mesmo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Festa da dedicação</span>
+                Do grego <em>ta enkainia</em> (τὰ ἐγκαίνια), Hanucá.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pórtico de Salomão</span>
+                Do grego <em>stoā Solomōnos</em> (στοᾷ Σολομῶνος), local no templo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">10</div>
+
+    <!-- PERÍCOPE 1: O BOM PASTOR (10.1-21) -->
+    <div class="pericope">O Bom Pastor</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>m verdade, em verdade vos digo: aquele que não entra pela porta no aprisco das ovelhas, mas sobe por outra parte, é ladrão e salteador.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Mas aquele que entra pela porta é o pastor das ovelhas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        A este o porteiro abre, e as ovelhas ouvem a sua voz; e ele chama as suas ovelhas pelo nome, e as conduz para fora.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, quando tira para fora as suas ovelhas, vai adiante delas; e as ovelhas o seguem, porque conhecem a sua voz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas de modo nenhum seguirão o estranho; antes fugirão dele, porque não conhecem a voz dos estranhos."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Jesus lhes propôs esta parábola, mas eles não entenderam o que era que lhes dizia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Então Jesus tornou a dizer-lhes: <span class="fala-jesus">"Em verdade, em verdade vos digo: eu sou a porta das ovelhas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Todos quantos vieram antes de mim são ladrões e salteadores; mas as ovelhas não os ouviram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">Eu sou a porta. Se alguém entrar por mim, será salvo; e entrará, e sairá, e achará pastagem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">O ladrão não vem senão para roubar, e matar, e destruir. Eu vim para que tenham vida, e a tenham em abundância."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">"Eu sou o bom pastor. O bom pastor dá a sua vida pelas ovelhas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Mas o mercenário, e o que não é pastor, de quem não são as ovelhas, vê o lobo chegar, e deixa as ovelhas, e foge; e o lobo as arrebata e dispersa as ovelhas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">O mercenário foge, porque é mercenário, e não tem cuidado das ovelhas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Eu sou o bom pastor, e conheço as minhas ovelhas, e das minhas sou conhecido.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Assim como o Pai me conhece a mim, também eu conheço o Pai, e dou a minha vida pelas ovelhas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Ainda tenho outras ovelhas que não são deste aprisco; também estas eu devo trazer, e ouvirão a minha voz, e haverá um só rebanho e um só pastor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Por isso o Pai me ama, porque dou a minha vida para tornar a tomá-la.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Ninguém a tira de mim, mas eu de mim mesmo a dou. Tenho poder para a dar, e poder para tornar a tomá-la. Este mandamento recebi de meu Pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Houve, pois, divisão outra vez entre os judeus por causa destas palavras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E muitos deles diziam: <span class="fala-outro">"Ele tem demônio, e está fora de si. Por que o ouvis?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Outros diziam: <span class="fala-outro">"Estas palavras não são de endemoninhado. Pode porventura um demônio abrir os olhos aos cegos?"</span>
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS NO PÓRTICO DE SALOMÃO (10.22-42) -->
+    <div class="pericope">Jesus no Pórtico de Salomão</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E celebrava-se em Jerusalém a festa da dedicação, e era inverno.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E Jesus andava pelo templo, no pórtico de Salomão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Rodearam-no, pois, os judeus e disseram-lhe: <span class="fala-outro">"Até quando nos manténs em suspense? Se tu és o Cristo, dize-nos abertamente."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Jesus respondeu-lhes: <span class="fala-jesus">"Já vo-lo tenho dito, e não credes. As obras que eu faço em nome de meu Pai, essas testificam de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Mas vós não credes, porque não sois das minhas ovelhas, como eu vo-lo tenho dito.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">As minhas ovelhas ouvem a minha voz, e eu as conheço, e elas me seguem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">E dou-lhes a vida eterna, e nunca perecerão, e ninguém as arrebatará da minha mão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Meu Pai, que mas deu, é maior do que todos; e ninguém pode arrebatá-las da mão de meu Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Eu e o Pai somos um."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então os judeus pegaram outra vez em pedras para o apedrejarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Jesus respondeu-lhes: <span class="fala-jesus">"Muitas obras boas de meu Pai vos tenho mostrado; por qual dessas obras me apedrejais?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Os judeus responderam-lhe, dizendo: <span class="fala-outro">"Não te apedrejamos por obra boa, mas por blasfêmia; porque, sendo tu homem, te fazes Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Jesus respondeu-lhes: <span class="fala-jesus">"Não está escrito na vossa lei: 'Eu disse: sois deuses'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Se ele chamou deuses àqueles a quem a palavra de Deus foi dirigida — e a Escritura não pode ser quebrada —,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">àquele a quem o Pai santificou e enviou ao mundo, vós dizeis: 'Blasfemas', porque eu disse: 'Sou Filho de Deus'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Se eu não faço as obras de meu Pai, não me creiais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Mas, se eu as faço, ainda que não me creiais a mim, crede nas obras, para que conheçais e creiais que o Pai está em mim, e eu nele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Então procuravam outra vez prendê-lo; mas ele escapou das suas mãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E retirou-se outra vez para além do Jordão, para o lugar onde João primeiramente tinha batizado; e ali ficou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E muitos vinham a ele, e diziam: <span class="fala-outro">"João, na verdade, não fez sinal algum; mas tudo quanto João disse deste homem era verdade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E muitos ali creram nele.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 10:1, 16 — "Aprisco"</span>
+            <div class="greek-text">αὐλή</div>
+            <p><strong>Análise:</strong> "Curral", "aprisco".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aprisco".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 10:1, 8 — "Ladrão e salteador"</span>
+            <div class="greek-text">κλέπτης ... λῃστής</div>
+            <p><strong>Análise:</strong> Ladrão e assaltante.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ladrão e salteador".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 10:3 — "Porteiro"</span>
+            <div class="greek-text">θυρωρός</div>
+            <p><strong>Análise:</strong> Guardião da porta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "porteiro".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:7, 9 — "Eu sou a porta"</span>
+            <div class="greek-text">ἐγώ εἰμι ἡ θύρα</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 10:10 — "Vida em abundância"</span>
+            <div class="greek-text">περισσόν</div>
+            <p><strong>Análise:</strong> "Em abundância", "em excesso".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vida em abundância".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:11, 14 — "Eu sou o bom pastor"</span>
+            <div class="greek-text">ἐγώ εἰμι ὁ ποιμὴν ὁ καλός</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 10:12-13 — "Mercenário"</span>
+            <div class="greek-text">μισθωτός</div>
+            <p><strong>Análise:</strong> "Assalariado", "mercenário".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mercenário".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:16 — "Um só rebanho e um só pastor"</span>
+            <div class="greek-text">ποίμνη ... ποιμήν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:18 — "Ninguém a tira de mim"</span>
+            <div class="greek-text">οὐδεὶς αἴρει αὐτὴν ἀπ' ἐμοῦ</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 10:22 — "Festa da dedicação"</span>
+            <div class="greek-text">τὰ ἐγκαίνια</div>
+            <p><strong>Análise:</strong> Referência à festa judaica da Dedicação, conhecida como Hanucá.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "festa da dedicação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 10:23 — "Pórtico de Salomão"</span>
+            <div class="greek-text">στοᾷ Σολομῶνος</div>
+            <p><strong>Análise:</strong> Colunata ou pórtico no templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pórtico de Salomão".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:30 — "Eu e o Pai somos um"</span>
+            <div class="greek-text">ἐγὼ καὶ ὁ πατὴρ ἕν ἐσμεν</div>
+            <p><strong>Análise:</strong> A forma verbal está no plural ("somos"), enquanto <em>hen</em> ("um") está no neutro, indicando a unidade expressa pela declaração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:34 — "Sois deuses"</span>
+            <div class="greek-text">θεοί ἐστε</div>
+            <p><strong>Análise:</strong> Citação do Salmo 82:6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:35 — "A Escritura não pode ser quebrada"</span>
+            <div class="greek-text">οὐ δύναται λυθῆναι ἡ γραφή</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 10:36 — "A quem o Pai santificou"</span>
+            <div class="greek-text">ὃν ὁ πατὴρ ἡγίασεν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

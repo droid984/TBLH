@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 16</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 16</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Figuras</span>
+                Do grego <em>paroimiai</em> (παροιμίαι), linguagem figurada.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Consolador</span>
+                Do grego <em>paraklētos</em> (παράκλητος), auxiliador.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espírito da verdade</span>
+                Designação do Espírito Santo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Príncipe deste mundo</span>
+                Referência a Satanás.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">16</div>
+
+    <!-- PERÍCOPE 1: A VINDA DO CONSOLADOR (16.1-15) -->
+    <div class="pericope">A Vinda do Consolador</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>stas coisas vos tenho dito para que não vos escandalizeis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Expulsar-vos-ão das sinagogas; e até vem a hora em que qualquer que vos matar pensará que presta serviço a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E isto vos farão, porque não conheceram o Pai, nem a mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas estas coisas vos tenho dito, para que, quando chegar a hora, vos lembreis de que eu vo-las tinha dito. E não vo-las disse desde o princípio, porque estava convosco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Agora, porém, vou para aquele que me enviou; e nenhum de vós me pergunta: 'Para onde vais?'
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Antes, porque vos tenho dito estas coisas, a tristeza encheu o vosso coração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Mas eu vos digo a verdade: é necessário para vós que eu vá; porque, se eu não for, o Consolador não virá a vós; mas, se eu for, eu vo-lo enviarei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, quando ele vier, convencerá o mundo do pecado, da justiça e do juízo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Do pecado, porque não creem em mim;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        da justiça, porque vou para meu Pai, e não me vereis mais;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        e do juízo, porque o príncipe deste mundo já está julgado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">"Ainda tenho muito que vos dizer, mas vós não o podeis suportar agora.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Mas, quando vier aquele Espírito da verdade, ele vos guiará em toda a verdade; porque não falará de si mesmo, mas dirá tudo o que tiver ouvido, e vos anunciará o que há de vir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Ele me glorificará, porque receberá do que é meu, e vo-lo anunciará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Tudo quanto o Pai tem é meu; por isso eu vos disse que ele receberá do que é meu, e vo-lo anunciará."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A TRISTEZA SE CONVERTE EM ALEGRIA (16.16-24) -->
+    <div class="pericope">A Tristeza se Converte em Alegria</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">"Um pouco, e não me vereis; e outra vez um pouco, e ver-me-eis, porque vou para o Pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Então alguns dos seus discípulos disseram uns aos outros: <span class="fala-outro">"Que é isto que ele nos diz: 'Um pouco, e não me vereis; e outra vez um pouco, e ver-me-eis; e: Porque vou para o Pai'?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Diziam, pois: <span class="fala-outro">"Que é isto que ele diz: 'Um pouco'? Não sabemos o que ele fala."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E Jesus conheceu que queriam interrogá-lo, e disse-lhes: <span class="fala-jesus">"Perguntais entre vós acerca disto que eu disse: 'Um pouco, e não me vereis; e outra vez um pouco, e ver-me-eis'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Em verdade, em verdade vos digo: vós chorareis e vos lamentareis, mas o mundo se alegrará; e vós estareis tristes, mas a vossa tristeza se converterá em alegria.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">A mulher, quando está para dar à luz, tem tristeza, porque é chegada a sua hora; mas, depois que deu à luz a criança, já não se lembra da aflição, pela alegria de haver nascido um homem no mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Assim também vós, agora, na verdade, tendes tristeza; mas eu vos verei outra vez, e o vosso coração se alegrará, e a vossa alegria ninguém vo-la tirará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">E naquele dia nada me perguntareis. Em verdade, em verdade vos digo: tudo quanto pedirdes ao Pai em meu nome, ele vo-lo dará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Até agora nada pedistes em meu nome. Pedi, e recebereis, para que a vossa alegria seja completa."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: JESUS VENCE O MUNDO (16.25-33) -->
+    <div class="pericope">Jesus Vence o Mundo</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">"Estas coisas vos tenho dito por figuras; mas vem a hora em que não vos falarei mais por figuras, mas abertamente vos anunciarei acerca do Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Naquele dia pedireis em meu nome, e não vos digo que eu rogarei por vós ao Pai;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">pois o próprio Pai vos ama, porque vós me amastes, e crestes que eu saí de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Saí do Pai, e vim ao mundo; outra vez deixo o mundo, e vou para o Pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Disseram-lhe os seus discípulos: <span class="fala-outro">"Eis que agora falas abertamente, e não dizes figura alguma.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">Agora sabemos que sabes todas as coisas, e não necessitas de que alguém te interrogue. Por isso cremos que saíste de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Jesus respondeu-lhes: <span class="fala-jesus">"Credes agora?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Eis que vem a hora, e já é chegada, em que sereis dispersos cada um para a sua parte, e me deixareis só; mas não estou só, porque o Pai está comigo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Estas coisas vos tenho dito, para que em mim tenhais paz. No mundo tereis aflições, mas tende bom ânimo: eu venci o mundo."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:2 — "Expulsar-vos-ão das sinagogas"</span>
+            <div class="greek-text">ἀποσυναγώγους</div>
+            <p><strong>Análise:</strong> "Expulsos da sinagoga".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Expulsar-vos-ão das sinagogas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:2 — "Pensará que presta serviço a Deus"</span>
+            <div class="greek-text">λατρείαν προσφέρειν τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> "Prestar serviço a Deus".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pensará que presta serviço a Deus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 16:7 — "O Consolador não virá a vós"</span>
+            <div class="greek-text">ὁ παράκλητος ... οὐκ ἐλεύσεται</div>
+            <p><strong>Análise:</strong> A declaração de Jesus acerca da vinda do Consolador.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:8 — "Convencerá o mundo"</span>
+            <div class="greek-text">ἐλέγξει</div>
+            <p><strong>Análise:</strong> "Convencerá", "reprovará", "exporá".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "convencerá".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 16:8-11 — "Do pecado... da justiça... do juízo"</span>
+            <div class="greek-text">περὶ ἁμαρτίας ... δικαιοσύνης ... κρίσεως</div>
+            <p><strong>Análise:</strong> Os três aspectos mencionados por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:11 — "O príncipe deste mundo já está julgado"</span>
+            <div class="greek-text">ὁ ἄρχων τοῦ κόσμου τούτου ... κέκριται</div>
+            <p><strong>Análise:</strong> Satanás já foi julgado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o príncipe deste mundo já está julgado".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 16:13 — "Espírito da verdade"</span>
+            <div class="greek-text">τὸ πνεῦμα τῆς ἀληθείας</div>
+            <p><strong>Análise:</strong> A designação dada ao Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Espírito da verdade".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 16:13 — "Vos guiará em toda a verdade"</span>
+            <div class="greek-text">ὁδηγήσει ὑμᾶς εἰς πᾶσαν τὴν ἀλήθειαν</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 16:13 — "Vos anunciará o que há de vir"</span>
+            <div class="greek-text">τὰ ἐρχόμενα ἀναγγελεῖ ὑμῖν</div>
+            <p><strong>Análise:</strong> A promessa de Jesus acerca do ministério do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 16:21 — "A mulher, quando está para dar à luz"</span>
+            <div class="greek-text">ἡ γυνὴ ὅταν τίκτῃ</div>
+            <p><strong>Análise:</strong> A imagem usada por Jesus para descrever a tristeza que se transforma em alegria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:23 — "Nada me perguntareis"</span>
+            <div class="greek-text">ἐμὲ οὐκ ἐρωτήσετε οὐδέν</div>
+            <p><strong>Análise:</strong> Os discípulos não perguntarão mais a Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nada me perguntareis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:25, 29 — "Figuras"</span>
+            <div class="greek-text">παροιμίαις</div>
+            <p><strong>Análise:</strong> "Figuras", "linguagem figurada", "provérbios".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "figuras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:25, 29 — "Abertamente"</span>
+            <div class="greek-text">παρρησίᾳ</div>
+            <p><strong>Análise:</strong> "Abertamente", "com franqueza".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "abertamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 16:30 — "Agora sabemos que sabes todas as coisas"</span>
+            <div class="greek-text">νῦν οἴδαμεν ὅτι οἶδας πάντα</div>
+            <p><strong>Análise:</strong> A declaração dos discípulos acerca do conhecimento de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 16:33 — "Eu venci o mundo"</span>
+            <div class="greek-text">ἐγὼ νενίκηκα τὸν κόσμον</div>
+            <p><strong>Análise:</strong> <em>Nenikēka</em> está no perfeito, indicando uma vitória já realizada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "eu venci o mundo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

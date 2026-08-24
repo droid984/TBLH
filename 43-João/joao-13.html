@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 13</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 13</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Filhinhos</span>
+                Do grego <em>teknia</em> (τεκνία), diminutivo afetivo de <em>teknon</em>.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Bocado molhado</span>
+                Do grego <em>psōmion</em> (ψωμίον), pedaço de pão molhado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mandamento novo</span>
+                O mandamento do amor mútuo dado por Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Discípulo amado</span>
+                O discípulo a quem Jesus amava, tradicionalmente identificado com João.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">13</div>
+
+    <!-- PERÍCOPE 1: JESUS LAVA OS PÉS DOS DISCÍPULOS (13.1-20) -->
+    <div class="pericope">Jesus Lava os Pés dos Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, antes da festa da Páscoa, sabendo Jesus que era chegada a sua hora de passar deste mundo para o Pai, como havia amado os seus que estavam no mundo, amou-os até o fim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, terminada a ceia, tendo já o diabo posto no coração de Judas Iscariotes, filho de Simão, que o traísse,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Jesus, sabendo que o Pai tinha depositado nas suas mãos todas as coisas, e que tinha saído de Deus e ia para Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        levantou-se da ceia, tirou as suas vestes e, tomando uma toalha, cingiu-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Depois deitou água numa bacia, e começou a lavar os pés dos discípulos, e a enxugá-los com a toalha com que estava cingido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Aproximou-se, pois, de Simão Pedro, e este lhe disse: <span class="fala-outro">"Senhor, tu lavas-me os pés?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Jesus respondeu e disse-lhe: <span class="fala-jesus">"O que eu faço não o sabes agora, mas o entenderás depois."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Pedro lhe disse: <span class="fala-outro">"Nunca me lavarás os pés."</span> Jesus respondeu-lhe: <span class="fala-jesus">"Se eu não te lavar, não tens parte comigo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Simão Pedro lhe disse: <span class="fala-outro">"Senhor, não só os meus pés, mas também as mãos e a cabeça."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Jesus lhe disse: <span class="fala-jesus">"Aquele que já está lavado não necessita de lavar senão os pés, pois está todo limpo. E vós estais limpos, mas não todos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Porque ele bem sabia quem era o que o trairia; por isso disse: "Nem todos estais limpos."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, depois que lhes lavou os pés, e tomou as suas vestes, e se assentou outra vez, disse-lhes: <span class="fala-jesus">"Entendeis o que vos tenho feito?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">Vós me chamais Mestre e Senhor, e dizeis bem, porque eu o sou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Se eu, pois, Senhor e Mestre, vos lavei os pés, também vós deveis lavar os pés uns aos outros.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Porque eu vos dei o exemplo, para que, como eu vos fiz, façais vós também.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Em verdade, em verdade vos digo: o servo não é maior do que o seu senhor, nem o enviado maior do que aquele que o enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Se sabeis estas coisas, bem-aventurados sois se as fizerdes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">"Não falo de todos vós; eu conheço os que tenho escolhido. Mas para que se cumpra a Escritura: 'O que come o pão comigo levantou contra mim o seu calcanhar.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Desde agora vo-lo digo, antes que aconteça, para que, quando acontecer, creiais que eu sou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Em verdade, em verdade vos digo: quem recebe aquele que eu enviar, a mim me recebe; e quem me recebe a mim, recebe aquele que me enviou."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A PREDIÇÃO DA TRADIÇÃO (13.21-30) -->
+    <div class="pericope">A Predição da Tradição</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Tendo Jesus dito isto, perturbou-se em espírito, e testificou, e disse: <span class="fala-jesus">"Em verdade, em verdade vos digo: um de vós me trairá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Então os discípulos olhavam uns para os outros, duvidando de quem ele falava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E um dos seus discípulos, aquele a quem Jesus amava, estava reclinado junto ao peito de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        A este, pois, Simão Pedro fez sinal, para que perguntasse quem era aquele de quem ele falava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, inclinando-se ele sobre o peito de Jesus, disse-lhe: <span class="fala-outro">"Senhor, quem é?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Jesus respondeu: <span class="fala-jesus">"É aquele a quem eu der o bocado molhado."</span> E, molhando o bocado, deu-o a Judas Iscariotes, filho de Simão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, após o bocado, Satanás entrou nele. Então Jesus lhe disse: <span class="fala-jesus">"O que fazes, faze-o depressa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E nenhum dos que estavam à mesa entendeu por que lhe dissera isto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Pois alguns pensavam que, como Judas tinha a bolsa, Jesus lhe dissera: "Compra o que nos é necessário para a festa"; ou que desse alguma coisa aos pobres.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, tendo ele recebido o bocado, saiu logo. E era noite.
+    </p>
+
+    <!-- PERÍCOPE 3: O MANDAMENTO NOVO (13.31-35) -->
+    <div class="pericope">O Mandamento Novo</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Tendo ele, pois, saído, Jesus disse: <span class="fala-jesus">"Agora o Filho do homem é glorificado, e Deus é glorificado nele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">Se Deus é glorificado nele, também Deus o glorificará em si mesmo, e logo o glorificará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Filhinhos, ainda por um pouco de tempo estou convosco. Vós me buscareis, e, como eu disse aos judeus: 'Para onde eu vou, vós não podeis vir' — agora também vo-lo digo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">"Um mandamento novo vos dou: que vos ameis uns aos outros; assim como eu vos amei, que também vós vos ameis uns aos outros.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">Nisto todos conhecerão que sois meus discípulos, se tiverdes amor uns aos outros."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: A PREDIÇÃO DA NEGAÇÃO DE PEDRO (13.36-38) -->
+    <div class="pericope">A Predição da Negação de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Simão Pedro lhe disse: <span class="fala-outro">"Senhor, para onde vais?"</span> Jesus respondeu-lhe: <span class="fala-jesus">"Para onde eu vou, não podes agora seguir-me; mas depois me seguirás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Pedro lhe disse: <span class="fala-outro">"Senhor, por que não posso seguir-te agora? Por ti darei a minha vida."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Jesus respondeu-lhe: <span class="fala-jesus">"Darás a tua vida por mim? Em verdade, em verdade te digo: o galo não cantará antes que me negues três vezes."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:1 — "Antes da festa da Páscoa"</span>
+            <div class="greek-text">πρὸ τῆς ἑορτῆς τοῦ πάσχα</div>
+            <p><strong>Análise:</strong> A referência temporal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:1 — "Até o fim"</span>
+            <div class="greek-text">εἰς τέλος</div>
+            <p><strong>Análise:</strong> "Até o fim", "até o término".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "até o fim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:4 — "Cingiu-se"</span>
+            <div class="greek-text">διέζωσεν ἑαυτόν</div>
+            <p><strong>Análise:</strong> Jesus se cingiu com uma toalha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cingiu-se".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 13:8 — "Se eu não te lavar, não tens parte comigo"</span>
+            <div class="greek-text">ἐὰν μὴ νίψω σε, οὐκ ἔχεις μέρος μετ' ἐμοῦ</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:11 — "Nem todos estais limpos"</span>
+            <div class="greek-text">οὐχὶ πάντες καθαροί ἐστε</div>
+            <p><strong>Análise:</strong> A referência à traição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:13-14 — "Mestre e Senhor"</span>
+            <div class="greek-text">διδάσκαλος ... κύριος</div>
+            <p><strong>Análise:</strong> Os títulos usados por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Mestre e Senhor".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 13:18 — "O que come o pão comigo levantou contra mim o seu calcanhar"</span>
+            <div class="greek-text">ὁ τρώγων μετ' ἐμοῦ τὸν ἄρτον ἐπῆρεν ἐπ' ἐμὲ τὴν πτέρναν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 41:9.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 13:19 — "Creiais que eu sou"</span>
+            <div class="greek-text">πιστεύσητε ὅτι ἐγώ εἰμι</div>
+            <p><strong>Análise:</strong> A afirmação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que eu sou".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:23, 25 — "Reclinado junto ao peito de Jesus"</span>
+            <div class="greek-text">ἐν τῷ κόλπῳ τοῦ Ἰησοῦ</div>
+            <p><strong>Análise:</strong> Referindo-se à posição reclinada junto a Jesus à mesa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "reclinado junto ao peito de Jesus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:26 — "Bocado molhado"</span>
+            <div class="greek-text">ψωμίον</div>
+            <p><strong>Análise:</strong> Pedaço de pão molhado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bocado molhado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:27 — "Satanás entrou nele"</span>
+            <div class="greek-text">εἰσῆλθεν ... Σατανᾶς εἰς ἐκεῖνον</div>
+            <p><strong>Análise:</strong> A entrada de Satanás em Judas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:30 — "Era noite"</span>
+            <div class="greek-text">ἦν δὲ νύξ</div>
+            <p><strong>Análise:</strong> A observação de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Era noite".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 13:33 — "Filhinhos"</span>
+            <div class="greek-text">τεκνία</div>
+            <p><strong>Análise:</strong> Diminutivo afetivo de <em>teknon</em>.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Filhinhos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 13:34 — "Um mandamento novo"</span>
+            <div class="greek-text">ἐντολὴν καινὴν</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um mandamento novo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 13:38 — "Darás a tua vida por mim?"</span>
+            <div class="greek-text">τὴν ψυχήν σου ὑπὲρ ἐμοῦ θήσεις</div>
+            <p><strong>Análise:</strong> A pergunta de Jesus a Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Darás a tua vida por mim?".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

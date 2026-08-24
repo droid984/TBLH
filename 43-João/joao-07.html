@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 7</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 7</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Festa dos tabernáculos</span>
+                Festa judaica, também chamada de Festa das Cabanas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dispersos entre os gregos</span>
+                Referência aos judeus da dispersão entre os gentios.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Água viva</span>
+                Do grego <em>hydōr zōn</em> (ὕδωρ ζῶν), água corrente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nicodemos</span>
+                Fariseu e principal dos judeus, mencionado novamente neste capítulo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">7</div>
+
+    <!-- PERÍCOPE 1: OS IRMÃOS DE JESUS (7.1-9) -->
+    <div class="pericope">Os Irmãos de Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, depois destas coisas, Jesus andava pela Galileia, porque não queria andar pela Judeia, pois os judeus procuravam matá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E estava próxima a festa dos judeus, a dos tabernáculos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Disseram-lhe, pois, os seus irmãos: <span class="fala-outro">"Sai daqui, e vai para a Judeia, para que também os teus discípulos vejam as obras que fazes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-outro">Porque ninguém faz coisa alguma em oculto, e procura ser publicamente conhecido. Se fazes estas coisas, manifesta-te ao mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque nem mesmo os seus irmãos criam nele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"O meu tempo ainda não chegou; mas o vosso tempo sempre está pronto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">O mundo não vos pode odiar, mas a mim ele odeia, porque eu testifico dele que as suas obras são más.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Subi vós a esta festa. Eu não subo ainda a esta festa, porque o meu tempo ainda não está cumprido."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, tendo-lhes dito isto, ficou na Galileia.
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS NA FESTA DOS TABERNÁCULOS (7.10-24) -->
+    <div class="pericope">Jesus na Festa dos Tabernáculos</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas, quando os seus irmãos já tinham subido, então ele também subiu à festa, não publicamente, mas como em oculto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Então os judeus o procuravam na festa, e diziam: <span class="fala-outro">"Onde está ele?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E havia muita murmuração entre as multidões a respeito dele. Uns diziam: <span class="fala-outro">"Ele é bom."</span> E outros diziam: <span class="fala-outro">"Não, antes ele engana o povo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Contudo, ninguém falava abertamente dele, por medo dos judeus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, já no meio da festa, Jesus subiu ao templo, e ensinava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E os judeus se admiravam, dizendo: <span class="fala-outro">"Como sabe este letras, não as tendo aprendido?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Jesus lhes respondeu e disse: <span class="fala-jesus">"A minha doutrina não é minha, mas daquele que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Se alguém quiser fazer a vontade dele, conhecerá a respeito da doutrina, se ela é de Deus, ou se eu falo de mim mesmo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Quem fala de si mesmo busca a sua própria glória; mas aquele que busca a glória daquele que o enviou, esse é verdadeiro, e não há nele injustiça.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Moisés não vos deu a lei? E nenhum de vós cumpre a lei. Por que procurais matar-me?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        A multidão respondeu e disse: <span class="fala-outro">"Tens demônio. Quem procura matar-te?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Jesus respondeu e disse-lhes: <span class="fala-jesus">"Uma só obra fiz, e todos vos admirais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">Moisés vos deu a circuncisão — não que seja de Moisés, mas dos pais —, e no sábado circuncidais um homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Se um homem recebe a circuncisão no sábado, para que a lei de Moisés não seja quebrada, indignais-vos contra mim, porque no sábado tornei um homem inteiramente são?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Não julgueis segundo a aparência, mas julgai com justo juízo."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: QUEM É O CRISTO? (7.25-36) -->
+    <div class="pericope">Quem é o Cristo?</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Então alguns dos de Jerusalém diziam: <span class="fala-outro">"Não é este o que procuram matar?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">E eis que ele fala abertamente, e nada lhe dizem. Por acaso os principais verdadeiramente reconheceram que este é o Cristo?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Mas nós sabemos de onde este é; e, quando o Cristo vier, ninguém saberá de onde ele é."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Então Jesus, ensinando no templo, clamou, dizendo: <span class="fala-jesus">"Vós me conheceis, e sabeis de onde sou. Eu não vim de mim mesmo; mas aquele que me enviou é verdadeiro, a quem vós não conheceis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Mas eu o conheço, porque dele venho, e ele me enviou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Procuravam, pois, prendê-lo; mas ninguém lançou mão dele, porque ainda não era chegada a sua hora.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E muitos da multidão creram nele, e diziam: <span class="fala-outro">"Quando o Cristo vier, fará mais sinais do que estes que este tem feito?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Os fariseus ouviram que a multidão murmurava dele estas coisas; e os principais dos sacerdotes e os fariseus enviaram servos para o prenderem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Ainda um pouco de tempo estou convosco, e depois vou para aquele que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-jesus">Vós me procurareis, e não me achareis; e onde eu estou, vós não podeis vir."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Então os judeus disseram entre si: <span class="fala-outro">"Para onde irá este, que não o acharemos? Irá por acaso aos dispersos entre os gregos, e ensinará os gregos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Que palavra é esta que disse: 'Vós me procurareis, e não me achareis; e onde eu estou, vós não podeis vir'?"</span>
+    </p>
+
+    <!-- PERÍCOPE 4: ÁGUA VIVA (7.37-39) -->
+    <div class="pericope">Água Viva</div>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, no último dia, o grande dia da festa, Jesus se pôs em pé e clamou, dizendo: <span class="fala-jesus">"Se alguém tem sede, venha a mim e beba.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Quem crê em mim, como diz a Escritura, rios de água viva correrão do seu ventre."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E isto ele disse do Espírito, que haviam de receber os que cressem nele; porque o Espírito Santo ainda não fora dado, por ainda Jesus não ter sido glorificado.
+    </p>
+
+    <!-- PERÍCOPE 5: DIVISÃO SOBRE JESUS (7.40-53) -->
+    <div class="pericope">Divisão sobre Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Então muitos da multidão, ouvindo esta palavra, diziam: <span class="fala-outro">"Verdadeiramente este é o Profeta."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Outros diziam: <span class="fala-outro">"Este é o Cristo."</span> Mas outros diziam: <span class="fala-outro">"Virá, porventura, o Cristo da Galileia?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-outro">Não diz a Escritura que o Cristo vem da descendência de Davi, e de Belém, a aldeia de onde era Davi?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        Assim, houve divisão entre a multidão por causa dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E alguns deles queriam prendê-lo, mas ninguém lançou mão dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E os servos voltaram aos principais dos sacerdotes e aos fariseus, e estes lhes disseram: <span class="fala-outro">"Por que não o trouxestes?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        Os servos responderam: <span class="fala-outro">"Nunca homem algum falou assim como este homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        Responderam-lhes, pois, os fariseus: <span class="fala-outro">"Também vós fostes enganados?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-outro">Creu nele, porventura, algum dos principais ou dos fariseus?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-outro">Mas esta multidão, que não conhece a lei, é maldita."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Nicodemos, aquele que tinha ido a Jesus de noite, e era um deles, disse-lhes:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-outro">"Porventura a nossa lei julga um homem sem primeiro o ouvir, e saber o que ele faz?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        Responderam-lhe e disseram: <span class="fala-outro">"És tu também da Galileia? Examina, e verás que da Galileia nenhum profeta surge."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        E cada um foi para sua casa.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:2 — "Festa dos tabernáculos"</span>
+            <div class="greek-text">ἡ σκηνοπηγία</div>
+            <p><strong>Análise:</strong> A festa judaica das cabanas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "festa dos tabernáculos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:3, 5, 10 — "Irmãos de Jesus"</span>
+            <div class="greek-text">οἱ ἀδελφοὶ</div>
+            <p><strong>Análise:</strong> Os irmãos mencionados no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "irmãos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 7:6, 8 — "O meu tempo ainda não chegou"</span>
+            <div class="greek-text">ὁ καιρὸς ὁ ἐμός</div>
+            <p><strong>Análise:</strong> A referência ao tempo de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:10 — "Como em oculto"</span>
+            <div class="greek-text">ὡς ἐν κρυπτῷ</div>
+            <p><strong>Análise:</strong> A subida discreta de Jesus à festa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como em oculto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:15 — "Letras"</span>
+            <div class="greek-text">γράμματα</div>
+            <p><strong>Análise:</strong> "Letras", "escritos", referindo-se ao conhecimento das Escrituras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "letras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:16-17 — "Doutrina"</span>
+            <div class="greek-text">διδαχή</div>
+            <p><strong>Análise:</strong> O ensino de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "doutrina".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:20 — "Tens demônio"</span>
+            <div class="greek-text">δαιμόνιον ἔχεις</div>
+            <p><strong>Análise:</strong> A acusação da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tens demônio".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 7:24 — "Justo juízo"</span>
+            <div class="greek-text">δικαίαν κρίσιν</div>
+            <p><strong>Análise:</strong> A exortação de Jesus para julgar com justiça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justo juízo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:35 — "Dispersos entre os gregos"</span>
+            <div class="greek-text">διασπορὰν τῶν Ἑλλήνων</div>
+            <p><strong>Análise:</strong> Os judeus da diáspora entre os gentios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dispersos entre os gregos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 7:38 — "Rios de água viva"</span>
+            <div class="greek-text">ποταμοὶ ὕδατος ζῶντος</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:38 — "Do seu ventre"</span>
+            <div class="greek-text">κοιλίας</div>
+            <p><strong>Análise:</strong> De dentro da pessoa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "do seu ventre".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 7:39 — "O Espírito Santo ainda não fora dado"</span>
+            <div class="greek-text">οὔπω ἦν πνεῦμα ἅγιον</div>
+            <p><strong>Análise:</strong> João explica que o Espírito seria recebido pelos que cressem em Jesus, relacionando isso à glorificação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 7:40 — "Este é o Profeta"</span>
+            <div class="greek-text">ὁ προφήτης</div>
+            <p><strong>Análise:</strong> A declaração da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o Profeta".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:46 — "Nunca homem algum falou assim"</span>
+            <div class="greek-text">οὐδέποτε ἐλάλησεν οὕτως ἄνθρωπος</div>
+            <p><strong>Análise:</strong> A resposta dos servos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 7:52 — "Da Galileia nenhum profeta surge"</span>
+            <div class="greek-text">ἐκ τῆς Γαλιλαίας προφήτης οὐκ ἐγείρεται</div>
+            <p><strong>Análise:</strong> A resposta dos fariseus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

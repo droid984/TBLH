@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 8</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 8</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Luz do mundo</span>
+                Declaração de Jesus sobre si mesmo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tesouro</span>
+                Local no templo onde Jesus ensinava.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Eu sou</span>
+                Do grego <em>egō eimi</em> (ἐγώ εἰμι), expressão de auto-identificação divina.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pai da mentira</span>
+                Descrição do diabo por Jesus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">8</div>
+
+    <!-- PERÍCOPE 1: A MULHER ADÚLTERA (8.1-11) -->
+    <div class="pericope">A Mulher Adúltera</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">J</span>esus, porém, foi para o monte das Oliveiras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, pela manhã cedo, voltou ao templo, e todo o povo vinha a ele; e, assentando-se, os ensinava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E os escribas e fariseus trouxeram-lhe uma mulher apanhada em adultério.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, pondo-a no meio, disseram-lhe: <span class="fala-outro">"Mestre, esta mulher foi apanhada, no próprio ato, adulterando.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">E na lei Moisés nos ordenou que tais mulheres sejam apedrejadas. Tu, pois, que dizes?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Isto diziam eles, tentando-o, para terem de que o acusar. Mas Jesus, inclinando-se, escrevia com o dedo na terra, como se não os ouvisse.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, como insistissem perguntando-lhe, endireitou-se e disse-lhes: <span class="fala-jesus">"Aquele que dentre vós está sem pecado seja o primeiro a atirar pedra contra ela."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, inclinando-se outra vez, escrevia na terra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, quando ouviram isso, sendo convencidos pela consciência, saíram um a um, começando pelos mais velhos até os últimos; e Jesus foi deixado sozinho, e a mulher que estava no meio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, endireitando-se Jesus, e não vendo ninguém senão a mulher, disse-lhe: <span class="fala-jesus">"Mulher, onde estão aqueles teus acusadores? Ninguém te condenou?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E ela disse: <span class="fala-outro">"Ninguém, Senhor."</span> E Jesus lhe disse: <span class="fala-jesus">"Nem eu também te condeno. Vai-te, e não peques mais."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A LUZ DO MUNDO (8.12-20) -->
+    <div class="pericope">A Luz do Mundo</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então Jesus tornou a falar-lhes, dizendo: <span class="fala-jesus">"Eu sou a luz do mundo. Quem me segue não andará em trevas, mas terá a luz da vida."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Disseram-lhe, pois, os fariseus: <span class="fala-outro">"Tu testificas de ti mesmo; o teu testemunho não é verdadeiro."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Jesus respondeu e disse-lhes: <span class="fala-jesus">"Ainda que eu testifique de mim mesmo, o meu testemunho é verdadeiro, porque sei de onde vim e para onde vou; mas vós não sabeis de onde venho, nem para onde vou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Vós julgais segundo a carne; eu a ninguém julgo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">E, se eu julgo, o meu juízo é verdadeiro, porque não estou só, mas eu e o Pai que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">E também na vossa lei está escrito que o testemunho de dois homens é verdadeiro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Eu sou o que testifico de mim mesmo, e o Pai, que me enviou, também testifica de mim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Disseram-lhe, pois: <span class="fala-outro">"Onde está teu Pai?"</span> Jesus respondeu: <span class="fala-jesus">"Não conheceis a mim, nem a meu Pai. Se vós me conhecêsseis a mim, também conheceríeis a meu Pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Estas palavras Jesus disse no lugar do tesouro, ensinando no templo; e ninguém o prendeu, porque ainda não era chegada a sua hora.
+    </p>
+
+    <!-- PERÍCOPE 3: A VERDADE LIBERTA (8.21-36) -->
+    <div class="pericope">A Verdade Liberta</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Então Jesus tornou a dizer-lhes: <span class="fala-jesus">"Eu me vou, e vós me buscareis, e morrereis no vosso pecado. Para onde eu vou, vós não podeis vir."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Diziam, pois, os judeus: <span class="fala-outro">"Matar-se-á, porventura, a si mesmo, pois diz: 'Para onde eu vou, vós não podeis vir'?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E ele lhes disse: <span class="fala-jesus">"Vós sois de baixo, eu sou de cima. Vós sois deste mundo, eu não sou deste mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Por isso eu vos disse que morrereis em vossos pecados, porque, se não crerdes que eu sou, morrereis em vossos pecados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Disseram-lhe, pois: <span class="fala-outro">"Quem és tu?"</span> Jesus lhes disse: <span class="fala-jesus">"O mesmo que desde o princípio vos tenho dito.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Muitas coisas tenho que dizer e julgar de vós, mas aquele que me enviou é verdadeiro; e o que dele tenho ouvido, isso falo ao mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Eles não entenderam que lhes falava do Pai.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Quando levantardes o Filho do homem, então conhecereis que eu sou, e que nada faço por mim mesmo; mas falo como o Pai me ensinou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">E aquele que me enviou está comigo. O Pai não me tem deixado só, porque eu faço sempre o que lhe agrada."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Dizendo ele estas coisas, muitos creram nele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então Jesus dizia aos judeus que criam nele: <span class="fala-jesus">"Se vós permanecerdes na minha palavra, verdadeiramente sereis meus discípulos;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">e conhecereis a verdade, e a verdade vos libertará."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Responderam-lhe: <span class="fala-outro">"Somos descendência de Abraão, e nunca servimos a ninguém. Como dizes tu: 'Sereis livres'?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Jesus respondeu-lhes: <span class="fala-jesus">"Em verdade, em verdade vos digo: todo aquele que comete pecado é servo do pecado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-jesus">E o servo não fica para sempre na casa; o Filho fica para sempre.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Se, pois, o Filho vos libertar, verdadeiramente sereis livres.</span>
+    </p>
+
+    <!-- PERÍCOPE 4: FILHOS DE ABRAÃO OU DO DIABO? (8.37-59) -->
+    <div class="pericope">Filhos de Abraão ou do Diabo?</div>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Bem sei que sois descendência de Abraão; contudo, procurais matar-me, porque a minha palavra não entra em vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Eu falo o que vi junto de meu Pai, e vós fazeis o que vistes junto de vosso pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Responderam e disseram-lhe: <span class="fala-outro">"Nosso pai é Abraão."</span> Jesus lhes disse: <span class="fala-jesus">"Se fôsseis filhos de Abraão, faríeis as obras de Abraão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">Mas agora procurais matar-me, a mim, homem que vos tem dito a verdade, que de Deus tenho ouvido; Abraão não fez isto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-jesus">Vós fazeis as obras de vosso pai."</span> Disseram-lhe, pois: <span class="fala-outro">"Nós não nascemos de fornicação; temos um Pai, que é Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Se Deus fosse o vosso Pai, vós me amaríeis, porque eu saí e vim de Deus. Pois eu não vim de mim mesmo, mas ele me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-jesus">Por que não entendeis a minha linguagem? Porque não podeis ouvir a minha palavra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Vós tendes por pai o diabo, e quereis satisfazer os desejos de vosso pai. Ele foi homicida desde o princípio, e não permaneceu na verdade, porque não há verdade nele. Quando ele profere mentira, fala do que lhe é próprio, porque é mentiroso, e pai da mentira.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Mas, porque eu digo a verdade, não me credes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">Quem de vós me convence de pecado? E, se digo a verdade, por que não me credes?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">Quem é de Deus ouve as palavras de Deus; por isso vós não as ouvis, porque não sois de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        Responderam, pois, os judeus e disseram-lhe: <span class="fala-outro">"Não dizemos nós bem que és samaritano, e que tens demônio?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        Jesus respondeu: <span class="fala-jesus">"Eu não tenho demônio; antes, honro a meu Pai, e vós me desonrais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">E eu não busco a minha glória; há quem a busque, e julgue.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-jesus">Em verdade, em verdade vos digo: se alguém guardar a minha palavra, nunca verá a morte."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        Disseram-lhe, pois, os judeus: <span class="fala-outro">"Agora sabemos que tens demônio. Abraão morreu, e os profetas; e tu dizes: 'Se alguém guardar a minha palavra, nunca provará a morte.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        <span class="fala-outro">És tu maior do que o nosso pai Abraão, que morreu? E também os profetas morreram. Quem te fazes tu?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        Jesus respondeu: <span class="fala-jesus">"Se eu me glorifico a mim mesmo, a minha glória nada é. Quem me glorifica é meu Pai, o qual vós dizeis que é vosso Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        <span class="fala-jesus">E vós não o conheceis, mas eu o conheço. E, se disser que não o conheço, serei mentiroso como vós. Mas eu o conheço, e guardo a sua palavra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        <span class="fala-jesus">Abraão, vosso pai, exultou por ver o meu dia; e viu-o, e alegrou-se."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        Disseram-lhe, pois, os judeus: <span class="fala-outro">"Ainda não tens cinquenta anos, e viste Abraão?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        Jesus lhes disse: <span class="fala-jesus">"Em verdade, em verdade vos digo: antes que Abraão existisse, eu sou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        Então pegaram em pedras para lhe atirarem; mas Jesus se ocultou, e saiu do templo, passando pelo meio deles, e assim se retirou.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-textual">
+            <span class="note-label">João 8:3-11 — "Mulher apanhada em adultério"</span>
+            <div class="greek-text">γυναῖκα ... μοιχευομένην</div>
+            <p><strong>Análise:</strong> O episódio é transmitido no Textus Receptus. Há uma conhecida discussão sobre sua presença nos manuscritos gregos mais antigos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantido o episódio conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 8:9 — "Convencidos pela consciência"</span>
+            <div class="greek-text">ἐλεγχόμενοι ὑπὸ τῆς συνειδήσεως</div>
+            <p><strong>Análise:</strong> Os acusadores saem, convencidos por sua própria consciência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:12 — "Eu sou a luz do mundo"</span>
+            <div class="greek-text">ἐγώ εἰμι τὸ φῶς τοῦ κόσμου</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 8:17 — "Testemunho de dois homens"</span>
+            <div class="greek-text">ἡ μαρτυρία δύο ἀνθρώπων</div>
+            <p><strong>Análise:</strong> Referência a Deuteronômio 19:15.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 8:20 — "Lugar do tesouro"</span>
+            <div class="greek-text">τῷ γαζοφυλακίῳ</div>
+            <p><strong>Análise:</strong> O local no templo onde as ofertas eram depositadas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lugar do tesouro".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:24 — "Se não crerdes que eu sou"</span>
+            <div class="greek-text">ἐὰν μὴ πιστεύσητε ὅτι ἐγώ εἰμι</div>
+            <p><strong>Análise:</strong> A expressão <em>egō eimi</em>, "eu sou", é mantida no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que eu sou".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">João 8:25 — "O mesmo que desde o princípio vos tenho dito"</span>
+            <div class="greek-text">τὴν ἀρχὴν ὅ τι καὶ λαλῶ ὑμῖν</div>
+            <p><strong>Análise:</strong> A construção grega deste versículo é peculiar e de sentido discutido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:28 — "Quando levantardes o Filho do homem"</span>
+            <div class="greek-text">ὅταν ὑψώσητε τὸν υἱὸν τοῦ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> A referência à crucificação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:32 — "A verdade vos libertará"</span>
+            <div class="greek-text">ἡ ἀλήθεια ἐλευθερώσει ὑμᾶς</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:34 — "Todo aquele que comete pecado é servo do pecado"</span>
+            <div class="greek-text">πᾶς ὁ ποιῶν τὴν ἁμαρτίαν δοῦλός ἐστιν τῆς ἁμαρτίας</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:44 — "Vós tendes por pai o diabo"</span>
+            <div class="greek-text">ὑμεῖς ἐκ τοῦ πατρὸς τοῦ διαβόλου ἐστέ</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:44 — "Pai da mentira"</span>
+            <div class="greek-text">πατὴρ αὐτοῦ</div>
+            <p><strong>Análise:</strong> A descrição do diabo como pai da mentira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pai da mentira".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:51 — "Nunca verá a morte"</span>
+            <div class="greek-text">θάνατον οὐ μὴ θεωρήσῃ</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 8:58 — "Antes que Abraão existisse, eu sou"</span>
+            <div class="greek-text">πρὶν Ἀβραὰμ γενέσθαι, ἐγώ εἰμι</div>
+            <p><strong>Análise:</strong> A declaração de auto-identificação divina de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

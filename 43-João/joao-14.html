@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 14</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 14</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Moradas</span>
+                Do grego <em>monai</em> (μοναί), "habitações" na casa do Pai.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Consolador</span>
+                Do grego <em>paraklētos</em> (παράκλητος), "auxiliador", "defensor".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espírito da verdade</span>
+                Designação do Espírito Santo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Príncipe deste mundo</span>
+                Referência a Satanás.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">14</div>
+
+    <!-- PERÍCOPE 1: O CAMINHO, A VERDADE E A VIDA (14.1-14) -->
+    <div class="pericope">O Caminho, a Verdade e a Vida</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>ão se perturbe o vosso coração. Credes em Deus, crede também em mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Na casa de meu Pai há muitas moradas. Se não fosse assim, eu vo-lo teria dito. Vou preparar-vos lugar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, se eu for e vos preparar lugar, virei outra vez, e vos levarei para mim mesmo, para que onde eu estiver estejais vós também.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E vós sabeis para onde eu vou, e conheceis o caminho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Tomé lhe disse: <span class="fala-outro">"Senhor, não sabemos para onde vais; e como podemos saber o caminho?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Jesus lhe disse: <span class="fala-jesus">"Eu sou o caminho, e a verdade, e a vida. Ninguém vem ao Pai senão por mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Se vós me conhecêsseis a mim, também conheceríeis a meu Pai; e desde agora o conheceis, e o tendes visto."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Filipe lhe disse: <span class="fala-outro">"Senhor, mostra-nos o Pai, e isso nos basta."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Jesus lhe disse: <span class="fala-jesus">"Há tanto tempo estou convosco, e não me tens conhecido, Filipe? Quem me vê a mim, vê o Pai; e como dizes tu: 'Mostra-nos o Pai'?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Não crês tu que eu estou no Pai, e que o Pai está em mim? As palavras que eu vos digo não as digo de mim mesmo; mas o Pai, que habita em mim, é quem faz as obras.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Crede-me que eu estou no Pai, e o Pai em mim; crede-me, ao menos, por causa das mesmas obras."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">"Em verdade, em verdade vos digo: aquele que crê em mim também fará as obras que eu faço, e as fará maiores do que estas, porque eu vou para meu Pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E tudo quanto pedirdes em meu nome, eu o farei, para que o Pai seja glorificado no Filho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Se pedirdes alguma coisa em meu nome, eu o farei."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A PROMESSA DO CONSOLADOR (14.15-31) -->
+    <div class="pericope">A Promessa do Consolador</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">"Se me amais, guardai os meus mandamentos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">E eu rogarei ao Pai, e ele vos dará outro Consolador, para que fique convosco para sempre:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">o Espírito da verdade, que o mundo não pode receber, porque não o vê, nem o conhece. Mas vós o conheceis, porque ele habita convosco, e estará em vós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">"Não vos deixarei órfãos; voltarei a vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">Ainda um pouco, e o mundo não me verá mais, mas vós me vereis; porque eu vivo, e vós vivereis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Naquele dia conhecereis que eu estou em meu Pai, e vós em mim, e eu em vós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">"Aquele que tem os meus mandamentos e os guarda, esse é o que me ama; e aquele que me ama será amado de meu Pai, e eu o amarei, e me manifestarei a ele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Judas — não o Iscariotes — lhe disse: <span class="fala-outro">"Senhor, de onde vem que te manifestarás a nós, e não ao mundo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Jesus respondeu e disse-lhe: <span class="fala-jesus">"Se alguém me ama, guardará a minha palavra; e meu Pai o amará, e viremos a ele, e faremos nele morada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Quem não me ama não guarda as minhas palavras. E a palavra que ouvistes não é minha, mas do Pai, que me enviou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">"Estas coisas vos tenho dito, estando convosco.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Mas o Consolador, o Espírito Santo, que o Pai enviará em meu nome, esse vos ensinará todas as coisas, e vos fará lembrar de tudo quanto vos tenho dito."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">"Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá. Não se perturbe o vosso coração, nem se atemorize.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Ouvistes que eu vos disse: 'Vou, e venho para vós.' Se me amásseis, alegrar-vos-íeis de que eu disse: 'Vou para o Pai', porque o Pai é maior do que eu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-jesus">Eu vo-lo disse agora, antes que aconteça, para que, quando acontecer, vós creiais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-jesus">Já não falarei muito convosco, porque vem o príncipe deste mundo, e ele nada tem em mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Mas isto é para que o mundo conheça que eu amo o Pai, e que, como o Pai me mandou, assim eu faço. Levantai-vos, vamos daqui."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:1, 27 — "Não se perturbe o vosso coração"</span>
+            <div class="greek-text">μὴ ταρασσέσθω ὑμῶν ἡ καρδία</div>
+            <p><strong>Análise:</strong> A exortação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:2 — "Moradas"</span>
+            <div class="greek-text">μοναί</div>
+            <p><strong>Análise:</strong> "Moradas", "habitações".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "moradas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 14:6 — "Eu sou o caminho, e a verdade, e a vida"</span>
+            <div class="greek-text">ἐγώ εἰμι ἡ ὁδὸς καὶ ἡ ἀλήθεια καὶ ἡ ζωή</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 14:9 — "Quem me vê a mim, vê o Pai"</span>
+            <div class="greek-text">ὁ ἑωρακὼς ἐμὲ ἑώρακεν τὸν πατέρα</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 14:10 — "O Pai, que habita em mim"</span>
+            <div class="greek-text">ὁ πατὴρ ... ἐν ἐμοὶ μένων</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 14:12 — "As fará maiores do que estas"</span>
+            <div class="greek-text">μείζονα τούτων ποιήσει</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:13-14 — "Em meu nome"</span>
+            <div class="greek-text">ἐν τῷ ὀνόματί μου</div>
+            <p><strong>Análise:</strong> A oração em nome de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em meu nome".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:16 — "Outro Consolador"</span>
+            <div class="greek-text">ἄλλον παράκλητον</div>
+            <p><strong>Análise:</strong> <em>Paraklētos</em> pode envolver as ideias de consolador, auxiliador, defensor ou aquele que é chamado para estar ao lado. A TBLH mantém "Consolador" de forma consistente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Consolador".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 14:17 — "Espírito da verdade"</span>
+            <div class="greek-text">τὸ πνεῦμα τῆς ἀληθείας</div>
+            <p><strong>Análise:</strong> A designação do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Espírito da verdade".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 14:18 — "Não vos deixarei órfãos"</span>
+            <div class="greek-text">οὐκ ἀφήσω ὑμᾶς ὀρφανούς</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:23 — "Faremos nele morada"</span>
+            <div class="greek-text">μονὴν ποιησόμεθα</div>
+            <p><strong>Análise:</strong> O termo <em>monē</em> está relacionado à palavra traduzida como "moradas" no v. 2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "faremos nele morada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:26 — "O Consolador, o Espírito Santo"</span>
+            <div class="greek-text">ὁ παράκλητος, τὸ πνεῦμα τὸ ἅγιον</div>
+            <p><strong>Análise:</strong> O Espírito Santo como Consolador.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o Consolador, o Espírito Santo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 14:27 — "A minha paz vos dou"</span>
+            <div class="greek-text">εἰρήνην τὴν ἐμὴν δίδωμι ὑμῖν</div>
+            <p><strong>Análise:</strong> A paz de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:28 — "O Pai é maior do que eu"</span>
+            <div class="greek-text">ὁ πατὴρ μείζων μού ἐστιν</div>
+            <p><strong>Análise:</strong> Declaração de Jesus no contexto de sua ida ao Pai.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 14:30 — "Vem o príncipe deste mundo"</span>
+            <div class="greek-text">ἔρχεται ... ὁ τοῦ κόσμου τούτου ἄρχων</div>
+            <p><strong>Análise:</strong> A referência ao príncipe deste mundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "príncipe deste mundo".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

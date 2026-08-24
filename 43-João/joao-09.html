@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Siloé</span>
+                Do grego <em>Silōam</em> (Σιλωάμ), traduzido por João como "O Enviado".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Expulso da sinagoga</span>
+                Do grego <em>aposynagōgos</em> (ἀποσυνάγωγος), exclusão da comunidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Luz do mundo</span>
+                Declaração de Jesus sobre si mesmo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filho de Deus</span>
+                Título pelo qual Jesus se identifica ao cego curado.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <!-- PERÍCOPE 1: A CURA DO CEGO DE NASCENÇA (9.1-12) -->
+    <div class="pericope">A Cura do Cego de Nascença</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, passando Jesus, viu um homem cego de nascença.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E os seus discípulos lhe perguntaram, dizendo: <span class="fala-outro">"Rabi, quem pecou: este, ou seus pais, para que nascesse cego?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Jesus respondeu: <span class="fala-jesus">"Nem ele pecou, nem seus pais; mas foi para que as obras de Deus se manifestassem nele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Eu devo fazer as obras daquele que me enviou, enquanto é dia; a noite vem, quando ninguém pode trabalhar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">Enquanto estou no mundo, sou a luz do mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Tendo dito isto, cuspiu na terra, e fez lodo com a saliva, e untou com o lodo os olhos do cego.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E disse-lhe: <span class="fala-jesus">"Vai, lava-te no tanque de Siloé"</span> — que traduzido é: O Enviado. Então ele foi, e se lavou, e voltou vendo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Então os vizinhos, e os que antes o tinham visto, pois era mendigo, diziam: <span class="fala-outro">"Não é este o que se assentava e mendigava?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Uns diziam: <span class="fala-outro">"É este."</span> E outros: <span class="fala-outro">"Parece-se com ele."</span> Ele dizia: <span class="fala-outro">"Sou eu."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Diziam-lhe, pois: <span class="fala-outro">"Como te foram abertos os olhos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Ele respondeu e disse: <span class="fala-outro">"O homem chamado Jesus fez lodo, e untou os meus olhos, e disse-me: 'Vai ao tanque de Siloé, e lava-te.' E, indo eu, e lavando-me, vi."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então lhe disseram: <span class="fala-outro">"Onde está ele?"</span> Ele disse: <span class="fala-outro">"Não sei."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: O INTERROGATÓRIO DOS FARISEUS (9.13-34) -->
+    <div class="pericope">O Interrogatório dos Fariseus</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Levaram, pois, aos fariseus o que antes era cego.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E era sábado quando Jesus fez o lodo, e lhe abriu os olhos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Então os fariseus também lhe perguntaram como ele tinha visto. E ele lhes disse: <span class="fala-outro">"Pôs-me lodo sobre os olhos, e lavei-me, e vejo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Então alguns dos fariseus diziam: <span class="fala-outro">"Este homem não é de Deus, pois não guarda o sábado."</span> Outros diziam: <span class="fala-outro">"Como pode um homem pecador fazer tais sinais?"</span> E havia divisão entre eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Tornaram a dizer ao cego: <span class="fala-outro">"Tu, que dizes daquele que te abriu os olhos?"</span> E ele disse: <span class="fala-outro">"É profeta."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Mas os judeus não creram que ele tinha sido cego, e que agora via, até que chamaram os pais do que agora via.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E perguntaram-lhes, dizendo: <span class="fala-outro">"É este o vosso filho, que vós dizeis ter nascido cego? Como, pois, agora vê?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Seus pais lhes responderam e disseram: <span class="fala-outro">"Sabemos que este é o nosso filho, e que nasceu cego.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">Mas como agora vê, não sabemos; ou quem lhe abriu os olhos, nós não sabemos. Ele já tem idade; perguntai-lho a ele mesmo, ele falará por si mesmo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Isto disseram seus pais, porque temiam os judeus, pois os judeus já tinham combinado que, se alguém confessasse ser ele o Cristo, fosse expulso da sinagoga.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Por isso é que os seus pais disseram: "Ele já tem idade; perguntai-lho a ele mesmo."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Então chamaram outra vez o homem que tinha sido cego, e disseram-lhe: <span class="fala-outro">"Dá glória a Deus. Nós sabemos que esse homem é pecador."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Ele respondeu e disse: <span class="fala-outro">"Se é pecador, não sei. Uma coisa sei: é que, tendo eu sido cego, agora vejo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E tornaram a dizer-lhe: <span class="fala-outro">"Que é que ele te fez? Como te abriu os olhos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Ele lhes respondeu: <span class="fala-outro">"Já vo-lo disse, e não ouvistes. Por que o quereis ouvir outra vez? Porventura também vós quereis fazer-vos seus discípulos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Então o injuriaram, e disseram: <span class="fala-outro">"Tu és seu discípulo; mas nós somos discípulos de Moisés.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">Sabemos que Deus falou a Moisés; mas este, não sabemos de onde é."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        O homem respondeu e disse-lhes: <span class="fala-outro">"Nisto, pois, está a maravilha: que vós não sabeis de onde ele é, e contudo me abriu os olhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">Ora, nós sabemos que Deus não ouve pecadores; mas, se alguém é temente a Deus, e faz a sua vontade, a esse ele ouve.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">Desde o princípio do mundo não se ouviu que alguém abrisse os olhos a um cego de nascença.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">Se este não fosse de Deus, nada poderia fazer."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Eles responderam e disseram-lhe: <span class="fala-outro">"Tu nasceste todo em pecados, e nos ensinas a nós?"</span> E o expulsaram.
+    </p>
+
+    <!-- PERÍCOPE 3: A CONFISSÃO DO CEGO (9.35-41) -->
+    <div class="pericope">A Confissão do Cego</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Jesus ouviu que o tinham expulsado. E, encontrando-o, disse-lhe: <span class="fala-jesus">"Crês tu no Filho de Deus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Ele respondeu e disse: <span class="fala-outro">"Quem é ele, Senhor, para que eu creia nele?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E Jesus lhe disse: <span class="fala-jesus">"Tu já o tens visto; e é aquele que fala contigo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E ele disse: <span class="fala-outro">"Creio, Senhor."</span> E o adorou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E Jesus disse: <span class="fala-jesus">"Eu vim a este mundo para juízo, a fim de que os que não veem vejam, e os que veem fiquem cegos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E alguns dos fariseus que estavam com ele, ouvindo isto, disseram-lhe: <span class="fala-outro">"Também nós somos cegos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Jesus lhes disse: <span class="fala-jesus">"Se fôsseis cegos, não teríeis pecado; mas agora dizeis: 'Vemos'; portanto, o vosso pecado permanece."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:1 — "Cego de nascença"</span>
+            <div class="greek-text">τυφλὸν ἐκ γενετῆς</div>
+            <p><strong>Análise:</strong> Literalmente "cego desde o nascimento".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cego de nascença".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:2 — "Rabi, quem pecou?"</span>
+            <div class="greek-text">ῥαββί, τίς ἥμαρτεν</div>
+            <p><strong>Análise:</strong> A pergunta dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 9:3 — "Nem ele pecou, nem seus pais"</span>
+            <div class="greek-text">οὔτε οὗτος ἥμαρτεν οὔτε οἱ γονεῖς αὐτοῦ</div>
+            <p><strong>Análise:</strong> A resposta de Jesus à pergunta sobre a causa da cegueira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 9:5 — "Sou a luz do mundo"</span>
+            <div class="greek-text">φῶς εἰμι τοῦ κόσμου</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:7, 11 — "Tanque de Siloé"</span>
+            <div class="greek-text">τὴν κολυμβήθραν τοῦ Σιλωάμ</div>
+            <p><strong>Análise:</strong> João traduz: "O Enviado".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Siloé" com a tradução.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:10 — "Como te foram abertos os olhos?"</span>
+            <div class="greek-text">πῶς ἀνεῴχθησάν σου οἱ ὀφθαλμοί</div>
+            <p><strong>Análise:</strong> A pergunta dos vizinhos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:14 — "Era sábado"</span>
+            <div class="greek-text">σάββατον</div>
+            <p><strong>Análise:</strong> A observação temporal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sábado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:16 — "Como pode um homem pecador fazer tais sinais?"</span>
+            <div class="greek-text">πῶς δύναται ἄνθρωπος ἁμαρτωλὸς τοιαῦτα σημεῖα ποιεῖν</div>
+            <p><strong>Análise:</strong> A divisão entre os fariseus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:22 — "Expulso da sinagoga"</span>
+            <div class="greek-text">ἀποσυνάγωγος</div>
+            <p><strong>Análise:</strong> Exclusão da comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "expulso da sinagoga".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:24 — "Dá glória a Deus"</span>
+            <div class="greek-text">δὸς δόξαν τῷ θεῷ</div>
+            <p><strong>Análise:</strong> A expressão dos judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:31 — "Deus não ouve pecadores"</span>
+            <div class="greek-text">οἴδαμεν δὲ ὅτι ἁμαρτωλῶν ὁ θεὸς οὐκ ἀκούει</div>
+            <p><strong>Análise:</strong> A declaração do homem curado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 9:32 — "Desde o princípio do mundo"</span>
+            <div class="greek-text">ἐκ τοῦ αἰῶνος</div>
+            <p><strong>Análise:</strong> A expressão do homem curado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desde o princípio do mundo".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">João 9:35 — "Crês tu no Filho de Deus?"</span>
+            <div class="greek-text">σὺ πιστεύεις εἰς τὸν υἱὸν τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz "Filho de Deus"; algumas tradições textuais apresentam "Filho do homem".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a leitura "Filho de Deus" conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 9:37 — "Tu já o tens visto"</span>
+            <div class="greek-text">καὶ ἑώρακας αὐτὸν</div>
+            <p><strong>Análise:</strong> A resposta de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 9:39 — "Eu vim a este mundo para juízo"</span>
+            <div class="greek-text">εἰς κρίμα ἐγὼ εἰς τὸν κόσμον τοῦτον ἦλθον</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

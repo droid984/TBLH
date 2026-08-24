@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 6</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 6</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Tiberíades</span>
+                Nome pelo qual o mar da Galileia também era conhecido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pão da vida</span>
+                A declaração de Jesus sobre si mesmo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Maná</span>
+                O pão dado aos israelitas no deserto.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Palavras da vida eterna</span>
+                A confissão de Pedro.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">6</div>
+
+    <!-- PERÍCOPE 1: A MULTIPLICAÇÃO DOS PÃES (6.1-15) -->
+    <div class="pericope">A Multiplicação dos Pães</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">D</span>epois disto, Jesus partiu para o outro lado do mar da Galileia, que é o de Tiberíades.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E grande multidão o seguia, porque via os sinais que ele fazia sobre os enfermos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E Jesus subiu a um monte, e assentou-se ali com os seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E a Páscoa, a festa dos judeus, estava próxima.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Então Jesus, levantando os olhos, e vendo que uma grande multidão vinha a ele, disse a Filipe: <span class="fala-jesus">"Onde compraremos pão, para estes comerem?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas dizia isto para o testar; porque ele bem sabia o que havia de fazer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Filipe respondeu-lhe: <span class="fala-outro">"Duzentos denários de pão não lhes bastariam, para que cada um tomasse um pouco."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E um dos seus discípulos, André, irmão de Simão Pedro, disse-lhe:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">"Está aqui um rapaz que tem cinco pães de cevada e dois peixinhos; mas o que é isto para tantos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E Jesus disse: <span class="fala-jesus">"Fazei os homens assentar."</span> E havia muita erva naquele lugar. Assentaram-se, pois, os homens em número de quase cinco mil.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E Jesus tomou os pães e, tendo dado graças, repartiu-os pelos discípulos, e os discípulos pelos que estavam assentados; e igualmente também os peixes, quanto queriam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, quando estavam saciados, disse aos seus discípulos: <span class="fala-jesus">"Recolhei os pedaços que sobraram, para que nada se perca."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Recolheram-nos, pois, e encheram doze cestos de pedaços dos cinco pães de cevada, que sobraram aos que tinham comido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Vendo, pois, aqueles homens o sinal que Jesus tinha feito, diziam: <span class="fala-outro">"Este é verdadeiramente o profeta que devia vir ao mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Então Jesus, sabendo que viriam para o arrebatarem e o fazerem rei, retirou-se outra vez, ele sozinho, para o monte.
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS ANDA SOBRE O MAR (6.16-21) -->
+    <div class="pericope">Jesus Anda sobre o Mar</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, quando veio a tarde, os seus discípulos desceram ao mar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, entrando num barco, passaram o mar em direção a Cafarnaum. E já era escuro, e Jesus ainda não tinha vindo a eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E o mar se levantou, porque soprava um grande vento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, tendo navegado quase vinte e cinco ou trinta estádios, viram Jesus andando sobre o mar e aproximando-se do barco; e temeram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Mas ele lhes disse: <span class="fala-jesus">"Sou eu, não temais."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Então eles o receberam de bom grado no barco; e imediatamente o barco chegou à terra para a qual iam.
+    </p>
+
+    <!-- PERÍCOPE 3: O PÃO DA VIDA (6.22-59) -->
+    <div class="pericope">O Pão da Vida</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        No dia seguinte, a multidão que estava do outro lado do mar, vendo que não havia ali outro barco, senão aquele em que os seus discípulos tinham entrado, e que Jesus não tinha entrado com os seus discípulos no barco, mas que os seus discípulos tinham ido sozinhos
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        — mas outros barcos tinham chegado de Tiberíades, perto do lugar onde tinham comido o pão, havendo o Senhor dado graças —,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        quando, pois, a multidão viu que Jesus não estava ali, nem os seus discípulos, entraram também nos barcos, e foram a Cafarnaum, em busca de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, achando-o do outro lado do mar, disseram-lhe: <span class="fala-outro">"Rabi, quando chegaste aqui?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Jesus respondeu-lhes e disse: <span class="fala-jesus">"Em verdade, em verdade vos digo: vós me buscais, não porque vistes sinais, mas porque comestes dos pães e vos saciastes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">Trabalhai, não pela comida que perece, mas pela comida que permanece para a vida eterna, a qual o Filho do homem vos dará; porque a este o Pai, Deus, selou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Disseram-lhe, pois: <span class="fala-outro">"Que faremos, para que realizemos as obras de Deus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Jesus respondeu e disse-lhes: <span class="fala-jesus">"A obra de Deus é esta: que creiais naquele que ele enviou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Disseram-lhe, pois: <span class="fala-outro">"Que sinal, pois, fazes tu, para que o vejamos e creiamos em ti? Que obras realizas?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">Nossos pais comeram o maná no deserto, como está escrito: 'Deu-lhes a comer pão do céu.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Em verdade, em verdade vos digo: Moisés não vos deu o pão do céu; mas meu Pai vos dá o verdadeiro pão do céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-jesus">Porque o pão de Deus é aquele que desce do céu e dá vida ao mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Disseram-lhe, pois: <span class="fala-outro">"Senhor, dá-nos sempre desse pão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E Jesus lhes disse: <span class="fala-jesus">"Eu sou o pão da vida. Aquele que vem a mim jamais terá fome, e aquele que crê em mim jamais terá sede.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Mas eu já vos disse: também vós me vistes, e não credes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-jesus">Tudo o que o Pai me dá virá a mim; e o que vem a mim de modo nenhum o lançarei fora.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-jesus">Porque eu desci do céu, não para fazer a minha vontade, mas a vontade daquele que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-jesus">E esta é a vontade do Pai, que me enviou: que eu não perca nenhum de todos os que me deu, mas que eu o ressuscite no último dia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-jesus">E esta é a vontade daquele que me enviou: que todo aquele que vê o Filho e crê nele tenha a vida eterna; e eu o ressuscitarei no último dia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Murmuravam, pois, os judeus dele, porque dissera: "Eu sou o pão que desceu do céu."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E diziam: <span class="fala-outro">"Não é este Jesus, o filho de José, cujo pai e mãe nós conhecemos? Como, pois, diz ele: 'Desci do céu'?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        Respondeu, pois, Jesus e disse-lhes: <span class="fala-jesus">"Não murmureis entre vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-jesus">Ninguém pode vir a mim, se o Pai, que me enviou, não o trouxer; e eu o ressuscitarei no último dia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">Está escrito nos profetas: 'E todos serão ensinados por Deus.' Portanto, todo aquele que do Pai ouviu e aprendeu vem a mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">Não que alguém tenha visto o Pai, senão aquele que é de Deus; este tem visto o Pai."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">"Em verdade, em verdade vos digo: aquele que crê em mim tem a vida eterna."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">"Eu sou o pão da vida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">Vossos pais comeram o maná no deserto, e morreram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">Este é o pão que desce do céu, para que o homem coma dele e não morra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-jesus">Eu sou o pão vivo que desceu do céu; se alguém comer deste pão, viverá para sempre; e o pão que eu darei é a minha carne, que eu darei pela vida do mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        Os judeus, pois, contendiam entre si, dizendo: <span class="fala-outro">"Como pode este dar-nos a sua carne a comer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Em verdade, em verdade vos digo: se não comerdes a carne do Filho do homem, e não beberdes o seu sangue, não tereis vida em vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        <span class="fala-jesus">Quem come a minha carne e bebe o meu sangue tem a vida eterna, e eu o ressuscitarei no último dia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        <span class="fala-jesus">Porque a minha carne verdadeiramente é comida, e o meu sangue verdadeiramente é bebida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        <span class="fala-jesus">Quem come a minha carne e bebe o meu sangue permanece em mim, e eu nele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        <span class="fala-jesus">Assim como o Pai, que vive, me enviou, e eu vivo pelo Pai, assim também quem de mim se alimenta, também esse viverá por mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        <span class="fala-jesus">Este é o pão que desceu do céu; não como o maná que os vossos pais comeram, e morreram. Quem come este pão viverá para sempre."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        Estas coisas ele disse na sinagoga, ensinando em Cafarnaum.
+    </p>
+
+    <!-- PERÍCOPE 4: A REAÇÃO DOS DISCÍPULOS (6.60-71) -->
+    <div class="pericope">A Reação dos Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        Muitos, pois, dos seus discípulos, ouvindo isso, disseram: <span class="fala-outro">"Dura é esta palavra; quem a pode ouvir?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">61</span>
+        Mas Jesus, sabendo em si mesmo que os seus discípulos murmuravam disto, disse-lhes: <span class="fala-jesus">"Isto vos escandaliza?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">62</span>
+        <span class="fala-jesus">E se virdes o Filho do homem subir para onde ele estava antes?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">63</span>
+        <span class="fala-jesus">O Espírito é o que vivifica; a carne para nada aproveita. As palavras que eu vos tenho dito são espírito e são vida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">64</span>
+        <span class="fala-jesus">Mas há alguns de vós que não creem."</span> Porque Jesus sabia desde o princípio quem eram os que não criam, e quem era o que o havia de trair.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">65</span>
+        E dizia: <span class="fala-jesus">"Por isso eu vos disse: ninguém pode vir a mim, se por meu Pai não lhe for concedido."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">66</span>
+        Desde então, muitos dos seus discípulos voltaram para trás, e já não andavam com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">67</span>
+        Então Jesus disse aos doze: <span class="fala-jesus">"Quereis vós também retirar-vos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">68</span>
+        Respondeu-lhe, pois, Simão Pedro: <span class="fala-outro">"Senhor, para quem iremos? Tu tens as palavras da vida eterna.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">69</span>
+        <span class="fala-outro">E nós temos crido e conhecido que tu és o Cristo, o Filho do Deus vivo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">70</span>
+        Jesus lhes respondeu: <span class="fala-jesus">"Não vos escolhi eu aos doze? E um de vós é um diabo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">71</span>
+        E ele falava de Judas Iscariotes, filho de Simão, porque este o havia de trair, sendo um dos doze.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:1 — "Tiberíades"</span>
+            <div class="greek-text">Τιβεριάδος</div>
+            <p><strong>Análise:</strong> Nome pelo qual o mar da Galileia também era conhecido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Tiberíades".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:4 — "Páscoa"</span>
+            <div class="greek-text">τὸ πάσχα</div>
+            <p><strong>Análise:</strong> A festa dos judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Páscoa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:7 — "Duzentos denários"</span>
+            <div class="greek-text">διακοσίων δηναρίων</div>
+            <p><strong>Análise:</strong> A quantia mencionada por Filipe.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "duzentos denários".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:9 — "Cinco pães de cevada e dois peixinhos"</span>
+            <div class="greek-text">πέντε ἄρτους κριθίνους καὶ δύο ὀψάρια</div>
+            <p><strong>Análise:</strong> A oferta do rapaz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:14 — "Profeta que devia vir ao mundo"</span>
+            <div class="greek-text">ὁ προφήτης ὁ ἐρχόμενος εἰς τὸν κόσμον</div>
+            <p><strong>Análise:</strong> A declaração da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:19 — "Vinte e cinco ou trinta estádios"</span>
+            <div class="greek-text">σταδίους εἴκοσι πέντε ἢ τριάκοντα</div>
+            <p><strong>Análise:</strong> A distância navegada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:20 — "Sou eu, não temais"</span>
+            <div class="greek-text">ἐγώ εἰμι, μὴ φοβεῖσθε</div>
+            <p><strong>Análise:</strong> A forma <em>egō eimi</em> aparece repetidamente em João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:27 — "Comida que permanece"</span>
+            <div class="greek-text">τὴν βρῶσιν ... τὴν μένουσαν</div>
+            <p><strong>Análise:</strong> A exortação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:35, 48 — "Eu sou o pão da vida"</span>
+            <div class="greek-text">ἐγώ εἰμι ὁ ἄρτος τῆς ζωῆς</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:45 — "Todos serão ensinados por Deus"</span>
+            <div class="greek-text">ἔσονται πάντες διδακτοὶ θεοῦ</div>
+            <p><strong>Análise:</strong> Citação de Isaías 54:13.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:53-56 — "Minha carne... meu sangue"</span>
+            <div class="greek-text">τὴν σάρκα ... τὸ αἷμα</div>
+            <p><strong>Análise:</strong> As declarações de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:60 — "Dura é esta palavra"</span>
+            <div class="greek-text">σκληρός ἐστιν ὁ λόγος οὗτος</div>
+            <p><strong>Análise:</strong> A reação dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:63 — "As palavras que eu vos tenho dito"</span>
+            <div class="greek-text">τὰ ῥήματα</div>
+            <p><strong>Análise:</strong> "Palavras", "declarações".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavras".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:63 — "O Espírito é o que vivifica"</span>
+            <div class="greek-text">τὸ πνεῦμά ἐστιν τὸ ζωοποιοῦν</div>
+            <p><strong>Análise:</strong> A explicação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 6:69 — "Tu és o Cristo, o Filho do Deus vivo"</span>
+            <div class="greek-text">σὺ εἶ ὁ χριστὸς ὁ υἱὸς τοῦ θεοῦ τοῦ ζῶντος</div>
+            <p><strong>Análise:</strong> A confissão de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 6:70 — "Um de vós é um diabo"</span>
+            <div class="greek-text">εἷς ἐξ ὑμῶν διάβολός ἐστιν</div>
+            <p><strong>Análise:</strong> A referência a Judas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um diabo".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

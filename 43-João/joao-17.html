@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 17</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 17</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Único Deus verdadeiro</span>
+                Do grego <em>monos alēthinos Theos</em> (μόνος ἀληθινός Θεός).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filho da perdição</span>
+                Do grego <em>huios tēs apōleias</em> (υἱὸς τῆς ἀπωλείας).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Perfeitos em unidade</span>
+                Do grego <em>teteleiōmenoi eis hen</em> (τετελειωμένοι εἰς ἕν).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pai justo</span>
+                Do grego <em>Pater dikaie</em> (Πάτερ δίκαιε).
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">17</div>
+
+    <!-- PERÍCOPE 1: A ORAÇÃO DE JESUS POR SI MESMO (17.1-5) -->
+    <div class="pericope">A Oração de Jesus por Si Mesmo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">J</span>esus falou estas coisas e, levantando os olhos ao céu, disse: <span class="fala-jesus">"Pai, é chegada a hora. Glorifica o teu Filho, para que também o teu Filho te glorifique a ti;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-jesus">assim como lhe deste poder sobre toda a carne, para que dê a vida eterna a todos quantos lhe deste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-jesus">E a vida eterna é esta: que te conheçam a ti, o único Deus verdadeiro, e a Jesus Cristo, a quem enviaste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-jesus">Eu te glorifiquei na terra; completei a obra que me deste para fazer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-jesus">E agora, glorifica-me tu, ó Pai, junto de ti mesmo, com aquela glória que eu tinha contigo antes que o mundo existisse."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A ORAÇÃO DE JESUS PELOS DISCÍPULOS (17.6-19) -->
+    <div class="pericope">A Oração de Jesus pelos Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">"Manifestei o teu nome aos homens que do mundo me deste. Eram teus, e tu mos deste, e eles guardaram a tua palavra.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Agora já têm conhecido que todas as coisas que me deste são de ti;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">porque eu lhes dei as palavras que tu me deste, e eles as receberam, e verdadeiramente conheceram que eu saí de ti, e creram que tu me enviaste."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-jesus">"Eu rogo por eles; não rogo pelo mundo, mas por aqueles que me deste, porque são teus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">E todas as minhas coisas são tuas, e as tuas coisas são minhas; e neles sou glorificado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">E eu já não estou mais no mundo; mas eles estão no mundo, e eu vou para ti. Pai santo, guarda em teu nome aqueles que me deste, para que sejam um, assim como nós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Enquanto eu estava com eles no mundo, eu os guardava em teu nome. Guardei aqueles que me deste, e nenhum deles se perdeu, senão o filho da perdição, para que a Escritura se cumprisse."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">"Mas agora vou para ti, e digo isto no mundo, para que eles tenham a minha alegria completa em si mesmos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">Eu lhes dei a tua palavra; e o mundo os odiou, porque não são do mundo, assim como eu não sou do mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">Não rogo que os tires do mundo, mas que os guardes do mal.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Eles não são do mundo, assim como eu não sou do mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Santifica-os na tua verdade; a tua palavra é a verdade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Assim como tu me enviaste ao mundo, também eu os enviei ao mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E por eles eu me santifico a mim mesmo, para que também eles sejam santificados na verdade."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A ORAÇÃO DE JESUS POR TODOS OS CRENTES (17.20-26) -->
+    <div class="pericope">A Oração de Jesus por Todos os Crentes</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">"E não rogo somente por estes, mas também por aqueles que, pela sua palavra, hão de crer em mim;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">para que todos sejam um, como tu, ó Pai, estás em mim, e eu em ti; que também eles sejam um em nós, para que o mundo creia que tu me enviaste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-jesus">E eu lhes dei a glória que a mim me deste, para que sejam um, como nós somos um.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-jesus">Eu neles, e tu em mim, para que eles sejam perfeitos em unidade, e para que o mundo conheça que tu me enviaste, e que os tens amado como amaste a mim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">"Pai, aqueles que me deste quero que, onde eu estiver, também eles estejam comigo, para que vejam a minha glória, que me deste; porque me amaste antes da fundação do mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Pai justo, o mundo não te conheceu; mas eu te conheci, e estes conheceram que tu me enviaste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E eu lhes fiz conhecer o teu nome, e lho farei conhecer ainda, para que o amor com que me amaste esteja neles, e eu neles."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 17:1 — "Levantando os olhos ao céu"</span>
+            <div class="greek-text">ἐπάρας τοὺς ὀφθαλμοὺς αὐτοῦ εἰς τὸν οὐρανόν</div>
+            <p><strong>Análise:</strong> A postura de Jesus em oração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 17:2 — "Poder sobre toda a carne"</span>
+            <div class="greek-text">ἐξουσίαν πάσης σαρκός</div>
+            <p><strong>Análise:</strong> Autoridade sobre toda a humanidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "poder sobre toda a carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 17:3 — "O único Deus verdadeiro"</span>
+            <div class="greek-text">τὸν μόνον ἀληθινὸν Θεόν</div>
+            <p><strong>Análise:</strong> O Deus único e verdadeiro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o único Deus verdadeiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 17:4 — "Completei a obra"</span>
+            <div class="greek-text">τελειώσας</div>
+            <p><strong>Análise:</strong> "Tendo completado", "tendo levado ao fim".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "completei a obra".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 17:5 — "Antes que o mundo existisse"</span>
+            <div class="greek-text">πρὸ τοῦ τὸν κόσμον εἶναι</div>
+            <p><strong>Análise:</strong> Referência à glória que Jesus tinha com o Pai antes da existência do mundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 17:6, 26 — "Manifestei o teu nome"</span>
+            <div class="greek-text">ἐφανέρωσά σου τὸ ὄνομα</div>
+            <p><strong>Análise:</strong> Jesus revelou o caráter e a natureza de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Manifestei o teu nome".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 17:12 — "Filho da perdição"</span>
+            <div class="greek-text">υἱὸς τῆς ἀπωλείας</div>
+            <p><strong>Análise:</strong> Literalmente "filho da perdição", referindo-se a Judas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filho da perdição".</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 17:15 — "Guardes do mal"</span>
+            <div class="greek-text">τηρήσῃς αὐτοὺς ἐκ τοῦ πονηροῦ</div>
+            <p><strong>Análise:</strong> <em>Tou ponērou</em> pode referir-se ao "mal" ou ao "maligno".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "guardes do mal".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 17:17 — "Santifica-os na tua verdade"</span>
+            <div class="greek-text">ἁγίασον αὐτοὺς ἐν τῇ ἀληθείᾳ σου</div>
+            <p><strong>Análise:</strong> A oração de Jesus pela santificação dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 17:19 — "Eu me santifico a mim mesmo"</span>
+            <div class="greek-text">ἐγὼ ἁγιάζω ἐμαυτόν</div>
+            <p><strong>Análise:</strong> Jesus se dedica ou se consagra para a obra do Pai.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 17:23 — "Perfeitos em unidade"</span>
+            <div class="greek-text">τετελειωμένοι εἰς ἕν</div>
+            <p><strong>Análise:</strong> "Aperfeiçoados em um".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perfeitos em unidade".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 17:24 — "Antes da fundação do mundo"</span>
+            <div class="greek-text">πρὸ καταβολῆς κόσμου</div>
+            <p><strong>Análise:</strong> O amor do Pai por Jesus antes da criação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 17:25 — "Pai justo"</span>
+            <div class="greek-text">Πάτερ δίκαιε</div>
+            <p><strong>Análise:</strong> Jesus se dirige ao Pai como justo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Pai justo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 17:26 — "O amor com que me amaste esteja neles"</span>
+            <div class="greek-text">ἡ ἀγάπη ... ᾖ ἐν αὐτοῖς</div>
+            <p><strong>Análise:</strong> A conclusão da oração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

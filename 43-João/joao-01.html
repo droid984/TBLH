@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 1</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .dossier-section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fdfcf9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dossier-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .dossier-item h4 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dossier-item p {
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        .text-base-section {
+            margin: 10px auto 50px auto;
+            padding: 18px 30px;
+            max-width: 620px;
+            background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #4a4a4a;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+        }
+        .text-base-section::before,
+        .text-base-section::after {
+            content: "";
+            display: block;
+            height: 0;
+            border-top: 3px double var(--accent-red);
+            margin: 0 auto 12px auto;
+            width: 70%;
+        }
+        .text-base-section::after {
+            margin: 12px auto 0 auto;
+            border-top: 3px double var(--accent-red);
+        }
+        .text-base-section strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            margin-bottom: 6px;
+        }
+        .text-base-section em {
+            font-style: italic;
+            color: #2c2520;
+            font-weight: 500;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="dossier-section">
+        <h3 class="dossier-title">Dossiê do Evangelho de João</h3>
+        <div class="dossier-grid">
+            <div class="dossier-item">
+                <h4>Autoria</h4>
+                <p><strong>João</strong>, filho de Zebedeu, um dos doze apóstolos, o "discípulo amado". A tradição antiga atribui a ele este Evangelho, escrito em Éfeso no final do primeiro século.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Data e Contexto</h4>
+                <p>Provavelmente escrito entre <strong>85-95 d.C.</strong> O Evangelho reflete um contexto de conflito com o judaísmo sinagogal e apresenta uma cristologia elevada, afirmando a divindade de Jesus desde o primeiro versículo.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Tema Central</h4>
+                <p><strong>Jesus é o Verbo feito carne, o Filho de Deus, o Cordeiro que tira o pecado do mundo.</strong> João seleciona seus sinais para demonstrar que Jesus é o Cristo, o Filho de Deus, e que crendo tenham vida em seu nome (João 20:31).</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Estrutura Literária</h4>
+                <p>O Evangelho de João é organizado em <strong>duas grandes seções</strong>: o Livro dos Sinais (caps. 1-12) e o Livro da Glória (caps. 13-21). A estrutura alterna entre narrativas de milagres e longos discursos teológicos.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-base-section">
+        <strong>Texto Base</strong>
+        <em>Textus Receptus</em> — Edição Stephanus de 1550<br>
+        <small style="color:#8a7a66; font-size:12px;">Novo Testamento Grego</small>
+    </div>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 1</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Verbo</span>
+                Do grego <em>Logos</em> (Λόγος), "Palavra". Termo preservado na forma tradicional.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Unigênito</span>
+                Do grego <em>monogenēs</em> (μονογενής), "único", "singular".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Rabi</span>
+                Do hebraico, "Mestre". João traduz o termo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Messias</span>
+                Do hebraico, "Ungido". João traduz: "o Cristo".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cefas</span>
+                Do aramaico, "Pedra". João traduz: "Pedro".
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">1</div>
+
+    <!-- PERÍCOPE 1: O VERBO (1.1-18) -->
+    <div class="pericope">O Verbo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>o princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Ele estava no princípio com Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Todas as coisas foram feitas por ele, e sem ele nada do que foi feito se fez.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Nele estava a vida, e a vida era a luz dos homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E a luz resplandece nas trevas, e as trevas não a venceram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Houve um homem enviado de Deus, cujo nome era João.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Este veio para testemunho, para testificar da luz, a fim de que todos cressem por ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Ele não era a luz, mas veio para testificar da luz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        A luz verdadeira, que ilumina todo homem, estava vindo ao mundo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Ele estava no mundo, e o mundo foi feito por ele, e o mundo não o conheceu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Veio para o que era seu, e os seus não o receberam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Mas, a todos quantos o receberam, deu-lhes o poder de serem feitos filhos de Deus, aos que creem no seu nome;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        os quais não nasceram do sangue, nem da vontade da carne, nem da vontade do homem, mas de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E o Verbo se fez carne, e habitou entre nós, e vimos a sua glória, como a glória do unigênito do Pai, cheio de graça e de verdade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        João testificou dele, e clamou, dizendo: <span class="fala-outro">"Este era aquele de quem eu dizia: O que vem após mim é antes de mim, porque era primeiro do que eu."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E todos nós recebemos da sua plenitude, e graça sobre graça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque a lei foi dada por Moisés; a graça e a verdade vieram por Jesus Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Deus nunca foi visto por alguém. O Filho unigênito, que está no seio do Pai, esse o revelou.
+    </p>
+
+    <!-- PERÍCOPE 2: O TESTEMUNHO DE JOÃO (1.19-28) -->
+    <div class="pericope">O Testemunho de João</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E este é o testemunho de João, quando os judeus enviaram de Jerusalém sacerdotes e levitas para lhe perguntarem: <span class="fala-outro">"Quem és tu?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E ele confessou, e não negou; e confessou: <span class="fala-outro">"Eu não sou o Cristo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E perguntaram-lhe: <span class="fala-outro">"Quem és, então? És tu Elias?"</span> E ele disse: <span class="fala-outro">"Não sou."</span> <span class="fala-outro">"És tu o profeta?"</span> E respondeu: <span class="fala-outro">"Não."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Disseram-lhe, pois: <span class="fala-outro">"Quem és? Para que demos resposta aos que nos enviaram. Que dizes de ti mesmo?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Ele disse: <span class="fala-outro">"Eu sou a voz do que clama no deserto: Endireitai o caminho do Senhor, como disse o profeta Isaías."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E os que tinham sido enviados eram dos fariseus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E perguntaram-lhe, e disseram-lhe: <span class="fala-outro">"Por que batizas, então, se tu não és o Cristo, nem Elias, nem o profeta?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        João lhes respondeu, dizendo: <span class="fala-outro">"Eu batizo com água; mas no meio de vós está um a quem vós não conheceis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Este é aquele que vem após mim, que é antes de mim, do qual eu não sou digno de desatar a correia da sandália."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Estas coisas aconteceram em Betânia, do outro lado do Jordão, onde João estava batizando.
+    </p>
+
+    <!-- PERÍCOPE 3: O CORDEIRO DE DEUS (1.29-34) -->
+    <div class="pericope">O Cordeiro de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        No dia seguinte, João viu Jesus, que vinha para ele, e disse: <span class="fala-outro">"Eis o Cordeiro de Deus, que tira o pecado do mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">Este é aquele do qual eu disse: Após mim vem um homem que é antes de mim, porque era primeiro do que eu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">E eu não o conhecia; mas, para que ele fosse manifestado a Israel, por isso vim eu batizar com água."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E João testificou, dizendo: <span class="fala-outro">"Eu vi o Espírito descer do céu como pomba, e repousar sobre ele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">E eu não o conhecia; mas aquele que me enviou a batizar com água, esse me disse: 'Sobre aquele que vires descer o Espírito e repousar sobre ele, esse é o que batiza com o Espírito Santo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-outro">E eu vi, e tenho testificado que este é o Filho de Deus."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: OS PRIMEIROS DISCÍPULOS (1.35-51) -->
+    <div class="pericope">Os Primeiros Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        No dia seguinte, João estava outra vez ali, e dois dos seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, vendo Jesus passar, disse: <span class="fala-outro">"Eis o Cordeiro de Deus!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E os dois discípulos ouviram-no falar, e seguiram Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E Jesus, voltando-se e vendo que o seguiam, disse-lhes: <span class="fala-jesus">"Que buscais?"</span> E eles lhe disseram: <span class="fala-outro">"Rabi"</span> — que traduzido é: Mestre — <span class="fala-outro">"onde moras?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Ele lhes disse: <span class="fala-jesus">"Vinde e vede."</span> Foram, e viram onde morava, e ficaram com ele aquele dia; e era já quase a hora décima.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Era André, irmão de Simão Pedro, um dos dois que ouviram aquilo de João e o seguiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Este achou primeiro a seu irmão Simão, e disse-lhe: <span class="fala-outro">"Achamos o Messias"</span> — que traduzido é: o Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E levou-o a Jesus. E Jesus, olhando para ele, disse: <span class="fala-jesus">"Tu és Simão, filho de Jonas; tu serás chamado Cefas"</span> — que traduzido é: Pedro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        No dia seguinte, Jesus quis ir à Galileia, e achou Filipe, e disse-lhe: <span class="fala-jesus">"Segue-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E Filipe era de Betsaida, a cidade de André e de Pedro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Filipe achou Natanael, e disse-lhe: <span class="fala-outro">"Achamos aquele de quem Moisés escreveu na lei, e os profetas: Jesus de Nazaré, filho de José."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E Natanael lhe disse: <span class="fala-outro">"Pode vir alguma coisa boa de Nazaré?"</span> Filipe lhe disse: <span class="fala-outro">"Vem e vê."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        Jesus viu Natanael vindo a ele, e disse dele: <span class="fala-jesus">"Eis um verdadeiro israelita, em quem não há dolo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        Natanael lhe disse: <span class="fala-outro">"De onde me conheces?"</span> Jesus respondeu e disse-lhe: <span class="fala-jesus">"Antes que Filipe te chamasse, eu te vi, quando estavas debaixo da figueira."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        Natanael respondeu e disse-lhe: <span class="fala-outro">"Rabi, tu és o Filho de Deus; tu és o Rei de Israel."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Jesus respondeu e disse-lhe: <span class="fala-jesus">"Porque eu te disse: 'Vi-te debaixo da figueira', crês? Coisas maiores do que estas verás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        E disse-lhe: <span class="fala-jesus">"Em verdade, em verdade vos digo: daqui em diante vereis o céu aberto, e os anjos de Deus subindo e descendo sobre o Filho do homem."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:1, 14 — "Verbo"</span>
+            <div class="greek-text">Λόγος</div>
+            <p><strong>Análise:</strong> "Palavra", "Verbo". O termo é preservado em sua forma tradicional.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Verbo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:1-2 — "No princípio"</span>
+            <div class="greek-text">ἐν ἀρχῇ</div>
+            <p><strong>Análise:</strong> A abertura ecoa Gênesis 1:1.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "No princípio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:3 — "Todas as coisas foram feitas por ele"</span>
+            <div class="greek-text">πάντα δι' αὐτοῦ ἐγένετο</div>
+            <p><strong>Análise:</strong> A participação do Verbo na criação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:4 — "A vida era a luz dos homens"</span>
+            <div class="greek-text">ἡ ζωὴ ἦν τὸ φῶς τῶν ἀνθρώπων</div>
+            <p><strong>Análise:</strong> A vida e a luz no Verbo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:5 — "Não a venceram"</span>
+            <div class="greek-text">κατέλαβεν</div>
+            <p><strong>Análise:</strong> Do grego <em>katelaben</em> (κατέλαβεν), que pode significar "vencer", "dominar", "alcançar" ou "compreender". A TBLH adota "venceram", registrando a outra possibilidade na nota.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não a venceram".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:6 — "João"</span>
+            <div class="greek-text">Ἰωάννης</div>
+            <p><strong>Análise:</strong> João Batista, enviado por Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "João".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:9 — "A luz verdadeira, que ilumina todo homem, estava vindo ao mundo"</span>
+            <div class="greek-text">τὸ φῶς τὸ ἀληθινόν, ὃ φωτίζει πάντα ἄνθρωπον, ἐρχόμενον εἰς τὸν κόσμον</div>
+            <p><strong>Análise:</strong> A construção grega permite diferentes relações sintáticas para a expressão "que vem ao mundo"; a tradução mantém a referência à luz que veio ao mundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:14, 18 — "Unigênito"</span>
+            <div class="greek-text">μονογενής</div>
+            <p><strong>Análise:</strong> Termo tradicionalmente traduzido como "unigênito", também relacionado às ideias de "único" ou "singular".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "unigênito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:14 — "Habitou entre nós"</span>
+            <div class="greek-text">ἐσκήνωσεν</div>
+            <p><strong>Análise:</strong> Literalmente relacionado a "armar uma tenda" ou "tabernacular".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "habitou entre nós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:16 — "Graça sobre graça"</span>
+            <div class="greek-text">χάριν ἀντὶ χάριτος</div>
+            <p><strong>Análise:</strong> Expressão de abundância de graça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "graça sobre graça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:18 — "Esse o revelou"</span>
+            <div class="greek-text">ἐξηγήσατο</div>
+            <p><strong>Análise:</strong> Relacionado à ideia de tornar conhecido, explicar ou revelar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esse o revelou".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 1:29, 36 — "Cordeiro de Deus"</span>
+            <div class="greek-text">ἀμνὸς τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A declaração de João Batista.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Cordeiro de Deus".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:38 — "Rabi"</span>
+            <div class="hebrew-text">רַבִּי</div>
+            <p><strong>Análise:</strong> Do hebraico, "Mestre". João traduz o termo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Rabi" com a tradução.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 1:41 — "Messias"</span>
+            <div class="hebrew-text">מָשִׁיחַ</div>
+            <p><strong>Análise:</strong> Do hebraico, "Ungido". João traduz: "o Cristo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Messias" com a tradução.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:42 — "Cefas"</span>
+            <div class="hebrew-text">כֵּיפָא</div>
+            <p><strong>Análise:</strong> Do aramaico, "Pedra". João traduz: "Pedro".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cefas" com a tradução.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 1:47 — "Verdadeiro israelita"</span>
+            <div class="greek-text">ἀληθῶς Ἰσραηλίτης</div>
+            <p><strong>Análise:</strong> A declaração de Jesus sobre Natanael.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "verdadeiro israelita".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">João 1:28 — "Betânia, do outro lado do Jordão"</span>
+            <div class="greek-text">Βηθανίᾳ πέραν τοῦ Ἰορδάνου</div>
+            <p><strong>Análise:</strong> Localidade distinta da Betânia próxima de Jerusalém, mencionada posteriormente no Evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Betânia, do outro lado do Jordão".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 1:51 — "Anjos de Deus subindo e descendo"</span>
+            <div class="greek-text">τοὺς ἀγγέλους τοῦ θεοῦ ἀναβαίνοντας καὶ καταβαίνοντας</div>
+            <p><strong>Análise:</strong> A imagem de Gênesis 28:12.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

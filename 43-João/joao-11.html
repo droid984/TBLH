@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Betânia</span>
+                Aldeia de Marta, Maria e Lázaro, perto de Jerusalém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dídimo</span>
+                Do grego <em>Didymos</em> (Δίδυμος), "gêmeo" — cognome de Tomé.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Caverna</span>
+                Do grego <em>spēlaion</em> (σπήλαιον), sepulcro escavado em rocha.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Efraim</span>
+                Cidade para onde Jesus se retirou.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <!-- PERÍCOPE 1: A MORTE DE LÁZARO (11.1-16) -->
+    <div class="pericope">A Morte de Lázaro</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> estava enfermo um homem chamado Lázaro, de Betânia, da aldeia de Maria e de sua irmã Marta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E Maria era aquela que tinha ungido o Senhor com unguento, e lhe tinha enxugado os pés com os seus cabelos; e Lázaro, que estava enfermo, era seu irmão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então as irmãs enviaram a ele, dizendo: <span class="fala-outro">"Senhor, eis que aquele a quem amas está enfermo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E Jesus, ouvindo isso, disse: <span class="fala-jesus">"Esta enfermidade não é para morte, mas para a glória de Deus, para que o Filho de Deus seja glorificado por ela."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Jesus amava Marta, e a sua irmã, e Lázaro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Quando ouviu, pois, que estava enfermo, ficou ainda dois dias no lugar onde estava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Depois disto, disse aos seus discípulos: <span class="fala-jesus">"Vamos outra vez para a Judeia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Os discípulos disseram-lhe: <span class="fala-outro">"Rabi, ainda agora os judeus procuravam apedrejar-te, e vais outra vez para lá?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Jesus respondeu: <span class="fala-jesus">"Não há doze horas no dia? Se alguém andar de dia, não tropeça, porque vê a luz deste mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">Mas, se alguém andar de noite, tropeça, porque nele não há luz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Assim falou e, depois disto, disse-lhes: <span class="fala-jesus">"Lázaro, o nosso amigo, dorme; mas vou, para despertá-lo do sono."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então os seus discípulos disseram: <span class="fala-outro">"Senhor, se dorme, ficará são."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas Jesus tinha falado da morte dele; eles, porém, pensavam que falava do repouso do sono.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Então Jesus lhes disse abertamente: <span class="fala-jesus">"Lázaro está morto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">E alegro-me, por amor de vós, de que eu lá não estivesse, para que creiais. Mas vamos a ele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Então Tomé, chamado Dídimo, disse aos seus condiscípulos: <span class="fala-outro">"Vamos nós também, para morrermos com ele."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS EM BETÂNIA (11.17-37) -->
+    <div class="pericope">Jesus em Betânia</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Chegando, pois, Jesus, achou que já havia quatro dias que ele estava na sepultura.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E Betânia estava perto de Jerusalém, cerca de quinze estádios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E muitos dos judeus tinham vindo a Marta e a Maria, para as consolarem acerca de seu irmão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Então Marta, ouvindo que Jesus vinha, saiu-lhe ao encontro; mas Maria ficou assentada em casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Então Marta disse a Jesus: <span class="fala-outro">"Senhor, se tu estivesses aqui, meu irmão não teria morrido.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">Mas também sei, ainda agora, que tudo quanto pedires a Deus, Deus te dará."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Jesus lhe disse: <span class="fala-jesus">"Teu irmão ressuscitará."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Marta lhe disse: <span class="fala-outro">"Eu sei que ele ressuscitará na ressurreição, no último dia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Jesus lhe disse: <span class="fala-jesus">"Eu sou a ressurreição e a vida. Quem crê em mim, ainda que esteja morto, viverá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">E todo aquele que vive e crê em mim nunca morrerá. Crês tu isto?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Ela lhe disse: <span class="fala-outro">"Sim, Senhor. Eu tenho crido que tu és o Cristo, o Filho de Deus, que havia de vir ao mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, dito isto, foi e chamou em segredo a Maria, sua irmã, dizendo: <span class="fala-outro">"O Mestre está aqui, e te chama."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Ela, ouvindo isso, levantou-se logo e foi a ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Ainda Jesus não tinha chegado à aldeia, mas estava no lugar onde Marta o tinha encontrado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então os judeus que estavam com ela em casa e a consolavam, vendo que Maria se levantara apressadamente e saíra, seguiram-na, dizendo: <span class="fala-outro">"Ela vai ao sepulcro para chorar ali."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E Maria, quando chegou onde Jesus estava, vendo-o, prostrou-se aos seus pés e disse-lhe: <span class="fala-outro">"Senhor, se tu estivesses aqui, meu irmão não teria morrido."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Então Jesus, quando a viu chorar, e também chorando os judeus que com ela vinham, gemeu profundamente em espírito e perturbou-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E disse: <span class="fala-jesus">"Onde o pusestes?"</span> Eles lhe disseram: <span class="fala-outro">"Senhor, vem e vê."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Jesus chorou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Então os judeus diziam: <span class="fala-outro">"Vede como o amava."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E alguns deles diziam: <span class="fala-outro">"Não podia este, que abriu os olhos ao cego, fazer também que este não morresse?"</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A RESSURREIÇÃO DE LÁZARO (11.38-44) -->
+    <div class="pericope">A Ressurreição de Lázaro</div>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Então Jesus, gemendo outra vez em si mesmo, foi ao sepulcro. E era uma caverna, e tinha uma pedra posta sobre ela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Jesus disse: <span class="fala-jesus">"Tirai a pedra."</span> Marta, irmã do morto, disse-lhe: <span class="fala-outro">"Senhor, já cheira mal, porque é já de quatro dias."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Jesus lhe disse: <span class="fala-jesus">"Não te disse eu que, se creres, verás a glória de Deus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Então tiraram a pedra de onde o morto estava posto. E Jesus, levantando os olhos para cima, disse: <span class="fala-jesus">"Pai, graças te dou, porque me ouviste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-jesus">Eu bem sei que sempre me ouves; mas eu disse isto por causa da multidão que está ao redor, para que creiam que tu me enviaste."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E, tendo dito isto, clamou em alta voz: <span class="fala-jesus">"Lázaro, vem para fora."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E o morto saiu, tendo as mãos e os pés ligados com faixas, e o seu rosto envolto num lenço. Jesus lhes disse: <span class="fala-jesus">"Desatai-o, e deixai-o ir."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: O CONSELHO CONTRA JESUS (11.45-57) -->
+    <div class="pericope">O Conselho contra Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Então muitos dos judeus, que tinham vindo a Maria e tinham visto o que Jesus fizera, creram nele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        Mas alguns deles foram aos fariseus e contaram-lhes o que Jesus tinha feito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        Então os principais dos sacerdotes e os fariseus reuniram o conselho, e diziam: <span class="fala-outro">"Que faremos? Porque este homem faz muitos sinais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-outro">Se o deixarmos assim, todos crerão nele, e virão os romanos, e tirar-nos-ão o lugar e a nação."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E um deles, Caifás, sendo sumo sacerdote naquele ano, disse-lhes: <span class="fala-outro">"Vós nada sabeis,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-outro">nem considerais que nos convém que um homem morra pelo povo, e que não pereça toda a nação."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        Ora, ele não disse isto de si mesmo, mas, sendo sumo sacerdote naquele ano, profetizou que Jesus havia de morrer pela nação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E não somente pela nação, mas também para reunir em um só corpo os filhos de Deus que estavam dispersos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        Então, desde aquele dia, consultavam-se para o matarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        Por isso Jesus já não andava publicamente entre os judeus, mas retirou-se dali para uma região junto ao deserto, para uma cidade chamada Efraim; e ali ficou com os seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        E estava próxima a Páscoa dos judeus; e muitos da região subiram a Jerusalém antes da Páscoa, para se purificarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        Então procuravam Jesus, e diziam uns aos outros, estando no templo: <span class="fala-outro">"Que vos parece? Ele não virá à festa?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        E os principais dos sacerdotes e os fariseus tinham dado ordem de que, se alguém soubesse onde ele estava, o denunciasse, para o prenderem.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:1 — "Lázaro"</span>
+            <div class="greek-text">Λάζαρος</div>
+            <p><strong>Análise:</strong> O irmão de Marta e Maria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Lázaro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:1, 18 — "Betânia"</span>
+            <div class="greek-text">Βηθανία</div>
+            <p><strong>Análise:</strong> A aldeia de Marta e Maria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Betânia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:2 — "Maria tinha ungido o Senhor"</span>
+            <div class="greek-text">Μαρία ... ἀλείψασα τὸν κύριον</div>
+            <p><strong>Análise:</strong> A referência de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:9 — "Não há doze horas no dia?"</span>
+            <div class="greek-text">οὐχὶ δώδεκα ὧραί εἰσιν τῆς ἡμέρας</div>
+            <p><strong>Análise:</strong> A pergunta de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 11:11 — "Lázaro dorme"</span>
+            <div class="greek-text">Λάζαρος ... κεκοίμηται</div>
+            <p><strong>Análise:</strong> A fala de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:16 — "Tomé, chamado Dídimo"</span>
+            <div class="greek-text">Θωμᾶς ὁ λεγόμενος Δίδυμος</div>
+            <p><strong>Análise:</strong> <em>Didymos</em>, "gêmeo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Dídimo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 11:25 — "Eu sou a ressurreição e a vida"</span>
+            <div class="greek-text">ἐγώ εἰμι ἡ ἀνάστασις καὶ ἡ ζωή</div>
+            <p><strong>Análise:</strong> Declaração de Jesus sobre si mesmo como a ressurreição e a vida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:33, 38 — "Gemeu profundamente em espírito"</span>
+            <div class="greek-text">ἐνεβριμήσατο τῷ πνεύματι</div>
+            <p><strong>Análise:</strong> O verbo <em>embrimaomai</em> expressa uma forte reação interior; a tradução procura preservar a intensidade da expressão sem determinar além do texto a natureza dessa reação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "gemeu profundamente em espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:35 — "Jesus chorou"</span>
+            <div class="greek-text">ἐδάκρυσεν</div>
+            <p><strong>Análise:</strong> O choro de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Jesus chorou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:38 — "Caverna"</span>
+            <div class="greek-text">σπήλαιον</div>
+            <p><strong>Análise:</strong> Sepulcro escavado em rocha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "caverna".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 11:43 — "Lázaro, vem para fora"</span>
+            <div class="greek-text">Λάζαρε, δεῦρο ἔξω</div>
+            <p><strong>Análise:</strong> A ordem de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 11:49 — "Caifás, sendo sumo sacerdote"</span>
+            <div class="greek-text">Καϊάφας ... ἀρχιερεὺς</div>
+            <p><strong>Análise:</strong> A profecia de Caifás.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 11:54 — "Efraim"</span>
+            <div class="greek-text">Ἐφραΐμ</div>
+            <p><strong>Análise:</strong> A cidade para onde Jesus se retirou.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Efraim".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

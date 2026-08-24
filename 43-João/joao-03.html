@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 3</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 3</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Nicodemos</span>
+                Fariseu e principal dos judeus que buscou Jesus de noite.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nascer de novo</span>
+                Do grego <em>gennēthē anōthen</em> (γεννηθῇ ἄνωθεν), "nascer do alto" ou "nascer de novo".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Unigênito</span>
+                Do grego <em>monogenēs</em> (μονογενής), "único", "singular".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Enom</span>
+                Local onde João Batista batizava.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">3</div>
+
+    <!-- PERÍCOPE 1: NICODEMOS (3.1-21) -->
+    <div class="pericope">Nicodemos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> havia entre os fariseus um homem chamado Nicodemos, principal dos judeus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Este foi de noite a Jesus, e disse-lhe: <span class="fala-outro">"Rabi, sabemos que és Mestre vindo de Deus; porque ninguém pode fazer estes sinais que tu fazes, se Deus não for com ele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Jesus respondeu e disse-lhe: <span class="fala-jesus">"Em verdade, em verdade te digo: se alguém não nascer de novo, não pode ver o reino de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Nicodemos lhe disse: <span class="fala-outro">"Como pode um homem nascer, sendo velho? Pode por acaso entrar segunda vez no ventre de sua mãe, e nascer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Jesus respondeu: <span class="fala-jesus">"Em verdade, em verdade te digo: se alguém não nascer da água e do Espírito, não pode entrar no reino de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-jesus">O que é nascido da carne é carne; e o que é nascido do Espírito é espírito.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-jesus">Não te admires de eu te dizer: 'Necessário vos é nascer de novo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">O vento sopra onde quer, e ouves a sua voz; mas não sabes de onde vem, nem para onde vai. Assim é todo aquele que é nascido do Espírito."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Nicodemos respondeu e disse-lhe: <span class="fala-outro">"Como pode ser isto?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Jesus respondeu e disse-lhe: <span class="fala-jesus">"Tu és mestre de Israel, e não sabes estas coisas?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-jesus">Em verdade, em verdade te digo: nós falamos o que sabemos, e testificamos o que vimos; e não aceitais o nosso testemunho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">Se eu vos falei de coisas terrestres, e não crestes, como crereis, se eu vos falar das celestiais?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-jesus">E ninguém subiu ao céu, senão aquele que desceu do céu: o Filho do homem, que está no céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-jesus">E, como Moisés levantou a serpente no deserto, assim importa que o Filho do homem seja levantado;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-jesus">para que todo aquele que nele crê não pereça, mas tenha a vida eterna."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-jesus">Porque Deus não enviou o seu Filho ao mundo para condenar o mundo, mas para que o mundo fosse salvo por ele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Quem crê nele não é condenado; mas quem não crê já está condenado, porque não crê no nome do unigênito Filho de Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-jesus">E a condenação é esta: que a luz veio ao mundo, e os homens amaram mais as trevas do que a luz, porque as suas obras eram más.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-jesus">Porque todo aquele que pratica o mal odeia a luz, e não vem para a luz, para que as suas obras não sejam reprovadas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-jesus">Mas quem pratica a verdade vem para a luz, a fim de que as suas obras sejam manifestadas, porque são feitas em Deus."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: JOÃO BATISTA E JESUS (3.22-36) -->
+    <div class="pericope">João Batista e Jesus</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Depois disto, foi Jesus com os seus discípulos para a terra da Judeia; e ali permaneceu com eles, e batizava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E João também batizava em Enom, perto de Salim, porque havia ali muitas águas; e vinham ali e eram batizados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Porque João ainda não tinha sido lançado na prisão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E surgiu uma discussão entre os discípulos de João e os judeus acerca da purificação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E foram a João e disseram-lhe: <span class="fala-outro">"Rabi, aquele que estava contigo além do Jordão, do qual tu testificaste, eis que ele batiza, e todos vão a ele."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        João respondeu e disse: <span class="fala-outro">"O homem não pode receber coisa alguma, se não lhe for dada do céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">Vós mesmos me sois testemunhas de que eu disse: 'Eu não sou o Cristo, mas fui enviado diante dele.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">Aquele que tem a esposa é o esposo; mas o amigo do esposo, que está presente e o ouve, alegra-se muito com a voz do esposo. Assim, pois, esta minha alegria está completa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">É necessário que ele cresça, e que eu diminua."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">"Aquele que vem de cima é sobre todos. Aquele que é da terra é terrestre, e fala da terra. Aquele que vem do céu é sobre todos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">E testifica o que viu e ouviu; e ninguém aceita o seu testemunho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">Aquele que aceitou o seu testemunho selou que Deus é verdadeiro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-outro">Pois aquele que Deus enviou fala as palavras de Deus; porque Deus não dá o Espírito por medida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-outro">O Pai ama o Filho, e todas as coisas entregou nas suas mãos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Aquele que crê no Filho tem a vida eterna; mas aquele que não crê no Filho não verá a vida, mas a ira de Deus permanece sobre ele."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:1 — "Nicodemos"</span>
+            <div class="greek-text">Νικόδημος</div>
+            <p><strong>Análise:</strong> Principal dos judeus, fariseu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Nicodemos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:1 — "Principal dos judeus"</span>
+            <div class="greek-text">ἄρχων τῶν Ἰουδαίων</div>
+            <p><strong>Análise:</strong> Líder entre os judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "principal dos judeus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:3, 7 — "Nascer de novo"</span>
+            <div class="greek-text">γεννηθῇ ἄνωθεν</div>
+            <p><strong>Análise:</strong> <em>Anōthen</em> pode significar "de novo" ou "do alto".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nascer de novo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 3:5 — "Nascer da água e do Espírito"</span>
+            <div class="greek-text">γεννηθῇ ἐξ ὕδατος καὶ πνεύματος</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:8 — "O vento sopra"</span>
+            <div class="greek-text">τὸ πνεῦμα</div>
+            <p><strong>Análise:</strong> <em>Pneuma</em> pode significar "vento" ou "espírito". O contexto utiliza a palavra nos dois sentidos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vento" no versículo.</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">João 3:13 — "O Filho do homem, que está no céu"</span>
+            <div class="greek-text">ὁ υἱὸς τοῦ ἀνθρώπου ὁ ὢν ἐν τῷ οὐρανῷ</div>
+            <p><strong>Análise:</strong> A expressão presente no Textus Receptus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 3:14 — "Moisés levantou a serpente"</span>
+            <div class="greek-text">Μωϋσῆς ὕψωσεν τὸν ὄφιν</div>
+            <p><strong>Análise:</strong> Referência a Números 21:8-9.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 3:16 — "Deus amou o mundo de tal maneira"</span>
+            <div class="greek-text">οὕτως γὰρ ἠγάπησεν ὁ θεὸς τὸν κόσμον</div>
+            <p><strong>Análise:</strong> A declaração central do Evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:18 — "Unigênito Filho de Deus"</span>
+            <div class="greek-text">μονογενής</div>
+            <p><strong>Análise:</strong> Termo que pode transmitir a ideia de "único", "único de sua espécie" ou "unigênito".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "unigênito".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 3:19 — "A luz veio ao mundo"</span>
+            <div class="greek-text">τὸ φῶς ἐλήλυθεν εἰς τὸν κόσμον</div>
+            <p><strong>Análise:</strong> A condenação descrita.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">João 3:23 — "Enom, perto de Salim"</span>
+            <div class="greek-text">Αἰνὼν ἐγγὺς τοῦ Σαλείμ</div>
+            <p><strong>Análise:</strong> O local onde João batizava.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Enom" e "Salim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:25 — "Purificação"</span>
+            <div class="greek-text">καθαρισμοῦ</div>
+            <p><strong>Análise:</strong> A discussão sobre purificação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "purificação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:29 — "Amigo do esposo"</span>
+            <div class="greek-text">φίλος τοῦ νυμφίου</div>
+            <p><strong>Análise:</strong> A imagem do amigo do noivo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "amigo do esposo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:30 — "É necessário que ele cresça, e que eu diminua"</span>
+            <div class="greek-text">ἐκεῖνον δεῖ αὐξάνειν, ἐμὲ δὲ ἐλαττοῦσθαι</div>
+            <p><strong>Análise:</strong> A declaração de João Batista.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:34 — "Deus não dá o Espírito por medida"</span>
+            <div class="greek-text">οὐ γὰρ ἐκ μέτρου δίδωσιν ὁ θεὸς τὸ πνεῦμα</div>
+            <p><strong>Análise:</strong> A afirmação sobre Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 3:36 — "A ira de Deus permanece sobre ele"</span>
+            <div class="greek-text">ἡ ὀργὴ τοῦ θεοῦ μένει ἐπ' αὐτόν</div>
+            <p><strong>Análise:</strong> A conclusão do testemunho de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

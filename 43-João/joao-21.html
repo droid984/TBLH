@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 21</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 21</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Dídimo</span>
+                Do grego <em>Didymos</em> (Δίδυμος), "gêmeo" — cognome de Tomé.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tiberíades</span>
+                Nome pelo qual o mar da Galileia também era conhecido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Côvado</span>
+                Do grego <em>pēchys</em> (πῆχυς), medida de comprimento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Discípulo amado</span>
+                O discípulo a quem Jesus amava, tradicionalmente identificado com João.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">21</div>
+
+    <!-- PERÍCOPE 1: A PESCA MILAGROSA (21.1-14) -->
+    <div class="pericope">A Pesca Milagrosa</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">D</span>epois disto, Jesus se manifestou outra vez aos discípulos junto ao mar de Tiberíades; e manifestou-se assim:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Estavam juntos Simão Pedro, e Tomé, chamado Dídimo, e Natanael, de Caná da Galileia, e os filhos de Zebedeu, e outros dois dos seus discípulos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Simão Pedro lhes disse: <span class="fala-outro">"Vou pescar."</span> Eles lhe disseram: <span class="fala-outro">"Nós também vamos contigo."</span> Saíram, e subiram logo ao barco; e naquela noite nada apanharam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, quando já era manhã, Jesus se pôs na praia; mas os discípulos não sabiam que era Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Filhos, tendes alguma coisa para comer?"</span> Responderam-lhe: <span class="fala-outro">"Não."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E ele lhes disse: <span class="fala-jesus">"Lançai a rede para o lado direito do barco, e achareis."</span> Então a lançaram, e já não a podiam arrastar, por causa da grande quantidade de peixes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Então aquele discípulo a quem Jesus amava disse a Pedro: <span class="fala-outro">"É o Senhor."</span> E, quando Simão Pedro ouviu que era o Senhor, cingiu-se com a sua veste — porque estava nu — e lançou-se ao mar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E os outros discípulos foram com o barco — porque não estavam distantes da terra, mas quase duzentos côvados —, arrastando a rede com os peixes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, quando desceram à terra, viram ali brasas acesas, e peixe posto sobre elas, e pão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Jesus lhes disse: <span class="fala-jesus">"Trazei dos peixes que agora apanhastes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Simão Pedro subiu e arrastou a rede para terra, cheia de cento e cinquenta e três grandes peixes. E, sendo tantos, a rede não se rompeu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Jesus lhes disse: <span class="fala-jesus">"Vinde, comei."</span> E nenhum dos discípulos ousava perguntar-lhe: "Quem és tu?", sabendo que era o Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então Jesus veio, e tomou o pão, e deu-lhes, e também o peixe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E esta já era a terceira vez que Jesus se manifestou aos seus discípulos, depois de ter ressuscitado dos mortos.
+    </p>
+
+    <!-- PERÍCOPE 2: JESUS E PEDRO (21.15-23) -->
+    <div class="pericope">Jesus e Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, quando comeram, Jesus disse a Simão Pedro: <span class="fala-jesus">"Simão, filho de Jonas, amas-me mais do que estes?"</span> Ele lhe disse: <span class="fala-outro">"Sim, Senhor; tu sabes que te amo."</span> Jesus lhe disse: <span class="fala-jesus">"Apascenta os meus cordeiros."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Tornou a dizer-lhe segunda vez: <span class="fala-jesus">"Simão, filho de Jonas, amas-me?"</span> Pedro lhe disse: <span class="fala-outro">"Sim, Senhor; tu sabes que te amo."</span> Jesus lhe disse: <span class="fala-jesus">"Apascenta as minhas ovelhas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Disse-lhe terceira vez: <span class="fala-jesus">"Simão, filho de Jonas, amas-me?"</span> Pedro entristeceu-se por lhe ter dito terceira vez: "Amas-me?" E disse-lhe: <span class="fala-outro">"Senhor, tu sabes todas as coisas; tu sabes que te amo."</span> Jesus lhe disse: <span class="fala-jesus">"Apascenta as minhas ovelhas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-jesus">Em verdade, em verdade te digo: quando eras mais moço, tu te cingias e andavas por onde querias; mas, quando fores velho, estenderás as tuas mãos, e outro te cingirá, e te levará para onde tu não queres."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E disse isto, indicando com que morte ele havia de glorificar a Deus. E, tendo dito isto, disse-lhe: <span class="fala-jesus">"Segue-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E Pedro, voltando-se, viu que o seguia aquele discípulo a quem Jesus amava — o mesmo que na ceia se reclinara sobre o seu peito e dissera: "Senhor, quem é o que te trai?"
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E Pedro, vendo-o, disse a Jesus: <span class="fala-outro">"Senhor, e deste, que será?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Jesus lhe disse: <span class="fala-jesus">"Se eu quero que ele fique até que eu venha, que te importa? Tu, segue-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Divulgou-se, pois, entre os irmãos este dito: que aquele discípulo não morreria. Mas Jesus não lhe disse que não morreria, mas: "Se eu quero que ele fique até que eu venha, que te importa?"
+    </p>
+
+    <!-- PERÍCOPE 3: A CONCLUSÃO DO EVANGELHO (21.24-25) -->
+    <div class="pericope">A Conclusão do Evangelho</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Este é o discípulo que testifica destas coisas, e as escreveu; e sabemos que o seu testemunho é verdadeiro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Há também ainda muitas outras coisas que Jesus fez; e, se fossem escritas uma por uma, nem no mundo inteiro, suponho eu, caberiam os livros que se escrevessem. Amém.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:1 — "Mar de Tiberíades"</span>
+            <div class="greek-text">θαλάσσης τῆς Τιβεριάδος</div>
+            <p><strong>Análise:</strong> O mar da Galileia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mar de Tiberíades".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:2 — "Tomé, chamado Dídimo"</span>
+            <div class="greek-text">Θωμᾶς ὁ λεγόμενος Δίδυμος</div>
+            <p><strong>Análise:</strong> <em>Didymos</em>, "gêmeo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Dídimo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:2 — "Filhos de Zebedeu"</span>
+            <div class="greek-text">οἱ τοῦ Ζεβεδαίου</div>
+            <p><strong>Análise:</strong> Tiago e João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filhos de Zebedeu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:7 — "Cingiu-se com a sua veste"</span>
+            <div class="greek-text">τὸν ἐπενδύτην διεζώσατο</div>
+            <p><strong>Análise:</strong> Pedro estava nu e se cingiu com a veste.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:8 — "Quase duzentos côvados"</span>
+            <div class="greek-text">πηχῶν διακοσίων</div>
+            <p><strong>Análise:</strong> Cerca de 90 metros.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quase duzentos côvados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:11 — "Cento e cinquenta e três"</span>
+            <div class="greek-text">ἑκατὸν πεντήκοντα τριῶν</div>
+            <p><strong>Análise:</strong> O número dos peixes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:14 — "Terceira vez que Jesus se manifestou"</span>
+            <div class="greek-text">τρίτον ... ἐφανερώθη</div>
+            <p><strong>Análise:</strong> A numeração de João das aparições de Jesus após a ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:15 — "Amas-me mais do que estes?"</span>
+            <div class="greek-text">φιλεῖς με πλέον τούτων</div>
+            <p><strong>Análise:</strong> O texto não especifica a referência exata de "estes".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Amas-me mais do que estes?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:15 — "Apascenta os meus cordeiros"</span>
+            <div class="greek-text">βόσκε τὰ ἀρνία μου</div>
+            <p><strong>Análise:</strong> O verbo <em>boskō</em> tem a ideia de alimentar, dar pasto, apascentar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Apascenta os meus cordeiros".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:16-17 — "Apascenta as minhas ovelhas"</span>
+            <div class="greek-text">ποίμαινε τὰ πρόβατά μου</div>
+            <p><strong>Análise:</strong> O verbo <em>poimainō</em> tem sentido de pastorear, cuidar como pastor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Apascenta as minhas ovelhas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 21:18 — "Estenderás as tuas mãos"</span>
+            <div class="greek-text">ἐκτενεῖς τὰς χεῖράς σου</div>
+            <p><strong>Análise:</strong> A predição de Jesus sobre a morte de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:19 — "Indicando com que morte"</span>
+            <div class="greek-text">σημαίνων ποίῳ θανάτῳ</div>
+            <p><strong>Análise:</strong> A explicação de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:22-23 — "Se eu quero que ele fique"</span>
+            <div class="greek-text">ἐὰν αὐτὸν θέλω μένειν</div>
+            <p><strong>Análise:</strong> A palavra de Jesus e a explicação de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:24 — "Este é o discípulo que testifica"</span>
+            <div class="greek-text">οὗτός ἐστιν ὁ μαθητὴς ὁ μαρτυρῶν</div>
+            <p><strong>Análise:</strong> A identificação do discípulo amado como autor do Evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 21:25 — "Nem no mundo inteiro caberiam os livros"</span>
+            <div class="greek-text">οὐδ' αὐτὸν τὸν κόσμον χωρήσειν</div>
+            <p><strong>Análise:</strong> A declaração final de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

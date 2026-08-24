@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Nardo puro</span>
+                Do grego <em>nardos pistikē</em> (νάρδος πιστική), unguento de grande valor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hosana</span>
+                Aclamação da multidão na entrada de Jesus em Jerusalém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filha de Sião</span>
+                Expressão profética para Jerusalém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Príncipe deste mundo</span>
+                Do grego <em>archōn tou kosmou</em> (ἄρχων τοῦ κόσμου), referência a Satanás.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <!-- PERÍCOPE 1: A UNÇÃO EM BETÂNIA (12.1-8) -->
+    <div class="pericope">A Unção em Betânia</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">S</span>eis dias antes da Páscoa, Jesus foi a Betânia, onde estava Lázaro, o que havia morrido, a quem ele tinha ressuscitado dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Fizeram-lhe, pois, ali uma ceia, e Marta servia; e Lázaro era um dos que estavam com ele à mesa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então Maria, tomando uma libra de unguento de nardo puro, de grande valor, ungiu os pés de Jesus, e enxugou-lhe os pés com os seus cabelos; e a casa encheu-se do cheiro do unguento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Então um dos seus discípulos, Judas Iscariotes, filho de Simão, aquele que o havia de trair, disse:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">"Por que este unguento não foi vendido por trezentos denários, e dado aos pobres?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Ora, ele disse isto, não porque tivesse cuidado dos pobres, mas porque era ladrão, e tinha a bolsa, e tirava o que nela se lançava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Então Jesus disse: <span class="fala-jesus">"Deixa-a; ela guardou isto para o dia do meu sepultamento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Porque os pobres sempre os tendes convosco, mas a mim nem sempre me tendes."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A MORTE DE LÁZARO E A ENTRADA TRIUNFAL (12.9-19) -->
+    <div class="pericope">A Morte de Lázaro e a Entrada Triunfal</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E grande multidão de judeus soube que ele estava ali; e vieram, não somente por causa de Jesus, mas também para ver Lázaro, a quem ele tinha ressuscitado dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E os principais dos sacerdotes deliberaram matar também Lázaro,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        porque muitos dos judeus, por causa dele, iam e criam em Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        No dia seguinte, a grande multidão que tinha vindo à festa, ouvindo que Jesus vinha a Jerusalém,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        tomou ramos de palmeiras, e saiu-lhe ao encontro, e clamava: <span class="fala-outro">"Hosana! Bendito o Rei de Israel, que vem em nome do Senhor!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E Jesus, achando um jumentinho, assentou-se sobre ele, como está escrito:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        "Não temas, ó filha de Sião; eis que o teu Rei vem, assentado sobre um filho de jumenta."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Os seus discípulos, porém, não entenderam isto no princípio; mas, quando Jesus foi glorificado, então se lembraram de que estas coisas estavam escritas a seu respeito, e de que lhe fizeram estas coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        A multidão, pois, que estava com ele testificava que ele tinha chamado Lázaro da sepultura, e o tinha ressuscitado dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Por isso também a multidão lhe saiu ao encontro, porque ouviu que ele tinha feito este sinal.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Então os fariseus disseram entre si: <span class="fala-outro">"Vedes que nada aproveitais? Eis que o mundo vai após ele."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: OS GREGOS E A GLORIFICAÇÃO (12.20-36) -->
+    <div class="pericope">Os Gregos e a Glorificação</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E havia alguns gregos, entre os que tinham subido para adorar na festa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Estes, pois, foram a Filipe, que era de Betsaida da Galileia, e rogaram-lhe, dizendo: <span class="fala-outro">"Senhor, queríamos ver Jesus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Filipe foi e disse-o a André; e André e Filipe o disseram a Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E Jesus lhes respondeu, dizendo: <span class="fala-jesus">"É chegada a hora em que o Filho do homem há de ser glorificado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-jesus">Em verdade, em verdade vos digo: se o grão de trigo, caindo na terra, não morrer, fica ele só; mas, se morrer, dá muito fruto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-jesus">Quem ama a sua vida a perderá; e quem odeia a sua vida neste mundo, para a vida eterna a guardará.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-jesus">Se alguém me serve, siga-me; e onde eu estiver, ali estará também o meu servo. E, se alguém me serve, o Pai o honrará."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-jesus">"Agora a minha alma está perturbada; e que direi eu? Pai, salva-me desta hora? Mas para isto vim a esta hora.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-jesus">Pai, glorifica o teu nome."</span> Então veio uma voz do céu: <span class="fala-deus">"Eu o glorifiquei, e outra vez o glorificarei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E a multidão que ali estava e a tinha ouvido dizia que tinha havido um trovão. Outros diziam: <span class="fala-outro">"Um anjo lhe falou."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Jesus respondeu e disse: <span class="fala-jesus">"Não veio esta voz por minha causa, mas por causa de vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-jesus">Agora é o juízo deste mundo; agora será expulso o príncipe deste mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-jesus">E eu, quando for levantado da terra, todos atrairei a mim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E dizia isto, indicando de que morte havia de morrer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        A multidão lhe respondeu: <span class="fala-outro">"Nós temos ouvido da lei que o Cristo permanece para sempre; e como dizes tu que é necessário que o Filho do homem seja levantado? Quem é esse Filho do homem?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Então Jesus lhes disse: <span class="fala-jesus">"Ainda por um pouco de tempo a luz está convosco. Andai enquanto tendes luz, para que as trevas não vos apanhem; porque quem anda nas trevas não sabe para onde vai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-jesus">Enquanto tendes luz, crede na luz, para que sejais filhos da luz."</span> Jesus disse estas coisas e, retirando-se, escondeu-se deles.
+    </p>
+
+    <!-- PERÍCOPE 4: INCREDULIDADE E CONFISSÃO (12.37-50) -->
+    <div class="pericope">Incredulidade e Confissão</div>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, ainda que tivesse feito tantos sinais diante deles, não criam nele,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        para que se cumprisse a palavra do profeta Isaías, que disse: "Senhor, quem creu na nossa pregação? E a quem foi revelado o braço do Senhor?"
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Por isso não podiam crer, pois Isaías disse outra vez:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        "Cegou-lhes os olhos, e endureceu-lhes o coração, para que não vejam com os olhos, nem entendam com o coração, e se convertam, e eu os cure."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Isaías disse isto quando viu a sua glória, e falou dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        Contudo, também muitos dos principais creram nele; mas, por causa dos fariseus, não o confessavam, para não serem expulsos da sinagoga.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        Porque amavam mais a glória dos homens do que a glória de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E Jesus clamou e disse: <span class="fala-jesus">"Quem crê em mim, não crê em mim, mas naquele que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-jesus">E quem me vê a mim, vê aquele que me enviou.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-jesus">Eu vim como luz ao mundo, para que todo aquele que crê em mim não permaneça nas trevas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-jesus">E, se alguém ouvir as minhas palavras, e não crer, eu não o julgo; porque eu não vim para julgar o mundo, mas para salvar o mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-jesus">Quem me rejeita e não recebe as minhas palavras tem quem o julgue: a palavra que tenho pregado, essa o julgará no último dia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-jesus">Porque eu não tenho falado de mim mesmo; mas o Pai, que me enviou, ele me deu mandamento sobre o que hei de dizer e sobre o que hei de falar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-jesus">E sei que o seu mandamento é vida eterna. Portanto, o que eu falo, falo-o assim como o Pai me tem dito."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:1 — "Seis dias antes da Páscoa"</span>
+            <div class="greek-text">πρὸ ἓξ ἡμερῶν τοῦ πάσχα</div>
+            <p><strong>Análise:</strong> A referência temporal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:1 — "Lázaro, o que havia morrido"</span>
+            <div class="greek-text">Λάζαρον τὸν τεθνηκότα</div>
+            <p><strong>Análise:</strong> A referência a João 11.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:3 — "Uma libra de unguento de nardo puro"</span>
+            <div class="greek-text">λίτραν μύρου νάρδου πιστικῆς</div>
+            <p><strong>Análise:</strong> Quantidade e tipo de unguento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:5 — "Trezentos denários"</span>
+            <div class="greek-text">τριακοσίων δηναρίων</div>
+            <p><strong>Análise:</strong> O valor do unguento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "trezentos denários".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:6 — "Tinha a bolsa, e tirava o que nela se lançava"</span>
+            <div class="greek-text">τὸ γλωσσόκομον ἔχων ... ἐβάσταζεν</div>
+            <p><strong>Análise:</strong> A observação sobre Judas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:13 — "Hosana! Bendito o Rei de Israel"</span>
+            <div class="greek-text">ὡσαννά, εὐλογημένος ὁ βασιλεὺς τοῦ Ἰσραήλ</div>
+            <p><strong>Análise:</strong> A aclamação da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:15 — "Filha de Sião"</span>
+            <div class="greek-text">θυγάτηρ Σιών</div>
+            <p><strong>Análise:</strong> Expressão profética relacionada à linguagem de Isaías 62:11 e Zacarias 9:9; João aplica a passagem à entrada de Jesus em Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "filha de Sião".</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:20 — "Gregos"</span>
+            <div class="greek-text">Ἕλληνές</div>
+            <p><strong>Análise:</strong> Gregos que haviam vindo para a festa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "gregos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:24 — "Se o grão de trigo não morrer"</span>
+            <div class="greek-text">ἐὰν μὴ ὁ κόκκος τοῦ σίτου ... ἀποθάνῃ</div>
+            <p><strong>Análise:</strong> A parábola do grão de trigo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:27 — "Agora a minha alma está perturbada"</span>
+            <div class="greek-text">νῦν ἡ ψυχή μου τετάρακται</div>
+            <p><strong>Análise:</strong> A declaração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:28 — "Pai, glorifica o teu nome"</span>
+            <div class="greek-text">πάτερ, δόξασόν σου τὸ ὄνομα</div>
+            <p><strong>Análise:</strong> A oração de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:31 — "Príncipe deste mundo"</span>
+            <div class="greek-text">ἄρχων τοῦ κόσμου τούτου</div>
+            <p><strong>Análise:</strong> <em>Archōn</em> pode designar governante ou autoridade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "príncipe deste mundo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:32 — "Quando for levantado da terra"</span>
+            <div class="greek-text">κἀγὼ ἐὰν ὑψωθῶ ἐκ τῆς γῆς</div>
+            <p><strong>Análise:</strong> A expressão é explicada por João no v. 33 como referência à morte que Jesus haveria de sofrer.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 12:34 — "Quem é esse Filho do homem?"</span>
+            <div class="greek-text">τίς ἐστιν οὗτος ὁ υἱὸς τοῦ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> A pergunta da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:41 — "Isaías disse isto quando viu a sua glória"</span>
+            <div class="greek-text">ταῦτα εἶπεν Ἠσαΐας ὅτε εἶδεν τὴν δόξαν αὐτοῦ</div>
+            <p><strong>Análise:</strong> João relaciona a visão de Isaías com a glória de Jesus e afirma que o profeta falou dele.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 12:40 — "Cegou-lhes os olhos"</span>
+            <div class="greek-text">τετύφλωκεν αὐτῶν τοὺς ὀφθαλμούς</div>
+            <p><strong>Análise:</strong> Citação de Isaías 6:10.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

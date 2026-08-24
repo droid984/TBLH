@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — João 19</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">JOÃO</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 19</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Litóstrotos</span>
+                Do grego <em>Lithostrōton</em> (Λιθόστρωτον), "pavimento de pedra".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gabatá</span>
+                Do hebraico, nome do lugar do tribunal.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gólgota</span>
+                Do hebraico, "Caveira", lugar da crucificação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hissopo</span>
+                Do grego <em>hyssōpos</em> (ὕσσωπος), planta usada para oferecer o vinagre a Jesus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">19</div>
+
+    <!-- PERÍCOPE 1: JESUS É CRUCIFICADO (19.1-16) -->
+    <div class="pericope">Jesus é Crucificado</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>ntão Pilatos tomou Jesus e o açoitou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E os soldados, tecendo uma coroa de espinhos, puseram-lha sobre a cabeça, e vestiram-no com uma veste púrpura,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        e diziam: <span class="fala-outro">"Salve, Rei dos judeus!"</span> E davam-lhe bofetadas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Então Pilatos saiu outra vez e disse-lhes: <span class="fala-outro">"Eis que eu vo-lo trago para fora, para que saibais que não acho nele crime algum."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Jesus saiu, levando a coroa de espinhos e a veste púrpura. E Pilatos disse-lhes: <span class="fala-outro">"Eis o homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Quando os principais dos sacerdotes e os servos o viram, clamaram, dizendo: <span class="fala-outro">"Crucifica-o, crucifica-o!"</span> Pilatos lhes disse: <span class="fala-outro">"Tomai-o vós, e crucificai-o; porque eu não acho nele crime algum."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Os judeus responderam-lhe: <span class="fala-outro">"Nós temos uma lei, e segundo a nossa lei ele deve morrer, porque se fez Filho de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Pilatos, quando ouviu esta palavra, temeu ainda mais.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E entrou outra vez no pretório, e disse a Jesus: <span class="fala-outro">"De onde és tu?"</span> Mas Jesus não lhe deu resposta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Então Pilatos lhe disse: <span class="fala-outro">"Não me falas a mim? Não sabes que tenho poder para te crucificar, e tenho poder para te soltar?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Jesus respondeu: <span class="fala-jesus">"Nenhum poder terias contra mim, se de cima não te fosse dado. Por isso aquele que me entregou a ti tem maior pecado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Desde então Pilatos procurava soltá-lo; mas os judeus clamavam, dizendo: <span class="fala-outro">"Se soltas este, não és amigo de César. Qualquer que se faz rei se opõe a César."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Então Pilatos, ouvindo esta palavra, conduziu Jesus para fora, e assentou-se no tribunal, no lugar chamado Litóstrotos, e em hebraico Gabatá.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E era a preparação da Páscoa, e quase a hora sexta. E disse aos judeus: <span class="fala-outro">"Eis o vosso Rei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas eles clamavam: <span class="fala-outro">"Fora! Fora! Crucifica-o!"</span> Pilatos lhes disse: <span class="fala-outro">"Crucificarei o vosso Rei?"</span> Os principais dos sacerdotes responderam: <span class="fala-outro">"Não temos rei, senão César."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Então ele lho entregou, para que fosse crucificado. E tomaram Jesus e o levaram.
+    </p>
+
+    <!-- PERÍCOPE 2: A CRUCIFICAÇÃO (19.17-30) -->
+    <div class="pericope">A Crucificação</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, carregando a sua cruz, saiu para o lugar chamado Caveira, que em hebraico se chama Gólgota,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        onde o crucificaram, e com ele outros dois, um de cada lado, e Jesus no meio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E Pilatos escreveu também um título, e pô-lo sobre a cruz. E nele estava escrito: JESUS NAZARENO, O REI DOS JUDEUS.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E muitos dos judeus leram este título, porque o lugar onde Jesus foi crucificado era próximo da cidade; e estava escrito em hebraico, grego e latim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E os principais dos sacerdotes dos judeus diziam a Pilatos: <span class="fala-outro">"Não escrevas: 'O Rei dos judeus', mas: 'Ele disse: Sou Rei dos judeus.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Pilatos respondeu: <span class="fala-outro">"O que escrevi, escrevi."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Então os soldados, quando crucificaram Jesus, tomaram as suas vestes, e fizeram quatro partes, para cada soldado uma parte; e também a túnica. E a túnica era sem costura, tecida toda desde o alto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Então disseram entre si: <span class="fala-outro">"Não a rasguemos, mas lancemos sortes sobre ela, para ver de quem será."</span> Para que se cumprisse a Escritura, que diz: "Repartiram entre si as minhas vestes, e sobre a minha túnica lançaram sortes." E os soldados fizeram estas coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E estavam junto à cruz de Jesus sua mãe, e a irmã de sua mãe, Maria, mulher de Cleopas, e Maria Madalena.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Então Jesus, vendo sua mãe, e junto dela o discípulo a quem ele amava, disse a sua mãe: <span class="fala-jesus">"Mulher, eis aí o teu filho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Depois disse ao discípulo: <span class="fala-jesus">"Eis aí a tua mãe."</span> E desde aquela hora o discípulo a recebeu em sua casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Depois disto, Jesus, sabendo que já todas as coisas estavam consumadas, para que a Escritura se cumprisse, disse: <span class="fala-jesus">"Tenho sede."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E estava ali um vaso cheio de vinagre. E, enchendo uma esponja de vinagre, e pondo-a num hissopo, levaram-lha à boca.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Então Jesus, quando tomou o vinagre, disse: <span class="fala-jesus">"Está consumado."</span> E, inclinando a cabeça, entregou o espíritu.
+    </p>
+
+    <!-- PERÍCOPE 3: O LADO TRANS PASSADO E O SEPULTAMENTO (19.31-42) -->
+    <div class="pericope">O Lado Transpassado e o Sepultamento</div>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então os judeus, para que os corpos não ficassem na cruz no sábado, pois era a preparação — porque era grande aquele dia de sábado —, rogaram a Pilatos que se lhes quebrassem as pernas, e fossem tirados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Os soldados, pois, vieram, e quebraram as pernas do primeiro e do outro que com ele tinha sido crucificado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Mas, quando chegaram a Jesus, e viram que já estava morto, não lhe quebraram as pernas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Porém um dos soldados furou-lhe o lado com uma lança, e imediatamente saiu sangue e água.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E aquele que o viu testificou, e o seu testemunho é verdadeiro; e ele sabe que diz a verdade, para que vós creiais.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Porque isto aconteceu para que se cumprisse a Escritura: "Nenhum osso dele será quebrado."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E outra vez diz outra Escritura: "Olharão para aquele que traspassaram."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Depois disto, José de Arimateia — que era discípulo de Jesus, mas oculto, por medo dos judeus — rogou a Pilatos que lhe deixasse tirar o corpo de Jesus. E Pilatos o permitiu. Então ele veio e tirou o corpo de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E veio também Nicodemos, aquele que anteriormente tinha ido a Jesus de noite, trazendo quase cem libras de uma mistura de mirra e aloés.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Então tomaram o corpo de Jesus e o envolveram em panos de linho com as especiarias, como é o costume dos judeus sepultar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E havia um jardim no lugar onde ele tinha sido crucificado; e no jardim um sepulcro novo, no qual ninguém ainda tinha sido posto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        Ali, pois, por causa da preparação dos judeus, e porque o sepulcro estava próximo, puseram Jesus.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:1 — "Açoitou"</span>
+            <div class="greek-text">ἐμαστίγωσεν</div>
+            <p><strong>Análise:</strong> Pilatos ordenou a flagelação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "açoitou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:2, 5 — "Veste púrpura"</span>
+            <div class="greek-text">ἱμάτιον πορφυροῦν</div>
+            <p><strong>Análise:</strong> Manto de cor púrpura, usado para zombar de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "veste púrpura".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:5 — "Eis o homem"</span>
+            <div class="greek-text">Ἰδοὺ ὁ ἄνθρωπος</div>
+            <p><strong>Análise:</strong> A declaração de Pilatos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Eis o homem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:13 — "Litóstrotos"</span>
+            <div class="greek-text">Λιθόστρωτον</div>
+            <p><strong>Análise:</strong> "Pavimento de pedra".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Litóstrotos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:13 — "Gabatá"</span>
+            <div class="hebrew-text">גַּבַּתָּא</div>
+            <p><strong>Análise:</strong> Nome hebraico do lugar do tribunal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Gabatá".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:17 — "Gólgota"</span>
+            <div class="hebrew-text">גָּלְגָּלְתָּא</div>
+            <p><strong>Análise:</strong> "Caveira", lugar da crucificação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Gólgota".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">João 19:23 — "Túnica sem costura"</span>
+            <div class="greek-text">χιτὼν ... ἄραφος</div>
+            <p><strong>Análise:</strong> A túnica tecida sem costura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "túnica sem costura".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:29 — "Hissopo"</span>
+            <div class="greek-text">ὑσσώπῳ</div>
+            <p><strong>Análise:</strong> Planta usada para oferecer o vinagre a Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "hissopo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 19:30 — "Está consumado"</span>
+            <div class="greek-text">Τετέλεσται</div>
+            <p><strong>Análise:</strong> Forma de <em>teleō</em>, relacionado a completar, cumprir, levar algo ao seu fim.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Está consumado".</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:30 — "Entregou o espírito"</span>
+            <div class="greek-text">παρέδωκεν τὸ πνεῦμα</div>
+            <p><strong>Análise:</strong> A entrega do espírito por Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "entregou o espírito".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 19:36 — "Nenhum osso dele será quebrado"</span>
+            <div class="greek-text">ὀστοῦν οὐ συντριβήσεται αὐτοῦ</div>
+            <p><strong>Análise:</strong> Citação de Êxodo 12:46 e Salmo 34:20.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">João 19:37 — "Olharão para aquele que traspassaram"</span>
+            <div class="greek-text">ὄψονται εἰς ὃν ἐξεκέντησαν</div>
+            <p><strong>Análise:</strong> Citação de Zacarias 12:10.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:38 — "José de Arimateia"</span>
+            <div class="greek-text">Ἰωσὴφ ... ἀπὸ Ἀριμαθαίας</div>
+            <p><strong>Análise:</strong> O discípulo oculto que pediu o corpo de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "José de Arimateia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">João 19:39 — "Mirra e aloés"</span>
+            <div class="greek-text">σμύρνης καὶ ἀλόης</div>
+            <p><strong>Análise:</strong> As especiarias trazidas por Nicodemos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mirra e aloés".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
