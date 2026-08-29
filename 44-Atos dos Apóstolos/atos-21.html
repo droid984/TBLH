@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 21</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 21</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Ágabo</span>
+                Profeta que desceu da Judeia e anunciou a prisão de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mnasom</span>
+                Discípulo antigo de Chipre, que hospedou Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tribuno</span>
+                Do grego <em>chiliarchos</em> (χιλίαρχος), comandante militar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fortaleza</span>
+                Do grego <em>parembolē</em> (παρεμβολή), quartel militar.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">21</div>
+
+    <!-- PERÍCOPE 1: VIAGEM PARA JERUSALÉM (21.1-16) -->
+    <div class="pericope">Viagem para Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, depois de nos separarmos deles, navegamos e fomos direto a Cós, e no dia seguinte a Rodes, e dali a Pátara.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, achando um navio que passava para a Fenícia, embarcamos e partimos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, avistando Chipre e deixando-a à esquerda, navegamos para a Síria, e chegamos a Tiro; porque o navio havia de descarregar ali a sua carga.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, achando os discípulos, ficamos ali sete dias; e eles, pelo Espírito, diziam a Paulo que não subisse a Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, quando completamos aqueles dias, partimos e seguimos o nosso caminho; e todos, com as mulheres e os filhos, nos acompanharam até fora da cidade; e, postos de joelhos na praia, oramos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, despedindo-nos uns dos outros, subimos ao navio; e eles voltaram para as suas casas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, concluída a navegação desde Tiro, chegamos a Ptolemaida; e, saudando os irmãos, ficamos com eles um dia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E no dia seguinte, partindo dali, fomos a Cesareia; e, entrando na casa de Filipe, o evangelista, que era um dos sete, ficamos com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E este tinha quatro filhas virgens, que profetizavam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, ficando nós ali muitos dias, desceu da Judeia um profeta, chamado Ágabo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, vindo a nós, tomou o cinto de Paulo, e, amarrando os seus próprios pés e mãos, disse: <span class="fala-outro">"Isto diz o Espírito Santo: Assim os judeus em Jerusalém amarrarão o homem de quem é este cinto, e o entregarão nas mãos dos gentios."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, quando ouvimos estas coisas, tanto nós como os que eram daquele lugar rogamos-lhe que não subisse a Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas Paulo respondeu: <span class="fala-outro">"Que fazeis, chorando e quebrantando-me o coração? Pois eu estou pronto não só a ser amarrado, mas também a morrer em Jerusalém pelo nome do Senhor Jesus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, como ele não se deixava persuadir, nos aquietamos, dizendo: <span class="fala-outro">"Faça-se a vontade do Senhor."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, depois daqueles dias, fizemos os nossos preparativos e subimos a Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E foram também conosco alguns discípulos de Cesareia, levando consigo um certo homem de Chipre, chamado Mnasom, discípulo antigo, com quem nos hospedaríamos.
+    </p>
+
+    <!-- PERÍCOPE 2: PAULO EM JERUSALÉM (21.17-26) -->
+    <div class="pericope">Paulo em Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, quando chegamos a Jerusalém, os irmãos nos receberam com alegria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E no dia seguinte Paulo entrou conosco em casa de Tiago, e todos os anciãos vieram ali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, saudando-os, contou-lhes uma por uma todas as coisas que Deus tinha feito entre os gentios por seu ministério.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E eles, ouvindo isso, glorificaram ao Senhor, e disseram-lhe: <span class="fala-outro">"Bem vês, irmão, quantos milhares de judeus há que creem, e todos são zelosos da lei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">E foram informados de ti, que ensinas todos os judeus que estão entre os gentios a se apartarem de Moisés, dizendo que não circuncidem os seus filhos, nem andem segundo os costumes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">Que faremos, pois? Em todo caso, a multidão há de se reunir, porque ouvirão que já chegaste.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">Faze, pois, isto que te dizemos: Temos quatro homens que fizeram voto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">Toma-os contigo, e santifica-te com eles, e faze com eles as despesas, para que rapem a cabeça; e todos saberão que não há nada daquilo de que foram informados de ti, mas que também tu mesmo andas ordenadamente, guardando a lei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">Mas, quanto aos gentios que creem, já escrevemos, determinando que nada disso guardem, senão que se abstenham do que é sacrificado aos ídolos, e do sangue, e do que é sufocado, e da fornicação."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Então Paulo, tomando consigo aqueles homens, no dia seguinte, tendo-se santificado com eles, entrou no templo, anunciando o cumprimento dos dias da purificação, até que se oferecesse oferta por cada um deles.
+    </p>
+
+    <!-- PERÍCOPE 3: A PRISÃO DE PAULO (21.27-40) -->
+    <div class="pericope">A Prisão de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, quando os sete dias estavam quase a terminar, os judeus da Ásia, vendo-o no templo, alvoroçaram toda a multidão, e lançaram mão dele,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        clamando: <span class="fala-outro">"Homens israelitas, ajudai! Este é o homem que por toda parte ensina todos contra o povo, e contra a lei, e contra este lugar; e, além disso, introduziu gregos no templo, e profanou este lugar santo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Porque antes tinham visto com ele na cidade Trófimo, de Éfeso, e pensavam que Paulo o tinha introduzido no templo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E toda a cidade se alvoroçou, e houve concorrência do povo; e, prendendo Paulo, arrastaram-no para fora do templo; e logo as portas se fecharam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E, procurando eles matá-lo, chegou ao tribuno da coorte a notícia de que toda Jerusalém estava em confusão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E ele, tomando logo soldados e centuriões, correu a eles. E, vendo o tribuno e os soldados, pararam de ferir Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Então o tribuno, aproximando-se, prendeu-o, e mandou amarrá-lo com duas cadeias; e perguntou quem era, e o que tinha feito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E uns clamavam de um modo, outros de outro, na multidão. E, como não podia saber a verdade por causa do tumulto, mandou conduzi-lo à fortaleza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, quando Paulo chegou às escadas, foi carregado pelos soldados, por causa da violência da multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Porque a multidão do povo o seguia, clamando: <span class="fala-outro">"Mata-o!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, quando Paulo estava para entrar na fortaleza, disse ao tribuno: <span class="fala-outro">"É-me permitido dizer-te alguma coisa?"</span> E ele disse: <span class="fala-outro">"Sabes tu grego?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-outro">Não és tu, porventura, aquele egípcio que antes destes dias fez uma sedição, e levou ao deserto quatro mil salteadores?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Mas Paulo disse: <span class="fala-outro">"Eu sou um homem judeu, de Tarso, cidadão de uma cidade não sem importância da Cilícia; e rogo-te que me permitas falar ao povo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E, tendo-lhe ele permitido, Paulo, pondo-se em pé nas escadas, acenou com a mão ao povo. E, fazendo-se grande silêncio, falou-lhes em língua hebraica, dizendo:
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:1 — "Cós, Rodes, Pátara"</span>
+            <div class="greek-text">Κῶν ... Ῥόδον ... Πάταρα</div>
+            <p><strong>Análise:</strong> As cidades mencionadas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cós", "Rodes" e "Pátara".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:2-3 — "Fenícia e Tiro"</span>
+            <div class="greek-text">Φοινίκην ... Τύρον</div>
+            <p><strong>Análise:</strong> Os lugares para onde navegaram.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Fenícia" e "Tiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:7 — "Ptolemaida"</span>
+            <div class="greek-text">Πτολεμαΐδα</div>
+            <p><strong>Análise:</strong> A cidade onde saudaram os irmãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ptolemaida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:8 — "Filipe, o evangelista"</span>
+            <div class="greek-text">Φιλίππου τοῦ εὐαγγελιστοῦ</div>
+            <p><strong>Análise:</strong> Um dos sete.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Filipe, o evangelista".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:9 — "Quatro filhas virgens, que profetizavam"</span>
+            <div class="greek-text">θυγατέρες τέσσαρες παρθένοι προφητεύουσαι</div>
+            <p><strong>Análise:</strong> As filhas de Filipe.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:10 — "Ágabo"</span>
+            <div class="greek-text">Ἄγαβος</div>
+            <p><strong>Análise:</strong> O profeta que desceu da Judeia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ágabo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 21:11 — "Cinto de Paulo"</span>
+            <div class="greek-text">τὴν ζώνην τοῦ Παύλου</div>
+            <p><strong>Análise:</strong> O ato simbólico do profeta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:16 — "Mnasom, discípulo antigo"</span>
+            <div class="greek-text">Μνάσωνί τινι Κυπρίῳ ἀρχαίῳ μαθητῇ</div>
+            <p><strong>Análise:</strong> Um discípulo antigo, ou de longa data, natural de Chipre.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Mnasom".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:18 — "Tiago e os anciãos"</span>
+            <div class="greek-text">Ἰάκωβον ... οἱ πρεσβύτεροι</div>
+            <p><strong>Análise:</strong> A liderança em Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:20 — "Zelosos da lei"</span>
+            <div class="greek-text">ζηλωταὶ τοῦ νόμου</div>
+            <p><strong>Análise:</strong> Judeus crentes que mantinham zelo pela lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "zelosos da lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:29 — "Trófimo, de Éfeso"</span>
+            <div class="greek-text">Τρόφιμον ... Ἐφέσιον</div>
+            <p><strong>Análise:</strong> O grego visto com Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Trófimo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:31 — "Tribuno da coorte"</span>
+            <div class="greek-text">χιλιάρχῳ τῆς σπείρης</div>
+            <p><strong>Análise:</strong> Comandante militar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribuno da coorte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:34, 37 — "Fortaleza"</span>
+            <div class="greek-text">παρεμβολήν</div>
+            <p><strong>Análise:</strong> Quartel militar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fortaleza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:38 — "Quatro mil salteadores"</span>
+            <div class="greek-text">τετρακισχιλίους ... σικαρίων</div>
+            <p><strong>Análise:</strong> <em>Sikários</em> designava homens associados ao uso da <em>sica</em>, uma pequena espada ou adaga.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "salteadores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 21:40 — "Língua hebraica"</span>
+            <div class="greek-text">Ἑβραΐδι διαλέκτῳ</div>
+            <p><strong>Análise:</strong> A língua falada por Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "língua hebraica".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

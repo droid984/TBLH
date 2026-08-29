@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 25</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 25</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Festo</span>
+                Pórcio Festo, governador romano da Judeia, sucessor de Félix.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Agripa</span>
+                Herodes Agripa II, rei da dinastia herodiana.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Berenice</span>
+                Irmã de Agripa II, presente na audiência de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Augusto</span>
+                Do grego <em>Sebastos</em> (Σεβαστός), título imperial de César.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">25</div>
+
+    <!-- PERÍCOPE 1: FESTO EM JERUSALÉM E CESAREIA (25.1-5) -->
+    <div class="pericope">Festo em Jerusalém e Cesareia</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">T</span>endo, pois, Festo chegado à província, três dias depois subiu de Cesareia a Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E o sumo sacerdote e os principais dos judeus compareceram diante dele contra Paulo, e lhe rogaram,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        pedindo favor contra ele, que o fizesse vir a Jerusalém, armando cilada para o matarem no caminho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas Festo respondeu que Paulo estava guardado em Cesareia, e que ele mesmo partiria em breve.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Portanto, disse ele: <span class="fala-outro">"Os que dentre vós têm autoridade desçam comigo, e, se há neste homem algum crime, acusem-no."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: PAULO PERANTE FESTO (25.6-12) -->
+    <div class="pericope">Paulo Perante Festo</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, tendo ficado entre eles não mais de dez dias, desceu a Cesareia; e no dia seguinte, assentando-se no tribunal, mandou que Paulo fosse trazido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, chegando ele, rodearam-no os judeus que tinham descido de Jerusalém, trazendo contra Paulo muitas e graves acusações, que não podiam provar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Paulo, em sua defesa, disse: <span class="fala-outro">"Não pequei contra a lei dos judeus, nem contra o templo, nem contra César."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Mas Festo, querendo agradar aos judeus, respondendo a Paulo, disse: <span class="fala-outro">"Queres subir a Jerusalém, e ser lá julgado diante de mim acerca destas coisas?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas Paulo disse: <span class="fala-outro">"Estou perante o tribunal de César, onde devo ser julgado. Nenhum dano fiz aos judeus, como tu bem sabes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">Pois, se tenho cometido alguma injustiça, ou praticado alguma coisa digna de morte, não recuso morrer; mas, se nada há das coisas de que estes me acusam, ninguém me pode entregar a eles. Apelo a César."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então Festo, tendo falado com o conselho, respondeu: <span class="fala-outro">"Apelaste para César? A César irás."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: FESTO E AGRIPA (25.13-22) -->
+    <div class="pericope">Festo e Agripa</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, passados alguns dias, o rei Agripa e Berenice vieram a Cesareia, para saudar Festo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, como ficassem ali muitos dias, Festo expôs ao rei a causa de Paulo, dizendo: <span class="fala-outro">"Um certo homem foi deixado por Félix como preso.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">A respeito de quem, estando eu em Jerusalém, os principais dos sacerdotes e os anciãos dos judeus compareceram, pedindo condenação contra ele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">Aos quais respondi que não é costume dos romanos entregar algum homem à morte antes que o acusado tenha diante de si os acusadores, e tenha lugar para se defender da acusação.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">Portanto, tendo eles comparecido aqui, sem nenhuma demora, no dia seguinte, assentando-me no tribunal, mandei trazer o homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">E, levantando-se os acusadores, nenhuma acusação trouxeram das coisas que eu suspeitava;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">tinham, porém, contra ele algumas questões acerca da sua própria superstição, e de um certo Jesus, morto, que Paulo afirmava estar vivo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">E, estando eu perplexo quanto a essa questão, perguntei-lhe se queria ir a Jerusalém, e lá ser julgado acerca destas coisas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">Mas, apelando Paulo para que fosse guardado para o julgamento de Augusto, mandei que fosse guardado até que eu o envie a César."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Então Agripa disse a Festo: <span class="fala-outro">"Eu também gostaria de ouvir esse homem."</span> E ele disse: <span class="fala-outro">"Amanhã o ouvirás."</span>
+    </p>
+
+    <!-- PERÍCOPE 4: PAULO PERANTE AGRIPA (25.23-27) -->
+    <div class="pericope">Paulo Perante Agripa</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E no dia seguinte, vindo Agripa e Berenice com grande pompa, e entrando no auditório com os tribunos e os principais da cidade, por ordem de Festo foi trazido Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E Festo disse: <span class="fala-outro">"Rei Agripa, e todos os homens que estais presentes conosco, vede este homem, por causa de quem toda a multidão dos judeus me tem procurado, tanto em Jerusalém como aqui, clamando que ele não deve mais viver.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">Mas eu achei que nenhuma coisa digna de morte ele tinha cometido. Porém, tendo ele mesmo apelado para Augusto, determinei enviá-lo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">Do qual não tenho coisa certa que escreva ao senhor. Por isso, vo-lo trouxe diante de vós, e principalmente diante de ti, rei Agripa, para que, depois de feito o exame, eu tenha o que escrever.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Porque me parece sem sentido enviar um preso, e não indicar também as acusações contra ele."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:1 — "Festo"</span>
+            <div class="greek-text">Φῆστος</div>
+            <p><strong>Análise:</strong> Pórcio Festo, sucessor de Félix como governador da Judeia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Festo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:1 — "Província"</span>
+            <div class="greek-text">ἐπαρχίαν</div>
+            <p><strong>Análise:</strong> A Judeia, administrada por Roma.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "província".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:6, 10, 17 — "Tribunal"</span>
+            <div class="greek-text">βῆμα</div>
+            <p><strong>Análise:</strong> Plataforma ou assento oficial de julgamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribunal".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 25:11 — "Apelo a César"</span>
+            <div class="greek-text">Καίσαρα ἐπικαλοῦμαι</div>
+            <p><strong>Análise:</strong> O recurso de Paulo à autoridade de César.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Apelo a César".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:12 — "Conselho"</span>
+            <div class="greek-text">συμβούλιον</div>
+            <p><strong>Análise:</strong> Conselho ou grupo consultivo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "conselho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:13 — "Agripa e Berenice"</span>
+            <div class="greek-text">Ἀγρίππας ... Βερνίκη</div>
+            <p><strong>Análise:</strong> Herodes Agripa II e Berenice.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Agripa" e "Berenice".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:19 — "Superstição"</span>
+            <div class="greek-text">δεισιδαιμονίας</div>
+            <p><strong>Análise:</strong> Termo relacionado à religiosidade ou superstição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "superstição".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:21, 25 — "Augusto"</span>
+            <div class="greek-text">Σεβαστός</div>
+            <p><strong>Análise:</strong> Título imperial de César.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Augusto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:23 — "Auditório"</span>
+            <div class="greek-text">ἀκροατήριον</div>
+            <p><strong>Análise:</strong> Local destinado à audiência pública.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "auditório".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:23 — "Com grande pompa"</span>
+            <div class="greek-text">μετὰ φαντασίας</div>
+            <p><strong>Análise:</strong> Com grande ostentação ou aparato.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com grande pompa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:27 — "Sem sentido"</span>
+            <div class="greek-text">ἄλογον</div>
+            <p><strong>Análise:</strong> Sem razão ou sem sentido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem sentido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:27 — "Indicar as acusações"</span>
+            <div class="greek-text">τῆς κατηγορίας</div>
+            <p><strong>Análise:</strong> As acusações formais contra Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "indicar também as acusações".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:24 — "Não deve mais viver"</span>
+            <div class="greek-text">μὴ δεῖν αὐτὸν ζῆν</div>
+            <p><strong>Análise:</strong> A acusação apresentada pela multidão dos judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 25:16 — "Tendo lugar para se defender"</span>
+            <div class="greek-text">τόπον ἀπολογίας</div>
+            <p><strong>Análise:</strong> Oportunidade ou ocasião para apresentar defesa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ter lugar para se defender".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

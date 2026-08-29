@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Caminho</span>
+                Do grego <em>hē hodos</em> (ἡ ὁδός), expressão usada para designar os discípulos e seu movimento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Barnabé</span>
+                Discípulo que apresentou Saulo aos apóstolos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tabita / Dorcas</span>
+                Discípula em Jope, cujo nome significa "gazela".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Curtidor</span>
+                Do grego <em>byrseus</em> (βυρσεύς), pessoa que trabalhava com peles e couro.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <!-- PERÍCOPE 1: A CONVERSÃO DE SAULO (9.1-19a) -->
+    <div class="pericope">A Conversão de Saulo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> Saulo, respirando ainda ameaças e morte contra os discípulos do Senhor, foi ao sumo sacerdote,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        e pediu-lhe cartas para Damasco, para as sinagogas, a fim de que, se achasse alguns do Caminho, tanto homens como mulheres, os trouxesse presos para Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, indo ele no caminho, aconteceu que, chegando perto de Damasco, de repente uma luz do céu brilhou ao redor dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, caindo por terra, ouviu uma voz que lhe dizia: <span class="fala-jesus">"Saulo, Saulo, por que me persegues?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E ele disse: <span class="fala-outro">"Quem és, Senhor?"</span> E o Senhor disse: <span class="fala-jesus">"Eu sou Jesus, a quem tu persegues. Dura coisa te é recalcitrar contra os aguilhões."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E ele, tremendo e atônito, disse: <span class="fala-outro">"Senhor, que queres que eu faça?"</span> E o Senhor lhe disse: <span class="fala-jesus">"Levanta-te, e entra na cidade, e te será dito o que te convém fazer."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E os homens que viajavam com ele ficaram espantados, ouvindo a voz, mas não vendo ninguém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Saulo se levantou da terra; e, abrindo os olhos, não via ninguém. E, guiando-o pela mão, levaram-no a Damasco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E esteve três dias sem ver, e não comeu, nem bebeu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E havia em Damasco um certo discípulo, chamado Ananias. E o Senhor lhe disse em visão: <span class="fala-jesus">"Ananias."</span> E ele disse: <span class="fala-outro">"Eis-me aqui, Senhor."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E o Senhor lhe disse: <span class="fala-jesus">"Levanta-te, e vai à rua chamada Direita, e pergunta em casa de Judas por um homem chamado Saulo, de Tarso; porque eis que ele está orando.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-jesus">E viu em visão um homem chamado Ananias, que entrava e lhe impunha as mãos, para que tornasse a ver."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E Ananias respondeu: <span class="fala-outro">"Senhor, de muitos tenho ouvido acerca deste homem, quantos males tem feito aos teus santos em Jerusalém.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">E aqui tem autoridade dos principais dos sacerdotes para prender todos os que invocam o teu nome."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas o Senhor lhe disse: <span class="fala-jesus">"Vai, porque este é para mim um vaso escolhido, para levar o meu nome diante dos gentios, e dos reis, e dos filhos de Israel.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-jesus">Porque eu lhe mostrarei quanto lhe é necessário padecer pelo meu nome."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Ananias foi, e entrou na casa; e, impondo-lhe as mãos, disse: <span class="fala-outro">"Irmão Saulo, o Senhor Jesus, que te apareceu no caminho por onde vinhas, me enviou, para que tornes a ver, e sejas cheio do Espírito Santo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E imediatamente caíram dos seus olhos como que escamas, e logo recuperou a vista; e, levantando-se, foi batizado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, tendo comido, ficou fortalecido. E Saulo esteve alguns dias com os discípulos que estavam em Damasco.
+    </p>
+
+    <!-- PERÍCOPE 2: SAULO EM DAMASCO E JERUSALÉM (9.19b-31) -->
+    <div class="pericope">Saulo em Damasco e Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E logo nas sinagogas pregava a Cristo, que este é o Filho de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E todos os que o ouviam ficavam admirados, e diziam: <span class="fala-outro">"Não é este o que em Jerusalém perseguia os que invocavam este nome, e para isso veio aqui, para os levar presos aos principais dos sacerdotes?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas Saulo se fortalecia cada vez mais, e confundia os judeus que habitavam em Damasco, demonstrando que Jesus é o Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, passados muitos dias, os judeus deliberaram entre si matá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Mas as suas ciladas vieram ao conhecimento de Saulo. E eles guardavam as portas, tanto de dia como de noite, para o matarem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Mas os discípulos, tomando-o de noite, o desceram pela muralha, num cesto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E, quando Saulo chegou a Jerusalém, procurava juntar-se aos discípulos; mas todos o temiam, não crendo que ele fosse discípulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Então Barnabé, tomando-o, o levou aos apóstolos, e contou-lhes como ele tinha visto o Senhor no caminho, e que ele lhe tinha falado, e como em Damasco ele tinha falado ousadamente no nome de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E ele estava com eles em Jerusalém, entrando e saindo,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        e falava ousadamente no nome do Senhor Jesus. E falava e disputava contra os helenistas; mas eles procuravam matá-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E os irmãos, sabendo disso, o acompanharam até Cesareia, e o enviaram a Tarso.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E as igrejas tinham paz por toda a Judeia, Galileia e Samaria, sendo edificadas e andando no temor do Senhor; e, com a consolação do Espírito Santo, se multiplicavam.
+    </p>
+
+    <!-- PERÍCOPE 3: PEDRO EM LIDA E JOPE (9.32-43) -->
+    <div class="pericope">Pedro em Lida e Jope</div>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E aconteceu que Pedro, passando por todas as partes, veio também aos santos que habitavam em Lida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E achou ali um homem chamado Eneias, que jazia numa cama havia oito anos, paralítico.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E Pedro lhe disse: <span class="fala-outro">"Eneias, Jesus Cristo te cura. Levanta-te e arruma a tua cama."</span> E imediatamente ele se levantou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E viram-no todos os que habitavam em Lida e Sarona, e se converteram ao Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E havia em Jope uma discípula chamada Tabita, que traduzido se diz Dorcas. Esta estava cheia de boas obras e esmolas que fazia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E aconteceu naqueles dias que ela adoeceu e morreu. E, tendo-a lavado, puseram-na no cenáculo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E, como Lida era perto de Jope, os discípulos, ouvindo que Pedro estava ali, enviaram-lhe dois homens, rogando-lhe que não demorasse em vir até eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E Pedro, levantando-se, foi com eles. E, quando chegou, o levaram ao cenáculo; e todas as viúvas o rodearam, chorando e mostrando as túnicas e vestes que Dorcas fazia quando estava com elas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Mas Pedro, fazendo sair a todos, pôs-se de joelhos e orou. E, voltando-se para o corpo, disse: <span class="fala-outro">"Tabita, levanta-te."</span> E ela abriu os olhos e, vendo Pedro, assentou-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E ele, dando-lhe a mão, a levantou; e, chamando os santos e as viúvas, apresentou-lha viva.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E isto foi conhecido por toda Jope, e muitos creram no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E ficou muitos dias em Jope, em casa de um certo Simão, curtidor.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:1 — "Respirando ameaças e morte"</span>
+            <div class="greek-text">ἐμπνέων ἀπειλῆς καὶ φόνου</div>
+            <p><strong>Análise:</strong> Saulo estava cheio de ameaças e desejo de matar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "respirando ameaças e morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:2 — "Do Caminho"</span>
+            <div class="greek-text">τῆς ὁδοῦ</div>
+            <p><strong>Análise:</strong> Expressão usada para designar os discípulos e seu movimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "do Caminho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:5 — "Recalcitrar contra os aguilhões"</span>
+            <div class="greek-text">πρὸς κέντρα λακτίζειν</div>
+            <p><strong>Análise:</strong> Expressão proverbial sobre resistir ao inevitável.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 9:15 — "Vaso escolhido"</span>
+            <div class="greek-text">σκεῦος ἐκλογῆς</div>
+            <p><strong>Análise:</strong> Instrumento escolhido por Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vaso escolhido".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:18 — "Como que escamas"</span>
+            <div class="greek-text">ὡσεὶ λεπίδες</div>
+            <p><strong>Análise:</strong> Algo que caiu dos olhos de Saulo, possibilitando a recuperação da visão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como que escamas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:25 — "Desceram pela muralha, num cesto"</span>
+            <div class="greek-text">ἐν σπυρίδι</div>
+            <p><strong>Análise:</strong> Saulo foi descido em um cesto para escapar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "num cesto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:27 — "Barnabé"</span>
+            <div class="greek-text">Βαρνάβας</div>
+            <p><strong>Análise:</strong> O discípulo que apresentou Saulo aos apóstolos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Barnabé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:32-35 — "Lida"</span>
+            <div class="greek-text">Λύδδα</div>
+            <p><strong>Análise:</strong> A cidade onde Pedro curou Eneias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Lida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:35 — "Sarona"</span>
+            <div class="greek-text">Σαρῶνα</div>
+            <p><strong>Análise:</strong> A região mencionada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Sarona".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:36, 40 — "Tabita... Dorcas"</span>
+            <div class="greek-text">Ταβιθά ... Δορκάς</div>
+            <p><strong>Análise:</strong> Tabita é aramaico e Dorcas é grego; ambos significam "gazela".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Tabita, que traduzido se diz Dorcas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:37, 39 — "Cenáculo"</span>
+            <div class="greek-text">ὑπερῷον</div>
+            <p><strong>Análise:</strong> Sala superior ou aposento superior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cenáculo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:43 — "Curtidor"</span>
+            <div class="greek-text">βυρσεύς</div>
+            <p><strong>Análise:</strong> Pessoa que trabalhava com peles e couro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "curtidor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:11, 30 — "Tarso"</span>
+            <div class="greek-text">Ταρσός</div>
+            <p><strong>Análise:</strong> A cidade de Saulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Tarso".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:33-34 — "Eneias"</span>
+            <div class="greek-text">Αἰνέας</div>
+            <p><strong>Análise:</strong> O paralítico curado por Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Eneias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 9:36 — "Jope"</span>
+            <div class="greek-text">Ἰόππῃ</div>
+            <p><strong>Análise:</strong> A cidade onde Tabita vivia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Jope".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

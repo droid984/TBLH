@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 27</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 27</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Adramítio</span>
+                Cidade da Mísia, na costa da Ásia Menor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Euroaquilão</span>
+                Nome do vento tempestuoso que atingiu o navio.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sirte</span>
+                Região de bancos de areia perigosos ao norte da África.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Braça</span>
+                Medida antiga de profundidade, equivalente a cerca de 1,8 metros.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">27</div>
+
+    <!-- PERÍCOPE 1: A VIAGEM PARA ROMA (27.1-12) -->
+    <div class="pericope">A Viagem para Roma</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, quando foi determinado que navegássemos para a Itália, entregaram Paulo e alguns outros presos a um centurião, chamado Júlio, da coorte Augusta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, embarcando num navio de Adramítio, que estava prestes a navegar pelos lugares da costa da Ásia, partimos, estando conosco Aristarco, macedônio de Tessalônica.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E no dia seguinte chegamos a Sidom; e Júlio, tratando Paulo com humanidade, permitiu-lhe ir ver os amigos, para que cuidassem dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, partindo dali, navegamos por baixo de Chipre, porque os ventos eram contrários.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, tendo navegado pelo mar da Cilícia e da Panfília, chegamos a Mirra, na Lícia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, achando ali o centurião um navio de Alexandria, que navegava para a Itália, nos fez embarcar nele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, navegando vagarosamente por muitos dias, e chegando com dificuldade defronte de Cnido, não nos permitindo o vento, navegamos por baixo de Creta, defronte de Salmona.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, passando com dificuldade por ela, chegamos a um lugar chamado Bons Portos, perto do qual estava a cidade de Laseia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, passado muito tempo, e sendo já perigosa a navegação — porque também o jejum já tinha passado —, Paulo os admoestava,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        dizendo-lhes: <span class="fala-outro">"Homens, vejo que a navegação será com dano e muita perda, não só da carga e do navio, mas também das nossas vidas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas o centurião dava mais crédito ao piloto e ao mestre do navio do que ao que Paulo dizia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, como aquele porto não era cômodo para invernar, a maioria aconselhou partir dali, para ver se podiam chegar a Fênix, para ali invernar — um porto de Creta, que olha para o sudoeste e noroeste.
+    </p>
+
+    <!-- PERÍCOPE 2: A TEMPESTADE (27.13-26) -->
+    <div class="pericope">A Tempestade</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, soprando o vento sul suavemente, pensaram ter alcançado o que desejavam; e, levantando âncora, iam navegando bem perto de Creta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas não muito depois, levantou-se contra ela um vento tempestuoso, chamado Euroaquilão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, sendo o navio arrebatado, e não podendo resistir ao vento, nos deixamos ir à deriva.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, correndo por baixo de uma pequena ilha chamada Clauda, com dificuldade pudemos recolher o bote.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, tendo-o içado, usaram de todos os meios, cingindo o navio por baixo; e, temendo que fossem lançados na Sirte, arriaram as velas, e assim foram levados à deriva.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, sendo nós violentamente agitados pela tempestade, no dia seguinte começaram a aliviar o navio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E ao terceiro dia nós, com as nossas próprias mãos, lançamos ao mar os apetrechos do navio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, não aparecendo havia já muitos dias nem sol nem estrelas, e caindo sobre nós uma tempestade não pequena, toda a esperança de sermos salvos se perdia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, havendo já muito que não se comia, Paulo, pondo-se em pé no meio deles, disse: <span class="fala-outro">"Homens, era necessário que vós, tendo-me ouvido, não partísseis de Creta, e assim teríeis evitado este dano e esta perda.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">Mas agora vos exorto a ter bom ânimo, porque não se perderá a vida de nenhum de vós, mas somente o navio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">Porque esta noite esteve comigo um anjo do Deus de quem sou, e a quem sirvo,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">dizendo: 'Não temas, Paulo; é necessário que compareças diante de César; e eis que Deus te deu todos os que navegam contigo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">Portanto, homens, tende bom ânimo; porque creio em Deus que assim será como me foi dito.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">Mas é necessário que sejamos lançados sobre alguma ilha."</span>
+    </p>
+
+    <!-- PERÍCOPE 3: O NAUFRÁGIO (27.27-44) -->
+    <div class="pericope">O Naufrágio</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, quando chegou a décima quarta noite, sendo nós levados de um lado para outro no mar Adriático, perto da meia-noite os marinheiros suspeitaram que se aproximavam de alguma terra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, lançando a sonda, acharam vinte braças; e, passando um pouco mais adiante, lançando outra vez a sonda, acharam quinze braças.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, temendo que fôssemos lançados contra lugares rochosos, lançaram da popa quatro âncoras, e desejavam que amanhecesse.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, procurando os marinheiros fugir do navio, e tendo já baixado o bote ao mar, sob pretexto de que iam lançar âncoras da proa,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Paulo disse ao centurião e aos soldados: <span class="fala-outro">"Se estes não ficarem no navio, não podereis salvar-vos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Então os soldados cortaram as cordas do bote, e o deixaram cair.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, enquanto esperavam o amanhecer, Paulo exortava todos a que comessem alguma coisa, dizendo: <span class="fala-outro">"Hoje é o décimo quarto dia em que, esperando, permaneceis sem comer, nada tendo provado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-outro">Portanto, exorto-vos a que comais alguma coisa, pois isto é para a vossa segurança; porque nem um cabelo da cabeça de qualquer de vós se perderá."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, tendo dito isto, tomou o pão, e deu graças a Deus diante de todos; e, partindo-o, começou a comer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E todos, tendo ânimo, também comeram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E éramos ao todo no navio duzentas e setenta e seis almas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E, saciados com a comida, aliviaram o navio, lançando o trigo ao mar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, quando amanheceu, não reconheciam a terra; mas avistaram uma enseada com praia, e deliberaram, se fosse possível, lançar ali o navio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E, cortando as âncoras, deixaram-nas no mar, soltando também as amarras dos lemes; e, içando a vela ao vento, dirigiam-se para a praia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Mas, caindo num lugar de duas correntes, encalharam o navio; e a proa, encravada, ficou imóvel, mas a popa se abria com a violência das ondas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E o conselho dos soldados era que matassem os presos, para que nenhum fugisse, escapando a nado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        Mas o centurião, querendo salvar Paulo, impediu-lhes o intento, e mandou que os que pudessem nadar fossem os primeiros a lançar-se ao mar e alcançar a terra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E os demais, uns em tábuas, e outros em coisas do navio. E assim aconteceu que todos chegaram à terra a salvo.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:1 — "Júlio, da coorte Augusta"</span>
+            <div class="greek-text">Ἰουλίῳ σπείρης Σεβαστῆς</div>
+            <p><strong>Análise:</strong> O centurião responsável pelos presos durante a viagem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Júlio, da coorte Augusta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:2 — "Navio de Adramítio"</span>
+            <div class="greek-text">πλοίῳ Ἀδραμυττηνῷ</div>
+            <p><strong>Análise:</strong> Navio procedente de Adramítio, cidade da Mísia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "navio de Adramítio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:2 — "Aristarco, macedônio de Tessalônica"</span>
+            <div class="greek-text">Ἀριστάρχου Μακεδόνος Θεσσαλονικέως</div>
+            <p><strong>Análise:</strong> Companheiro de Paulo mencionado anteriormente em Atos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Aristarco".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:3 — "Sidom"</span>
+            <div class="greek-text">Σιδῶνα</div>
+            <p><strong>Análise:</strong> Cidade portuária da Fenícia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Sidom".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:4-5 — "Chipre, Cilícia, Panfília, Mirra, Lícia"</span>
+            <div class="greek-text">Κύπρον ... Κιλικίαν ... Παμφυλίαν ... Μύρρα ... Λυκίαν</div>
+            <p><strong>Análise:</strong> Regiões e localidades percorridas durante a viagem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração dos nomes.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:7 — "Cnido"</span>
+            <div class="greek-text">Κνίδον</div>
+            <p><strong>Análise:</strong> Cidade portuária na extremidade sudoeste da Ásia Menor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cnido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:7-8 — "Creta, Salmona, Bons Portos, Laseia"</span>
+            <div class="greek-text">Κρήτην ... Σαλμώνην ... Καλοὺς Λιμένας ... Λασαίαν</div>
+            <p><strong>Análise:</strong> Lugares situados na ilha de Creta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração dos nomes.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:9 — "Jejum"</span>
+            <div class="greek-text">νηστείαν</div>
+            <p><strong>Análise:</strong> Referência ao período de jejum associado ao Dia da Expiação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "jejum".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:14 — "Euroaquilão"</span>
+            <div class="greek-text">Εὐροκλύδων</div>
+            <p><strong>Análise:</strong> Nome dado ao vento tempestuoso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Euroaquilão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:16 — "Clauda"</span>
+            <div class="greek-text">Κλαύδην</div>
+            <p><strong>Análise:</strong> Pequena ilha ao sul de Creta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Clauda".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:17 — "Sirte"</span>
+            <div class="greek-text">Σύρτιν</div>
+            <p><strong>Análise:</strong> Região de bancos de areia perigosos ao norte da África.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Sirte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:27 — "Mar Adriático"</span>
+            <div class="greek-text">Ἀδρίᾳ</div>
+            <p><strong>Análise:</strong> Nome que na Antiguidade podia designar uma área marítima mais ampla do que o atual mar Adriático.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mar Adriático".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:28 — "Vinte braças... quinze braças"</span>
+            <div class="greek-text">ὀργυιὰς εἴκοσι ... ὀργυιὰς δεκαπέντε</div>
+            <p><strong>Análise:</strong> Medidas antigas de profundidade utilizadas pelos marinheiros.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "braças".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:37 — "Duzentas e setenta e seis almas"</span>
+            <div class="greek-text">διακόσιαι ἑβδομήκοντα ἕξ ψυχαί</div>
+            <p><strong>Análise:</strong> O número total de pessoas que estavam no navio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "duzentas e setenta e seis almas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 27:39 — "Enseada com praia"</span>
+            <div class="greek-text">κόλπον ... αἰγιαλόν</div>
+            <p><strong>Análise:</strong> "Enseada" ou "baía", acompanhada da referência à praia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "enseada com praia".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

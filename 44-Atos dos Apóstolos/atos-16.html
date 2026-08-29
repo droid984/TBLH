@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 16</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 16</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Timóteo</span>
+                Jovem discípulo de Listra, filho de mãe judia e pai grego.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Trôade</span>
+                Cidade portuária na Ásia Menor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Filipos</span>
+                Cidade da Macedônia, colônia romana.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Píton</span>
+                Do grego <em>pythōn</em> (πύθων), espírito associado à adivinhação.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">16</div>
+
+    <!-- PERÍCOPE 1: TIMÓTEO E A VISÃO DA MACEDÔNIA (16.1-10) -->
+    <div class="pericope">Timóteo e a Visão da Macedônia</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> ele chegou a Derbe e Listra. E eis que estava ali um certo discípulo, chamado Timóteo, filho de uma mulher judia crente, mas de pai grego;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        do qual davam bom testemunho os irmãos que estavam em Listra e Icônio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Paulo quis que este fosse com ele; e, tomando-o, circuncidou-o, por causa dos judeus que estavam naqueles lugares; porque todos sabiam que o pai dele era grego.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, passando pelas cidades, entregavam-lhes, para serem guardados, os decretos que tinham sido determinados pelos apóstolos e anciãos em Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        De modo que as igrejas eram confirmadas na fé, e cresciam em número a cada dia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, passando pela Frígia e pela região da Galácia, foram impedidos pelo Espírito Santo de anunciar a palavra na Ásia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, quando chegaram a Mísia, tentavam ir para Bitínia, mas o Espírito não lho permitiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, passando pela Mísia, desceram a Trôade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E Paulo teve de noite uma visão: um homem macedônio estava em pé, rogando-lhe e dizendo: <span class="fala-outro">"Passa à Macedônia, e ajuda-nos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, quando ele teve a visão, logo procuramos partir para a Macedônia, concluindo que o Senhor nos chamava para lhes anunciar o evangelho.
+    </p>
+
+    <!-- PERÍCOPE 2: EM FILIPOS (16.11-40) -->
+    <div class="pericope">Em Filipos</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, navegando de Trôade, fomos direto a Samotrácia, e no dia seguinte a Neápolis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E dali a Filipos, que é a primeira cidade daquela parte da Macedônia, uma colônia. E estávamos naquela cidade alguns dias.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E no dia de sábado saímos para fora das portas, à beira do rio, onde se costumava fazer oração; e, assentando-nos, falávamos às mulheres que ali se reuniram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E uma certa mulher, chamada Lídia, vendedora de púrpura, da cidade de Tiatira, que servia a Deus, nos ouvia; e o Senhor lhe abriu o coração para que estivesse atenta ao que Paulo dizia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, quando ela e a sua casa foram batizadas, rogou-nos, dizendo: <span class="fala-outro">"Se haveis julgado que eu sou fiel ao Senhor, entrai em minha casa, e ficai ali."</span> E nos constrangeu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E aconteceu que, indo nós à oração, nos saiu ao encontro uma moça que tinha espírito de Píton, a qual, adivinhando, dava grande lucro aos seus senhores.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Esta, seguindo Paulo e a nós, clamava, dizendo: <span class="fala-outro">"Estes homens são servos do Deus Altíssimo, e vos anunciam o caminho da salvação."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E isto fez por muitos dias. Mas Paulo, perturbado, voltou-se e disse ao espírito: <span class="fala-outro">"Em nome de Jesus Cristo, te mando que saias dela."</span> E na mesma hora saiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, vendo os seus senhores que a esperança do seu lucro estava perdida, prenderam Paulo e Silas, e os arrastaram à praça, diante das autoridades.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, apresentando-os aos magistrados, disseram: <span class="fala-outro">"Estes homens, sendo judeus, perturbam a nossa cidade,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">e anunciam costumes que não nos é lícito receber nem praticar, sendo nós romanos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E a multidão se levantou contra eles; e os magistrados, rasgando-lhes as vestes, mandaram açoitá-los.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, depois de lhes darem muitos açoites, os lançaram na prisão, mandando ao carcereiro que os guardasse com segurança.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        O qual, tendo recebido tal ordem, os lançou na prisão interior, e lhes segurou os pés no tronco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, perto da meia-noite, Paulo e Silas oravam e cantavam louvores a Deus, e os outros presos os ouviam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E de repente houve um terremoto tão grande, que os alicerces da prisão se moveram; e logo se abriram todas as portas, e as correntes de todos se soltaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, acordando o carcereiro e vendo abertas as portas da prisão, puxou a espada e ia matar-se, cuidando que os presos tinham fugido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Mas Paulo clamou em alta voz, dizendo: <span class="fala-outro">"Não te faças mal algum, porque todos estamos aqui."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, pedindo ele luz, saltou para dentro e, tremendo, prostrou-se diante de Paulo e Silas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, tirando-os para fora, disse: <span class="fala-outro">"Senhores, que é necessário que eu faça para me salvar?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E eles disseram: <span class="fala-outro">"Crê no Senhor Jesus Cristo, e serás salvo, tu e a tua casa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E falaram-lhe a palavra do Senhor, e a todos os que estavam em sua casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, tomando-os ele naquela mesma hora da noite, lavou-lhes os açoites; e logo foi batizado, ele e todos os seus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E, levando-os à sua casa, pôs-lhes a mesa; e, crendo em Deus, alegrou-se com toda a sua casa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, quando amanheceu, os magistrados enviaram os oficiais, dizendo: <span class="fala-outro">"Solta aqueles homens."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E o carcereiro anunciou estas palavras a Paulo: <span class="fala-outro">"Os magistrados mandaram que fôsseis soltos. Agora, pois, saí e ide em paz."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Mas Paulo lhes disse: <span class="fala-outro">"Depois de nos açoitarem publicamente, sem sermos condenados, sendo nós romanos, nos lançaram na prisão; e agora nos lançam fora em oculto? Não será assim; mas venham eles mesmos e nos tirem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E os oficiais anunciaram estas palavras aos magistrados; e eles temeram, ouvindo que eram romanos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E, vindo, lhes rogaram; e, tirando-os, pediam-lhes que saíssem da cidade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E eles, saindo da prisão, entraram em casa de Lídia; e, vendo os irmãos, os consolaram, e partiram.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:1 — "Timóteo"</span>
+            <div class="greek-text">Τιμόθεος</div>
+            <p><strong>Análise:</strong> O discípulo de Listra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Timóteo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:3 — "Circuncidou-o"</span>
+            <div class="greek-text">περιέτεμεν</div>
+            <p><strong>Análise:</strong> A ação de Paulo para evitar ofensas aos judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "circuncidou-o".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:4 — "Decretos"</span>
+            <div class="greek-text">δόγματα</div>
+            <p><strong>Análise:</strong> As decisões do concílio de Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "decretos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:6 — "Frígia e Galácia"</span>
+            <div class="greek-text">Φρυγίαν καὶ Γαλατικὴν χώραν</div>
+            <p><strong>Análise:</strong> As regiões mencionadas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Frígia" e "Galácia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:6 — "Impedidos pelo Espírito Santo"</span>
+            <div class="greek-text">κωλυθέντες ὑπὸ τοῦ Ἁγίου Πνεύματος</div>
+            <p><strong>Análise:</strong> A orientação divina sobre o caminho missionário.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:7 — "Mísia e Bitínia"</span>
+            <div class="greek-text">Μυσίαν ... Βιθυνίαν</div>
+            <p><strong>Análise:</strong> As regiões mencionadas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Mísia" e "Bitínia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:8 — "Trôade"</span>
+            <div class="greek-text">Τρῳάδα</div>
+            <p><strong>Análise:</strong> A cidade portuária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Trôade".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 16:9-10 — "Macedônia"</span>
+            <div class="greek-text">Μακεδονία</div>
+            <p><strong>Análise:</strong> A visão de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Macedônia".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:11 — "Samotrácia e Neápolis"</span>
+            <div class="greek-text">Σαμοθρᾴκην ... Νέαν πόλιν</div>
+            <p><strong>Análise:</strong> As cidades mencionadas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Samotrácia" e "Neápolis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:12 — "Filipos, colônia"</span>
+            <div class="greek-text">Φιλίππους ... κολωνία</div>
+            <p><strong>Análise:</strong> A cidade da Macedônia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Filipos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 16:14 — "Lídia, vendedora de púrpura"</span>
+            <div class="greek-text">Λυδία ... πορφυρόπωλις</div>
+            <p><strong>Análise:</strong> A mulher de Tiatira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Lídia".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:16 — "Espírito de Píton"</span>
+            <div class="greek-text">πνεῦμα πύθωνα</div>
+            <p><strong>Análise:</strong> Expressão associada à adivinhação e ao culto de Píton no mundo greco-romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espírito de Píton".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:24 — "Tronco"</span>
+            <div class="greek-text">ξύλον</div>
+            <p><strong>Análise:</strong> Instrumento de tortura e contenção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tronco".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 16:31 — "Crê no Senhor Jesus Cristo"</span>
+            <div class="greek-text">πίστευσον ἐπὶ τὸν κύριον Ἰησοῦν Χριστόν</div>
+            <p><strong>Análise:</strong> A resposta de Paulo e Silas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 16:38 — "Eles temeram, ouvindo que eram romanos"</span>
+            <div class="greek-text">ἐφοβήθησαν ἀκούσαντες ὅτι Ῥωμαῖοί εἰσιν</div>
+            <p><strong>Análise:</strong> A reação dos magistrados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

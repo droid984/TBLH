@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 26</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 26</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Agripa</span>
+                Herodes Agripa II, rei da dinastia herodiana.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Berenice</span>
+                Irmã de Agripa II.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Festo</span>
+                Pórcio Festo, governador romano da Judeia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aguilhão</span>
+                Instrumento pontiagudo usado para conduzir animais.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">26</div>
+
+    <!-- PERÍCOPE 1: A DEFESA DE PAULO (26.1-23) -->
+    <div class="pericope">A Defesa de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> Agripa disse a Paulo: <span class="fala-outro">"É-te permitido falar em tua defesa."</span> Então Paulo, estendendo a mão, fez a sua defesa, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        <span class="fala-outro">"Tenho-me por feliz, ó rei Agripa, de que hoje, diante de ti, hei de me defender de todas as coisas de que sou acusado pelos judeus;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-outro">principalmente porque és conhecedor de todos os costumes e questões que há entre os judeus. Por isso, rogo-te que me ouças com paciência."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-outro">"A minha vida, pois, desde a juventude, como decorreu entre o meu povo, em Jerusalém, todos os judeus a conhecem;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">os quais, desde o princípio, me conheceram — se quiserem testificar — que, conforme a mais rigorosa seita da nossa religião, vivi fariseu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-outro">E agora estou em julgamento por causa da esperança da promessa feita por Deus aos nossos pais,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-outro">à qual as nossas doze tribos, servindo a Deus de dia e de noite, esperam chegar. Por essa esperança, ó rei Agripa, sou acusado pelos judeus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">"Por que se julga coisa incrível entre vós que Deus ressuscite os mortos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">"Bem, na verdade, eu também pensei comigo mesmo que devia fazer muitas coisas contra o nome de Jesus Nazareno.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">O que também fiz em Jerusalém. E, tendo recebido autoridade dos principais dos sacerdotes, encerrei muitos dos santos nas prisões; e, quando os matavam, eu dava o meu voto contra eles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">E, castigando-os muitas vezes em todas as sinagogas, os obrigava a blasfemar; e, enfurecido cada vez mais contra eles, os perseguia até nas cidades estrangeiras."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-outro">"Nisto, indo eu a Damasco, com autoridade e comissão dos principais dos sacerdotes,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-outro">ao meio-dia, ó rei, vi no caminho uma luz do céu, mais resplandecente que o sol, brilhando ao redor de mim e dos que iam comigo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">E, caindo nós todos por terra, ouvi uma voz que me falava em língua hebraica, dizendo: 'Saulo, Saulo, por que me persegues? Dura coisa te é recalcitrar contra os aguilhões.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">E eu disse: 'Quem és, Senhor?' E ele disse: 'Eu sou Jesus, a quem tu persegues.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">Mas levanta-te, e põe-te em pé, porque para isto te apareci: para te constituir ministro e testemunha, tanto das coisas que tens visto, como daquelas em que te aparecerei;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">livrando-te deste povo e dos gentios, aos quais agora te envio,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">para lhes abrires os olhos, e os converteres das trevas à luz, e do poder de Satanás a Deus, para que recebam remissão dos pecados e herança entre os que são santificados pela fé em mim.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">"Portanto, ó rei Agripa, não fui desobediente à visão celestial.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">Antes, anunciei primeiramente aos que estão em Damasco, e em Jerusalém, e por toda a terra da Judeia, e aos gentios, que se arrependessem e se convertessem a Deus, fazendo obras dignas de arrependimento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">Por causa destas coisas os judeus me prenderam no templo, e tentaram matar-me.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">Mas, tendo alcançado socorro de Deus, até o dia de hoje permaneço, testificando tanto a pequenos como a grandes, não dizendo nada senão o que os profetas e Moisés disseram que havia de acontecer:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">que o Cristo havia de padecer, e que, sendo o primeiro da ressurreição dos mortos, anunciaria luz ao povo e aos gentios."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A REAÇÃO DE FESTO E AGRIPA (26.24-32) -->
+    <div class="pericope">A Reação de Festo e Agripa</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, dizendo ele isto em sua defesa, Festo disse em alta voz: <span class="fala-outro">"Estás louco, Paulo! As muitas letras te fazem delirar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Mas Paulo disse: <span class="fala-outro">"Não estou louco, excelentíssimo Festo, antes falo palavras de verdade e de bom senso.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">Porque o rei, diante de quem também falo com ousadia, sabe destas coisas; pois estou persuadido de que nenhuma destas coisas lhe é oculta, porque isto não foi feito em algum canto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Crês tu nos profetas, ó rei Agripa? Eu sei que crês."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E Agripa disse a Paulo: <span class="fala-outro">"Por pouco me persuades a fazer-me cristão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E Paulo disse: <span class="fala-outro">"Eu desejaria a Deus que, por pouco ou por muito, não somente tu, mas também todos os que hoje me ouvem, se tornassem tais como eu sou, exceto estas cadeias."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, tendo ele dito isto, levantou-se o rei, e o governador, e Berenice, e os que com eles estavam assentados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E, apartando-se, falavam entre si, dizendo: <span class="fala-outro">"Este homem nada faz digno de morte ou de prisão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E Agripa disse a Festo: <span class="fala-outro">"Este homem poderia ser solto, se não tivesse apelado para César."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:1 — "É-te permitido falar em tua defesa"</span>
+            <div class="greek-text">ἐπιτρέπεταί σοι περὶ σεαυτοῦ λέγειν</div>
+            <p><strong>Análise:</strong> A permissão concedida por Agripa para Paulo apresentar sua defesa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:3 — "Conhecedor de todos os costumes"</span>
+            <div class="greek-text">γνώστην ... πάντων τῶν κατὰ Ἰουδαίους ἐθῶν</div>
+            <p><strong>Análise:</strong> Conhecedor das questões e costumes judaicos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "conhecedor de todos os costumes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:5 — "A mais rigorosa seita da nossa religião"</span>
+            <div class="greek-text">ἀκριβεστάτην αἵρεσιν</div>
+            <p><strong>Análise:</strong> A corrente religiosa mais rigorosa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a mais rigorosa seita da nossa religião".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 26:6 — "A esperança da promessa feita por Deus aos nossos pais"</span>
+            <div class="greek-text">τῆς εἰς τοὺς πατέρας ἡμῶν ἐπαγγελίας</div>
+            <p><strong>Análise:</strong> A esperança relacionada à promessa divina feita aos antepassados de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:7 — "Nossas doze tribos"</span>
+            <div class="greek-text">δώδεκα φυλά</div>
+            <p><strong>Análise:</strong> As doze tribos de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nossas doze tribos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 26:14 — "Dura coisa te é recalcitrar contra os aguilhões"</span>
+            <div class="greek-text">σκληρόν σοι πρὸς κέντρα λακτίζειν</div>
+            <p><strong>Análise:</strong> Expressão figurada que descreve a resistência aos aguilhões usados para conduzir animais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 26:16 — "Constituir ministro e testemunha"</span>
+            <div class="greek-text">ὑπηρέτην καὶ μάρτυρα</div>
+            <p><strong>Análise:</strong> Ministro/servo e testemunha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministro e testemunha".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 26:23 — "Primeiro da ressurreição dos mortos"</span>
+            <div class="greek-text">πρῶτος ἐξ ἀναστάσεως νεκρῶν</div>
+            <p><strong>Análise:</strong> Primeiro da ressurreição dos mortos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:24 — "As muitas letras te fazem delirar"</span>
+            <div class="greek-text">τὰ πολλά σε γράμματα εἰς μανίαν περιτρέπει</div>
+            <p><strong>Análise:</strong> Referência de Festo à grande quantidade de escritos/conhecimento de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:25 — "Palavras de verdade e de bom senso"</span>
+            <div class="greek-text">ἀληθείας καὶ σωφροσύνης ῥήματα</div>
+            <p><strong>Análise:</strong> Palavras de verdade e de bom senso/sã razão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavras de verdade e de bom senso".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:26 — "Isto não foi feito em algum canto"</span>
+            <div class="greek-text">οὐ γάρ ἐστιν ἐν γωνίᾳ πεπραγμένον τοῦτο</div>
+            <p><strong>Análise:</strong> Indicando que o acontecimento não ocorreu em lugar oculto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:28 — "Por pouco me persuades a fazer-me cristão"</span>
+            <div class="greek-text">ἐν ὀλίγῳ με πείθεις Χριστιανὸν ποιῆσαι</div>
+            <p><strong>Análise:</strong> A resposta de Agripa à argumentação de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:29 — "Exceto estas cadeias"</span>
+            <div class="greek-text">παρεκτὸς τῶν δεσμῶν τούτων</div>
+            <p><strong>Análise:</strong> Paulo expressa o desejo de que seus ouvintes fossem como ele, exceto quanto às cadeias que carregava.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:31 — "Nada faz digno de morte ou de prisão"</span>
+            <div class="greek-text">οὐδὲν ... θανάτου ἢ δεσμῶν ἄξιον</div>
+            <p><strong>Análise:</strong> A conclusão dos presentes sobre a inocência de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 26:32 — "Se não tivesse apelado para César"</span>
+            <div class="greek-text">εἰ μὴ ἐπεκέκλητο Καίσαρα</div>
+            <p><strong>Análise:</strong> Agripa reconhece que Paulo poderia ter sido libertado caso não tivesse apelado a César.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

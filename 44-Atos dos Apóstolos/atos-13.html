@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 13</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 13</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Barjesus</span>
+                Do aramaico "filho de Jesus/Josué", nome do mago.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Procônsul</span>
+                Do grego <em>anthypatos</em> (ἀνθύπατος), governador romano de província senatorial.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Selêucia</span>
+                Cidade portuária da Síria.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Antioquia da Pisídia</span>
+                Cidade da região da Pisídia.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">13</div>
+
+    <!-- PERÍCOPE 1: O CHAMADO DE PAULO E BARNABÉ (13.1-12) -->
+    <div class="pericope">O Chamado de Paulo e Barnabé</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> havia na igreja que estava em Antioquia certos profetas e mestres: Barnabé, e Simeão, chamado Níger, e Lúcio de Cirene, e Manaém, que fora criado com Herodes, o tetrarca, e Saulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, servindo eles ao Senhor, e jejuando, disse o Espírito Santo: <span class="fala-outro">"Apartai-me a Barnabé e a Saulo para a obra a que os tenho chamado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então, jejuando e orando, e impondo-lhes as mãos, os despediram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E assim, enviados pelo Espírito Santo, desceram a Selêucia, e dali navegaram para Chipre.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, chegando a Salamina, anunciavam a palavra de Deus nas sinagogas dos judeus; e tinham também João como auxiliar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, tendo atravessado a ilha até Pafos, acharam um certo mago, falso profeta, judeu, chamado Barjesus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        o qual estava com o procônsul Sérgio Paulo, homem prudente. Este, chamando a si Barnabé e Saulo, procurou ouvir a palavra de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas resistia-lhes Elimas, o mago — porque assim se traduz o seu nome —, procurando desviar da fé o procônsul.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Então Saulo, que também se chama Paulo, cheio do Espírito Santo, fixando os olhos nele,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        disse: <span class="fala-outro">"Ó filho do diabo, cheio de todo engano e de toda malícia, inimigo de toda justiça, não cessarás de perverter os caminhos retos do Senhor?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">E agora, eis a mão do Senhor sobre ti, e ficarás cego, sem ver o sol por algum tempo."</span> E no mesmo instante caiu sobre ele névoa e trevas; e, andando à roda, procurava quem o guiasse pela mão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então o procônsul, vendo o que tinha acontecido, creu, maravilhado com a doutrina do Senhor.
+    </p>
+
+    <!-- PERÍCOPE 2: O SERMÃO DE PAULO EM ANTIOQUIA DA PISÍDIA (13.13-41) -->
+    <div class="pericope">O Sermão de Paulo em Antioquia da Pisídia</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, partindo de Pafos, Paulo e os que estavam com ele navegaram para Perge, na Panfília. Mas João, apartando-se deles, voltou para Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E eles, saindo de Perge, chegaram a Antioquia da Pisídia. E, entrando na sinagoga no dia de sábado, assentaram-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, depois da leitura da lei e dos profetas, os principais da sinagoga lhes enviaram, dizendo: <span class="fala-outro">"Homens irmãos, se tendes alguma palavra de exortação para o povo, dizei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Então Paulo, levantando-se e acenando com a mão, disse: <span class="fala-outro">"Homens de Israel, e vós que temeis a Deus, ouvi.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">O Deus deste povo de Israel escolheu os nossos pais, e exaltou o povo, sendo peregrino na terra do Egito, e com braço elevado os tirou de lá.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">E suportou-os no deserto por espaço de quase quarenta anos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">E, tendo destruído sete nações na terra de Canaã, repartiu-lhes a terra deles por herança.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">E, depois disto, por quase quatrocentos e cinquenta anos, lhes deu juízes, até o profeta Samuel.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">E depois pediram um rei, e Deus lhes deu a Saul, filho de Quis, homem da tribo de Benjamim, por quarenta anos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">E, tendo-o removido, levantou-lhes Davi como rei, do qual também deu testemunho, dizendo: 'Achei Davi, filho de Jessé, homem conforme o meu coração, que fará toda a minha vontade.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">Da descendência deste, conforme a promessa, Deus trouxe a Israel um Salvador, Jesus,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">tendo João pregado primeiro, antes da vinda dele, o batismo de arrependimento a todo o povo de Israel.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">Mas, quando João completava a sua carreira, dizia: 'Quem pensais vós que eu sou? Eu não sou ele. Mas eis que vem após mim aquele cujas sandálias dos pés não sou digno de desatar.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">"Homens irmãos, filhos da descendência de Abraão, e os que entre vós temem a Deus, a vós é enviada a palavra desta salvação.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Porque os que habitam em Jerusalém, e os seus príncipes, não o conheceram e, condenando-o, cumpriram as vozes dos profetas, que se leem todos os sábados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">E, não achando nele causa alguma de morte, pediram a Pilatos que ele fosse morto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">E, quando cumpriram todas as coisas que dele estavam escritas, tirando-o do madeiro, o puseram num sepulcro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">Mas Deus o ressuscitou dos mortos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">E ele foi visto por muitos dias pelos que com ele tinham subido da Galileia a Jerusalém, os quais são suas testemunhas para com o povo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">E nós vos anunciamos a boa nova da promessa que foi feita aos pais:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">Deus a cumpriu a nós, filhos deles, ressuscitando a Jesus; como também está escrito no salmo segundo: 'Tu és meu Filho, hoje te gerei.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-outro">E, quanto a tê-lo ressuscitado dos mortos, para nunca mais voltar à corrupção, disse assim: 'Dar-vos-ei as santas e fiéis bênçãos de Davi.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-outro">Por isso também em outro salmo diz: 'Não permitirás que o teu Santo veja corrupção.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Porque Davi, na verdade, tendo servido à sua própria geração pela vontade de Deus, adormeceu, e foi junto a seus pais, e viu corrupção.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-outro">Mas aquele a quem Deus ressuscitou não viu corrupção.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-outro">Seja-vos, pois, notório, homens irmãos, que por meio deste se vos anuncia a remissão dos pecados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-outro">E, de tudo o que não pudestes ser justificados pela lei de Moisés, por ele todo aquele que crê é justificado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-outro">Vede, pois, que não venha sobre vós o que está dito nos profetas:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-outro">'Vede, ó desprezadores, e admirai-vos, e desaparecei; porque eu faço uma obra em vossos dias, obra que não crereis, se alguém vo-la contar.'"</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A REAÇÃO EM ANTIOQUIA (13.42-52) -->
+    <div class="pericope">A Reação em Antioquia</div>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E, saindo eles da sinagoga dos judeus, os gentios rogaram que no sábado seguinte lhes fossem ditas as mesmas palavras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E, despedida a sinagoga, muitos dos judeus e dos prosélitos piedosos seguiram Paulo e Barnabé, os quais, falando-lhes, os exortavam a que permanecessem na graça de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E no sábado seguinte ajuntou-se quase toda a cidade para ouvir a palavra de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Então os judeus, vendo as multidões, encheram-se de inveja, e contradiziam o que Paulo falava, contradizendo e blasfemando.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        Mas Paulo e Barnabé, falando ousadamente, disseram: <span class="fala-outro">"Era necessário que a palavra de Deus vos fosse falada primeiro a vós; mas, visto que a rejeitais, e não vos julgais dignos da vida eterna, eis que nos voltamos para os gentios.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-outro">Porque assim nos ordenou o Senhor: 'Eu te pus para luz dos gentios, a fim de que sejas para salvação até os confins da terra.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        E os gentios, ouvindo isso, se alegravam e glorificavam a palavra do Senhor; e creram todos quantos estavam ordenados para a vida eterna.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E a palavra do Senhor se divulgava por toda aquela região.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        Mas os judeus incitaram as mulheres piedosas e distintas, e os principais da cidade, e levantaram perseguição contra Paulo e Barnabé, e os expulsaram dos seus termos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        Mas eles, sacudindo contra eles o pó dos seus pés, foram para Icônio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        E os discípulos ficaram cheios de alegria e do Espírito Santo.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:1 — "Simeão, chamado Níger"</span>
+            <div class="greek-text">Συμεὼν ὁ καλούμενος Νίγερ</div>
+            <p><strong>Análise:</strong> Um dos profetas e mestres em Antioquia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Simeão, chamado Níger".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:1 — "Manaém, que fora criado com Herodes"</span>
+            <div class="greek-text">σύντροφος</div>
+            <p><strong>Análise:</strong> "Criado junto", indicando que Manaém foi criado com Herodes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que fora criado com Herodes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:4 — "Selêucia"</span>
+            <div class="greek-text">Σελεύκειαν</div>
+            <p><strong>Análise:</strong> A cidade portuária da Síria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Selêucia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:6 — "Barjesus"</span>
+            <div class="hebrew-text">בַּר־יֵשׁוּעַ</div>
+            <p><strong>Análise:</strong> Do aramaico "filho de Jesus/Josué". O nome "Jesus" aqui é o nome pessoal hebraico/aramaico Yeshua, não uma identificação com Jesus Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Barjesus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:7 — "Procônsul Sérgio Paulo"</span>
+            <div class="greek-text">ἀνθυπάτῳ Σεργίῳ Παύλῳ</div>
+            <p><strong>Análise:</strong> Governador romano da província de Chipre.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "procônsul Sérgio Paulo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:8 — "Elimas"</span>
+            <div class="greek-text">Ἐλύμας</div>
+            <p><strong>Análise:</strong> O nome do mago, traduzido por Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Elimas".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 13:9 — "Saulo, que também se chama Paulo"</span>
+            <div class="greek-text">Σαῦλος ... Παῦλος</div>
+            <p><strong>Análise:</strong> A primeira menção do nome Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Saulo, que também se chama Paulo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:11 — "Névoa e trevas"</span>
+            <div class="greek-text">ἀχλὺς καὶ σκότος</div>
+            <p><strong>Análise:</strong> A cegueira temporária de Elimas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "névoa e trevas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:14 — "Antioquia da Pisídia"</span>
+            <div class="greek-text">Ἀντιόχειαν τὴν Πισιδίαν</div>
+            <p><strong>Análise:</strong> A cidade da Pisídia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Antioquia da Pisídia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:18 — "Suportou-os"</span>
+            <div class="greek-text">ἐτροποφόρησεν</div>
+            <p><strong>Análise:</strong> Deus suportou o povo no deserto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "suportou-os".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 13:20 — "Quatrocentos e cinquenta anos"</span>
+            <div class="greek-text">ὡσεὶ ἔτη τετρακόσια καὶ πεντήκοντα</div>
+            <p><strong>Análise:</strong> O período dos juízes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quatrocentos e cinquenta anos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 13:33 — "Hoje te gerei"</span>
+            <div class="greek-text">σήμερον γεγέννηκά σε</div>
+            <p><strong>Análise:</strong> Citação do Salmo 2:7.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 13:34 — "As santas e fiéis bênçãos de Davi"</span>
+            <div class="greek-text">τὰ ὅσια Δαυὶδ τὰ πιστά</div>
+            <p><strong>Análise:</strong> Citação de Isaías 55:3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 13:35 — "Não permitirás que o teu Santo veja corrupção"</span>
+            <div class="greek-text">οὐ δώσεις τὸν ὅσιόν σου ἰδεῖν διαφθοράν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 16:10.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 13:47 — "Luz dos gentios"</span>
+            <div class="greek-text">φῶς ἐθνῶν</div>
+            <p><strong>Análise:</strong> Citação de Isaías 49:6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

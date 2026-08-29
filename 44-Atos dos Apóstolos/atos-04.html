@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 4</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 4</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Capitão do templo</span>
+                Do grego <em>stratēgos tou hierou</em> (στρατηγὸς τοῦ ἱεροῦ), responsável pela guarda do templo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Saduceus</span>
+                Grupo religioso judaico que negava a ressurreição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Barnabé</span>
+                                Do grego <em>Barnabas</em> (Βαρνάβας), traduzido como "Filho da Consolação".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cristo</span>
+                Do grego <em>Christos</em> (Χριστός), o Ungido.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">4</div>
+
+    <!-- PERÍCOPE 1: PEDRO E JOÃO PERANTE O CONSELHO (4.1-22) -->
+    <div class="pericope">Pedro e João Perante o Conselho</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, estando eles falando ao povo, sobrevieram os sacerdotes, e o capitão do templo, e os saduceus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        indignados de que ensinassem o povo, e anunciassem em Jesus a ressurreição dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E lançaram mão deles, e os puseram em prisão até o dia seguinte, pois já era tarde.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Muitos, porém, dos que ouviram a palavra creram; e o número dos homens chegou a quase cinco mil.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E aconteceu, no dia seguinte, que os seus príncipes, e os anciãos, e os escribas se reuniram em Jerusalém,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        e Anás, o sumo sacerdote, e Caifás, e João, e Alexandre, e todos quantos eram da linhagem do sumo sacerdote.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, pondo-os no meio, perguntaram: <span class="fala-outro">"Com que poder, ou em nome de quem, fizestes isto?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Então Pedro, cheio do Espírito Santo, disse-lhes: <span class="fala-outro">"Príncipes do povo, e anciãos de Israel,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">se hoje somos interrogados acerca do benefício feito a um homem enfermo, e do modo como foi curado,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">seja notório a todos vós, e a todo o povo de Israel, que em nome de Jesus Cristo, o Nazareno, a quem vós crucificastes, e a quem Deus ressuscitou dos mortos, é que este homem está aqui são diante de vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">Ele é a pedra que foi rejeitada por vós, os edificadores, a qual se tornou a cabeça da esquina.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-outro">E em nenhum outro há salvação; porque também debaixo do céu nenhum outro nome há, dado entre os homens, pelo qual devamos ser salvos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, vendo eles a ousadia de Pedro e de João, e percebendo que eram homens sem letras e indoutos, se maravilharam; e reconheciam que eles tinham estado com Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, vendo com eles o homem que fora curado, nada tinham que contradizer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, mandando que saíssem do conselho, consultavam entre si,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        dizendo: <span class="fala-outro">"Que faremos a estes homens? Porque, na verdade, um sinal notório foi feito por eles, manifesto a todos os que habitam em Jerusalém, e não o podemos negar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">Mas, para que não se divulgue mais entre o povo, ameacemo-los, para que não falem mais a homem algum neste nome."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, chamando-os, ordenaram-lhes que absolutamente não falassem, nem ensinassem, no nome de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Mas Pedro e João, respondendo, disseram-lhes: <span class="fala-outro">"Julgai vós se é justo diante de Deus ouvir-vos antes a vós do que a Deus.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">Porque nós não podemos deixar de falar do que temos visto e ouvido."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E eles, ameaçando-os mais, os soltaram, não achando modo de os castigar, por causa do povo; porque todos glorificavam a Deus pelo que tinha acontecido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Porque o homem em quem se operara aquele milagre de cura tinha mais de quarenta anos.
+    </p>
+
+    <!-- PERÍCOPE 2: A ORAÇÃO DA COMUNIDADE (4.23-31) -->
+    <div class="pericope">A Oração da Comunidade</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, soltos eles, foram aos seus, e contaram tudo o que os principais dos sacerdotes e os anciãos lhes tinham dito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E eles, ouvindo isso, levantaram unanimemente a voz a Deus, e disseram: <span class="fala-outro">"Senhor, tu és o Deus que fizeste o céu, e a terra, e o mar, e tudo o que neles há;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">que pela boca de Davi, teu servo, disseste: 'Por que se enfureceram os gentios, e os povos imaginaram coisas vãs?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">Levantaram-se os reis da terra, e os príncipes se ajuntaram, contra o Senhor e contra o seu Cristo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Porque verdadeiramente contra o teu santo Filho Jesus, a quem tu ungiste, se ajuntaram, tanto Herodes como Pôncio Pilatos, com os gentios e os povos de Israel,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">para fazerem tudo o que a tua mão e o teu conselho tinham anteriormente determinado que se fizesse."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">"E agora, Senhor, olha para as suas ameaças, e concede aos teus servos que com toda a ousadia falem a tua palavra,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">estendendo a tua mão para curar, e para que se façam sinais e prodígios pelo nome do teu santo Filho Jesus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E, tendo eles orado, moveu-se o lugar em que estavam reunidos; e todos foram cheios do Espírito Santo, e falavam a palavra de Deus com ousadia.
+    </p>
+
+    <!-- PERÍCOPE 3: A VIDA DA COMUNIDADE (4.32-37) -->
+    <div class="pericope">A Vida da Comunidade</div>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E era um só o coração e a alma da multidão dos que criam; e ninguém dizia que coisa alguma do que possuía era sua, mas tudo lhes era comum.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E os apóstolos davam testemunho da ressurreição do Senhor Jesus com grande poder; e grande graça estava sobre todos eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E não havia entre eles necessitado algum, porque todos os que possuíam herdades ou casas as vendiam, e traziam o preço do vendido,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        e o depositavam aos pés dos apóstolos; e repartia-se a cada um conforme a necessidade que tinha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E José, a quem os apóstolos chamaram Barnabé — que traduzido é: Filho da Consolação —, levita, natural de Chipre,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        possuindo uma herdade, vendeu-a, e trouxe o preço, e o depositou aos pés dos apóstolos.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 4:1 — "Capitão do templo"</span>
+            <div class="greek-text">στρατηγὸς τοῦ ἱεροῦ</div>
+            <p><strong>Análise:</strong> Responsável pela guarda do templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "capitão do templo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 4:1 — "Saduceus"</span>
+            <div class="greek-text">Σαδδουκαῖοι</div>
+            <p><strong>Análise:</strong> O grupo que negava a ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Saduceus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 4:6 — "Anás, o sumo sacerdote"</span>
+            <div class="greek-text">Ἅννας ... ἀρχιερεύς</div>
+            <p><strong>Análise:</strong> A referência a Anás como sumo sacerdote.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Anás, o sumo sacerdote".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 4:13 — "Sem letras e indoutos"</span>
+            <div class="greek-text">ἀγράμματοι καὶ ἰδιῶται</div>
+            <p><strong>Análise:</strong> Homens sem formação escolar e sem instrução formal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem letras e indoutos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:11 — "Pedra rejeitada"</span>
+            <div class="greek-text">λίθος ... ἐξουθενηθείς</div>
+            <p><strong>Análise:</strong> Citação do Salmo 118:22.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:11 — "Cabeça da esquina"</span>
+            <div class="greek-text">κεφαλὴν γωνίας</div>
+            <p><strong>Análise:</strong> A pedra principal da construção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cabeça da esquina".</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:12 — "Nenhum outro nome"</span>
+            <div class="greek-text">οὐδὲν ἕτερον ὄνομα</div>
+            <p><strong>Análise:</strong> A declaração de Pedro sobre a exclusividade da salvação em Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:24 — "Senhor, tu és o Deus que fizeste"</span>
+            <div class="greek-text">δέσποτα, σὺ ὁ θεὸς ὁ ποιήσας</div>
+            <p><strong>Análise:</strong> A oração da comunidade reconhecendo Deus como Criador.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:25 — "Por que se enfureceram os gentios?"</span>
+            <div class="greek-text">ἱνατί ἐφρύαξαν ἔθνη</div>
+            <p><strong>Análise:</strong> Citação do Salmo 2:1-2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:26 — "Contra o seu Cristo"</span>
+            <div class="greek-text">κατὰ τοῦ χριστοῦ αὐτοῦ</div>
+            <p><strong>Análise:</strong> A referência messiânica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "contra o seu Cristo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:28 — "Tudo o que a tua mão determinou"</span>
+            <div class="greek-text">πάντα ... προώρισεν</div>
+            <p><strong>Análise:</strong> A soberania divina sobre os eventos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 4:31 — "Moveu-se o lugar"</span>
+            <div class="greek-text">ἐσαλεύθη ὁ τόπος</div>
+            <p><strong>Análise:</strong> A resposta à oração da comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 4:32 — "Coração e alma"</span>
+            <div class="greek-text">καρδία καὶ ψυχή</div>
+            <p><strong>Análise:</strong> A unidade da comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 4:36 — "Barnabé"</span>
+            <div class="greek-text">Βαρνάβας</div>
+            <p><strong>Análise:</strong> Lucas fornece o sentido do nome como "Filho da Consolação".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Filho da Consolação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 4:36 — "Natural de Chipre"</span>
+            <div class="greek-text">Κύπριος τῷ γένει</div>
+            <p><strong>Análise:</strong> A origem de Barnabé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "natural de Chipre".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

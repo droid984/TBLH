@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Pentecostes</span>
+                Do grego <em>pentēkostē</em> (πεντηκοστή), a festa judaica que ocorria cinquenta dias após a Páscoa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Prosélitos</span>
+                Do grego <em>prosēlytoi</em> (προσήλυτοι), gentios que haviam aderido ao judaísmo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mosto</span>
+                Do grego <em>gleukos</em> (γλεῦκος), vinho doce.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Hades</span>
+                Do grego <em>hadēs</em> (ᾅδης), lugar dos mortos.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">2</div>
+
+    <!-- PERÍCOPE 1: O DIA DE PENTECOSTES (2.1-13) -->
+    <div class="pericope">O Dia de Pentecostes</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, ao cumprir-se o dia de Pentecostes, estavam todos unanimemente reunidos no mesmo lugar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E de repente veio do céu um som, como de um vento impetuoso, e encheu toda a casa onde estavam assentados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E lhes apareceram línguas repartidas, como que de fogo, e assentaram-se sobre cada um deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E todos foram cheios do Espírito Santo, e começaram a falar em outras línguas, conforme o Espírito lhes concedia que falassem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E habitavam em Jerusalém judeus, homens piedosos, de todas as nações que estão debaixo do céu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, quando se fez aquele som, ajuntou-se a multidão, e ficou confusa, porque cada um os ouvia falar na sua própria língua.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E todos se admiravam e se maravilhavam, dizendo uns aos outros: <span class="fala-outro">"Eis que não são galileus todos estes que estão falando?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">Como, pois, os ouvimos, cada um, na nossa própria língua em que nascemos?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">Partos, e medos, e elamitas, e os que habitam a Mesopotâmia, a Judeia, e a Capadócia, o Ponto, e a Ásia,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">a Frígia, e a Panfília, o Egito, e as regiões da Líbia, junto a Cirene, e os forasteiros romanos, tanto judeus como prosélitos,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">cretenses, e árabes — nós os ouvimos falar em nossas línguas das grandezas de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E todos se admiravam e estavam perplexos, dizendo uns aos outros: <span class="fala-outro">"Que quer isto dizer?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas outros, zombando, diziam: <span class="fala-outro">"Estão cheios de mosto."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: O SERMÃO DE PEDRO (2.14-41) -->
+    <div class="pericope">O Sermão de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Então Pedro, pondo-se em pé com os onze, levantou a sua voz e disse-lhes: <span class="fala-outro">"Homens judeus, e todos os que habitais em Jerusalém, seja-vos isto notório, e escutai as minhas palavras.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">Porque estes homens não estão embriagados, como vós pensais, sendo ainda a hora terceira do dia.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">Mas isto é o que foi dito pelo profeta Joel:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">'E nos últimos dias, diz Deus, derramarei do meu Espírito sobre toda a carne; e os vossos filhos e as vossas filhas profetizarão, os vossos jovens terão visões, e os vossos anciãos sonharão sonhos;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">e também sobre os meus servos e sobre as minhas servas derramarei do meu Espírito naqueles dias, e profetizarão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">E mostrarei prodígios em cima no céu, e sinais embaixo na terra: sangue, e fogo, e vapor de fumo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">O sol se converterá em trevas, e a lua em sangue, antes que venha o grande e glorioso dia do Senhor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">E acontecerá que todo aquele que invocar o nome do Senhor será salvo.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">"Homens israelitas, escutai estas palavras: Jesus, o Nazareno, homem aprovado por Deus entre vós com maravilhas, prodígios e sinais, que Deus por ele fez no meio de vós, como vós mesmos bem sabeis;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">a este, que foi entregue pelo determinado conselho e presciência de Deus, vós o tomastes, e, por mãos de injustos, o crucificastes e matastes;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">ao qual Deus ressuscitou, soltando as dores da morte, pois não era possível que ele fosse retido por ela.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">Porque Davi diz a seu respeito: 'Eu via sempre o Senhor diante de mim, porque ele está à minha direita, para que eu não seja abalado.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">Por isso o meu coração se alegrou, e a minha língua exultou; e ainda a minha carne repousará em esperança.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Pois não deixarás a minha alma no Hades, nem permitirás que o teu Santo veja corrupção.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">Fizeste-me conhecidos os caminhos da vida; encher-me-ás de alegria com a tua face.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">"Homens irmãos, seja-me permitido dizer-vos abertamente acerca do patriarca Davi: ele morreu e foi sepultado, e o seu sepulcro está entre nós até o dia de hoje.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">Sendo, pois, ele profeta, e sabendo que Deus lhe tinha jurado com juramento que do fruto de seus lombos, segundo a carne, levantaria o Cristo, para o assentar sobre o seu trono,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">ele, prevendo isto, falou da ressurreição do Cristo, que a sua alma não foi deixada no Hades, nem a sua carne viu corrupção.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">Este Jesus Deus ressuscitou, do que todos nós somos testemunhas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">Portanto, sendo ele elevado pela destra de Deus, e tendo recebido do Pai a promessa do Espírito Santo, derramou isto que agora vedes e ouvis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-outro">Porque Davi não subiu aos céus, mas ele mesmo diz: 'Disse o Senhor ao meu Senhor: Assenta-te à minha direita,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-outro">até que eu ponha os teus inimigos por escabelo dos teus pés.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Saiba, pois, com certeza, toda a casa de Israel, que a esse Jesus, a quem vós crucificastes, Deus o fez Senhor e Cristo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E, ouvindo eles isto, compungiram-se em seu coração, e perguntaram a Pedro e aos demais apóstolos: <span class="fala-outro">"Homens irmãos, que faremos?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        E Pedro lhes disse: <span class="fala-outro">"Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo, para perdão dos pecados; e recebereis o dom do Espírito Santo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-outro">Porque a promessa é para vós, e para os vossos filhos, e para todos os que estão longe, quantos o Senhor nosso Deus chamar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E com muitas outras palavras testificava e exortava, dizendo: <span class="fala-outro">"Salvai-vos desta geração perversa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Então os que de bom grado receberam a sua palavra foram batizados; e naquele dia se ajuntaram a eles quase três mil almas.
+    </p>
+
+    <!-- PERÍCOPE 3: A VIDA DA IGREJA PRIMITIVA (2.42-47) -->
+    <div class="pericope">A Vida da Igreja Primitiva</div>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E perseveravam na doutrina dos apóstolos, e na comunhão, e no partir do pão, e nas orações.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        E em toda alma havia temor; e muitas maravilhas e sinais eram feitos pelos apóstolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        E todos os que criam estavam juntos, e tinham tudo em comum.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        E vendiam as suas propriedades e bens, e repartiam-nos entre todos, conforme a necessidade de cada um.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        E, perseverando unanimemente todos os dias no templo, e partindo o pão de casa em casa, comiam juntos com alegria e singeleza de coração,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        louvando a Deus, e tendo graça para com todo o povo. E o Senhor acrescentava à igreja, todos os dias, os que iam sendo salvos.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:1 — "Pentecostes"</span>
+            <div class="greek-text">πεντηκοστή</div>
+            <p><strong>Análise:</strong> A festa judaica que ocorria cinquenta dias após a Páscoa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Pentecostes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:2 — "Vento impetuoso"</span>
+            <div class="greek-text">πνοῆς βιαίας</div>
+            <p><strong>Análise:</strong> Um som como de vento forte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vento impetuoso".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:3 — "Línguas repartidas, como que de fogo"</span>
+            <div class="greek-text">γλῶσσαι ὡσεὶ πυρός</div>
+            <p><strong>Análise:</strong> Línguas como de fogo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:4 — "Outras línguas"</span>
+            <div class="greek-text">ἑτέραις γλώσσαις</div>
+            <p><strong>Análise:</strong> Línguas diferentes das nativas dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "outras línguas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:10 — "Prosélitos"</span>
+            <div class="greek-text">προσήλυτοι</div>
+            <p><strong>Análise:</strong> Gentios que haviam aderido ao judaísmo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "prosélitos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:13 — "Mosto"</span>
+            <div class="greek-text">γλεύκους</div>
+            <p><strong>Análise:</strong> "Vinho doce", "mosto".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mosto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:15 — "Hora terceira"</span>
+            <div class="greek-text">ὥρα τρίτη</div>
+            <p><strong>Análise:</strong> Cerca de 9h da manhã.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "hora terceira".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 2:17 — "Últimos dias"</span>
+            <div class="greek-text">ἐν ταῖς ἐσχάταις ἡμέραις</div>
+            <p><strong>Análise:</strong> Citação de Joel 2:28-32.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:23 — "Determinado conselho e presciência"</span>
+            <div class="greek-text">τῇ ὡρισμένῃ βουλῇ καὶ προγνώσει</div>
+            <p><strong>Análise:</strong> O plano predeterminado de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:24 — "Soltando as dores da morte"</span>
+            <div class="greek-text">λύσας τὰς ὠδῖνας τοῦ θανάτου</div>
+            <p><strong>Análise:</strong> A ressurreição de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:27, 31 — "Hades"</span>
+            <div class="greek-text">ᾅδης</div>
+            <p><strong>Análise:</strong> Termo preservado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Hades".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:33 — "Elevado pela destra de Deus"</span>
+            <div class="greek-text">τῇ δεξιᾷ τοῦ Θεοῦ ὑψωθείς</div>
+            <p><strong>Análise:</strong> A exaltação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:37 — "Compungiram-se"</span>
+            <div class="greek-text">κατενύγησαν</div>
+            <p><strong>Análise:</strong> Indicando profunda comoção ou aflição interior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "compungiram-se".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 2:38 — "Dom do Espírito Santo"</span>
+            <div class="greek-text">δωρεὰν τοῦ Ἁγίου Πνεύματος</div>
+            <p><strong>Análise:</strong> A promessa do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 2:46 — "Singeleza de coração"</span>
+            <div class="greek-text">ἀφελότητι καρδίας</div>
+            <p><strong>Análise:</strong> Simplicidade ou pureza de coração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "singeleza de coração".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

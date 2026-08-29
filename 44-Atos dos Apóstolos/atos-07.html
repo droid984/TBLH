@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 7</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 7</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Mesopotâmia</span>
+                Região entre os rios Tigre e Eufrates, onde Abraão viveu.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Midiã</span>
+                Terra para onde Moisés fugiu do Egito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Moloque</span>
+                Divindade mencionada na citação de Amós.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Renfã</span>
+                Estrela associada à divindade mencionada por Estêvão.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">7</div>
+
+    <!-- PERÍCOPE 1: O DISCURSO DE ESTÊVÃO — PARTE 1 (7.1-50) -->
+    <div class="pericope">O Discurso de Estêvão — Parte 1</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> o sumo sacerdote disse: <span class="fala-outro">"É isto, porventura, assim?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E ele disse: <span class="fala-outro">"Homens irmãos e pais, ouvi: O Deus da glória apareceu a nosso pai Abraão, estando na Mesopotâmia, antes de habitar em Harã,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-outro">e disse-lhe: 'Sai da tua terra e da tua parentela, e vem para a terra que eu te mostrarei.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-outro">Então ele saiu da terra dos caldeus, e habitou em Harã. E dali, depois que seu pai morreu, Deus o trouxe para esta terra em que vós agora habitais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">E não lhe deu nela herança, nem sequer o espaço de um pé; mas prometeu que lha daria em possessão, e à sua descendência depois dele, não tendo ele ainda filho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-outro">E Deus falou assim: que a sua descendência seria peregrina em terra alheia, e a sujeitariam à escravidão, e a maltratariam por quatrocentos anos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-outro">E eu julgarei a nação a quem servirão, disse Deus. E depois disto sairão, e me servirão neste lugar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">E deu-lhe a aliança da circuncisão; e assim Abraão gerou a Isaque, e o circuncidou ao oitavo dia; e Isaque gerou a Jacó; e Jacó gerou os doze patriarcas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">E os patriarcas, movidos de inveja, venderam José para o Egito; mas Deus era com ele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">E o livrou de todas as suas tribulações, e lhe deu graça e sabedoria diante de Faraó, rei do Egito, que o constituiu governador sobre o Egito e sobre toda a sua casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">E veio fome a toda a terra do Egito e de Canaã, e grande tribulação; e os nossos pais não achavam alimentos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-outro">Mas, ouvindo Jacó que havia trigo no Egito, enviou os nossos pais, a primeira vez.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-outro">E na segunda vez José se deu a conhecer a seus irmãos, e a sua linhagem se tornou conhecida de Faraó.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">E José mandou chamar a seu pai Jacó e toda a sua parentela, em número de setenta e cinco almas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">E Jacó desceu ao Egito, e morreu, ele e os nossos pais.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">E foram transportados para Siquém, e postos no sepulcro que Abraão comprara por preço de prata, dos filhos de Emor, pai de Siquém.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">Aproximando-se, porém, o tempo da promessa que Deus tinha jurado a Abraão, o povo cresceu e se multiplicou no Egito,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">até que se levantou outro rei no Egito, que não conhecia José.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">Este, usando de astúcia contra a nossa linhagem, maltratou os nossos pais, ao ponto de fazerem enjeitar as suas crianças, para que não sobrevivessem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">Naquele tempo nasceu Moisés, e era formoso aos olhos de Deus. E foi criado três meses na casa de seu pai.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">E, sendo enjeitado, a filha de Faraó o tomou e o criou para si como filho.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">E Moisés foi instruído em toda a sabedoria dos egípcios, e era poderoso em suas palavras e obras.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">E, quando completou a idade de quarenta anos, veio-lhe ao coração visitar os seus irmãos, os filhos de Israel.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">E, vendo um deles ser injustiçado, defendeu-o, e vingou o oprimido, matando o egípcio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">E ele pensava que os seus irmãos entenderiam que Deus lhes daria salvação pela sua mão; mas eles não entenderam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">E no dia seguinte ele apareceu entre os que brigavam, e os exortava à paz, dizendo: 'Homens, sois irmãos; por que vos injustiçais um ao outro?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Mas o que fazia injustiça ao seu próximo o repeliu, dizendo: 'Quem te constituiu príncipe e juiz sobre nós?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">Queres tu matar-me, como ontem mataste o egípcio?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">E Moisés fugiu com esta palavra, e foi peregrino na terra de Midiã, onde gerou dois filhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">E, completados quarenta anos, apareceu-lhe no deserto do monte Sinai um anjo do Senhor, numa chama de fogo de uma sarça.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">Então Moisés, vendo isso, se admirou da visão; e, aproximando-se para observar, veio a voz do Senhor a ele,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">dizendo: 'Eu sou o Deus de teus pais, o Deus de Abraão, o Deus de Isaque, e o Deus de Jacó.' E Moisés, tremendo, não ousava observar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        <span class="fala-outro">E disse-lhe o Senhor: 'Tira as sandálias dos teus pés, porque o lugar em que estás é terra santa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        <span class="fala-outro">Eu tenho visto, com efeito, a aflição do meu povo, que está no Egito, e ouvi o seu gemido, e desci para os livrar. Agora, pois, vem, eu te enviarei ao Egito.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        <span class="fala-outro">A este Moisés, a quem tinham negado, dizendo: 'Quem te constituiu príncipe e juiz?', a este Deus enviou como príncipe e libertador, pela mão do anjo que lhe apareceu na sarça.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Ele os tirou, fazendo prodígios e sinais na terra do Egito, e no mar Vermelho, e no deserto, por quarenta anos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-outro">"Este é aquele Moisés que disse aos filhos de Israel: 'O Senhor vosso Deus levantará dentre os vossos irmãos um profeta semelhante a mim; a ele ouvireis.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-outro">Este é o que esteve na congregação no deserto, com o anjo que lhe falava no monte Sinai, e com os nossos pais; e recebeu as palavras de vida para no-las dar;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-outro">ao qual os nossos pais não quiseram obedecer; antes o rejeitaram, e em seus corações voltaram ao Egito,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-outro">dizendo a Arão: 'Faze-nos deuses que vão adiante de nós; porque a este Moisés, que nos tirou da terra do Egito, não sabemos o que lhe aconteceu.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        <span class="fala-outro">E fizeram naqueles dias um bezerro, e ofereceram sacrifício ao ídolo, e se alegravam nas obras das suas mãos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        <span class="fala-outro">Mas Deus se afastou, e os entregou a servir ao exército do céu, como está escrito no livro dos profetas: 'Porventura me oferecestes vítimas e sacrifícios no deserto, por quarenta anos, ó casa de Israel?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        <span class="fala-outro">E tomastes o tabernáculo de Moloque, e a estrela do vosso deus Renfã, figuras que fizestes para as adorar. Por isso vos transportarei para além da Babilônia.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        <span class="fala-outro">"O tabernáculo do testemunho esteve entre os nossos pais no deserto, como tinha ordenado aquele que disse a Moisés que o fizesse segundo o modelo que tinha visto.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        <span class="fala-outro">O qual também os nossos pais, tendo-o recebido, o levaram com Josué, quando tomaram possessão das nações que Deus expulsou da presença de nossos pais, até os dias de Davi.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        <span class="fala-outro">Davi achou graça diante de Deus, e pediu para achar um tabernáculo para o Deus de Jacó.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        <span class="fala-outro">E Salomão lhe edificou uma casa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        <span class="fala-outro">Mas o Altíssimo não habita em templos feitos por mãos, como diz o profeta:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        <span class="fala-outro">'O céu é o meu trono, e a terra é o estrado dos meus pés. Que casa me edificareis? Diz o Senhor. Ou qual é o lugar do meu repouso?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        <span class="fala-outro">Porventura a minha mão não fez todas estas coisas?'"</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A ACUSAÇÃO E O MARTÍRIO (7.51-60) -->
+    <div class="pericope">A Acusação e o Martírio</div>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        <span class="fala-outro">"Homens de dura cerviz, e incircuncisos de coração e de ouvidos, vós sempre resistis ao Espírito Santo; assim como fizeram os vossos pais, assim também vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        <span class="fala-outro">Qual dos profetas não perseguiram os vossos pais? Eles mataram os que anunciavam a vinda do Justo, do qual vós agora fostes traidores e homicidas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        <span class="fala-outro">Vós que recebestes a lei por ordenação dos anjos, e não a guardastes."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E, ouvindo eles estas coisas, enfureceram-se em seus corações, e rangiam os dentes contra ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        Mas ele, estando cheio do Espírito Santo, fixando os olhos no céu, viu a glória de Deus, e Jesus em pé à direita de Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        e disse: <span class="fala-outro">"Eis que vejo os céus abertos, e o Filho do homem em pé à direita de Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        Então eles, clamando em alta voz, taparam os seus ouvidos, e arremeteram unanimemente contra ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        E, lançando-o fora da cidade, o apedrejavam. E as testemunhas puseram as suas vestes aos pés de um jovem chamado Saulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">59</span>
+        E apedrejavam Estêvão, que orava e dizia: <span class="fala-outro">"Senhor Jesus, recebe o meu espírito."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">60</span>
+        E, pondo-se de joelhos, clamou em alta voz: <span class="fala-outro">"Senhor, não lhes imputes este pecado."</span> E, tendo dito isto, adormeceu.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:2 — "O Deus da glória"</span>
+            <div class="greek-text">ὁ θεὸς τῆς δόξης</div>
+            <p><strong>Análise:</strong> A abertura do discurso de Estêvão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "O Deus da glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:2 — "Mesopotâmia"</span>
+            <div class="greek-text">Μεσοποταμίᾳ</div>
+            <p><strong>Análise:</strong> A região mencionada por Estêvão em relação à origem de Abraão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Mesopotâmia".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Atos 7:6 — "Quatrocentos anos"</span>
+            <div class="greek-text">τετρακόσια ἔτη</div>
+            <p><strong>Análise:</strong> O período mencionado na promessa acerca da descendência de Abraão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quatrocentos anos".</p>
+        </div>
+
+        <div class="note-card note-textual">
+            <span class="note-label">Atos 7:14 — "Setenta e cinco almas"</span>
+            <div class="greek-text">ψυχαῖς ἑβδομήκοντα πέντε</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz o número setenta e cinco.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a leitura "setenta e cinco" conforme o TR.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:16 — "Siquém"</span>
+            <div class="greek-text">Συχέμ</div>
+            <p><strong>Análise:</strong> O lugar mencionado por Estêvão em relação ao sepultamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Siquém".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:20 — "Formoso aos olhos de Deus"</span>
+            <div class="greek-text">ἀστεῖος τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> "Formoso/belo diante de Deus".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "formoso aos olhos de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:29 — "Midiã"</span>
+            <div class="greek-text">Μαδιάμ</div>
+            <p><strong>Análise:</strong> A terra para onde Moisés fugiu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Midiã".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:30 — "Anjo do Senhor na sarça"</span>
+            <div class="greek-text">ἄγγελος κυρίου ... φλογὶ πυρὸς βάτου</div>
+            <p><strong>Análise:</strong> A aparição mencionada no relato de Moisés.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:38 — "Congregação no deserto"</span>
+            <div class="greek-text">ἐκκλησίᾳ ἐν τῇ ἐρήμῳ</div>
+            <p><strong>Análise:</strong> "Assembleia/congregação no deserto".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "congregação no deserto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:38 — "Palavras de vida"</span>
+            <div class="greek-text">λόγια ζῶντα</div>
+            <p><strong>Análise:</strong> Literalmente "palavras vivas".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavras de vida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:43 — "Moloque"</span>
+            <div class="greek-text">Μολόχ</div>
+            <p><strong>Análise:</strong> O deus mencionado na citação de Amós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Moloque".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:43 — "Renfã"</span>
+            <div class="greek-text">Ῥαιφάν</div>
+            <p><strong>Análise:</strong> A estrela associada ao deus mencionado por Estêvão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Renfã".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:44 — "Tabernáculo do testemunho"</span>
+            <div class="greek-text">σκηνὴ τοῦ μαρτυρίου</div>
+            <p><strong>Análise:</strong> O tabernáculo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tabernáculo do testemunho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:51 — "Dura cerviz"</span>
+            <div class="greek-text">σκληροτράχηλοι</div>
+            <p><strong>Análise:</strong> Expressão que descreve obstinação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dura cerviz".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 7:60 — "Adormeceu"</span>
+            <div class="greek-text">ἐκοιμήθη</div>
+            <p><strong>Análise:</strong> Literalmente "dormiu", usado aqui como expressão para a morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "adormeceu".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

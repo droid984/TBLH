@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 5</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 5</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Ananias</span>
+                Membro da igreja primitiva que, com sua mulher Safira, reteve parte do preço da venda.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Safira</span>
+                Mulher de Ananias, que concordou em reter parte do preço.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gamaliel</span>
+                Fariseu, doutor da lei, respeitado por todo o povo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Teudas</span>
+                Líder mencionado por Gamaliel como exemplo de movimento humano.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">5</div>
+
+    <!-- PERÍCOPE 1: ANANIAS E SAFIRA (5.1-11) -->
+    <div class="pericope">Ananias e Safira</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">M</span>as um certo homem, chamado Ananias, com Safira, sua mulher, vendeu uma propriedade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E reteve parte do preço, sabendo-o também a sua mulher; e, levando uma parte, depositou-a aos pés dos apóstolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então Pedro disse: <span class="fala-outro">"Ananias, por que encheu Satanás o teu coração, para que mentisses ao Espírito Santo, e retivesses parte do preço da herdade?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-outro">Não te era lícito mantê-la? E, vendida, não estava em teu poder? Por que puseste isto no teu coração? Não mentiste aos homens, mas a Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Ananias, ouvindo estas palavras, caiu e expirou. E grande temor veio sobre todos os que ouviram estas coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, levantando-se os jovens, envolveram-no e, levando-o para fora, o sepultaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, passado um intervalo de quase três horas, entrou também sua mulher, sem saber o que tinha acontecido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Pedro lhe disse: <span class="fala-outro">"Dize-me: vendestes por tanto aquela herdade?"</span> E ela disse: <span class="fala-outro">"Sim, por tanto."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Então Pedro lhe disse: <span class="fala-outro">"Por que concordastes entre vós em tentar o Espírito do Senhor? Eis aí os pés dos que sepultaram o teu marido, à porta, e te levarão também a ti."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E imediatamente caiu aos seus pés e expirou. E, entrando os jovens, acharam-na morta, e a levaram para fora, e a sepultaram junto de seu marido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E grande temor veio sobre toda a igreja, e sobre todos os que ouviram estas coisas.
+    </p>
+
+    <!-- PERÍCOPE 2: SINAIS E PRODÍGIOS DOS APÓSTOLOS (5.12-16) -->
+    <div class="pericope">Sinais e Prodígios dos Apóstolos</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E muitos sinais e prodígios eram feitos entre o povo pelas mãos dos apóstolos. E estavam todos unanimemente no alpendre de Salomão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E dos demais ninguém ousava ajuntar-se a eles, mas o povo os engrandecia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E cada vez mais se ajuntavam ao Senhor multidões, tanto de homens como de mulheres,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        de modo que traziam os enfermos para as ruas, e os punham em camas e leitos, para que ao menos a sombra de Pedro, passando, cobrisse alguns deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E também das cidades ao redor de Jerusalém concorria uma multidão, trazendo enfermos, e atormentados por espíritos imundos, e todos eram curados.
+    </p>
+
+    <!-- PERÍCOPE 3: OS APÓSTOLOS PERANTE O CONSELHO (5.17-42) -->
+    <div class="pericope">Os Apóstolos Perante o Conselho</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, levantando-se o sumo sacerdote, e todos os que com ele estavam — que eram a seita dos saduceus —, encheram-se de inveja,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        e lançaram mão dos apóstolos, e os puseram na prisão pública.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Mas de noite um anjo do Senhor abriu as portas da prisão e, tirando-os para fora, disse:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-anjo">"Ide, e, apresentando-vos no templo, falai ao povo todas as palavras desta vida."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, tendo eles ouvido isso, entraram no templo de madrugada, e ensinavam. Mas, chegando o sumo sacerdote e os que com ele estavam, convocaram o conselho, e todos os anciãos dos filhos de Israel, e enviaram à prisão, para que os trouxessem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas os servos, quando chegaram, não os acharam na prisão. E, voltando, anunciaram,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        dizendo: <span class="fala-outro">"Achamos verdadeiramente a prisão fechada com toda a segurança, e os guardas em pé diante das portas; mas, quando abrimos, a ninguém achamos dentro."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, quando o sacerdote, e o capitão do templo, e os principais dos sacerdotes ouviram estas palavras, ficaram perplexos acerca deles e do que viria a ser isto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Então, chegando alguém, anunciou-lhes: <span class="fala-outro">"Eis que os homens que pusestes na prisão estão no templo, em pé, e ensinam o povo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Então o capitão foi com os servos, e os trouxe, não com violência — porque temiam ser apedrejados pelo povo —,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        e, trazendo-os, apresentaram-nos ao conselho. E o sumo sacerdote os interrogou,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        dizendo: <span class="fala-outro">"Não vos admoestamos expressamente que não ensinásseis neste nome? E eis que enchestes Jerusalém dessa vossa doutrina, e quereis lançar sobre nós o sangue desse homem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Mas Pedro e os apóstolos, respondendo, disseram: <span class="fala-outro">"Mais importa obedecer a Deus do que aos homens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">O Deus de nossos pais ressuscitou a Jesus, a quem vós matastes, pendurando-o num madeiro.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        <span class="fala-outro">A este Deus exaltou com a sua destra a Príncipe e Salvador, para dar a Israel arrependimento e remissão dos pecados.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        <span class="fala-outro">E nós somos testemunhas destas coisas, e também o Espírito Santo, que Deus deu àqueles que lhe obedecem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E eles, ouvindo isso, se enfureceram, e deliberavam matá-los.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Mas, levantando-se no conselho um fariseu, chamado Gamaliel, doutor da lei, respeitado por todo o povo, mandou que os apóstolos fossem retirados por um pouco,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        e disse-lhes: <span class="fala-outro">"Homens israelitas, vede bem o que haveis de fazer a estes homens.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Porque, antes destes dias, levantou-se Teudas, dizendo ser alguém; a este se ajuntou um número de quase quatrocentos homens. Ele foi morto, e todos os que lhe obedeciam foram dispersos e reduzidos a nada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-outro">Depois deste, levantou-se Judas, o galileu, nos dias do recenseamento, e levou muito povo após si. Também este pereceu, e todos os que lhe obedeciam foram dispersos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-outro">E agora eu vos digo: afastai-vos destes homens, e deixai-os; porque, se este conselho ou esta obra é de homens, se desfará;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-outro">mas, se é de Deus, não a podereis desfazer, para que não sejais achados como quem luta contra Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E concordaram com ele. E, chamando os apóstolos, açoitaram-nos e mandaram que não falassem no nome de Jesus; e os soltaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Então eles saíram da presença do conselho, regozijando-se por terem sido considerados dignos de sofrer afronta pelo seu Nome.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        E todos os dias, no templo e de casa em casa, não cessavam de ensinar, e de anunciar a Jesus Cristo.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:1 — "Ananias e Safira"</span>
+            <div class="greek-text">Ἀνανίας ... Σάπφιρα</div>
+            <p><strong>Análise:</strong> O casal mencionado em Atos 5.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ananias" e "Safira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:3 — "Encheu Satanás o teu coração"</span>
+            <div class="greek-text">ἐπλήρωσεν ... τὴν καρδίαν σου</div>
+            <p><strong>Análise:</strong> A declaração de Pedro sobre a influência de Satanás.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:3 — "Mentiste ao Espírito Santo"</span>
+            <div class="greek-text">ψεύσασθαί σε τὸ πνεῦμα τὸ ἅγιον</div>
+            <p><strong>Análise:</strong> A acusação de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:5, 10 — "Caiu e expirou"</span>
+            <div class="greek-text">πεσὼν ἐξέψυξεν</div>
+            <p><strong>Análise:</strong> A morte de Ananias e Safira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:12 — "Alpendre de Salomão"</span>
+            <div class="greek-text">τῇ στοᾷ Σολομῶντος</div>
+            <p><strong>Análise:</strong> Como em Atos 3:11.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alpendre de Salomão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:15 — "Sombra de Pedro"</span>
+            <div class="greek-text">ἡ σκιὰ τοῦ Πέτρου</div>
+            <p><strong>Análise:</strong> O texto registra que os enfermos eram colocados nas ruas para que, ao passar Pedro, ao menos a sua sombra cobrisse alguns deles.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:17 — "Seita dos saduceus"</span>
+            <div class="greek-text">αἵρεσις τῶν Σαδδουκαίων</div>
+            <p><strong>Análise:</strong> "Seita" ou "grupo" dos saduceus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seita dos saduceus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 5:20 — "Palavras desta vida"</span>
+            <div class="greek-text">τὰ ῥήματα τῆς ζωῆς ταύτης</div>
+            <p><strong>Análise:</strong> A mensagem do anjo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:30 — "Pendurando-o num madeiro"</span>
+            <div class="greek-text">κρεμάσαντες ἐπὶ ξύλου</div>
+            <p><strong>Análise:</strong> A crucificação de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 5:31 — "Príncipe e Salvador"</span>
+            <div class="greek-text">ἀρχηγὸν καὶ σωτῆρα</div>
+            <p><strong>Análise:</strong> Títulos de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Príncipe e Salvador".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:34 — "Gamaliel"</span>
+            <div class="greek-text">Γαμαλιήλ</div>
+            <p><strong>Análise:</strong> O fariseu doutor da lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Gamaliel".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:36 — "Teudas"</span>
+            <div class="greek-text">Θευδᾶς</div>
+            <p><strong>Análise:</strong> O líder mencionado por Gamaliel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Teudas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:37 — "Judas, o galileu"</span>
+            <div class="greek-text">Ἰούδας ὁ Γαλιλαῖος</div>
+            <p><strong>Análise:</strong> O líder mencionado por Gamaliel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Judas, o galileu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:39 — "Lutar contra Deus"</span>
+            <div class="greek-text">θεομάχοι</div>
+            <p><strong>Análise:</strong> Literalmente "os que lutam contra Deus".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lutar contra Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 5:41 — "Afronte pelo seu Nome"</span>
+            <div class="greek-text">ὑπὲρ τοῦ ὀνόματος</div>
+            <p><strong>Análise:</strong> Sofrer por causa do nome de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "afronta pelo seu Nome".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

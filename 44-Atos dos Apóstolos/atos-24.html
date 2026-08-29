@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 24</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 24</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Tértulo</span>
+                O orador contratado pelos judeus para acusar Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nazarenos</span>
+                Do grego <em>Nazōraioi</em> (Ναζωραῖοι), designação dos seguidores de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Félix</span>
+                Governador romano da Judeia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Drusila</span>
+                Mulher de Félix, judia.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">24</div>
+
+    <!-- PERÍCOPE 1: A ACUSAÇÃO DE TÉRTULO (24.1-9) -->
+    <div class="pericope">A Acusação de Tértulo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, cinco dias depois, o sumo sacerdote Ananias desceu com os anciãos, e com um certo orador chamado Tértulo, os quais compareceram diante do governador contra Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, sendo Paulo chamado, Tértulo começou a acusá-lo, dizendo: <span class="fala-outro">"Visto que por ti gozamos de grande paz, e por tua providência muitas reformas estão sendo feitas nesta nação,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-outro">em tudo e por toda parte, excelentíssimo Félix, o recebemos com todo agradecimento.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-outro">Mas, para não te deter por mais tempo, rogo-te que, com a tua clemência, nos ouças por pouco.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">Porque achamos que este homem é uma peste, e promove sedições entre todos os judeus por todo o mundo, e é o principal cabeça da seita dos nazarenos,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-outro">o qual também tentou profanar o templo; e por isso o prendemos, e quisemos julgá-lo segundo a nossa lei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-outro">Mas, sobrevindo o tribuno Lísias, com grande violência o tirou das nossas mãos,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">mandando que os seus acusadores viessem a ti. Examinando-o tu mesmo, poderás entender de todas estas coisas de que o acusamos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E também os judeus concordavam, dizendo que estas coisas eram assim.
+    </p>
+
+    <!-- PERÍCOPE 2: A DEFESA DE PAULO (24.10-21) -->
+    <div class="pericope">A Defesa de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas Paulo, fazendo sinal ao governador para que falasse, respondeu: <span class="fala-outro">"Porque sei que já há muitos anos és juiz desta nação, com mais ânimo faço a minha defesa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">Pois podes saber que não há mais de doze dias desde que subi a Jerusalém para adorar.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-outro">E não me acharam no templo falando com alguém, nem incitando o povo, nem nas sinagogas, nem na cidade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-outro">Nem podem provar as coisas de que agora me acusam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">Mas confesso-te isto: que, segundo o Caminho, ao qual chamam seita, assim sirvo ao Deus de meus pais, crendo em tudo quanto está escrito na lei e nos profetas;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">tendo esperança em Deus, como também estes a têm, de que há de haver ressurreição dos mortos, tanto dos justos como dos injustos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">E por isso também eu me exercito em ter sempre uma consciência sem ofensa, tanto para com Deus como para com os homens."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">"Ora, depois de muitos anos, vim fazer esmolas à minha nação, e ofertas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">Nisto me acharam já santificado no templo, não com multidão, nem com alvoroço; mas uns certos judeus da Ásia,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">os quais deviam comparecer diante de ti e acusar-me, se tivessem alguma coisa contra mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">Ou digam estes mesmos, se acharam em mim alguma iniquidade, quando compareci diante do conselho,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">a não ser esta única palavra que clamei, estando entre eles: 'Acerca da ressurreição dos mortos sou hoje julgado por vós.'"</span>
+    </p>
+
+    <!-- PERÍCOPE 3: A DECISÃO DE FÉLIX (24.22-27) -->
+    <div class="pericope">A Decisão de Félix</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Então Félix, conhecendo mais precisamente as coisas deste Caminho, adiou a questão, dizendo: <span class="fala-outro">"Quando descer o tribuno Lísias, então tomarei pleno conhecimento da vossa causa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E mandou ao centurião que Paulo fosse guardado, e tivesse alguma liberdade, e que não se proibisse a nenhum dos seus de o servir ou de vir a ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, depois de alguns dias, vindo Félix com sua mulher Drusila, que era judia, mandou chamar Paulo, e ouviu-o acerca da fé em Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, tratando ele da justiça, e do domínio próprio, e do juízo vindouro, Félix, tomado de temor, respondeu: <span class="fala-outro">"Por agora vai-te, e, quando tiver ocasião, te chamarei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Ele esperava também que Paulo lhe desse dinheiro, para que o soltasse; por isso, mandando-o chamar muitas vezes, falava com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Mas, passados dois anos, Félix teve por sucessor Pórcio Festo; e, querendo Félix agradar aos judeus, deixou Paulo preso.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:1 — "Tértulo"</span>
+            <div class="greek-text">Τέρτυλλος</div>
+            <p><strong>Análise:</strong> O orador contratado pelos judeus para acusar Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Tértulo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:5 — "Peste"</span>
+            <div class="greek-text">λοιμός</div>
+            <p><strong>Análise:</strong> "Peste", "praga"; usado como acusação contra Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "peste".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:5 — "Seita dos nazarenos"</span>
+            <div class="greek-text">αἱρέσεως τῶν Ναζωραίων</div>
+            <p><strong>Análise:</strong> Designação dos seguidores de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seita dos nazarenos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 24:14 — "Segundo o Caminho"</span>
+            <div class="greek-text">κατὰ τὴν ὁδόν</div>
+            <p><strong>Análise:</strong> Como em Atos 9:2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo o Caminho".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:14 — "Seita"</span>
+            <div class="greek-text">αἵρεσιν</div>
+            <p><strong>Análise:</strong> Termo usado por Paulo para designar o movimento cristão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seita".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 24:15 — "Ressurreição dos mortos, tanto dos justos como dos injustos"</span>
+            <div class="greek-text">ἀνάστασιν ... δικαίων τε καὶ ἀδίκων</div>
+            <p><strong>Análise:</strong> A declaração de Paulo sobre a esperança comum.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:16 — "Consciência sem ofensa"</span>
+            <div class="greek-text">συνείδησιν ἀπρόσκοπον</div>
+            <p><strong>Análise:</strong> Consciência sem motivo de tropeço ou ofensa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "consciência sem ofensa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:17 — "Esmolas à minha nação, e ofertas"</span>
+            <div class="greek-text">ἐλεημοσύνας ... καὶ προσφοράς</div>
+            <p><strong>Análise:</strong> Ação de Paulo ao chegar a Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:24 — "Félix e Drusila"</span>
+            <div class="greek-text">Φῆλιξ ... Δρούσιλλα</div>
+            <p><strong>Análise:</strong> O governador e sua mulher judia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Félix" e "Drusila".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 24:25 — "Justiça, domínio próprio e juízo vindouro"</span>
+            <div class="greek-text">δικαιοσύνης ... ἐγκρατείας ... κρίματος τοῦ μέλλοντος</div>
+            <p><strong>Análise:</strong> Os três temas mencionados por Paulo diante de Félix.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:25 — "Tomado de temor"</span>
+            <div class="greek-text">ἔμφοβος γενόμενος</div>
+            <p><strong>Análise:</strong> Tornando-se tomado de medo/temor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tomado de temor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:27 — "Pórcio Festo"</span>
+            <div class="greek-text">Πόρκιον Φῆστον</div>
+            <p><strong>Análise:</strong> O sucessor de Félix.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Pórcio Festo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:27 — "Querendo agradar aos judeus"</span>
+            <div class="greek-text">θέλων ... χάριτα καταθέσθαι τοῖς Ἰουδαίοις</div>
+            <p><strong>Análise:</strong> A intenção de Félix de obter favor dos judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "querendo agradar aos judeus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:27 — "Passados dois anos"</span>
+            <div class="greek-text">διετίας</div>
+            <p><strong>Análise:</strong> O tempo em que Paulo ficou preso em Cesareia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "passados dois anos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 24:27 — "Deixou Paulo preso"</span>
+            <div class="greek-text">κατέλιπε τὸν Παῦλον δεδεμένον</div>
+            <p><strong>Análise:</strong> A decisão de Félix.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "deixou Paulo preso".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

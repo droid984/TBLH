@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 1</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .dossier-section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fdfcf9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dossier-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .dossier-item h4 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dossier-item p {
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        .text-base-section {
+            margin: 10px auto 50px auto;
+            padding: 18px 30px;
+            max-width: 620px;
+            background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #4a4a4a;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+        }
+        .text-base-section::before,
+        .text-base-section::after {
+            content: "";
+            display: block;
+            height: 0;
+            border-top: 3px double var(--accent-red);
+            margin: 0 auto 12px auto;
+            width: 70%;
+        }
+        .text-base-section::after {
+            margin: 12px auto 0 auto;
+            border-top: 3px double var(--accent-red);
+        }
+        .text-base-section strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            margin-bottom: 6px;
+        }
+        .text-base-section em {
+            font-style: italic;
+            color: #2c2520;
+            font-weight: 500;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="dossier-section">
+        <h3 class="dossier-title">Dossiê do Livro de Atos dos Apóstolos</h3>
+        <div class="dossier-grid">
+            <div class="dossier-item">
+                <h4>Autoria</h4>
+                <p><strong>Lucas</strong>, o médico amado, é tradicionalmente reconhecido como o autor de Atos dos Apóstolos, assim como do Evangelho que leva seu nome. O livro é a continuação do "primeiro tratado" dirigido a Teófilo (Atos 1:1).</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Data e Contexto</h4>
+                <p>Provavelmente escrito entre <strong>62-70 d.C.</strong> Atos narra a expansão da igreja primitiva desde Jerusalém até Roma, cumprindo a ordem de Jesus em Atos 1:8. O livro termina com Paulo em prisão domiciliar em Roma (c. 62 d.C.).</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Tema Central</h4>
+                <p><strong>A expansão do evangelho pelo poder do Espírito Santo.</strong> Atos demonstra como a igreja, capacitada pelo Espírito, testemunhou de Cristo "em Jerusalém, e em toda a Judeia e Samaria, e até os confins da terra."</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Estrutura Literária</h4>
+                <p>O livro de Atos é organizado em <strong>duas grandes seções</strong>: a missão de Pedro e a igreja em Jerusalém (caps. 1-12), e a missão de Paulo aos gentios (caps. 13-28). A estrutura segue o padrão geográfico de Atos 1:8.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-base-section">
+        <strong>Texto Base</strong>
+        <em>Textus Receptus</em> — Edição Stephanus de 1550<br>
+        <small style="color:#8a7a66; font-size:12px;">Novo Testamento Grego</small>
+    </div>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 1</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Teófilo</span>
+                O destinatário do livro de Atos e do Evangelho de Lucas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cenáculo</span>
+                Do grego <em>hyperōon</em> (ὑπερῷον), sala superior onde os discípulos se reuniam.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Zelote</span>
+                Do grego <em>Zēlōtēs</em> (Ζηλωτής), designação de Simão, indicando seu zelo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Acéldama</span>
+                Do aramaico, "Campo de Sangue".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ofício</span>
+                Do grego <em>episkopē</em> (ἐπισκοπή), termo relacionado a supervisão ou cargo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">1</div>
+
+    <!-- PERÍCOPE 1: A PROMESSA DO ESPÍRITO SANTO (1.1-11) -->
+    <div class="pericope">A Promessa do Espírito Santo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">F</span>iz o primeiro tratado, ó Teófilo, acerca de todas as coisas que Jesus começou a fazer e a ensinar,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        até o dia em que foi elevado, depois de ter dado mandamentos pelo Espírito Santo aos apóstolos que escolhera;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        aos quais também, depois de ter padecido, se apresentou vivo, com muitas provas infalíveis, sendo visto por eles durante quarenta dias, e falando das coisas pertencentes ao reino de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, estando com eles, ordenou-lhes que não se retirassem de Jerusalém, mas que esperassem a promessa do Pai, a qual — disse ele — de mim ouvistes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque, na verdade, João batizou com água, mas vós sereis batizados com o Espírito Santo, não muito depois destes dias.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Então os que estavam reunidos perguntaram-lhe, dizendo: <span class="fala-outro">"Senhor, restaurarás tu neste tempo o reino a Israel?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E ele lhes disse: <span class="fala-jesus">"Não vos pertence saber os tempos ou as estações que o Pai estabeleceu pelo seu próprio poder.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-jesus">Mas recebereis poder, ao descer sobre vós o Espírito Santo; e ser-me-eis testemunhas, tanto em Jerusalém, como em toda a Judeia e Samaria, e até os confins da terra."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, tendo dito estas coisas, foi elevado à vista deles, e uma nuvem o recebeu, ocultando-o aos seus olhos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, estando eles com os olhos fitos no céu, enquanto ele subia, eis que dois homens se puseram junto deles, com vestes brancas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E disseram: <span class="fala-anjo">"Homens galileus, por que estais olhando para o céu? Esse Jesus, que dentre vós foi elevado ao céu, virá do modo como o vistes subir ao céu."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A REUNIÃO DOS DISCÍPULOS (1.12-14) -->
+    <div class="pericope">A Reunião dos Discípulos</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então voltaram para Jerusalém, do monte chamado das Oliveiras, que está perto de Jerusalém, à distância do caminho de um sábado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, quando entraram, subiram ao cenáculo, onde estavam hospedados Pedro, e Tiago, e João, e André, Filipe, e Tomé, Bartolomeu, e Mateus, Tiago, filho de Alfeu, e Simão, o Zelote, e Judas, filho de Tiago.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Todos estes perseveravam unanimemente em oração e súplicas, com as mulheres, e com Maria, mãe de Jesus, e com os irmãos dele.
+    </p>
+
+    <!-- PERÍCOPE 3: A ESCOLHA DE MATIAS (1.15-26) -->
+    <div class="pericope">A Escolha de Matias</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, naqueles dias, Pedro se levantou no meio dos discípulos — e era a multidão reunida de quase cento e vinte pessoas — e disse:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">"Homens irmãos, era necessário que se cumprisse a Escritura que o Espírito Santo predisse pela boca de Davi, acerca de Judas, que foi o guia dos que prenderam Jesus;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">porque ele era contado entre nós, e tinha parte neste ministério."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">"Ora, este adquiriu um campo com o salário da iniquidade; e, precipitando-se, rebentou pelo meio, e todas as suas entranhas se derramaram.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">E isto foi conhecido de todos os que habitam em Jerusalém, de modo que aquele campo foi chamado, na sua própria língua, Acéldama, isto é: Campo de Sangue."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">"Porque está escrito no livro dos Salmos: 'Fique deserta a sua habitação, e não haja quem nela habite'; e: 'Tome outro o seu ofício.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">É necessário, pois, que, dos homens que estiveram conosco todo o tempo em que o Senhor Jesus entrou e saiu entre nós,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">começando desde o batismo de João até o dia em que dentre nós foi elevado, um destes se torne conosco testemunha da sua ressurreição."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E apresentaram dois: José, chamado Barsabás, que tinha por sobrenome Justo, e Matias.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, orando, disseram: <span class="fala-outro">"Tu, Senhor, que conheces os corações de todos, mostra qual destes dois tens escolhido,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">para tomar parte neste ministério e apostolado, do qual Judas se desviou, para ir ao seu próprio lugar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E lançaram sortes sobre eles; e a sorte caiu sobre Matias, e ele foi contado com os onze apóstolos.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:1 — "Primeiro tratado"</span>
+            <div class="greek-text">πρῶτον λόγον</div>
+            <p><strong>Análise:</strong> Referindo-se ao Evangelho de Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primeiro tratado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:1 — "Teófilo"</span>
+            <div class="greek-text">Θεόφιλε</div>
+            <p><strong>Análise:</strong> O destinatário do livro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Teófilo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:2, 11, 22 — "Foi elevado"</span>
+            <div class="greek-text">ἀνελήμφθη</div>
+            <p><strong>Análise:</strong> Forma passiva de <em>analambanō</em>, "ser levado/elevado". Refere-se à ascensão de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "foi elevado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:3 — "Provas infalíveis"</span>
+            <div class="greek-text">τεκμηρίοις</div>
+            <p><strong>Análise:</strong> Evidências convincentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "provas infalíveis".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 1:5 — "Batizados com o Espírito Santo"</span>
+            <div class="greek-text">βαπτισθήσεσθε πνεύματι ἁγίῳ</div>
+            <p><strong>Análise:</strong> A promessa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:6 — "Restaurarás tu neste tempo o reino a Israel?"</span>
+            <div class="greek-text">εἰ ἐν τῷ χρόνῳ τούτῳ ἀποκαθιστάνεις τὴν βασιλείαν τῷ Ἰσραήλ</div>
+            <p><strong>Análise:</strong> A pergunta dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 1:7 — "Não vos pertence saber os tempos ou as estações"</span>
+            <div class="greek-text">οὐκ ἔστιν ὑμῶν γνῶναι χρόνους ἢ καιροὺς</div>
+            <p><strong>Análise:</strong> A resposta de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 1:8 — "Até os confins da terra"</span>
+            <div class="greek-text">ἕως ἐσχάτου τῆς γῆς</div>
+            <p><strong>Análise:</strong> A comissão de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:12 — "Caminho de um sábado"</span>
+            <div class="greek-text">σαββάτου ἔχον ὁδόν</div>
+            <p><strong>Análise:</strong> A distância permitida no sábado, cerca de 1 km.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "caminho de um sábado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:13 — "Cenáculo"</span>
+            <div class="greek-text">ὑπερῷον</div>
+            <p><strong>Análise:</strong> "Sala superior" ou "aposento superior".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cenáculo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:13 — "Simão, o Zelote"</span>
+            <div class="greek-text">Σίμων ὁ Ζηλωτής</div>
+            <p><strong>Análise:</strong> Designação de Simão, indicando seu zelo ou pertencimento ao partido dos zelotes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Simão, o Zelote".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:19 — "Acéldama"</span>
+            <div class="hebrew-text">אֲקֶלְדָּמָא</div>
+            <p><strong>Análise:</strong> Do aramaico, "Campo de Sangue".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Acéldama".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:20 — "Ofício"</span>
+            <div class="greek-text">ἐπισκοπή</div>
+            <p><strong>Análise:</strong> Termo relacionado a supervisão, função ou cargo de responsabilidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ofício".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:23 — "Barsabás... Justo"</span>
+            <div class="greek-text">Βαρσαββᾶν ... Ἰοῦστον</div>
+            <p><strong>Análise:</strong> O candidato ao apostolado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Barsabás" e "Justo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 1:26 — "A sorte caiu sobre Matias"</span>
+            <div class="greek-text">ἔπεσεν ὁ κλῆρος ἐπὶ Μαθθίαν</div>
+            <p><strong>Análise:</strong> A escolha de Matias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

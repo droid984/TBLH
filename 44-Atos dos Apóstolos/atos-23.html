@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 23</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 23</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Sinédrio</span>
+                Do grego <em>synedrion</em> (συνέδριον), o conselho supremo judaico.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ananias</span>
+                Sumo sacerdote que ordenou que Paulo fosse ferido na boca.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cláudio Lísias</span>
+                Tribuno romano que resgatou Paulo da multidão.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Félix</span>
+                Governador romano da Judeia.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">23</div>
+
+    <!-- PERÍCOPE 1: PAULO PERANTE O SINÉDRIO (23.1-11) -->
+    <div class="pericope">Paulo Perante o Sinédrio</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> Paulo, fitando os olhos no conselho, disse: <span class="fala-outro">"Homens irmãos, eu tenho andado diante de Deus com toda a boa consciência, até o dia de hoje."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Mas o sumo sacerdote Ananias mandou aos que estavam junto dele que o ferissem na boca.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Então Paulo lhe disse: <span class="fala-outro">"Deus te ferirá a ti, parede caiada! Tu estás assentado para me julgar conforme a lei, e, contra a lei, me mandas ferir?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E os que estavam presentes disseram: <span class="fala-outro">"Injurias o sumo sacerdote de Deus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E Paulo disse: <span class="fala-outro">"Eu não sabia, irmãos, que era o sumo sacerdote; porque está escrito: 'Não falarás mal do príncipe do teu povo.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, sabendo Paulo que uma parte era de saduceus e a outra de fariseus, clamou no conselho: <span class="fala-outro">"Homens irmãos, eu sou fariseu, filho de fariseus; por causa da esperança e da ressurreição dos mortos sou julgado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, tendo ele dito isto, houve discussão entre os fariseus e os saduceus; e a multidão se dividiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque os saduceus dizem que não há ressurreição, nem anjo, nem espírito; mas os fariseus confessam ambas as coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E houve um grande clamor. E, levantando-se os escribas da parte dos fariseus, contendiam, dizendo: <span class="fala-outro">"Nenhum mal achamos neste homem; e, se algum espírito ou anjo lhe falou, não lutemos contra Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, havendo grande discussão, o tribuno, temendo que Paulo fosse despedaçado por eles, mandou descer os soldados para que o tirassem do meio deles, e o levassem para a fortaleza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, na noite seguinte, o Senhor, apresentando-se a ele, disse: <span class="fala-jesus">"Tem bom ânimo, Paulo; porque, como testificaste de mim em Jerusalém, assim te é necessário testificar também em Roma."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A CONSPIRAÇÃO CONTRA PAULO (23.12-22) -->
+    <div class="pericope">A Conspiração contra Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, quando já era dia, alguns dos judeus se ajuntaram, e fizeram um voto, dizendo que não comeriam nem beberiam até que matassem Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E eram mais de quarenta os que fizeram esta conspiração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E estes foram aos principais dos sacerdotes e aos anciãos, e disseram: <span class="fala-outro">"Com grande voto nos comprometemos a nada provar até que matemos Paulo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">Agora, pois, vós, com o conselho, informai ao tribuno que amanhã o traga a vós, como se houvésseis de examinar com mais precisão a causa dele; e nós, antes que ele chegue, estaremos prontos para o matar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E o filho da irmã de Paulo, ouvindo falar desta cilada, foi, e entrou na fortaleza, e anunciou-o a Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E Paulo, chamando a si um dos centuriões, disse: <span class="fala-outro">"Leva este jovem ao tribuno, porque tem algo a lhe anunciar."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Então ele o tomou, e o levou ao tribuno, e disse: <span class="fala-outro">"O preso Paulo, chamando-me, pediu-me que te trouxesse este jovem, que tem algo a dizer-te."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E o tribuno, tomando-o pela mão e levando-o à parte, perguntou-lhe: <span class="fala-outro">"Que é que tens a me anunciar?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E ele disse: <span class="fala-outro">"Os judeus se concertaram para te rogar que amanhã leves Paulo ao conselho, como se houvessem de examinar alguma coisa mais precisa a respeito dele.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">Mas tu não os acredites; porque mais de quarenta homens dentre eles lhe armam cilada, os quais se comprometeram sob voto a não comer nem beber até que o matem; e agora estão prontos, esperando a tua promessa."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Então o tribuno despediu o jovem, mandando-lhe que a ninguém dissesse que lhe tinha revelado estas coisas.
+    </p>
+
+    <!-- PERÍCOPE 3: PAULO ENVIADO A CESAREIA (23.23-35) -->
+    <div class="pericope">Paulo Enviado a Cesareia</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, chamando dois centuriões, disse: <span class="fala-outro">"Preparai duzentos soldados, e setenta cavaleiros, e duzentos lanceiros, para irem até Cesareia, à terceira hora da noite."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E que preparassem animais, para que, pondo Paulo em cima, o levassem com segurança ao governador Félix.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E escreveu uma carta nestes termos:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">"Cláudio Lísias, ao excelentíssimo governador Félix, saudações.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Este homem foi preso pelos judeus, e estava prestes a ser morto por eles, quando eu, sobrevindo com os soldados, o livrei, sabendo que ele é romano.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">E, querendo saber a causa por que o acusavam, levei-o ao conselho deles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">E achei que era acusado de questões da lei deles, mas que nenhuma acusação tinha digna de morte ou de prisão.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        <span class="fala-outro">E, sendo-me noticiado que os judeus armariam uma cilada a este homem, logo o enviei a ti, ordenando também aos acusadores que diante de ti digam o que têm contra ele. Passa bem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Então os soldados, conforme lhes fora mandado, tomaram Paulo, e o levaram de noite a Antipátrida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E no dia seguinte, deixando os cavaleiros irem com ele, voltaram à fortaleza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E os cavaleiros, chegando a Cesareia e entregando a carta ao governador, apresentaram-lhe também Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E o governador, lendo a carta, perguntou de que província ele era. E, sabendo que era da Cilícia,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        disse: <span class="fala-outro">"Eu te ouvirei quando também vierem os teus acusadores."</span> E mandou que o guardassem no pretório de Herodes.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:1 — "Conselho"</span>
+            <div class="greek-text">συνεδρίῳ</div>
+            <p><strong>Análise:</strong> O Sinédrio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "conselho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:2 — "Ananias, o sumo sacerdote"</span>
+            <div class="greek-text">Ἀνανίας ... ἀρχιερεύς</div>
+            <p><strong>Análise:</strong> O sumo sacerdote que ordenou que Paulo fosse ferido na boca.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ananias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:3 — "Parede caiada"</span>
+            <div class="greek-text">τοῖχε κεκονιαμένε</div>
+            <p><strong>Análise:</strong> Parede coberta com cal, imagem de hipocrisia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "parede caiada".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 23:5 — "Não falarás mal do príncipe do teu povo"</span>
+            <div class="greek-text">οὐκ ἐρεῖς κακῶς ἄρχοντα τοῦ λαοῦ σου</div>
+            <p><strong>Análise:</strong> Citação de Êxodo 22:28.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:6 — "Fariseu, filho de fariseus"</span>
+            <div class="greek-text">Φαρισαῖός εἰμι, υἱὸς Φαρισαίων</div>
+            <p><strong>Análise:</strong> A declaração de Paulo diante do Sinédrio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:8 — "Os saduceus dizem que não há ressurreição"</span>
+            <div class="greek-text">Σαδδουκαῖοι ... λέγοντες μὴ εἶναι ἀνάστασιν</div>
+            <p><strong>Análise:</strong> A posição dos saduceus mencionada por Lucas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:9 — "Não lutemos contra Deus"</span>
+            <div class="greek-text">μὴ θεομαχῶμεν</div>
+            <p><strong>Análise:</strong> Literalmente "não lutemos contra Deus".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 23:11 — "O Senhor, apresentando-se a ele"</span>
+            <div class="greek-text">ὁ κύριος ... ἐπιστὰς αὐτῷ</div>
+            <p><strong>Análise:</strong> O Senhor aparece a Paulo durante a noite e lhe anuncia que ele também testemunharia em Roma.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:12, 14 — "Voto"</span>
+            <div class="greek-text">ἀναθεματίζω</div>
+            <p><strong>Análise:</strong> Expressão de juramento sob maldição, indicando uma obrigação solene.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "voto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:16 — "Filho da irmã de Paulo"</span>
+            <div class="greek-text">υἱὸς τῆς ἀδελφῆς Παύλου</div>
+            <p><strong>Análise:</strong> O sobrinho de Paulo, que ouviu sobre a conspiração e o avisou.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:26 — "Cláudio Lísias"</span>
+            <div class="greek-text">Κλαύδιος Λυσίας</div>
+            <p><strong>Análise:</strong> O tribuno romano responsável pela guarda de Paulo em Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cláudio Lísias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:26 — "Excelentíssimo governador Félix"</span>
+            <div class="greek-text">κρατίστῳ ἡγεμόνι Φήλικι</div>
+            <p><strong>Análise:</strong> Tratamento honorífico dirigido ao governador Félix.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "excelentíssimo governador Félix".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:23 — "Duzentos soldados, e setenta cavaleiros, e duzentos lanceiros"</span>
+            <div class="greek-text">διακοσίους στρατιώτας ... ἑβδομήκοντα ἱππεῖς ... διακοσίους δεξιολάβους</div>
+            <p><strong>Análise:</strong> A escolta enviada para conduzir Paulo com segurança a Cesareia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:31 — "Antipátrida"</span>
+            <div class="greek-text">Ἀντιπατρίδα</div>
+            <p><strong>Análise:</strong> A cidade até a qual os soldados levaram Paulo durante a noite.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Antipátrida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 23:35 — "Pretório de Herodes"</span>
+            <div class="greek-text">πραιτωρίῳ τοῦ Ἡρῴδου</div>
+            <p><strong>Análise:</strong> O local oficial onde Paulo ficou sob guarda em Cesareia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pretório de Herodes".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

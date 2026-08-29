@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Herodes Agripa I</span>
+                Rei da Judeia, neto de Herodes, o Grande.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Rode</span>
+                A moça que atendeu à porta na casa de Maria.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">João Marcos</span>
+                Sobrinho de Barnabé, autor do Evangelho de Marcos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Blasto</span>
+                Encarregado do quarto do rei Herodes.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <!-- PERÍCOPE 1: A PRISÃO DE PEDRO (12.1-19a) -->
+    <div class="pericope">A Prisão de Pedro</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, naquele mesmo tempo, o rei Herodes estendeu as mãos sobre alguns da igreja, para os maltratar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E matou à espada Tiago, irmão de João.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, vendo que isso agradara aos judeus, continuou, mandando prender também Pedro. E eram os dias dos pães sem fermento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, tendo-o prendido, o pôs na prisão, entregando-o a quatro grupos de quatro soldados cada um, para o guardarem, querendo depois da Páscoa apresentá-lo ao povo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Pedro, pois, era guardado na prisão; mas a igreja fazia contínua oração a Deus por ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, quando Herodes estava para o apresentar, naquela mesma noite Pedro dormia entre dois soldados, ligado com duas cadeias; e os guardas diante da porta guardavam a prisão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E eis que o anjo do Senhor se apresentou, e uma luz resplandeceu na prisão. E, tocando no lado de Pedro, o despertou, dizendo: <span class="fala-anjo">"Levanta-te depressa."</span> E as cadeias caíram das suas mãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E disse-lhe o anjo: <span class="fala-anjo">"Cinge-te, e calça as tuas sandálias."</span> E ele assim o fez. Disse-lhe mais: <span class="fala-anjo">"Lança a tua capa sobre ti, e segue-me."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, saindo, o seguia, e não sabia que era verdadeiro o que estava sendo feito pelo anjo, mas pensava que via uma visão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, quando passaram a primeira e a segunda guarda, chegaram à porta de ferro, que dá para a cidade, e ela se lhes abriu por si mesma. E, saindo, percorreram uma rua, e logo o anjo se apartou dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E Pedro, voltando a si, disse: <span class="fala-outro">"Agora sei verdadeiramente que o Senhor enviou o seu anjo, e me livrou da mão de Herodes, e de toda a expectativa do povo dos judeus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, considerando ele nisto, foi à casa de Maria, mãe de João, que tinha por sobrenome Marcos, onde muitos estavam reunidos e oravam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, batendo Pedro à porta do pátio, uma moça, chamada Rode, saiu para escutar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, conhecendo a voz de Pedro, de alegria não abriu a porta, mas, correndo para dentro, anunciou que Pedro estava diante da porta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E eles lhe disseram: <span class="fala-outro">"Estás fora de ti."</span> Mas ela afirmava que assim era. E diziam: <span class="fala-outro">"É o seu anjo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas Pedro continuava batendo. E, quando abriram, viram-no, e ficaram atônitos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, acenando-lhes com a mão para que se calassem, contou-lhes como o Senhor o tinha tirado da prisão. E disse: <span class="fala-outro">"Anunciai isto a Tiago e aos irmãos."</span> E, saindo, partiu para outro lugar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, quando já era dia, houve não pequeno alvoroço entre os soldados sobre o que seria feito de Pedro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E Herodes, tendo-o procurado e não o achando, interrogou os guardas, e mandou que fossem levados. E, descendo da Judeia para Cesareia, ficou ali.
+    </p>
+
+    <!-- PERÍCOPE 2: A MORTE DE HERODES (12.19b-25) -->
+    <div class="pericope">A Morte de Herodes</div>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E Herodes estava indignado contra os de Tiro e de Sidom. Mas eles, vindo de comum acordo a ele, e tendo persuadido Blasto, que era encarregado do quarto do rei, pediam paz, porque a sua região era abastecida pelo território do rei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, num dia designado, Herodes, vestido de vestes reais, assentou-se no tribunal, e lhes fez uma fala.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E o povo exclamava: <span class="fala-outro">"Voz de Deus, e não de homem!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E no mesmo instante o anjo do Senhor o feriu, porque não deu glória a Deus; e, comido de vermes, expirou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E a palavra de Deus crescia e se multiplicava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E Barnabé e Saulo, tendo completado o serviço, voltaram de Jerusalém, levando também consigo João, que tinha por sobrenome Marcos.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Atos 12:1 — "Herodes"</span>
+            <div class="greek-text">Ἡρῴδης</div>
+            <p><strong>Análise:</strong> Refere-se a Herodes Agripa I.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Herodes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:2 — "Tiago, irmão de João"</span>
+            <div class="greek-text">Ἰάκωβον τὸν ἀδελφὸν Ἰωάννου</div>
+            <p><strong>Análise:</strong> O apóstolo morto à espada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:3 — "Dias dos pães sem fermento"</span>
+            <div class="greek-text">ἡμέραι τῶν ἀζύμων</div>
+            <p><strong>Análise:</strong> A festa judaica da Páscoa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dias dos pães sem fermento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:4 — "Quatro grupos de quatro soldados"</span>
+            <div class="greek-text">τέσσαρσιν τετραδίοις στρατιωτῶν</div>
+            <p><strong>Análise:</strong> Guardas que vigiavam Pedro em turnos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:4 — "Páscoa"</span>
+            <div class="greek-text">πάσχα</div>
+            <p><strong>Análise:</strong> A festa da Páscoa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Páscoa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:6 — "Ligado com duas cadeias"</span>
+            <div class="greek-text">δεδεμένον ἁλύσεσι δυσί</div>
+            <p><strong>Análise:</strong> A descrição da prisão de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 12:7 — "O anjo do Senhor"</span>
+            <div class="greek-text">ἄγγελος κυρίου</div>
+            <p><strong>Análise:</strong> A aparição do anjo na prisão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "anjo do Senhor".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:10 — "Porta de ferro"</span>
+            <div class="greek-text">πύλην τὴν σιδηρᾶν</div>
+            <p><strong>Análise:</strong> A porta que se abriu por si mesma.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "porta de ferro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:9 — "Verdadeiro o que estava sendo feito"</span>
+            <div class="greek-text">ἀληθές ἐστιν τὸ γινόμενον</div>
+            <p><strong>Análise:</strong> Pedro pensava que via uma visão, mas o que acontecia era real.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:13 — "Rode"</span>
+            <div class="greek-text">Ῥόδη</div>
+            <p><strong>Análise:</strong> A moça que atendeu à porta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Rode".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:15 — "É o seu anjo"</span>
+            <div class="greek-text">ὁ ἄγγελός ἐστιν αὐτοῦ</div>
+            <p><strong>Análise:</strong> A expressão dos presentes sobre Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "É o seu anjo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:19 — "Mandou que fossem levados"</span>
+            <div class="greek-text">κελεύσας ἀπαχθῆναι</div>
+            <p><strong>Análise:</strong> O texto não especifica aqui o destino dos guardas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mandou que fossem levados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:20 — "Encarregado do quarto do rei"</span>
+            <div class="greek-text">ἐπὶ τοῦ κοιτῶνος</div>
+            <p><strong>Análise:</strong> Responsável pelo quarto do rei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "encarregado do quarto do rei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:20 — "Abastecida pelo território do rei"</span>
+            <div class="greek-text">τρέφεσθαι αὐτῶν τὴν χώραν ἀπὸ τῆς βασιλικῆς</div>
+            <p><strong>Análise:</strong> A região de Tiro e Sidom dependia do território de Herodes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:21 — "Vestes reais"</span>
+            <div class="greek-text">ἐσθῆτα βασιλικήν</div>
+            <p><strong>Análise:</strong> Vestimenta de rei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vestes reais".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 12:22 — "Voz de Deus, e não de homem!"</span>
+            <div class="greek-text">θεοῦ φωνὴ καὶ οὐκ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> A exclamação do povo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:23 — "Comido de vermes"</span>
+            <div class="greek-text">σκωληκόβρωτος</div>
+            <p><strong>Análise:</strong> Herodes morreu sendo consumido por vermes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "comido de vermes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 12:25 — "João, que tinha por sobrenome Marcos"</span>
+            <div class="greek-text">Ἰωάννην τὸν ἐπικληθέντα Μάρκον</div>
+            <p><strong>Análise:</strong> A referência a João Marcos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "João, que tinha por sobrenome Marcos".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

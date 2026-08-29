@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 3</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 3</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Porta Formosa</span>
+                Do grego <em>hōraia</em> (ὡραία), "bela", "formosa" — uma das portas do templo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Alpendre de Salomão</span>
+                Pórtico no templo, mencionado também em João 10:23.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Príncipe da vida</span>
+                Do grego <em>archēgos tēs zōēs</em> (ἀρχηγὸς τῆς ζωῆς), "autor" ou "originador da vida".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tempos do refrigério</span>
+                Do grego <em>kairoi anapsyxeōs</em> (καιροὶ ἀναψύξεως), tempos de alívio e renovação.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">3</div>
+
+    <!-- PERÍCOPE 1: A CURA DO COXO (3.1-11) -->
+    <div class="pericope">A Cura do Coxo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> Pedro e João subiam juntos ao templo à hora da oração, a nona.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E era trazido um homem, coxo desde o ventre de sua mãe, o qual todos os dias punham à porta do templo, chamada Formosa, para pedir esmola aos que entravam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E ele, vendo Pedro e João, que iam entrar no templo, pediu-lhes uma esmola.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E Pedro, com João, fitando os olhos nele, disse: <span class="fala-outro">"Olha para nós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E ele os olhava atentamente, esperando receber deles alguma coisa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E Pedro disse: <span class="fala-outro">"Não tenho prata nem ouro; mas o que tenho, isso te dou. Em nome de Jesus Cristo, o Nazareno, levanta-te e anda."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, tomando-o pela mão direita, o levantou; e imediatamente os seus pés e tornozelos se firmaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, saltando, pôs-se em pé, e andou, e entrou com eles no templo, andando, e saltando, e louvando a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E todo o povo o viu andar e louvar a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E reconheciam que ele era o que se assentava a pedir esmola à porta Formosa do templo; e ficaram cheios de assombro e admiração pelo que lhe tinha acontecido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, apegando-se o coxo, que fora curado, a Pedro e a João, todo o povo correu atônito para eles, ao alpendre chamado de Salomão.
+    </p>
+
+    <!-- PERÍCOPE 2: O SERMÃO DE PEDRO NO ALPENDRE DE SALOMÃO (3.12-26) -->
+    <div class="pericope">O Sermão de Pedro no Alpendre de Salomão</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E Pedro, vendo isto, respondeu ao povo: <span class="fala-outro">"Homens israelitas, por que vos admirais disto? Ou por que fitais os olhos em nós, como se por nosso próprio poder ou santidade tivéssemos feito andar este homem?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-outro">O Deus de Abraão, e de Isaque, e de Jacó, o Deus de nossos pais, glorificou a seu Filho Jesus, a quem vós entregastes e negastes diante da face de Pilatos, quando ele havia decidido soltá-lo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">Mas vós negastes o Santo e o Justo, e pedistes que se vos desse um homem homicida.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">E matastes o Príncipe da vida, a quem Deus ressuscitou dos mortos, do que nós somos testemunhas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">E, pela fé no seu nome, o seu nome fortaleceu a este homem que vedes e conheceis; e a fé que é por ele deu a este, na presença de todos vós, esta completa saúde."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">"E agora, irmãos, eu sei que o fizestes por ignorância, como também os vossos príncipes.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">Mas Deus assim cumpriu o que antes tinha anunciado pela boca de todos os seus profetas: que o Cristo havia de padecer.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">Arrependei-vos, pois, e convertei-vos, para que os vossos pecados sejam apagados, e venham os tempos do refrigério da presença do Senhor,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">e ele envie Jesus Cristo, que já antes vos foi anunciado;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">o qual é necessário que o céu receba até os tempos da restauração de todas as coisas, das quais Deus falou pela boca de todos os seus santos profetas, desde o princípio do mundo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">Porque Moisés disse aos pais: 'O Senhor vosso Deus levantará dentre os vossos irmãos um profeta semelhante a mim; a ele ouvireis em tudo quanto vos disser.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        <span class="fala-outro">E acontecerá que toda alma que não ouvir esse profeta será exterminada do meio do povo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">E todos os profetas, desde Samuel, e quantos depois falaram, também anunciaram estes dias.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">Vós sois os filhos dos profetas, e da aliança que Deus fez com os nossos pais, dizendo a Abraão: 'E na tua descendência serão benditas todas as famílias da terra.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">Deus, tendo ressuscitado a seu Filho Jesus, primeiro o enviou a vós, para vos abençoar, desviando cada um de vós das suas maldades."</span>
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:1 — "Hora da oração, a nona"</span>
+            <div class="greek-text">τὴν ὥραν τῆς προσευχῆς τὴν ἐνάτην</div>
+            <p><strong>Análise:</strong> Cerca de 15h, uma das horas de oração judaicas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:2 — "Coxo desde o ventre"</span>
+            <div class="greek-text">χωλὸς ἐκ κοιλίας μητρός</div>
+            <p><strong>Análise:</strong> O homem era coxo desde o nascimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coxo desde o ventre de sua mãe".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:2, 10 — "Porta Formosa"</span>
+            <div class="greek-text">ὡραίαν</div>
+            <p><strong>Análise:</strong> "Bela", "formosa" — uma das portas do templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Formosa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:11 — "Alpendre de Salomão"</span>
+            <div class="greek-text">τῇ στοᾷ τῇ καλουμένῃ Σολομῶντος</div>
+            <p><strong>Análise:</strong> O pórtico de Salomão no templo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alpendre de Salomão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:15 — "Príncipe da vida"</span>
+            <div class="greek-text">ἀρχηγὸν τῆς ζωῆς</div>
+            <p><strong>Análise:</strong> Expressão que pode transmitir a ideia de autor, líder ou originador da vida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Príncipe da vida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:16 — "Completa saúde"</span>
+            <div class="greek-text">ὁλοκληρίαν</div>
+            <p><strong>Análise:</strong> Relacionado a inteireza, integridade ou condição completa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "completa saúde".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 3:19 — "Tempos do refrigério"</span>
+            <div class="greek-text">καιροὶ ἀναψύξεως</div>
+            <p><strong>Análise:</strong> Termo relacionado a refrigério, alívio, descanso ou renovação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tempos do refrigério".</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:19 — "Convertei-vos"</span>
+            <div class="greek-text">ἐπιστρέψατε</div>
+            <p><strong>Análise:</strong> "Voltai-vos", "convertei-vos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "convertei-vos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 3:21 — "Restauração de todas as coisas"</span>
+            <div class="greek-text">ἀποκαταστάσεως πάντων</div>
+            <p><strong>Análise:</strong> A restauração final de todas as coisas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-escatological">Escatológico</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 3:22 — "Profeta semelhante a mim"</span>
+            <div class="greek-text">προφήτην ... ὡς ἐμέ</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 18:15.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 3:23 — "Exterminada do meio do povo"</span>
+            <div class="greek-text">ἐξολεθρευθήσεται ἐκ τοῦ λαοῦ</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 18:19.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:24 — "Desde Samuel"</span>
+            <div class="greek-text">ἀπὸ Σαμουὴλ</div>
+            <p><strong>Análise:</strong> A referência aos profetas, começando com Samuel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desde Samuel".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 3:25 — "Aliança que Deus fez com os nossos pais"</span>
+            <div class="greek-text">τῆς διαθήκης ... πρὸς τοὺς πατέρας</div>
+            <p><strong>Análise:</strong> A referência à aliança com Abraão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 3:25 — "Todas as famílias da terra"</span>
+            <div class="greek-text">πᾶσαι αἱ πατριαὶ τῆς γῆς</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 22:18.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 3:26 — "Primeiro o enviou a vós"</span>
+            <div class="greek-text">πρῶτον</div>
+            <p><strong>Análise:</strong> A prioridade da missão aos judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primeiro o enviou a vós".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

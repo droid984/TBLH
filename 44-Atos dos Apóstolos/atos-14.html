@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 14</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 14</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Icônio</span>
+                Cidade da região da Licaônia, na Ásia Menor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Licaônia</span>
+                Região da Ásia Menor, onde ficavam Listra e Derbe.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Júpiter</span>
+                Do grego <em>Zeus</em> (Ζεύς), principal divindade grega.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mercúrio</span>
+                Do grego <em>Hermes</em> (Ἑρμῆς), divindade grega.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">14</div>
+
+    <!-- PERÍCOPE 1: EM ICÔNIO (14.1-7) -->
+    <div class="pericope">Em Icônio</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu em Icônio que entraram juntos na sinagoga dos judeus, e falaram de tal modo que creu uma grande multidão, tanto de judeus como de gregos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Mas os judeus incrédulos incitaram e irritaram os ânimos dos gentios contra os irmãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E ficaram ali muito tempo, falando ousadamente acerca do Senhor, o qual dava testemunho à palavra da sua graça, concedendo que por suas mãos se fizessem sinais e prodígios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E a multidão da cidade se dividiu: uns eram pelos judeus, e outros pelos apóstolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, havendo um movimento de gentios e judeus, com os seus principais, para os insultar e apedrejar,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        eles, sabendo-o, fugiram para Listra e Derbe, cidades da Licaônia, e para a região ao redor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E ali pregavam o evangelho.
+    </p>
+
+    <!-- PERÍCOPE 2: EM LISTRA (14.8-20) -->
+    <div class="pericope">Em Listra</div>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E em Listra estava assentado um homem aleijado dos pés, coxo desde o ventre de sua mãe, que nunca tinha andado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Ele ouviu Paulo falar; e Paulo, fixando os olhos nele, e vendo que tinha fé para ser curado,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        disse em alta voz: <span class="fala-outro">"Levanta-te direito sobre os teus pés."</span> E ele saltou e andou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E as multidões, vendo o que Paulo tinha feito, levantaram a voz, dizendo em língua licaônica: <span class="fala-outro">"Os deuses, em forma de homens, desceram a nós."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E chamavam Barnabé de Júpiter, e Paulo de Mercúrio, porque era este quem falava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E o sacerdote de Júpiter, cujo templo estava diante da cidade, trazendo touros e grinaldas para as portas, queria oferecer sacrifícios com a multidão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas os apóstolos Barnabé e Paulo, ouvindo isso, rasgaram as suas vestes, e saltaram para a multidão, clamando
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        e dizendo: <span class="fala-outro">"Homens, por que fazeis estas coisas? Nós também somos homens, sujeitos às mesmas paixões que vós, e vos anunciamos que vos convertais destas vaidades ao Deus vivo, que fez o céu, e a terra, e o mar, e tudo quanto neles há.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">O qual, nos tempos passados, deixou andar todas as nações nos seus próprios caminhos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">E, contudo, não se deixou a si mesmo sem testemunho, fazendo o bem, dando-vos do céu chuvas e estações frutíferas, enchendo de alimento e de alegria os vossos corações."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, dizendo isto, com dificuldade impediram as multidões de lhes oferecerem sacrifícios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Então sobrevieram uns judeus de Antioquia e de Icônio, que, tendo persuadido a multidão, apedrejaram Paulo, e o arrastaram para fora da cidade, cuidando que estava morto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Mas, rodeando-o os discípulos, ele se levantou, e entrou na cidade. E no dia seguinte partiu com Barnabé para Derbe.
+    </p>
+
+    <!-- PERÍCOPE 3: O RETORNO (14.21-28) -->
+    <div class="pericope">O Retorno</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, tendo anunciado o evangelho àquela cidade e feito muitos discípulos, voltaram para Listra, e Icônio, e Antioquia,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        confirmando os ânimos dos discípulos, exortando-os a permanecer na fé, e dizendo que por muitas tribulações nos é necessário entrar no reino de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, tendo designado anciãos em cada igreja, orando com jejuns, os encomendaram ao Senhor, em quem tinham crido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E, passando pela Pisídia, chegaram à Panfília.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, tendo anunciado a palavra em Perge, desceram a Atália.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E dali navegaram para Antioquia, de onde tinham sido recomendados à graça de Deus para a obra que tinham completado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, quando chegaram e reuniram a igreja, contaram quão grandes coisas Deus tinha feito por eles, e como abrira aos gentios a porta da fé.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E ficaram ali não pouco tempo com os discípulos.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:1 — "Icônio"</span>
+            <div class="greek-text">Ἰκόνιον</div>
+            <p><strong>Análise:</strong> Cidade da região da Licaônia, na Ásia Menor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Icônio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:2 — "Irritaram os ânimos"</span>
+            <div class="greek-text">ἐκάκωσαν</div>
+            <p><strong>Análise:</strong> "Maltrataram", "irritaram".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "irritaram os ânimos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:6 — "Listra e Derbe"</span>
+            <div class="greek-text">Λύστραν καὶ Δέρβην</div>
+            <p><strong>Análise:</strong> Cidades da Licaônia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Listra" e "Derbe".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:8 — "Coxo desde o ventre"</span>
+            <div class="greek-text">χωλὸς ἐκ κοιλίας μητρός</div>
+            <p><strong>Análise:</strong> Como em Atos 3:2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coxo desde o ventre de sua mãe".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:11 — "Língua licaônica"</span>
+            <div class="greek-text">Λυκαονιστί</div>
+            <p><strong>Análise:</strong> A língua falada na Licaônia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "língua licaônica".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:12 — "Júpiter e Mercúrio"</span>
+            <div class="greek-text">Δία ... Ἑρμῆν</div>
+            <p><strong>Análise:</strong> Os deuses gregos Zeus e Hermes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Júpiter" e "Mercúrio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:13 — "Grinaldas"</span>
+            <div class="greek-text">στέμματα</div>
+            <p><strong>Análise:</strong> Guirlandas ou grinaldas usadas em sacrifícios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grinaldas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:15 — "Vaidades"</span>
+            <div class="greek-text">ματαίων</div>
+            <p><strong>Análise:</strong> Coisas vãs, inúteis.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vaidades".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:17 — "Estações frutíferas"</span>
+            <div class="greek-text">καιροὺς καρποφόρους</div>
+            <p><strong>Análise:</strong> Tempos de produção de frutos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "estações frutíferas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:23 — "Tendo designado anciãos"</span>
+            <div class="greek-text">χειροτονήσαντες πρεσβυτέρους</div>
+            <p><strong>Análise:</strong> Indicando a designação/estabelecimento de anciãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tendo designado anciãos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:23 — "Encomendaram ao Senhor"</span>
+            <div class="greek-text">παρέθεντο</div>
+            <p><strong>Análise:</strong> Confiaram ao Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "encomendaram ao Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:25 — "Atália"</span>
+            <div class="greek-text">Ἀττάλειαν</div>
+            <p><strong>Análise:</strong> A cidade portuária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Atália".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 14:26 — "Recomendados à graça de Deus"</span>
+            <div class="greek-text">παραδεδομένοι τῇ χάριτι τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Confiados à graça de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "recomendados à graça de Deus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 14:27 — "Porta da fé"</span>
+            <div class="greek-text">θύραν πίστεως</div>
+            <p><strong>Análise:</strong> A oportunidade de fé aberta aos gentios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "porta da fé".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

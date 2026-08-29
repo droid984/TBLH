@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 18</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 18</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Áquila e Priscila</span>
+                Casal judeu que acolheu Paulo em Corinto.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fabricante de tendas</span>
+                Do grego <em>skēnopoios</em> (σκηνοποιός), ofício de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gálio</span>
+                Procônsul da Acaia, irmão do filósofo Sêneca.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Apolo</span>
+                Judeu de Alexandria, eloquente e poderoso nas Escrituras.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">18</div>
+
+    <!-- PERÍCOPE 1: PAULO EM CORINTO (18.1-17) -->
+    <div class="pericope">Paulo em Corinto</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, depois disto, Paulo partiu de Atenas e foi a Corinto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, achando um certo judeu, chamado Áquila, natural do Ponto, que havia pouco tinha vindo da Itália, e Priscila, sua mulher — porque Cláudio tinha ordenado que todos os judeus saíssem de Roma —, foi ter com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, como era do mesmo ofício, ficou com eles, e trabalhava; pois eram, por ofício, fabricantes de tendas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E ele discutia na sinagoga todos os sábados, e persuadia a judeus e gregos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, quando Silas e Timóteo desceram da Macedônia, Paulo foi impelido pelo Espírito, testificando aos judeus que Jesus era o Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas, opondo-se eles e blasfemando, sacudiu as vestes e disse-lhes: <span class="fala-outro">"O vosso sangue seja sobre a vossa cabeça; eu estou limpo; desde agora vou aos gentios."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, saindo dali, entrou na casa de um homem chamado Tício Justo, que servia a Deus, e cuja casa era contígua à sinagoga.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Crispo, principal da sinagoga, creu no Senhor com toda a sua casa; e muitos dos coríntios, ouvindo, criam e eram batizados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E disse o Senhor de noite em visão a Paulo: <span class="fala-jesus">"Não temas, mas fala, e não te cales;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-jesus">porque eu estou contigo, e ninguém se levantará contra ti para te fazer mal; pois tenho muito povo nesta cidade."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E ele ficou ali um ano e seis meses, ensinando entre eles a palavra de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Mas, sendo Gálio procônsul da Acaia, os judeus se levantaram unanimemente contra Paulo, e o levaram ao tribunal,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        dizendo: <span class="fala-outro">"Este persuade os homens a servir a Deus contra a lei."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, quando Paulo ia abrir a boca, Gálio disse aos judeus: <span class="fala-outro">"Se houvesse, ó judeus, algum agravo ou crime grave, com razão eu vos sofreria;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">mas, se a questão é de palavras, e de nomes, e da vossa lei, vede-o vós mesmos; porque eu não quero ser juiz dessas coisas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E os expulsou do tribunal.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Então todos os gregos, agarrando Sóstenes, principal da sinagoga, o feriam diante do tribunal; e Gálio nada se importava com estas coisas.
+    </p>
+
+    <!-- PERÍCOPE 2: O RETORNO DE PAULO (18.18-23) -->
+    <div class="pericope">O Retorno de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E Paulo, tendo permanecido ainda muitos dias, despediu-se dos irmãos e navegou para a Síria, e com ele Priscila e Áquila, tendo rapado a cabeça em Cencreia, porque tinha feito um voto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E chegou a Éfeso, e deixou-os ali; mas ele, entrando na sinagoga, discutia com os judeus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Eles, porém, rogavam-lhe que ficasse mais tempo com eles; mas ele não consentiu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Antes se despediu deles, dizendo: <span class="fala-outro">"É necessário que eu, de todo modo, guarde a festa que vem em Jerusalém; mas outra vez voltarei a vós, se Deus quiser."</span> E partiu de Éfeso.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, desembarcando em Cesareia, subiu para saudar a igreja, e depois desceu a Antioquia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, tendo passado ali algum tempo, partiu, passando sucessivamente pela região da Galácia e da Frígia, confirmando todos os discípulos.
+    </p>
+
+    <!-- PERÍCOPE 3: APOLO EM ÉFESO (18.24-28) -->
+    <div class="pericope">Apolo em Éfeso</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E chegou a Éfeso um certo judeu, chamado Apolo, natural de Alexandria, homem eloquente e poderoso nas Escrituras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Este era instruído no caminho do Senhor; e, fervoroso de espírito, falava e ensinava diligentemente as coisas do Senhor, conhecendo somente o batismo de João.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E ele começou a falar ousadamente na sinagoga. E, quando Priscila e Áquila o ouviram, o tomaram consigo, e lhe expuseram mais precisamente o caminho de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, querendo ele passar à Acaia, os irmãos o animaram, e escreveram aos discípulos que o recebessem. Tendo ele chegado, ajudou muito aos que tinham crido pela graça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Porque com grande veemência convencia publicamente os judeus, mostrando pelas Escrituras que Jesus era o Cristo.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:1 — "Corinto"</span>
+            <div class="greek-text">Κόρινθον</div>
+            <p><strong>Análise:</strong> A cidade para onde Paulo foi.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Corinto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:2 — "Áquila e Priscila"</span>
+            <div class="greek-text">Ἀκύλαν ... Πρίσκιλλαν</div>
+            <p><strong>Análise:</strong> O casal judeu vindo da Itália.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Áquila" e "Priscila".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Atos 18:2 — "Cláudio tinha ordenado"</span>
+            <div class="greek-text">Κλαύδιον</div>
+            <p><strong>Análise:</strong> A expulsão dos judeus de Roma.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:3 — "Fabricantes de tendas"</span>
+            <div class="greek-text">σκηνοποιοί</div>
+            <p><strong>Análise:</strong> Ofício de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fabricantes de tendas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:7 — "Tício Justo"</span>
+            <div class="greek-text">Τιτίου Ἰούστου</div>
+            <p><strong>Análise:</strong> O homem que servia a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Tício Justo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 18:8 — "Crispo, principal da sinagoga"</span>
+            <div class="greek-text">Κρίσπος ... ἀρχισυνάγωγος</div>
+            <p><strong>Análise:</strong> O que creu no Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Crispo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Atos 18:12 — "Gálio, procônsul da Acaia"</span>
+            <div class="greek-text">Γαλλίωνος ... ἀνθυπάτου</div>
+            <p><strong>Análise:</strong> O governador romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Gálio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:12, 16-17 — "Tribunal"</span>
+            <div class="greek-text">βῆμα</div>
+            <p><strong>Análise:</strong> Plataforma ou assento de autoridade onde se realizavam julgamentos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribunal".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:17 — "Sóstenes"</span>
+            <div class="greek-text">Σωσθένης</div>
+            <p><strong>Análise:</strong> O principal da sinagoga.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Sóstenes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:18 — "Cencreia"</span>
+            <div class="greek-text">Κενχρεαῖς</div>
+            <p><strong>Análise:</strong> O porto onde Paulo rapou a cabeça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cencreia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:18 — "Fez um voto"</span>
+            <div class="greek-text">εὐχήν</div>
+            <p><strong>Análise:</strong> "Voto"; o texto não especifica aqui a natureza do voto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fez um voto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:19, 21, 24 — "Éfeso"</span>
+            <div class="greek-text">Ἔφεσον</div>
+            <p><strong>Análise:</strong> A cidade da Ásia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Éfeso".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:24 — "Apolo, natural de Alexandria"</span>
+            <div class="greek-text">Ἀπολλῶς ... Ἀλεξανδρεύς</div>
+            <p><strong>Análise:</strong> O judeu eloquente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Apolo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:26 — "Expuseram mais precisamente"</span>
+            <div class="greek-text">ἀκριβέστερον</div>
+            <p><strong>Análise:</strong> "Mais precisamente", "com maior exatidão".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "expuseram mais precisamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 18:25 — "Conhecendo somente o batismo de João"</span>
+            <div class="greek-text">ἐπιστάμενος μόνον τὸ βάπτισμα Ἰωάννου</div>
+            <p><strong>Análise:</strong> O conhecimento de Apolo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

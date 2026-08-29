@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 28</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 28</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Malta</span>
+                A ilha onde os náufragos chegaram.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nativos</span>
+                Do grego <em>barbaroi</em> (βάρβαροι), habitantes que não falavam grego.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Públio</span>
+                Principal da ilha de Malta, que hospedou Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Castor e Pólux</span>
+                Do grego <em>Dioskouroi</em> (Διόσκουροι), os Dióscuros, na insígnia do navio.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">28</div>
+
+    <!-- PERÍCOPE 1: EM MALTA (28.1-10) -->
+    <div class="pericope">Em Malta</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>, estando já a salvo, souberam então que a ilha se chamava Malta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E os nativos nos trataram com não pouca humanidade; porque, acendendo uma fogueira, nos recolheram a todos, por causa da chuva que caía e do frio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, tendo Paulo ajuntado um feixe de gravetos e pondo-o no fogo, uma víbora, fugindo do calor, agarrou-se à sua mão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, quando os nativos viram o animal pendurado na sua mão, disseram uns aos outros: <span class="fala-outro">"Certamente este homem é homicida, pois, tendo escapado do mar, a justiça não o deixa viver."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas ele, sacudindo o animal no fogo, não sofreu mal algum.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E eles esperavam que ele viesse a inchar ou que caísse morto de repente. Mas, depois de muito esperar, e vendo que nenhum mal lhe acontecia, mudaram de parecer e diziam: <span class="fala-outro">"Ele é um deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E nas proximidades daquele lugar havia propriedades do principal da ilha, chamado Públio, o qual nos recebeu e hospedou por três dias com benevolência.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E aconteceu que o pai de Públio estava de cama, sofrendo de febres e disenteria. Paulo foi até ele, e, orando, impôs-lhe as mãos, e o curou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, feito isto, também os demais que na ilha tinham enfermidades vinham, e eram curados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E eles nos honraram com muitas honras; e, partindo nós, puseram-nos a bordo as coisas necessárias.
+    </p>
+
+    <!-- PERÍCOPE 2: A VIAGEM PARA ROMA (28.11-16) -->
+    <div class="pericope">A Viagem para Roma</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, depois de três meses, partimos num navio de Alexandria, que tinha invernado na ilha, e cuja insígnia era Castor e Pólux.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, chegando a Siracusa, ficamos ali três dias.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        De onde, costeando, fomos a Régio; e, soprando no dia seguinte o vento sul, chegamos em dois dias a Putéolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Onde, achando irmãos, fomos rogados a ficar com eles sete dias; e assim fomos a Roma.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E de lá, ouvindo os irmãos falar de nós, saíram ao nosso encontro até a Praça de Ápio e às Três Vendas. Vendo-os Paulo, deu graças a Deus, e tomou ânimo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, quando chegamos a Roma, o centurião entregou os presos ao comandante da guarda; mas a Paulo foi permitido morar à parte, com o soldado que o guardava.
+    </p>
+
+    <!-- PERÍCOPE 3: PAULO EM ROMA (28.17-31) -->
+    <div class="pericope">Paulo em Roma</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E aconteceu que, três dias depois, Paulo convocou os principais dos judeus; e, reunidos eles, disse-lhes: <span class="fala-outro">"Homens irmãos, não tendo eu feito nada contra o povo, nem contra os costumes dos pais, fui entregue preso desde Jerusalém nas mãos dos romanos;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">os quais, havendo-me interrogado, queriam soltar-me, por não haver em mim crime algum digno de morte.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">Mas, opondo-se os judeus, fui obrigado a apelar para César, não tendo, porém, nada de que acusar a minha nação.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">Por esta causa, pois, vos chamei, para vos ver e falar; porque é pela esperança de Israel que estou preso com esta cadeia."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E eles lhe disseram: <span class="fala-outro">"Nós não recebemos da Judeia cartas a teu respeito, nem nenhum dos irmãos que vieram nos anunciou ou disse algo de mal de ti.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        <span class="fala-outro">Mas desejaríamos ouvir de ti o que pensas; porque, quanto a esta seita, notório nos é que em toda parte se fala contra ela."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, tendo-lhe marcado um dia, muitos foram ter com ele à sua hospedagem. Aos quais, desde a manhã até a tarde, expôs com testemunho o reino de Deus, e procurava persuadi-los acerca de Jesus, tanto pela lei de Moisés como pelos profetas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        E uns criam no que se dizia, mas outros não criam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, estando discordes entre si, retiraram-se, depois de Paulo ter dito esta palavra: <span class="fala-outro">"Bem falou o Espírito Santo pelo profeta Isaías aos nossos pais,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">dizendo: 'Vai a este povo, e dize: Ouvindo, ouvireis, e não entendereis; e, vendo, vereis, e não percebereis.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Porque o coração deste povo está endurecido, e ouviram de mau grado com os ouvidos, e fecharam os olhos; para que não vejam com os olhos, nem ouçam com os ouvidos, nem entendam com o coração, e se convertam, e eu os cure.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">Seja-vos, pois, notório que aos gentios é enviada esta salvação de Deus, e eles a ouvirão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E, tendo ele dito estas coisas, os judeus partiram, tendo entre si grande discussão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E Paulo ficou dois anos inteiros na sua própria habitação alugada, e recebia todos os que vinham a ele,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        pregando o reino de Deus, e ensinando com toda a ousadia as coisas do Senhor Jesus Cristo, sem impedimento algum.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:1 — "Malta"</span>
+            <div class="greek-text">Μελίτη</div>
+            <p><strong>Análise:</strong> A ilha onde chegaram após o naufrágio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Malta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:2, 4 — "Nativos"</span>
+            <div class="greek-text">βάρβαροι</div>
+            <p><strong>Análise:</strong> Termo usado para os habitantes que não falavam grego.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nativos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:3 — "Víbora"</span>
+            <div class="greek-text">ἔχιδνα</div>
+            <p><strong>Análise:</strong> Serpente venenosa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "víbora".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:4 — "A justiça não o deixa viver"</span>
+            <div class="greek-text">ἡ δίκη</div>
+            <p><strong>Análise:</strong> "A justiça"; expressão usada pelos habitantes ao interpretar o ocorrido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a justiça não o deixa viver".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:7 — "Públio"</span>
+            <div class="greek-text">Πόπλιος</div>
+            <p><strong>Análise:</strong> Chamado de "principal da ilha" no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Públio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:8 — "Febres e disenteria"</span>
+            <div class="greek-text">πυρετοῖς καὶ δυσεντερίῳ</div>
+            <p><strong>Análise:</strong> As enfermidades do pai de Públio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "febres e disenteria".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:11 — "Castor e Pólux"</span>
+            <div class="greek-text">Διοσκούροις</div>
+            <p><strong>Análise:</strong> Os Dióscuros, Castor e Pólux, representados na insígnia do navio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Castor e Pólux".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:12-13 — "Siracusa, Régio, Putéolos"</span>
+            <div class="greek-text">Συρακούσας ... Ῥήγιον ... Ποτιόλους</div>
+            <p><strong>Análise:</strong> Cidades pelas quais passaram durante a viagem para Roma.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração dos nomes.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:15 — "Praça de Ápio e Três Vendas"</span>
+            <div class="greek-text">Ἀππίου Φόρον καὶ Τριῶν Ταβερνῶν</div>
+            <p><strong>Análise:</strong> Locais situados na estrada para Roma.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Praça de Ápio e Três Vendas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:16 — "Comandante da guarda"</span>
+            <div class="greek-text">στρατοπεδάρχῃ</div>
+            <p><strong>Análise:</strong> Oficial responsável pelos presos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "comandante da guarda".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 28:20 — "Esperança de Israel"</span>
+            <div class="greek-text">τῆς ἐλπίδος τοῦ Ἰσραήλ</div>
+            <p><strong>Análise:</strong> A esperança relacionada às promessas de Deus a Israel e à ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esperança de Israel".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:22 — "Esta seita"</span>
+            <div class="greek-text">αἵρεσις</div>
+            <p><strong>Análise:</strong> Termo usado para designar um grupo ou corrente religiosa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seita".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 28:28 — "Aos gentios é enviada esta salvação de Deus"</span>
+            <div class="greek-text">τοῖς ἔθνεσιν ἀπεστάλη τοῦτο τὸ σωτήριον τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> Declaração de Paulo sobre a mensagem da salvação sendo enviada aos gentios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:30 — "Dois anos inteiros"</span>
+            <div class="greek-text">διετίαν ὅλην</div>
+            <p><strong>Análise:</strong> O período mencionado durante o qual Paulo permaneceu em sua habitação alugada em Roma.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dois anos inteiros".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 28:31 — "Sem impedimento algum"</span>
+            <div class="greek-text">ἀκωλύτως</div>
+            <p><strong>Análise:</strong> Sem impedimento, sem que fosse impedido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem impedimento algum".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

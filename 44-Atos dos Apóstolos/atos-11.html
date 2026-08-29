@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Circuncisão</span>
+                Referência aos judeus que insistiam na observância da Lei.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Helenistas</span>
+                Do grego <em>Hellēnistai</em> (Ἑλληνισταί), pessoas de cultura ou língua grega.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cristãos</span>
+                Primeira menção do termo em Antioquia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ágabo</span>
+                Profeta que anunciou a fome.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <!-- PERÍCOPE 1: PEDRO DEFENDE SUA AÇÃO (11.1-18) -->
+    <div class="pericope">Pedro Defende Sua Ação</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> os apóstolos e os irmãos que estavam na Judeia ouviram que também os gentios tinham recebido a palavra de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, quando Pedro subiu a Jerusalém, os que eram da circuncisão contendiam com ele,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        dizendo: <span class="fala-outro">"Entraste em casa de homens incircuncisos, e comeste com eles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas Pedro, começando, expôs-lhes tudo em ordem, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">"Eu estava na cidade de Jope orando, e vi em êxtase uma visão: um vaso descendo, como um grande lençol, baixado do céu pelas quatro pontas, e chegou até mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-outro">E, fitando nele os olhos, observei, e vi os animais quadrúpedes da terra, e as feras, e os répteis, e as aves do céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-outro">E ouvi uma voz que me dizia: 'Levanta-te, Pedro; mata e come.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">Mas eu disse: 'De modo nenhum, Senhor, porque nunca entrou na minha boca coisa alguma comum ou imunda.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">Mas a voz respondeu-me segunda vez do céu: 'Não chames tu de comum ao que Deus purificou.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">E isto aconteceu três vezes; e tudo foi outra vez recolhido ao céu.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">E eis que, na mesma hora, três homens chegaram à casa onde eu estava, enviados de Cesareia a mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-outro">E o Espírito me disse que fosse com eles, sem duvidar. E foram comigo também estes seis irmãos; e entramos na casa daquele homem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-outro">E ele nos contou como tinha visto um anjo em sua casa, que se pôs de pé e lhe disse: 'Envia homens a Jope, e manda chamar Simão, que tem por sobrenome Pedro,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">o qual te falará palavras pelas quais serás salvo, tu e toda a tua casa.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">E, quando comecei a falar, o Espírito Santo desceu sobre eles, como também sobre nós no princípio.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">E lembrei-me da palavra do Senhor, como disse: 'João, na verdade, batizou com água, mas vós sereis batizados com o Espírito Santo.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">Portanto, se Deus lhes deu o mesmo dom que também a nós, que cremos no Senhor Jesus Cristo, quem era eu, para que pudesse resistir a Deus?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, ouvindo eles estas coisas, se calaram, e glorificaram a Deus, dizendo: <span class="fala-outro">"Portanto, também aos gentios Deus deu o arrependimento para a vida."</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A IGREJA EM ANTIOQUIA (11.19-30) -->
+    <div class="pericope">A Igreja em Antioquia</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E os que foram dispersos pela perseguição que houve no tempo de Estêvão caminharam até à Fenícia, e Chipre, e Antioquia, não anunciando a palavra a ninguém, senão somente aos judeus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E havia entre eles alguns homens de Chipre e de Cirene, os quais, entrando em Antioquia, falaram aos helenistas, anunciando o Senhor Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E a mão do Senhor era com eles; e grande número, crendo, se converteu ao Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E a notícia destas coisas chegou aos ouvidos da igreja que estava em Jerusalém; e enviaram Barnabé até Antioquia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        O qual, quando chegou e viu a graça de Deus, se alegrou, e exortou a todos a que permanecessem no Senhor com firmeza de coração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Porque era homem bom, e cheio do Espírito Santo e de fé. E muita gente se ajuntou ao Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E Barnabé partiu para Tarso, a buscar Saulo; e, tendo-o achado, o levou para Antioquia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E aconteceu que durante um ano inteiro se reuniram na igreja, e ensinaram muita gente; e em Antioquia os discípulos, pela primeira vez, foram chamados cristãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E naqueles dias desceram profetas de Jerusalém para Antioquia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, levantando-se um deles, chamado Ágabo, deu a entender pelo Espírito que haveria uma grande fome em todo o mundo; e isto aconteceu no tempo de Cláudio César.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E os discípulos, cada um conforme o que tinha, determinaram enviar socorro aos irmãos que habitavam na Judeia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        O que também fizeram, enviando-o aos anciãos por mão de Barnabé e de Saulo.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:1 — "Gentios tinham recebido a palavra"</span>
+            <div class="greek-text">οἱ ἐθνικοὶ ἐδέξαντο τὸν λόγον τοῦ θεοῦ</div>
+            <p><strong>Análise:</strong> A notícia que chegou à Judeia sobre a conversão dos gentios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:2 — "Os que eram da circuncisão"</span>
+            <div class="greek-text">οἱ ἐκ περιτομῆς</div>
+            <p><strong>Análise:</strong> Os judeus que insistiam na observância da circuncisão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os que eram da circuncisão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:3 — "Incircuncisos"</span>
+            <div class="greek-text">ἀκροβυστίαν</div>
+            <p><strong>Análise:</strong> Referindo-se aos que não eram circuncidados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "incircuncisos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:4 — "Em ordem"</span>
+            <div class="greek-text">καθεξῆς</div>
+            <p><strong>Análise:</strong> "Em sequência", "ordenadamente".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em ordem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:8 — "Comum ou imunda"</span>
+            <div class="greek-text">κοινὸν ἢ ἀκάθαρτον</div>
+            <p><strong>Análise:</strong> Alimento impuro segundo a Lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "comum ou imunda".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:12 — "Seis irmãos"</span>
+            <div class="greek-text">ἕξ ἀδελφοί</div>
+            <p><strong>Análise:</strong> Os companheiros de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seis irmãos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 11:14 — "Palavras pelas quais serás salvo"</span>
+            <div class="greek-text">ῥήματα ... ἐν οἷς σωθήσῃ</div>
+            <p><strong>Análise:</strong> A mensagem do anjo a Cornélio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 11:17 — "O mesmo dom"</span>
+            <div class="greek-text">τὴν ἴσην δωρεάν</div>
+            <p><strong>Análise:</strong> O dom do Espírito Santo dado também aos gentios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o mesmo dom".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 11:17 — "Quem era eu, para que pudesse resistir a Deus?"</span>
+            <div class="greek-text">τίς ἤμην ἐγὼ ὁ δυνατὸς κωλῦσαι τὸν θεόν</div>
+            <p><strong>Análise:</strong> A pergunta de Pedro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:19 — "Fenícia, Chipre e Antioquia"</span>
+            <div class="greek-text">Φοινίκην καὶ Κύπρον καὶ Ἀντιόχειαν</div>
+            <p><strong>Análise:</strong> As regiões mencionadas para onde os dispersos foram.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Fenícia", "Chipre" e "Antioquia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:20 — "Helenistas"</span>
+            <div class="greek-text">Ἑλληνιστάς</div>
+            <p><strong>Análise:</strong> Termo usado para pessoas de cultura ou língua grega.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "helenistas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:26 — "Chamados cristãos"</span>
+            <div class="greek-text">χρηματίσαι ... Χριστιανούς</div>
+            <p><strong>Análise:</strong> A primeira menção do termo em Antioquia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chamados cristãos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 11:28 — "Grande fome em todo o mundo"</span>
+            <div class="greek-text">οἰκουμένην</div>
+            <p><strong>Análise:</strong> "Mundo habitado", referindo-se ao Império Romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em todo o mundo".</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:28 — "Cláudio César"</span>
+            <div class="greek-text">Κλαύδιον Καίσαρα</div>
+            <p><strong>Análise:</strong> O imperador romano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Cláudio César".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 11:30 — "Anciãos"</span>
+            <div class="greek-text">πρεσβυτέρους</div>
+            <p><strong>Análise:</strong> Líderes da igreja em Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "anciãos".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

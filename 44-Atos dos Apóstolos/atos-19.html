@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 19</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 19</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Exorcistas</span>
+                Do grego <em>exorkistai</em> (ἐξορκισταί), aqueles que invocavam espíritos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nichos de prata de Diana</span>
+                Do grego <em>naous argyrous Artemidos</em>, santuários de prata da deusa Ártemis.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Diana</span>
+                Do latim, equivalente grego Ártemis, deusa cultuada em Éfeso.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Escrivão da cidade</span>
+                Do grego <em>grammateus</em> (γραμματεύς), funcionário público.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">19</div>
+
+    <!-- PERÍCOPE 1: PAULO EM ÉFESO (19.1-22) -->
+    <div class="pericope">Paulo em Éfeso</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> aconteceu que, enquanto Apolo estava em Corinto, Paulo, tendo passado por todas as regiões superiores, chegou a Éfeso; e, achando ali alguns discípulos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        disse-lhes: <span class="fala-outro">"Recebestes vós já o Espírito Santo quando crestes?"</span> E eles disseram-lhe: <span class="fala-outro">"Nós nem sequer ouvimos que haja Espírito Santo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E ele lhes disse: <span class="fala-outro">"Em que sois batizados, então?"</span> E eles disseram: <span class="fala-outro">"No batismo de João."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Então Paulo disse: <span class="fala-outro">"João, na verdade, batizou com o batismo de arrependimento, dizendo ao povo que cresse naquele que após ele havia de vir, isto é, em Jesus Cristo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, ouvindo eles isto, foram batizados em nome do Senhor Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, impondo-lhes Paulo as mãos, veio sobre eles o Espírito Santo; e falavam línguas, e profetizavam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E eram, ao todo, uns doze homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, entrando na sinagoga, falou ousadamente por três meses, discutindo e persuadindo acerca do reino de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Mas, como alguns se endurecessem e não obedecessem, falando mal do Caminho diante da multidão, ele se apartou deles, e separou os discípulos, discutindo todos os dias na escola de um certo Tirano.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E isto continuou por dois anos, de modo que todos os que habitavam na Ásia ouviram a palavra do Senhor Jesus, tanto judeus como gregos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E Deus fazia milagres extraordinários pelas mãos de Paulo,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        de tal maneira que até sobre os enfermos se levavam de seu corpo lenços e aventais, e as doenças os deixavam, e os espíritos malignos saíam deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E alguns dos judeus exorcistas ambulantes tentaram invocar o nome do Senhor Jesus sobre os que tinham espíritos malignos, dizendo: <span class="fala-outro">"Nós vos esconjuramos por Jesus, a quem Paulo prega."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E os que faziam isto eram sete filhos de Ceva, judeu, principal dos sacerdotes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas o espírito maligno, respondendo, disse: <span class="fala-demoniaca">"Jesus eu conheço, e sei quem é Paulo; mas vós, quem sois?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E o homem em quem estava o espírito maligno saltou sobre eles, e, prevalecendo contra eles, pôde mais que eles, de modo que fugiram daquela casa nus e feridos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E isto foi conhecido de todos os que habitavam em Éfeso, tanto judeus como gregos; e caiu temor sobre todos eles, e o nome do Senhor Jesus era engrandecido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E muitos dos que tinham crido vinham, confessando e declarando as suas obras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Também muitos dos que seguiam artes mágicas trouxeram os seus livros, e os queimaram diante de todos; e, calculando o seu valor, acharam que montava a cinquenta mil peças de prata.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Assim a palavra do Senhor crescia poderosamente e prevalecia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E, cumpridas estas coisas, Paulo propôs em seu espírito ir a Jerusalém, passando pela Macedônia e pela Acaia, dizendo: <span class="fala-outro">"Depois que eu estiver ali, é necessário que eu veja também Roma."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E, enviando à Macedônia dois dos que o serviam, Timóteo e Erasto, ele mesmo ficou por algum tempo na Ásia.
+    </p>
+
+    <!-- PERÍCOPE 2: O ALVOROÇO EM ÉFESO (19.23-41) -->
+    <div class="pericope">O Alvoroço em Éfeso</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E naquele mesmo tempo houve um não pequeno alvoroço acerca do Caminho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Porque um certo ourives, chamado Demétrio, que fazia nichos de prata de Diana, dava não pouco lucro aos artífices.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, reunindo-os com os oficiais de ofícios semelhantes, disse: <span class="fala-outro">"Homens, vós sabeis que deste ofício temos a nossa prosperidade.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">E vedes e ouvis que não só em Éfeso, mas quase em toda a Ásia, este Paulo tem persuadido e desviado muita gente, dizendo que não são deuses os que são feitos por mãos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">E não somente há perigo de que esta nossa profissão caia em descrédito, mas também de que o templo da grande deusa Diana seja estimado em nada, e venha a ser destruída a majestade daquela que toda a Ásia e o mundo adoram."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, ouvindo eles isto, encheram-se de ira, e clamavam, dizendo: <span class="fala-outro">"Grande é a Diana dos efésios!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E a cidade se encheu de confusão, e todos, à uma, correram ao teatro, arrebatando consigo Gaio e Aristarco, macedônios, companheiros de Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, querendo Paulo apresentar-se ao povo, os discípulos não o permitiram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E também alguns dos principais da Ásia, que eram seus amigos, enviaram-lhe, rogando que não se apresentasse no teatro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Uns, pois, clamavam de um modo, outros de outro; porque a assembleia estava confusa, e a maior parte não sabia por que causa se tinham reunido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E tiraram da multidão Alexandre, que os judeus empurravam para diante. E Alexandre, acenando com a mão, queria dar explicação ao povo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Mas, quando souberam que ele era judeu, todos a uma voz clamaram por quase duas horas: <span class="fala-outro">"Grande é a Diana dos efésios!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Então o escrivão da cidade, tendo apaziguado a multidão, disse: <span class="fala-outro">"Homens efésios, qual é o homem que não sabe que a cidade dos efésios é guardiã do templo da grande deusa Diana, e da imagem que caiu de Júpiter?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        <span class="fala-outro">Visto que estas coisas são inegáveis, convém que vos aquieteis, e nada façais precipitadamente.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        <span class="fala-outro">Porque trouxestes estes homens, que não são sacrílegos, nem blasfemadores da vossa deusa.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        <span class="fala-outro">E, se Demétrio e os artífices que estão com ele têm alguma queixa contra alguém, há tribunais e procônsules; que se acusem uns aos outros.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        <span class="fala-outro">E, se alguma outra coisa pretendeis, será decidido em assembleia legítima.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        <span class="fala-outro">Porque também corremos perigo de sermos acusados de sedição por causa do que hoje aconteceu, não havendo causa alguma pela qual possamos justificar este ajuntamento."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E, tendo dito isto, despediu a assembleia.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:2 — "Nós nem sequer ouvimos que haja Espírito Santo"</span>
+            <div class="greek-text">οὐδὲ εἰ πνεῦμα ἅγιόν ἐστιν ἠκούσαμεν</div>
+            <p><strong>Análise:</strong> A resposta dos discípulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Nós nem sequer ouvimos que haja Espírito Santo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 19:3-4 — "Batismo de João"</span>
+            <div class="greek-text">τὸ βάπτισμα Ἰωάννου</div>
+            <p><strong>Análise:</strong> A referência ao batismo de João.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batismo de João".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:9 — "Escola de um certo Tirano"</span>
+            <div class="greek-text">σχολῇ Τυράννου</div>
+            <p><strong>Análise:</strong> Local onde Paulo ensinou.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escola de um certo Tirano".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:12 — "Lenços e aventais"</span>
+            <div class="greek-text">σουδάρια ἢ σιμικίνθια</div>
+            <p><strong>Análise:</strong> Panos usados por Paulo que operavam curas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lenços e aventais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:13 — "Exorcistas ambulantes"</span>
+            <div class="greek-text">ἐξορκιστῶν</div>
+            <p><strong>Análise:</strong> Judeus que praticavam exorcismo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "exorcistas ambulantes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:14 — "Sete filhos de Ceva"</span>
+            <div class="greek-text">Σκευᾶ</div>
+            <p><strong>Análise:</strong> Os exorcistas judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ceva".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:19 — "Artes mágicas"</span>
+            <div class="greek-text">τὰ περίεργα</div>
+            <p><strong>Análise:</strong> Práticas mágicas, artes ocultas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "artes mágicas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:19 — "Cinquenta mil peças de prata"</span>
+            <div class="greek-text">ἀργυρίου μυριάδας πέντε</div>
+            <p><strong>Análise:</strong> Valor dos livros queimados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cinquenta mil peças de prata".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:24 — "Demétrio"</span>
+            <div class="greek-text">Δημήτριος</div>
+            <p><strong>Análise:</strong> O ourives de Éfeso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Demétrio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:24 — "Nichos de prata de Diana"</span>
+            <div class="greek-text">ναοὺς ἀργυροῦς Ἀρτέμιδος</div>
+            <p><strong>Análise:</strong> "Santuários/nichos de prata de Ártemis".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nichos de prata de Diana".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:25 — "Oficiais de ofícios semelhantes"</span>
+            <div class="greek-text">ἐργάτας</div>
+            <p><strong>Análise:</strong> Trabalhadores do mesmo ofício.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "oficiais de ofícios semelhantes".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 19:28, 34 — "Grande é a Diana dos efésios!"</span>
+            <div class="greek-text">μεγάλη ἡ Ἄρτεμις Ἐφεσίων</div>
+            <p><strong>Análise:</strong> O clamor da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:35 — "Escrivão da cidade"</span>
+            <div class="greek-text">γραμματεύς</div>
+            <p><strong>Análise:</strong> Funcionário público.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escrivão da cidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 19:35 — "Imagem que caiu de Júpiter"</span>
+            <div class="greek-text">διοπετοῦς</div>
+            <p><strong>Análise:</strong> Termo relacionado a uma imagem considerada caída do céu e associada a Zeus (Júpiter).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "imagem que caiu de Júpiter".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

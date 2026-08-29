@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 15</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 15</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Jugo</span>
+                Do grego <em>zygon</em> (ζυγόν), símbolo de opressão e escravidão.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tabernáculo de Davi</span>
+                Símbolo da restauração do reino davídico.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Silas</span>
+                Companheiro de Paulo em sua segunda viagem missionária.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Desavença</span>
+                Do grego <em>paroxysmos</em> (παροξυσμός), conflito entre Paulo e Barnabé.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">15</div>
+
+    <!-- PERÍCOPE 1: O CONCÍLIO DE JERUSALÉM (15.1-35) -->
+    <div class="pericope">O Concílio de Jerusalém</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>ntão alguns que tinham descido da Judeia ensinavam os irmãos, dizendo: <span class="fala-outro">"Se não vos circuncidardes, conforme o costume de Moisés, não podeis ser salvos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, havendo Paulo e Barnabé tido grande discussão e contenda com eles, os irmãos determinaram que Paulo, Barnabé e alguns outros dentre eles subissem a Jerusalém, aos apóstolos e aos anciãos, por causa desta questão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E eles, sendo acompanhados pela igreja, passaram pela Fenícia e por Samaria, contando a conversão dos gentios; e davam grande alegria a todos os irmãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, quando chegaram a Jerusalém, foram recebidos pela igreja, e pelos apóstolos, e pelos anciãos, e contaram quão grandes coisas Deus tinha feito por eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas alguns da seita dos fariseus, que tinham crido, se levantaram, dizendo: <span class="fala-outro">"É necessário circuncidá-los, e mandar-lhes que guardem a lei de Moisés."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E os apóstolos e os anciãos se reuniram para considerar este assunto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, havendo grande discussão, levantou-se Pedro e disse-lhes: <span class="fala-outro">"Homens irmãos, vós sabeis que já há muito tempo Deus me elegeu dentre vós, para que os gentios ouvissem da minha boca a palavra do evangelho, e cressem.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">E Deus, que conhece os corações, lhes deu testemunho, dando-lhes o Espírito Santo, assim como também a nós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">E não fez diferença alguma entre nós e eles, purificando os seus corações pela fé.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">Agora, pois, por que tentais a Deus, pondo sobre a cerviz dos discípulos um jugo que nem nossos pais nem nós pudemos suportar?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">Mas cremos que seremos salvos pela graça do Senhor Jesus Cristo, do mesmo modo que eles."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Então toda a multidão se calou, e ouviam Barnabé e Paulo, que contavam quão grandes sinais e prodígios Deus tinha feito por meio deles entre os gentios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, depois que se calaram, respondeu Tiago, dizendo: <span class="fala-outro">"Homens irmãos, ouvi-me.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">Simão contou como primeiramente Deus visitou os gentios, para tomar deles um povo para o seu nome.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">E com isto concordam as palavras dos profetas, como está escrito:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">'Depois disto voltarei, e reedificarei o tabernáculo de Davi, que está caído; e reedificarei as suas ruínas, e o levantarei.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">Para que o restante dos homens busque o Senhor, e todos os gentios sobre os quais o meu nome é invocado, diz o Senhor, que faz todas estas coisas.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">São conhecidas de Deus desde a eternidade todas as suas obras."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">"Por isso eu julgo que não se deve perturbar aqueles que dentre os gentios se convertem a Deus,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">mas escrever-lhes que se abstenham das contaminações dos ídolos, e da fornicação, e do que é sufocado, e do sangue.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">Porque Moisés, desde os tempos antigos, tem em cada cidade quem o pregue, e é lido todos os sábados nas sinagogas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Então pareceu bem aos apóstolos e aos anciãos, com toda a igreja, eleger alguns homens dentre eles, e enviá-los com Paulo e Barnabé a Antioquia: a Judas, chamado Barsabás, e a Silas, homens principais entre os irmãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E escreveram por mão deles o seguinte: <span class="fala-outro">"Os apóstolos, e os anciãos, e os irmãos, aos irmãos dentre os gentios que estão em Antioquia, e Síria, e Cilícia, saudações.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        <span class="fala-outro">Visto que ouvimos que alguns que saíram dentre nós vos perturbaram com palavras, transtornando as vossas almas, dizendo que deveis circuncidar-vos e guardar a lei — aos quais nada mandamos —,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        <span class="fala-outro">pareceu-nos bem, reunidos unanimemente, eleger alguns homens e enviá-los a vós, com os nossos amados Barnabé e Paulo,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">homens que já expuseram as suas vidas pelo nome de nosso Senhor Jesus Cristo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">Enviamos, pois, Judas e Silas, os quais também por palavra vos anunciarão as mesmas coisas.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">Porque pareceu bem ao Espírito Santo e a nós não vos impor mais encargo algum, senão estas coisas necessárias:</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        <span class="fala-outro">que vos abstenhais do que se sacrifica aos ídolos, e do sangue, e do que é sufocado, e da fornicação. Destas coisas fareis bem de vos guardar. Passai bem."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, tendo-se despedido, desceram a Antioquia; e, reunindo a multidão, entregaram a carta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        E, quando a leram, alegraram-se pela consolação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E Judas e Silas, que também eram profetas, exortaram e confirmaram os irmãos com muitas palavras.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E, tendo permanecido ali por algum tempo, foram despedidos em paz pelos irmãos, para os apóstolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Mas pareceu bem a Silas ficar ali.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E Paulo e Barnabé ficaram em Antioquia, ensinando e anunciando, com muitos outros, a palavra do Senhor.
+    </p>
+
+    <!-- PERÍCOPE 2: A SEPARAÇÃO DE PAULO E BARNABÉ (15.36-41) -->
+    <div class="pericope">A Separação de Paulo e Barnabé</div>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        E, depois de alguns dias, Paulo disse a Barnabé: <span class="fala-outro">"Voltemos agora e visitemos os nossos irmãos por todas as cidades em que anunciamos a palavra do Senhor, para ver como estão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E Barnabé queria que levassem consigo João, chamado Marcos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Mas Paulo achava que não deviam levar consigo aquele que se tinha apartado deles desde a Panfília, e não tinha ido com eles à obra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        E houve tal desavença entre eles, que se separaram um do outro. E Barnabé, levando consigo Marcos, navegou para Chipre.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E Paulo, tendo escolhido Silas, partiu, sendo recomendado pelos irmãos à graça de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        E passou pela Síria e Cilícia, confirmando as igrejas.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:1 — "Se não vos circuncidardes"</span>
+            <div class="greek-text">ἐὰν μὴ περιτμηθῆτε</div>
+            <p><strong>Análise:</strong> A exigência dos que desceram da Judeia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:1 — "Costume de Moisés"</span>
+            <div class="greek-text">τῷ ἔθει τῷ Μωσέως</div>
+            <p><strong>Análise:</strong> A tradição mosaica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "costume de Moisés".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:5 — "Seita dos fariseus"</span>
+            <div class="greek-text">τῆς αἱρέσεως τῶν Φαρισαίων</div>
+            <p><strong>Análise:</strong> Como em Atos 5:17.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seita dos fariseus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:10 — "Jugo"</span>
+            <div class="greek-text">ζυγόν</div>
+            <p><strong>Análise:</strong> Símbolo de opressão e escravidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "jugo".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 15:11 — "Somos salvos pela graça"</span>
+            <div class="greek-text">χάριτι ... σωθῆναι</div>
+            <p><strong>Análise:</strong> A declaração de Pedro sobre a salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 15:16 — "Tabernáculo de Davi"</span>
+            <div class="greek-text">σκηνὴν Δαυὶδ</div>
+            <p><strong>Análise:</strong> Citação de Amós 9:11-12.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:20 — "Contaminações dos ídolos"</span>
+            <div class="greek-text">ἀλισγημάτων τῶν εἰδώλων</div>
+            <p><strong>Análise:</strong> Coisas contaminadas pelos ídolos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "contaminações dos ídolos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:20, 29 — "Fornicação"</span>
+            <div class="greek-text">πορνείας</div>
+            <p><strong>Análise:</strong> Termo amplo para imoralidade sexual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fornicação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:20, 29 — "Sufocado"</span>
+            <div class="greek-text">πνικτοῦ</div>
+            <p><strong>Análise:</strong> Carne de animal não sangrado adequadamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sufocado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:22, 27, 32, 34, 40 — "Silas"</span>
+            <div class="greek-text">Σιλᾶς</div>
+            <p><strong>Análise:</strong> O companheiro de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Silas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:39 — "Desavença"</span>
+            <div class="greek-text">παροξυσμός</div>
+            <p><strong>Análise:</strong> "Provocação", "desavença".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desavença".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:29 — "Passai bem"</span>
+            <div class="greek-text">ἔρρωσθε</div>
+            <p><strong>Análise:</strong> Despedida comum em cartas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Passai bem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:40 — "Recomendado pelos irmãos"</span>
+            <div class="greek-text">παραδοθείς</div>
+            <p><strong>Análise:</strong> Confiado, entregue.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "recomendado pelos irmãos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 15:41 — "Confirmando as igrejas"</span>
+            <div class="greek-text">ἐπιστηρίζων</div>
+            <p><strong>Análise:</strong> Fortalecendo, confirmando.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "confirmando as igrejas".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

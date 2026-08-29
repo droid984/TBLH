@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Atos 22</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ATOS DOS APÓSTOLOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 22</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Gamaliel</span>
+                Fariseu, doutor da lei, mestre de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Caminho</span>
+                Designação do movimento cristão primitivo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">O Justo</span>
+                Do grego <em>ho Dikaios</em> (ὁ Δίκαιος), título de Jesus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Estêvão</span>
+                O primeiro mártir cristão.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">22</div>
+
+    <!-- PERÍCOPE 1: O DISCURSO DE PAULO (22.1-21) -->
+    <div class="pericope">O Discurso de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">H</span>omens irmãos e pais, ouvi agora a minha defesa perante vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, quando ouviram que lhes falava em língua hebraica, guardaram ainda mais silêncio. E ele disse:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-outro">"Eu sou um homem judeu, nascido em Tarso da Cilícia, mas criado nesta cidade, instruído aos pés de Gamaliel, conforme o rigor da lei dos pais, sendo zeloso para com Deus, assim como todos vós sois hoje.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        <span class="fala-outro">E persegui este Caminho até a morte, prendendo e entregando às prisões tanto homens como mulheres;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        <span class="fala-outro">como também o sumo sacerdote me é testemunha, e todo o conselho dos anciãos. E, recebendo destes cartas para os irmãos, fui a Damasco, para trazer presos para Jerusalém os que ali estivessem, a fim de que fossem castigados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        <span class="fala-outro">"Mas aconteceu que, indo eu no caminho e chegando perto de Damasco, quase ao meio-dia, de repente uma grande luz do céu brilhou ao redor de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        <span class="fala-outro">E caí por terra, e ouvi uma voz que me dizia: 'Saulo, Saulo, por que me persegues?'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        <span class="fala-outro">E eu respondi: 'Quem és, Senhor?' E ele me disse: 'Eu sou Jesus Nazareno, a quem tu persegues.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        <span class="fala-outro">E os que estavam comigo viram, na verdade, a luz, e ficaram atemorizados; mas não ouviram a voz daquele que falava comigo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">Então eu disse: 'Senhor, que farei?' E o Senhor me disse: 'Levanta-te, e vai a Damasco, e ali te será dito tudo o que te está designado fazer.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        <span class="fala-outro">E, como eu não via, por causa do esplendor daquela luz, fui guiado pela mão dos que estavam comigo, e cheguei a Damasco."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        <span class="fala-outro">"E um certo Ananias, homem piedoso conforme a lei, que tinha bom testemunho de todos os judeus que ali habitavam,</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        <span class="fala-outro">vindo a mim e pondo-se diante de mim, disse-me: 'Irmão Saulo, recupera a vista.' E naquela mesma hora eu o vi.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        <span class="fala-outro">E ele disse: 'O Deus de nossos pais te designou para conheceres a sua vontade, e veres o Justo, e ouvires a voz da sua boca.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        <span class="fala-outro">Porque serás testemunha dele diante de todos os homens, do que tens visto e ouvido.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        <span class="fala-outro">E agora, por que te demoras? Levanta-te, e batiza-te, e lava os teus pecados, invocando o nome do Senhor.'"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        <span class="fala-outro">"E aconteceu que, voltando eu a Jerusalém, enquanto orava no templo, fui arrebatado em êxtase.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">E vi aquele que me dizia: 'Apressa-te, e sai depressa de Jerusalém, porque não receberão o teu testemunho acerca de mim.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        <span class="fala-outro">E eu disse: 'Senhor, eles bem sabem que eu encarcerava e açoitava nas sinagogas os que criam em ti.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        <span class="fala-outro">E, quando o sangue de Estêvão, tua testemunha, se derramava, também eu estava presente, e consentia na sua morte, e guardava as vestes dos que o matavam.'</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        <span class="fala-outro">E ele me disse: 'Vai, porque eu te enviarei para longe, aos gentios.'"</span>
+    </p>
+
+    <!-- PERÍCOPE 2: A REAÇÃO DA MULTIDÃO (22.22-30) -->
+    <div class="pericope">A Reação da Multidão</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E ouviram-no até esta palavra; então levantaram a voz, dizendo: <span class="fala-outro">"Tira da terra tal homem, porque não convém que ele viva."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E, clamando eles, e arrojando de si as vestes, e lançando poeira para o ar,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        o tribuno mandou que o levassem para a fortaleza, ordenando que fosse interrogado com açoites, para saber por que causa assim clamavam contra ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E, quando o estavam amarrando com correias, Paulo disse ao centurião que ali estava: <span class="fala-outro">"É-vos lícito açoitar um homem romano, sem ser condenado?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E, ouvindo isso, o centurião foi e anunciou ao tribuno, dizendo: <span class="fala-outro">"Vê o que vais fazer, porque este homem é romano."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, vindo o tribuno, disse-lhe: <span class="fala-outro">"Dize-me: és tu romano?"</span> E ele disse: <span class="fala-outro">"Sim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E respondeu o tribuno: <span class="fala-outro">"Eu com grande quantia alcancei esta cidadania."</span> E Paulo disse: <span class="fala-outro">"Mas eu sou romano de nascimento."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E logo se apartaram dele os que o haviam de interrogar. E também o tribuno temeu, quando soube que era romano, porque o tinha amarrado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E no dia seguinte, querendo saber ao certo por que causa era acusado pelos judeus, soltou-o das cadeias, e mandou vir os principais dos sacerdotes e todo o conselho deles; e, trazendo Paulo, apresentou-o diante deles.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:2 — "Língua hebraica"</span>
+            <div class="greek-text">Ἑβραΐδι διαλέκτῳ</div>
+            <p><strong>Análise:</strong> Como em Atos 21:40.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "língua hebraica".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:3 — "Tarso da Cilícia"</span>
+            <div class="greek-text">Ταρσὸς τῆς Κιλικίας</div>
+            <p><strong>Análise:</strong> A cidade de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Tarso da Cilícia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:3 — "Instruído aos pés de Gamaliel"</span>
+            <div class="greek-text">παιδευθεὶς ... παρὰ τοὺς πόδας Γαμαλιήλ</div>
+            <p><strong>Análise:</strong> A formação de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:3 — "Rigor da lei dos pais"</span>
+            <div class="greek-text">ἀκρίβειαν τοῦ πατρῴου νόμου</div>
+            <p><strong>Análise:</strong> Indicando exatidão, rigor ou precisão na observância da lei ancestral.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "rigor da lei dos pais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:4 — "Este Caminho"</span>
+            <div class="greek-text">τὴν ὁδόν</div>
+            <p><strong>Análise:</strong> Como em Atos 9:2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "este Caminho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:5 — "Conselho dos anciãos"</span>
+            <div class="greek-text">πρεσβυτέριον</div>
+            <p><strong>Análise:</strong> O conselho dos anciãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "conselho dos anciãos".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 22:8 — "Jesus Nazareno"</span>
+            <div class="greek-text">Ἰησοῦς ὁ Ναζωραῖος</div>
+            <p><strong>Análise:</strong> A identificação do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Jesus Nazareno".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:12 — "Ananias, homem piedoso"</span>
+            <div class="greek-text">Ἀνανίας ... εὐλαβὴς</div>
+            <p><strong>Análise:</strong> A descrição de Ananias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ananias".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 22:14 — "O Justo"</span>
+            <div class="greek-text">τὸν Δίκαιον</div>
+            <p><strong>Análise:</strong> Literalmente "o Justo", designação aplicada a Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o Justo".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:17 — "Arrebatado em êxtase"</span>
+            <div class="greek-text">γενέσθαι με ἐν ἐκστάσει</div>
+            <p><strong>Análise:</strong> Estado de visão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "arrebatado em êxtase".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Atos 22:20 — "Estêvão, tua testemunha"</span>
+            <div class="greek-text">Στεφάνου τοῦ μάρτυρός σου</div>
+            <p><strong>Análise:</strong> "Estêvão, tua testemunha".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Estêvão, tua testemunha".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:23 — "Lançando poeira para o ar"</span>
+            <div class="greek-text">βαλλόντων κονιορτὸν εἰς τὸν ἀέρα</div>
+            <p><strong>Análise:</strong> A reação da multidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:24 — "Interrogado com açoites"</span>
+            <div class="greek-text">μάστιξιν</div>
+            <p><strong>Análise:</strong> Castigo com açoites.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "interrogado com açoites".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:25 — "Correias"</span>
+            <div class="greek-text">ἱμᾶσιν</div>
+            <p><strong>Análise:</strong> "Correias" ou "tiras", usadas para prender alguém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "correias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Atos 22:28 — "Grande quantia"</span>
+            <div class="greek-text">πολλοῦ κεφαλαίου</div>
+            <p><strong>Análise:</strong> Referindo-se a uma grande quantia de dinheiro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grande quantia".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
