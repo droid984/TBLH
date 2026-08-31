@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 16</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 16</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Serva</span>
+                Do grego *diakonon* (διάκονον). Termo relacionado a serviço/ministério, usado para descrever Febe.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cencreia</span>
+                Porto de Corinto, onde Febe servia à igreja.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Primícias da Acaia</span>
+                Epêneto, o primeiro convertido na província da Acaia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ilustres entre os apóstolos</span>
+                Do grego *episēmoi en tois apostolois* (ἐπίσημοι ἐν τοῖς ἀποστόλοις). Andrônico e Júnias, notáveis entre os apóstolos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Beijo santo</span>
+                Do grego *philēmati hagiō* (φιλήματι ἁγίῳ). Cumprimento afetuoso entre os irmãos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Promovem divisões e escândalos</span>
+                Aqueles que causam divisões e escândalos contra a doutrina.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tércio</span>
+                O escriba que redigiu a carta de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Erasto, tesoureiro da cidade</span>
+                Do grego *Erastos ho oikonomos tēs poleōs* (Ἔραστος ὁ οἰκονόμος τῆς πόλεως). Erasto como administrador financeiro da cidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mistério guardado em silêncio</span>
+                O evangelho que foi oculto por eras, mas agora revelado.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">16</div>
+
+    <div class="pericope">Recomendações e Saudações</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">R</span>ecomendo-vos, pois, a Febe, nossa irmã, que é serva da igreja que está em Cencreia,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        para que a recebais no Senhor, como convém aos santos, e a ajudeis em qualquer coisa em que de vós necessitar; porque também ela tem sido protetora de muitos, e de mim mesmo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Saudai a Priscila e a Áquila, meus cooperadores em Cristo Jesus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        os quais pela minha vida expuseram as suas próprias cabeças; aos quais não só eu dou graças, mas também todas as igrejas dos gentios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Saudai também a igreja que está em sua casa. Saudai a Epêneto, meu amado, que é as primícias da Acaia em Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Saudai a Maria, que muito trabalhou por nós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Saudai a Andrônico e a Júnias, meus parentes e meus companheiros de prisão, os quais são ilustres entre os apóstolos, e que estiveram antes de mim em Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Saudai a Amplias, meu amado no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Saudai a Urbano, nosso cooperador em Cristo, e a Estáquis, meu amado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Saudai a Apeles, aprovado em Cristo. Saudai aos da casa de Aristóbulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Saudai a Herodião, meu parente. Saudai aos da casa de Narciso, que estão no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Saudai a Trifena e a Trifosa, que trabalham no Senhor. Saudai a Pérside, amada, que muito trabalhou no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Saudai a Rufo, escolhido no Senhor, e a sua mãe e minha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Saudai a Asíncrito, a Flegonte, a Hermas, a Pátrobas, a Hermes, e aos irmãos que estão com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Saudai a Filólogo e a Júlia, a Nereu e a sua irmã, e a Olimpas, e a todos os santos que estão com eles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Saudai-vos uns aos outros com beijo santo. As igrejas de Cristo vos saúdam.
+    </p>
+
+    <div class="pericope">Advertências e Saudações Finais</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E rogo-vos, irmãos, que noteis os que promovem divisões e escândalos contra a doutrina que aprendestes; afastai-vos deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque os tais não servem a nosso Senhor Jesus Cristo, mas ao seu próprio ventre; e, com suaves palavras e lisonjas, enganam os corações dos simples.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Pois a vossa obediência é conhecida de todos; portanto, alegro-me por vós; e quero que sejais sábios no bem, mas simples no mal.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E o Deus de paz esmagará em breve Satanás debaixo dos vossos pés. A graça de nosso Senhor Jesus Cristo seja convosco. Amém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Saúdam-vos Timóteo, meu cooperador, e Lúcio, e Jasom, e Sosípatro, meus parentes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Eu, Tércio, que escrevi esta epístola, vos saúdo no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Saúda-vos Gaio, meu hospedeiro, e de toda a igreja; saúda-vos Erasto, tesoureiro da cidade, e o irmão Quarto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        A graça de nosso Senhor Jesus Cristo seja com todos vós. Amém.
+    </p>
+
+    <div class="pericope">Doxologia Final</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Ora, àquele que é poderoso para vos confirmar segundo o meu evangelho, e a pregação de Jesus Cristo, conforme a revelação do mistério que foi guardado em silêncio desde os tempos eternos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        mas agora foi manifestado, e pelas Escrituras dos profetas, segundo o mandamento do Deus eterno, foi dado a conhecer a todas as nações para obediência da fé;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        ao único Deus sábio, seja dada glória por Jesus Cristo para sempre. Amém.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:1 — "Serva"</span>
+            <div class="greek-text">διάκονον</div>
+            <p><strong>Análise:</strong> O termo <em>diakonon</em> é o acusativo de <em>diakonos</em>, relacionado a serviço/ministério. A palavra é usada para descrever Febe em relação à igreja de Cencreia.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "serva".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:1 — "Febe"</span>
+            <div class="greek-text">Φοίβην</div>
+            <p><strong>Análise:</strong> A irmã recomendada por Paulo, provavelmente a portadora da carta aos Romanos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Febe".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:1 — "Cencreia"</span>
+            <div class="greek-text">Κεγχρεαῖς</div>
+            <p><strong>Análise:</strong> O porto de Corinto, localizado a leste da cidade, onde Febe servia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Cencreia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:3 — "Priscila e Áquila"</span>
+            <div class="greek-text">Πρίσκαν καὶ Ἀκύλαν</div>
+            <p><strong>Análise:</strong> O casal cooperador de Paulo, mencionado em Atos 18 e em outras cartas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Priscila e Áquila".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:5 — "Epêneto"</span>
+            <div class="greek-text">Ἐπαίνετον</div>
+            <p><strong>Análise:</strong> Chamado de "primícias da Acaia", o primeiro convertido na província.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Epêneto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:7 — "Andrônico e Júnias"</span>
+            <div class="greek-text">Ἀνδρόνικον καὶ Ἰουνίαν</div>
+            <p><strong>Análise:</strong> Chamados de "ilustres entre os apóstolos". A forma grega pode ser masculina ou feminina.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Andrônico e Júnias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:7 — "Ilustres entre os apóstolos"</span>
+            <div class="greek-text">ἐπίσημοι ἐν τοῖς ἀποστόλοις</div>
+            <p><strong>Análise:</strong> A expressão indica que Andrônico e Júnias eram notáveis, destacados, entre os apóstolos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ilustres entre os apóstolos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:16 — "Beijo santo"</span>
+            <div class="greek-text">φιλήματι ἁγίῳ</div>
+            <p><strong>Análise:</strong> <em>Philēma</em> é o beijo, e <em>hagios</em> indica que é um cumprimento sagrado e puro entre os irmãos.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "beijo santo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:17 — "Promovem divisões e escândalos"</span>
+            <div class="greek-text">τὰς διχοστασίας καὶ τὰ σκάνδαλα</div>
+            <p><strong>Análise:</strong> Os que causam divisões e ofensas contra a doutrina que os romanos haviam aprendido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "promovem divisões e escândalos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:18 — "Suaves palavras e lisonjas"</span>
+            <div class="greek-text">χρηστολογίας καὶ εὐλογίας</div>
+            <p><strong>Análise:</strong> Palavras agradáveis e abençoadoras, usadas para enganar os simples.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "suaves palavras e lisonjas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:19 — "Simples no mal"</span>
+            <div class="greek-text">ἀκεραίους δὲ εἰς τὸ κακόν</div>
+            <p><strong>Análise:</strong> <em>Akeraios</em> significa puro, sem mistura, livre de malícia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "simples no mal".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:20 — "Deus de paz esmagará Satanás"</span>
+            <div class="greek-text">ὁ Θεὸς τῆς εἰρήνης συντρίψει τὸν Σατανᾶν</div>
+            <p><strong>Análise:</strong> Promessa de vitória sobre Satanás, que será esmagado sob os pés dos crentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus de paz esmagará Satanás".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:22 — "Tércio"</span>
+            <div class="greek-text">Τέρτιος</div>
+            <p><strong>Análise:</strong> O escriba que redigiu a carta de Paulo sob sua direção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Tércio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:23 — "Erasto, tesoureiro da cidade"</span>
+            <div class="greek-text">Ἔραστος ὁ οἰκονόμος τῆς πόλεως</div>
+            <p><strong>Análise:</strong> Erasto é descrito como <em>oikonomos</em>, administrador ou tesoureiro da cidade, provavelmente de Corinto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Erasto, tesoureiro da cidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:25 — "Mistério guardado em silêncio"</span>
+            <div class="greek-text">μυστηρίου χρόνοις αἰωνίοις σεσιγημένου</div>
+            <p><strong>Análise:</strong> O evangelho era um mistério oculto por eras, mas agora revelado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mistério guardado em silêncio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 16:27 — "Único Deus sábio"</span>
+            <div class="greek-text">μόνῳ σοφῷ Θεῷ</div>
+            <p><strong>Análise:</strong> Doxologia final que atribui glória ao único Deus sábio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "único Deus sábio".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 16 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 16 conclui a carta com recomendações, saudações e advertências. Estrutura: 1) Recomendações e saudações (v.1-16); 2) Advertências e saudações finais (v.17-24); 3) Doxologia final (v.25-27). Paulo demonstra seu cuidado pastoral e seu compromisso com a pureza da doutrina.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

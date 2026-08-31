@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Indesculpável</span>
+                Do grego <em>anapologētos</em> (ἀναπολόγητος), sem defesa, sem desculpa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Longanimidade</span>
+                Do grego <em>makrothymia</em> (μακροθυμία), paciência, tolerância.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Acepção de pessoas</span>
+                Do grego <em>prosōpolēmpsia</em> (προσωπολημψία), favoritismo, parcialidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Circuncisão do coração</span>
+                A verdadeira circuncisão, que é interior e espiritual.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">2</div>
+
+    <!-- PERÍCOPE 1: O JUÍZO DE DEUS É IMPARCIAL (2.1-16) -->
+    <div class="pericope">O Juízo de Deus é Imparcial</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>ortanto, és indesculpável, ó homem, todo aquele que julgas; porque, naquilo em que julgas a outro, a ti mesmo te condenas; pois tu, que julgas, praticas as mesmas coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E bem sabemos que o juízo de Deus é segundo a verdade contra os que praticam tais coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E pensas tu, ó homem, que julgas os que praticam tais coisas, e fazes as mesmas, que escaparás do juízo de Deus?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Ou desprezas tu as riquezas da sua bondade, e paciência, e longanimidade, ignorando que a bondade de Deus te leva ao arrependimento?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas, segundo a tua dureza e teu coração impenitente, entesouras para ti mesmo ira no dia da ira e da revelação do justo juízo de Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        o qual retribuirá a cada um segundo as suas obras:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        a saber: a vida eterna aos que, com perseverança em fazer o bem, procuram glória, e honra, e incorrupção;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        mas indignação e ira aos que são contenciosos, e desobedecem à verdade, e obedecem à injustiça;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        tribulação e angústia sobre toda alma do homem que faz o mal, primeiramente do judeu, e também do grego;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        mas glória, e honra, e paz a todo aquele que faz o bem, primeiramente ao judeu, e também ao grego;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        porque para com Deus não há acepção de pessoas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque todos os que sem lei pecaram, sem lei também perecerão; e todos os que sob a lei pecaram, pela lei serão julgados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque não são os ouvintes da lei que são justos diante de Deus, mas os cumpridores da lei serão justificados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque, quando os gentios, que não têm lei, fazem por natureza as coisas da lei, esses, não tendo lei, são lei para si mesmos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        os quais mostram a obra da lei escrita em seus corações, testificando também a sua consciência, e entre si os seus pensamentos, acusando-os ou também defendendo-os;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        no dia em que Deus julgará os segredos dos homens, por Jesus Cristo, segundo o meu evangelho.
+    </p>
+
+    <!-- PERÍCOPE 2: OS JUDEUS E A LEI (2.17-29) -->
+    <div class="pericope">Os Judeus e a Lei</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Eis que tu, que és chamado judeu, e descansas na lei, e te glorias em Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        e conheces a sua vontade, e aprovas as coisas excelentes, sendo instruído pela lei;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        e confias que és guia dos cegos, luz dos que estão em trevas,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        instrutor dos insensatos, mestre de crianças, que tens a forma do conhecimento e da verdade na lei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Tu, pois, que ensinas a outro, não te ensinas a ti mesmo? Tu, que pregas que não se deve furtar, furtas?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Tu, que dizes que não se deve adulterar, adulteras? Tu, que abominas os ídolos, cometes sacrilégio?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Tu, que te glorias na lei, desonras a Deus pela transgressão da lei?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Porque, como está escrito, o nome de Deus é blasfemado entre os gentios por causa de vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Porque a circuncisão é, na verdade, proveitosa, se guardares a lei; mas, se tu és transgressor da lei, a tua circuncisão se torna em incircuncisão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Portanto, se a incircuncisão guardar os preceitos da lei, não será a sua incircuncisão considerada como circuncisão?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E a incircuncisão que vem por natureza, se cumprir a lei, não te julgará a ti, que, pela letra e circuncisão, és transgressor da lei?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Porque não é judeu o que o é exteriormente, nem é circuncisão a que o é exteriormente na carne.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Mas é judeu o que o é no interior, e circuncisão é a do coração, no espírito, não na letra; cujo louvor não vem dos homens, mas de Deus.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:1 — "És indesculpável"</span>
+            <div class="greek-text">ἀναπολόγητος</div>
+            <p><strong>Análise:</strong> Sem defesa, sem desculpa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "és indesculpável".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:2 — "Juízo de Deus é segundo a verdade"</span>
+            <div class="greek-text">κρίμα τοῦ Θεοῦ ἐστιν κατὰ ἀλήθειαν</div>
+            <p><strong>Análise:</strong> O juízo de Deus é baseado na verdade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:4 — "Riquezas da sua bondade"</span>
+            <div class="greek-text">πλούτου τῆς χρηστότητος</div>
+            <p><strong>Análise:</strong> A abundância da bondade de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "riquezas da sua bondade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:4 — "Longanimidade"</span>
+            <div class="greek-text">μακροθυμίας</div>
+            <p><strong>Análise:</strong> Paciência, tolerância.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "longanimidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:5 — "Coração impenitente"</span>
+            <div class="greek-text">ἀμετανόητον καρδίαν</div>
+            <p><strong>Análise:</strong> Coração que não se arrepende.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coração impenitente".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 2:6 — "Retribuirá a cada um segundo as suas obras"</span>
+            <div class="greek-text">ἀποδώσει ἑκάστῳ κατὰ τὰ ἔργα αὐτοῦ</div>
+            <p><strong>Análise:</strong> Princípio da retribuição divina.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:11 — "Acepção de pessoas"</span>
+            <div class="greek-text">προσωπολημψία</div>
+            <p><strong>Análise:</strong> Favoritismo, parcialidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "acepção de pessoas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:12 — "Sem lei"</span>
+            <div class="greek-text">ἀνόμως</div>
+            <p><strong>Análise:</strong> Fora do âmbito da lei mosaica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:13 — "Cumpridores da lei"</span>
+            <div class="greek-text">ποιηταὶ τοῦ νόμου</div>
+            <p><strong>Análise:</strong> Aqueles que praticam a lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cumpridores da lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:15 — "A obra da lei escrita em seus corações"</span>
+            <div class="greek-text">τὸ ἔργον τοῦ νόμου γραπτὸν ἐν ταῖς καρδίαις</div>
+            <p><strong>Análise:</strong> A lei moral está inscrita no coração humano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 2:16 — "Segredos dos homens"</span>
+            <div class="greek-text">κρυπτὰ τῶν ἀνθρώπων</div>
+            <p><strong>Análise:</strong> Os segredos do coração que serão julgados por Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segredos dos homens".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:17 — "És chamado judeu"</span>
+            <div class="greek-text">ἐπονομάζῃ Ἰουδαῖος</div>
+            <p><strong>Análise:</strong> O judeu é assim chamado/identificado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "és chamado judeu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:20 — "Forma do conhecimento e da verdade"</span>
+            <div class="greek-text">μόρφωσιν τῆς γνώσεως καὶ τῆς ἀληθείας</div>
+            <p><strong>Análise:</strong> A representação externa do conhecimento e da verdade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "forma do conhecimento e da verdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 2:22 — "Cometes sacrilégio?"</span>
+            <div class="greek-text">ἱεροσυλεῖς</div>
+            <p><strong>Análise:</strong> Roubo de coisas sagradas, profanação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cometes sacrilégio?".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 2:24 — "O nome de Deus é blasfemado"</span>
+            <div class="greek-text">τὸ ὄνομα τοῦ θεοῦ βλασφημεῖται</div>
+            <p><strong>Análise:</strong> Citação de Isaías 52:5.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

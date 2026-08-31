@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 4</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 4</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Imputar</span>
+                Do grego <em>logizomai</em> (λογίζομαι), "contar", "considerar", "atribuir".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Selo da justiça</span>
+                A circuncisão como sinal/selo da justiça recebida pela fé.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Justificação</span>
+                Do grego <em>dikaiōsis</em> (δικαίωσις), o ato de declarar justo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Vivifica os mortos</span>
+                Do grego <em>zōopoiountos tous nekrous</em> (ζῳοποιοῦντος τοὺς νεκρούς).
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">4</div>
+
+    <!-- PERÍCOPE 1: O EXEMPLO DE ABRAÃO (4.1-8) -->
+    <div class="pericope">O Exemplo de Abraão</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">Q</span>ue diremos, pois, que Abraão, nosso pai segundo a carne, alcançou?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque, se Abraão foi justificado pelas obras, tem de que se gloriar, mas não diante de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Pois, que diz a Escritura? "Abraão creu em Deus, e isso lhe foi imputado como justiça."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Ora, àquele que faz obras, o salário não lhe é imputado como graça, mas como dívida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas àquele que não faz obras, e crê naquele que justifica o ímpio, a sua fé lhe é imputada como justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Como também Davi declara bem-aventurado o homem a quem Deus imputa justiça sem obras,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        dizendo: "Bem-aventurados aqueles cujas iniquidades são perdoadas, e cujos pecados são cobertos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Bem-aventurado o homem a quem o Senhor não imputará o pecado."
+    </p>
+
+    <!-- PERÍCOPE 2: A FÉ DE ABRAÃO ANTES DA CIRCUNCISÃO (4.9-12) -->
+    <div class="pericope">A Fé de Abraão Antes da Circuncisão</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Vem, pois, esta bem-aventurança somente sobre a circuncisão, ou também sobre a incircuncisão? Porque dizemos: a fé foi imputada a Abraão como justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Como, pois, lhe foi imputada? Estando na circuncisão, ou na incircuncisão? Não na circuncisão, mas na incircuncisão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E recebeu o sinal da circuncisão, selo da justiça da fé que tinha quando ainda era incircunciso; para que fosse pai de todos os que creem, estando eles na incircuncisão, a fim de que a justiça lhes fosse também imputada;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        e fosse pai da circuncisão, dos que não somente são da circuncisão, mas também andam nas pisadas da fé que teve nosso pai Abraão, quando ainda era incircunciso.
+    </p>
+
+    <!-- PERÍCOPE 3: A PROMESSA PELA FÉ (4.13-25) -->
+    <div class="pericope">A Promessa pela Fé</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque a promessa de que havia de ser herdeiro do mundo não foi feita pela lei a Abraão, ou à sua descendência, mas pela justiça da fé.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Pois, se os que são da lei são herdeiros, a fé é vã, e a promessa é anulada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Porque a lei produz ira; pois onde não há lei, também não há transgressão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Portanto, é pela fé, para que seja segundo a graça, a fim de que a promessa seja firme a toda a descendência; não somente à que é da lei, mas também à que é da fé de Abraão, o qual é pai de todos nós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        — como está escrito: "Por pai de muitas nações te constituí" — diante daquele em quem creu, a saber, Deus, que vivifica os mortos, e chama as coisas que não são como se já fossem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        O qual, em esperança, creu contra a esperança, para que se tornasse pai de muitas nações, conforme o que lhe fora dito: "Assim será a tua descendência."
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, não enfraquecendo na fé, não considerou o seu próprio corpo já amortecido — sendo ele de quase cem anos —, nem o amortecimento do ventre de Sara.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E não duvidou da promessa de Deus por incredulidade, mas foi fortalecido na fé, dando glória a Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        e estando plenamente certo de que o que ele tinha prometido, também era poderoso para o fazer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Por isso também isso lhe foi imputado como justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E não somente por causa dele está escrito que lhe foi imputado,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        mas também por nós, a quem será imputado, a nós, os que cremos naquele que ressuscitou dos mortos a Jesus, nosso Senhor;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        o qual foi entregue por causa das nossas ofensas, e ressuscitou para a nossa justificação.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:1 — "Abraão, nosso pai segundo a carne"</span>
+            <div class="greek-text">Ἀβραὰμ τὸν πατέρα ἡμῶν κατὰ σάρκα</div>
+            <p><strong>Análise:</strong> Abraão como pai biológico/ancestral dos judeus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Abraão, nosso pai segundo a carne".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 4:3 — "Imputado como justiça"</span>
+            <div class="greek-text">ἐλογίσθη αὐτῷ εἰς δικαιοσύνην</div>
+            <p><strong>Análise:</strong> A fé de Abraão foi considerada/atribuída como justiça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 4:3 — "Abraão creu em Deus"</span>
+            <div class="greek-text">ἐπίστευσεν Ἀβραὰμ τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 15:6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:5 — "Justifica o ímpio"</span>
+            <div class="greek-text">τὸν δικαιοῦντα τὸν ἀσεβῆ</div>
+            <p><strong>Análise:</strong> Deus justifica o ímpio que crê.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justifica o ímpio".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 4:7 — "Bem-aventurados aqueles cujas iniquidades são perdoadas"</span>
+            <div class="greek-text">μακάριοι ὧν ἀφέθησαν αἱ ἀνομίαι</div>
+            <p><strong>Análise:</strong> Citação do Salmo 32:1-2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:11 — "Selo da justiça da fé"</span>
+            <div class="greek-text">σφραγῖδα τῆς δικαιοσύνης τῆς πίστεως</div>
+            <p><strong>Análise:</strong> A circuncisão como sinal/selo da justiça recebida pela fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "selo da justiça da fé".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 4:17 — "Pai de muitas nações"</span>
+            <div class="greek-text">πατέρα πολλῶν ἐθνῶν</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 17:5.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:17 — "Vivifica os mortos"</span>
+            <div class="greek-text">ζῳοποιοῦντος τοὺς νεκρούς</div>
+            <p><strong>Análise:</strong> Deus vivifica/ressuscita os mortos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vivifica os mortos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:17 — "Chama as coisas que não são como se já fossem"</span>
+            <div class="greek-text">καλοῦντος τὰ μὴ ὄντα ὡς ὄντα</div>
+            <p><strong>Análise:</strong> Deus chama as coisas que não existem como se já existissem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:18 — "Creu contra a esperança"</span>
+            <div class="greek-text">παρ' ἐλπίδα ἐπ' ἐλπίδι ἐπίστευσεν</div>
+            <p><strong>Análise:</strong> Abraão creu mesmo quando não havia esperança humana.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "creu contra a esperança".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:19 — "Quase cem anos"</span>
+            <div class="greek-text">ἑκατονταετής που ὑπάρχων</div>
+            <p><strong>Análise:</strong> Abraão tinha cerca de cem anos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quase cem anos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:20 — "Não duvidou da promessa"</span>
+            <div class="greek-text">οὐ διεκρίθη τῇ ἐπαγγελίᾳ</div>
+            <p><strong>Análise:</strong> Abraão não duvidou da promessa de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não duvidou da promessa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 4:20 — "Fortalecido na fé"</span>
+            <div class="greek-text">ἐνεδυναμώθη τῇ πίστει</div>
+            <p><strong>Análise:</strong> Abraão foi fortalecido em sua fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fortalecido na fé".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 4:25 — "Entregue por causa das nossas ofensas"</span>
+            <div class="greek-text">παρεδόθη διὰ τὰ παραπτώματα ἡμῶν</div>
+            <p><strong>Análise:</strong> Jesus foi entregue à morte por causa dos nossos pecados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 4:25 — "Ressuscitou para a nossa justificação"</span>
+            <div class="greek-text">ἠγέρθη διὰ τὴν δικαίωσιν ἡμῶν</div>
+            <p><strong>Análise:</strong> A ressurreição de Jesus assegura nossa justificação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

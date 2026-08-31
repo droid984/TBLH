@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 5</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 5</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Justificação</span>
+                Do grego <em>dikaiōsis</em> (δικαίωσις), ato de declarar justo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Reconciliação</span>
+                Do grego <em>katallagē</em> (καταλλαγή), restauração do relacionamento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dom gratuito</span>
+                Do grego <em>charisma</em> (χάρισμα), presente da graça.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Figura</span>
+                Do grego <em>typos</em> (τύπος), modelo ou padrão profético.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">5</div>
+
+    <!-- PERÍCOPE 1: PAZ E ALEGRIA NA ESPERANÇA (5.1-11) -->
+    <div class="pericope">Paz e Alegria na Esperança</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">S</span>endo, pois, justificados pela fé, temos paz com Deus, por meio de nosso Senhor Jesus Cristo;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        pelo qual também temos acesso pela fé a esta graça, na qual estamos firmes; e nos gloriamos na esperança da glória de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E não somente isto, mas também nos gloriamos nas tribulações, sabendo que a tribulação produz perseverança;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        e a perseverança, experiência; e a experiência, esperança.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E a esperança não decepciona, porque o amor de Deus está derramado em nossos corações pelo Espírito Santo, que nos foi dado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Porque Cristo, quando nós ainda éramos fracos, morreu a seu tempo pelos ímpios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Porque dificilmente alguém morreria por um justo; pois talvez alguém se atrevesse a morrer pelo bom.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas Deus prova o seu amor para conosco, em que Cristo morreu por nós, sendo nós ainda pecadores.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Logo, muito mais agora, sendo justificados pelo seu sangue, seremos por ele salvos da ira.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Porque, se quando éramos inimigos, fomos reconciliados com Deus pela morte de seu Filho, muito mais, estando já reconciliados, seremos salvos pela sua vida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E não somente isto, mas também nos gloriamos em Deus, por meio de nosso Senhor Jesus Cristo, pelo qual agora recebemos a reconciliação.
+    </p>
+
+    <!-- PERÍCOPE 2: ADÃO E CRISTO (5.12-21) -->
+    <div class="pericope">Adão e Cristo</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Portanto, como por um homem entrou o pecado no mundo, e pelo pecado a morte, assim também a morte passou a todos os homens, por isso que todos pecaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque até à lei, o pecado estava no mundo; mas o pecado não é imputado quando não há lei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        No entanto, a morte reinou desde Adão até Moisés, mesmo sobre os que não pecaram à semelhança da transgressão de Adão, o qual é figura daquele que havia de vir.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas não é assim o dom gratuito como a ofensa. Porque, se pela ofensa de um morreram muitos, muito mais a graça de Deus, e o dom pela graça de um só homem, Jesus Cristo, abundou sobre muitos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E o dom não é como por um só que pecou. Porque o juízo veio de uma só ofensa para condenação, mas o dom gratuito veio de muitas ofensas para justificação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque, se pela ofensa de um só, a morte reinou por esse um, muito mais os que recebem a abundância da graça e do dom da justiça reinarão em vida por um só, Jesus Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Assim, pois, como por uma só ofensa veio o juízo sobre todos os homens para condenação, assim também por um só ato de justiça veio o dom gratuito sobre todos os homens para justificação de vida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Porque, como pela desobediência de um só homem muitos foram feitos pecadores, assim também pela obediência de um muitos serão feitos justos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E a lei entrou para que a ofensa abundasse; mas onde o pecado abundou, superabundou a graça;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        para que, assim como o pecado reinou na morte, também a graça reinasse pela justiça para a vida eterna, por meio de Jesus Cristo, nosso Senhor.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:1 — "Justificados pela fé"</span>
+            <div class="greek-text">δικαιωθέντες ἐκ πίστεως</div>
+            <p><strong>Análise:</strong> A justificação é recebida pela fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justificados pela fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:1 — "Paz com Deus"</span>
+            <div class="greek-text">εἰρήνην πρὸς τὸν Θεόν</div>
+            <p><strong>Análise:</strong> Resultado da justificação pela fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "paz com Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:2 — "Acesso pela fé"</span>
+            <div class="greek-text">προσαγωγήν</div>
+            <p><strong>Análise:</strong> Acesso a Deus por meio de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "acesso pela fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:3 — "Tribulação produz perseverança"</span>
+            <div class="greek-text">θλῖψις ὑπομονὴν κατεργάζεται</div>
+            <p><strong>Análise:</strong> A tribulação gera perseverança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:5 — "A esperança não decepciona"</span>
+            <div class="greek-text">οὐ καταισχύνει</div>
+            <p><strong>Análise:</strong> "Não envergonha", "não decepciona".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não decepciona".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 5:6 — "Morreu a seu tempo pelos ímpios"</span>
+            <div class="greek-text">Χριστὸς ... κατὰ καιρὸν ὑπὲρ ἀσεβῶν ἀπέθανεν</div>
+            <p><strong>Análise:</strong> Cristo morreu pelos ímpios no tempo certo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:10 — "Reconciliados com Deus"</span>
+            <div class="greek-text">κατηλλάγημεν τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> Fomos reconciliados com Deus pela morte de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "reconciliados com Deus".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 5:12 — "Por um homem entrou o pecado"</span>
+            <div class="greek-text">δι' ἑνὸς ἀνθρώπου ἡ ἁμαρτία εἰς τὸν κόσμον εἰσῆλθεν</div>
+            <p><strong>Análise:</strong> O pecado entrou no mundo por Adão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:13 — "O pecado não é imputado"</span>
+            <div class="greek-text">ἁμαρτία οὐκ ἐλλογεῖται</div>
+            <p><strong>Análise:</strong> O pecado não é contabilizado onde não há lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o pecado não é imputado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:14 — "Figura daquele que havia de vir"</span>
+            <div class="greek-text">τύπος τοῦ μέλλοντος</div>
+            <p><strong>Análise:</strong> Adão é figura/modelo de Cristo que havia de vir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "figura daquele que havia de vir".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:15-16 — "Dom gratuito"</span>
+            <div class="greek-text">χάρισμα</div>
+            <p><strong>Análise:</strong> Presente da graça de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dom gratuito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 5:19 — "Muitos foram feitos pecadores"</span>
+            <div class="greek-text">ἁμαρτωλοὶ κατεστάθησαν οἱ πολλοί</div>
+            <p><strong>Análise:</strong> Pela desobediência de Adão, muitos foram constituídos pecadores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "foram feitos pecadores".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 5:19 — "Muitos serão feitos justos"</span>
+            <div class="greek-text">δίκαιοι κατασταθήσονται οἱ πολλοί</div>
+            <p><strong>Análise:</strong> Pela obediência de Cristo, muitos serão constituídos justos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "serão feitos justos".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 5:20 — "A lei entrou para que a ofensa abundasse"</span>
+            <div class="greek-text">νόμος παρεισῆλθεν ἵνα πλεονάσῃ τὸ παράπτωμα</div>
+            <p><strong>Análise:</strong> A lei veio para aumentar a consciência do pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 5:20 — "Onde o pecado abundou, superabundou a graça"</span>
+            <div class="greek-text">οὗ ἐπλεόνασεν ἡ ἁμαρτία, ὑπερεπερίσσευσεν ἡ χάρις</div>
+            <p><strong>Análise:</strong> A graça superabunda onde o pecado abundou.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

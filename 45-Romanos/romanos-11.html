@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Remanescente</span>
+                Do grego *leimma* (λεῖμμα). O grupo fiel dentro de Israel que é preservado pela graça.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Eleição da graça</span>
+                A escolha soberana de Deus baseada na graça, não nas obras.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Emulação</span>
+                Do grego *parazēloō* (παραζηλόω). Provocar ciúmes ou zelo, com o objetivo de despertar Israel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Oliveira brava</span>
+                Do grego *agrielaios* (ἀγριέλαιος). A oliveira silvestre, representando os gentios enxertados.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Boa oliveira</span>
+                A oliveira cultivada, representando o povo de Deus e as promessas feitas a Israel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Plenitude dos gentios</span>
+                Do grego *plērōma tōn ethnōn* (πλήρωμα τῶν ἐθνῶν). O número completo dos gentios que serão salvos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Todo o Israel</span>
+                Do grego *pas Israēl* (πᾶς Ἰσραήλ). A totalidade do povo de Deus, incluindo judeus e gentios salvos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dons e vocação sem arrependimento</span>
+                Os dons e o chamado de Deus são irrevogáveis e permanecem firmes.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Profundidade das riquezas</span>
+                Doxologia que celebra a insondável sabedoria e conhecimento de Deus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <div class="pericope">O Remanescente de Israel</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">D</span>igo, pois: Porventura Deus rejeitou o seu povo? De maneira nenhuma. Porque também eu sou israelita, da descendência de Abraão, da tribo de Benjamim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Deus não rejeitou o seu povo, que antes conheceu. Ou não sabeis o que a Escritura diz de Elias, como ele interpela a Deus contra Israel, dizendo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        <span class="fala-outro">"Senhor, mataram os teus profetas, e derrubaram os teus altares; e eu fiquei sozinho, e procuram tirar-me a vida."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Mas que lhe diz a resposta divina? <span class="fala-outro">"Reservei para mim sete mil homens, que não dobraram os joelhos diante de Baal."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Assim, pois, também neste tempo presente ficou um remanescente, segundo a eleição da graça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, se é pela graça, já não é pelas obras; de outra maneira, a graça já não é graça. E, se é pelas obras, já não é mais graça; de outra maneira, a obra já não é obra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Pois quê? O que Israel buscava, isso não alcançou; mas os eleitos o alcançaram, e os demais foram endurecidos,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        como está escrito: <span class="fala-outro">"Deus lhes deu espírito de profundo sono, olhos para não verem, e ouvidos para não ouvirem, até o dia de hoje."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E Davi diz: <span class="fala-outro">"Torne-se a sua mesa em laço, e em armadilha, e em tropeço, e em retribuição para eles.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        <span class="fala-outro">Escureçam-se os seus olhos para não verem, e encurva sempre as suas costas."</span>
+    </p>
+
+    <div class="pericope">A Queda e a Restauração de Israel</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Digo, pois: Porventura tropeçaram, para que caíssem? De maneira nenhuma. Mas pela sua queda veio a salvação aos gentios, para os provocar à emulação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, se a sua queda é a riqueza do mundo, e a sua diminuição a riqueza dos gentios, quanto mais a sua plenitude?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque convosco falo, gentios: visto que eu sou apóstolo dos gentios, glorifico o meu ministério;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        se de algum modo eu possa provocar à emulação os da minha carne, e salvar alguns deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Porque, se a sua rejeição é a reconciliação do mundo, qual será a sua admissão, senão vida dentre os mortos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, se as primícias são santas, também a massa o é; e, se a raiz é santa, também os ramos o são.
+    </p>
+
+    <div class="pericope">A Oliveira e os Ramos</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, se alguns dos ramos foram quebrados, e tu, sendo oliveira brava, foste enxertado no lugar deles, e feito participante da raiz e da seiva da oliveira,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        não te glories contra os ramos; e, se te gloriares, não és tu que sustentas a raiz, mas a raiz a ti.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Dirás, então: <span class="fala-outro">"Os ramos foram quebrados, para que eu fosse enxertado."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Bem! Pela incredulidade foram quebrados, e tu estás em pé pela fé. Não te ensoberbeças, mas teme.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Porque, se Deus não poupou os ramos naturais, olha para que também não te poupe a ti.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Considera, pois, a bondade e a severidade de Deus: para com os que caíram, severidade; mas para contigo, bondade, se permaneceres na bondade; de outra maneira, também tu serás cortado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E também eles, se não permanecerem na incredulidade, serão enxertados; porque poderoso é Deus para os enxertar outra vez.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Porque, se tu foste cortado da oliveira brava natural, e contra a natureza foste enxertado na boa oliveira, quanto mais esses, que são ramos naturais, serão enxertados na sua própria oliveira?
+    </p>
+
+    <div class="pericope">O Mistério da Salvação de Israel</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Porque não quero, irmãos, que ignoreis este mistério — para que não sejais sábios aos vossos próprios olhos —: que o endurecimento veio em parte sobre Israel, até que a plenitude dos gentios haja entrado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E assim todo o Israel será salvo, como está escrito: <span class="fala-outro">"Virá de Sião o Libertador, e desviará de Jacó as impiedades.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        <span class="fala-outro">E este é o meu pacto com eles, quando eu tirar os seus pecados."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Quanto ao evangelho, são inimigos por causa de vós; mas, quanto à eleição, são amados por causa dos pais.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Porque os dons e a vocação de Deus são sem arrependimento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Porque, assim como vós também em outro tempo não obedecestes a Deus, mas agora alcançastes misericórdia pela desobediência deles,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        assim também estes agora foram desobedientes, para que, pela misericórdia a vós demonstrada, também eles alcancem misericórdia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Porque Deus encerrou a todos na desobediência, para com todos usar de misericórdia.
+    </p>
+
+    <div class="pericope">Doxologia Final</div>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Ó profundidade das riquezas, tanto da sabedoria como do conhecimento de Deus! Quão insondáveis são os seus juízos, e quão inescrutáveis os seus caminhos!
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Pois quem compreendeu a mente do Senhor? Ou quem foi o seu conselheiro?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Ou quem lhe deu primeiro, para que lhe seja recompensado?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Porque dele, e por ele, e para ele são todas as coisas. A ele seja a glória para sempre. Amém.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:1 — "Deus rejeitou o seu povo?"</span>
+            <div class="greek-text">μὴ ἀπώσατο ὁ Θεὸς τὸν λαὸν αὐτοῦ</div>
+            <p><strong>Análise:</strong> A pergunta retórica que Paulo faz, respondendo com ênfase: "De maneira nenhuma!"</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus rejeitou o seu povo?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:1 — "Descendência de Abraão, da tribo de Benjamim"</span>
+            <div class="greek-text">ἐκ σπέρματος Ἀβραάμ, φυλῆς Βενιαμίν</div>
+            <p><strong>Análise:</strong> Paulo afirma sua identidade judaica para demonstrar que Deus não rejeitou seu povo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "descendência de Abraão, da tribo de Benjamim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:4 — "Reservei para mim sete mil homens"</span>
+            <div class="greek-text">κατέλιπον ἐμαυτῷ ἑπτακισχιλίους ἄνδρας</div>
+            <p><strong>Análise:</strong> Citação de 1 Reis 19:18, mostrando que Deus sempre preserva um remanescente fiel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:5 — "Remanescente, segundo a eleição da graça"</span>
+            <div class="greek-text">λεῖμμα κατ' ἐκλογὴν χάριτος</div>
+            <p><strong>Análise:</strong> O remanescente é preservado pela eleição que é baseada na graça, não nas obras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "remanescente, segundo a eleição da graça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:6 — "Se é pela graça, já não é pelas obras"</span>
+            <div class="greek-text">εἰ δὲ χάριτι, οὐκέτι ἐξ ἔργων</div>
+            <p><strong>Análise:</strong> Graça e obras são mutuamente excludentes. A salvação é inteiramente pela graça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se é pela graça, já não é pelas obras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:8 — "Espírito de profundo sono"</span>
+            <div class="greek-text">πνεῦμα κατανύξεως</div>
+            <p><strong>Análise:</strong> A expressão combina linguagem de Deuteronômio 29:4 e Isaías 29:10, descrevendo o endurecimento de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espírito de profundo sono".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:9-10 — "Torne-se a sua mesa em laço"</span>
+            <div class="greek-text">γενηθήτω ἡ τράπεζα αὐτῶν εἰς παγίδα</div>
+            <p><strong>Análise:</strong> Citação do Salmo 69:22-23, aplicada ao julgamento de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:11 — "Emulação"</span>
+            <div class="greek-text">παραζηλῶσαι</div>
+            <p><strong>Análise:</strong> <em>Parazēloō</em> significa provocar ciúmes ou emulação. A salvação dos gentios tem o propósito de despertar Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "emulação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:17 — "Oliveira brava"</span>
+            <div class="greek-text">ἀγριέλαιος</div>
+            <p><strong>Análise:</strong> <em>Agrielaios</em> é a oliveira silvestre, em contraste com a oliveira cultivada. Representa os gentios enxertados em Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "oliveira brava".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:17 — "Enxertado"</span>
+            <div class="greek-text">ἐνεκεντρίσθης</div>
+            <p><strong>Análise:</strong> O verbo <em>enkentrizō</em> refere-se ao ato de enxertar um ramo em uma oliveira.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "enxertado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:25 — "Plenitude dos gentios"</span>
+            <div class="greek-text">πλήρωμα τῶν ἐθνῶν</div>
+            <p><strong>Análise:</strong> O número completo ou a totalidade dos gentios que serão salvos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "plenitude dos gentios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:26 — "Todo o Israel será salvo"</span>
+            <div class="greek-text">πᾶς Ἰσραὴλ σωθήσεται</div>
+            <p><strong>Análise:</strong> A totalidade do povo de Deus, judeus e gentios salvos, será salva. Não se refere necessariamente a todo judeu étnico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todo o Israel será salvo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:26-27 — "Virá de Sião o Libertador"</span>
+            <div class="greek-text">ἥξει ἐκ Σιὼν ὁ ῥυόμενος</div>
+            <p><strong>Análise:</strong> A citação combina Isaías 59:20-21 com linguagem de Isaías 27:9, referindo-se à libertação de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:29 — "Os dons e a vocação de Deus são sem arrependimento"</span>
+            <div class="greek-text">ἀμεταμέλητα γὰρ τὰ χαρίσματα καὶ ἡ κλῆσις τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Os dons e o chamado de Deus são irrevogáveis; Deus não se arrepende de suas escolhas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os dons e a vocação de Deus são sem arrependimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:32 — "Deus encerrou a todos na desobediência"</span>
+            <div class="greek-text">συνέκλεισεν γὰρ ὁ Θεὸς τοὺς πάντας εἰς ἀπείθειαν</div>
+            <p><strong>Análise:</strong> Deus colocou todos, judeus e gentios, na condição de desobediência para ter misericórdia de todos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus encerrou a todos na desobediência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:33 — "Ó profundidade das riquezas"</span>
+            <div class="greek-text">Ὦ βάθος πλούτου</div>
+            <p><strong>Análise:</strong> Doxologia que expressa a admiração de Paulo pela sabedoria e conhecimento de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ó profundidade das riquezas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:34 — "Quem compreendeu a mente do Senhor?"</span>
+            <div class="greek-text">τίς γὰρ ἔγνω νοῦν Κυρίου</div>
+            <p><strong>Análise:</strong> Citação de Isaías 40:13, enfatizando a incompreensibilidade de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 11:36 — "Dele, e por ele, e para ele são todas as coisas"</span>
+            <div class="greek-text">ἐξ αὐτοῦ καὶ δι' αὐτοῦ καὶ εἰς αὐτὸν τὰ πάντα</div>
+            <p><strong>Análise:</strong> Tudo tem sua origem, seu meio e seu propósito em Deus. Doxologia final.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dele, e por ele, e para ele são todas as coisas".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 11 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 11 aborda o futuro de Israel. Estrutura: 1) O remanescente de Israel (v.1-10); 2) A queda e a restauração de Israel (v.11-16); 3) A oliveira e os ramos (v.17-24); 4) O mistério da salvação de Israel (v.25-32); 5) Doxologia final (v.33-36). Paulo mostra que Deus não rejeitou seu povo, mas que a salvação de Israel e dos gentios está integrada no plano divino.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

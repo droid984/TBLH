@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 14</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 14</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Fraco na fé</span>
+                Do grego *asthenounta tē pistei* (ἀσθενοῦντα τῇ πίστει). Aquele que tem escrúpulos quanto a certas práticas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Opiniões</span>
+                Do grego *diakriseis dialogismōn* (διακρίσεις διαλογισμῶν). Discussões ou controvérsias sobre questões discutíveis.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tribunal de Cristo</span>
+                Do grego *bēmati tou Christou* (βήματι τοῦ Χριστοῦ). O lugar onde Cristo julgará os seus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Imunda</span>
+                Do grego *koinon* (κοινόν). Aquilo que é comum ou impuro, especialmente em relação a alimentos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Reino de Deus</span>
+                Do grego *basileia tou Theou* (βασιλεία τοῦ Θεοῦ). A realidade espiritual do domínio de Deus, caracterizada por justiça, paz e alegria no Espírito Santo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tropeço</span>
+                Do grego *proskomma* (πρόσκομμα). Algo que faz o irmão cair ou pecar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Escândalo</span>
+                Do grego *skandalon* (σκάνδαλον). Ofensa ou obstáculo que leva outro ao pecado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tudo o que não é de fé é pecado</span>
+                Ação sem convicção pessoal, realizadas com dúvida sobre sua legitimidade.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">14</div>
+
+    <div class="pericope">Acolher os Fracos na Fé</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">A</span>colhei ao que é fraco na fé, não para discutir opiniões.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque um crê que pode comer de tudo, e outro, que é fraco, come legumes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        O que come não despreze o que não come; e o que não come não julgue o que come; porque Deus o acolheu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Quem és tu, que julgas o servo alheio? Para o seu próprio senhor ele está em pé ou cai. Mas estará firme, porque poderoso é Deus para o firmar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Um faz diferença entre dia e dia, mas outro julga iguais todos os dias. Cada um esteja plenamente certo em seu próprio entendimento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Aquele que faz caso do dia, para o Senhor o faz; e o que não faz caso do dia, para o Senhor o não faz. O que come, para o Senhor come, porque dá graças a Deus; e o que não come, para o Senhor não come, e dá graças a Deus.
+    </p>
+
+    <div class="pericope">Viver para o Senhor</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Porque nenhum de nós vive para si, e nenhum morre para si.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Pois, se vivemos, para o Senhor vivemos; e, se morremos, para o Senhor morremos. De sorte que, ou vivamos ou morramos, somos do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque foi para isto que Cristo morreu, e ressuscitou, e tornou a viver: para ser Senhor, tanto dos mortos como dos vivos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas tu, por que julgas teu irmão? Ou também tu, por que desprezas teu irmão? Pois todos compareceremos perante o tribunal de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Porque está escrito: <span class="fala-outro">"Vivo eu, diz o Senhor, que todo joelho se dobrará diante de mim, e toda língua confessará a Deus."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Assim, pois, cada um de nós dará conta de si mesmo a Deus.
+    </p>
+
+    <div class="pericope">Não Causar Tropeço</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Portanto, não nos julguemos mais uns aos outros; antes, julgai isto: não pôr tropeço ou escândalo ao irmão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Eu sei, e estou certo no Senhor Jesus, que nenhuma coisa é de si mesma imunda; mas, para aquele que considera alguma coisa imunda, para esse é imunda.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas, se por causa da comida o teu irmão se entristece, já não andas segundo o amor. Não destruas por causa da tua comida aquele por quem Cristo morreu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Não seja, pois, blasfemado o vosso bem;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        porque o reino de Deus não é comida nem bebida, mas justiça, e paz, e alegria no Espírito Santo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque aquele que nisto serve a Cristo agradável é a Deus, e aprovado pelos homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Assim, pois, sigamos as coisas que servem para a paz, e as coisas com que uns aos outros podemos edificar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Não destruas a obra de Deus por causa da comida. Todas as coisas, na verdade, são limpas, mas é mal para o homem que come com escândalo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Bom é não comer carne, nem beber vinho, nem fazer outra coisa em que teu irmão tropece, ou se escandalize, ou se enfraqueça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Tens tu fé? Tem-na em ti mesmo diante de Deus. Bem-aventurado aquele que não se condena a si mesmo naquilo que aprova.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas aquele que duvida, se come, está condenado, porque não come por fé; e tudo o que não é de fé é pecado.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:1 — "Acolhei ao que é fraco na fé"</span>
+            <div class="greek-text">τὸν ἀσθενοῦντα τῇ πίστει προσλαμβάνεσθε</div>
+            <p><strong>Análise:</strong> Paulo trata de questões discutíveis entre irmãos (adiaphora), não de negar verdades fundamentais da fé cristã. O "fraco na fé" é aquele que tem escrúpulos sobre certas práticas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "acolhei ao que é fraco na fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:1 — "Não para discutir opiniões"</span>
+            <div class="greek-text">μὴ εἰς διακρίσεις διαλογισμῶν</div>
+            <p><strong>Análise:</strong> <em>Diakriseis dialogismōn</em> refere-se a disputas ou controvérsias sobre opiniões e questões discutíveis. O acolhimento não deve ser para entrar em debates sobre tais questões.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não para discutir opiniões".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:2 — "Come legumes"</span>
+            <div class="greek-text">λάχανα ἐσθίει</div>
+            <p><strong>Análise:</strong> O fraco na fé, por escrúpulo, abstém-se de carne e come apenas vegetais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "come legumes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:4 — "Quem és tu, que julgas o servo alheio?"</span>
+            <div class="greek-text">σὺ τίς εἶ ὁ κρίνων ἀλλότριον οἰκέτην</div>
+            <p><strong>Análise:</strong> Paulo pergunta retoricamente: quem é você para julgar o servo de outro? Cada um é responsável perante seu próprio Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quem és tu, que julgas o servo alheio?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:5 — "Faz diferença entre dia e dia"</span>
+            <div class="greek-text">κρίνει ἡμέραν παρ' ἡμέραν</div>
+            <p><strong>Análise:</strong> Refere-se à observância de dias especiais (como sábados ou festas judaicas) como questão de convicção pessoal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "faz diferença entre dia e dia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:5 — "Cada um esteja plenamente certo"</span>
+            <div class="greek-text">ἕκαστος ἐν τῷ ἰδίῳ νοῒ πληροφορείσθω</div>
+            <p><strong>Análise:</strong> Cada um deve estar plenamente convencido em sua própria mente sobre o que pratica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cada um esteja plenamente certo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:10 — "Tribunal de Cristo"</span>
+            <div class="greek-text">βήματι τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> <em>Bēma</em> era a plataforma elevada onde os juízes se sentavam. O tribunal de Cristo é onde os crentes serão julgados, não para condenação, mas para recompensa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribunal de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:11 — "Todo joelho se dobrará"</span>
+            <div class="greek-text">ὅτι ἐμοὶ κάμψει πᾶν γόνυ</div>
+            <p><strong>Análise:</strong> Citação de Isaías 45:23, afirmando que todos se submeterão a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:13 — "Não pôr tropeço ou escândalo"</span>
+            <div class="greek-text">μὴ τιθέναι πρόσκομμα ἢ σκάνδαλον</div>
+            <p><strong>Análise:</strong> <em>Proskomma</em> é o que faz tropeçar; <em>skandalon</em> é a armadilha ou ofensa. Paulo exorta a não colocar obstáculos diante do irmão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não pôr tropeço ou escândalo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:14 — "Nenhuma coisa é de si mesma imunda"</span>
+            <div class="greek-text">οὐδὲν κοινὸν δι' ἑαυτοῦ</div>
+            <p><strong>Análise:</strong> <em>Koinon</em> refere-se a algo comum ou impuro. Paulo afirma que, em si mesmo, nenhum alimento é impuro; a impureza é relativa à consciência de quem come.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nenhuma coisa é de si mesma imunda".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:15 — "Não destruas por causa da tua comida"</span>
+            <div class="greek-text">μὴ τῷ βρώματί σου ἐκεῖνον ἀπόλλυε</div>
+            <p><strong>Análise:</strong> A liberdade cristã não deve ser usada para destruir a fé frágil de outro irmão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não destruas por causa da tua comida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:17 — "Reino de Deus"</span>
+            <div class="greek-text">βασιλεία τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> O reino de Deus não consiste em questões externas como comida e bebida, mas em realidades espirituais: justiça, paz e alegria no Espírito Santo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "reino de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:20 — "Não destruas a obra de Deus"</span>
+            <div class="greek-text">μὴ ἕνεκεν βρώματος κατάλυε τὸ ἔργον τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> O irmão fraco é a "obra de Deus" que não deve ser destruída por causa de questões alimentares.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não destruas a obra de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 14:23 — "Tudo o que não é de fé é pecado"</span>
+            <div class="greek-text">πᾶν δὲ ὃ οὐκ ἐκ πίστεως, ἁμαρτία ἐστίν</div>
+            <p><strong>Análise:</strong> Qualquer ação que não seja realizada com convicção plena, com dúvida sobre sua legitimidade, é considerada pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tudo o que não é de fé é pecado".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 14 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 14 aborda a convivência entre os que têm convicções diferentes sobre questões não essenciais. Estrutura: 1) Acolher os fracos na fé (v.1-6); 2) Viver para o Senhor (v.7-12); 3) Não causar tropeço (v.13-23). Paulo enfatiza que o princípio do amor deve guiar as relações entre irmãos.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

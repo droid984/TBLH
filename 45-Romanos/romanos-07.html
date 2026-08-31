@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 7</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 7</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Lei</span>
+                Do grego *nomos* (νόμος). Refere-se à Torá, a lei mosaica, que tem domínio sobre o homem enquanto ele vive.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Corpo de Cristo</span>
+                Refere-se à morte de Cristo como o meio pelo qual os crentes foram libertos da lei.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Paixões dos pecados</span>
+                Do grego *pathēmata tōn hamartiōn* (τὰ παθήματα τῶν ἁμαρτιῶν). Desejos pecaminosos que operam nos membros.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Novidade de espírito</span>
+                Do grego *kainotēti pneumatos* (καινότητι πνεύματος). A nova vida no Espírito, em contraste com a velhice da letra.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Concupiscência</span>
+                Do grego *epithymia* (ἐπιθυμία). Desejo ou cobiça, especialmente no sentido de desejo pecaminoso.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sobremaneira pecaminoso</span>
+                Do grego *kath' hyperbolēn hamartōlos* (καθ' ὑπερβολὴν ἁμαρτωλός). Expressão que enfatiza a natureza extremamente pecaminosa do pecado revelada pela lei.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Homem interior</span>
+                Do grego *esō anthrōpon* (ἔσω ἄνθρωπον). A natureza espiritual do crente, que tem prazer na lei de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Corpo desta morte</span>
+                Do grego *sōmatos tou thanatou toutou* (σώματος τοῦ θανάτου τούτου). Expressão que descreve o corpo mortal sujeito à morte e ao pecado.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">7</div>
+
+    <div class="pericope">Libertos da Lei para Servir em Novidade de Espírito</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>ão sabeis vós, irmãos — pois falo aos que conhecem a lei —, que a lei tem domínio sobre o homem por todo o tempo que ele vive?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque a mulher casada está ligada pela lei ao marido, enquanto ele vive; mas, se o marido morrer, ela está livre da lei do marido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Assim, pois, se, vivendo ainda o marido, ela se unir a outro homem, será chamada adúltera; mas, se o marido morrer, ela está livre da lei, e não será adúltera, se se unir a outro homem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Portanto, meus irmãos, também vós fostes mortos para a lei pelo corpo de Cristo, para que pertençais a outro, àquele que ressuscitou dos mortos, a fim de que demos fruto para Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque, quando estávamos na carne, as paixões dos pecados, que são pela lei, operavam em nossos membros, para darem fruto para a morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas agora fomos libertados da lei, tendo morrido para aquilo em que estávamos retidos; para que sirvamos em novidade de espírito, e não na velhice da letra.
+    </p>
+
+    <div class="pericope">A Lei e o Pecado</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Que diremos, pois? A lei é pecado? De maneira nenhuma. Mas eu não conheci o pecado senão pela lei; porque eu não conheceria a concupiscência, se a lei não dissesse: <span class="fala-outro">"Não cobiçarás."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas o pecado, tomando ocasião pelo mandamento, operou em mim toda a concupiscência; porque sem lei o pecado está morto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E eu, noutro tempo, vivia sem lei; mas, vindo o mandamento, reviveu o pecado, e eu morri.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E o mandamento, que era para vida, achei eu que era para morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Porque o pecado, tomando ocasião pelo mandamento, me enganou, e por ele me matou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E assim a lei é santa, e o mandamento santo, justo e bom.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Logo, o que é bom foi feito morte para mim? De maneira nenhuma. Mas o pecado, para que se mostrasse pecado, operou a morte em mim pelo bem; para que pelo mandamento o pecado se mostrasse sobremaneira pecaminoso.
+    </p>
+
+    <div class="pericope">O Conflito Interior</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque bem sabemos que a lei é espiritual; mas eu sou carnal, vendido sob o pecado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Porque o que faço, não o aprovo; pois o que quero, isso não faço; mas o que aborreço, isso faço.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, se faço o que não quero, consinto com a lei, que é boa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        De maneira que agora já não sou eu que faço isto, mas o pecado que habita em mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque eu sei que em mim, isto é, na minha carne, não habita bem algum; pois o querer está em mim, mas efetuar o bem não o acho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Porque o bem que quero, não faço; mas o mal que não quero, esse faço.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E, se eu faço o que não quero, já não sou eu que o faço, mas o pecado que habita em mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Acho, pois, esta lei: que, quando eu quero fazer o bem, o mal está comigo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Porque, segundo o homem interior, tenho prazer na lei de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas vejo nos meus membros outra lei, que guerreia contra a lei da minha mente, e me faz prisioneiro da lei do pecado que está nos meus membros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Miserável homem que eu sou! Quem me livrará do corpo desta morte?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Dou graças a Deus, por Jesus Cristo, nosso Senhor. Assim, pois, eu mesmo, com a mente, sirvo à lei de Deus, mas com a carne, à lei do pecado.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:1 — "Falo aos que conhecem a lei"</span>
+            <div class="greek-text">γινώσκουσιν γὰρ νόμον λαλῶ</div>
+            <p><strong>Análise:</strong> Paulo se dirige a uma audiência que conhece a lei mosaica, usando uma analogia do direito matrimonial para explicar a relação do crente com a lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falo aos que conhecem a lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:1 — "A lei tem domínio sobre o homem"</span>
+            <div class="greek-text">ὁ νόμος κυριεύει τοῦ ἀνθρώπου</div>
+            <p><strong>Análise:</strong> O verbo <em>kyrieuō</em> indica domínio ou senhorio. A lei tem autoridade sobre a pessoa enquanto ela vive.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a lei tem domínio sobre o homem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:2 — "Ligada pela lei ao marido"</span>
+            <div class="greek-text">ἡ ὕπανδρος γυνή</div>
+            <p><strong>Análise:</strong> Literalmente "a mulher que está sob o marido" ou "a mulher casada". A lei a liga ao marido enquanto ele vive.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ligada pela lei ao marido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:4 — "Fostes mortos para a lei"</span>
+            <div class="greek-text">ἐθανατώθητε τῷ νόμῳ</div>
+            <p><strong>Análise:</strong> Aoristo passivo de <em>thanatoō</em>. O dativo indica relação: morreram em relação à lei, ou seja, foram libertados de seu domínio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fostes mortos para a lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:5 — "Paixões dos pecados"</span>
+            <div class="greek-text">τὰ παθήματα τῶν ἁμαρτιῶν</div>
+            <p><strong>Análise:</strong> <em>Pathēmata</em> refere-se a emoções ou desejos intensos, aqui no sentido de paixões pecaminosas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "paixões dos pecados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:6 — "Novidade de espírito"</span>
+            <div class="greek-text">καινότητι πνεύματος</div>
+            <p><strong>Análise:</strong> <em>Kainotēs</em> indica qualidade nova. O serviço cristão é caracterizado por uma nova vida no Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "novidade de espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:6 — "Velhice da letra"</span>
+            <div class="greek-text">παλαιότητι γράμματος</div>
+            <p><strong>Análise:</strong> Contrasta com "novidade de espírito". A letra da lei, sem o Espírito, é velha e incapaz de dar vida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "velhice da letra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:7 — "Não cobiçarás"</span>
+            <div class="greek-text">οὐκ ἐπιθυμήσεις</div>
+            <p><strong>Análise:</strong> Citação do décimo mandamento (Êxodo 20:17). A lei revela o pecado da cobiça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação "Não cobiçarás".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:8 — "Tomando ocasião pelo mandamento"</span>
+            <div class="greek-text">ἀφορμὴν λαβοῦσα διὰ τῆς ἐντολῆς</div>
+            <p><strong>Análise:</strong> O pecado é personificado como alguém que aproveita a oportunidade fornecida pelo mandamento para operar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tomando ocasião pelo mandamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:8 — "Sem lei o pecado está morto"</span>
+            <div class="greek-text">χωρὶς γὰρ νόμου ἁμαρτία νεκρά</div>
+            <p><strong>Análise:</strong> O pecado não é imputado como transgressão onde não há lei, mas a lei desperta e revela o pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem lei o pecado está morto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:9 — "Reviveu o pecado, e eu morri"</span>
+            <div class="greek-text">ἀνέζησεν ἡ ἁμαρτία, ἐγὼ δὲ ἀπέθανον</div>
+            <p><strong>Análise:</strong> O pecado "reviveu" quando o mandamento chegou, e Paulo "morreu" espiritualmente, reconhecendo sua culpa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "reviveu o pecado, e eu morri".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:10 — "O mandamento, que era para vida, achei eu que era para morte"</span>
+            <div class="greek-text">εὑρέθη μοι ἡ ἐντολὴ ἡ εἰς ζωήν, αὕτη εἰς θάνατον</div>
+            <p><strong>Análise:</strong> O mandamento foi dado para promover a vida, mas, por causa do pecado, acabou resultando em morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o mandamento, que era para vida, achei eu que era para morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:11 — "Tomando ocasião pelo mandamento"</span>
+            <div class="greek-text">ἀφορμὴν λαβοῦσα διὰ τῆς ἐντολῆς</div>
+            <p><strong>Análise:</strong> Repetição do verbo do versículo 8, enfatizando que o pecado usou o mandamento como oportunidade para enganar e matar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tomando ocasião pelo mandamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:12 — "A lei é santa, e o mandamento santo, justo e bom"</span>
+            <div class="greek-text">ὁ νόμος ἅγιος, καὶ ἡ ἐντολὴ ἁγία καὶ δικαία καὶ ἀγαθή</div>
+            <p><strong>Análise:</strong> A lei em si mesma é santa, justa e boa. O problema não está na lei, mas no pecado que a usa para produzir morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a lei é santa, e o mandamento santo, justo e bom".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:13 — "Sobremaneira pecaminoso"</span>
+            <div class="greek-text">καθ' ὑπερβολὴν ἁμαρτωλός</div>
+            <p><strong>Análise:</strong> A expressão <em>kath' hyperbolēn</em> indica intensidade máxima, "além de toda medida". O pecado se revela como extremamente pecaminoso através do mandamento.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "sobremaneira pecaminoso" (em vez de "excessivamente maligno") para maior precisão.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:14 — "Eu sou carnal, vendido sob o pecado"</span>
+            <div class="greek-text">ἐγὼ σάρκινός εἰμι, πεπραμένος ὑπὸ τὴν ἁμαρτίαν</div>
+            <p><strong>Análise:</strong> <em>Sarkinos</em> indica feito de carne, sujeito à fragilidade humana. <em>Pepramenos</em> (perfeito passivo) indica um estado de escravidão ao pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "eu sou carnal, vendido sob o pecado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:17 — "O pecado que habita em mim"</span>
+            <div class="greek-text">ἡ ἐνοικοῦσα ἐν ἐμοὶ ἁμαρτία</div>
+            <p><strong>Análise:</strong> O particípio presente <em>enoikousa</em> indica habitação contínua. O pecado é uma presença constante na carne.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o pecado que habita em mim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:18 — "Efetuar o bem não o acho"</span>
+            <div class="greek-text">τὸ δὲ κατεργάζεσθαι τὸ καλὸν οὔ</div>
+            <p><strong>Análise:</strong> Paulo reconhece que, embora tenha o desejo de fazer o bem, não encontra em si mesmo a capacidade de efetuá-lo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "efetuar o bem não o acho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:22 — "Homem interior"</span>
+            <div class="greek-text">ἔσω ἄνθρωπον</div>
+            <p><strong>Análise:</strong> O "homem interior" é a natureza espiritual do crente, que se deleita na lei de Deus, em contraste com a carne.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "homem interior".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:23 — "Outra lei"</span>
+            <div class="greek-text">ἕτερον νόμον</div>
+            <p><strong>Análise:</strong> <em>Heteros</em> indica outra de tipo diferente. A "lei do pecado" é diferente da lei de Deus e guerreia contra ela.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "outra lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:24 — "Corpo desta morte"</span>
+            <div class="greek-text">σώματος τοῦ θανάτου τούτου</div>
+            <p><strong>Análise:</strong> O corpo mortal, sujeito à morte e ao pecado. Paulo anseia por libertação desta condição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "corpo desta morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 7:25 — "Dou graças a Deus, por Jesus Cristo"</span>
+            <div class="greek-text">χάρις τῷ θεῷ διὰ Ἰησοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> A gratidão a Deus é pela libertação que vem por meio de Jesus Cristo, o único que pode livrar do corpo desta morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dou graças a Deus, por Jesus Cristo".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 7 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 7 explora a relação entre o crente, a lei e o pecado. Estrutura: 1) A analogia do casamento: libertos da lei para pertencer a Cristo (v.1-6); 2) A lei revela o pecado (v.7-13); 3) O conflito interior: a luta entre a carne e o espírito (v.14-25). Paulo descreve a experiência de todo crente que, mesmo regenerado, ainda luta contra a presença do pecado em sua carne.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

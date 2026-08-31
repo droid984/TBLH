@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 6</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 6</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Batismo</span>
+                Do grego <em>baptisma</em> (βάπτισμα), imersão. Símbolo da união com Cristo na morte e ressurreição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Velho homem</span>
+                Do grego <em>palaios anthrōpos</em> (παλαιὸς ἄνθρωπος), a natureza pecaminosa anterior.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Instrumentos</span>
+                Do grego <em>hopla</em> (ὅπλα), "armas", "instrumentos".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Salário</span>
+                Do grego <em>opsōnia</em> (ὀψώνια), pagamento, soldo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">6</div>
+
+    <!-- PERÍCOPE 1: MORTO PARA O PECADO, VIVO PARA DEUS (6.1-14) -->
+    <div class="pericope">Morto para o Pecado, Vivo para Deus</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">Q</span>ue diremos, pois? Permaneceremos no pecado, para que a graça abunde?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        De maneira nenhuma. Nós, que morremos para o pecado, como viveremos ainda nele?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Ou não sabeis que todos quantos fomos batizados em Jesus Cristo fomos batizados na sua morte?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Portanto, fomos sepultados com ele pelo batismo na morte; para que, como Cristo ressuscitou dos mortos pela glória do Pai, assim também nós andemos em novidade de vida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque, se fomos plantados juntamente com ele na semelhança da sua morte, também o seremos na semelhança da sua ressurreição;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        sabendo isto: que o nosso velho homem foi crucificado com ele, para que o corpo do pecado seja desfeito, a fim de que não sirvamos mais ao pecado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Porque aquele que morreu está justificado do pecado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Ora, se morremos com Cristo, cremos que também com ele viveremos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        sabendo que Cristo, tendo ressuscitado dos mortos, já não morre; a morte não tem mais domínio sobre ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Pois, quanto a ter morrido, de uma vez morreu para o pecado; mas, quanto a viver, vive para Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Assim também vós considerai-vos como mortos para o pecado, mas vivos para Deus, em Cristo Jesus, nosso Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Portanto, não reine o pecado em vosso corpo mortal, para lhe obedecerdes em suas concupiscências.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Nem apresenteis os vossos membros ao pecado como instrumentos de iniquidade; mas apresentai-vos a Deus, como vivos dentre os mortos, e os vossos membros a Deus, como instrumentos de justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque o pecado não terá domínio sobre vós, pois não estais debaixo da lei, mas debaixo da graça.
+    </p>
+
+    <!-- PERÍCOPE 2: SERVOS DA JUSTIÇA (6.15-23) -->
+    <div class="pericope">Servos da Justiça</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Pois quê? Pecaremos, porque não estamos debaixo da lei, mas debaixo da graça? De maneira nenhuma.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Não sabeis que, a quem vos apresentardes como servos para obedecer, sois servos daquele a quem obedeceis, seja do pecado para a morte, seja da obediência para a justiça?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Mas graças a Deus, porque, embora fôsseis servos do pecado, obedecestes de coração à forma de doutrina a que fostes entregues.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E, libertados do pecado, fostes feitos servos da justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Falo como homem, por causa da fraqueza da vossa carne. Pois, assim como apresentastes os vossos membros para servirem à imundícia e à iniquidade para iniquidade, assim também agora apresentai os vossos membros para servirem à justiça para santificação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque, quando éreis servos do pecado, estáveis livres da justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E que fruto tínheis então das coisas de que agora vos envergonhais? Porque o fim delas é a morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Mas agora, libertados do pecado, e feitos servos de Deus, tendes o vosso fruto para santificação, e por fim a vida eterna.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna, em Cristo Jesus, nosso Senhor.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:1 — "Permaneceremos no pecado?"</span>
+            <div class="greek-text">ἐπιμένουμεν τῇ ἁμαρτίᾳ</div>
+            <p><strong>Análise:</strong> Pergunta retórica sobre continuar no pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Permaneceremos no pecado?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:2 — "Morremos para o pecado"</span>
+            <div class="greek-text">ἀπεθάνομεν τῇ ἁμαρτίᾳ</div>
+            <p><strong>Análise:</strong> Morremos para o poder do pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "morremos para o pecado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:3 — "Batizados em Jesus Cristo"</span>
+            <div class="greek-text">ἐβαπτίσθημεν εἰς Χριστὸν Ἰησοῦν</div>
+            <p><strong>Análise:</strong> O batismo une o crente a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batizados em Jesus Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:3 — "Batizados na sua morte"</span>
+            <div class="greek-text">εἰς τὸν θάνατον αὐτοῦ ἐβαπτίσθημεν</div>
+            <p><strong>Análise:</strong> O batismo significa união com a morte de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batizados na sua morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:4 — "Sepultados com ele pelo batismo"</span>
+            <div class="greek-text">συνετάφημεν οὖν αὐτῷ διὰ τοῦ βαπτίσματος</div>
+            <p><strong>Análise:</strong> Sepultados com Cristo na morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sepultados com ele pelo batismo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:4 — "Novidade de vida"</span>
+            <div class="greek-text">καινότητι ζωῆς</div>
+            <p><strong>Análise:</strong> Nova qualidade de vida em Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "novidade de vida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:5 — "Plantados juntamente"</span>
+            <div class="greek-text">σύμφυτοι</div>
+            <p><strong>Análise:</strong> Participio relacionado a plantar juntamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "plantados juntamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:6 — "Velho homem"</span>
+            <div class="greek-text">παλαιὸς ... ἄνθρωπος</div>
+            <p><strong>Análise:</strong> A natureza pecaminosa anterior foi crucificada com Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "velho homem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:7 — "Aquele que morreu está justificado do pecado"</span>
+            <div class="greek-text">ὁ ἀποθανὼν δεδικαίωται ἀπὸ τῆς ἁμαρτίας</div>
+            <p><strong>Análise:</strong> A morte liberta do poder e da culpa do pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 6:9 — "A morte não tem mais domínio sobre ele"</span>
+            <div class="greek-text">θάνατος αὐτοῦ οὐκέτι κυριεύει</div>
+            <p><strong>Análise:</strong> Cristo venceu a morte definitivamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:13 — "Instrumentos de iniquidade"</span>
+            <div class="greek-text">ὅπλα ἀδικίας</div>
+            <p><strong>Análise:</strong> Membros do corpo usados como armas para o pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "instrumentos de iniquidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:13 — "Instrumentos de justiça"</span>
+            <div class="greek-text">ὅπλα δικαιοσύνης</div>
+            <p><strong>Análise:</strong> Membros do corpo usados como armas para a justiça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "instrumentos de justiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:17 — "Forma de doutrina"</span>
+            <div class="greek-text">τύπον διδαχῆς</div>
+            <p><strong>Análise:</strong> O padrão de ensino a que foram entregues.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "forma de doutrina".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 6:23 — "Salário do pecado"</span>
+            <div class="greek-text">ὀψώνια τῆς ἁμαρτίας</div>
+            <p><strong>Análise:</strong> Pagamento devido ao pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "salário do pecado".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 6:23 — "Dom gratuito de Deus"</span>
+            <div class="greek-text">χάρισμα ... τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> A vida eterna é um dom gratuito, não um salário.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dom gratuito de Deus".</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+    </section>
+
+</body>
+</html>

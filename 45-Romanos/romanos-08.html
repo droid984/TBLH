@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 8</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 8</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Condenação</span>
+                Do grego *katakrima* (κατάκριμα). A sentença de culpa e punição que não mais recai sobre os que estão em Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lei do Espírito de vida</span>
+                Do grego *nomos tou Pneumatos tēs zōēs* (νόμος τοῦ Πνεύματος τῆς ζωῆς). O princípio operante do Espírito que produz vida e liberta do pecado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Inclinação da carne</span>
+                Do grego *phronēma tēs sarkos* (φρόνημα τῆς σαρκός). A mentalidade ou disposição voltada para as coisas da carne.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espírito de adoção</span>
+                Do grego *pneuma hyiothesias* (πνεῦμα υἱοθεσίας). O Espírito que nos confere o status de filhos de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aba, Pai</span>
+                Expressão aramaica preservada que expressa a intimidade do relacionamento com Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ardente expectação</span>
+                Do grego *apokaradokia* (ἀποκαραδοκία). Expectativa intensa e ansiosa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Primícias do Espírito</span>
+                Do grego *aparchēn tou Pneumatos* (ἀπαρχὴν τοῦ Πνεύματος). O Espírito como garantia e antecipação da redenção futura.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Gemidos inexprimíveis</span>
+                Do grego *stenagmois alalētois* (στεναγμοῖς ἀλαλήτοις). Gemidos do Espírito que não podem ser expressos em palavras humanas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Propósito</span>
+                Do grego *prothesis* (πρόθεσις). O plano ou desígnio divino para aqueles que são chamados.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mais que vencedores</span>
+                Do grego *hypernikōmen* (ὑπερνικῶμεν). Vitória abundante e excedente em Cristo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">8</div>
+
+    <div class="pericope">Vida no Espírito</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>ortanto, agora nenhuma condenação há para os que estão em Cristo Jesus, que não andam segundo a carne, mas segundo o Espírito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque a lei do Espírito de vida, em Cristo Jesus, me livrou da lei do pecado e da morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porquanto o que era impossível à lei, visto que estava fraca pela carne, Deus, enviando o seu próprio Filho em semelhança da carne do pecado, pelo pecado condenou o pecado na carne;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        para que a justiça da lei se cumprisse em nós, que não andamos segundo a carne, mas segundo o Espírito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque os que são segundo a carne inclinam-se para as coisas da carne; mas os que são segundo o Espírito, para as coisas do Espírito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Porque a inclinação da carne é morte; mas a inclinação do Espírito é vida e paz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Porquanto a inclinação da carne é inimizade contra Deus, pois não é sujeita à lei de Deus, nem, na verdade, o pode ser.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Portanto, os que estão na carne não podem agradar a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Vós, porém, não estais na carne, mas no Espírito, se é que o Espírito de Deus habita em vós. Mas, se alguém não tem o Espírito de Cristo, esse não é dele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, se Cristo está em vós, o corpo, na verdade, está morto por causa do pecado, mas o espírito vive por causa da justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E, se o Espírito daquele que ressuscitou Jesus dentre os mortos habita em vós, aquele que ressuscitou Cristo dentre os mortos também vivificará os vossos corpos mortais, pelo seu Espírito que habita em vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Portanto, irmãos, somos devedores, não à carne, para vivermos segundo a carne.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque, se viverdes segundo a carne, morrereis; mas, se pelo Espírito mortificardes as obras do corpo, vivereis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque todos os que são guiados pelo Espírito de Deus, esses são filhos de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Porque não recebestes o espírito de escravidão, para outra vez estardes em temor, mas recebestes o Espírito de adoção, pelo qual clamamos: Aba, Pai.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        O próprio Espírito testifica com o nosso espírito que somos filhos de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, se somos filhos, somos também herdeiros: herdeiros de Deus, e coerdeiros de Cristo; se é que padecemos com ele, para que também com ele sejamos glorificados.
+    </p>
+
+    <div class="pericope">A Glória Futura</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque para mim tenho por certo que as aflições deste tempo presente não são dignas de serem comparadas com a glória que em nós há de ser revelada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Porque a ardente expectação da criatura espera a manifestação dos filhos de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque a criação ficou sujeita à vaidade, não voluntariamente, mas por causa daquele que a sujeitou,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        na esperança de que também a própria criação será libertada da servidão da corrupção, para a liberdade da glória dos filhos de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Porque sabemos que toda a criação, conjuntamente, geme e está com dores de parto até agora.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E não só ela, mas também nós mesmos, que temos as primícias do Espírito, também gememos em nós mesmos, esperando a adoção, a saber, a redenção do nosso corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Porque em esperança fomos salvos. Ora, a esperança que se vê não é esperança; porque o que alguém vê, por que ainda o espera?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Mas, se esperamos o que não vemos, com paciência o aguardamos.
+    </p>
+
+    <div class="pericope">A Intercessão do Espírito</div>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E da mesma maneira também o Espírito ajuda as nossas fraquezas; porque não sabemos o que havemos de pedir como convém, mas o próprio Espírito intercede por nós com gemidos inexprimíveis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E aquele que examina os corações sabe qual é a intenção do Espírito; e é ele que, segundo a vontade de Deus, intercede pelos santos.
+    </p>
+
+    <div class="pericope">O Amor Inabalável de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Porque os que dantes conheceu, também os predestinou para serem conformes à imagem de seu Filho, a fim de que ele seja o primogênito entre muitos irmãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E aos que predestinou, a esses também chamou; e aos que chamou, a esses também justificou; e aos que justificou, a esses também glorificou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Que diremos, pois, a estas coisas? Se Deus é por nós, quem será contra nós?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Aquele que nem mesmo a seu próprio Filho poupou, antes o entregou por todos nós, como não nos dará também com ele todas as coisas?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Quem intentará acusação contra os escolhidos de Deus? É Deus quem os justifica.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Quem é que condena? Cristo é quem morreu, ou antes, quem ressuscitou dentre os mortos, o qual está à direita de Deus, e também intercede por nós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Quem nos separará do amor de Cristo? A tribulação, ou a angústia, ou a perseguição, ou a fome, ou a nudez, ou o perigo, ou a espada?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Como está escrito: <span class="fala-outro">"Por amor de ti somos entregues à morte todo o dia; fomos considerados como ovelhas para o matadouro."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Mas em todas estas coisas somos mais que vencedores, por meio daquele que nos amou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Porque estou certo de que nem a morte, nem a vida, nem os anjos, nem os principados, nem as potestades, nem o presente, nem o porvir,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        nem a altura, nem a profundidade, nem alguma outra criatura poderá nos separar do amor de Deus, que está em Cristo Jesus, nosso Senhor.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:1 — "Nenhuma condenação há"</span>
+            <div class="greek-text">οὐδὲν κατάκριμα</div>
+            <p><strong>Análise:</strong> <em>Katakrima</em> é a sentença judicial de culpa. Paulo declara que, para os que estão em Cristo, não há mais sentença de condenação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nenhuma condenação há".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:1 — "Que não andam segundo a carne"</span>
+            <div class="greek-text">τοῖς ... μὴ κατὰ σάρκα περιπατοῦσιν</div>
+            <p><strong>Análise:</strong> Expressão presente no Textus Receptus, que descreve a vida prática daqueles que estão em Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que não andam segundo a carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:2 — "Lei do Espírito de vida"</span>
+            <div class="greek-text">ὁ νόμος τοῦ Πνεύματος τῆς ζωῆς</div>
+            <p><strong>Análise:</strong> "Lei" aqui significa princípio operante. O Espírito de vida é o princípio que liberta do princípio do pecado e da morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lei do Espírito de vida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:3 — "Semelhança da carne do pecado"</span>
+            <div class="greek-text">ἐν ὁμοιώματι σαρκὸς ἁμαρτίας</div>
+            <p><strong>Análise:</strong> Cristo veio em "semelhança" de carne pecaminosa, ou seja, verdadeiramente humano, mas sem pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "semelhança da carne do pecado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:6 — "Inclinação da carne"</span>
+            <div class="greek-text">φρόνημα τῆς σαρκός</div>
+            <p><strong>Análise:</strong> <em>Phronēma</em> indica a mente, disposição ou inclinação. A inclinação da carne é morte; a do Espírito é vida e paz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "inclinação da carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:15 — "Espírito de adoção"</span>
+            <div class="greek-text">πνεῦμα υἱοθεσίας</div>
+            <p><strong>Análise:</strong> <em>Hyiothesia</em> significa "colocação como filho". O Espírito confere ao crente o status de filho de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Espírito de adoção".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:15 — "Aba, Pai"</span>
+            <div class="greek-text">Ἀββᾶ ὁ Πατήρ</div>
+            <p><strong>Análise:</strong> "Aba" é a forma aramaica de "Pai", expressão de intimidade e confiança filial.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a expressão "Aba, Pai".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:17 — "Coerdeiros de Cristo"</span>
+            <div class="greek-text">συγκληρονόμοι Χριστοῦ</div>
+            <p><strong>Análise:</strong> O prefixo <em>syn-</em> indica participação conjunta com Cristo na herança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coerdeiros de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:19 — "Ardente expectação"</span>
+            <div class="greek-text">ἀποκαραδοκία</div>
+            <p><strong>Análise:</strong> Palavra rara que descreve uma expectativa intensa e ansiosa, com o pescoço esticado para frente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ardente expectação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:20 — "Sujeita à vaidade"</span>
+            <div class="greek-text">ὑπετάγη τῇ ματαιότητι</div>
+            <p><strong>Análise:</strong> A criação foi submetida à futilidade por causa do pecado humano, mas com esperança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sujeita à vaidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:21 — "Servidão da corrupção"</span>
+            <div class="greek-text">δουλείας τῆς φθορᾶς</div>
+            <p><strong>Análise:</strong> A criação está escravizada à decadência e à corrupção, mas será libertada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "servidão da corrupção".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:22 — "Dores de parto"</span>
+            <div class="greek-text">συνωδίνει</div>
+            <p><strong>Análise:</strong> A criação geme e sofre como uma mulher em trabalho de parto, aguardando a nova criação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dores de parto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:23 — "Primícias do Espírito"</span>
+            <div class="greek-text">ἀπαρχὴν τοῦ Πνεύματος</div>
+            <p><strong>Análise:</strong> O Espírito é a garantia e a antecipação da redenção futura, assim como as primícias eram a antecipação da colheita.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primícias do Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:26 — "Gemidos inexprimíveis"</span>
+            <div class="greek-text">στεναγμοῖς ἀλαλήτοις</div>
+            <p><strong>Análise:</strong> Gemidos que não podem ser expressos em palavras humanas, mas que o Espírito apresenta a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "gemidos inexprimíveis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:28 — "Chamados segundo o seu propósito"</span>
+            <div class="greek-text">κλητοῖς κατὰ πρόθεσιν</div>
+            <p><strong>Análise:</strong> <em>Kata prothesin</em> indica que o chamado é conforme o propósito ou desígnio eterno de Deus, e não um decreto arbitrário.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "chamados segundo o seu propósito" (em vez de "chamados por seu decreto").</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:29 — "Predestinou"</span>
+            <div class="greek-text">προώρισεν</div>
+            <p><strong>Análise:</strong> Deus predestinou os crentes para serem conformes à imagem de Cristo. A predestinação tem como alvo a conformidade com Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "predestinou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:30 — "Chamou"</span>
+            <div class="greek-text">ἐκάλεσεν</div>
+            <p><strong>Análise:</strong> O chamado eficaz de Deus, que resulta em justificação e glorificação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chamou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:34 — "Intercede por nós"</span>
+            <div class="greek-text">ἐντυγχάνει ὑπὲρ ἡμῶν</div>
+            <p><strong>Análise:</strong> Cristo intercede pelos crentes, assim como o Espírito intercede (v. 27).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "intercede por nós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 8:37 — "Mais que vencedores"</span>
+            <div class="greek-text">ὑπερνικῶμεν</div>
+            <p><strong>Análise:</strong> O verbo com o prefixo <em>hyper-</em> indica vitória abundante, mais que conquistadora.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mais que vencedores".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 8 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 8 é o ponto alto da teologia de Paulo. Estrutura: 1) Vida no Espírito (v.1-17) — a libertação da condenação e a vida guiada pelo Espírito; 2) A glória futura (v.18-25) — o sofrimento presente e a esperança da redenção; 3) A intercessão do Espírito (v.26-27) — o auxílio do Espírito nas fraquezas; 4) O amor inabalável de Deus (v.28-39) — a certeza da segurança eterna do crente. Nenhuma condenação, separação ou acusação prevalece contra os que estão em Cristo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

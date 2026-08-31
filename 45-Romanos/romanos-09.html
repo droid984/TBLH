@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Anátema</span>
+                Do grego *anathema* (ἀνάθεμα). Paulo expressa seu desejo de ser "separado" de Cristo por amor a Israel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Adoção</span>
+                Do grego *hyiothesia* (υἱοθεσία). O status de filho concedido por Deus a Israel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Alianças</span>
+                As alianças divinas com Abraão, Moisés e Davi, privilégios de Israel.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Promulgação da lei</span>
+                A entrega da Torá a Israel no Sinai.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Eleição</span>
+                Do grego *eklogē* (ἐκλογή). A escolha soberana de Deus, que não depende das obras humanas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Vasos da ira</span>
+                Do grego *skeuē orgēs* (σκεύη ὀργῆς). Aqueles que são objeto da ira divina.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Vasos de misericórdia</span>
+                Do grego *skeuē eleous* (σκεύη ἐλέους). Aqueles que recebem a misericórdia de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Remanescente</span>
+                Do grego *hypoleimma* (ὑπόλειμμα). O grupo fiel dentro de Israel que será salvo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Pedra de tropeço</span>
+                Cristo como a pedra que causa tropeço e escândalo para aqueles que rejeitam a fé.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <div class="pericope">A Tristeza de Paulo por Israel</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>m Cristo digo a verdade, não minto, dando testemunho comigo a minha consciência no Espírito Santo:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        que tenho grande tristeza e contínua dor no meu coração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque eu mesmo desejaria ser separado de Cristo, por amor de meus irmãos, que são meus parentes segundo a carne;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        que são israelitas, dos quais é a adoção, e a glória, e as alianças, e a promulgação da lei, e o culto, e as promessas;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        dos quais são os pais, e dos quais é Cristo, segundo a carne, o qual é sobre todos, Deus bendito para sempre. Amém.
+    </p>
+
+    <div class="pericope">O Propósito de Deus na Eleição</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Não, porém, que a palavra de Deus tenha falhado. Porque nem todos os que são de Israel são israelitas;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        nem por serem descendência de Abraão são todos filhos; mas: <span class="fala-outro">"Em Isaque será chamada a tua descendência."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Isto é, não são os filhos da carne que são filhos de Deus, mas os filhos da promessa são contados como descendência.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque a palavra da promessa é esta: <span class="fala-outro">"Por este tempo virei, e Sara terá um filho."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E não somente isto, mas também Rebeca, quando concebeu de um, de Isaque, nosso pai;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        porque, não tendo eles ainda nascido, nem tendo feito bem ou mal — para que o propósito de Deus, segundo a eleição, permanecesse firme, não por causa das obras, mas por aquele que chama —,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        foi-lhe dito: <span class="fala-outro">"O maior servirá o menor."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Como está escrito: <span class="fala-outro">"Amei Jacó, e aborreci Esaú."</span>
+    </p>
+
+    <div class="pericope">A Soberania de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Que diremos, pois? Há injustiça da parte de Deus? De maneira nenhuma.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Pois diz a Moisés: <span class="fala-outro">"Terei misericórdia de quem eu tiver misericórdia, e me compadecerei de quem eu me compadecer."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Assim, pois, isto não é do que quer, nem do que corre, mas de Deus, que usa de misericórdia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque a Escritura diz a Faraó: <span class="fala-outro">"Para isto mesmo te levantei, para mostrar em ti o meu poder, e para que o meu nome seja anunciado em toda a terra."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Assim, pois, ele tem misericórdia de quem quer, e endurece a quem quer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Dir-me-ás, então: <span class="fala-outro">"Por que ainda ele se queixa? Pois quem resiste à sua vontade?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Mas, ó homem, quem és tu, que a Deus replicas? Porventura a coisa formada dirá ao que a formou: <span class="fala-outro">"Por que me fizeste assim?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Ou não tem o oleiro poder sobre o barro, para da mesma massa fazer um vaso para honra e outro para desonra?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E que diremos, se Deus, querendo mostrar a sua ira, e dar a conhecer o seu poder, suportou com muita paciência os vasos da ira, preparados para a perdição;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        para que também desse a conhecer as riquezas da sua glória nos vasos de misericórdia, que para glória já dantes preparou,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        os quais somos nós, a quem também chamou, não só dentre os judeus, mas também dentre os gentios?
+    </p>
+
+    <div class="pericope">A Inclusão dos Gentios e o Tropeço de Israel</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Como também diz em Oseias: <span class="fala-outro">"Chamarei meu povo ao que não era meu povo, e amada à que não era amada.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        <span class="fala-outro">E será que, no lugar onde lhes foi dito: 'Vós não sois meu povo', ali serão chamados filhos do Deus vivo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Também Isaías clama acerca de Israel: <span class="fala-outro">"Ainda que o número dos filhos de Israel seja como a areia do mar, o remanescente será salvo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        <span class="fala-outro">Porque ele completará a obra, e a abreviará em justiça; porque o Senhor fará uma obra abreviada sobre a terra."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E como antes disse Isaías: <span class="fala-outro">"Se o Senhor dos Exércitos não nos tivesse deixado descendência, teríamos nos tornado como Sodoma, e seríamos semelhantes a Gomorra."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Que diremos, pois? Que os gentios, que não buscavam a justiça, alcançaram a justiça, mas a justiça que é pela fé.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Mas Israel, que buscava a lei da justiça, não chegou à lei da justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Por quê? Porque não foi pela fé, mas como que pelas obras da lei; pois tropeçaram na pedra de tropeço;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        como está escrito: <span class="fala-outro">"Eis que ponho em Sião uma pedra de tropeço e uma rocha de escândalo; e todo aquele que crer nela não será confundido."</span>
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:1 — "Minha consciência no Espírito Santo"</span>
+            <div class="greek-text">συμμαρτυρούσης μοι τῆς συνειδήσεώς μου ἐν Πνεύματι Ἁγίῳ</div>
+            <p><strong>Análise:</strong> Paulo afirma que sua consciência, iluminada pelo Espírito, confirma a veracidade de suas palavras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "minha consciência no Espírito Santo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:3 — "Separado de Cristo"</span>
+            <div class="greek-text">ἀνάθεμα εἶναι ἀπὸ τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> <em>Anathema</em> indica algo destinado à destruição ou separação. Paulo expressa um desejo hipotético de ser separado de Cristo por amor a Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "separado de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:4 — "Adoção, glória, alianças, promulgação da lei, culto e promessas"</span>
+            <div class="greek-text">ἡ υἱοθεσία καὶ ἡ δόξα καὶ αἱ διαθῆκαι καὶ ἡ νομοθεσία καὶ ἡ λατρεία καὶ αἱ ἐπαγγελίαι</div>
+            <p><strong>Análise:</strong> Paulo enumera os privilégios exclusivos concedidos por Deus a Israel: o status de filhos, a manifestação da glória divina, as alianças, a entrega da lei, o culto no templo e as promessas messiânicas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos termos, com nota descritiva.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:5 — "Deus bendito para sempre"</span>
+            <div class="greek-text">Θεὸς εὐλογητὸς εἰς τοὺς αἰῶνας</div>
+            <p><strong>Análise:</strong> Doxologia que afirma a divindade de Cristo, a quem pertence a bênção eterna.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus bendito para sempre".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:6 — "Nem todos os que são de Israel são israelitas"</span>
+            <div class="greek-text">οὐ γὰρ πάντες οἱ ἐξ Ἰσραήλ οὗτοι Ἰσραήλ</div>
+            <p><strong>Análise:</strong> Paulo distingue entre Israel étnico e Israel espiritual. Nem todo descendente físico de Jacó é parte do verdadeiro Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nem todos os que são de Israel são israelitas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:7 — "Em Isaque será chamada a tua descendência"</span>
+            <div class="greek-text">ἐν Ἰσαὰκ κληθήσεταί σοι σπέρμα</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 21:12, mostrando que a promessa é transmitida pela linhagem de Isaque, não de Ismael.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:9 — "Por este tempo virei, e Sara terá um filho"</span>
+            <div class="greek-text">κατὰ τὸν καιρὸν τοῦτον ἐλεύσομαι καὶ ἔσται τῇ Σάρρᾳ υἱός</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 18:10, referindo-se ao nascimento de Isaque.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:11 — "Segundo a eleição"</span>
+            <div class="greek-text">κατ' ἐκλογήν</div>
+            <p><strong>Análise:</strong> <em>Eklogē</em> refere-se à escolha soberana de Deus. Paulo enfatiza que a eleição não se baseia nas obras humanas, mas no chamado divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo a eleição".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:12 — "O maior servirá o menor"</span>
+            <div class="greek-text">ὁ μείζων δουλεύσει τῷ ἐλάσσονι</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 25:23, proferida a Rebeca sobre os gêmeos Jacó e Esaú.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:13 — "Amei Jacó, e aborreci Esaú"</span>
+            <div class="greek-text">τὸν Ἰακὼβ ἠγάπησα, τὸν δὲ Ἠσαῦ ἐμίσησα</div>
+            <p><strong>Análise:</strong> Citação de Malaquias 1:2-3, que reflete a escolha soberana de Deus em relação a Jacó e Esaú.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:15 — "Terei misericórdia de quem eu tiver misericórdia"</span>
+            <div class="greek-text">ἐλεήσω ὃν ἂν ἐλεῶ</div>
+            <p><strong>Análise:</strong> Citação de Êxodo 33:19, enfatizando a soberania de Deus na concessão de misericórdia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:17 — "Para isto mesmo te levantei"</span>
+            <div class="greek-text">εἰς αὐτὸ τοῦτο ἐξήγειρά σε</div>
+            <p><strong>Análise:</strong> Citação de Êxodo 9:16. Paulo mostra que a ação de Deus na história, incluindo o endurecimento de Faraó, serve para revelar seu poder.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:18 — "Endurece a quem quer"</span>
+            <div class="greek-text">σκληρύνει</div>
+            <p><strong>Análise:</strong> O verbo <em>sklērynō</em> indica endurecimento. Paulo afirma que Deus tem autoridade para endurecer aqueles que escolhe, em contraste com a misericórdia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "endurece a quem quer".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:21 — "Oleiro"</span>
+            <div class="greek-text">κεραμεύς</div>
+            <p><strong>Análise:</strong> A imagem do oleiro é usada para ilustrar a soberania de Deus sobre a humanidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "oleiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:22 — "Vasos da ira"</span>
+            <div class="greek-text">σκεύη ὀργῆς</div>
+            <p><strong>Análise:</strong> Aqueles que são objetos da ira divina, preparados para a perdição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vasos da ira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:23 — "Vasos de misericórdia"</span>
+            <div class="greek-text">σκεύη ἐλέους</div>
+            <p><strong>Análise:</strong> Aqueles que são objetos da misericórdia divina, preparados para a glória.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vasos de misericórdia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:25-26 — "Chamarei meu povo ao que não era meu povo"</span>
+            <div class="greek-text">καλέσω τὸν οὐ λαόν μου λαόν μου</div>
+            <p><strong>Análise:</strong> Citação de Oseias 2:23, aplicada por Paulo à inclusão dos gentios no povo de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:27-28 — "O remanescente será salvo"</span>
+            <div class="greek-text">τὸ ὑπόλειμμα σωθήσεται</div>
+            <p><strong>Análise:</strong> Citação de Isaías 10:22-23. Paulo mostra que apenas um remanescente de Israel será salvo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 9:33 — "Pedra de tropeço e rocha de escândalo"</span>
+            <div class="greek-text">λίθον προσκόμματος καὶ πέτραν σκανδάλου</div>
+            <p><strong>Análise:</strong> Citação de Isaías 28:16. Cristo é a pedra de tropeço para aqueles que rejeitam a fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 9 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 9 aborda a soberania de Deus na eleição. Estrutura: 1) A tristeza de Paulo por Israel (v.1-5); 2) O propósito de Deus na eleição (v.6-13); 3) A soberania de Deus (v.14-24); 4) A inclusão dos gentios e o tropeço de Israel (v.25-33). Paulo defende que a palavra de Deus não falhou, pois a eleição é por graça, não por obras.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

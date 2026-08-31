@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 15</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 15</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Fortes</span>
+                Do grego *dynatoi* (δυνατοί). Aqueles que têm fé robusta e não têm escrúpulos sobre questões discutíveis.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fraquezas dos fracos</span>
+                Do grego *ta asthenēmata tōn adynatōn* (τὰ ἀσθενήματα τῶν ἀδυνάτων). Os escrúpulos e limitações dos que são fracos na fé.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ministro da circuncisão</span>
+                Do grego *diakonon peritomēs* (διάκονον περιτομῆς). Cristo como servo dos judeus para confirmar as promessas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Raiz em Jessé</span>
+                Citação messiânica de Isaías 11:10, referindo-se a Cristo como descendente de Davi.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ilírico</span>
+                Região dos Bálcãs, situada a oeste/noroeste da Macedônia, onde Paulo pregou o evangelho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espanha</span>
+                Destino planejado por Paulo para a pregação do evangelho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Contribuição</span>
+                Do grego *koinōnia* (κοινωνία). Coleta ou comunhão em apoio aos santos necessitados.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Oferta dos gentios</span>
+                A conversão dos gentios apresentada como oferta aceitável a Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Deus de paz</span>
+                Do grego *ho Theos tēs eirēnēs* (ὁ Θεὸς τῆς εἰρήνης). Título de Deus que encerra a seção.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">15</div>
+
+    <div class="pericope">Suportar os Fracos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">M</span>as nós, que somos fortes, devemos suportar as fraquezas dos fracos, e não agradar a nós mesmos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Portanto, cada um de nós agrade ao seu próximo no que é bom para edificação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque também Cristo não agradou a si mesmo; antes, como está escrito: <span class="fala-outro">"As afrontas dos que te afrontam caíram sobre mim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque tudo o que dantes foi escrito, para nosso ensino foi escrito, para que, pela paciência e consolação das Escrituras, tenhamos esperança.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E o Deus de paciência e consolação vos conceda o mesmo sentimento uns para com os outros, segundo Cristo Jesus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        para que, unânimes, a uma boca, glorifiqueis ao Deus e Pai de nosso Senhor Jesus Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Portanto, acolhei-vos uns aos outros, como também Cristo vos acolheu, para glória de Deus.
+    </p>
+
+    <div class="pericope">Cristo, Servo dos Judeus e dos Gentios</div>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Digo, pois, que Jesus Cristo foi ministro da circuncisão, por causa da verdade de Deus, para confirmar as promessas feitas aos pais;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        e para que os gentios glorifiquem a Deus pela sua misericórdia, como está escrito: <span class="fala-outro">"Por isso te louvarei entre os gentios, e cantarei ao teu nome."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E outra vez diz: <span class="fala-outro">"Alegrai-vos, gentios, com o seu povo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E outra vez: <span class="fala-outro">"Louvai ao Senhor, todos os gentios, e exaltai-o, todos os povos."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E outra vez Isaías diz: <span class="fala-outro">"Uma raiz em Jessé haverá, e aquele que se levantar para reinar sobre os gentios; nele os gentios esperarão."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E o Deus de esperança vos encha de toda alegria e paz na fé, para que abundeis em esperança pelo poder do Espírito Santo.
+    </p>
+
+    <div class="pericope">O Ministério de Paulo aos Gentios</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Eu próprio, meus irmãos, estou certo a vosso respeito, que também vós mesmos estais cheios de bondade, cheios de todo o conhecimento, podendo admoestar-vos uns aos outros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas, irmãos, em parte vos escrevi mais ousadamente, como para vos recordar, pela graça que por Deus me foi dada,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        para que eu seja ministro de Jesus Cristo entre os gentios, administrando o evangelho de Deus, para que a oferta dos gentios seja aceitável, santificada pelo Espírito Santo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Tenho, pois, glória em Cristo Jesus nas coisas que pertencem a Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque não ousarei dizer coisa alguma, senão aquilo que Cristo por mim tem feito, para obediência dos gentios, por palavra e por obras,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        pelo poder de sinais e prodígios, no poder do Espírito de Deus; de maneira que, desde Jerusalém e arredores até o Ilírico, tenho pregado plenamente o evangelho de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E assim me esforcei por anunciar o evangelho, não onde Cristo já tinha sido nomeado, para não edificar sobre fundamento alheio;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        antes, como está escrito: <span class="fala-outro">"Aqueles a quem não foi anunciado o verão, e os que não ouviram entenderão."</span>
+    </p>
+
+    <div class="pericope">Planos de Viagem de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Por isso também muitas vezes tenho sido impedido de ir a vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas agora, não tendo mais lugar nestas regiões, e tendo já há muitos anos grande desejo de ir a vós,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        quando eu partir para a Espanha, irei a vós; pois espero que, de passagem, vos veja, e que para lá seja encaminhado por vós, depois de ter gozado um pouco da vossa companhia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Mas agora vou a Jerusalém, para ministrar aos santos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Porque pareceu bem à Macedônia e à Acaia fazer uma contribuição para os pobres dentre os santos que estão em Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Isto lhes pareceu bem, e devedores lhes são. Porque, se os gentios foram participantes dos seus bens espirituais, devem também servi-los com os bens materiais.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Tendo, pois, concluído isto, e havendo-lhes consignado este fruto, de lá, passando por vós, irei à Espanha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E bem sei que, quando for a vós, chegarei na plenitude da bênção do evangelho de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E rogo-vos, irmãos, por nosso Senhor Jesus Cristo, e pelo amor do Espírito, que luteis comigo nas vossas orações por mim a Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        para que eu seja livre dos rebeldes que estão na Judeia, e que este meu serviço, que tenho para Jerusalém, seja aceito pelos santos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        a fim de que, com alegria, eu chegue a vós pela vontade de Deus, e possa descansar convosco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        E o Deus de paz seja com todos vós. Amém.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:1 — "Nós, que somos fortes"</span>
+            <div class="greek-text">ἡμεῖς οἱ δυνατοί</div>
+            <p><strong>Análise:</strong> <em>Dynatoi</em> refere-se aos que têm fé robusta, sem escrúpulos em relação a questões discutíveis.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nós, que somos fortes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:1 — "Suportar as fraquezas dos fracos"</span>
+            <div class="greek-text">τὰ ἀσθενήματα τῶν ἀδυνάτων βαστάζειν</div>
+            <p><strong>Análise:</strong> <em>Asthenēmata</em> são as fraquezas ou escrúpulos dos que são <em>adynatoi</em> (fracos na fé).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "suportar as fraquezas dos fracos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:3 — "As afrontas dos que te afrontam caíram sobre mim"</span>
+            <div class="greek-text">οἱ ὀνειδισμοὶ τῶν ὀνειδιζόντων σε ἐπέπεσαν ἐπ' ἐμέ</div>
+            <p><strong>Análise:</strong> Citação do Salmo 69:9, aplicada a Cristo, que sofreu as afrontas dirigidas a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:4 — "Paciência e consolação das Escrituras"</span>
+            <div class="greek-text">διὰ τῆς ὑπομονῆς καὶ τῆς παρακλήσεως τῶν γραφῶν</div>
+            <p><strong>Análise:</strong> As Escrituras fornecem paciência (perseverança) e consolação (encorajamento) para a esperança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "paciência e consolação das Escrituras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:8 — "Ministro da circuncisão"</span>
+            <div class="greek-text">διάκονον περιτομῆς</div>
+            <p><strong>Análise:</strong> Cristo veio como servo dos judeus (os da circuncisão) para confirmar as promessas feitas aos patriarcas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministro da circuncisão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:9 — "Por isso te louvarei entre os gentios"</span>
+            <div class="greek-text">διὰ τοῦτο ἐξομολογήσομαί σοι ἐν ἔθνεσιν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 18:49, mostrando que os gentios também louvarão a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:10 — "Alegrai-vos, gentios, com o seu povo"</span>
+            <div class="greek-text">εὐφράνθητε, ἔθνη, μετὰ τοῦ λαοῦ αὐτοῦ</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 32:43, chamando os gentios à alegria com o povo de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:11 — "Louvai ao Senhor, todos os gentios"</span>
+            <div class="greek-text">αἰνεῖτε τὸν Κύριον, πάντα τὰ ἔθνη</div>
+            <p><strong>Análise:</strong> Citação do Salmo 117:1, universalizando o louvor a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:12 — "Uma raiz em Jessé haverá"</span>
+            <div class="greek-text">ἔσται ἡ ῥίζα τοῦ Ἰεσσαί</div>
+            <p><strong>Análise:</strong> Citação de Isaías 11:10, referindo-se ao Messias como descendente de Jessé (pai de Davi).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:13 — "O Deus de esperança"</span>
+            <div class="greek-text">ὁ Θεὸς τῆς ἐλπίδος</div>
+            <p><strong>Análise:</strong> Título de Deus que é a fonte da esperança, que enche os crentes de alegria e paz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o Deus de esperança".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:16 — "Oferta dos gentios"</span>
+            <div class="greek-text">προσφορὰ τῶν ἐθνῶν</div>
+            <p><strong>Análise:</strong> A conversão e santificação dos gentios é apresentada como uma oferta aceitável a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "oferta dos gentios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:19 — "Ilírico"</span>
+            <div class="greek-text">Ἰλλυρικόν</div>
+            <p><strong>Análise:</strong> Região situada a oeste/noroeste da Macedônia, na área dos Bálcãs. Paulo afirma ter levado o evangelho até essa região, demonstrando a extensão de seu ministério.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Ilírico".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:21 — "Aqueles a quem não foi anunciado o verão"</span>
+            <div class="greek-text">οἷς οὐκ ἀνηγγέλη περὶ αὐτοῦ</div>
+            <p><strong>Análise:</strong> Citação de Isaías 52:15, referindo-se à proclamação do evangelho a quem nunca ouviu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:24 — "Espanha"</span>
+            <div class="greek-text">Σπανίαν</div>
+            <p><strong>Análise:</strong> O destino planejado por Paulo para a pregação do evangelho, mostrando sua visão missionária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Espanha".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:26 — "Contribuição"</span>
+            <div class="greek-text">κοινωνίαν τινά</div>
+            <p><strong>Análise:</strong> <em>Koinōnia</em> refere-se à comunhão prática em forma de contribuição financeira. A Macedônia e a Acaia fizeram uma coleta para os pobres em Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "contribuição".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:27 — "Bens materiais"</span>
+            <div class="greek-text">τοῖς σαρκικοῖς</div>
+            <p><strong>Análise:</strong> Os gentios, tendo participado dos bens espirituais de Israel, devem retribuir com bens materiais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bens materiais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:32 — "Posso descansar convosco"</span>
+            <div class="greek-text">συναναπαύσωμαι ὑμῖν</div>
+            <p><strong>Análise:</strong> O verbo <em>synanapauō</em> indica descansar junto com, compartilhar descanso ou desfrutar de comunhão repousante.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "possa descansar convosco".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 15:33 — "O Deus de paz"</span>
+            <div class="greek-text">ὁ Θεὸς τῆς εἰρήνης</div>
+            <p><strong>Análise:</strong> Título de Deus que encerra esta seção da carta, desejando paz aos irmãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o Deus de paz".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 15 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 15 conclui a seção prática e antecipa os planos missionários de Paulo. Estrutura: 1) Suportar os fracos (v.1-7); 2) Cristo, servo dos judeus e dos gentios (v.8-13); 3) O ministério de Paulo aos gentios (v.14-21); 4) Planos de viagem (v.22-33). Paulo demonstra o princípio do amor na prática e sua visão missionária.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

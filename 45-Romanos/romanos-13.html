@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 13</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 13</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Autoridades superiores</span>
+                Do grego *exousiais hyperechousais* (ἐξουσίαις ὑπερεχούσαις). As autoridades governamentais estabelecidas por Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ordenança</span>
+                Do grego *diatagē* (διαταγή). A instituição ou disposição divina que estabelece a autoridade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Magistrados</span>
+                Do grego *archontes* (ἄρχοντες). Governantes ou autoridades civis.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ministro de Deus</span>
+                Do grego *diakonos Theou* (διάκονος Θεοῦ). Servo ou agente de Deus para o bem público.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tributo</span>
+                Do grego *phoros* (φόρος). Imposto ou taxa devida às autoridades.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Imposto</span>
+                Do grego *telos* (τέλος). Taxa ou tributo devido, podendo ser alfandegário ou fiscal.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cumprimento da lei</span>
+                O amor é o cumprimento pleno da lei de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Armas da luz</span>
+                Do grego *hopla tou phōtos* (ὅπλα τοῦ φωτός). As virtudes cristãs que protegem o crente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Revestir-se de Cristo</span>
+                Assumir a identidade e o caráter de Cristo na vida prática.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">13</div>
+
+    <div class="pericope">Sujeição às Autoridades</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">T</span>oda alma esteja sujeita às autoridades superiores; porque não há autoridade que não venha de Deus; e as que existem foram ordenadas por Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Portanto, quem resiste à autoridade resiste à ordenança de Deus; e os que resistem trarão sobre si mesmos a condenação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque os magistrados não são para temor das boas obras, mas das más. Queres tu, pois, não temer a autoridade? Faze o bem, e terás louvor dela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque ela é ministro de Deus para o teu bem. Mas, se fizeres o mal, teme; pois não é sem motivo que ela traz a espada; porque é ministro de Deus, vingador para castigar aquele que faz o mal.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Portanto, é necessário que lhe estejais sujeitos, não somente por causa da ira, mas também por causa da consciência.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Por esta razão também pagais tributos; porque são ministros de Deus, atendendo a isto mesmo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Dai, pois, a cada um o que deveis: a quem tributo, tributo; a quem imposto, imposto; a quem temor, temor; a quem honra, honra.
+    </p>
+
+    <div class="pericope">O Amor, Cumprimento da Lei</div>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        A ninguém devais coisa alguma, senão o amar uns aos outros; porque aquele que ama ao outro cumpriu a lei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Pois isto: <span class="fala-outro">"Não adulterarás, não matarás, não furtarás, não dirás falso testemunho, não cobiçarás"</span>; e, se há algum outro mandamento, nesta palavra se resume: <span class="fala-outro">"Amarás o teu próximo como a ti mesmo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        O amor não faz mal ao próximo. De sorte que o cumprimento da lei é o amor.
+    </p>
+
+    <div class="pericope">O Dia Está Próximo</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E isto digo, conhecendo o tempo, que é já hora de despertarmos do sono; porque a nossa salvação está agora mais perto de nós do que quando cremos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        A noite é passada, e o dia é chegado. Rejeitemos, pois, as obras das trevas, e vistamo-nos das armas da luz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Andemos honestamente, como de dia; não em glutonarias, nem em bebedeiras, nem em impudicícias, nem em dissoluções, nem em contendas e inveja.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas revesti-vos do Senhor Jesus Cristo, e não tenhais cuidado da carne em suas concupiscências.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:1 — "Autoridades superiores"</span>
+            <div class="greek-text">ἐξουσίαις ὑπερεχούσαις</div>
+            <p><strong>Análise:</strong> <em>Exousiais</em> refere-se às autoridades ou poderes constituídos. <em>Hyperechousais</em> indica autoridades superiores ou em posição de destaque.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "autoridades superiores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:1 — "Ordenadas por Deus"</span>
+            <div class="greek-text">τεταγμέναι εἰσίν</div>
+            <p><strong>Análise:</strong> O verbo <em>tassō</em> no perfeito passivo indica que as autoridades foram estabelecidas ou ordenadas por Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ordenadas por Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:2 — "Quem resiste à autoridade"</span>
+            <div class="greek-text">ὁ ἀντιτασσόμενος τῇ ἐξουσίᾳ</div>
+            <p><strong>Análise:</strong> <em>Antitassomenos</em> indica oposição ativa e deliberada à autoridade constituída.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quem resiste à autoridade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:2 — "Ordenança de Deus"</span>
+            <div class="greek-text">τῇ τοῦ Θεοῦ διαταγῇ</div>
+            <p><strong>Análise:</strong> <em>Diatagē</em> refere-se a uma ordenança, disposição ou instituição divina. Resistir à autoridade é resistir à ordenança de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "ordenança de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:3 — "Magistrados"</span>
+            <div class="greek-text">ἄρχοντες</div>
+            <p><strong>Análise:</strong> <em>Archontes</em> refere-se a governantes, líderes ou autoridades civis. O termo é usado para descrever aqueles que exercem poder governamental.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "magistrados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:4 — "Ministro de Deus"</span>
+            <div class="greek-text">διάκονος Θεοῦ</div>
+            <p><strong>Análise:</strong> A autoridade é um servo ou agente de Deus, designada para promover o bem e punir o mal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministro de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:4 — "Traz a espada"</span>
+            <div class="greek-text">φορεῖ μάχαιραν</div>
+            <p><strong>Análise:</strong> A espada simboliza a autoridade coercitiva do governo, incluindo o poder de punir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "traz a espada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:4 — "Vingador para castigar"</span>
+            <div class="greek-text">ἔκδικος εἰς ὀργήν</div>
+            <p><strong>Análise:</strong> O governante é um vingador que executa a ira de Deus contra o mal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vingador para castigar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:5 — "Por causa da ira"</span>
+            <div class="greek-text">διὰ τὴν ὀργήν</div>
+            <p><strong>Análise:</strong> A sujeição às autoridades é necessária tanto para evitar a punição divina quanto por questão de consciência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por causa da ira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:6 — "Tributos"</span>
+            <div class="greek-text">φόρους</div>
+            <p><strong>Análise:</strong> <em>Phoros</em> refere-se a tributos ou impostos pagos às autoridades governamentais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tributos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:7 — "Imposto"</span>
+            <div class="greek-text">τέλος</div>
+            <p><strong>Análise:</strong> <em>Telos</em> é um termo usado para imposto, taxa ou tributo devido, podendo incluir taxas alfandegárias e fiscais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "imposto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:9 — "Amarás o teu próximo como a ti mesmo"</span>
+            <div class="greek-text">ἀγαπήσεις τὸν πλησίον σου ὡς σεαυτόν</div>
+            <p><strong>Análise:</strong> Citação de Levítico 19:18. O amor é o princípio que resume toda a lei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:10 — "Cumprimento da lei"</span>
+            <div class="greek-text">πλήρωμα νόμου</div>
+            <p><strong>Análise:</strong> O amor é o cumprimento pleno e completo da lei de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cumprimento da lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:11 — "Hora de despertarmos do sono"</span>
+            <div class="greek-text">ὥρα ἡμᾶς ἐξ ὕπνου ἐγερθῆναι</div>
+            <p><strong>Análise:</strong> Metáfora para o despertar espiritual, urgente diante da proximidade da salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "hora de despertarmos do sono".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:12 — "Armas da luz"</span>
+            <div class="greek-text">ὅπλα τοῦ φωτός</div>
+            <p><strong>Análise:</strong> As armas ou instrumentos da luz são as virtudes cristãs que protegem o crente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "armas da luz".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 13:14 — "Revesti-vos do Senhor Jesus Cristo"</span>
+            <div class="greek-text">ἐνδύσασθε τὸν Κύριον Ἰησοῦν Χριστόν</div>
+            <p><strong>Análise:</strong> Metaforicamente, assumir a identidade e o caráter de Cristo em toda a vida prática.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "revesti-vos do Senhor Jesus Cristo".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 13 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 13 aborda a relação do cristão com o Estado e a vida prática. Estrutura: 1) Sujeição às autoridades (v.1-7); 2) O amor, cumprimento da lei (v.8-10); 3) O dia está próximo (v.11-14). Paulo exorta os crentes a viverem como cidadãos exemplares e a se prepararem para a volta de Cristo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

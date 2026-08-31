@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Culto racional</span>
+                Do grego *logikēn latreian* (λογικὴν λατρείαν). Culto que envolve o entendimento e a razão.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sacrifício vivo</span>
+                Do grego *thysian zōsan* (θυσίαν ζῶσαν). O corpo apresentado a Deus como oferta viva.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Transformai-vos</span>
+                Do grego *metamorphousthe* (μεταμορφοῦσθε). Mudança profunda de caráter e natureza.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Medida da fé</span>
+                Do grego *metron pisteōs* (μέτρον πίστεως). A quantidade ou porção de fé concedida por Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Proporção da fé</span>
+                Do grego *analogian tēs pisteōs* (ἀναλογίαν τῆς πίστεως). O dom profético deve ser exercido em harmonia com a fé.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Amor não fingido</span>
+                Do grego *agapē anypokritos* (ἀγάπη ἀνυπόκριτος). Amor genuíno, sem hipocrisia.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cordialmente</span>
+                Do grego *philostorgoi* (φιλόστοργοι). Com afeição familiar e amor natural entre pessoas próximas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Comunicai com os santos</span>
+                Do grego *koinōnountes* (κοινωνοῦντες). Compartilhar, participar das necessidades dos santos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Brasas de fogo</span>
+                Metáfora para a vergonha e o remorso que o bem causa ao inimigo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <div class="pericope">O Culto Racional e a Transformação</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">R</span>ogo-vos, pois, irmãos, pelas misericórdias de Deus, que apresenteis os vossos corpos em sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento, para que experimenteis qual seja a boa, agradável e perfeita vontade de Deus.
+    </p>
+
+    <div class="pericope">Humildade e Dons Espirituais</div>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque, pela graça que me é dada, digo a cada um dentre vós: que não pense de si mesmo além do que convém; antes, pense com moderação, conforme a medida da fé que Deus repartiu a cada um.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque assim como em um corpo temos muitos membros, e nem todos os membros têm a mesma função,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        assim nós, que somos muitos, somos um só corpo em Cristo, mas individualmente somos membros uns dos outros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        De modo que, tendo diferentes dons, segundo a graça que nos é dada: se é profecia, seja ela segundo a proporção da fé;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        se é ministério, seja em ministrar; se é ensinar, haja dedicação ao ensino;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        ou o que exorta, use esse dom em exortar; o que reparte, faça-o com simplicidade; o que preside, com diligência; o que exercita misericórdia, com alegria.
+    </p>
+
+    <div class="pericope">O Amor e a Vida Cristã</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        O amor seja não fingido. Aborrecei o mal, apegai-vos ao bem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Amai-vos cordialmente uns aos outros com amor fraternal, preferindo-vos em honra uns aos outros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Não sejais vagarosos no cuidado; sede fervorosos no espírito, servindo ao Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Alegrai-vos na esperança, sede pacientes na tribulação, perseverai na oração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Comunicai com os santos nas suas necessidades, segui a hospitalidade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Abençoai aos que vos perseguem; abençoai, e não amaldiçoeis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Alegrai-vos com os que se alegram, e chorai com os que choram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Sede de um mesmo sentimento uns para com os outros; não ambicioneis coisas altas, mas acomodai-vos às humildes. Não sejais sábios aos vossos próprios olhos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        A ninguém torneis mal por mal. Procurai as coisas honestas diante de todos os homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Se for possível, quanto estiver em vós, tende paz com todos os homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Não vos vingueis a vós mesmos, amados; mas dai lugar à ira, porque está escrito: <span class="fala-outro">"Minha é a vingança; eu recompensarei, diz o Senhor."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Portanto, se o teu inimigo tiver fome, dá-lhe de comer; se tiver sede, dá-lhe de beber; porque, fazendo isto, amontoarás brasas de fogo sobre a sua cabeça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Não te deixes vencer do mal, mas vence o mal com o bem.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:1 — "Culto racional"</span>
+            <div class="greek-text">λογικὴν λατρείαν</div>
+            <p><strong>Análise:</strong> O termo <em>logikē</em> pode carregar a ideia de racional, razoável ou relacionado ao entendimento. O culto cristão envolve a mente e a razão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "culto racional".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:1 — "Pelas misericórdias de Deus"</span>
+            <div class="greek-text">διὰ τῶν οἰκτιρμῶν τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Paulo apela com base nas misericórdias de Deus, que fundamentam a vida cristã.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pelas misericórdias de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:1 — "Sacrifício vivo"</span>
+            <div class="greek-text">θυσίαν ζῶσαν</div>
+            <p><strong>Análise:</strong> Em contraste com os sacrifícios mortos do Antigo Testamento, o crente oferece seu corpo como oferta viva.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sacrifício vivo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:2 — "Não vos conformeis"</span>
+            <div class="greek-text">μὴ συσχηματίζεσθε</div>
+            <p><strong>Análise:</strong> <em>Syschēmatizō</em> refere-se à conformidade externa com os padrões do mundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não vos conformeis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:2 — "Transformai-vos"</span>
+            <div class="greek-text">μεταμορφοῦσθε</div>
+            <p><strong>Análise:</strong> <em>Metamorphoō</em> indica uma mudança profunda e interior, da mesma raiz de "metamorfose".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "transformai-vos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:2 — "Renovação do vosso entendimento"</span>
+            <div class="greek-text">ἀνακαινώσει τοῦ νοός</div>
+            <p><strong>Análise:</strong> A renovação da mente é o meio pelo qual a transformação ocorre.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "renovação do vosso entendimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:3 — "Pense com moderação"</span>
+            <div class="greek-text">σωφρονεῖν</div>
+            <p><strong>Análise:</strong> <em>Sōphroneō</em> significa ter mente sã, ser sensato, pensar com moderação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pense com moderação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:3 — "Medida da fé"</span>
+            <div class="greek-text">μέτρον πίστεως</div>
+            <p><strong>Análise:</strong> <em>Metron pisteōs</em> refere-se literalmente à "medida da fé" — a porção de fé que Deus concede a cada crente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "medida da fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:6 — "Proporção da fé"</span>
+            <div class="greek-text">ἀναλογίαν τῆς πίστεως</div>
+            <p><strong>Análise:</strong> <em>Analogian tēs pisteōs</em> indica que o dom profético deve ser exercido em harmonia com a fé, ou seja, em proporção à fé recebida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "proporção da fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:9 — "O amor seja não fingido"</span>
+            <div class="greek-text">ἡ ἀγάπη ἀνυπόκριτος</div>
+            <p><strong>Análise:</strong> <em>Anypokritos</em> significa sem hipocrisia, genuíno, sem fingimento. O amor cristão deve ser autêntico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o amor seja não fingido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:10 — "Cordialmente"</span>
+            <div class="greek-text">φιλόστοργοι</div>
+            <p><strong>Análise:</strong> <em>Philostorgoi</em> é um termo relacionado à afeição familiar e ao amor natural entre pessoas próximas. Descreve o amor afetuoso que deve existir entre os irmãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cordialmente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:11 — "Sede fervorosos no espírito"</span>
+            <div class="greek-text">τῷ πνεύματι ζέοντες</div>
+            <p><strong>Análise:</strong> <em>Zeontes</em> significa "fervendo", "ardendo". Indica zelo e entusiasmo espiritual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sede fervorosos no espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:13 — "Segui a hospitalidade"</span>
+            <div class="greek-text">φιλοξενίαν διώκοντες</div>
+            <p><strong>Análise:</strong> <em>Philoxenian</em> significa "amor a estrangeiros". A hospitalidade deve ser uma prática ativa na vida cristã.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segui a hospitalidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:19 — "Dai lugar à ira"</span>
+            <div class="greek-text">δότε τόπον τῇ ὀργῇ</div>
+            <p><strong>Análise:</strong> Pode ser interpretado como "dai lugar à ira de Deus", ou seja, não tomem a vingança para si mesmos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dai lugar à ira".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:19 — "Minha é a vingança"</span>
+            <div class="greek-text">ἐμοὶ ἐκδίκησις, ἐγὼ ἀνταποδώσω</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 32:35. A vingança pertence a Deus, não ao homem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 12:20 — "Amontoarás brasas de fogo"</span>
+            <div class="greek-text">ἄνθρακας πυρὸς σωρεύσεις</div>
+            <p><strong>Análise:</strong> Citação de Provérbios 25:21-22. Fazer o bem ao inimigo resulta em vergonha e remorso para ele.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 12 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 12 inicia a seção prática de Romanos. Estrutura: 1) O culto racional e a transformação (v.1-2); 2) Humildade e dons espirituais (v.3-8); 3) O amor e a vida cristã (v.9-21). Paulo exorta os crentes a viverem de forma prática a fé que professam.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

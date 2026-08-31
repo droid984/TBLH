@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 10</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 10</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Zelo de Deus</span>
+                Do grego *zēlon Theou* (ζῆλον Θεοῦ). Zelo por Deus, mas sem entendimento pleno.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Justiça de Deus</span>
+                Do grego *dikaiosynēn tou Theou* (δικαιοσύνην τοῦ Θεοῦ). A justiça que vem de Deus e é recebida pela fé.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fim da lei</span>
+                Do grego *telos nomou* (τέλος νόμου). Cristo é o cumprimento, objetivo e término da lei.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Palavra da fé</span>
+                Do grego *rhēma tēs pisteōs* (ῥῆμα τῆς πίστεως). A mensagem do evangelho que é recebida pela fé.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Confissão</span>
+                Do grego *homologia* (ὁμολογία). Declaração pública de fé em Jesus Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Invoca</span>
+                Do grego *epikaleō* (ἐπικαλέω). Chamar pelo nome do Senhor em oração e confiança.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fé pelo ouvir</span>
+                Do grego *pistis ex akoēs* (πίστις ἐξ ἀκοῆς). A fé que vem mediante a pregação da palavra.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Palavra de Deus</span>
+                Do grego *rhēma Theou* (ῥῆμα Θεοῦ). A mensagem divina proclamada no evangelho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Povo desobediente e contradizente</span>
+                Citação de Isaías 65:2, descrevendo a rebeldia de Israel.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">10</div>
+
+    <div class="pericope">O Zelo de Israel sem Entendimento</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">I</span>rmãos, o bom desejo do meu coração e a oração a Deus por Israel é para a sua salvação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque lhes dou testemunho de que têm zelo de Deus, mas não com entendimento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porquanto, não conhecendo a justiça de Deus, e procurando estabelecer a sua própria justiça, não se sujeitaram à justiça de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque o fim da lei é Cristo, para justiça de todo aquele que crê.
+    </p>
+
+    <div class="pericope">A Justiça pela Fé</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Pois Moisés descreve a justiça que é pela lei, dizendo: <span class="fala-outro">"O homem que fizer estas coisas viverá por elas."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas a justiça que é pela fé diz assim: <span class="fala-outro">"Não digas em teu coração: Quem subirá ao céu?"</span> — isto é, para trazer do alto a Cristo —,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        ou: <span class="fala-outro">"Quem descerá ao abismo?"</span> — isto é, para tornar a trazer dos mortos a Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas que diz? <span class="fala-outro">"A palavra está perto de ti, na tua boca e no teu coração."</span> Esta é a palavra da fé, que pregamos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque, se com a tua boca confessares ao Senhor Jesus, e em teu coração creres que Deus o ressuscitou dos mortos, serás salvo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Visto que com o coração se crê para a justiça, e com a boca se faz confissão para a salvação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Porque a Escritura diz: <span class="fala-outro">"Todo aquele que nele crer não será confundido."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porquanto não há diferença entre judeu e grego; porque um mesmo é o Senhor de todos, rico para com todos os que o invocam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque todo aquele que invocar o nome do Senhor será salvo.
+    </p>
+
+    <div class="pericope">A Necessidade da Pregação</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Como, pois, invocarão aquele em quem não creram? E como crerão naquele de quem não ouviram? E como ouvirão, se não há quem pregue?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E como pregarão, se não forem enviados? Como está escrito: <span class="fala-outro">"Quão formosos são os pés dos que anunciam a paz, dos que anunciam boas-novas!"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas nem todos obedeceram ao evangelho; pois Isaías diz: <span class="fala-outro">"Senhor, quem creu na nossa pregação?"</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        De sorte que a fé é pelo ouvir, e o ouvir pela palavra de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Mas digo: Porventura não ouviram? Sim, por certo: <span class="fala-outro">"Por toda a terra saiu a sua voz, e as suas palavras até os confins do mundo."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Mas digo: Porventura Israel não o soube? Primeiro diz Moisés: <span class="fala-outro">"Eu vos porei em ciúmes com aquele que não é povo; com uma nação insensata vos provocarei à ira."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E Isaías ousadamente diz: <span class="fala-outro">"Fui achado pelos que não me buscavam; manifestei-me aos que não perguntavam por mim."</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Mas para Israel diz: <span class="fala-outro">"Todo o dia estendi as minhas mãos a um povo desobediente e contradizente."</span>
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:1 — "Bom desejo do meu coração"</span>
+            <div class="greek-text">εὐδοκία τῆς ἐμῆς καρδίας</div>
+            <p><strong>Análise:</strong> <em>Eudokia</em> indica prazer, boa vontade ou desejo sincero. Paulo expressa seu anseio genuíno pela salvação de Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bom desejo do meu coração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:2 — "Zelo de Deus"</span>
+            <div class="greek-text">ζῆλον Θεοῦ</div>
+            <p><strong>Análise:</strong> <em>Zēlos</em> pode ser zelo ou ciúme. Aqui refere-se ao zelo religioso que Israel tem por Deus, embora sem pleno conhecimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "zelo de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:2 — "Não com entendimento"</span>
+            <div class="greek-text">οὐ κατ' ἐπίγνωσιν</div>
+            <p><strong>Análise:</strong> <em>Epignōsis</em> indica conhecimento pleno, preciso e verdadeiro. O zelo de Israel não é baseado no conhecimento completo da justiça de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não com entendimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:3 — "Justiça de Deus"</span>
+            <div class="greek-text">δικαιοσύνην τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> A justiça que vem de Deus e é recebida pela fé, em contraste com a justiça própria que Israel tentava estabelecer.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justiça de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:4 — "O fim da lei é Cristo"</span>
+            <div class="greek-text">τέλος γὰρ νόμου Χριστός</div>
+            <p><strong>Análise:</strong> O termo <em>telos</em> pode significar "fim" (término), "objetivo" ou "propósito". Cristo é tanto o cumprimento quanto o objetivo final da lei, trazendo justiça a todo que crê.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o fim da lei é Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:5 — "O homem que fizer estas coisas viverá por elas"</span>
+            <div class="greek-text">ὁ ποιήσας αὐτὰ ἄνθρωπος ζήσεται ἐν αὐτοῖς</div>
+            <p><strong>Análise:</strong> Citação de Levítico 18:5. A lei promete vida àquele que a cumpre perfeitamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:6-7 — "Quem subirá ao céu? ... Quem descerá ao abismo?"</span>
+            <div class="greek-text">τίς ἀναβήσεται εἰς τὸν οὐρανόν ... τίς καταβήσεται εἰς τὴν ἄβυσσον</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 30:12-13. Paulo aplica as palavras de Moisés à fé em Cristo, mostrando que não precisamos subir ao céu ou descer ao abismo para encontrá-lo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:8 — "A palavra está perto de ti"</span>
+            <div class="greek-text">ἐγγύς σου τὸ ῥῆμά ἐστιν</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 30:14. A palavra da fé está acessível e próxima de todo aquele que crê.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:8 — "Palavra da fé"</span>
+            <div class="greek-text">ῥῆμα τῆς πίστεως</div>
+            <p><strong>Análise:</strong> <em>Rhēma</em> refere-se à palavra falada ou mensagem específica. A "palavra da fé" é a mensagem do evangelho que é recebida pela fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavra da fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:9 — "Confessares ao Senhor Jesus"</span>
+            <div class="greek-text">ὁμολογήσῃς ... τὸν κύριον Ἰησοῦν</div>
+            <p><strong>Análise:</strong> A confissão pública de que Jesus é o Senhor é essencial para a salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "confessares ao Senhor Jesus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:10 — "Com o coração se crê para a justiça"</span>
+            <div class="greek-text">καρδίᾳ γὰρ πιστεύεται εἰς δικαιοσύνην</div>
+            <p><strong>Análise:</strong> A fé interior resulta em justificação; a confissão exterior resulta em salvação. Ambas são aspectos da mesma obra da salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com o coração se crê para a justiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:11 — "Todo aquele que nele crer não será confundido"</span>
+            <div class="greek-text">πᾶς ὁ πιστεύων ἐπ' αὐτῷ οὐ καταισχυνθήσεται</div>
+            <p><strong>Análise:</strong> Citação de Isaías 28:16. Aquele que crê em Cristo não será envergonhado ou decepcionado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:13 — "Todo aquele que invocar o nome do Senhor"</span>
+            <div class="greek-text">πᾶς γὰρ ὃς ἂν ἐπικαλέσηται τὸ ὄνομα Κυρίου</div>
+            <p><strong>Análise:</strong> Citação de Joel 2:32. Invocar o nome do Senhor é o ato de fé que resulta em salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:15 — "Quão formosos são os pés"</span>
+            <div class="greek-text">ὡς ὡραῖοι οἱ πόδες</div>
+            <p><strong>Análise:</strong> Citação de Isaías 52:7. Os pés dos mensageiros que anunciam o evangelho são belos porque trazem boas-novas de paz e salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:16 — "Senhor, quem creu na nossa pregação?"</span>
+            <div class="greek-text">Κύριε, τίς ἐπίστευσεν τῇ ἀκοῇ ἡμῶν;</div>
+            <p><strong>Análise:</strong> Citação de Isaías 53:1. O profeta lamenta a incredulidade de Israel diante da mensagem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:17 — "A fé é pelo ouvir"</span>
+            <div class="greek-text">ἡ πίστις ἐξ ἀκοῆς</div>
+            <p><strong>Análise:</strong> A fé tem sua origem no ouvir a pregação da palavra. O ouvir é o meio pelo qual a fé é gerada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a fé é pelo ouvir".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:17 — "Palavra de Deus"</span>
+            <div class="greek-text">ῥήματος Θεοῦ</div>
+            <p><strong>Análise:</strong> Leitura do Textus Receptus, em contraste com outras variantes que trazem "palavra de Cristo". <em>Rhēma Theou</em> enfatiza a origem divina da mensagem proclamada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavra de Deus" conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:18 — "Por toda a terra saiu a sua voz"</span>
+            <div class="greek-text">εἰς πᾶσαν τὴν γῆν ἐξῆλθεν ὁ φθόγγος αὐτῶν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 19:4, aplicada à proclamação universal do evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:19 — "Eu vos porei em ciúmes"</span>
+            <div class="greek-text">ἐγὼ παραζηλώσω ὑμᾶς</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 32:21. Deus usará os gentios para provocar ciúmes em Israel.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:20 — "Fui achado pelos que não me buscavam"</span>
+            <div class="greek-text">εὑρέθην τοῖς ἐμὲ μὴ ζητοῦσιν</div>
+            <p><strong>Análise:</strong> Citação de Isaías 65:1. Deus se revela aos gentios que não o buscavam.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 10:21 — "Povo desobediente e contradizente"</span>
+            <div class="greek-text">λαὸν ἀπειθοῦντα καὶ ἀντιλέγοντα</div>
+            <p><strong>Análise:</strong> Citação de Isaías 65:2. Israel é descrito como um povo que resiste a Deus, apesar de seu chamado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">Romanos 10 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 10 aborda a justiça pela fé em contraste com a justiça pela lei. Estrutura: 1) O zelo de Israel sem entendimento (v.1-4); 2) A justiça pela fé (v.5-13); 3) A necessidade da pregação (v.14-21). Paulo mostra que a salvação está disponível para todos, judeus e gentios, mediante a fé em Cristo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — Romanos 1</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .dossier-section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fdfcf9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dossier-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .dossier-item h4 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dossier-item p {
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        .text-base-section {
+            margin: 10px auto 50px auto;
+            padding: 18px 30px;
+            max-width: 620px;
+            background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #4a4a4a;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+        }
+        .text-base-section::before,
+        .text-base-section::after {
+            content: "";
+            display: block;
+            height: 0;
+            border-top: 3px double var(--accent-red);
+            margin: 0 auto 12px auto;
+            width: 70%;
+        }
+        .text-base-section::after {
+            margin: 12px auto 0 auto;
+            border-top: 3px double var(--accent-red);
+        }
+        .text-base-section strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            margin-bottom: 6px;
+        }
+        .text-base-section em {
+            font-style: italic;
+            color: #2c2520;
+            font-weight: 500;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+        .note-textual { border-left: 4px solid #6a1b9a; background-color: #f8f5ff; }
+        
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .verse { padding-left: 28px; }
+            .v-num { font-size: 10px; }
+            .drop-cap { font-size: 32px; }
+            .book-title { font-size: 26px; }
+            .glossary-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">ROMANOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="dossier-section">
+        <h3 class="dossier-title">Dossiê da Epístola aos Romanos</h3>
+        <div class="dossier-grid">
+            <div class="dossier-item">
+                <h4>Autoria</h4>
+                <p><strong>Paulo</strong>, apóstolo de Jesus Cristo, é o autor indiscutível desta epístola. Escrita por volta de <strong>57 d.C.</strong> durante sua estada em Corinto, foi enviada à igreja em Roma como uma carta de apresentação e um tratado teológico da fé cristã.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Data e Contexto</h4>
+                <p>Provavelmente escrita entre <strong>56-58 d.C.</strong> Paulo escreve a uma igreja que não fundou pessoalmente, apresentando de forma sistemática o evangelho como o poder de Deus para salvação de todo aquele que crê.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Tema Central</h4>
+                <p><strong>A justiça de Deus revelada no evangelho.</strong> Romanos apresenta a salvação pela graça mediante a fé em Jesus Cristo, e como essa justiça transforma a vida do crente e a história da humanidade.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Estrutura Literária</h4>
+                <p>Romanos é organizado como uma <strong>epístola teológica</strong> dividida em grandes seções: a universalidade do pecado (1-3), a justificação pela fé (4-5), a santificação (6-8), o lugar de Israel no plano de Deus (9-11), e a aplicação prática (12-16).</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-base-section">
+        <strong>Texto Base</strong>
+        <em>Textus Receptus</em> — Edição Stephanus de 1550<br>
+        <small style="color:#8a7a66; font-size:12px;">Novo Testamento Grego</small>
+    </div>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 1</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Servo</span>
+                Do grego <em>doulos</em> (δοῦλος), "servo", "escravo". Título de humildade e submissão a Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Apóstolo</span>
+                Do grego <em>apostolos</em> (ἀπόστολος), "enviado". Paulo é chamado por Deus para esta função.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Evangelho</span>
+                Do grego <em>euangelion</em> (εὐαγγέλιον), "boa nova". O poder de Deus para salvação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Justiça de Deus</span>
+                Do grego <em>dikaiosynē Theou</em> (δικαιοσύνη Θεοῦ), a justiça revelada no evangelho.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">1</div>
+
+    <!-- PERÍCOPE 1: SAUDAÇÃO E AÇÃO DE GRAÇAS (1.1-17) -->
+    <div class="pericope">Saudação e Ação de Graças</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>aulo, servo de Jesus Cristo, chamado apóstolo, separado para o evangelho de Deus,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        o qual antes prometeu pelos seus profetas nas santas Escrituras,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        acerca de seu Filho, que nasceu da descendência de Davi segundo a carne,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        e foi declarado Filho de Deus com poder, segundo o Espírito de santidade, pela ressurreição dos mortos — Jesus Cristo, nosso Senhor,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        pelo qual recebemos a graça e o apostolado, para a obediência da fé entre todas as nações, por causa do seu nome;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        entre as quais sois também vós, chamados de Jesus Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        A todos os que estais em Roma, amados de Deus, chamados santos: Graça e paz de Deus nosso Pai, e do Senhor Jesus Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Primeiramente, dou graças ao meu Deus, por meio de Jesus Cristo, acerca de todos vós, porque a vossa fé é anunciada em todo o mundo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque Deus, a quem sirvo em meu espírito no evangelho de seu Filho, me é testemunha de que incessantemente faço menção de vós,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        pedindo sempre em minhas orações que, de algum modo, pela vontade de Deus, eu tenha finalmente próspera viagem para ir a vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Porque desejo ver-vos, para vos comunicar algum dom espiritual, a fim de que sejais confirmados;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        isto é, para que eu seja consolado juntamente convosco, pela fé mútua, tanto vossa como minha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E não quero que ignoreis, irmãos, que muitas vezes me propus ir a vós — mas até agora tenho sido impedido — para ter também entre vós algum fruto, como também entre os demais gentios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Eu sou devedor, tanto a gregos como a bárbaros, tanto a sábios como a ignorantes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Assim, quanto está em mim, estou pronto para anunciar o evangelho também a vós, que estais em Roma.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Porque não me envergonho do evangelho de Cristo, pois é o poder de Deus para salvação de todo aquele que crê; primeiro do judeu, e também do grego.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque nele se revela a justiça de Deus de fé em fé, como está escrito: 'Mas o justo viverá da fé.'
+    </p>
+
+    <!-- PERÍCOPE 2: A IRA DE DEUS CONTRA O PECADO (1.18-32) -->
+    <div class="pericope">A Ira de Deus contra o Pecado</div>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque a ira de Deus se revela do céu contra toda impiedade e injustiça dos homens, que detêm a verdade em injustiça;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        porque o que de Deus se pode conhecer é manifesto entre eles, pois Deus lho manifestou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque as suas coisas invisíveis, desde a criação do mundo, são claramente vistas, sendo entendidas pelas coisas que foram feitas, tanto o seu eterno poder como a sua divindade, para que eles fiquem indesculpáveis;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        porque, tendo conhecido a Deus, não o glorificaram como Deus, nem lhe deram graças; antes, em seus pensamentos se tornaram vãos, e o seu coração insensato se obscureceu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Dizendo-se sábios, tornaram-se loucos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E mudaram a glória do Deus incorruptível em semelhança da imagem de homem corruptível, e de aves, e de quadrúpedes, e de répteis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Por isso também Deus os entregou às concupiscências dos seus corações, à imundícia, para desonrarem os seus corpos entre si;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        os quais mudaram a verdade de Deus em mentira, e adoraram e serviram a criatura em lugar do Criador, que é bendito para sempre. Amém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Por isso Deus os entregou a paixões infames; porque até as suas mulheres mudaram o uso natural, no que é contrário à natureza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, do mesmo modo também os homens, deixando o uso natural da mulher, se inflamaram em sua sensualidade uns para com os outros, homem com homem, cometendo torpeza, e recebendo em si mesmos a devida recompensa do seu erro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, como eles não se importaram de ter conhecimento de Deus, Deus os entregou a um entendimento reprovado, para fazerem coisas que não convêm;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        estando cheios de toda injustiça, fornicação, malícia, avareza, maldade; cheios de inveja, homicídio, discórdia, engano, malignidade;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        sendo murmuradores, difamadores, aborrecedores de Deus, insolentes, soberbos, presunçosos, inventores de males, desobedientes aos pais;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        insensatos, desleais, sem afeição natural, irreconciliáveis, sem misericórdia;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        os quais, conhecendo o justo juízo de Deus — que os que praticam tais coisas são dignos de morte —, não somente as fazem, mas também consentem nos que as praticam.
+    </p>
+
+    <!-- APARATO TÉCNICO -->
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:1 — "Servo"</span>
+            <div class="greek-text">δοῦλος</div>
+            <p><strong>Análise:</strong> "Servo", "escravo". Título de humildade e submissão a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "servo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:1 — "Chamado apóstolo"</span>
+            <div class="greek-text">κλητὸς ἀπόστολος</div>
+            <p><strong>Análise:</strong> Paulo é chamado por Deus para o apostolado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "chamado apóstolo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:1 — "Separado para o evangelho"</span>
+            <div class="greek-text">ἀφωρισμένος εἰς εὐαγγέλιον</div>
+            <p><strong>Análise:</strong> Paulo foi separado para a proclamação do evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:3 — "Descendência de Davi"</span>
+            <div class="greek-text">ἐκ σπέρματος Δαβίδ</div>
+            <p><strong>Análise:</strong> Jesus é descendente de Davi segundo a carne.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "descendência de Davi".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:4 — "Declarado Filho de Deus com poder"</span>
+            <div class="greek-text">ὁρισθέντος Υἱοῦ Θεοῦ ἐν δυνάμει</div>
+            <p><strong>Análise:</strong> Jesus foi designado/declarado Filho de Deus com poder.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "declarado Filho de Deus com poder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:4 — "Espírito de santidade"</span>
+            <div class="greek-text">πνεῦμα ἁγιωσύνης</div>
+            <p><strong>Análise:</strong> O Espírito Santo, que sela e santifica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Espírito de santidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:5 — "Obediência da fé"</span>
+            <div class="greek-text">ὑπακοὴν πίστεως</div>
+            <p><strong>Análise:</strong> A fé que se expressa em obediência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "obediência da fé".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 1:16 — "Poder de Deus para salvação"</span>
+            <div class="greek-text">δύναμις Θεοῦ εἰς σωτηρίαν</div>
+            <p><strong>Análise:</strong> O evangelho é o poder de Deus para salvar todo que crê.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução literal.</p>
+            <span class="prop-status status-messianic">Messias</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:17 — "Justiça de Deus"</span>
+            <div class="greek-text">δικαιοσύνη Θεοῦ</div>
+            <p><strong>Análise:</strong> A justiça revelada no evangelho, que vem de Deus e é recebida pela fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justiça de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:17 — "De fé em fé"</span>
+            <div class="greek-text">ἐκ πίστεως εἰς πίστιν</div>
+            <p><strong>Análise:</strong> A justiça é revelada e recebida no âmbito da fé, de fé em fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "de fé em fé".</p>
+        </div>
+
+        <div class="note-card note-prop">
+            <span class="note-label">Romanos 1:17 — "O justo viverá da fé"</span>
+            <div class="greek-text">ὁ δίκαιος ἐκ πίστεως ζήσεται</div>
+            <p><strong>Análise:</strong> Citação de Habacuque 2:4.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação literal.</p>
+            <span class="prop-status status-fulfilled">Cumprida</span>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:18 — "Detêm a verdade em injustiça"</span>
+            <div class="greek-text">τὴν ἀλήθειαν ἐν ἀδικίᾳ κατεχόντων</div>
+            <p><strong>Análise:</strong> Os homens suprimem/retêm a verdade em sua injustiça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "detêm a verdade em injustiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:24, 26, 28 — "Deus os entregou"</span>
+            <div class="greek-text">παρέδωκεν αὐτοὺς ὁ Θεός</div>
+            <p><strong>Análise:</strong> Deus permitiu que a humanidade colhesse as consequências de sua rebelião.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus os entregou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:26 — "Paixões infames"</span>
+            <div class="greek-text">πάθη ἀτιμίας</div>
+            <p><strong>Análise:</strong> Paixões desonrosas ou vergonhosas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "paixões infames".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">Romanos 1:28 — "Entendimento reprovado"</span>
+            <div class="greek-text">ἀδόκιμον νοῦν</div>
+            <p><strong>Análise:</strong> Entendimento ou mente reprovada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "entendimento reprovado".</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
