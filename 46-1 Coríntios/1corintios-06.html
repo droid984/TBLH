@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 6</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 6</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Injustos</span>
+                Do grego *adikōn* (ἀδίκων). Literalmente "injustos"; no contexto, refere-se aos que estão fora da comunidade dos santos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Afeminados</span>
+                Do grego *malakoi* (μαλακοί). Literalmente "macios"; termo usado como designação de homens associados a determinada prática ou papel sexual.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Os que se deitam com homens</span>
+                Do grego *arsenokoitai* (ἀρσενοκοῖται). Termo composto de *arsēn* (homem) e *koitē* (leito), referente a homens que praticam relações com homens.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Derrota</span>
+                Do grego *hēttēma* (ἥττημα). Derrota ou perda na disputa judicial entre irmãos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Templo do Espírito Santo</span>
+                Do grego *naos tou Pneumatos* (ναὸς τοῦ Πνεύματος). O corpo do crente como habitação do Espírito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Membros de Cristo</span>
+                Do grego *melē Christou* (μέλη Χριστοῦ). Participação do corpo do crente em Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Comprados por preço</span>
+                Do grego *ēgorasthēte gar timēs* (ἠγοράσθητε γὰρ τιμῆς). Linguagem de redenção.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">6</div>
+
+    <div class="pericope">Litígios entre Irmãos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">O</span>usa algum de vós, tendo algo contra outro, ir a juízo diante dos injustos, e não diante dos santos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Ou não sabeis que os santos julgarão o mundo? E, se o mundo será julgado por vós, sois porventura indignos de julgar as coisas mínimas?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Não sabeis que julgaremos os anjos? Quanto mais as coisas desta vida?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Portanto, se tendes julgamentos sobre as coisas desta vida, constituí como juízes os que são de menos estima na igreja.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Para vossa vergonha o digo: Assim não há entre vós nenhum sábio, que possa julgar entre seus irmãos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas um irmão vai a juízo contra outro irmão, e isto diante dos infiéis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Na verdade, já é uma derrota entre vós terdes processos uns contra os outros. Por que não sofreis antes a injustiça? Por que não sofreis antes a fraude?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas vós mesmos fazeis injustiça e fraudais; e isto aos irmãos.
+    </p>
+
+    <div class="pericope">Os Injustos e o Reino de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Ou não sabeis que os injustos não herdarão o reino de Deus? Não vos enganeis: nem imorais, nem idólatras, nem adúlteros, nem afeminados, nem os que se deitam com homens,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        nem ladrões, nem avarentos, nem beberrões, nem maldizentes, nem roubadores herdarão o reino de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E tais fostes alguns de vós; mas fostes lavados, mas fostes santificados, mas fostes justificados em nome do Senhor Jesus, e pelo Espírito de nosso Deus.
+    </p>
+
+    <div class="pericope">Liberdade e Pureza</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Todas as coisas me são lícitas, mas nem todas convêm; todas as coisas me são lícitas, mas eu não me deixarei dominar por nenhuma.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Os alimentos são para o ventre, e o ventre para os alimentos; mas Deus destruirá tanto um como os outros. Porém o corpo não é para a imoralidade, mas para o Senhor, e o Senhor para o corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E Deus, que ressuscitou o Senhor, também nos ressuscitará pelo seu poder.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Não sabeis que os vossos corpos são membros de Cristo? Tomarei, pois, os membros de Cristo, e os farei membros de uma prostituta? De modo nenhum.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Ou não sabeis que aquele que se une à prostituta é um corpo com ela? Porque, diz ele, <span class="fala-outro">os dois serão uma só carne.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Mas aquele que se une ao Senhor é um espírito com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Fugi da imoralidade. Todo pecado que o homem comete é fora do corpo; mas aquele que pratica a imoralidade peca contra o seu próprio corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Ou não sabeis que o vosso corpo é templo do Espírito Santo, que está em vós, o qual tendes de Deus, e que não sois de vós mesmos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque fostes comprados por preço; glorificai, pois, a Deus no vosso corpo, e no vosso espírito, os quais são de Deus.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:1 — "Injustos"</span>
+            <div class="greek-text">ἀδίκων</div>
+            <p><strong>Análise:</strong> Literalmente "injustos"; no contexto, refere-se aos que estão fora da comunidade dos santos, ou seja, os incrédulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "injustos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:2 — "Os santos julgarão o mundo"</span>
+            <div class="greek-text">οἱ ἅγιοι τὸν κόσμον κρινοῦσιν</div>
+            <p><strong>Análise:</strong> Referência escatológica ao papel dos santos no julgamento final.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os santos julgarão o mundo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:3 — "Julgaremos os anjos"</span>
+            <div class="greek-text">ἀγγέλους κρινοῦμεν</div>
+            <p><strong>Análise:</strong> Outra referência escatológica, indicando a posição de autoridade dos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "julgaremos os anjos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:2 — "Coisas mínimas"</span>
+            <div class="greek-text">κριτηρίων ἐλαχίστων</div>
+            <p><strong>Análise:</strong> Questões de menor importância, em contraste com o julgamento do mundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coisas mínimas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:4 — "Os que são de menos estima na igreja"</span>
+            <div class="greek-text">τοὺς ἐξουθενημένους ἐν τῇ ἐκκλησίᾳ</div>
+            <p><strong>Análise:</strong> Expressão possivelmente irônica de Paulo, indicando que mesmo os menos estimados deveriam ser capazes de julgar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os que são de menos estima na igreja".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:6 — "Infiéis"</span>
+            <div class="greek-text">ἀπίστων</div>
+            <p><strong>Análise:</strong> Os que não creem, em contraste com os santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "infiéis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:7 — "Derrota"</span>
+            <div class="greek-text">ἥττημα</div>
+            <p><strong>Análise:</strong> Derrota ou perda. Paulo considera os processos entre irmãos como uma derrota para a igreja.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "derrota".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:9 — "Afeminados"</span>
+            <div class="greek-text">μαλακοί</div>
+            <p><strong>Análise:</strong> Literalmente "macios"; termo usado nesse contexto como designação de homens associados a determinada prática ou papel sexual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "afeminados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:9 — "Os que se deitam com homens"</span>
+            <div class="greek-text">ἀρσενοκοῖται</div>
+            <p><strong>Análise:</strong> Termo composto de <em>arsēn</em> (homem) e <em>koitē</em> (leito), referente a homens que praticam relações com homens.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os que se deitam com homens".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:11 — "Fostes lavados"</span>
+            <div class="greek-text">ἀπελούσασθε</div>
+            <p><strong>Análise:</strong> Lavagem espiritual, simbolizando a purificação do pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fostes lavados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:11 — "Santificados"</span>
+            <div class="greek-text">ἡγιάσθητε</div>
+            <p><strong>Análise:</strong> Consagrados a Deus, separados para seu propósito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "santificados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:11 — "Justificados"</span>
+            <div class="greek-text">ἐδικαιώθητε</div>
+            <p><strong>Análise:</strong> Declarados justos diante de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justificados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:12 — "Todas as coisas me são lícitas"</span>
+            <div class="greek-text">πάντα μοι ἔξεστιν</div>
+            <p><strong>Análise:</strong> Provável citação de um slogan dos coríntios que Paulo qualifica com limites de conveniência e domínio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todas as coisas me são lícitas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:13 — "O corpo não é para a imoralidade"</span>
+            <div class="greek-text">τὸ σῶμα οὐ τῇ πορνείᾳ</div>
+            <p><strong>Análise:</strong> Contraste entre necessidades físicas legítimas (alimentos) e o uso ilícito do corpo (imoralidade).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o corpo não é para a imoralidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:15 — "Membros de Cristo"</span>
+            <div class="greek-text">μέλη Χριστοῦ</div>
+            <p><strong>Análise:</strong> Participação do corpo do crente em Cristo. Os corpos dos crentes são membros de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "membros de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:16 — "Os dois serão uma só carne"</span>
+            <div class="greek-text">ἔσονται οἱ δύο εἰς σάρκα μίαν</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 2:24, aplicada à união sexual com a prostituta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:17 — "Um espírito com ele"</span>
+            <div class="greek-text">ἓν πνεῦμά ἐστιν</div>
+            <p><strong>Análise:</strong> União espiritual com o Senhor, em contraste com a união carnal com a prostituta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um espírito com ele".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:18 — "Peca contra o seu próprio corpo"</span>
+            <div class="greek-text">εἰς τὸ ἴδιον σῶμα ἁμαρτάνει</div>
+            <p><strong>Análise:</strong> Paulo estabelece uma relação particular entre a imoralidade sexual e o próprio corpo daquele que a pratica. O pecado sexual afeta diretamente o corpo que é templo do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "peca contra o seu próprio corpo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:19 — "Templo do Espírito Santo"</span>
+            <div class="greek-text">ναὸς τοῦ Ἁγίου Πνεύματος</div>
+            <p><strong>Análise:</strong> O corpo do crente é o santuário onde o Espírito Santo habita.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "templo do Espírito Santo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 6:20 — "Fostes comprados por preço"</span>
+            <div class="greek-text">ἠγοράσθητε γὰρ τιμῆς</div>
+            <p><strong>Análise:</strong> Linguagem de redenção. Os crentes foram comprados pelo sangue de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fostes comprados por preço".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 6 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 6 aborda litígios entre irmãos e a pureza sexual. Estrutura: 1) Litígios entre irmãos (v.1-8); 2) Os injustos e o reino de Deus (v.9-11); 3) Liberdade e pureza (v.12-20). Paulo combate o uso indevido da liberdade cristã e a imoralidade, afirmando que o corpo é para o Senhor.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

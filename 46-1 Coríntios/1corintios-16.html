@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 16</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 16</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Coleta</span>
+                Do grego *logeia* (λογεία). Coleta destinada aos santos necessitados de Jerusalém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dádiva</span>
+                Do grego *charis* (χάρις). Literalmente "graça"; no contexto, refere-se à contribuição para Jerusalém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Varonilmente</span>
+                Do grego *andrizesthe* (ἀνδρίζεσθε). Expressão de coragem, firmeza e determinação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ósculo santo</span>
+                Do grego *philēmati hagiō* (φιλήματι ἁγίῳ). Beijo usado como saudação entre os irmãos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Maranata</span>
+                Expressão aramaica preservada, que pode ser entendida como "Nosso Senhor, vem!" ou "Nosso Senhor vem".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Anátema</span>
+                Termo que expressa alguém ou algo colocado sob maldição ou separado para condenação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Primícias da Acaia</span>
+                A casa de Estéfanas como os primeiros frutos da obra cristã na região da Acaia.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">16</div>
+
+    <div class="pericope">Instruções sobre a Coleta</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">O</span>ra, quanto à coleta para os santos, fazei vós também como ordenei às igrejas da Galácia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        No primeiro dia da semana, cada um de vós ponha de parte, ajuntando o que puder, para que quando eu for não se façam então as coletas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E, quando eu chegar, aqueles que aprovardes por cartas, esses enviarei para levar a vossa dádiva a Jerusalém.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E, se valer a pena que eu também vá, irão comigo.
+    </p>
+
+    <div class="pericope">Planos de Viagem</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Irei, porém, até vós, quando tiver passado pela Macedônia; pois passarei pela Macedônia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E pode ser que eu fique convosco, ou até passe o inverno, para que me encaminheis aonde eu for.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Porque não quero agora ver-vos de passagem; pois espero ficar algum tempo convosco, se o Senhor o permitir.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Ficarei, porém, em Éfeso até o Pentecostes;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        porque uma porta grande e eficaz se me abriu; e há muitos adversários.
+    </p>
+
+    <div class="pericope">Recomendações e Saudações</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E, se Timóteo for, vede que esteja sem temor entre vós; porque trabalha na obra do Senhor, como eu também.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Portanto, ninguém o despreze; mas encaminhai-o em paz, para que venha até mim; porque o espero com os irmãos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Quanto ao irmão Apolo, muito lhe roguei que fosse até vós com os irmãos; mas de modo nenhum foi sua vontade ir agora; irá, porém, quando tiver oportunidade.
+    </p>
+
+    <div class="pericope">Exortações Finais</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Vigiai, estai firmes na fé, portai-vos varonilmente, e fortalecei-vos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Todas as vossas coisas sejam feitas com amor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E rogo-vos, irmãos — sabeis que a casa de Estéfanas é as primícias da Acaia, e que se dedicaram ao serviço dos santos —,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        que também vós vos sujeiteis aos tais, e a todo aquele que coopera e trabalha.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E alegro-me com a vinda de Estéfanas, e de Fortunato, e de Acaico; porque estes supriram o que da vossa parte faltava.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque recrearam o meu espírito e o vosso. Reconhecei, pois, aos tais.
+    </p>
+
+    <div class="pericope">Saudações Finais</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        As igrejas da Ásia vos saúdam. Áquila e Priscila, com a igreja que está em sua casa, vos saúdam muito no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Todos os irmãos vos saúdam. Saudai-vos uns aos outros com ósculo santo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        A saudação é de minha própria mão, de Paulo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Se alguém não ama o Senhor Jesus Cristo, seja anátema. Maranata.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        A graça do Senhor Jesus Cristo seja convosco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        O meu amor seja com todos vós, em Cristo Jesus. Amém.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:1 — "Coleta para os santos"</span>
+            <div class="greek-text">λογεία εἰς τοὺς ἁγίους</div>
+            <p><strong>Análise:</strong> Coleta destinada aos santos. O contexto indica que se tratava da contribuição destinada aos cristãos necessitados de Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coleta para os santos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:1 — "Igrejas da Galácia"</span>
+            <div class="greek-text">ἐκκλησίαις τῆς Γαλατίας</div>
+            <p><strong>Análise:</strong> Comunidades cristãs da região da Galácia, às quais Paulo havia dado instruções semelhantes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "igrejas da Galácia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:2 — "No primeiro dia da semana"</span>
+            <div class="greek-text">κατὰ μίαν σαββάτου</div>
+            <p><strong>Análise:</strong> Literalmente "no primeiro dia da semana". A expressão designa o primeiro dia da semana, tradicionalmente identificado como domingo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "no primeiro dia da semana".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:2 — "Ponha de parte, ajuntando o que puder"</span>
+            <div class="greek-text">παρ' ἑαυτῷ τιθέτω θησαυρίζων</div>
+            <p><strong>Análise:</strong> Colocar de parte e guardar, acumulando regularmente conforme a possibilidade de cada um.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ponha de parte, ajuntando o que puder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:3 — "Aprovardes por cartas"</span>
+            <div class="greek-text">δοκιμάσητε δι' ἐπιστολῶν</div>
+            <p><strong>Análise:</strong> Aqueles que os coríntios aprovassem por meio de cartas, para acompanharem ou levarem a dádiva a Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aprovardes por cartas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:3 — "Dádiva"</span>
+            <div class="greek-text">χάριν</div>
+            <p><strong>Análise:</strong> Literalmente "graça"; neste contexto, refere-se à contribuição que seria levada a Jerusalém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dádiva".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:5 — "Passarei pela Macedônia"</span>
+            <div class="greek-text">Μακεδονίαν γὰρ διέρχομαι</div>
+            <p><strong>Análise:</strong> Plano de viagem de Paulo, que passaria pela Macedônia antes de ir a Corinto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "passarei pela Macedônia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:6 — "Passe o inverno"</span>
+            <div class="greek-text">παραχειμάσω</div>
+            <p><strong>Análise:</strong> Passar o inverno, permanecer durante a estação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "passe o inverno".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:9 — "Porta grande e eficaz"</span>
+            <div class="greek-text">θύρα γάρ μοι ἀνέῳγεν μεγάλη καὶ ἐνεργής</div>
+            <p><strong>Análise:</strong> Literalmente "porta grande e eficaz". A expressão é usada figuradamente para uma oportunidade ampla e efetiva de atuação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "porta grande e eficaz".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:9 — "Muitos adversários"</span>
+            <div class="greek-text">ἀντικείμενοι πολλοί</div>
+            <p><strong>Análise:</strong> Muitos opositores que se opõem ao trabalho de Paulo em Éfeso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muitos adversários".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:10 — "Timóteo"</span>
+            <div class="greek-text">Τιμόθεος</div>
+            <p><strong>Análise:</strong> Colaborador de Paulo, mencionado também em 4:17.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Timóteo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:10 — "Sem temor entre vós"</span>
+            <div class="greek-text">ἀφόβως γένηται</div>
+            <p><strong>Análise:</strong> Sem medo, sem intimidação, para que Timóteo não seja desrespeitado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem temor entre vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:12 — "Apolo"</span>
+            <div class="greek-text">Ἀπολλῶς</div>
+            <p><strong>Análise:</strong> Pregador conhecido em Corinto, mencionado em 1:12 e 3:4-6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Apolo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:13 — "Varonilmente"</span>
+            <div class="greek-text">ἀνδρίζεσθε</div>
+            <p><strong>Análise:</strong> Literalmente relacionado a "agir como homem"; no contexto, expressa coragem, firmeza e determinação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "varonilmente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:13 — "Fortalecei-vos"</span>
+            <div class="greek-text">κραταιοῦσθε</div>
+            <p><strong>Análise:</strong> Sede fortalecidos, tornai-vos fortes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fortalecei-vos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:14 — "Com amor"</span>
+            <div class="greek-text">ἐν ἀγάπῃ</div>
+            <p><strong>Análise:</strong> No amor; coerente com o capítulo 13.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com amor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:15 — "Casa de Estéfanas"</span>
+            <div class="greek-text">οἰκία Στεφανᾶ</div>
+            <p><strong>Análise:</strong> A casa/família de Estéfanas, mencionada também em 1:16.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "casa de Estéfanas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:15 — "Primícias da Acaia"</span>
+            <div class="greek-text">ἀπαρχὴ τῆς Ἀχαΐας</div>
+            <p><strong>Análise:</strong> Literalmente "primícias da Acaia". A expressão apresenta a casa de Estéfanas como os primeiros frutos da obra cristã na região.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primícias da Acaia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:15 — "Se dedicaram ao serviço dos santos"</span>
+            <div class="greek-text">εἰς διακονίαν τοῖς ἁγίοις ἔταξαν ἑαυτούς</div>
+            <p><strong>Análise:</strong> Literalmente, colocaram-se a si mesmos para o serviço dos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se dedicaram ao serviço dos santos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:17 — "Fortunato e Acaico"</span>
+            <div class="greek-text">Φορτουνάτου καὶ Ἀχαϊκοῦ</div>
+            <p><strong>Análise:</strong> Companheiros de Estéfanas mencionados por Paulo como tendo vindo ao seu encontro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantidas as transliterações "Fortunato e Acaico".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:17 — "Supriram o que faltava"</span>
+            <div class="greek-text">τὸ ὑμέτερον ὑστέρημα ἀνεπλήρωσαν</div>
+            <p><strong>Análise:</strong> Preencheram aquilo que faltava da parte dos coríntios, especialmente no sentido de sua presença e comunhão com Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "supriram o que faltava".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:18 — "Recrearam o meu espírito"</span>
+            <div class="greek-text">ἀνέπαυσαν τὸ ἐμὸν πνεῦμα</div>
+            <p><strong>Análise:</strong> Deram descanso ou refrigério ao meu espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "recrearam o meu espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:19 — "Igrejas da Ásia"</span>
+            <div class="greek-text">αἱ ἐκκλησίαι τῆς Ἀσίας</div>
+            <p><strong>Análise:</strong> Comunidades da província romana da Ásia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "igrejas da Ásia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:19 — "Áquila e Priscila"</span>
+            <div class="greek-text">Ἀκύλας καὶ Πρίσκα</div>
+            <p><strong>Análise:</strong> Casal cooperador de Paulo; ver Atos 18:2.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Áquila e Priscila".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:19 — "Igreja em sua casa"</span>
+            <div class="greek-text">κατ' οἶκον αὐτῶν ἐκκλησία</div>
+            <p><strong>Análise:</strong> Comunidade que se reunia na casa deles.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "igreja que está em sua casa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:20 — "Ósculo santo"</span>
+            <div class="greek-text">φιλήματι ἁγίῳ</div>
+            <p><strong>Análise:</strong> Literalmente "beijo santo". Refere-se ao beijo usado como saudação, qualificado aqui como santo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ósculo santo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:21 — "Minha própria mão"</span>
+            <div class="greek-text">τῇ ἐμῇ χειρί</div>
+            <p><strong>Análise:</strong> Assinatura pessoal de Paulo; ver Gálatas 6:11.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "minha própria mão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:22 — "Anátema"</span>
+            <div class="greek-text">ἀνάθεμα</div>
+            <p><strong>Análise:</strong> Termo que expressa alguém ou algo colocado sob maldição ou separado para condenação. Paulo usa a mesma palavra em 12:3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "anátema".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:22 — "Maranata"</span>
+            <div class="greek-text">Μαράνα θά</div>
+            <p><strong>Análise:</strong> Expressão de origem aramaica preservada no texto grego. Pode ser entendida como "Nosso Senhor, vem!" ou "Nosso Senhor vem", conforme a segmentação adotada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Maranata".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 16:24 — "Amém"</span>
+            <div class="greek-text">ἀμήν</div>
+            <p><strong>Análise:</strong> Do hebraico <em>amēn</em> (אָמֵן), confirmação final.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Amém".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 16 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 16 conclui a epístola com instruções práticas e saudações. Estrutura: 1) Instruções sobre a coleta (v.1-4); 2) Planos de viagem (v.5-9); 3) Recomendações e saudações (v.10-18); 4) Saudações finais (v.19-24). Paulo demonstra seu cuidado pastoral e planos missionários.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 8</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 8</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Coisas sacrificadas aos ídolos</span>
+                Do grego *eidōlothyta* (εἰδωλόθυτα). Carnes oferecidas em sacrifícios pagãos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">O conhecimento incha</span>
+                Do grego *hē gnōsis physioi* (ἡ γνῶσις φυσιοῖ). O conhecimento que não é acompanhado de amor produz orgulho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">O amor edifica</span>
+                Do grego *hē agapē oikodomei* (ἡ ἀγάπη οἰκοδομεῖ). O amor constrói e edifica a comunidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Consciência do ídolo</span>
+                Do grego *tē syneidēsei tou eidōlou* (τῇ συνειδήσει τοῦ εἰδώλου). Consciência ainda marcada pela antiga relação com a idolatria.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Edificada para comer</span>
+                Do grego *oikodomēthēsetai* (οἰκοδομηθήσεται). O verbo é relacionado à linguagem de edificação do v. 1, mas aqui a ação conduz o fraco a agir contra sua consciência.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Perecerá</span>
+                Do grego *apollytai* (ἀπόλλυται). Verbo forte que pode significar perecer, perder-se ou ser destruído.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">8</div>
+
+    <div class="pericope">Conhecimento e Amor</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">O</span>ra, quanto às coisas sacrificadas aos ídolos, sabemos que todos temos conhecimento. O conhecimento incha, mas o amor edifica.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, se alguém pensa saber alguma coisa, ainda não sabe como convém saber.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas, se alguém ama a Deus, esse é conhecido por ele.
+    </p>
+
+    <div class="pericope">A Nulidade dos Ídolos</div>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Portanto, quanto ao comer das coisas sacrificadas aos ídolos, sabemos que o ídolo nada é no mundo, e que não há outro Deus, senão um só.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque, ainda que haja os que se chamam deuses, quer no céu, quer na terra — como há muitos deuses e muitos senhores —,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        para nós, porém, há um só Deus, o Pai, de quem são todas as coisas, e nós para ele; e um só Senhor, Jesus Cristo, pelo qual são todas as coisas, e nós por ele.
+    </p>
+
+    <div class="pericope">O Cuidado com os Fracos</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Mas nem em todos há esse conhecimento; e alguns, com consciência do ídolo, até agora comem como coisa sacrificada ao ídolo; e a sua consciência, sendo fraca, é contaminada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Ora, o alimento não nos recomenda a Deus; pois, se comemos, não temos vantagem; e, se não comemos, não temos falta.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Mas vede que essa vossa liberdade não venha a ser tropeço para os fracos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Porque, se alguém te vir a ti, que tens conhecimento, sentado à mesa no templo do ídolo, não será a consciência daquele que é fraco edificada para comer das coisas sacrificadas aos ídolos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E pelo teu conhecimento perecerá o irmão fraco, pelo qual Cristo morreu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        E, pecando assim contra os irmãos, e ferindo a sua fraca consciência, pecais contra Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Portanto, se o alimento faz tropeçar a meu irmão, jamais comerei carne, para que eu não faça tropeçar a meu irmão.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:1 — "Coisas sacrificadas aos ídolos"</span>
+            <div class="greek-text">εἰδωλόθυτα</div>
+            <p><strong>Análise:</strong> Carnes oferecidas em sacrifícios pagãos, tema central da discussão de Paulo sobre liberdade cristã e consideração pelos fracos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coisas sacrificadas aos ídolos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:1 — "O conhecimento incha"</span>
+            <div class="greek-text">ἡ γνῶσις φυσιοῖ</div>
+            <p><strong>Análise:</strong> Mesmo verbo usado para os "inchados" em 4:18-19 e 5:2. O conhecimento sem amor produz orgulho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o conhecimento incha".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:1 — "O amor edifica"</span>
+            <div class="greek-text">ἡ ἀγάπη οἰκοδομεῖ</div>
+            <p><strong>Análise:</strong> Contraste entre conhecimento sem amor e amor que constrói a comunidade. O verbo *oikodomeō* é usado no v. 10 também.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o amor edifica".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:3 — "Esse é conhecido por ele"</span>
+            <div class="greek-text">οὗτος ἔγνωσται ὑπ' αὐτοῦ</div>
+            <p><strong>Análise:</strong> Conhecimento divino do homem que ama a Deus. O verdadeiro conhecimento é ser conhecido por Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esse é conhecido por ele".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:4 — "O ídolo nada é no mundo"</span>
+            <div class="greek-text">οὐδὲν εἴδωλον ἐν κόσμῳ</div>
+            <p><strong>Análise:</strong> Declaração da nulidade dos ídolos. Não há realidade por trás das divindades pagãs.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o ídolo nada é no mundo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:5 — "Muitos deuses e muitos senhores"</span>
+            <div class="greek-text">εἰσὶν θεοὶ πολλοὶ καὶ κύριοι πολλοί</div>
+            <p><strong>Análise:</strong> Reconhecimento da crença pagã, não da existência real desses seres.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muitos deuses e muitos senhores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:6 — "Um só Deus, o Pai"</span>
+            <div class="greek-text">εἷς Θεὸς ὁ Πατήρ</div>
+            <p><strong>Análise:</strong> Confissão monoteísta cristã: um só Deus, o Pai, de quem tudo procede.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um só Deus, o Pai".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:6 — "Um só Senhor, Jesus Cristo"</span>
+            <div class="greek-text">εἷς Κύριος Ἰησοῦς Χριστός</div>
+            <p><strong>Análise:</strong> Aplicação cristológica do título *Kyrios*, que no Antigo Testamento se referia a Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um só Senhor, Jesus Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:7 — "Consciência do ídolo"</span>
+            <div class="greek-text">τῇ συνειδήσει τοῦ εἰδώλου</div>
+            <p><strong>Análise:</strong> Indicando uma consciência ainda marcada pela antiga relação com a idolatria. Esses crentes ainda associam os ídolos a algo real.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "consciência do ídolo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:7 — "Sendo fraca, é contaminada"</span>
+            <div class="greek-text">ἀσθενὴς οὖσα μολύνεται</div>
+            <p><strong>Análise:</strong> Consciência débil é poluída pela prática de comer alimentos sacrificados, porque associa isso à idolatria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sendo fraca, é contaminada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:8 — "O alimento não nos recomenda a Deus"</span>
+            <div class="greek-text">βρῶμα ἡμᾶς οὐ παρίστησιν τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> Alimento não torna ninguém aceitável diante de Deus. Comer ou não comer é irrelevante para a relação com Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o alimento não nos recomenda a Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:9 — "Tropeço"</span>
+            <div class="greek-text">πρόσκομμα</div>
+            <p><strong>Análise:</strong> Pedra de tropeço, obstáculo. A liberdade não deve ser motivo para o irmão fraco cair.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tropeço".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:10 — "Sentado à mesa no templo do ídolo"</span>
+            <div class="greek-text">ἐν εἰδωλείῳ κατακείμενον</div>
+            <p><strong>Análise:</strong> Participação em refeições no recinto do templo pagão, o que poderia ser interpretado como conivência com a idolatria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sentado à mesa no templo do ídolo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:10 — "Edificada para comer"</span>
+            <div class="greek-text">οἰκοδομηθήσεται</div>
+            <p><strong>Análise:</strong> O verbo *oikodomēthēsetai* ("será edificada") é relacionado à linguagem de edificação usada no v. 1, mas aqui a ação conduz o fraco a agir contra sua consciência.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "edificada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:11 — "Perecerá"</span>
+            <div class="greek-text">ἀπόλλυται</div>
+            <p><strong>Análise:</strong> Verbo forte que pode significar perecer, perder-se ou ser destruído; aqui descreve a gravidade do dano causado ao irmão pela conduta daquele que possui conhecimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perecerá".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:11 — "Pelo teu conhecimento"</span>
+            <div class="greek-text">τῇ σῇ γνώσει</div>
+            <p><strong>Análise:</strong> O conhecimento de alguém, usado sem amor, pode levar o irmão fraco à destruição espiritual.</p>
+            <p><strong>Decisão TBLH:</strong> Corrigida a concordância: "pelo teu conhecimento" (em vez de "pela tua conhecimento").</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:12 — "Pecais contra Cristo"</span>
+            <div class="greek-text">εἰς Χριστὸν ἁμαρτάνετε</div>
+            <p><strong>Análise:</strong> Pecar contra Cristo ao ferir a consciência do irmão. O irmão fraco é um pelo qual Cristo morreu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pecais contra Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 8:13 — "Jamais comerei carne"</span>
+            <div class="greek-text">οὐ μὴ φάγω κρέα</div>
+            <p><strong>Análise:</strong> Resolução enfática de Paulo com uso duplo negativo, indicando compromisso absoluto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "jamais comerei carne".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 8 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 8 aborda a questão das carnes sacrificadas aos ídolos. Estrutura: 1) Conhecimento e amor (v.1-3); 2) A nulidade dos ídolos (v.4-6); 3) O cuidado com os fracos (v.7-13). Paulo ensina que o amor deve guiar o uso da liberdade cristã.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

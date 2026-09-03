@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 14</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 14</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Indouto</span>
+                Do grego *idiōtēs* (ἰδιώτης). Pessoa comum, não especializada ou sem conhecimento específico.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Convencido</span>
+                Do grego *elenchetai* (ἐλέγχεται). Convencido, exposto.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Em espírito fala mistérios</span>
+                Literalmente "em espírito fala mistérios"; o contexto indica que aquilo que é falado não é compreendido sem interpretação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Falando ao ar</span>
+                Literalmente "falando para o ar"; imagem para comunicação que não produz entendimento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">O amém</span>
+                Expressão de confirmação ou concordância com aquilo que foi dito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Crianças no entendimento... adultos</span>
+                Contraste entre imaturidade e maturidade no modo de pensar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espíritos dos profetas</span>
+                Os "espíritos" dos profetas estão sujeitos aos próprios profetas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Decentemente e com ordem</span>
+                Do grego *euschēmonōs kai kata taxin* (εὐσχημόνως καὶ κατὰ τάξιν). Princípio de ordem no culto.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">14</div>
+
+    <div class="pericope">A Profecia e as Línguas</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">S</span>egui o amor, e procurai com zelo os dons espirituais, mas principalmente o de profetizar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque o que fala em língua não fala aos homens, mas a Deus; pois ninguém o entende, e em espírito fala mistérios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas o que profetiza fala aos homens, para edificação, e exortação, e consolação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        O que fala em língua edifica-se a si mesmo; mas o que profetiza edifica a igreja.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Eu quero que todos vós faleis em línguas, mas principalmente que profetizeis; porque maior é o que profetiza do que o que fala em línguas, a não ser que também interprete, para que a igreja receba edificação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E agora, irmãos, se eu for até vós falando em línguas, que vos aproveitarei, se vos não falar ou por revelação, ou por conhecimento, ou por profecia, ou por doutrina?
+    </p>
+
+    <div class="pericope">A Inteligibilidade na Adoração</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Até as coisas inanimadas que emitem som, seja flauta, seja cítara, se não derem distinção aos sons, como se saberá o que se toca com a flauta ou com a cítara?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque, se a trombeta der som incerto, quem se preparará para a batalha?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Assim também vós, se pela língua não pronunciardes palavra bem inteligível, como se entenderá o que se diz? Porque estareis como que falando ao ar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Há, por exemplo, tantos tipos de vozes no mundo, e nenhum deles é sem significado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Portanto, se eu não souber o significado da voz, serei estrangeiro para o que fala, e o que fala será estrangeiro para mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Assim também vós, já que estais desejosos de dons espirituais, procurai abundar neles para edificação da igreja.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Portanto, o que fala em língua, ore para que a interprete.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque, se eu orar em língua, o meu espírito ora, mas o meu entendimento fica sem fruto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Que farei, pois? Orarei com o espírito, mas orarei também com o entendimento; cantarei com o espírito, mas cantarei também com o entendimento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        De outra maneira, se bendisseres com o espírito, como dirá o amém sobre a tua bênção aquele que ocupa o lugar de indouto, visto que não sabe o que dizes?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque tu, na verdade, dás bem as graças, mas o outro não é edificado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Dou graças ao meu Deus, porque falo mais línguas do que todos vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Todavia, na igreja eu prefiro falar cinco palavras com o meu entendimento, para que também instrua os outros, do que dez mil palavras em língua.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Irmãos, não sejais crianças no entendimento; na malícia, porém, sede criancinhas, e no entendimento, adultos.
+    </p>
+
+    <div class="pericope">As Línguas como Sinal</div>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Na lei está escrito: <span class="fala-outro">Em outras línguas, e com outros lábios, falarei a este povo; e nem assim me ouvirão, diz o Senhor.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        De modo que as línguas são por sinal, não para os crentes, mas para os infiéis; e a profecia não é para os infiéis, mas para os crentes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Portanto, se toda a igreja se ajuntar num lugar, e todos falarem em línguas, e entrarem indoutos ou infiéis, não dirão que estais loucos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Mas, se todos profetizarem, e entrar algum infiel ou indouto, ele é convencido por todos, é julgado por todos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        e os segredos do seu coração se tornam manifestos; e assim, caindo sobre o seu rosto, adorará a Deus, declarando que Deus está verdadeiramente entre vós.
+    </p>
+
+    <div class="pericope">Ordem na Igreja</div>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Que há, pois, irmãos? Quando vos ajuntais, cada um de vós tem salmo, tem doutrina, tem língua, tem revelação, tem interpretação. Faça-se tudo para edificação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Se alguém fala em língua, que sejam dois, ou no máximo três, e por sua vez, e haja um que interprete.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Mas, se não houver intérprete, fique calado na igreja, e fale consigo mesmo e com Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        E falem os profetas, dois ou três, e os outros julguem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Mas, se a outro que estiver sentado for revelada alguma coisa, cale-se o primeiro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Porque todos podeis profetizar, um por um, para que todos aprendam, e todos sejam exortados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E os espíritos dos profetas estão sujeitos aos profetas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Porque Deus não é Deus de confusão, mas de paz, como em todas as igrejas dos santos.
+    </p>
+
+    <div class="pericope">O Papel das Mulheres</div>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        As vossas mulheres fiquem caladas nas igrejas; porque não lhes é permitido falar; mas estejam submissas, como também diz a lei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E, se querem aprender alguma coisa, perguntem em casa a seus próprios maridos; porque é vergonhoso para as mulheres falar na igreja.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Porventura a palavra de Deus saiu de vós? Ou veio ela somente para vós?
+    </p>
+
+    <div class="pericope">Conclusão</div>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Se alguém se considera profeta, ou espiritual, reconheça que as coisas que vos escrevo são mandamentos do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Mas, se alguém ignora, que seja ignorado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Portanto, irmãos, procurai com zelo profetizar, e não proibais falar em línguas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Mas faça-se tudo decentemente e com ordem.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:1 — "Procurai com zelo os dons espirituais"</span>
+            <div class="greek-text">ζηλοῦτε τὰ πνευματικά</div>
+            <p><strong>Análise:</strong> "Procurai com zelo as coisas espirituais"; no contexto dos capítulos 12–14, refere-se aos dons espirituais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "procurai com zelo os dons espirituais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:1 — "Principalmente o de profetizar"</span>
+            <div class="greek-text">μᾶλλον δὲ ἵνα προφητεύητε</div>
+            <p><strong>Análise:</strong> "Antes/mais ainda, que profetizeis", indicando a preferência dada à profecia no contexto da edificação da igreja.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "principalmente o de profetizar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:2 — "Em espírito fala mistérios"</span>
+            <div class="greek-text">πνεύματι δὲ λαλεῖ μυστήρια</div>
+            <p><strong>Análise:</strong> Literalmente "em espírito fala mistérios"; o contexto indica que aquilo que é falado não é compreendido pelos demais sem interpretação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em espírito fala mistérios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:3 — "Edificação, exortação e consolação"</span>
+            <div class="greek-text">οἰκοδομήν, παράκλησιν, παραμυθίαν</div>
+            <p><strong>Análise:</strong> Três efeitos da profecia na comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "edificação, exortação e consolação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:5 — "Maior é o que profetiza"</span>
+            <div class="greek-text">μείζων ὁ προφητεύων</div>
+            <p><strong>Análise:</strong> No contexto, a superioridade está relacionada à edificação da igreja.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "maior é o que profetiza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:6 — "Revelação, conhecimento, profecia ou doutrina"</span>
+            <div class="greek-text">ἀποκαλύψει, γνώσει, προφητείᾳ, διδαχῇ</div>
+            <p><strong>Análise:</strong> Quatro formas de comunicação inteligível.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "revelação, conhecimento, profecia ou doutrina".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:7 — "Flauta, cítara"</span>
+            <div class="greek-text">αὐλός, κιθάρα</div>
+            <p><strong>Análise:</strong> Instrumentos musicais da época, usados como exemplo de sons que precisam de distinção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "flauta, cítara".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:8 — "Trombeta der som incerto"</span>
+            <div class="greek-text">σάλπιγξ φωνὴν ἄδηλον</div>
+            <p><strong>Análise:</strong> Sinal militar ininteligível, incapaz de preparar para a batalha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "trombeta der som incerto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:9 — "Falando ao ar"</span>
+            <div class="greek-text">εἰς ἀέρα λαλοῦντες</div>
+            <p><strong>Análise:</strong> Literalmente "falando para o ar"; Paulo usa a imagem para ilustrar uma comunicação que não produz entendimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falando ao ar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:10 — "Vozes no mundo"</span>
+            <div class="greek-text">φωνῶν</div>
+            <p><strong>Análise:</strong> "Vozes" ou "sons". Paulo argumenta que, mesmo havendo diferentes vozes no mundo, elas possuem significado para aqueles que conhecem seu sentido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vozes no mundo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:11 — "Estrangeiro"</span>
+            <div class="greek-text">βάρβαρος</div>
+            <p><strong>Análise:</strong> Aquele cuja língua não se compreende.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "estrangeiro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:14 — "Meu entendimento fica sem fruto"</span>
+            <div class="greek-text">ὁ νοῦς μου ἄκαρπός ἐστιν</div>
+            <p><strong>Análise:</strong> A mente não produz fruto, ou seja, não há entendimento do que está sendo dito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "meu entendimento fica sem fruto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:15 — "Orarei com o espírito... com o entendimento"</span>
+            <div class="greek-text">προσεύξομαι τῷ πνεύματι... τῷ νοΐ</div>
+            <p><strong>Análise:</strong> Paulo contrasta orar "com o espírito" com orar "com o entendimento", mostrando que ambos devem participar da oração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "orarei com o espírito... com o entendimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:16 — "Indouto"</span>
+            <div class="greek-text">ἰδιώτης</div>
+            <p><strong>Análise:</strong> Pessoa comum, não especializada ou sem conhecimento específico daquilo que estava sendo dito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "indouto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:16 — "O amém"</span>
+            <div class="greek-text">τὸ ἀμήν</div>
+            <p><strong>Análise:</strong> Expressão de confirmação ou concordância com aquilo que foi dito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o amém".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:20 — "Crianças no entendimento... adultos"</span>
+            <div class="greek-text">νηπιάζετε... τέλειοι γίνεσθε</div>
+            <p><strong>Análise:</strong> Literalmente "sede crianças... tornai-vos completos/maduros". Paulo contrasta imaturidade e maturidade no modo de pensar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "crianças no entendimento... adultos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:21 — "Em outras línguas... falarei a este povo"</span>
+            <div class="greek-text">ἐν ἑτερογλώσσοις... λαλήσω τῷ λαῷ τούτῳ</div>
+            <p><strong>Análise:</strong> Citação de Isaías 28:11-12, sobre o julgamento de Israel por meio de línguas estrangeiras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:22 — "As línguas são por sinal"</span>
+            <div class="greek-text">εἰς σημεῖον</div>
+            <p><strong>Análise:</strong> "Para sinal". Paulo contrasta aqui o efeito das línguas e da profecia em relação aos crentes e não crentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "as línguas são por sinal".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:23 — "Dirão que estais loucos"</span>
+            <div class="greek-text">μαίνεσθε</div>
+            <p><strong>Análise:</strong> Fora de si, loucos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dirão que estais loucos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:24 — "Convencido... julgado"</span>
+            <div class="greek-text">ἐλέγχεται... ἀνακρίνεται</div>
+            <p><strong>Análise:</strong> Respectivamente "é convencido/exposto" e "é examinado/julgado". O contexto mostra que a profecia torna manifestas as coisas ocultas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "convencido... julgado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:25 — "Segredos do coração"</span>
+            <div class="greek-text">τὰ κρυπτὰ τῆς καρδίας</div>
+            <p><strong>Análise:</strong> O íntimo do coração, revelado pela profecia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segredos do coração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:27 — "Que sejam dois, ou no máximo três"</span>
+            <div class="greek-text">κατὰ δύο ἢ τὸ πλεῖστον τρεῖς</div>
+            <p><strong>Análise:</strong> Limitação para ordem no culto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que sejam dois, ou no máximo três".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:28 — "Fique calado na igreja"</span>
+            <div class="greek-text">σιγάτω</div>
+            <p><strong>Análise:</strong> Permaneça em silêncio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fique calado na igreja".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:29 — "Os outros julguem"</span>
+            <div class="greek-text">οἱ ἄλλοι διακρινέτωσαν</div>
+            <p><strong>Análise:</strong> Avaliem as profecias.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os outros julguem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:32 — "Espíritos dos profetas"</span>
+            <div class="greek-text">πνεύματα προφητῶν</div>
+            <p><strong>Análise:</strong> Paulo afirma que esses "espíritos" estão sujeitos aos próprios profetas, no contexto da ordem durante a reunião.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espíritos dos profetas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:33 — "Deus não é Deus de confusão"</span>
+            <div class="greek-text">οὐ γάρ ἐστιν ἀκαταστασίας ὁ Θεός</div>
+            <p><strong>Análise:</strong> "Deus não é de desordem/confusão, mas de paz". O princípio é aplicado à ordem da reunião.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus não é Deus de confusão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:34 — "As vossas mulheres fiquem caladas"</span>
+            <div class="greek-text">αἱ γυναῖκες ἐν ταῖς ἐκκλησίαις σιγάτωσαν</div>
+            <p><strong>Análise:</strong> Instrução sobre o silêncio das mulheres nas igrejas; o alcance e a aplicação desta passagem são discutidos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "as vossas mulheres fiquem caladas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:34 — "Como também diz a lei"</span>
+            <div class="greek-text">καθὼς καὶ ὁ νόμος λέγει</div>
+            <p><strong>Análise:</strong> Paulo apresenta essa instrução como estando em concordância com a "lei", mas não especifica qual passagem está citando.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como também diz a lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:35 — "Vergonhoso para as mulheres falar na igreja"</span>
+            <div class="greek-text">αἰσχρὸν γυναιξὶν ἐν ἐκκλησίᾳ λαλεῖν</div>
+            <p><strong>Análise:</strong> Paulo apresenta essa avaliação como parte da instrução dada à comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vergonhoso para as mulheres falar na igreja".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:37 — "Mandamentos do Senhor"</span>
+            <div class="greek-text">Κυρίου ἐστὶν ἐντολή</div>
+            <p><strong>Análise:</strong> Paulo apresenta as instruções que escreve como mandamentos do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mandamentos do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:38 — "Que seja ignorado"</span>
+            <div class="greek-text">ἀγνοείτω</div>
+            <p><strong>Análise:</strong> Literalmente "seja ignorado" ou "não reconhecido/conhecido"; Paulo responde àquele que não reconhece as instruções que acabou de apresentar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que seja ignorado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 14:40 — "Decentemente e com ordem"</span>
+            <div class="greek-text">εὐσχημόνως καὶ κατὰ τάξιν</div>
+            <p><strong>Análise:</strong> "De maneira apropriada" e "segundo a ordem/ordenadamente". Paulo encerra a instrução destacando decoro e ordem na reunião.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "decentemente e com ordem".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 14 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 14 trata do uso dos dons na adoração pública. Estrutura: 1) A profecia e as línguas (v.1-5); 2) A inteligibilidade na adoração (v.6-20); 3) As línguas como sinal (v.21-25); 4) Ordem na igreja (v.26-33); 5) O papel das mulheres (v.34-35); 6) Conclusão (v.36-40). Paulo enfatiza a edificação da igreja como critério para o uso dos dons.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

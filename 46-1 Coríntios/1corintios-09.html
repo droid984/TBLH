@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Esposa crente</span>
+                Do grego *adelphēn gynaika* (ἀδελφὴν γυναῖκα). *Adelphē* significa "irmã" no sentido de comunidade cristã, enquanto *gynē* pode significar "mulher" ou "esposa"; o contexto favorece "esposa".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Administração</span>
+                Do grego *oikonomia* (οἰκονομία). Administração, gestão ou encargo confiado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sem custo</span>
+                Do grego *adapanon* (ἀδάπανον). Sem despesa para os coríntios.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Coparticipante</span>
+                Do grego *synkoinōnos* (συγκοινωνός). Participante juntamente com outros.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Estádio</span>
+                Do grego *stadion* (στάδιον). Local onde eram realizadas as competições atléticas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Subjugo o meu corpo</span>
+                Do grego *hypōpiazō mou to sōma* (ὑπωπιάζω μου τὸ σῶμα). O verbo possui a imagem de golpear/submeter.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Desqualificado</span>
+                Do grego *adokimos* (ἀδόκιμος). Reprovado no teste; imagem conversa com a metáfora esportiva.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <div class="pericope">O Direito dos Apóstolos</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>ão sou apóstolo? Não sou livre? Não vi a Jesus Cristo, nosso Senhor? Não sois vós a minha obra no Senhor?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Se para outros não sou apóstolo, para vós, ao menos, o sou; porque vós sois o selo do meu apostolado no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Esta é a minha defesa para com os que me questionam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Não temos nós direito de comer e de beber?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Não temos nós direito de levar conosco uma esposa crente, como também os demais apóstolos, e os irmãos do Senhor, e Cefas?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Ou só eu e Barnabé não temos direito de deixar de trabalhar?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Quem jamais milita à sua própria custa? Quem planta uma vinha e não come do seu fruto? Ou quem apascenta um rebanho e não come do leite do rebanho?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Falo eu isto como homem? Ou não diz também a lei o mesmo?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Pois na lei de Moisés está escrito: <span class="fala-outro">Não atarás a boca ao boi que debulha.</span> Por acaso Deus cuida dos bois?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Ou diz ele isto certamente por nós? Porque para nós está escrito; porque o que lavra deve lavrar com esperança, e o que debulha deve debulhar com esperança de participar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Se nós semeamos entre vós as coisas espirituais, será muito se colhermos de vós as coisas materiais?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Se outros participam desse direito sobre vós, por que não nós, com mais razão? Mas não usamos desse direito; antes, suportamos tudo, para não pormos obstáculo algum ao evangelho de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Não sabeis que os que trabalham nas coisas sagradas comem do templo, e os que servem ao altar participam do altar?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Assim ordenou também o Senhor aos que anunciam o evangelho, que vivam do evangelho.
+    </p>
+
+    <div class="pericope">O Exemplo de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas eu de nenhuma destas coisas usei; e não escrevo isto para que assim se faça comigo; porque melhor me fora morrer do que alguém tornar vã a minha glória.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Porque, se anuncio o evangelho, não tenho de que me gloriar, pois me é imposta necessidade; e ai de mim, se não anunciar o evangelho!
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque, se faço isto de boa vontade, tenho recompensa; mas, se contra a minha vontade, é uma administração que me foi confiada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Qual é, pois, a minha recompensa? Que, anunciando o evangelho, eu apresente o evangelho de Cristo sem custo, para não usar do meu direito no evangelho.
+    </p>
+
+    <div class="pericope">A Adaptação Missionária</div>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Porque, sendo livre de todos, fiz-me servo de todos, para ganhar o maior número.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        E fiz-me como judeu para os judeus, para ganhar os judeus; para os que estão debaixo da lei, como se estivesse debaixo da lei, para ganhar os que estão debaixo da lei;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        para os que estão sem lei, como se estivesse sem lei — não estando sem lei para com Deus, mas sob a lei de Cristo —, para ganhar os que estão sem lei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Fiz-me como fraco para os fracos, para ganhar os fracos; fiz-me tudo para todos, para de todos os modos salvar alguns.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        E faço isto por causa do evangelho, para dele tornar-me coparticipante.
+    </p>
+
+    <div class="pericope">A Disciplina Espiritual</div>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Não sabeis que os que correm no estádio, todos, na verdade, correm, mas um só recebe o prêmio? Correi de tal maneira que o alcanceis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        E todo aquele que luta, em tudo se abstém; eles, na verdade, para receber uma coroa corruptível, mas nós, incorruptível.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Assim corro, não como sem alvo; assim luto, não como batendo no ar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Antes subjugo o meu corpo, e o reduzo à servidão, para que, havendo pregado a outros, eu mesmo não venha a ser desqualificado.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:2 — "Selo do meu apostolado"</span>
+            <div class="greek-text">σφραγίς μου ἀποστολῆς</div>
+            <p><strong>Análise:</strong> Marca comprobatória do apostolado de Paulo. Os coríntios convertidos são a prova de seu ministério.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "selo do meu apostolado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:3 — "Os que me questionam"</span>
+            <div class="greek-text">τοῖς ἐμὲ ἀνακρίνουσιν</div>
+            <p><strong>Análise:</strong> Aqueles que examinam ou julgam Paulo, questionando seu apostolado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os que me questionam".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:5 — "Esposa crente"</span>
+            <div class="greek-text">ἀδελφὴν γυναῖκα</div>
+            <p><strong>Análise:</strong> <em>Adelphē</em> significa "irmã" no sentido de comunidade cristã, enquanto <em>gynē</em> pode significar "mulher" ou "esposa"; o contexto favorece "esposa".</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "esposa crente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:6 — "Deixar de trabalhar"</span>
+            <div class="greek-text">μὴ ἐργάζεσθαι</div>
+            <p><strong>Análise:</strong> Sustento por meio do trabalho próprio. Paulo e Barnabé renunciaram a esse direito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "deixar de trabalhar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:7 — "Milita à sua própria custa"</span>
+            <div class="greek-text">στρατεύεται ἰδίοις ὀψωνίοις</div>
+            <p><strong>Análise:</strong> Soldado que serve sem receber sustento ou pagamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "milita à sua própria custa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:9 — "Não atarás a boca ao boi que debulha"</span>
+            <div class="greek-text">οὐ φιμώσεις βοῦν ἀλοῶντα</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 25:4, usada por Paulo para defender o direito dos obreiros de serem sustentados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:9 — "Por acaso Deus cuida dos bois?"</span>
+            <div class="greek-text">μὴ τῶν βοῶν μέλει τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> Pergunta retórica de Paulo, indicando que o princípio da lei se aplica aos obreiros.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por acaso Deus cuida dos bois?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:11 — "Colhermos de vós as coisas materiais"</span>
+            <div class="greek-text">τὰ σαρκικὰ θερίσομεν</div>
+            <p><strong>Análise:</strong> Colheita de bens materiais em troca dos bens espirituais semeados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "colhermos de vós as coisas materiais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:13 — "Os que trabalham nas coisas sagradas"</span>
+            <div class="greek-text">οἱ τὰ ἱερὰ ἐργαζόμενοι</div>
+            <p><strong>Análise:</strong> Expressão referente aos que exerciam serviço nas coisas sagradas; o contexto menciona aqueles que serviam no templo e no altar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "os que trabalham nas coisas sagradas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:14 — "Vivam do evangelho"</span>
+            <div class="greek-text">ἐκ τοῦ εὐαγγελίου ζῆν</div>
+            <p><strong>Análise:</strong> Sustento proveniente da pregação, ordenado pelo Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vivam do evangelho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:15 — "Tornar vã a minha glória"</span>
+            <div class="greek-text">κενώσῃ</div>
+            <p><strong>Análise:</strong> <em>Kenoō</em> significa esvaziar. Paulo não quer que alguém torne vazio o motivo de seu orgulho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tornar vã a minha glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:16 — "Me é imposta necessidade"</span>
+            <div class="greek-text">ἀνάγκη μοι ἐπίκειται</div>
+            <p><strong>Análise:</strong> Indicando uma necessidade ou obrigação que pesa sobre Paulo, não uma "compulsão divina".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "me é imposta necessidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:17 — "Administração"</span>
+            <div class="greek-text">οἰκονομία</div>
+            <p><strong>Análise:</strong> <em>Oikonomia</em> significa administração, gestão ou encargo confiado.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "administração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:18 — "Sem custo"</span>
+            <div class="greek-text">ἀδάπανον</div>
+            <p><strong>Análise:</strong> Sem despesa para os coríntios. Paulo apresenta o evangelho gratuitamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem custo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:19 — "Fiz-me servo de todos"</span>
+            <div class="greek-text">ἐμαυτὸν ἐδούλωσα</div>
+            <p><strong>Análise:</strong> Escravizei-me voluntariamente a todos para ganhar o maior número.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fiz-me servo de todos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:20 — "Como judeu para os judeus"</span>
+            <div class="greek-text">τοῖς Ἰουδαίοις ὡς Ἰουδαῖος</div>
+            <p><strong>Análise:</strong> Adaptação missionária de Paulo, sem comprometimento doutrinário.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como judeu para os judeus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:21 — "Sem lei"</span>
+            <div class="greek-text">ἄνομοι</div>
+            <p><strong>Análise:</strong> Literalmente "sem lei"; no contexto, refere-se àqueles que não estavam sob a Lei de Moisés.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sem lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:21 — "Sob a lei de Cristo"</span>
+            <div class="greek-text">ἔννομος Χριστῷ</div>
+            <p><strong>Análise:</strong> Dentro da lei de Cristo. Paulo não estava sem lei em relação a Deus, mas sob a lei de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sob a lei de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:22 — "Fiz-me tudo para todos"</span>
+            <div class="greek-text">τοῖς πᾶσιν γέγονα τὰ πάντα</div>
+            <p><strong>Análise:</strong> Adaptação missionária de Paulo, sem comprometer a essência do evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fiz-me tudo para todos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:23 — "Coparticipante"</span>
+            <div class="greek-text">συγκοινωνός</div>
+            <p><strong>Análise:</strong> Participante juntamente com outros. Paulo quer ser coparticipante do evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coparticipante".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:24 — "Estádio"</span>
+            <div class="greek-text">στάδιον</div>
+            <p><strong>Análise:</strong> Local onde eram realizadas as competições atléticas; também designava uma distância de corrida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "estádio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:25 — "Coroa corruptível"</span>
+            <div class="greek-text">φθαρτὸν στέφανον</div>
+            <p><strong>Análise:</strong> Prêmio perecível dos jogos (coroa de folhas), em contraste com a coroa imperecível.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coroa corruptível".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:25 — "Coroa incorruptível"</span>
+            <div class="greek-text">ἄφθαρτον</div>
+            <p><strong>Análise:</strong> Prêmio imperecível que os crentes receberão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coroa incorruptível".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:27 — "Subjugo o meu corpo"</span>
+            <div class="greek-text">ὑπωπιάζω μου τὸ σῶμα</div>
+            <p><strong>Análise:</strong> O verbo <em>hypōpiazō</em> possui a imagem de golpear/submeter, sem obrigar o leitor a imaginar automutilação literal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "subjugo o meu corpo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:27 — "Reduzo à servidão"</span>
+            <div class="greek-text">δουλαγωγῶ</div>
+            <p><strong>Análise:</strong> <em>Doulagōgeō</em> significa conduzir como escravo, submeter à servidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "reduzo à servidão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 9:27 — "Desqualificado"</span>
+            <div class="greek-text">ἀδόκιμος</div>
+            <p><strong>Análise:</strong> Reprovado no teste; a imagem conversa com a metáfora esportiva dos versículos anteriores.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "desqualificado".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 9 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 9 defende o direito dos apóstolos ao sustento e apresenta o exemplo de Paulo. Estrutura: 1) O direito dos apóstolos (v.1-14); 2) O exemplo de Paulo (v.15-18); 3) A adaptação missionária (v.19-23); 4) A disciplina espiritual (v.24-27). Paulo renuncia a seus direitos por amor ao evangelho e aos irmãos.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

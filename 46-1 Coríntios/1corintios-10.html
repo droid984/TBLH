@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 10</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 10</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Batizados em Moisés</span>
+                Do grego *ebaptisanto eis ton Mōusēn* (ἐβαπτίσαντο εἰς τὸν Μωυσῆν). Expressão que apresenta o povo sendo identificado com Moisés no contexto da passagem pelo mar e da nuvem.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Figuras</span>
+                Do grego *typoi* (τύποι). Exemplos ou padrões de advertência.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Destruidor</span>
+                Do grego *olothreutēs* (ὀλοθρευτής). Aquele que causa destruição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Escape</span>
+                Do grego *ekbasis* (ἔκβασις). Saída, caminho de livramento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Comunhão</span>
+                Do grego *koinōnia* (κοινωνία). Participação ou partilha.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Não crentes</span>
+                Do grego *apistos* (ἄπιστος). Aqueles que não professam a fé cristã.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Motivo de tropeço</span>
+                Do grego *aprosokopoi* (ἀπρόσκοποι). Literalmente "sem causar tropeço"; conduta que não leva outros a tropeçar.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">10</div>
+
+    <div class="pericope">Os Exemplos do Antigo Testamento</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">O</span>ra, irmãos, não quero que ignoreis que nossos pais estiveram todos debaixo da nuvem, e todos passaram pelo mar;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        e todos foram batizados em Moisés, na nuvem e no mar;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        e todos comeram do mesmo alimento espiritual;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        e todos beberam da mesma bebida espiritual; porque bebiam da pedra espiritual que os seguia; e a pedra era Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas Deus não se agradou da maior parte deles; pois foram prostrados no deserto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E estas coisas foram figuras para nós, para que não cobicemos coisas más, como eles cobiçaram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Não vos torneis idólatras, como alguns deles; como está escrito: <span class="fala-outro">O povo assentou-se a comer e a beber, e levantou-se para se divertir.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Nem pratiquemos imoralidade, como alguns deles praticaram; e caíram num só dia vinte e três mil.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Nem tentemos a Cristo, como alguns deles tentaram; e foram destruídos pelas serpentes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Nem murmureis, como alguns deles murmuraram; e foram destruídos pelo destruidor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        E todas estas coisas lhes aconteceram como figuras, e foram escritas para advertência nossa, de nós sobre quem os fins dos séculos têm chegado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Portanto, aquele que pensa estar em pé, veja que não caia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Não vos sobreveio tentação senão humana; mas fiel é Deus, que não vos deixará tentar acima do que podeis; antes, com a tentação dará também o escape, para que a possais suportar.
+    </p>
+
+    <div class="pericope">Fugi da Idolatria</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Portanto, meus amados, fugi da idolatria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Falo como a sábios; julgai vós o que digo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        O cálice da bênção que abençoamos, não é a comunhão do sangue de Cristo? O pão que partimos, não é a comunhão do corpo de Cristo?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque nós, embora muitos, somos um só pão e um só corpo; pois todos participamos do único pão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Vede a Israel segundo a carne: os que comem os sacrifícios não são participantes do altar?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Que digo, pois? Que o ídolo é alguma coisa? Ou que aquilo que se sacrifica ao ídolo é alguma coisa?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Antes digo que as coisas que os gentios sacrificam, sacrificam-nas a demônios, e não a Deus; e não quero que vos torneis participantes com os demônios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Não podeis beber o cálice do Senhor e o cálice dos demônios; não podeis participar da mesa do Senhor e da mesa dos demônios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Ou irritaremos o Senhor? Somos mais fortes do que ele?
+    </p>
+
+    <div class="pericope">Tudo para a Glória de Deus</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Todas as coisas me são lícitas, mas nem todas convêm; todas as coisas me são lícitas, mas nem todas edificam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Ninguém busque o seu próprio bem, mas cada um o do outro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Comei de tudo o que se vende no mercado, nada perguntando, por causa da consciência.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Porque do Senhor é a terra, e a sua plenitude.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        E, se algum dos não crentes vos convidar, e quiserdes ir, comei de tudo o que se puser diante de vós, nada perguntando, por causa da consciência.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Mas, se alguém vos disser: <span class="fala-outro">Isto foi sacrificado ao ídolo,</span> não comais, por causa daquele que vos advertiu, e por causa da consciência; porque do Senhor é a terra, e a sua plenitude.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Consciência, digo, não a tua, mas a do outro. Pois por que há de ser julgada a minha liberdade pela consciência de outro?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        E, se eu com gratidão participo, por que sou difamado por aquilo pelo qual dou graças?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Portanto, se comeis, ou se bebeis, ou se fazeis qualquer outra coisa, fazei tudo para a glória de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Não vos torneis motivo de tropeço, nem para judeus, nem para gregos, nem para a igreja de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Assim como também eu em tudo agrado a todos, não buscando o meu próprio proveito, mas o de muitos, para que sejam salvos.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:2 — "Batizados em Moisés"</span>
+            <div class="greek-text">ἐβαπτίσαντο εἰς τὸν Μωυσῆν</div>
+            <p><strong>Análise:</strong> Expressão que apresenta o povo sendo identificado com Moisés no contexto da passagem pelo mar e da nuvem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batizados em Moisés".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:3 — "Alimento espiritual"</span>
+            <div class="greek-text">βρῶμα πνευματικόν</div>
+            <p><strong>Análise:</strong> O maná como tipo do sustento espiritual que Deus provê.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alimento espiritual".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:4 — "Bebida espiritual"</span>
+            <div class="greek-text">πόμα πνευματικόν</div>
+            <p><strong>Análise:</strong> A água da rocha como provisão espiritual de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bebida espiritual".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:4 — "A pedra era Cristo"</span>
+            <div class="greek-text">ἡ πέτρα δὲ ἦν ὁ Χριστός</div>
+            <p><strong>Análise:</strong> Identificação tipológica da rocha com Cristo, sem especular sobre a natureza literal da pedra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a pedra era Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:5 — "Foram prostrados no deserto"</span>
+            <div class="greek-text">κατεστρώθησαν</div>
+            <p><strong>Análise:</strong> Verbo forte de destruição, significando "foram espalhados mortos" no deserto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "foram prostrados no deserto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:6, 11 — "Figuras"</span>
+            <div class="greek-text">τύποι</div>
+            <p><strong>Análise:</strong> Exemplos ou padrões de advertência para os crentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "figuras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:7 — "Se divertir"</span>
+            <div class="greek-text">παίζειν</div>
+            <p><strong>Análise:</strong> Brincar, divertir-se; referência ao episódio do bezerro de ouro em Êxodo 32:6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se divertir".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:8 — "Vinte e três mil"</span>
+            <div class="greek-text">εἴκοσι τρεῖς χιλιάδες</div>
+            <p><strong>Análise:</strong> Paulo apresenta esse número em relação à mortandade em Baal-Peor. Números 25:9 registra 24 mil. A diferença pode estar relacionada à forma de contabilização apresentada nos dois textos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vinte e três mil".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:9 — "Tentemos a Cristo"</span>
+            <div class="greek-text">Χριστόν</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz "Cristo"; alguns manuscritos trazem "Senhor". A TBLH mantém a leitura do TR.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tentemos a Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:10 — "Destruidor"</span>
+            <div class="greek-text">ὀλοθρευτής</div>
+            <p><strong>Análise:</strong> Aquele que causa destruição. O termo pode evocar o agente destruidor mencionado no contexto do Êxodo, mas Paulo não o identifica explicitamente aqui como anjo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "destruidor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:11 — "Fins dos séculos"</span>
+            <div class="greek-text">τὰ τέλη τῶν αἰώνων</div>
+            <p><strong>Análise:</strong> As eras finais, indicando que os crentes vivem no tempo do cumprimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fins dos séculos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:13 — "Tentação senão humana"</span>
+            <div class="greek-text">πειρασμὸς οὐκ εἴληφεν εἰ μὴ ἀνθρώπινος</div>
+            <p><strong>Análise:</strong> Tentação comum ao ser humano, não algo extraordinário.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tentação senão humana".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:13 — "Escape"</span>
+            <div class="greek-text">ἔκβασις</div>
+            <p><strong>Análise:</strong> Saída, caminho de livramento que Deus provê diante da tentação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escape".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:16 — "Cálice da bênção"</span>
+            <div class="greek-text">τὸ ποτήριον τῆς εὐλογίας</div>
+            <p><strong>Análise:</strong> Copa de bênção da ceia do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cálice da bênção".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:16, 18, 20 — "Comunhão"</span>
+            <div class="greek-text">κοινωνία</div>
+            <p><strong>Análise:</strong> Participação ou partilha. A comunhão com Cristo é contrastada com a comunhão com demônios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "comunhão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:18 — "Israel segundo a carne"</span>
+            <div class="greek-text">Ἰσραὴλ κατὰ σάρκα</div>
+            <p><strong>Análise:</strong> Expressão que identifica Israel segundo sua descendência e condição terrena, em contraste com a aplicação espiritual que Paulo está desenvolvendo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Israel segundo a carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:20 — "Participantes com os demônios"</span>
+            <div class="greek-text">κοινωνοὺς τῶν δαιμονίων</div>
+            <p><strong>Análise:</strong> Associação espiritual com demônios. Comer carnes sacrificadas aos ídolos é participar da mesa de demônios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "participantes com os demônios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:21 — "Mesa do Senhor / mesa dos demônios"</span>
+            <div class="greek-text">τραπέζης Κυρίου / τραπέζης δαιμονίων</div>
+            <p><strong>Análise:</strong> Contraste entre a ceia cristã e as refeições pagãs. Não se pode participar de ambas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mesa do Senhor / mesa dos demônios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:22 — "Irritaremos o Senhor"</span>
+            <div class="greek-text">παραζηλοῦμεν τὸν Κύριον</div>
+            <p><strong>Análise:</strong> Provocar ciúmes ou provocar zelo; pergunta retórica baseada na relação exclusiva do Senhor com seu povo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "irritaremos o Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:24 — "O seu próprio bem"</span>
+            <div class="greek-text">τὸ ἑαυτοῦ</div>
+            <p><strong>Análise:</strong> O próprio interesse ou proveito pessoal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o seu próprio bem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:26, 28 — "Do Senhor é a terra"</span>
+            <div class="greek-text">τοῦ Κυρίου ἡ γῆ</div>
+            <p><strong>Análise:</strong> Citação do Salmo 24:1, fundamentando a liberdade para comer.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:27 — "Não crentes"</span>
+            <div class="greek-text">ἀπίστων</div>
+            <p><strong>Análise:</strong> Não crentes, aqueles que não professam a fé cristã.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "não crentes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:32 — "Motivo de tropeço"</span>
+            <div class="greek-text">ἀπρόσκοποι</div>
+            <p><strong>Análise:</strong> Literalmente "sem causar tropeço"; refere-se a uma conduta que não leva outros a tropeçar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "motivo de tropeço".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 10:33 — "Agrado a todos"</span>
+            <div class="greek-text">πάντα πᾶσιν ἀρέσκω</div>
+            <p><strong>Análise:</strong> Paulo descreve sua disposição de agir em benefício dos outros, não de comprometer suas convicções, tendo como objetivo a salvação de muitos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "agrado a todos".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 10 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 10 conclui o argumento sobre liberdade e idolatria. Estrutura: 1) Os exemplos do Antigo Testamento (v.1-13); 2) Fugi da idolatria (v.14-22); 3) Tudo para a glória de Deus (v.23-33). Paulo enfatiza que a liberdade cristã deve ser guiada pelo amor e pela glória de Deus.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

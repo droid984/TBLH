@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Dons espirituais</span>
+                Do grego *pneumatikōn* (πνευματικῶν). Literalmente "coisas espirituais"; no contexto, refere-se às manifestações e dons relacionados ao Espírito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Anátema</span>
+                Do grego *anathema* (ἀνάθεμα). Aquilo que é colocado sob maldição ou destinado à destruição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Operação de poderes</span>
+                Do grego *energēmata dynameōn* (ἐνεργήματα δυνάμεων). Atuações ou manifestações de poder.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Socorros</span>
+                Do grego *antilēmpseis* (ἀντιλήμψεις). Auxílios, atos de assistência.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Governos</span>
+                Do grego *kybernēseis* (κυβερνήσεις). Funções de direção ou condução.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Assim também é Cristo</span>
+                Paulo aplica a unidade do corpo à comunidade unida a Cristo, apresentando muitos membros como um só corpo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Batizados em um só Espírito</span>
+                Expressão que apresenta todos os crentes unidos em um só corpo mediante um só Espíritu.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Beber de um só Espírito</span>
+                Expressão figurada de participação comum no Espírito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Caminho ainda mais excelente</span>
+                Caminho superior, que Paulo apresentará em seguida como o amor.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <div class="pericope">Os Dons Espirituais</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">O</span>ra, quanto aos dons espirituais, irmãos, não quero que sejais ignorantes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Sabeis que éreis gentios, levados aos ídolos mudos, conforme éreis guiados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Portanto, vos faço saber que ninguém que fala pelo Espírito de Deus diz: <span class="fala-outro">Jesus é anátema;</span> e ninguém pode dizer: <span class="fala-outro">Jesus é o Senhor,</span> senão pelo Espírito Santo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Ora, há diversidade de dons, mas o Espírito é o mesmo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E há diversidade de ministérios, mas o Senhor é o mesmo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E há diversidade de operações, mas é o mesmo Deus que opera tudo em todos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Mas a manifestação do Espírito é dada a cada um para o que for útil.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque a um é dada, pelo Espírito, palavra de sabedoria; e a outro, palavra de conhecimento, pelo mesmo Espírito;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        e a outro, fé, pelo mesmo Espírito; e a outro, dons de curas, pelo mesmo Espírito;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        e a outro, operação de poderes; e a outro, profecia; e a outro, discernimento de espíritos; e a outro, variedade de línguas; e a outro, interpretação de línguas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas todas estas coisas opera o único e mesmo Espírito, distribuindo particularmente a cada um como quer.
+    </p>
+
+    <div class="pericope">O Corpo e os Membros</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque, assim como o corpo é um, e tem muitos membros, e todos os membros do corpo, sendo muitos, são um só corpo, assim também é Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Pois todos nós fomos batizados em um só Espírito, para um só corpo, quer judeus, quer gregos, quer servos, quer livres; e a todos nós foi dado beber de um só Espírito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque também o corpo não é um só membro, mas muitos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Se o pé disser: <span class="fala-outro">Porque não sou mão, não sou do corpo;</span> nem por isso deixa de ser do corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E, se a orelha disser: <span class="fala-outro">Porque não sou olho, não sou do corpo;</span> nem por isso deixa de ser do corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Se todo o corpo fosse olho, onde estaria o ouvido? Se todo fosse ouvido, onde estaria o olfato?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Mas Deus pôs os membros no corpo, cada um deles como quis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E, se todos fossem um só membro, onde estaria o corpo?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Agora, pois, há muitos membros, mas um só corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E o olho não pode dizer à mão: <span class="fala-outro">Não tenho necessidade de ti;</span> nem ainda a cabeça aos pés: <span class="fala-outro">Não tenho necessidade de vós.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Antes, os membros do corpo que parecem ser mais fracos são necessários;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        e os que consideramos menos honrosos no corpo, a esses cercamos de mais honra; e os que em nós são indecorosos têm mais decoro;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        mas os que em nós são decorosos não têm necessidade disso. Mas Deus compôs o corpo, dando mais honra ao que tinha falta dela,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        para que não haja divisão no corpo, mas os membros tenham igual cuidado uns pelos outros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        E, se um membro padece, todos os membros padecem com ele; e, se um membro é honrado, todos os membros se alegram com ele.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Ora, vós sois o corpo de Cristo, e membros em particular.
+    </p>
+
+    <div class="pericope">Dons na Igreja</div>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E a alguns Deus pôs na igreja, primeiramente apóstolos, em segundo lugar profetas, em terceiro mestres, depois operadores de poderes, depois dons de curas, socorros, governos, variedade de línguas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        São todos apóstolos? São todos profetas? São todos mestres? São todos operadores de poderes?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Têm todos dons de curas? Falam todos em línguas? Interpretam todos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Procurai com zelo os maiores dons; e eu vos mostrarei um caminho ainda mais excelente.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:1 — "Dons espirituais"</span>
+            <div class="greek-text">πνευματικῶν</div>
+            <p><strong>Análise:</strong> Literalmente "coisas espirituais"; no contexto, refere-se às manifestações e dons relacionados ao Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dons espirituais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:2 — "Ídolos mudos"</span>
+            <div class="greek-text">τὰ εἴδωλα τὰ ἄφωνα</div>
+            <p><strong>Análise:</strong> Referência ao passado pagão dos coríntios, que adoravam ídolos incapazes de falar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ídolos mudos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:3 — "Anátema"</span>
+            <div class="greek-text">ἀνάθεμα</div>
+            <p><strong>Análise:</strong> Aquilo que é colocado sob maldição ou destinado à destruição; aqui expressa rejeição/maldição contra Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "anátema".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:4 — "Diversidade de dons"</span>
+            <div class="greek-text">διαιρέσεις χαρισμάτων</div>
+            <p><strong>Análise:</strong> Variedades de dons concedidos pelo Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "diversidade de dons".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:5 — "Ministérios"</span>
+            <div class="greek-text">διακονιῶν</div>
+            <p><strong>Análise:</strong> Serviços ou funções dentro da comunidade cristã.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministérios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:6 — "Operações"</span>
+            <div class="greek-text">ἐνεργημάτων</div>
+            <p><strong>Análise:</strong> Atuações, realizações, manifestações do poder de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "operações".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:7 — "Manifestação do Espírito"</span>
+            <div class="greek-text">ἡ φανέρωσις τοῦ Πνεύματος</div>
+            <p><strong>Análise:</strong> Demonstração visível do Espírito por meio dos dons.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "manifestação do Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:8 — "Palavra de sabedoria / palavra de conhecimento"</span>
+            <div class="greek-text">λόγος σοφίας / λόγος γνώσεως</div>
+            <p><strong>Análise:</strong> Dons de revelação e ensino concedidos pelo Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavra de sabedoria / palavra de conhecimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:9, 28, 30 — "Dons de curas"</span>
+            <div class="greek-text">χαρίσματα ἰαμάτων</div>
+            <p><strong>Análise:</strong> Plural no grego; provavelmente indica variedade de curas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dons de curas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:10 — "Operação de poderes"</span>
+            <div class="greek-text">ἐνεργήματα δυνάμεων</div>
+            <p><strong>Análise:</strong> Atuações ou manifestações de poder, como milagres e obras sobrenaturais.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "operação de poderes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:10 — "Discernimento de espíritos"</span>
+            <div class="greek-text">διακρίσεις πνευμάτων</div>
+            <p><strong>Análise:</strong> Capacidade de distinguir entre espíritos verdadeiros e falsos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "discernimento de espíritos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:10, 28 — "Variedade de línguas"</span>
+            <div class="greek-text">γένη γλωσσῶν</div>
+            <p><strong>Análise:</strong> Gêneros ou tipos de línguas, ou seja, diferentes manifestações de línguas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "variedade de línguas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:10 — "Interpretação de línguas"</span>
+            <div class="greek-text">ἑρμηνεία γλωσσῶν</div>
+            <p><strong>Análise:</strong> Interpretação ou explicação de línguas para a edificação da igreja.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "interpretação de línguas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:11 — "Distribuindo particularmente"</span>
+            <div class="greek-text">διαιροῦν ἰδίᾳ</div>
+            <p><strong>Análise:</strong> Distribuindo individualmente, de acordo com a vontade do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "distribuindo particularmente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:12 — "Assim também é Cristo"</span>
+            <div class="greek-text">οὕτως καὶ ὁ Χριστός</div>
+            <p><strong>Análise:</strong> Paulo aplica a unidade do corpo à comunidade unida a Cristo, apresentando muitos membros como um só corpo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "assim também é Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:13 — "Batizados em um só Espírito"</span>
+            <div class="greek-text">ἐν ἑνὶ Πνεύματι ἐβαπτίσθημεν</div>
+            <p><strong>Análise:</strong> Expressão que apresenta todos os crentes unidos em um só corpo mediante um só Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batizados em um só Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:13 — "Beber de um só Espírito"</span>
+            <div class="greek-text">ἐποτίσθημεν</div>
+            <p><strong>Análise:</strong> Expressão figurada de participação comum no Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "beber de um só Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:23 — "Menos honrosos"</span>
+            <div class="greek-text">ἀτιμότερα</div>
+            <p><strong>Análise:</strong> Sem honra, considerados menos dignos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "menos honrosos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:23 — "Indecorosos"</span>
+            <div class="greek-text">ἀσχήμονα</div>
+            <p><strong>Análise:</strong> Sem decoro, vergonhosos, que não são dignos de exibição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "indecorosos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:24 — "Compôs o corpo"</span>
+            <div class="greek-text">συνεκέρασεν</div>
+            <p><strong>Análise:</strong> Misturou, combinou harmonicamente, dando equilíbrio ao corpo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "compôs o corpo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:25 — "Igual cuidado"</span>
+            <div class="greek-text">τὸ αὐτὸ μεριμνῶσιν</div>
+            <p><strong>Análise:</strong> Mesma preocupação uns pelos outros, evitando divisões.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "igual cuidado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:27 — "Membros em particular"</span>
+            <div class="greek-text">μέλη ἐκ μέρους</div>
+            <p><strong>Análise:</strong> Membros individualmente, cada um com sua função específica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "membros em particular".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:28 — "Socorros"</span>
+            <div class="greek-text">ἀντιλήμψεις</div>
+            <p><strong>Análise:</strong> Auxílios, atos de assistência e cuidado com os necessitados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "socorros".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:28 — "Governos"</span>
+            <div class="greek-text">κυβερνήσεις</div>
+            <p><strong>Análise:</strong> Funções de direção ou condução, como liderança e administração na igreja.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "governos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:31 — "Procurai com zelo"</span>
+            <div class="greek-text">ζηλοῦτε</div>
+            <p><strong>Análise:</strong> Buscai com empenho, desejai ardentemente; pode também ter sentido de "zelais".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "procurai com zelo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:31 — "Maiores dons"</span>
+            <div class="greek-text">τὰ χαρίσματα τὰ μείζονα</div>
+            <p><strong>Análise:</strong> Dons maiores ou mais importantes, que Paulo contrastará com o caminho superior do amor.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "maiores dons".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 12:31 — "Caminho ainda mais excelente"</span>
+            <div class="greek-text">καθ' ὑπερβολὴν ὁδόν</div>
+            <p><strong>Análise:</strong> Caminho superior, que Paulo apresentará em seguida como o amor. Não antecipar no texto o que ainda será revelado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "caminho ainda mais excelente".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 12 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 12 introduz o tema dos dons espirituais e a metáfora do corpo. Estrutura: 1) Os dons espirituais (v.1-11); 2) O corpo e os membros (v.12-27); 3) Dons na igreja (v.28-31). Paulo prepara o terreno para o capítulo 13 sobre o amor.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

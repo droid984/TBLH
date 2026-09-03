@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 7</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 7</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Devida benevolência</span>
+                Do grego *opheilomenēn eunoian* (ὀφειλομένην εὔνοιαν). Dever conjugal entre marido e mulher.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Concessão</span>
+                Do grego *kata syngnōmēn* (κατὰ συγγνώμην). Permissão, não mandamento.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mulher não crente</span>
+                Do grego *gynaika apiston* (γυναῖκα ἄπιστον). Esposa que não professa a fé cristã.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Não está escravizado</span>
+                Do grego *ou dedoulōtai* (οὐ δεδούλωται). Não está reduzido à condição de escravo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aproveita antes</span>
+                Do grego *mallon chrēsai* (μᾶλλον χρῆσαι). Expressão ambígua sobre o uso da liberdade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Passa da flor da idade</span>
+                Do grego *hyperakmos* (ὑπέρακμος). Literalmente "além do auge"; refere-se à idade apropriada para o casamento.
+            </div>
+            <div class="glossary-term">Santificado</span>
+                Do grego *hēgiastai* (ἡγίασται). Santidade derivada da união com o crente.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">7</div>
+
+    <div class="pericope">Conselhos sobre o Casamento</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">O</span>ra, quanto às coisas que me escrevestes: bom é que o homem não toque em mulher.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Mas, por causa da imoralidade, cada um tenha a sua própria mulher, e cada uma tenha o seu próprio marido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        O marido pague à mulher a devida benevolência; e da mesma maneira também a mulher ao marido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        A mulher não tem autoridade sobre o seu próprio corpo, mas o marido; e da mesma maneira também o marido não tem autoridade sobre o seu próprio corpo, mas a mulher.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Não vos priveis um ao outro, senão por consentimento mútuo por um tempo, para vos dedicardes ao jejum e à oração; e ajuntai-vos outra vez, para que Satanás não vos tente pela vossa incontinência.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Digo isto, porém, como concessão, não como mandamento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Porque quero que todos os homens sejam como eu mesmo; mas cada um tem de Deus o seu próprio dom, um de um modo, outro de outro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Digo, porém, aos solteiros e às viúvas: bom lhes seria se permanecessem como eu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Mas, se não podem conter-se, casem-se; porque é melhor casar do que arder.
+    </p>
+
+    <div class="pericope">O Casamento com Não Crentes</div>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Aos casados, porém, ordeno, não eu, mas o Senhor: que a mulher não se aparte do marido;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        e, se ela se apartar, que permaneça sem casar, ou se reconcilie com o marido; e que o marido não deixe a mulher.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Aos demais, digo eu, não o Senhor: se algum irmão tem mulher não crente, e ela consente em habitar com ele, não a deixe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E se alguma mulher tem marido não crente, e ele consente em habitar com ela, não o deixe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque o marido não crente é santificado pela mulher; e a mulher não crente é santificada pelo marido; de outra maneira os vossos filhos seriam impuros, mas agora são santos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas, se o não crente se aparta, que se aparte; o irmão ou a irmã não está escravizado em tais casos; mas Deus nos chamou para a paz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Pois como sabes, ó mulher, se salvarás o teu marido? Ou como sabes, ó marido, se salvarás a tua mulher?
+    </p>
+
+    <div class="pericope">Permanecei na Vocação</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porém, assim como Deus repartiu a cada um, assim como o Senhor chamou a cada um, assim ande. E assim ordeno em todas as igrejas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Foi alguém chamado, estando circuncidado? Não se torne incircuncidado. Foi alguém chamado, estando incircuncidado? Não se circuncide.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        A circuncisão nada é, e a incircuncisão nada é; mas a guarda dos mandamentos de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Cada um permaneça na vocação em que foi chamado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Foste chamado sendo servo? Não te preocupe; mas, se também podes tornar-te livre, aproveita antes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Porque aquele que foi chamado no Senhor, sendo servo, é liberto do Senhor; da mesma maneira também aquele que foi chamado, sendo livre, é servo de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Fostes comprados por preço; não vos torneis servos dos homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Irmãos, cada um permaneça diante de Deus naquilo em que foi chamado.
+    </p>
+
+    <div class="pericope">As Virgens e o Casamento</div>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Quanto às virgens, não tenho mandamento do Senhor; mas dou o meu parecer, como quem alcançou misericórdia do Senhor para ser fiel.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Considero, pois, que isto é bom por causa da necessidade presente: que é bom ao homem permanecer assim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Estás ligado a mulher? Não busques separação. Estás livre de mulher? Não busques mulher.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Mas, se também te casares, não pecas; e, se a virgem se casar, não peca. Contudo, os tais terão tribulação na carne; e eu vos quero poupar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Isto, porém, digo, irmãos: o tempo é curto. Resta que também os que têm mulher sejam como se não a tivessem;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        e os que choram, como se não chorassem; e os que se alegram, como se não se alegrassem; e os que compram, como se não possuíssem;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        e os que usam deste mundo, como se não o usassem em excesso; porque a aparência deste mundo passa.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        E quero que estejais sem preocupação. O solteiro cuida das coisas do Senhor, em como agradar ao Senhor;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        mas o casado cuida das coisas do mundo, em como agradar à mulher.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Há diferença entre a mulher casada e a virgem: a solteira cuida das coisas do Senhor, para ser santa tanto no corpo como no espírito; mas a casada cuida das coisas do mundo, em como agradar ao marido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        E digo isto para vosso proveito; não para vos lançar um laço, mas para o que é decente, e para que vos dediqueis ao Senhor sem distração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Mas, se alguém pensa que age de modo indecoroso para com a sua virgem, se ela passa da flor da idade, e assim convém, faça o que quiser; não peca; casem-se.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        Aquele, porém, que está firme em seu coração, e não tem necessidade, mas tem poder sobre a sua própria vontade, e determinou em seu coração guardar a sua virgem, faz bem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        De modo que aquele que a dá em casamento faz bem; e aquele que não a dá em casamento faz melhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        A mulher está ligada pela lei enquanto o seu marido vive; mas, se o seu marido dorme, fica livre para casar com quem quiser, contanto que seja no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        Porém será mais feliz se permanecer assim, segundo o meu parecer; e penso que também eu tenho o Espírito de Deus.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:1 — "Não toque em mulher"</span>
+            <div class="greek-text">μὴ ἅπτεσθαι γυναικός</div>
+            <p><strong>Análise:</strong> Eufemismo para relações sexuais; possível citação de uma frase dos coríntios que Paulo responde.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não toque em mulher".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:2 — "Por causa da imoralidade"</span>
+            <div class="greek-text">διὰ τὰς πορνείας</div>
+            <p><strong>Análise:</strong> Por causa das tentações imorais que poderiam levar ao pecado sexual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por causa da imoralidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:3 — "Devida benevolência"</span>
+            <div class="greek-text">ὀφειλομένην εὔνοιαν</div>
+            <p><strong>Análise:</strong> Dever conjugal, a afeição e o cuidado que marido e mulher devem um ao outro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "devida benevolência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:4 — "Autoridade sobre o seu próprio corpo"</span>
+            <div class="greek-text">ἐξουσιάζει</div>
+            <p><strong>Análise:</strong> Princípio de mutualidade conjugal: cada cônjuge tem autoridade sobre o corpo do outro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "autoridade sobre o seu próprio corpo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:5 — "Jejum e oração"</span>
+            <div class="greek-text">τῇ νηστείᾳ</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui "jejum"; alguns manuscritos omitem a palavra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "jejum e oração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:6 — "Concessão, não como mandamento"</span>
+            <div class="greek-text">κατὰ συγγνώμην, οὐ κατ' ἐπιταγήν</div>
+            <p><strong>Análise:</strong> Paulo distingue entre permissão (concessão) e mandamento divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "concessão, não como mandamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:7 — "Como eu mesmo"</span>
+            <div class="greek-text">ὡς καὶ ἐμαυτόν</div>
+            <p><strong>Análise:</strong> Paulo se refere ao seu estado de solteiro (ou viúvo), que ele considera vantajoso para o serviço.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como eu mesmo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:9 — "É melhor casar do que arder"</span>
+            <div class="greek-text">κρεῖσσον γάρ ἐστιν γαμῆσαι ἢ πυροῦσθαι</div>
+            <p><strong>Análise:</strong> Referência ao fogo do desejo sexual que não pode ser controlado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "é melhor casar do que arder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:10 — "Ordeno, não eu, mas o Senhor"</span>
+            <div class="greek-text">παραγγέλλω, οὐκ ἐγώ, ἀλλὰ ὁ Κύριος</div>
+            <p><strong>Análise:</strong> Paulo cita um mandamento explícito de Jesus sobre a indissolubilidade do casamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ordeno, não eu, mas o Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:12 — "Digo eu, não o Senhor"</span>
+            <div class="greek-text">λέγω ἐγώ, οὐχ ὁ Κύριος</div>
+            <p><strong>Análise:</strong> Paulo distingue entre sua orientação pastoral e um mandamento direto de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "digo eu, não o Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:12 — "Mulher não crente"</span>
+            <div class="greek-text">γυναῖκα ἄπιστον</div>
+            <p><strong>Análise:</strong> Esposa que não professa a fé cristã. Paulo dá orientação pastoral para tais casos.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "mulher não crente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:14 — "É santificado"</span>
+            <div class="greek-text">ἡγίασται</div>
+            <p><strong>Análise:</strong> Santidade derivada da união com o crente. O cônjuge não crente e os filhos são considerados "santos" no contexto familiar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "é santificado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:15 — "Não está escravizado"</span>
+            <div class="greek-text">οὐ δεδούλωται</div>
+            <p><strong>Análise:</strong> Não está reduzido à condição de escravo. O crente não fica escravizado ao casamento quando o não crente se aparta.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "não está escravizado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:17 — "Assim ande"</span>
+            <div class="greek-text">οὕτως περιπατείτω</div>
+            <p><strong>Análise:</strong> Princípio de permanência na condição em que foi chamado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "assim ande".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:18 — "Não se torne incircuncidado"</span>
+            <div class="greek-text">μὴ ἐπισπάσθω</div>
+            <p><strong>Análise:</strong> Referência a procedimento cirúrgico de reversão da circuncisão, praticado por alguns judeus helenizados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não se torne incircuncidado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:19 — "A circuncisão nada é"</span>
+            <div class="greek-text">ἡ περιτομὴ οὐδέν ἐστιν</div>
+            <p><strong>Análise:</strong> Relativização dos ritos diante da obediência aos mandamentos de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a circuncisão nada é".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:21 — "Aproveita antes"</span>
+            <div class="greek-text">μᾶλλον χρῆσαι</div>
+            <p><strong>Análise:</strong> A expressão é ambígua: pode indicar "aproveitar a oportunidade de liberdade" ou "fazer bom uso da condição de servo". A TBLH não resolve a questão no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aproveita antes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:22 — "Liberto do Senhor"</span>
+            <div class="greek-text">ἀπελεύθερος Κυρίου</div>
+            <p><strong>Análise:</strong> Liberto que pertence ao Senhor. Mesmo sendo servo, o crente é livre em Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "liberto do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:25 — "Quanto às virgens"</span>
+            <div class="greek-text">περὶ δὲ τῶν παρθένων</div>
+            <p><strong>Análise:</strong> Possivelmente referência a moças solteiras ou noivas. Paulo dá seu parecer, não um mandamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quanto às virgens".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:26 — "Necessidade presente"</span>
+            <div class="greek-text">διὰ τὴν ἐνεστῶσαν ἀνάγκην</div>
+            <p><strong>Análise:</strong> Circunstância atual de pressão ou dificuldade que torna o celibato vantajoso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "necessidade presente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:29 — "O tempo é curto"</span>
+            <div class="greek-text">ὁ καιρὸς συνεσταλμένος</div>
+            <p><strong>Análise:</strong> Tempo reduzido; Paulo enfatiza a brevidade da vida presente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o tempo é curto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:31 — "A aparência deste mundo passa"</span>
+            <div class="greek-text">παράγει γὰρ τὸ σχῆμα τοῦ κόσμου τούτου</div>
+            <p><strong>Análise:</strong> A ordem presente é transitória; os crentes não devem se apegar a ela.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a aparência deste mundo passa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:36 — "Passa da flor da idade"</span>
+            <div class="greek-text">ὑπέρακμος</div>
+            <p><strong>Análise:</strong> Literalmente "além do auge"; o contexto parece referir-se à idade ou ao período apropriado para o casamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "passa da flor da idade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:39 — "Dorme"</span>
+            <div class="greek-text">κοιμηθῇ</div>
+            <p><strong>Análise:</strong> Eufemismo para morte, usado no Novo Testamento para descrever a morte dos crentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dorme".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 7:39 — "Contanto que seja no Senhor"</span>
+            <div class="greek-text">μόνον ἐν Κυρίῳ</div>
+            <p><strong>Análise:</strong> Casamento com cristão. A viúva é livre para casar, mas com um crente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "contanto que seja no Senhor".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 7 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 7 aborda questões sobre casamento, celibato e separação. Estrutura: 1) Conselhos sobre o casamento (v.1-9); 2) O casamento com não crentes (v.10-16); 3) Permanecei na vocação (v.17-24); 4) As virgens e o casamento (v.25-40). Paulo distingue repetidamente entre mandamento do Senhor, sua própria orientação e concessão.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

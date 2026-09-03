@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 15</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 15</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Abortivo</span>
+                Do grego *ektrōma* (ἔκτρωμα). Termo relacionado a um nascimento anormal ou fora do tempo; Paulo descreve sua condição em relação aos demais apóstolos.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Abolido</span>
+                Do grego *katargeō* (καταργέω). Tornar inativo, abolir ou fazer cessar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Primícias</span>
+                Do grego *aparchē* (ἀπαρχή). Primeiros frutos; Cristo como o primeiro da ressurreição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Corpo natural / espiritual</span>
+                Do grego *sōma psychikon / sōma pneumatikon* (σῶμα ψυχικόν / σῶμα πνευματικόν). Contraste entre o corpo presente e o corpo da ressurreição.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Batizados pelos mortos</span>
+                Expressão de sentido discutido; o texto não fornece informação suficiente para determinar com certeza qual prática Paulo tinha em mente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sepulcro</span>
+                Do grego *hadē* (ᾍδης). Hades; traduzido como "sepulcro" na TBLH.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Carne e sangue</span>
+                Expressão que representa a condição humana presente, sujeita à mortalidade e corrupção.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">O aguilhão da morte é o pecado</span>
+                O pecado como aguilhão que dá poder à morte.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">15</div>
+
+    <div class="pericope">O Evangelho e a Ressurreição</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">T</span>ambém vos declaro, irmãos, o evangelho que já vos anunciei, o qual também recebestes, e no qual também permaneceis;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        pelo qual também sois salvos, se o retiverdes tal como vo-lo anunciei; a menos que tenhais crido em vão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque primeiramente vos entreguei o que também recebi: que Cristo morreu por nossos pecados, segundo as Escrituras;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        e que foi sepultado; e que ressuscitou ao terceiro dia, segundo as Escrituras;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        e que apareceu a Cefas, e depois aos doze.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Depois apareceu a mais de quinhentos irmãos de uma vez, dos quais a maioria vive até agora, mas alguns já dormem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Depois apareceu a Tiago, e depois a todos os apóstolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E, por último de todos, apareceu também a mim, como a um abortivo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque eu sou o menor dos apóstolos, que não sou digno de ser chamado apóstolo, porque persegui a igreja de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas, pela graça de Deus, sou o que sou; e a sua graça para comigo não foi vã; antes, trabalhei muito mais do que todos eles; todavia, não eu, mas a graça de Deus que está comigo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Portanto, seja eu, sejam eles, assim pregamos, e assim crestes.
+    </p>
+
+    <div class="pericope">A Ressurreição dos Mortos</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Ora, se se prega que Cristo ressuscitou dos mortos, como dizem alguns entre vós que não há ressurreição dos mortos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E, se não há ressurreição dos mortos, também Cristo não ressuscitou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E, se Cristo não ressuscitou, é vã a nossa pregação, e é vã também a vossa fé.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E assim somos também considerados falsas testemunhas de Deus, porque testemunhamos de Deus que ele ressuscitou a Cristo; ao qual não ressuscitou, se na verdade os mortos não ressuscitam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Porque, se os mortos não ressuscitam, também Cristo não ressuscitou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        E, se Cristo não ressuscitou, é vã a vossa fé, e ainda permaneceis nos vossos pecados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E também os que dormiram em Cristo pereceram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Se nesta vida somente esperamos em Cristo, somos os mais miseráveis de todos os homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Mas agora Cristo ressuscitou dos mortos, e foi feito as primícias dos que dormem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Porque, assim como por um homem veio a morte, também por um homem veio a ressurreição dos mortos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Porque, assim como todos morrem em Adão, assim também todos serão vivificados em Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Mas cada um na sua ordem: Cristo, as primícias; depois, os que são de Cristo, na sua vinda.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Então virá o fim, quando ele entregar o reino a Deus, ao Pai, quando tiver abolido todo império, e toda autoridade, e todo poder.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Porque é necessário que ele reine até que tenha posto todos os inimigos debaixo dos seus pés.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        O último inimigo a ser abolido é a morte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Porque todas as coisas sujeitou debaixo dos seus pés. Mas, quando diz que todas as coisas estão sujeitas, é claro que se excetua aquele que lhe sujeitou todas as coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        E, quando todas as coisas lhe estiverem sujeitas, então também o próprio Filho se sujeitará àquele que lhe sujeitou todas as coisas, para que Deus seja tudo em todos.
+    </p>
+
+    <div class="pericope">Aplicações e Objeções</div>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        De outra maneira, que farão os que são batizados pelos mortos? Se absolutamente os mortos não ressuscitam, por que então são batizados pelos mortos?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Por que também nós estamos em perigo a toda hora?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Cada dia morro, pela vossa glória, irmãos, que tenho em Cristo Jesus, nosso Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Se, como homem, lutei com feras em Éfeso, que me aproveita isso, se os mortos não ressuscitam? <span class="fala-outro">Comamos e bebamos, porque amanhã morreremos.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Não vos enganeis: as más companhias corrompem os bons costumes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        Despertai para a justiça, e não pequeis; porque alguns ainda não têm conhecimento de Deus; digo-o para vossa vergonha.
+    </p>
+
+    <div class="pericope">O Corpo da Ressurreição</div>
+
+    <p class="verse">
+        <span class="v-num">35</span>
+        Mas alguém dirá: <span class="fala-outro">Como ressuscitam os mortos? E com que corpo vêm?</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">36</span>
+        Insensato, o que tu semeias não é vivificado, se primeiro não morrer.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">37</span>
+        E o que semeias não é o corpo que há de nascer, mas o simples grão, como de trigo, ou de outra semente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">38</span>
+        Mas Deus lhe dá um corpo como quis, e a cada semente o seu próprio corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">39</span>
+        Nem toda carne é a mesma carne; mas uma é a carne dos homens, e outra a carne dos animais, e outra a dos peixes, e outra a das aves.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">40</span>
+        E há corpos celestiais e corpos terrestres; mas uma é a glória dos celestiais, e outra a dos terrestres.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">41</span>
+        Uma é a glória do sol, e outra a glória da lua, e outra a glória das estrelas; porque uma estrela difere em glória de outra estrela.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">42</span>
+        Assim também é a ressurreição dos mortos. Semeia-se em corrupção, ressuscita em incorrupção;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">43</span>
+        semeia-se em desonra, ressuscita em glória; semeia-se em fraqueza, ressuscita em poder;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">44</span>
+        semeia-se corpo natural, ressuscita corpo espiritual. Há corpo natural, e há corpo espiritual.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">45</span>
+        Assim está escrito: <span class="fala-outro">O primeiro homem, Adão, foi feito em alma vivente;</span> o último Adão, em espírito vivificante.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">46</span>
+        Mas não é primeiro o espiritual, e sim o natural; depois, o espiritual.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">47</span>
+        O primeiro homem é da terra, terreno; o segundo homem é o Senhor, do céu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">48</span>
+        Qual é o terreno, tais também os terrenos; e qual é o celestial, tais também os celestiais.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">49</span>
+        E, assim como trouxemos a imagem do terreno, traremos também a imagem do celestial.
+    </p>
+
+    <div class="pericope">O Mistério da Transformação</div>
+
+    <p class="verse">
+        <span class="v-num">50</span>
+        E agora digo isto, irmãos: que a carne e o sangue não podem herdar o reino de Deus; nem a corrupção herda a incorrupção.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">51</span>
+        Eis que vos digo um mistério: nem todos dormiremos, mas todos seremos transformados,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">52</span>
+        num momento, num abrir e fechar de olhos, ao som da última trombeta; porque a trombeta soará, e os mortos ressuscitarão incorruptíveis, e nós seremos transformados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">53</span>
+        Porque é necessário que este corpo corruptível se revista de incorruptibilidade, e este corpo mortal se revista de imortalidade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">54</span>
+        E, quando este corpo corruptível se revestir de incorruptibilidade, e este corpo mortal se revestir de imortalidade, então se cumprirá a palavra que está escrita: <span class="fala-outro">A morte foi tragada na vitória.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">55</span>
+        Onde está, ó morte, o teu aguilhão? Onde está, ó sepulcro, a tua vitória?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">56</span>
+        Ora, o aguilhão da morte é o pecado, e a força do pecado é a lei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">57</span>
+        Mas graças a Deus, que nos dá a vitória por nosso Senhor Jesus Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">58</span>
+        Portanto, meus amados irmãos, sede firmes e constantes, sempre abundantes na obra do Senhor, sabendo que o vosso trabalho não é vão no Senhor.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:1 — "Evangelho"</span>
+            <div class="greek-text">εὐαγγέλιον</div>
+            <p><strong>Análise:</strong> Boa-nova; Paulo recorda o conteúdo central da pregação que recebeu e transmitiu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "evangelho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:3 — "Recebi... entreguei"</span>
+            <div class="greek-text">παρέλαβον... παρέδωκα</div>
+            <p><strong>Análise:</strong> Linguagem de transmissão de tradição, indicando que Paulo recebeu e repassou o evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "recebi... entreguei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:3, 4 — "Segundo as Escrituras"</span>
+            <div class="greek-text">κατὰ τὰς γραφάς</div>
+            <p><strong>Análise:</strong> Conforme as Escrituras; referência ao Antigo Testamento como fundamento da morte e ressurreição de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo as Escrituras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:5 — "Apareceu a Cefas"</span>
+            <div class="greek-text">ὤφθη Κηφᾷ</div>
+            <p><strong>Análise:</strong> Foi visto por Cefas (Pedro); ver Lucas 24:34.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "apareceu a Cefas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:5 — "Aos doze"</span>
+            <div class="greek-text">τοῖς δώδεκα</div>
+            <p><strong>Análise:</strong> Designação do grupo apostólico, embora Judas já não estivesse presente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aos doze".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:6, 18, 20, 51 — "Dormem"</span>
+            <div class="greek-text">κοιμάω</div>
+            <p><strong>Análise:</strong> Eufemismo para morte, usado no Novo Testamento para descrever a morte dos crentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dormem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:8 — "Abortivo"</span>
+            <div class="greek-text">ἔκτρωμα</div>
+            <p><strong>Análise:</strong> Termo relacionado a um nascimento anormal ou fora do tempo. Paulo usa essa expressão para descrever sua condição em relação aos demais apóstolos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "abortivo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:9 — "Menor dos apóstolos"</span>
+            <div class="greek-text">ἐλάχιστος τῶν ἀποστόλων</div>
+            <p><strong>Análise:</strong> O mínimo entre os apóstolos, reconhecendo sua indignidade pela perseguição passada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "menor dos apóstolos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:10 — "Graça de Deus"</span>
+            <div class="greek-text">χάρις τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Favor imerecido de Deus que capacitou Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "graça de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:15 — "Falsas testemunhas de Deus"</span>
+            <div class="greek-text">ψευδομάρτυρες τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Testemunhas mentirosas a respeito de Deus, se a ressurreição não fosse verdade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falsas testemunhas de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:20, 23 — "Primícias"</span>
+            <div class="greek-text">ἀπαρχή</div>
+            <p><strong>Análise:</strong> Primeiros frutos ou primeira parte da colheita. Paulo usa a imagem para apresentar Cristo como o primeiro da ressurreição, seguido pelos que são de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "primícias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:24, 26 — "Abolido"</span>
+            <div class="greek-text">καταργήσῃ</div>
+            <p><strong>Análise:</strong> Tornar inativo, abolir ou fazer cessar. O contexto descreve a eliminação final dos poderes e, por último, da morte.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "abolido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:24 — "Império, autoridade e poder"</span>
+            <div class="greek-text">ἀρχήν, ἐξουσίαν, δύναμιν</div>
+            <p><strong>Análise:</strong> Termos que podem designar domínio, autoridade e poder. No contexto, aparecem entre aquilo que Cristo abolirá no fim.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "império, autoridade e poder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:25 — "Até que tenha posto todos os inimigos debaixo dos seus pés"</span>
+            <div class="greek-text">ἕως ἂν θῇ πάντας τοὺς ἐχθροὺς ὑπὸ τοὺς πόδας αὐτοῦ</div>
+            <p><strong>Análise:</strong> Citação do Salmo 110:1, referindo-se à vitória final de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:27 — "Todas as coisas sujeitou"</span>
+            <div class="greek-text">πάντα ὑπέταξεν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 8:6, sobre a sujeição de todas as coisas a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:28 — "Deus seja tudo em todos"</span>
+            <div class="greek-text">ἵνα ᾖ ὁ Θεὸς τὰ πάντα ἐν πᾶσιν</div>
+            <p><strong>Análise:</strong> Expressão escatológica da supremacia final de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus seja tudo em todos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:29 — "Batizados pelos mortos"</span>
+            <div class="greek-text">βαπτιζόμενοι ὑπὲρ τῶν νεκρῶν</div>
+            <p><strong>Análise:</strong> Paulo menciona essa prática sem explicá-la detalhadamente, e o sentido exato da expressão é discutido. O texto não fornece informação suficiente para determinar com certeza qual prática específica Paulo tinha em mente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "batizados pelos mortos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:31 — "Cada dia morro"</span>
+            <div class="greek-text">καθ' ἡμέραν ἀποθνῄσκω</div>
+            <p><strong>Análise:</strong> Expressão de perigo constante e de identificação com a morte de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cada dia morro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:32 — "Lutei com feras em Éfeso"</span>
+            <div class="greek-text">ἐθηριομάχησα</div>
+            <p><strong>Análise:</strong> Expressão figurada ou referência a perigo extremo; não é possível determinar se foi literal ou metafórico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lutei com feras em Éfeso".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:32 — "Comamos e bebamos, porque amanhã morreremos"</span>
+            <div class="greek-text">φάγωμεν καὶ πίωμεν, αὔριον γὰρ ἀποθνήσκομεν</div>
+            <p><strong>Análise:</strong> Citação de Isaías 22:13, usada por Paulo para ilustrar a lógica do hedonismo sem esperança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:33 — "Más companhias corrompem os bons costumes"</span>
+            <div class="greek-text">φθείρουσιν ἤθη χρηστὰ ὁμιλίαι κακαί</div>
+            <p><strong>Análise:</strong> Citação de Menandro, poeta grego, usada por Paulo para advertir contra a má influência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "más companhias corrompem os bons costumes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:44 — "Corpo natural / corpo espiritual"</span>
+            <div class="greek-text">σῶμα ψυχικόν / σῶμα πνευματικόν</div>
+            <p><strong>Análise:</strong> Paulo contrasta o corpo na condição presente com o corpo na condição da ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "corpo natural / corpo espiritual".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:45 — "Alma vivente"</span>
+            <div class="greek-text">ψυχὴν ζῶσαν</div>
+            <p><strong>Análise:</strong> Citação de Gênesis 2:7, referindo-se a Adão como ser vivente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:45 — "Espírito vivificante"</span>
+            <div class="greek-text">πνεῦμα ζῳοποιοῦν</div>
+            <p><strong>Análise:</strong> Cristo como aquele que dá vida, o último Adão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espírito vivificante".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:47 — "O segundo homem é o Senhor, do céu"</span>
+            <div class="greek-text">ὁ Κύριος ἐξ οὐρανοῦ</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz "o Senhor do céu"; a TBLH mantém a leitura do TR.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o segundo homem é o Senhor, do céu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:50 — "Carne e sangue"</span>
+            <div class="greek-text">σὰρξ καὶ αἷμα</div>
+            <p><strong>Análise:</strong> Expressão que representa a condição humana presente, sujeita à mortalidade e corrupção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "carne e sangue".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:51 — "Mistério"</span>
+            <div class="greek-text">μυστήριον</div>
+            <p><strong>Análise:</strong> Verdade antes oculta, agora revelada; refere-se à transformação dos vivos na parusia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mistério".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:52 — "Num abrir e fechar de olhos"</span>
+            <div class="greek-text">ἐν ῥιπῇ ὀφθαλμοῦ</div>
+            <p><strong>Análise:</strong> Num piscar de olhos, expressando a rapidez da transformação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "num abrir e fechar de olhos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:52 — "Última trombeta"</span>
+            <div class="greek-text">ἐσχάτη σάλπιγξ</div>
+            <p><strong>Análise:</strong> Sinal escatológico final, anunciando a ressurreição e transformação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "última trombeta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:54 — "A morte foi tragada na vitória"</span>
+            <div class="greek-text">κατεπόθη ὁ θάνατος εἰς νῖκος</div>
+            <p><strong>Análise:</strong> Citação de Isaías 25:8, celebrando a vitória final sobre a morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:55 — "Onde está, ó morte... ó sepulcro?"</span>
+            <div class="greek-text">θάνατε... ᾍδη</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz *thanate* (morte) na primeira pergunta e *hadē* (Hades) na segunda. A TBLH traduz *hadē* por "sepulcro".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "morte... sepulcro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:56 — "O aguilhão da morte é o pecado"</span>
+            <div class="greek-text">τὸ κέντρον τοῦ θανάτου ἡ ἁμαρτία</div>
+            <p><strong>Análise:</strong> O pecado como aguilhão que dá poder à morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o aguilhão da morte é o pecado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:56 — "A força do pecado é a lei"</span>
+            <div class="greek-text">ἡ δύναμις τῆς ἁμαρτίας ὁ νόμος</div>
+            <p><strong>Análise:</strong> A lei como poder do pecado, pois revela e desperta o pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a força do pecado é a lei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 15:58 — "Sede firmes e constantes"</span>
+            <div class="greek-text">ἑδραῖοι γίνεσθε, ἀμετακίνητοι</div>
+            <p><strong>Análise:</strong> Firmes e inabaláveis, exortação final à perseverança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sede firmes e constantes".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 15 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 15 é o grande tratado de Paulo sobre a ressurreição. Estrutura: 1) O evangelho e as aparições (v.1-11); 2) A ressurreição dos mortos (v.12-19); 3) A ordem da ressurreição (v.20-28); 4) Aplicações e objeções (v.29-34); 5) O corpo da ressurreição (v.35-49); 6) O mistério da transformação (v.50-58). Paulo defende a ressurreição corporal como fundamento da fé cristã.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

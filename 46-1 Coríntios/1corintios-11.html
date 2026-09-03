@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Cabeça</span>
+                Do grego *kephalē* (κεφαλή). Termo central no argumento de Paulo; o sentido exato (autoridade, origem ou ambos) é discutido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Desonra a sua cabeça</span>
+                Possível duplo sentido, referindo-se à cabeça física ou àquele que é chamado de "cabeça".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Autoridade sobre a cabeça</span>
+                Do grego *exousian echein epi tēs kephalēs* (ἐξουσίαν ἔχειν ἐπὶ τῆς κεφαλῆς). Expressão de interpretação discutida.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Facções</span>
+                Do grego *haireseis* (αἱρέσεις). Grupos ou partidos que se formam dentro da comunidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ceia do Senhor</span>
+                Do grego *kyriakon deipnon* (κυριακὸν δεῖπνον). Refeição pertencente ao Senhor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Novo testamento</span>
+                Do grego *kainē diathēkē* (καινὴ διαθήκη). Literalmente "nova aliança" ou "novo pacto"; "testamento" é tradução tradicional.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Indignamente</span>
+                Do grego *anaxiōs* (ἀναξίως). De modo não digno.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Corrigidos pelo Senhor</span>
+                Do grego *paideuometha* (παιδευόμεθα). Disciplinados, educados.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <div class="pericope">Sobre a Cobertura da Cabeça</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">S</span>ede meus imitadores, assim como também eu sou de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E louvo-vos, irmãos, porque em tudo vos lembrais de mim, e guardais as tradições como vo-las entreguei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas quero que saibais que a cabeça de todo homem é Cristo, e a cabeça da mulher é o homem, e a cabeça de Cristo é Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Todo homem que ora ou profetiza, tendo a cabeça coberta, desonra a sua cabeça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Mas toda mulher que ora ou profetiza com a cabeça descoberta, desonra a sua cabeça; porque é o mesmo que se estivesse rapada.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Porque, se a mulher não se cobre, corte também o cabelo. Mas, se é vergonhoso para a mulher cortar o cabelo ou rapar-se, que se cubra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        O homem, na verdade, não deve cobrir a cabeça, porque é imagem e glória de Deus; mas a mulher é glória do homem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque o homem não provém da mulher, mas a mulher do homem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque também o homem não foi criado por causa da mulher, mas a mulher por causa do homem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Portanto, a mulher deve ter autoridade sobre a cabeça, por causa dos anjos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Todavia, nem a mulher é sem o homem, nem o homem sem a mulher, no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque, assim como a mulher provém do homem, assim também o homem vem pela mulher; e tudo provém de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Julgai entre vós mesmos: é decente que a mulher ore a Deus descoberta?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Ou não vos ensina a própria natureza que é desonra para o homem ter cabelo comprido?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas, se a mulher tem cabelo comprido, é glória para ela; porque o cabelo comprido lhe foi dado em lugar de véu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas, se alguém quer ser contencioso, nós não temos tal costume, nem as igrejas de Deus.
+    </p>
+
+    <div class="pericope">A Ceia do Senhor</div>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Nisto, porém, que vos declaro, não vos louvo; porque vos ajuntais não para melhor, mas para pior.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque, primeiro, ouço que, quando vos ajuntais na igreja, há divisões entre vós; e em parte o creio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Porque é necessário que haja também facções entre vós, para que os que são aprovados se tornem manifestos entre vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Quando, pois, vos ajuntais num lugar, não é para comer a ceia do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Porque, ao comer, cada um toma antes a sua própria ceia; e um tem fome, e outro se embriaga.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        Porventura não tendes casas para comer e beber? Ou desprezais a igreja de Deus, e envergonhais os que não têm? Que vos direi? Louvar-vos-ei? Nisto não vos louvo.
+    </p>
+
+    <div class="pericope">A Instituição da Ceia</div>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Porque eu recebi do Senhor o que também vos entreguei: que o Senhor Jesus, na noite em que foi traído, tomou pão;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        e, tendo dado graças, o partiu, e disse: <span class="fala-jesus">Tomai, comei; isto é o meu corpo, que é partido por vós; fazei isto em memória de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Da mesma maneira também tomou o cálice, depois de haver ceado, dizendo: <span class="fala-jesus">Este cálice é o novo testamento no meu sangue; fazei isto, todas as vezes que o beberdes, em memória de mim.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        Porque, todas as vezes que comerdes este pão, e beberdes este cálice, anunciais a morte do Senhor, até que ele venha.
+    </p>
+
+    <div class="pericope">O Exame Próprio</div>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        Portanto, qualquer que comer este pão, ou beber o cálice do Senhor indignamente, será culpado do corpo e do sangue do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Examine-se, pois, o homem a si mesmo, e assim coma do pão, e beba do cálice.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Porque o que come e bebe indignamente, come e bebe juízo para si mesmo, não discernindo o corpo do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Por causa disto há entre vós muitos fracos e doentes, e muitos dormem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        Porque, se nós examinássemos a nós mesmos, não seríamos julgados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Mas, quando somos julgados, somos corrigidos pelo Senhor, para não sermos condenados com o mundo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        Portanto, meus irmãos, quando vos ajuntais para comer, esperai uns pelos outros.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">34</span>
+        E, se alguém tem fome, coma em casa, para que não vos ajunteis para juízo. As demais coisas ordenarei quando for.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:2 — "Tradições"</span>
+            <div class="greek-text">παραδόσεις</div>
+            <p><strong>Análise:</strong> Ensinos transmitidos oralmente, que Paulo espera que os coríntios mantenham.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tradições".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:3 — "Cabeça"</span>
+            <div class="greek-text">κεφαλή</div>
+            <p><strong>Análise:</strong> Termo central no argumento de Paulo; o sentido exato (autoridade, origem ou ambos) é discutido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cabeça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:4 — "Cabeça coberta"</span>
+            <div class="greek-text">κατὰ κεφαλῆς ἔχων</div>
+            <p><strong>Análise:</strong> Literalmente "tendo sobre a cabeça", referindo-se a uma cobertura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cabeça coberta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:4-5 — "Desonra a sua cabeça"</span>
+            <div class="greek-text">καταισχύνει τὴν κεφαλὴν</div>
+            <p><strong>Análise:</strong> Possível duplo sentido, referindo-se à cabeça física ou àquele que é chamado de "cabeça" no v. 3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desonra a sua cabeça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:5 — "Rapada"</span>
+            <div class="greek-text">ἐξυρημένῃ</div>
+            <p><strong>Análise:</strong> Raspada. Paulo relaciona o cabelo raspado à condição que ele considera vergonhosa para a mulher no contexto de seu argumento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "rapada".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:7 — "Imagem e glória de Deus"</span>
+            <div class="greek-text">εἰκὼν καὶ δόξα Θεοῦ</div>
+            <p><strong>Análise:</strong> Referência à criação do homem em Gênesis 1:26-27.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "imagem e glória de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:10 — "Autoridade sobre a cabeça"</span>
+            <div class="greek-text">ἐξουσίαν ἔχειν ἐπὶ τῆς κεφαλῆς</div>
+            <p><strong>Análise:</strong> Expressão de interpretação discutida. Pode ser entendida como autoridade relacionada à cabeça ou como um sinal de autoridade representado na cobertura da cabeça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "autoridade sobre a cabeça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:10 — "Por causa dos anjos"</span>
+            <div class="greek-text">διὰ τοὺς ἀγγέλους</div>
+            <p><strong>Análise:</strong> Motivo apresentado sem explicação detalhada por Paulo, gerando diversas interpretações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por causa dos anjos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:14 — "Natureza"</span>
+            <div class="greek-text">φύσις</div>
+            <p><strong>Análise:</strong> Sentido natural ou convenção cultural; o contexto é debatido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "natureza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:15 — "Em lugar de véu"</span>
+            <div class="greek-text">ἀντὶ περιβολαίου</div>
+            <p><strong>Análise:</strong> Literalmente "em lugar de uma cobertura"; Paulo relaciona o cabelo comprido à cobertura da mulher.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em lugar de véu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:19 — "Facções"</span>
+            <div class="greek-text">αἱρέσεις</div>
+            <p><strong>Análise:</strong> Grupos ou partidos que se formam dentro da comunidade, em vez de "heresias" no sentido doutrinário moderno.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "facções".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:19 — "Aprovados"</span>
+            <div class="greek-text">δόκιμοι</div>
+            <p><strong>Análise:</strong> Os que passam no teste, aprovados, que se tornam manifestos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aprovados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:20 — "Ceia do Senhor"</span>
+            <div class="greek-text">κυριακὸν δεῖπνον</div>
+            <p><strong>Análise:</strong> Refeição pertencente ao Senhor, a celebração da ceia cristã.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ceia do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:23 — "Recebi do Senhor"</span>
+            <div class="greek-text">ἐγὼ παρέλαβον ἀπὸ τοῦ Κυρίου</div>
+            <p><strong>Análise:</strong> Expressão que apresenta Paulo como alguém que recebeu e transmitiu essa tradição acerca da Ceia do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "recebi do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:23 — "Na noite em que foi traído"</span>
+            <div class="greek-text">ἐν τῇ νυκτὶ ᾗ παρεδίδοτο</div>
+            <p><strong>Análise:</strong> Noite da entrega de Jesus, referindo-se à traição de Judas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "na noite em que foi traído".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:24 — "É partido por vós"</span>
+            <div class="greek-text">κλώμενον</div>
+            <p><strong>Análise:</strong> O Textus Receptus inclui "partido"; alguns manuscritos omitem. A TBLH mantém a leitura do TR.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que é partido por vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:25 — "Novo testamento"</span>
+            <div class="greek-text">καινὴ διαθήκη</div>
+            <p><strong>Análise:</strong> Literalmente "nova aliança" ou "novo pacto"; "testamento" é uma tradução tradicional de <em>diathēkē</em> nesse contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "novo testamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:27 — "Indignamente"</span>
+            <div class="greek-text">ἀναξίως</div>
+            <p><strong>Análise:</strong> De modo não digno, sem a devida reverência e preparação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "indignamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:27 — "Culpado do corpo e do sangue"</span>
+            <div class="greek-text">ἔνοχος ἔσται τοῦ σώματος καὶ τοῦ αἵματος</div>
+            <p><strong>Análise:</strong> Responsável por ofensa contra o corpo e o sangue do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "culpado do corpo e do sangue".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:29 — "Não discernindo o corpo do Senhor"</span>
+            <div class="greek-text">μὴ διακρίνων τὸ σῶμα τοῦ Κυρίου</div>
+            <p><strong>Análise:</strong> O texto do TR inclui "do Senhor"; a TBLH mantém a leitura do TR.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não discernindo o corpo do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:30 — "Dormem"</span>
+            <div class="greek-text">κοιμῶνται</div>
+            <p><strong>Análise:</strong> Eufemismo para morte, usado no Novo Testamento para descrever a morte dos crentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dormem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:31 — "Não seríamos julgados"</span>
+            <div class="greek-text">οὐκ ἂν ἐκρινόμεθα</div>
+            <p><strong>Análise:</strong> Julgar a si mesmo para evitar o juízo divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não seríamos julgados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:32 — "Corrigidos pelo Senhor"</span>
+            <div class="greek-text">παιδευόμεθα</div>
+            <p><strong>Análise:</strong> Disciplinados, educados. O Senhor disciplina seus filhos para não serem condenados com o mundo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "corrigidos pelo Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 11:33 — "Esperai uns pelos outros"</span>
+            <div class="greek-text">ἀλλήλους ἐκδέχεσθε</div>
+            <p><strong>Análise:</strong> Aguardai mutuamente, sem pressa ou egoísmo na ceia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esperai uns pelos outros".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 11 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 11 aborda duas questões práticas: a cobertura da cabeça e a Ceia do Senhor. Estrutura: 1) Sobre a cobertura da cabeça (v.1-16); 2) A Ceia do Senhor — abusos (v.17-22); 3) A instituição da Ceia (v.23-26); 4) O exame próprio (v.27-34). Paulo ensina sobre ordem, reverência e comunhão na igreja.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

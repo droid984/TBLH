@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        .text-base-section {
+            margin: 10px auto 50px auto;
+            padding: 18px 30px;
+            max-width: 620px;
+            background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #4a4a4a;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+        }
+        .text-base-section::before,
+        .text-base-section::after {
+            content: "";
+            display: block;
+            height: 0;
+            border-top: 3px double var(--accent-red);
+            margin: 0 auto 12px auto;
+            width: 70%;
+        }
+        .text-base-section::after {
+            margin: 12px auto 0 auto;
+            border-top: 3px double var(--accent-red);
+        }
+        .text-base-section strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            margin-bottom: 6px;
+        }
+        .text-base-section em {
+            font-style: italic;
+            color: #2c2520;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Testemunho de Deus</span>
+                Do grego *to martyrion tou Theou* (τὸ μαρτύριον τοῦ Θεοῦ). O evangelho que Paulo proclamou.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Palavras persuasivas de sabedoria humana</span>
+                Do grego *en peithois anthrōpinēs sophias logois* (ἐν πειθοῖς ἀνθρωπίνης σοφίας λόγοις). Retórica persuasiva da época.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Perfeitos</span>
+                Do grego *teleiois* (τελείοις). Os maduros na fé, não uma elite espiritual.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Príncipes deste mundo</span>
+                Do grego *archontōn tou aiōnos toutou* (ἀρχόντων τοῦ αἰῶνος τούτου). Poderes humanos e/ou espirituais.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mistério</span>
+                Do grego *mystēriō* (μυστηρίῳ). Verdade antes oculta, agora revelada.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Senhor da glória</span>
+                Do grego *ton Kyrion tēs doxēs* (τὸν Κύριον τῆς δόξης). Título cristológico de exaltação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Homem natural</span>
+                Do grego *psychikos anthrōpos* (ψυχικὸς ἄνθρωπος). O homem que vive sem o Espírito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mente de Cristo</span>
+                Do grego *noun Christou* (νοῦν Χριστοῦ). A mente/entendimento que temos em Cristo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">2</div>
+
+    <div class="pericope">A Mensagem da Cruz</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> eu, irmãos, quando vim até vós, não vim com excelência de palavra ou de sabedoria, anunciando-vos o testemunho de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque decidi nada saber entre vós, senão a Jesus Cristo, e este crucificado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E eu estive convosco em fraqueza, e em temor, e em muito tremor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E a minha palavra, e a minha pregação, não consistiram em palavras persuasivas de sabedoria humana, mas em demonstração do Espírito e de poder;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        para que a vossa fé não esteja na sabedoria dos homens, mas no poder de Deus.
+    </p>
+
+    <div class="pericope">A Sabedoria Revelada pelo Espírito</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Porém falamos sabedoria entre os perfeitos; não, porém, a sabedoria deste mundo, nem dos príncipes deste mundo, que são aniquilados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Mas falamos a sabedoria de Deus em mistério, que esteve oculta, a qual Deus ordenou antes dos séculos para nossa glória;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        a qual nenhum dos príncipes deste mundo conheceu; porque, se a conhecessem, não teriam crucificado o Senhor da glória.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Mas, como está escrito: <span class="fala-outro">As coisas que o olho não viu, e o ouvido não ouviu, e não subiram ao coração do homem, são as que Deus preparou para os que o amam.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Mas Deus no-las revelou pelo seu Espírito; porque o Espírito penetra todas as coisas, até as profundezas de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Pois qual dos homens sabe as coisas do homem, senão o espírito do homem que nele está? Assim também as coisas de Deus, ninguém as conhece, senão o Espírito de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Mas nós não recebemos o espírito do mundo, mas o Espírito que vem de Deus, para que conheçamos as coisas que nos foram dadas gratuitamente por Deus;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        as quais também falamos, não com palavras ensinadas pela sabedoria humana, mas com as ensinadas pelo Espírito Santo, comparando coisas espirituais com espirituais.
+    </p>
+
+    <div class="pericope">O Homem Natural e o Homem Espiritual</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Ora, o homem natural não aceita as coisas do Espírito de Deus, porque lhe são loucura; e não as pode entender, porque se discernem espiritualmente.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas o que é espiritual discerne todas as coisas, e ele por ninguém é discernido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Pois quem conheceu a mente do Senhor, para que possa instruí-lo? Mas nós temos a mente de Cristo.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:1 — "Testemunho de Deus"</span>
+            <div class="greek-text">τὸ μαρτύριον τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz "testemunho"; alguns manuscritos trazem "mistério" (<em>mystērion</em>). A TBLH mantém a leitura do TR.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "testemunho de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:2 — "Decidi nada saber"</span>
+            <div class="greek-text">οὐ γὰρ ἔκρινα τοῦ εἰδέναι</div>
+            <p><strong>Análise:</strong> Expressão de firme resolução de Paulo. <em>Krinō</em> indica uma decisão deliberada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "decidi nada saber".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:4 — "Palavras persuasivas de sabedoria humana"</span>
+            <div class="greek-text">ἐν πειθοῖς ἀνθρωπίνης σοφίας λόγοις</div>
+            <p><strong>Análise:</strong> Referência à retórica persuasiva da época. Paulo não dependeu de técnicas retóricas, mas do poder do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavras persuasivas de sabedoria humana".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:4 — "Demonstração do Espírito e de poder"</span>
+            <div class="greek-text">ἐν ἀποδείξει Πνεύματος καὶ δυνάμεως</div>
+            <p><strong>Análise:</strong> A pregação de Paulo foi validada pela manifestação do Espírito e pelo poder divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "demonstração do Espírito e de poder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:6 — "Perfeitos"</span>
+            <div class="greek-text">τελείοις</div>
+            <p><strong>Análise:</strong> <em>Teleiois</em> refere-se aos maduros na fé, não a uma elite espiritual. Paulo fala de sabedoria para os que já têm maturidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perfeitos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:6, 8 — "Príncipes deste mundo"</span>
+            <div class="greek-text">ἀρχόντων τοῦ αἰῶνος τούτου</div>
+            <p><strong>Análise:</strong> Pode referir-se a poderes humanos (governantes) e/ou espirituais (forças demoníacas).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "príncipes deste mundo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:7 — "Mistério"</span>
+            <div class="greek-text">μυστηρίῳ</div>
+            <p><strong>Análise:</strong> Verdade antes oculta, agora revelada por Deus. A sabedoria de Deus foi planejada antes dos séculos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mistério".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:7 — "Ordenou antes dos séculos"</span>
+            <div class="greek-text">προώρισεν</div>
+            <p><strong>Análise:</strong> De <em>proorizō</em>, "determinar previamente" ou "estabelecer de antemão". Deus predeterminou o plano da salvação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ordenou antes dos séculos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:8 — "Senhor da glória"</span>
+            <div class="greek-text">τὸν Κύριον τῆς δόξης</div>
+            <p><strong>Análise:</strong> Título cristológico de exaltação, afirmando a divindade de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Senhor da glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:9 — "As coisas que o olho não viu"</span>
+            <div class="greek-text">ἃ ὀφθαλμὸς οὐκ εἶδεν</div>
+            <p><strong>Análise:</strong> Citação de Isaías 64:4, com variação textual significativa em relação ao hebraico e à LXX. Paulo aplica ao que Deus preparou para os que o amam.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:10 — "Penetra todas as coisas"</span>
+            <div class="greek-text">ἐραυνᾷ</div>
+            <p><strong>Análise:</strong> Verbo que significa investigar, sondar profundamente. O Espírito sonda as profundezas de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "penetra todas as coisas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:13 — "Comparando coisas espirituais com espirituais"</span>
+            <div class="greek-text">πνευματικοῖς πνευματικὰ συγκρίνοντες</div>
+            <p><strong>Análise:</strong> O verbo <em>synkrinō</em> pode admitir os sentidos de comparar, combinar ou interpretar/explicar, conforme a construção. Paulo fala de interpretar verdades espirituais à luz do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "comparando coisas espirituais com espirituais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:14 — "O homem natural"</span>
+            <div class="greek-text">ψυχικὸς ἄνθρωπος</div>
+            <p><strong>Análise:</strong> O homem que vive apenas no nível da alma/razão humana, sem o Espírito. Não aceita as coisas espirituais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "homem natural".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:15 — "DISCERNE"</span>
+            <div class="greek-text">ἀνακρίνει</div>
+            <p><strong>Análise:</strong> <em>Anakrinō</em> significa examinar, investigar, discernir. O espiritual tem capacidade de discernir todas as coisas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "discerne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 2:16 — "Mente de Cristo"</span>
+            <div class="greek-text">νοῦν Χριστοῦ</div>
+            <p><strong>Análise:</strong> A citação é de Isaías 40:13. Paulo afirma que os crentes têm a mente de Cristo, ou seja, participam do entendimento de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mente de Cristo".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 2 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 2 continua o contraste entre a sabedoria humana e a sabedoria de Deus. Estrutura: 1) A mensagem da cruz (v.1-5); 2) A sabedoria revelada pelo Espírito (v.6-13); 3) O homem natural e o espiritual (v.14-16). Paulo enfatiza que a verdadeira sabedoria vem de Deus e é revelada pelo Espírito.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 5</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 5</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Imoralidade</span>
+                Do grego *porneia* (πορνεία). Termo amplo para relações sexuais ilícitas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">A mulher do pai</span>
+                Do grego *tou patros gynaika* (τοῦ πατρὸς γυναῖκα). Literalmente "a mulher do pai"; no contexto, refere-se à esposa do pai.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Inchados</span>
+                Do grego *pephysiōmenoi* (πεφυσιωμένοι). Orgulhosos, inflados; mesma palavra usada em 4:18-19.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Entregar a Satanás</span>
+                Do grego *paradounai tō Satana* (παραδοῦναι τῷ Σατανᾷ). Expressão associada à aplicação de disciplina.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Destruição da carne</span>
+                Do grego *olethron tēs sarkos* (ὄλεθρον τῆς σαρκός). Interpretado de diferentes maneiras, em conexão com a disciplina.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Fermento</span>
+                Metáfora de influência que se espalha, usada por Paulo para simbolizar o pecado.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cristo, nossa Páscoa</span>
+                Do grego *to pascha hēmōn* (τὸ πάσχα ἡμῶν). Cristo como o cordeiro pascal.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Perverso</span>
+                Do grego *ponēros* (πονηρός). O que pratica o mal; deve ser removido da comunidade.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">5</div>
+
+    <div class="pericope">O Caso de Imoralidade</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>m geral, ouve-se que há entre vós imoralidade, e imoralidade tal como nem mesmo entre os gentios se nomeia, a ponto de alguém ter a mulher do pai.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E vós andais inchados, e nem ao menos pranteastes, para que fosse tirado do meio de vós aquele que praticou tal ação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque eu, na verdade, ausente no corpo, mas presente no espírito, já julguei, como se estivesse presente, aquele que assim cometeu isto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Em nome de nosso Senhor Jesus Cristo, reunidos vós e o meu espírito, com o poder de nosso Senhor Jesus Cristo,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        entregar tal pessoa a Satanás, para destruição da carne, a fim de que o espírito seja salvo no dia do Senhor Jesus.
+    </p>
+
+    <div class="pericope">O Fermento da Maldade</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Não é boa a vossa glória. Não sabeis que um pouco de fermento leveda toda a massa?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Limpai-vos do fermento velho, para que sejais massa nova, assim como sois sem fermento. Pois Cristo, nossa Páscoa, foi sacrificado por nós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Portanto, celebremos a festa, não com fermento velho, nem com fermento de malícia e maldade, mas com os pães sem fermento de sinceridade e verdade.
+    </p>
+
+    <div class="pericope">A Separação dos Ímpios</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Escrevi-vos na carta que não vos associeis com os imorais;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        não de modo absoluto com os imorais deste mundo, ou com os avarentos, ou com os roubadores, ou com os idólatras; porque então vos seria necessário sair do mundo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Mas agora vos escrevi que não vos associeis, se alguém que é chamado irmão for imoral, ou avarento, ou idólatra, ou maldizente, ou beberrão, ou roubador; com tal nem ao menos comais.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Pois que tenho eu de julgar também os que estão de fora? Não julgais vós os que estão dentro?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Mas Deus julga os que estão de fora. Tirai, pois, o perverso do meio de vós.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:1 — "Imoralidade"</span>
+            <div class="greek-text">πορνεία</div>
+            <p><strong>Análise:</strong> Termo amplo para relações sexuais ilícitas. Paulo usa a palavra para descrever a gravidade do caso em Corinto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "imoralidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:1 — "A mulher do pai"</span>
+            <div class="greek-text">τοῦ πατρὸς γυναῖκα</div>
+            <p><strong>Análise:</strong> Literalmente "a mulher do pai". No contexto, refere-se à esposa do pai, provavelmente a madrasta do ofensor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a mulher do pai".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:2 — "Inchados"</span>
+            <div class="greek-text">πεφυσιωμένοι</div>
+            <p><strong>Análise:</strong> Orgulhosos, inflados. Mesma palavra usada em 4:18-19, descrevendo o orgulho dos coríntios diante do pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "inchados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:2 — "Pranteastes"</span>
+            <div class="greek-text">ἐπενθήσατε</div>
+            <p><strong>Análise:</strong> Lamento público de arrependimento. Paulo esperava que a igreja tivesse tristeza pelo pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pranteastes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:3 — "Ausente no corpo, mas presente no espírito"</span>
+            <div class="greek-text">ἀπὼν τῷ σώματι, παρὼν δὲ τῷ πνεύματι</div>
+            <p><strong>Análise:</strong> Expressão da presença espiritual de Paulo no julgamento, mesmo estando ausente fisicamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ausente no corpo, mas presente no espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:5 — "Entregar a Satanás"</span>
+            <div class="greek-text">παραδοῦναι τῷ Σατανᾷ</div>
+            <p><strong>Análise:</strong> Expressão associada à aplicação de disciplina sobre a pessoa que praticou o pecado, com o propósito declarado de que o espírito seja salvo no dia do Senhor Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "entregar a Satanás".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:5 — "Para destruição da carne"</span>
+            <div class="greek-text">εἰς ὄλεθρον τῆς σαρκός</div>
+            <p><strong>Análise:</strong> A expressão é interpretada de diferentes maneiras; Paulo a apresenta em conexão com a disciplina daquele que praticou o pecado, tendo em vista a salvação do espírito no dia do Senhor Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "para destruição da carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:6 — "Glória"</span>
+            <div class="greek-text">καύχημα</div>
+            <p><strong>Análise:</strong> <em>Kauchēma</em> significa motivo de glória ou orgulho. Paulo critica o orgulho dos coríntios em meio ao pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:6 — "Um pouco de fermento leveda toda a massa"</span>
+            <div class="greek-text">μικρὰ ζύμη ὅλον τὸ φύραμα ζυμοῖ</div>
+            <p><strong>Análise:</strong> Provérbio citado por Paulo; o fermento simboliza influência que se espalha e contamina toda a comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um pouco de fermento leveda toda a massa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:7 — "Cristo, nossa Páscoa"</span>
+            <div class="greek-text">τὸ πάσχα ἡμῶν</div>
+            <p><strong>Análise:</strong> Cristo como o cordeiro pascal, cujo sacrifício é o fundamento da nova vida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Cristo, nossa Páscoa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:7 — "Foi sacrificado por nós"</span>
+            <div class="greek-text">ἐτύθη</div>
+            <p><strong>Análise:</strong> Verbo sacrificial, indicando que Cristo foi imolado como o cordeiro pascal.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "foi sacrificado por nós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:8 — "Sinceridade e verdade"</span>
+            <div class="greek-text">εἰλικρινείας καὶ ἀληθείας</div>
+            <p><strong>Análise:</strong> Qualidades que devem caracterizar a nova vida em Cristo, em contraste com o fermento da maldade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinceridade e verdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:9-11 — "Imorais"</span>
+            <div class="greek-text">πόρνοι</div>
+            <p><strong>Análise:</strong> Aqueles que praticam imoralidade sexual. Paulo distingue entre os incrédulos e os que se dizem irmãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "imorais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:11 — "Maldizente"</span>
+            <div class="greek-text">λοίδορος</div>
+            <p><strong>Análise:</strong> Pessoa que insulta, difama ou fala mal de outros.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "maldizente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:11 — "Nem ao menos comais"</span>
+            <div class="greek-text">μηδὲ συνεσθίειν</div>
+            <p><strong>Análise:</strong> Recusa de comunhão à mesa, indicando separação social e eclesial do irmão em pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nem ao menos comais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 5:13 — "Tirai o perverso do meio de vós"</span>
+            <div class="greek-text">ἐξάρατε τὸν πονηρὸν ἐξ ὑμῶν</div>
+            <p><strong>Análise:</strong> Citação de Deuteronômio 17:7. O verbo <em>exarate</em> significa remover, expulsar. A disciplina eclesial é ordenada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tirai o perverso do meio de vós".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 5 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 5 aborda a disciplina na igreja diante do pecado grave. Estrutura: 1) O caso de imoralidade (v.1-5); 2) O fermento da maldade (v.6-8); 3) A separação dos ímpios (v.9-13). Paulo exorta a igreja a agir com disciplina para preservar a pureza da comunidade.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

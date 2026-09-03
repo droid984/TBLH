@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 1 Coríntios 4</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">1 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 4</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Ministros de Cristo</span>
+                Do grego *hypēretas Christou* (ὑπηρέτας Χριστοῦ). Servidores subordinados, literalmente "sub-remadores".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Despenseiros dos mistérios de Deus</span>
+                Do grego *oikonomous mystēriōn Theou* (οἰκονόμους μυστηρίων Θεοῦ). Administradores encarregados dos segredos revelados de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tribunal humano</span>
+                Do grego *hypo anthrōpinēs hēmeras* (ὑπὸ ἀνθρωπίνης ἡμέρας). Literalmente "dia humano", em contraste com o dia do Senhor.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Designados à morte</span>
+                Do grego *epithanatious* (ἐπιθανατίους). Condenados à morte, expostos como num espetáculo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espetáculo</span>
+                Do grego *theatron* (θέατρον). Exibição pública.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Lixo do mundo</span>
+                Do grego *perikatharmata* (περικαθάρματα). Refugo, impureza removida.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Escória de todos</span>
+                Do grego *pantōn peripsēma* (πάντων περίψημα). Aquilo que se limpa ou se raspa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dez mil tutores</span>
+                Do grego *myrious paidagōgous* (μυρίους παιδαγωγούς). Referência aos pedagogos, escravos que conduziam crianças.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Inchados</span>
+                Do grego *pephysiōmenoi* (πεφυσιωμένοι). Orgulhosos, inflados.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">4</div>
+
+    <div class="pericope">Ministros e Despenseiros</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">Q</span>ue o homem nos considere como ministros de Cristo, e despenseiros dos mistérios de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Além disso, o que se requer dos despenseiros é que cada um seja encontrado fiel.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porém, para mim muito pouco é ser julgado por vós, ou por tribunal humano; nem eu tampouco julgo a mim mesmo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque de nada me acusa a consciência; contudo, nem por isso sou justificado, pois quem me julga é o Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Portanto, nada julgueis antes do tempo, até que venha o Senhor, o qual também trará à luz as coisas ocultas das trevas, e manifestará os conselhos dos corações; e então cada um terá louvor da parte de Deus.
+    </p>
+
+    <div class="pericope">A Lição da Humildade</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E estas coisas, irmãos, eu as apliquei por figura a mim e a Apolo, por causa de vós, para que em nós aprendais a não ir além do que está escrito, para que ninguém se encha de orgulho a favor de um contra outro.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Pois quem te faz diferente? E que tens tu que não tenhas recebido? E, se o recebeste, por que te glorias, como se não o tivesses recebido?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Já estais fartos, já estais ricos, sem nós reinastes; e oxalá reinásseis, para que também nós reinássemos convosco!
+    </p>
+
+    <div class="pericope">A Condição dos Apóstolos</div>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque penso que Deus pôs a nós, os apóstolos, por últimos, como designados à morte; pois fomos feitos espetáculo ao mundo, e aos anjos, e aos homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Nós somos loucos por causa de Cristo, e vós sábios em Cristo; nós fracos, e vós fortes; vós ilustres, e nós desprezados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Até esta presente hora, temos fome, e temos sede, e estamos nus, e somos esbofeteados, e não temos morada certa;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        e nos afadigamos, trabalhando com as nossas próprias mãos; quando somos amaldiçoados, bendizemos; quando perseguidos, suportamos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        quando caluniados, exortamos; viemos a ser como o lixo do mundo, e como a escória de todos, até agora.
+    </p>
+
+    <div class="pericope">Paternidade Espiritual</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Não escrevo estas coisas para vos envergonhar; mas admoesto-vos como a meus filhos amados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Porque, ainda que tenhais dez mil tutores em Cristo, não tendes muitos pais; pois eu vos gerei em Cristo Jesus pelo evangelho.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Portanto, rogo-vos: sede meus imitadores.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Por esta causa vos enviei Timóteo, que é meu filho amado e fiel no Senhor, o qual vos lembrará os meus caminhos em Cristo, como por toda parte ensino em cada igreja.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Mas alguns andam inchados, como se eu não houvesse de ir até vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Mas, se o Senhor quiser, em breve irei até vós, e conhecerei, não as palavras dos que andam inchados, mas o poder.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque o reino de Deus não consiste em palavra, mas em poder.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Que quereis? Que eu vá até vós com vara, ou com amor e espírito de mansidão?
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:1 — "Ministros de Cristo"</span>
+            <div class="greek-text">ὑπηρέτας Χριστοῦ</div>
+            <p><strong>Análise:</strong> <em>Hypēretas</em> indica servidores subordinados, literalmente "sub-remadores". Paulo vê seu ministério como serviço a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministros de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:1 — "Despenseiros dos mistérios de Deus"</span>
+            <div class="greek-text">οἰκονόμους μυστηρίων Θεοῦ</div>
+            <p><strong>Análise:</strong> <em>Oikonomous</em> são administradores encarregados dos segredos revelados de Deus. Os apóstolos são mordomos do evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "despenseiros dos mistérios de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:3 — "Tribunal humano"</span>
+            <div class="greek-text">ὑπὸ ἀνθρωπίνης ἡμέρας</div>
+            <p><strong>Análise:</strong> Literalmente "dia humano", em contraste com o dia do Senhor. Paulo não se importa com o julgamento humano.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribunal humano".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:4 — "De nada me acusa a consciência"</span>
+            <div class="greek-text">οὐδὲν γὰρ ἐμαυτῷ σύνοιδα</div>
+            <p><strong>Análise:</strong> Expressão de consciência tranquila, mas Paulo não se considera justificado por isso. O julgamento final é do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "de nada me acusa a consciência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:5 — "Conselhos dos corações"</span>
+            <div class="greek-text">τὰς βουλὰς τῶν καρδιῶν</div>
+            <p><strong>Análise:</strong> Intenções íntimas e propósitos interiores que serão revelados no dia do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "conselhos dos corações".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:6 — "Apliquei por figura"</span>
+            <div class="greek-text">μετεσχημάτισα</div>
+            <p><strong>Análise:</strong> <em>Meteschēmatisa</em> significa "transpus em forma figurada", "apliquei de modo indireto". Paulo aplicou a si mesmo e a Apolo o que disse.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "apliquei por figura".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:6 — "A não ir além do que está escrito"</span>
+            <div class="greek-text">τὸ μὴ ὑπὲρ ὃ γέγραπται φρονεῖν</div>
+            <p><strong>Análise:</strong> A expressão contém a ideia de não pensar ou agir além do que foi escrito. Paulo exorta a não ultrapassar os limites das Escrituras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a não ir além do que está escrito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:8 — "Já estais fartos"</span>
+            <div class="greek-text">ἤδη κεκορεσμένοι ἐστέ</div>
+            <p><strong>Análise:</strong> Ironia paulina. Os coríntios se sentiam satisfeitos e completos, quando na verdade eram imaturos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "já estais fartos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:9 — "Designados à morte"</span>
+            <div class="greek-text">ἐπιθανατίους</div>
+            <p><strong>Análise:</strong> Condenados à morte, expostos como num espetáculo. Paulo descreve a condição dos apóstolos como condenados num anfiteatro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "designados à morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:9 — "Espetáculo"</span>
+            <div class="greek-text">θέατρον</div>
+            <p><strong>Análise:</strong> Exibição pública. Os apóstolos foram feitos espetáculo ao mundo, anjos e homens.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espetáculo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:10 — "Loucos"</span>
+            <div class="greek-text">μωροί</div>
+            <p><strong>Análise:</strong> Os apóstolos são vistos como loucos por causa de Cristo, em contraste com a sabedoria dos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "loucos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:13 — "Lixo do mundo"</span>
+            <div class="greek-text">περικαθάρματα</div>
+            <p><strong>Análise:</strong> Refugo, impureza removida. Termo deliberadamente pesado para descrever a humilhação dos apóstolos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "lixo do mundo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:13 — "Escória de todos"</span>
+            <div class="greek-text">πάντων περίψημα</div>
+            <p><strong>Análise:</strong> Aquilo que se limpa ou se raspa. Termo deliberadamente pesado, mantido pela TBLH.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escória de todos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:15 — "Dez mil tutores"</span>
+            <div class="greek-text">μυρίους παιδαγωγούς</div>
+            <p><strong>Análise:</strong> Referência aos pedagogos, escravos que conduziam crianças. Paulo contrasta muitos tutores com um só pai espiritual.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dez mil tutores".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:15 — "Eu vos gerei"</span>
+            <div class="greek-text">ἐγὼ ὑμᾶς ἐγέννησα</div>
+            <p><strong>Análise:</strong> Metáfora paterna da paternidade espiritual. Paulo gerou os coríntios em Cristo pelo evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "eu vos gerei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:18, 19 — "Inchados"</span>
+            <div class="greek-text">πεφυσιωμένοι</div>
+            <p><strong>Análise:</strong> Orgulhosos, inflados. O termo descreve o orgulho dos que se opõem a Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "inchados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:20 — "Reino de Deus não consiste em palavra, mas em poder"</span>
+            <div class="greek-text">οὐ γὰρ ἐν λόγῳ ἡ βασιλεία τοῦ Θεοῦ, ἀλλ' ἐν δυνάμει</div>
+            <p><strong>Análise:</strong> O reino de Deus não se manifesta em discursos vazios, mas no poder real do Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "reino de Deus não consiste em palavra, mas em poder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">1 Coríntios 4:21 — "Com vara, ou com amor e espírito de mansidão"</span>
+            <div class="greek-text">ἐν ῥάβδῳ, ἢ ἐν ἀγάπῃ καὶ πνεύματι πραΰτητος</div>
+            <p><strong>Análise:</strong> Paulo oferece aos coríntios a escolha entre disciplina severa ou correção amorosa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com vara, ou com amor e espírito de mansidão".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">1 Coríntios 4 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 4 conclui a abordagem das divisões em Corinto. Estrutura: 1) Ministros e despenseiros (v.1-5); 2) A lição da humildade (v.6-8); 3) A condição dos apóstolos (v.9-13); 4) Paternidade espiritual (v.14-21). Paulo contrasta o orgulho humano com a humildade do verdadeiro ministério, corrigindo os coríntios com amor paterno.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
