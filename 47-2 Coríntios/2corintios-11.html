@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 11</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 11</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Insensatez</span>
+                Do grego *aphrosynē* (ἀφροσύνη). Falta de bom senso, tolice; Paulo usa ironicamente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Simplicidade</span>
+                Do grego *haplotēs* (ἁπλότης). Simplicidade, singeleza, sinceridade; leitura do Textus Receptus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Superexcelentes apóstolos</span>
+                Do grego *tōn hyper lian apostolōn* (τῶν ὑπὲρ λίαν ἀποστόλων). Expressão intensificada usada ironicamente por Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Despojei</span>
+                Do grego *esylēsa* (ἐσύλησα). Literalmente "despojei/saqueei"; expressão forte usada por Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Me queimo</span>
+                Do grego *pyroumai* (πυροῦμαι). Expressão de ardente preocupação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Transformando-se</span>
+                Do grego *metaschēmatizō* (μετασχηματίζω). Mudar de aparência ou forma.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Abismo</span>
+                Do grego *bythos* (βυθός). Profundezas do mar.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">11</div>
+
+    <div class="pericope">A Preocupação de Paulo com os Coríntios</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">O</span>xalá suportásseis um pouco da minha insensatez; mas, na verdade, suportai-me.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque estou zeloso de vós com zelo de Deus; pois vos preparei para vos apresentar como uma virgem pura a um só marido, a Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas temo que, assim como a serpente enganou Eva com a sua astúcia, assim também os vossos sentidos sejam corrompidos, e se apartem da simplicidade que há em Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque, se aquele que vem prega outro Jesus, que nós não pregamos; ou se recebeis outro espírito, que não recebestes; ou outro evangelho, que não abraçastes, com razão o suportaríeis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque penso que em nada fui inferior aos superexcelentes apóstolos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, ainda que seja rude na palavra, não o sou no conhecimento; mas em tudo já nos manifestamos entre vós em todas as coisas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Pequei porventura, humilhando-me a mim mesmo, para que vós fôsseis exaltados, porque vos anunciei gratuitamente o evangelho de Deus?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Despojei outras igrejas, recebendo salário delas para vos servir.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E, estando presente entre vós, e tendo necessidade, a ninguém fui pesado; porque os irmãos que vieram da Macedônia supriram a minha necessidade; e em tudo me guardei de vos ser pesado, e ainda me guardarei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        A verdade de Cristo está em mim: esta glória não me será impedida nas regiões da Acaia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Por quê? Porque não vos amo? Deus o sabe.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Mas o que faço, farei ainda, para cortar ocasião aos que buscam ocasião, para que, naquilo em que se gloriam, sejam achados como nós.
+    </p>
+
+    <div class="pericope">Falsos Apóstolos</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque tais são falsos apóstolos, obreiros enganosos, transformando-se em apóstolos de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E não é de admirar, porque o próprio Satanás se transforma em anjo de luz.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Portanto, não é muito que também os seus ministros se transformem em ministros da justiça; o fim dos quais será conforme as suas obras.
+    </p>
+
+    <div class="pericope">A Insensatez de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Outra vez digo: Ninguém me considere insensato; ou, se não, recebei-me ainda como insensato, para que também eu me glorie um pouco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        O que falo, não o falo segundo o Senhor, mas como em insensatez, nesta confiança de glória.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Visto que muitos se gloriam segundo a carne, também eu me gloriarei.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Porque, sendo vós sábios, de boa vontade suportais os insensatos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Pois suportais se alguém vos escraviza, se alguém vos devora, se alguém vos toma, se alguém se exalta, se alguém vos fere no rosto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Envergonhado o digo, como se nós fôssemos fracos. Mas, naquilo em que alguém é ousado, com insensatez o digo, também eu sou ousado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        São hebreus? Também eu. São israelitas? Também eu. São descendência de Abraão? Também eu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        São ministros de Cristo? Falo como fora de mim: eu ainda mais; em trabalhos, muito mais; em açoites, mais ainda; em prisões, muito mais; em perigos de morte, muitas vezes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Dos judeus, cinco vezes recebi quarenta açoites menos um.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">25</span>
+        Três vezes fui açoitado com varas; uma vez fui apedrejado; três vezes sofri naufrágio; uma noite e um dia passei no abismo;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">26</span>
+        em viagens muitas vezes; em perigos de rios, em perigos de salteadores, em perigos da minha nação, em perigos dos gentios, em perigos na cidade, em perigos no deserto, em perigos no mar, em perigos entre falsos irmãos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">27</span>
+        em trabalho e fadiga, em vigílias muitas vezes, em fome e sede, em jejuns muitas vezes, em frio e nudez.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">28</span>
+        Além das coisas exteriores, o que me sobrevém cada dia: a preocupação de todas as igrejas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">29</span>
+        Quem enfraquece, e eu não enfraqueço? Quem se escandaliza, e eu não me queimo?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">30</span>
+        Se é necessário gloriar-me, gloriar-me-ei nas coisas da minha fraqueza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">31</span>
+        O Deus e Pai de nosso Senhor Jesus Cristo, que é bendito para sempre, sabe que não minto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">32</span>
+        Em Damasco, o governador sob o rei Aretas guardava a cidade dos damascenos, querendo prender-me;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">33</span>
+        e por uma janela, num cesto, fui descido pelo muro, e escapei das suas mãos.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:1, 16, 17, 21 — "Insensatez"</span>
+            <div class="greek-text">ἀφροσύνη</div>
+            <p><strong>Análise:</strong> Falta de bom senso, tolice; Paulo usa ironicamente ao longo de todo o capítulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "insensatez".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:2 — "Zelo de Deus"</span>
+            <div class="greek-text">ζηλῶ γὰρ ὑμᾶς Θεοῦ ζήλῳ</div>
+            <p><strong>Análise:</strong> Expressão que apresenta o zelo de Paulo pelos coríntios em relação a Deus; a construção do genitivo admite diferentes nuances.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "zelo de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:2 — "Virgem pura a um só marido"</span>
+            <div class="greek-text">παρθένον ἁγνὴν παραστῆσαι τῷ Χριστῷ</div>
+            <p><strong>Análise:</strong> Imagem de pureza e fidelidade a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "virgem pura a um só marido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:3 — "A serpente enganou Eva"</span>
+            <div class="greek-text">ὁ ὄφις ἐξηπάτησεν Εὕαν</div>
+            <p><strong>Análise:</strong> Referência a Gênesis 3:1-6.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a serpente enganou Eva".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:3 — "Com a sua astúcia"</span>
+            <div class="greek-text">ἐν τῇ πανουργίᾳ αὐτοῦ</div>
+            <p><strong>Análise:</strong> Com malícia/astúcia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com a sua astúcia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:3 — "Sentidos sejam corrompidos"</span>
+            <div class="greek-text">φθαρῇ τὰ νοήματα ὑμῶν</div>
+            <p><strong>Análise:</strong> Literalmente "que os vossos pensamentos/entendimentos sejam corrompidos".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sentidos sejam corrompidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:3 — "Simplicidade que há em Cristo"</span>
+            <div class="greek-text">ἀπὸ τῆς ἁπλότητος τῆς εἰς τὸν Χριστόν</div>
+            <p><strong>Análise:</strong> O TR traz <em>haplotēs</em>, termo relacionado a simplicidade, singeleza e sinceridade. Alguns manuscritos trazem <em>hagnotēs</em>, "pureza".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "simplicidade que há em Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:4 — "Outro Jesus... outro espírito... outro evangelho"</span>
+            <div class="greek-text">ἄλλον Ἰησοῦν... πνεῦμα ἕτερον... εὐαγγέλιον ἕτερον</div>
+            <p><strong>Análise:</strong> Três expressões de contraste com o evangelho genuíno.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "outro Jesus... outro espírito... outro evangelho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:5 — "Superexcelentes apóstolos"</span>
+            <div class="greek-text">τῶν ὑπὲρ λίαν ἀποστόλων</div>
+            <p><strong>Análise:</strong> Expressão intensificada que pode ser entendida como "superexcelentes apóstolos" ou "apóstolos excepcionalmente excelentes". No contexto, Paulo emprega a expressão de modo irônico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "superexcelentes apóstolos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:6 — "Rude na palavra"</span>
+            <div class="greek-text">ἰδιώτης τῷ λόγῳ</div>
+            <p><strong>Análise:</strong> Literalmente "não especializado/sem formação quanto à palavra"; Paulo contrasta essa condição com seu conhecimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "rude na palavra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:7 — "Anunciei gratuitamente"</span>
+            <div class="greek-text">δωρεὰν τὸ τοῦ Θεοῦ εὐαγγέλιον εὐηγγελισάμην</div>
+            <p><strong>Análise:</strong> Preguei de graça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "anunciei gratuitamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:8 — "Despojei outras igrejas"</span>
+            <div class="greek-text">ἄλλας ἐκκλησίας ἐσύλησα</div>
+            <p><strong>Análise:</strong> Literalmente "despojei/saqueei outras igrejas". Paulo emprega uma expressão forte para descrever o recebimento de sustento de outras igrejas enquanto servia aos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "despojei outras igrejas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:8 — "Salário"</span>
+            <div class="greek-text">ὀψώνιον</div>
+            <p><strong>Análise:</strong> Sustento, provisão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "salário".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:9 — "A ninguém fui pesado"</span>
+            <div class="greek-text">οὐ κατενάρκησα οὐδενός</div>
+            <p><strong>Análise:</strong> Não fui um peso a ninguém.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a ninguém fui pesado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:9 — "Irmãos que vieram da Macedônia"</span>
+            <div class="greek-text">οἱ ἀδελφοὶ ἐλθόντες ἀπὸ Μακεδονίας</div>
+            <p><strong>Análise:</strong> Supridores das necessidades de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "irmãos que vieram da Macedônia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:10 — "A verdade de Cristo está em mim"</span>
+            <div class="greek-text">ἔστιν ἀλήθεια Χριστοῦ ἐν ἐμοί</div>
+            <p><strong>Análise:</strong> Afirmação solene de Paulo sobre a verdade de Cristo nele.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a verdade de Cristo está em mim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:10 — "Esta glória não me será impedida"</span>
+            <div class="greek-text">ἡ καύχησις αὕτη οὐ φραγήσεται εἰς ἐμέ</div>
+            <p><strong>Análise:</strong> Este motivo de glória não será bloqueado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "esta glória não me será impedida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:12 — "Cortar ocasião aos que buscam ocasião"</span>
+            <div class="greek-text">ἵνα ἐκκόψω τὴν ἀφορμὴν τῶν θελόντων ἀφορμήν</div>
+            <p><strong>Análise:</strong> Eliminar o pretexto dos que procuram pretexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cortar ocasião aos que buscam ocasião".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:13 — "Falsos apóstolos"</span>
+            <div class="greek-text">ψευδαπόστολοι</div>
+            <p><strong>Análise:</strong> Falsos enviados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falsos apóstolos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:13 — "Obreiros enganosos"</span>
+            <div class="greek-text">ἐργάται δόλιοι</div>
+            <p><strong>Análise:</strong> Trabalhadores fraudulentos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "obreiros enganosos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:13 — "Transformando-se em apóstolos de Cristo"</span>
+            <div class="greek-text">μετασχηματιζόμενοι εἰς ἀποστόλους Χριστοῦ</div>
+            <p><strong>Análise:</strong> Usando o verbo <em>metaschēmatizō</em>, "transformar-se/mudar de aparência ou forma".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "transformando-se em apóstolos de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:14 — "O próprio Satanás se transforma em anjo de luz"</span>
+            <div class="greek-text">αὐτὸς γὰρ ὁ Σατανᾶς μετασχηματίζεται εἰς ἄγγελον φωτός</div>
+            <p><strong>Análise:</strong> Literalmente "o próprio Satanás se transforma em anjo de luz".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o próprio Satanás se transforma em anjo de luz".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:15 — "Ministros da justiça"</span>
+            <div class="greek-text">διάκονοι δικαιοσύνης</div>
+            <p><strong>Análise:</strong> Servos da justiça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministros da justiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:15 — "O fim dos quais será conforme as suas obras"</span>
+            <div class="greek-text">ὧν τὸ τέλος ἔσται κατὰ τὰ ἔργα αὐτῶν</div>
+            <p><strong>Análise:</strong> Literalmente "o fim deles será conforme as suas obras".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o fim dos quais será conforme as suas obras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:16 — "Ninguém me considere insensato"</span>
+            <div class="greek-text">μή τίς με δόξῃ ἄφρονα εἶναι</div>
+            <p><strong>Análise:</strong> Que ninguém me julgue tolo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ninguém me considere insensato".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:17 — "Não o falo segundo o Senhor"</span>
+            <div class="greek-text">οὐ κατὰ Κύριον λαλῶ</div>
+            <p><strong>Análise:</strong> Não falo segundo o Senhor; o sentido exato é discutido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não o falo segundo o Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:17 — "Nesta confiança de glória"</span>
+            <div class="greek-text">ἐν ταύτῃ τῇ ὑποστάσει τῆς καυχήσεως</div>
+            <p><strong>Análise:</strong> Expressão que pode envolver a ideia de segurança, confiança ou fundamento da glória.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nesta confiança de glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:18 — "Muitos se gloriam segundo a carne"</span>
+            <div class="greek-text">πολλοὶ καυχῶνται κατὰ σάρκα</div>
+            <p><strong>Análise:</strong> Gloriar-se segundo a carne.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muitos se gloriam segundo a carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:20 — "Se alguém vos escraviza... devora... toma... se exalta... fere no rosto"</span>
+            <div class="greek-text">καταδουλοῖ... κατεσθίει... λαμβάνει... ἐπαίρεται... δέρει</div>
+            <p><strong>Análise:</strong> Cinco imagens de abuso tolerado pelos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução das cinco expressões.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:21 — "Envergonhado o digo, como se nós fôssemos fracos"</span>
+            <div class="greek-text">κατὰ ἀτιμίαν λέγω, ὡς ὅτι ἡμεῖς ἠσθενήσαμεν</div>
+            <p><strong>Análise:</strong> Ironia de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "envergonhado o digo, como se nós fôssemos fracos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:22 — "Hebreus... israelitas... descendência de Abraão"</span>
+            <div class="greek-text">Ἑβραῖοί... Ἰσραηλῖται... σπέρμα Ἀβραάμ</div>
+            <p><strong>Análise:</strong> Três títulos de orgulho judaico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos três termos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:23 — "Falo como fora de mim"</span>
+            <div class="greek-text">παραφρονῶν λαλῶ</div>
+            <p><strong>Análise:</strong> Falo como insensato.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falo como fora de mim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:24 — "Quarenta açoites menos um"</span>
+            <div class="greek-text">πεντὰ τεσσαράκοντα παρὰ μίαν</div>
+            <p><strong>Análise:</strong> A punição judaica de 39 açoites; ver Deuteronômio 25:3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quarenta açoites menos um".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:25 — "Açoitado com varas"</span>
+            <div class="greek-text">ἐρραβδίσθην</div>
+            <p><strong>Análise:</strong> Punição romana com varas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "açoitado com varas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:25 — "Apedrejado"</span>
+            <div class="greek-text">ἐλιθάσθην</div>
+            <p><strong>Análise:</strong> Apedrejamento; ver Atos 14:19.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "apedrejado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:25 — "Naufrágio"</span>
+            <div class="greek-text">ἐναυάγησα</div>
+            <p><strong>Análise:</strong> Naufraguei.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "naufrágio".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:25 — "No abismo"</span>
+            <div class="greek-text">ἐν τῷ βυθῷ</div>
+            <p><strong>Análise:</strong> Nas profundezas do mar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "no abismo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:26 — "Perigos de rios... salteadores... falsos irmãos"</span>
+            <div class="greek-text">κινδύνοις ποταμῶν... λῃστῶν... ψευδαδέλφων</div>
+            <p><strong>Análise:</strong> Lista de perigos enfrentados por Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos termos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:28 — "Preocupação de todas as igrejas"</span>
+            <div class="greek-text">ἡ μέριμνα πασῶν τῶν ἐκκλησιῶν</div>
+            <p><strong>Análise:</strong> Cuidado com todas as igrejas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "preocupação de todas as igrejas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:29 — "Quem enfraquece, e eu não enfraqueço?"</span>
+            <div class="greek-text">τίς ἀσθενεῖ, καὶ οὐκ ἀσθενῶ</div>
+            <p><strong>Análise:</strong> Solidariedade de Paulo com os fracos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quem enfraquece, e eu não enfraqueço?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:29 — "Quem se escandaliza, e eu não me queimo?"</span>
+            <div class="greek-text">τίς σκανδαλίζεται, καὶ οὐκ ἐγὼ πυροῦμαι</div>
+            <p><strong>Análise:</strong> Expressão de ardente preocupação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quem se escandaliza, e eu não me queimo?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:30 — "Coisas da minha fraqueza"</span>
+            <div class="greek-text">τὰ τῆς ἀσθενείας μου</div>
+            <p><strong>Análise:</strong> Nas fraquezas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coisas da minha fraqueza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:31 — "O Deus e Pai... sabe que não minto"</span>
+            <div class="greek-text">ὁ Θεὸς καὶ πατὴρ... οἶδεν ὅτι οὐ ψεύδομαι</div>
+            <p><strong>Análise:</strong> Afirmação solene de veracidade diante de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o Deus e Pai... sabe que não minto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:32 — "Governador sob o rei Aretas"</span>
+            <div class="greek-text">ὁ ἐθνάρχης Ἀρέτα τοῦ βασιλέως</div>
+            <p><strong>Análise:</strong> Autoridade local sob o rei Aretas IV.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "governador sob o rei Aretas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 11:33 — "Por uma janela, num cesto"</span>
+            <div class="greek-text">διὰ θυρίδος ἐν σαργάνῃ</div>
+            <p><strong>Análise:</strong> Fuga de Damasco; ver Atos 9:25.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por uma janela, num cesto".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 11 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 11 é a defesa apaixonada de Paulo contra falsos apóstolos. Estrutura: 1) A preocupação de Paulo com os coríntios (v.1-12); 2) Falsos apóstolos (v.13-15); 3) A insensatez de Paulo (v.16-33). Paulo lista suas credenciais de sofrimento para contrastar com os falsos apóstolos que se gloriam segundo a carne.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

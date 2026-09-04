@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 1</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .dossier-section {
+            margin-bottom: 50px;
+            padding: 25px;
+            background-color: #fdfcf9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dossier-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .dossier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .dossier-item h4 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dossier-item p {
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+
+        .text-base-section {
+            margin: 10px auto 50px auto;
+            padding: 18px 30px;
+            max-width: 620px;
+            background: linear-gradient(180deg, #fdfcf9 0%, #f7f1e3 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #4a4a4a;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(140, 39, 56, 0.06);
+        }
+        .text-base-section::before,
+        .text-base-section::after {
+            content: "";
+            display: block;
+            height: 0;
+            border-top: 3px double var(--accent-red);
+            margin: 0 auto 12px auto;
+            width: 70%;
+        }
+        .text-base-section::after {
+            margin: 12px auto 0 auto;
+            border-top: 3px double var(--accent-red);
+        }
+        .text-base-section strong {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            margin-bottom: 6px;
+        }
+        .text-base-section em {
+            font-style: italic;
+            color: #2c2520;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="dossier-section">
+        <h3 class="dossier-title">Dossiê da Segunda Epístola aos Coríntios</h3>
+        <div class="dossier-grid">
+            <div class="dossier-item">
+                <h4>Autoria</h4>
+                <p><strong>Paulo</strong>, apóstolo de Cristo, escreveu esta epístola à igreja em Corinto, provavelmente por volta de 55-57 d.C., após a Primeira Epístola e uma visita dolorosa.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Data e Contexto</h4>
+                <p>Escrita entre <strong>55-57 d.C.</strong> Paulo defende seu apostolado contra falsos mestres e aborda a reconciliação com a igreja após tensões.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Tema Central</h4>
+                <p><strong>O ministério da reconciliação e a suficiência da graça de Deus.</strong> Paulo apresenta o verdadeiro apostolado marcado pelo sofrimento e pela consolação divina.</p>
+            </div>
+            <div class="dossier-item">
+                <h4>Estrutura Literária</h4>
+                <p>A epístola aborda: a natureza do ministério (caps. 1-7), a coleta para os santos (caps. 8-9) e a defesa do apostolado (caps. 10-13).</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-base-section">
+        <strong>Texto Base</strong>
+        <em>Textus Receptus</em> — Edição Stephanus de 1550<br>
+        <small style="color:#8a7a66; font-size:12px;">Novo Testamento Grego</small>
+    </div>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 1</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Consolação</span>
+                Do grego *paraklēsis* (παράκλησις). Termo amplo que pode significar consolo, encorajamento, exortação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aflições de Cristo</span>
+                Do grego *ta pathēmata tou Christou* (τὰ παθήματα τοῦ Χριστοῦ). Paulo relaciona seus próprios sofrimentos à sua relação e serviço a Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sentença de morte</span>
+                Do grego *apokrima tou thanatou* (ἀπόκριμα τοῦ θανάτου). Expressão relacionada a uma decisão ou sentença que apontava para a morte.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Simplicidade</span>
+                Do grego *haplotēs* (ἁπλότης). O Textus Receptus traz "simplicidade"; alguns manuscritos trazem "santidade".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Segunda graça</span>
+                Do grego *deuteran charin* (δευτέραν χάριν). Refere-se ao benefício esperado de uma nova visita de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Leviandade</span>
+                Do grego *elaphria* (ἐλαφρίᾳ). Termo relacionado à ideia de leveza, usado para indicar falta de firmeza.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Penhor do Espírito</span>
+                Do grego *arrabōna tou Pneumatos* (ἀρραβῶνα τοῦ Πνεύματος). Entrada, sinal ou garantia do que seria recebido posteriormente.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Cooperadores do vosso gozo</span>
+                Do grego *synergoi esmen tēs charas hymōn* (συνεργοί ἐσμεν τῆς χαρᾶς ὑμῶν). Cooperadores da alegria dos crentes.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">1</div>
+
+    <div class="pericope">Saudação e Ação de Graças</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>aulo, apóstolo de Jesus Cristo pela vontade de Deus, e o irmão Timóteo, à igreja de Deus que está em Corinto, com todos os santos que estão em toda a Acaia:
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Graça e paz de Deus nosso Pai, e do Senhor Jesus Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Bendito seja o Deus e Pai de nosso Senhor Jesus Cristo, o Pai das misericórdias, e o Deus de toda consolação;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        que nos consola em toda a nossa tribulação, para que também possamos consolar os que estiverem em qualquer tribulação, com a consolação com que nós mesmos somos consolados por Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque, assim como as aflições de Cristo abundam em nós, assim também abunda a nossa consolação por meio de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E, se somos atribulados, é para vossa consolação e salvação, que se opera no suportar as mesmas aflições que nós também padecemos; e, se somos consolados, é para vossa consolação e salvação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E a nossa esperança acerca de vós é firme, sabendo que, assim como sois participantes das aflições, assim também o sereis da consolação.
+    </p>
+
+    <div class="pericope">A Tribulação na Ásia</div>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque não queremos, irmãos, que ignoreis a tribulação que nos sobreveio na Ásia, pois fomos excessivamente oprimidos, acima das nossas forças, a ponto de perdermos a esperança até da própria vida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Mas já tínhamos em nós mesmos a sentença de morte, para que não confiássemos em nós mesmos, mas em Deus, que ressuscita os mortos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        o qual nos livrou de tão grande morte, e livra; em quem esperamos que ainda nos livrará,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        ajudando-nos também vós com orações por nós, para que, pelo dom que nos foi concedido por meio de muitas pessoas, por muitas também sejam dadas graças a nosso respeito.
+    </p>
+
+    <div class="pericope">A Conduta de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque a nossa glória é esta: o testemunho da nossa consciência, de que em simplicidade e sinceridade de Deus, não com sabedoria carnal, mas pela graça de Deus, nos conduzimos no mundo, e mais abundantemente para convosco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque não vos escrevemos outras coisas, senão as que ledes, ou também reconheceis; e espero que também as reconhecereis até o fim;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        como também já em parte nos reconhecestes, que somos a vossa glória, assim também vós sereis a nossa, no dia do Senhor Jesus.
+    </p>
+
+    <div class="pericope">O Plano de Viagem de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E, com esta confiança, eu queria primeiro ir até vós, para que tivésseis uma segunda graça;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        e, passando por vós, ir à Macedônia; e da Macedônia voltar a vós, e por vós ser encaminhado à Judeia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Portanto, ao querer isto, usei porventura de leviandade? Ou o que quero, quero-o segundo a carne, para que haja em mim sim, sim, e não, não?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Antes, Deus é fiel: a nossa palavra para convosco não foi sim e não.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Porque o Filho de Deus, Jesus Cristo, que entre vós foi pregado por nós, por mim, e Silvano, e Timóteo, não foi sim e não; mas nele houve sim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque todas quantas promessas há de Deus, nele estão o sim; e por ele o amém, para glória de Deus por nosso meio.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Mas aquele que nos confirma convosco em Cristo, e nos ungiu, é Deus;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        o qual também nos selou, e deu o penhor do Espírito em nossos corações.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Eu, porém, invoco a Deus por testemunha sobre a minha alma, de que, para vos poupar, ainda não fui a Corinto.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Não que tenhamos domínio sobre a vossa fé, mas somos cooperadores do vosso gozo; porque pela fé estais em pé.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:1 — "Apóstolo de Jesus Cristo"</span>
+            <div class="greek-text">ἀπόστολος Ἰησοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> O termo <em>apostolos</em> significa enviado/mensageiro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "apóstolo de Jesus Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:3 — "Pai das misericórdias"</span>
+            <div class="greek-text">ὁ πατὴρ τῶν οἰκτιρμῶν</div>
+            <p><strong>Análise:</strong> Expressão que apresenta Deus como fonte de toda compaixão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Pai das misericórdias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:3 — "Deus de toda consolação"</span>
+            <div class="greek-text">Θεὸς πάσης παρακλήσεως</div>
+            <p><strong>Análise:</strong> Expressão que apresenta Deus como fonte de toda consolação, encorajamento e exortação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus de toda consolação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:4-7 — "Consolação"</span>
+            <div class="greek-text">παράκλησις</div>
+            <p><strong>Análise:</strong> Termo amplo que pode significar consolo, encorajamento, exortação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "consolação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:5 — "Aflições de Cristo"</span>
+            <div class="greek-text">τὰ παθήματα τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "os sofrimentos de Cristo". No contexto, Paulo relaciona seus próprios sofrimentos à sua relação e serviço a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aflições de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:8 — "Tribulação na Ásia"</span>
+            <div class="greek-text">θλίψει ἡμῶν τῇ γενομένῃ ἐν τῇ Ἀσίᾳ</div>
+            <p><strong>Análise:</strong> Sofrimento extremo enfrentado por Paulo na província da Ásia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribulação que nos sobreveio na Ásia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:9 — "Sentença de morte"</span>
+            <div class="greek-text">ἀπόκριμα τοῦ θανάτου</div>
+            <p><strong>Análise:</strong> Expressão relacionada a uma decisão ou sentença que apontava para a morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sentença de morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:9 — "Deus, que ressuscita os mortos"</span>
+            <div class="greek-text">Θεὸς ὁ ἐγείρων τοὺς νεκρούς</div>
+            <p><strong>Análise:</strong> Formulação de confiança no Deus da ressurreição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus, que ressuscita os mortos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:12 — "Simplicidade e sinceridade de Deus"</span>
+            <div class="greek-text">ἐν ἁπλότητι καὶ εἰλικρινείᾳ Θεοῦ</div>
+            <p><strong>Análise:</strong> O Textus Receptus traz <em>haplotēti</em> ("simplicidade"); alguns manuscritos trazem <em>hagiotēti</em> ("santidade").</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "simplicidade e sinceridade de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:12 — "Sabedoria carnal"</span>
+            <div class="greek-text">σοφίᾳ σαρκικῇ</div>
+            <p><strong>Análise:</strong> Sabedoria meramente humana, em contraste com a graça de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sabedoria carnal".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:15 — "Segunda graça"</span>
+            <div class="greek-text">δευτέραν χάριν</div>
+            <p><strong>Análise:</strong> Literalmente "segunda graça". No contexto, refere-se ao benefício esperado de uma nova visita de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segunda graça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:17 — "Leviandade"</span>
+            <div class="greek-text">ἐλαφρίᾳ</div>
+            <p><strong>Análise:</strong> Termo relacionado à ideia de leveza e usado aqui para indicar falta de firmeza ou seriedade na decisão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "leviandade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:17 — "Sim, sim, e não, não"</span>
+            <div class="greek-text">ναὶ ναὶ καὶ οὒ οὔ</div>
+            <p><strong>Análise:</strong> Expressão usada por Paulo para questionar uma palavra marcada por instabilidade ou falta de firmeza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sim, sim, e não, não".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:19 — "Silvano"</span>
+            <div class="greek-text">Σιλουανοῦ</div>
+            <p><strong>Análise:</strong> Companheiro de Paulo; é o mesmo Silas de Atos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Silvano".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:19 — "Nele houve sim"</span>
+            <div class="greek-text">ἐν αὐτῷ ναὶ γέγονεν</div>
+            <p><strong>Análise:</strong> Literalmente "nele houve sim". Paulo contrasta a firmeza de Cristo com a acusação de que sua palavra seria "sim e não".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nele houve sim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:20 — "Amém"</span>
+            <div class="greek-text">ἀμήν</div>
+            <p><strong>Análise:</strong> Do hebraico <em>amēn</em> (אָמֵן), expressão de confirmação ou concordância, preservada no texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "amém".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:21 — "Nos ungiu"</span>
+            <div class="greek-text">χρίσας</div>
+            <p><strong>Análise:</strong> Ungiu; relacionado a <em>Christos</em> (Cristo), o Ungido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nos ungiu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:22 — "Nos selou"</span>
+            <div class="greek-text">σφραγισάμενος</div>
+            <p><strong>Análise:</strong> Marcou ou selou. A imagem do selo pode indicar identificação, pertencimento e confirmação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nos selou".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:22 — "Penhor do Espírito"</span>
+            <div class="greek-text">ἀρραβῶνα τοῦ Πνεύματος</div>
+            <p><strong>Análise:</strong> <em>Arrabōn</em> era usado para uma entrada, sinal ou garantia relacionada a algo que seria recebido posteriormente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "penhor do Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:23 — "Invoco a Deus por testemunha"</span>
+            <div class="greek-text">Θεὸν ἐπικαλοῦμαι</div>
+            <p><strong>Análise:</strong> Invocação de Deus como testemunha para confirmar a declaração de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "invoco a Deus por testemunha".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:24 — "Cooperadores do vosso gozo"</span>
+            <div class="greek-text">συνεργοί ἐσμεν τῆς χαρᾶς ὑμῶν</div>
+            <p><strong>Análise:</strong> Cooperadores da alegria dos crentes, isto é, Paulo não reivindica domínio sobre a fé deles, mas atua juntamente com eles para o seu gozo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cooperadores do vosso gozo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 1:24 — "Pela fé estais em pé"</span>
+            <div class="greek-text">τῇ γὰρ πίστει ἑστήκατε</div>
+            <p><strong>Análise:</strong> Permanecem firmes pela fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pela fé estais em pé".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 1 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 1 inicia a epístola com saudações e a defesa de Paulo. Estrutura: 1) Saudação e ação de graças (v.1-7); 2) A tribulação na Ásia (v.8-11); 3) A conduta de Paulo (v.12-14); 4) O plano de viagem de Paulo (v.15-24). Paulo apresenta o ministério da consolação e defende sua integridade.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

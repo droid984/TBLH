@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 9</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 9</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Bênção</span>
+                Do grego *eulogia* (εὐλογία). No contexto, refere-se à contribuição generosa, em contraste com a avareza.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Avareza</span>
+                Do grego *pleonexia* (πλεονεξία). Contraste com a bênção generosa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Suficiência</span>
+                Do grego *autarkeia* (αὐτάρκεια). Suficiência ou contentamento; mesma raiz de 2 Coríntios 3-4.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ministração</span>
+                Do grego *leitourgia* (λειτουργία). Serviço prestado em favor dos santos, distinguido de *diakonia*.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Dom indizível</span>
+                Do grego *anekdiēgētos dōrea* (ἀνεκδιήγητος δωρεά). Dom que não pode ser plenamente descrito.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Generosidade</span>
+                Do grego *haplotēs* (ἁπλότης). Disposição generosa de contribuir.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Prontidão do vosso ânimo</span>
+                Do grego *prothymia* (προθυμία). Disposição pronta.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">9</div>
+
+    <div class="pericope">A Prontidão dos Coríntios</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">Q</span>uanto ao serviço que se faz para os santos, é supérfluo escrever-vos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque conheço a prontidão do vosso ânimo, da qual me glorio de vós para com os macedônios, dizendo que a Acaia está pronta desde o ano passado; e o vosso zelo estimulou a muitos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas enviei os irmãos, para que a nossa glória a vosso respeito não seja vã nesta parte; para que, como eu dizia, estejais prontos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        para que, se os macedônios vierem comigo, e vos acharem desprevenidos, não nos envergonhemos nós — para não dizer vós — nesta firme glória.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Portanto, julguei necessário exortar os irmãos a que primeiro fossem ter convosco, e preparassem de antemão a vossa bênção, já antes anunciada, para que esteja pronta como bênção, e não como avareza.
+    </p>
+
+    <div class="pericope">A Generosidade e a Sua Recompensa</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        E digo isto: Aquele que semeia pouco, pouco também ceifará; e aquele que semeia com bênçãos, com bênçãos também ceifará.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Cada um contribua segundo o que propôs no coração; não com tristeza, nem por necessidade; porque Deus ama ao que dá com alegria.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        E Deus é poderoso para fazer abundar em vós toda graça, a fim de que, tendo sempre toda suficiência em tudo, abundeis em toda boa obra;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        como está escrito: <span class="fala-outro">Espalhou, deu aos pobres; a sua justiça permanece para sempre.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Ora, aquele que dá semente ao que semeia, e pão para alimento, também dará e multiplicará a vossa semente, e aumentará os frutos da vossa justiça;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        para que em tudo sejais enriquecidos para toda generosidade, a qual, por nosso meio, produz ação de graças a Deus.
+    </p>
+
+    <div class="pericope">O Fruto da Contribuição</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque o serviço desta ministração não somente supre as necessidades dos santos, mas também transborda em muitas ações de graças a Deus;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        pois, pela prova deste serviço, eles glorificam a Deus pela submissão que confessais ao evangelho de Cristo, e pela generosidade da contribuição para eles e para todos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        e pela oração deles por vós, tendo saudade de vós, por causa da excelente graça de Deus que está sobre vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Graças a Deus pelo seu dom indizível.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:1 — "Serviço que se faz para os santos"</span>
+            <div class="greek-text">τῆς διακονίας τῆς εἰς τοὺς ἁγίους</div>
+            <p><strong>Análise:</strong> Serviço de assistência aos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "serviço que se faz para os santos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:1 — "Supérfluo escrever-vos"</span>
+            <div class="greek-text">περισσόν μοι ἐστιν τὸ γράφειν ὑμῖν</div>
+            <p><strong>Análise:</strong> Desnecessário escrever-vos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "supérfluo escrever-vos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:2 — "Prontidão do vosso ânimo"</span>
+            <div class="greek-text">τὴν προθυμίαν ὑμῶν</div>
+            <p><strong>Análise:</strong> Disposição pronta.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "prontidão do vosso ânimo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:2 — "Acaia está pronta"</span>
+            <div class="greek-text">Ἀχαΐα παρεσκεύασται</div>
+            <p><strong>Análise:</strong> A Acaia está preparada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Acaia está pronta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:2 — "Desde o ano passado"</span>
+            <div class="greek-text">ἀπὸ πέρυσι</div>
+            <p><strong>Análise:</strong> Desde o ano anterior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desde o ano passado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:2 — "Vosso zelo estimulou a muitos"</span>
+            <div class="greek-text">ὁ ὑμῶν ζῆλος ἠρέθισε τοὺς πλείονας</div>
+            <p><strong>Análise:</strong> O zelo dos coríntios estimulou/incitou muitos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vosso zelo estimulou a muitos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:3 — "Enviei os irmãos"</span>
+            <div class="greek-text">ἔπεμψα τοὺς ἀδελφούς</div>
+            <p><strong>Análise:</strong> Envio prévio dos irmãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "enviei os irmãos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:3 — "Nossa glória... não seja vã"</span>
+            <div class="greek-text">τὸ καύχημα ἡμῶν... μὴ κενωθῇ</div>
+            <p><strong>Análise:</strong> Para que o motivo de glória não seja esvaziado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nossa glória... não seja vã".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:4 — "Desprevenidos"</span>
+            <div class="greek-text">ἀπαρασκευάστους</div>
+            <p><strong>Análise:</strong> Não preparados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desprevenidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:4 — "Nesta firme glória"</span>
+            <div class="greek-text">ἐν τῇ ὑποστάσει ταύτῃ τῆς καυχήσεως</div>
+            <p><strong>Análise:</strong> Expressão que pode transmitir a ideia de confiança, segurança ou firmeza associada à glória mencionada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nesta firme glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:5 — "Exortar os irmãos"</span>
+            <div class="greek-text">παρακαλέσαι τοὺς ἀδελφούς</div>
+            <p><strong>Análise:</strong> Exortar, encorajar ou apelar aos irmãos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "exortar os irmãos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:5 — "Fossem ter convosco"</span>
+            <div class="greek-text">ἵνα προέλθωσιν εἰς ὑμᾶς</div>
+            <p><strong>Análise:</strong> Que fossem antes até vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fossem ter convosco".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:5 — "Preparassem de antemão a vossa bênção"</span>
+            <div class="greek-text">προκαταρτίσωσι τὴν προεπηγγελμένην εὐλογίαν ὑμῶν</div>
+            <p><strong>Análise:</strong> Preparassem antecipadamente a bênção anteriormente anunciada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "preparassem de antemão a vossa bênção".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:5 — "Bênção, e não como avareza"</span>
+            <div class="greek-text">ὡς εὐλογίαν καὶ μὴ ὡς πλεονεξίαν</div>
+            <p><strong>Análise:</strong> Literalmente "como bênção e não como avareza". No contexto, a bênção refere-se à contribuição generosa, em contraste com a avareza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bênção, e não como avareza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:6 — "Aquele que semeia pouco, pouco também ceifará"</span>
+            <div class="greek-text">ὁ σπείρων φειδομένως, φειδομένως καὶ θερίσει</div>
+            <p><strong>Análise:</strong> Paulo utiliza a imagem agrícola de semear e ceifar para falar da contribuição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aquele que semeia pouco, pouco também ceifará".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:6 — "Semeia com bênçãos"</span>
+            <div class="greek-text">σπείρων ἐπ' εὐλογίαις</div>
+            <p><strong>Análise:</strong> Literalmente "semeia com bênçãos". No contexto, a expressão descreve uma contribuição generosa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "semeia com bênçãos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:7 — "Propôs no coração"</span>
+            <div class="greek-text">προῄρηται τῇ καρδίᾳ</div>
+            <p><strong>Análise:</strong> Decidiu no coração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "propôs no coração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:7 — "Não com tristeza, nem por necessidade"</span>
+            <div class="greek-text">μὴ ἐκ λύπης ἢ ἐξ ἀνάγκης</div>
+            <p><strong>Análise:</strong> Sem tristeza ou constrangimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não com tristeza, nem por necessidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:7 — "Deus ama ao que dá com alegria"</span>
+            <div class="greek-text">ἱλαρὸν γὰρ δότην ἀγαπᾷ ὁ Θεός</div>
+            <p><strong>Análise:</strong> Deus ama o que dá com alegria. A formulação também é associada à tradição textual grega de Provérbios 22:8.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus ama ao que dá com alegria".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:8 — "Fazer abundar em vós toda graça"</span>
+            <div class="greek-text">περισσεῦσαι εἰς ὑμᾶς πᾶσαν χάριν</div>
+            <p><strong>Análise:</strong> Fazer abundar em vós toda graça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fazer abundar em vós toda graça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:8 — "Toda suficiência"</span>
+            <div class="greek-text">πᾶσαν αὐτάρκειαν</div>
+            <p><strong>Análise:</strong> Toda suficiência ou contentamento. No contexto, refere-se à suficiência necessária para que os coríntios possam abundar em toda boa obra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "toda suficiência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:8 — "Abundeis em toda boa obra"</span>
+            <div class="greek-text">περισσεύητε εἰς πᾶν ἔργον ἀγαθόν</div>
+            <p><strong>Análise:</strong> Abundar em toda boa obra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "abundeis em toda boa obra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:9 — "Espalhou, deu aos pobres"</span>
+            <div class="greek-text">ἐσκόρπισεν, ἔδωκεν τοῖς πένησιν</div>
+            <p><strong>Análise:</strong> Citação do Salmo 112:9.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:9 — "A sua justiça permanece para sempre"</span>
+            <div class="greek-text">ἡ δικαιοσύνη αὐτοῦ μένει εἰς τὸν αἰῶνα</div>
+            <p><strong>Análise:</strong> Justiça que permanece eternamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:10 — "Dá semente ao que semeia, e pão para alimento"</span>
+            <div class="greek-text">ὁ ἐπιχορηγῶν σπέρμα τῷ σπείροντι καὶ ἄρτον εἰς βρῶσιν</div>
+            <p><strong>Análise:</strong> Referência a Isaías 55:10.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dá semente ao que semeia, e pão para alimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:10 — "Multiplicará a vossa semente"</span>
+            <div class="greek-text">πληθυνεῖ τὸν σπόρον ὑμῶν</div>
+            <p><strong>Análise:</strong> Multiplicará a vossa semente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "multiplicará a vossa semente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:10 — "Frutos da vossa justiça"</span>
+            <div class="greek-text">τὰ γενήματα τῆς δικαιοσύνης ὑμῶν</div>
+            <p><strong>Análise:</strong> Frutos da justiça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "frutos da vossa justiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:11 — "Enriquecidos para toda generosidade"</span>
+            <div class="greek-text">πλουτιζόμενοι ἐν παντὶ εἰς πᾶσαν ἁπλότητα</div>
+            <p><strong>Análise:</strong> Enriquecidos para toda generosidade/singeleza. No contexto, refere-se à disposição generosa de contribuir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "enriquecidos para toda generosidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:11 — "Produz ação de graças"</span>
+            <div class="greek-text">κατεργάζεται εὐχαριστίαν</div>
+            <p><strong>Análise:</strong> Produz gratidão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "produz ação de graças".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:12 — "Serviço desta ministração"</span>
+            <div class="greek-text">ἡ διακονία τῆς λειτουργίας ταύτης</div>
+            <p><strong>Análise:</strong> Literalmente "o serviço desta ministração/serviço". Os dois termos estão relacionados ao serviço prestado em favor dos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "serviço desta ministração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:12 — "Supre as necessidades dos santos"</span>
+            <div class="greek-text">προσαναπληροῖ τὰ ὑστερήματα τῶν ἁγίων</div>
+            <p><strong>Análise:</strong> Completa o que falta aos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "supre as necessidades dos santos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:12 — "Transborda em muitas ações de graças"</span>
+            <div class="greek-text">περισσεύουσα διὰ πολλῶν εὐχαριστιῶν</div>
+            <p><strong>Análise:</strong> Transborda em muitas ações de graças.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "transborda em muitas ações de graças".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:13 — "Pela prova deste serviço"</span>
+            <div class="greek-text">διὰ τῆς δοκιμῆς τῆς διακονίας ταύτης</div>
+            <p><strong>Análise:</strong> Pela prova ou demonstração produzida por este serviço.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pela prova deste serviço".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:13 — "Submissão que confessais ao evangelho"</span>
+            <div class="greek-text">ὑποταγῇ τῆς ὁμολογίας ὑμῶν εἰς τὸ εὐαγγέλιον</div>
+            <p><strong>Análise:</strong> Literalmente "submissão da vossa confissão ao evangelho". A construção relaciona a submissão/confissão dos coríntios ao evangelho de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "submissão que confessais ao evangelho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:13 — "Generosidade da contribuição"</span>
+            <div class="greek-text">ἁπλότητι τῆς κοινωνίας</div>
+            <p><strong>Análise:</strong> Generosidade/singeleza da participação ou partilha. No contexto, refere-se à contribuição feita em favor dos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "generosidade da contribuição".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:14 — "Oração deles por vós"</span>
+            <div class="greek-text">αὐτῶν δεήσει ὑπὲρ ὑμῶν</div>
+            <p><strong>Análise:</strong> Súplica deles por vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "oração deles por vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:14 — "Saudade de vós"</span>
+            <div class="greek-text">ἐπιποθούντων ὑμᾶς</div>
+            <p><strong>Análise:</strong> Anseio por vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "saudade de vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:14 — "Excelente graça de Deus"</span>
+            <div class="greek-text">τὴν ὑπερβάλλουσαν χάριν τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> A graça de Deus que excede, supera ou é extraordinária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "excelente graça de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 9:15 — "Dom indizível"</span>
+            <div class="greek-text">τῇ ἀνεκδιηγήτῳ αὐτοῦ δωρεᾷ</div>
+            <p><strong>Análise:</strong> Dom que não pode ser plenamente descrito ou narrado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dom indizível".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 9 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 9 conclui a seção sobre a coleta para os santos. Estrutura: 1) A prontidão dos coríntios (v.1-5); 2) A generosidade e a sua recompensa (v.6-11); 3) O fruto da contribuição (v.12-15). Paulo exorta os coríntios a completarem a contribuição com alegria e generosidade.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

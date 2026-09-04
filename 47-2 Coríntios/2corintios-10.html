@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 10</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 10</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Mansidão e benignidade</span>
+                Do grego *praotēs kai epieikeia* (πραότης καὶ ἐπιείκεια). Apresentadas como base do apelo de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Milícia</span>
+                Do grego *strateia* (στρατεία). Campanha/combate; imagem militar preservada.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Raciocínios</span>
+                Do grego *logismoi* (λογισμοί). Argumentos ou raciocínios que se levantam contra Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Vingar</span>
+                Do grego *ekdikeō* (ἐκδικέω). Vingar, punir ou retribuir toda desobediência.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Regra</span>
+                Do grego *kanōn* (κανών). Regra, padrão ou limite, distinguido de *metron* (medida).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Medida</span>
+                Do grego *metron* (μέτρον). Medida, em contraste com *kanōn* (regra/padrão).
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aprovado</span>
+                Do grego *dokimos* (δόκιμος). Aprovado, reconhecido como aprovado.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">10</div>
+
+    <div class="pericope">A Defesa do Ministério de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> eu mesmo, Paulo, vos rogo, pela mansidão e benignidade de Cristo; eu, que na presença sou humilde entre vós, mas, estando ausente, sou ousado para convosco;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        rogo-vos, pois, que, quando estiver presente, não tenha de ser ousado com aquela confiança com que penso ser ousado para com alguns que nos consideram como se andássemos segundo a carne.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque, andando na carne, não militamos segundo a carne.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque as armas da nossa milícia não são carnais, mas poderosas em Deus para destruição de fortalezas;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        derrubando raciocínios, e toda altura que se levanta contra o conhecimento de Deus, e levando cativo todo pensamento à obediência de Cristo;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        e estando prontos para vingar toda desobediência, quando a vossa obediência for completa.
+    </p>
+
+    <div class="pericope">Autoridade e Edificação</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Olhais para as coisas segundo a aparência? Se alguém está persuadido em si mesmo de que é de Cristo, considere outra vez isto consigo mesmo: que, assim como ele é de Cristo, também nós somos de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque, ainda que eu me glorie um pouco mais da nossa autoridade, a qual o Senhor nos deu para edificação, e não para vossa destruição, não me envergonharei;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        para que não pareça que vos quero atemorizar por cartas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Porque as cartas, dizem, são graves e fortes, mas a presença do corpo é fraca, e a palavra desprezível.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Considere o tal isto: que, tais como somos na palavra por cartas, estando ausentes, tais seremos também em obras, estando presentes.
+    </p>
+
+    <div class="pericope">O Limite do Ministério</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque não ousamos igualar-nos ou comparar-nos com alguns que se recomendam a si mesmos; mas estes, medindo-se a si mesmos consigo mesmos, e comparando-se consigo mesmos, não são sábios.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Nós, porém, não nos gloriaremos além da medida, mas segundo a medida da regra que Deus nos repartiu, para chegar até vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Porque não nos estendemos além do que convém, como se não chegássemos até vós; pois já chegamos também até vós com o evangelho de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Não nos gloriando além da medida em trabalhos alheios; antes, tendo esperança de que, crescendo a vossa fé, seremos abundantemente engrandecidos entre vós, segundo a nossa regra;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        para anunciar o evangelho nos lugares que estão além de vós, e não nos gloriar em regra alheia, nas coisas já preparadas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Mas aquele que se gloria, glorie-se no Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Porque não é aprovado aquele que se recomenda a si mesmo, mas aquele a quem o Senhor recomenda.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:1 — "Mansidão e benignidade de Cristo"</span>
+            <div class="greek-text">διὰ τῆς πραότητος καὶ ἐπιεικείας τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Expressão que apresenta a mansidão e a benignidade/brandura de Cristo como base do apelo de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mansidão e benignidade de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:1 — "Na presença sou humilde... ausente, sou ousado"</span>
+            <div class="greek-text">κατὰ πρόσωπον μὲν ταπεινὸς... ἀπὼν δὲ θαρρῶ</div>
+            <p><strong>Análise:</strong> Possível citação irônica do que os oponentes diziam de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "na presença sou humilde... estando ausente, sou ousado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:2-3 — "Segundo a carne"</span>
+            <div class="greek-text">κατὰ σάρκα</div>
+            <p><strong>Análise:</strong> Literalmente "segundo a carne"; expressão usada por Paulo neste contexto para caracterizar uma maneira de agir segundo a carne.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo a carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:4 — "Armas da nossa milícia"</span>
+            <div class="greek-text">τὰ ὅπλα τῆς στρατείας ἡμῶν</div>
+            <p><strong>Análise:</strong> Literalmente "as armas da nossa campanha/combate", mantendo a imagem de conflito usada por Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "armas da nossa milícia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:4 — "Não são carnais"</span>
+            <div class="greek-text">οὐ σαρκικά</div>
+            <p><strong>Análise:</strong> Não são humanas/carnais.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não são carnais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:4 — "Poderosas em Deus"</span>
+            <div class="greek-text">δυνατὰ τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> Expressão que relaciona o poder dessas armas com Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "poderosas em Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:4 — "Destruição de fortalezas"</span>
+            <div class="greek-text">πρὸς καθαίρεσιν ὀχυρωμάτων</div>
+            <p><strong>Análise:</strong> Demolição de fortificações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "destruição de fortalezas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:5 — "Derrubando raciocínios"</span>
+            <div class="greek-text">λογισμοὺς καθαιροῦντες</div>
+            <p><strong>Análise:</strong> Demolindo argumentos/raciocínios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "derrubando raciocínios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:5 — "Toda altura que se levanta"</span>
+            <div class="greek-text">πᾶν ὕψωμα ἐπαιρόμενον</div>
+            <p><strong>Análise:</strong> Literalmente "toda altura/elevação que se levanta".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "toda altura que se levanta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:5 — "Levando cativo todo pensamento"</span>
+            <div class="greek-text">αἰχμαλωτίζοντες πᾶν νόημα</div>
+            <p><strong>Análise:</strong> Tornando cativo todo pensamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "levando cativo todo pensamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:5 — "À obediência de Cristo"</span>
+            <div class="greek-text">εἰς τὴν ὑπακοὴν τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "à obediência de Cristo". A relação do genitivo pode ser entendida de diferentes maneiras no contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "à obediência de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:6 — "Vingar toda desobediência"</span>
+            <div class="greek-text">ἐκδικῆσαι πᾶσαν παρακοήν</div>
+            <p><strong>Análise:</strong> Expressão que pode significar vingar, punir ou retribuir toda desobediência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vingar toda desobediência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:6 — "Vossa obediência for completa"</span>
+            <div class="greek-text">ὅταν πληρωθῇ ὑμῶν ἡ ὑπακοή</div>
+            <p><strong>Análise:</strong> Quando a vossa obediência estiver completa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vossa obediência for completa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:7 — "Segundo a aparência"</span>
+            <div class="greek-text">τὰ κατὰ πρόσωπον</div>
+            <p><strong>Análise:</strong> Literalmente "as coisas segundo a face"; no contexto, a expressão está relacionada à avaliação segundo aquilo que é exteriormente perceptível.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo a aparência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:7 — "É de Cristo"</span>
+            <div class="greek-text">Χριστοῦ εἶναι</div>
+            <p><strong>Análise:</strong> Pertencentes a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "é de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:7 — "Considere outra vez isto consigo mesmo"</span>
+            <div class="greek-text">λογιζέσθω πάλιν ἀφ' ἑαυτοῦ</div>
+            <p><strong>Análise:</strong> Pense novamente consigo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "considere outra vez isto consigo mesmo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:8 — "Autoridade"</span>
+            <div class="greek-text">ἐξουσία</div>
+            <p><strong>Análise:</strong> Autoridade concedida pelo Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "autoridade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:8 — "Para edificação, e não para vossa destruição"</span>
+            <div class="greek-text">εἰς οἰκοδομὴν καὶ οὐκ εἰς καθαίρεσιν ὑμῶν</div>
+            <p><strong>Análise:</strong> Finalidade construtiva da autoridade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "para edificação, e não para vossa destruição".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:9 — "Vos quero atemorizar por cartas"</span>
+            <div class="greek-text">ἵνα μὴ δόξω ὡς ἂν ἐκφοβεῖν ὑμᾶς διὰ τῶν ἐπιστολῶν</div>
+            <p><strong>Análise:</strong> Para não parecer que quero amedrontar por cartas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vos quero atemorizar por cartas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:10 — "Cartas... graves e fortes"</span>
+            <div class="greek-text">αἱ ἐπιστολαί... βαρεῖαι καὶ ἰσχυραί</div>
+            <p><strong>Análise:</strong> Cartas de peso e força; possível citação dos oponentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cartas... são graves e fortes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:10 — "Presença do corpo é fraca"</span>
+            <div class="greek-text">ἡ δὲ παρουσία τοῦ σώματος ἀσθενής</div>
+            <p><strong>Análise:</strong> Literalmente "a presença do corpo é fraca"; descrição atribuída à presença pessoal de Paulo pelos seus críticos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "presença do corpo é fraca".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:10 — "Palavra desprezível"</span>
+            <div class="greek-text">ὁ λόγος ἐξουθενημένος</div>
+            <p><strong>Análise:</strong> Palavra desprezada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavra desprezível".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:11 — "Tais como somos na palavra por cartas... tais seremos também em obras"</span>
+            <div class="greek-text">οἷοί ἐσμεν τῷ λόγῳ δι' ἐπιστολῶν... τοιοῦτοι καὶ τῷ ἔργῳ</div>
+            <p><strong>Análise:</strong> Paulo afirma que sua conduta quando presente corresponderá ao que escreve quando ausente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tais como somos na palavra por cartas... tais seremos também em obras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:12 — "Não ousamos igualar-nos ou comparar-nos"</span>
+            <div class="greek-text">οὐ γὰρ τολμῶμεν ἐγκρῖναι ἢ συγκρῖναι ἑαυτούς</div>
+            <p><strong>Análise:</strong> Não ousamos igualar-nos ou comparar-nos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não ousamos igualar-nos ou comparar-nos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:12 — "Medindo-se a si mesmos consigo mesmos"</span>
+            <div class="greek-text">ἐν ἑαυτοῖς ἑαυτοὺς μετροῦντες</div>
+            <p><strong>Análise:</strong> Autocomparação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "medindo-se a si mesmos consigo mesmos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:12 — "Não são sábios"</span>
+            <div class="greek-text">οὐ συνιᾶσιν</div>
+            <p><strong>Análise:</strong> Literalmente "não entendem" ou "não compreendem".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não são sábios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:13 — "Medida da regra"</span>
+            <div class="greek-text">τὸ μέτρον τοῦ κανόνος</div>
+            <p><strong>Análise:</strong> "A medida da regra/padrão". *Metron* refere-se à medida, enquanto *kanōn* refere-se à regra, padrão ou limite.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "medida da regra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:13 — "Regra que Deus nos repartiu"</span>
+            <div class="greek-text">οὗ ἐμέρισεν ἡμῖν ὁ Θεὸς μέτρου</div>
+            <p><strong>Análise:</strong> Medida que Deus nos distribuiu.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "regra que Deus nos repartiu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:13 — "Para chegar até vós"</span>
+            <div class="greek-text">ἐφικέσθαι ἄχρι καὶ ὑμῶν</div>
+            <p><strong>Análise:</strong> Alcançar até vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "para chegar até vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:14 — "Não nos estendemos além do que convém"</span>
+            <div class="greek-text">οὐ γὰρ ὡς μὴ ἐφικνούμενοι εἰς ὑμᾶς ὑπερεκτείνομεν ἑαυτούς</div>
+            <p><strong>Análise:</strong> Não nos estendemos excessivamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não nos estendemos além do que convém".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:15 — "Trabalhos alheios"</span>
+            <div class="greek-text">ἐν ἀλλοτρίοις κόποις</div>
+            <p><strong>Análise:</strong> Em trabalhos de outros.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "trabalhos alheios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:15 — "Crescendo a vossa fé"</span>
+            <div class="greek-text">αὐξανομένης τῆς πίστεως ὑμῶν</div>
+            <p><strong>Análise:</strong> Quando crescer a vossa fé.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "crescendo a vossa fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:15 — "Seremos abundantemente engrandecidos"</span>
+            <div class="greek-text">μεγαλυνθῆναι</div>
+            <p><strong>Análise:</strong> Ser engrandecido, ampliado ou magnificado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "seremos abundantemente engrandecidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:15 — "Segundo a nossa regra"</span>
+            <div class="greek-text">κατὰ τὸν κανόνα ἡμῶν</div>
+            <p><strong>Análise:</strong> Conforme a nossa medida/padrão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo a nossa regra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:16 — "Anunciar o evangelho nos lugares que estão além de vós"</span>
+            <div class="greek-text">εἰς τὰ ὑπερέκεινα ὑμῶν εὐαγγελίσασθαι</div>
+            <p><strong>Análise:</strong> Pregar o evangelho nas regiões além de vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "anunciar o evangelho nos lugares que estão além de vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:16 — "Regra alheia"</span>
+            <div class="greek-text">ἐν ἀλλοτρίῳ κανόνι</div>
+            <p><strong>Análise:</strong> Em medida/padrão alheio.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "regra alheia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:17 — "Aquele que se gloria, glorie-se no Senhor"</span>
+            <div class="greek-text">ὁ καυχώμενος ἐν Κυρίῳ καυχάσθω</div>
+            <p><strong>Análise:</strong> Citação de Jeremias 9:24.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:18 — "Não é aprovado"</span>
+            <div class="greek-text">οὐ δόκιμος</div>
+            <p><strong>Análise:</strong> "Não aprovado", "não reconhecido como aprovado" ou "não comprovado".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não é aprovado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 10:18 — "Aquele a quem o Senhor recomenda"</span>
+            <div class="greek-text">ὃν ὁ Κύριος συνίστησιν</div>
+            <p><strong>Análise:</strong> Aquele que o Senhor apresenta/recomenda.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aquele a quem o Senhor recomenda".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 10 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 10 inicia a defesa de Paulo contra seus oponentes. Estrutura: 1) A defesa do ministério de Paulo (v.1-6); 2) Autoridade e edificação (v.7-11); 3) O limite do ministério (v.12-18). Paulo defende sua autoridade apostólica e sua integridade no ministério.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

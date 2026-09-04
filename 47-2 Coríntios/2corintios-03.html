@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 3</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 3</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Ministrada por nós</span>
+                Do grego *diakonētheisa hyph' hēmōn* (διακονηθεῖσα ὑφ' ἡμῶν). Carta de Cristo servida por meio de Paulo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Idôneos</span>
+                Do grego *hikanos* (ἱκανός). Aptos, suficientes; mesma palavra usada em 2:16.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Novo testamento</span>
+                Do grego *kainē diathēkē* (καινὴ διαθήκη). Coerente com 1 Coríntios 11:25.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Antigo testamento</span>
+                Do grego *palaias diathēkēs* (παλαιᾶς διαθήκης). Em correspondência com "novo testamento".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Refletindo como um espelho</span>
+                Do grego *katoptrizomenoi* (κατοπτριζόμενοι). Termo discutido; pode significar "refletir" ou "contemplar".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">O Senhor é o Espírito</span>
+                Declaração direta de Paulo; a relação entre "Senhor" e "Espírito" é objeto de discussão interpretativa.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">A letra mata, mas o Espírito vivifica</span>
+                Contraste entre a letra e o Espírito no contexto das alianças.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">3</div>
+
+    <div class="pericope">A Carta de Cristo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">C</span>omeçamos outra vez a recomendar-nos a nós mesmos? Ou, porventura, temos necessidade, como alguns, de cartas de recomendação para vós, ou de vós?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Vós sois a nossa carta, escrita em nossos corações, conhecida e lida por todos os homens;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        sendo manifesto que sois carta de Cristo, ministrada por nós, escrita não com tinta, mas com o Espírito do Deus vivo; não em tábuas de pedra, mas nas tábuas de carne do coração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        E tal confiança temos por meio de Cristo para com Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Não que sejamos suficientes por nós mesmos, para pensar alguma coisa, como de nós mesmos; mas a nossa suficiência vem de Deus;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        o qual também nos fez idôneos ministros do novo testamento; não da letra, mas do Espírito; porque a letra mata, mas o Espírito vivifica.
+    </p>
+
+    <div class="pericope">A Glória do Novo Ministério</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, se o ministério da morte, gravado com letras em pedras, veio com glória, de modo que os filhos de Israel não podiam fixar os olhos na face de Moisés, por causa da glória do seu rosto, a qual era transitória,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        como não será de maior glória o ministério do Espírito?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque, se o ministério da condenação é glória, muito mais abunda em glória o ministério da justiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Porque também o que foi glorificado, nesta parte, não foi glorificado, por causa desta excelente glória.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Porque, se o que era transitório teve glória, muito mais é em glória o que permanece.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Tendo, pois, tal esperança, usamos de grande franqueza;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        e não somos como Moisés, que punha um véu sobre a sua face, para que os filhos de Israel não fixassem os olhos no fim daquilo que era transitório.
+    </p>
+
+    <div class="pericope">O Véu e a Liberdade</div>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Mas os seus sentidos foram endurecidos; porque até hoje o mesmo véu permanece na leitura do antigo testamento, não sendo revelado que em Cristo ele é abolido.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Mas até hoje, quando se lê Moisés, o véu está posto sobre o coração deles.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Porém, quando se converterem ao Senhor, o véu será tirado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Ora, o Senhor é o Espírito; e onde está o Espírito do Senhor, aí há liberdade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Mas todos nós, com a face descoberta, refletindo como um espelho a glória do Senhor, somos transformados na mesma imagem, de glória em glória, como pelo Espírito do Senhor.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:1 — "Cartas de recomendação"</span>
+            <div class="greek-text">συστατικῶν ἐπιστολῶν</div>
+            <p><strong>Análise:</strong> Cartas de apresentação ou credenciais, comuns no mundo antigo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cartas de recomendação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:2 — "Vós sois a nossa carta"</span>
+            <div class="greek-text">ἡ ἐπιστολὴ ἡμῶν ὑμεῖς ἐστε</div>
+            <p><strong>Análise:</strong> Metáfora dos coríntios como carta viva, conhecida por todos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vós sois a nossa carta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:2 — "Escrita em nossos corações"</span>
+            <div class="greek-text">ἐγγεγραμμένη ἐν ταῖς καρδίαις ἡμῶν</div>
+            <p><strong>Análise:</strong> Gravada nos corações de Paulo e seus cooperadores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escrita em nossos corações".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:3 — "Carta de Cristo, ministrada por nós"</span>
+            <div class="greek-text">ἐπιστολὴ Χριστοῦ διακονηθεῖσα ὑφ' ἡμῶν</div>
+            <p><strong>Análise:</strong> Carta de Cristo ministrada ou servida por meio de Paulo e seus cooperadores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "carta de Cristo, ministrada por nós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:3 — "Tinta"</span>
+            <div class="greek-text">μέλανι</div>
+            <p><strong>Análise:</strong> Tinta de escrever, contrastada com o Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tinta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:3 — "Espírito do Deus vivo"</span>
+            <div class="greek-text">Πνεύματι Θεοῦ ζῶντος</div>
+            <p><strong>Análise:</strong> Contraste entre tinta e Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Espírito do Deus vivo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:3 — "Tábuas de pedra"</span>
+            <div class="greek-text">πλαξὶν λιθίναις</div>
+            <p><strong>Análise:</strong> Referência às tábuas da lei dadas a Moisés.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tábuas de pedra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:3 — "Tábuas de carne do coração"</span>
+            <div class="greek-text">πλαξὶν καρδίας σαρκίναις</div>
+            <p><strong>Análise:</strong> Contraste com as tábuas de pedra, indicando a obra do Espírito no interior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tábuas de carne do coração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:5 — "Suficiência"</span>
+            <div class="greek-text">ἱκανότης</div>
+            <p><strong>Análise:</strong> Capacidade, qualificação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "suficiência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:6 — "Idôneos ministros do novo testamento"</span>
+            <div class="greek-text">ἱκάνωσεν ἡμᾶς διακόνους καινῆς διαθήκης</div>
+            <p><strong>Análise:</strong> Tornou-nos aptos/idôneos para sermos ministros da nova aliança. A TBLH mantém "novo testamento" em coerência com 1 Coríntios 11:25.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "idôneos ministros do novo testamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:6 — "A letra mata, mas o Espírito vivifica"</span>
+            <div class="greek-text">τὸ γὰρ γράμμα ἀποκτείνει, τὸ δὲ Πνεῦμα ζῳοποιεῖ</div>
+            <p><strong>Análise:</strong> Contraste apresentado por Paulo entre a "letra" e o Espírito, no contexto do ministério da antiga e da nova aliança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a letra mata, mas o Espírito vivifica".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:7 — "Ministério da morte"</span>
+            <div class="greek-text">ἡ διακονία τοῦ θανάτου</div>
+            <p><strong>Análise:</strong> Expressão que Paulo usa para descrever o ministério associado às letras gravadas em pedras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministério da morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:7 — "Gravado com letras em pedras"</span>
+            <div class="greek-text">ἐν γράμμασιν ἐντετυπωμένη λίθοις</div>
+            <p><strong>Análise:</strong> Inscrição da lei nas pedras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "gravado com letras em pedras".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:7 — "Glória do seu rosto"</span>
+            <div class="greek-text">τὴν δόξαν τοῦ προσώπου αὐτοῦ</div>
+            <p><strong>Análise:</strong> Referência ao brilho do rosto de Moisés em Êxodo 34:29-35.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "glória do seu rosto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:7, 11, 13 — "Transitória"</span>
+            <div class="greek-text">καταργουμένην</div>
+            <p><strong>Análise:</strong> Que está sendo abolida, que se torna inativa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "transitória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:9 — "Ministério da condenação"</span>
+            <div class="greek-text">ἡ διακονία τῆς κατακρίσεως</div>
+            <p><strong>Análise:</strong> Literalmente "ministério da condenação".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministério da condenação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:9 — "Ministério da justiça"</span>
+            <div class="greek-text">ἡ διακονία τῆς δικαιοσύνης</div>
+            <p><strong>Análise:</strong> Literalmente "ministério da justiça".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministério da justiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:12 — "Franqueza"</span>
+            <div class="greek-text">παρρησία</div>
+            <p><strong>Análise:</strong> Ousadia, liberdade de fala.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "franqueza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:13-16 — "Véu"</span>
+            <div class="greek-text">κάλυμμα</div>
+            <p><strong>Análise:</strong> Cobertura; referência ao véu de Moisés em Êxodo 34.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "véu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:13 — "Fim daquilo que era transitório"</span>
+            <div class="greek-text">τὸ τέλος τοῦ καταργουμένου</div>
+            <p><strong>Análise:</strong> O fim do que estava sendo abolido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fim daquilo que era transitório".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:14 — "Sentidos endurecidos"</span>
+            <div class="greek-text">ἐπωρώθη τὰ νοήματα</div>
+            <p><strong>Análise:</strong> Expressão que indica pensamentos ou entendimento endurecidos/insensíveis.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sentidos endurecidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:14 — "Antigo testamento"</span>
+            <div class="greek-text">τῆς παλαιᾶς διαθήκης</div>
+            <p><strong>Análise:</strong> Literalmente "da antiga aliança". A TBLH mantém "antigo testamento" em correspondência com "novo testamento" no v.6 e em 1 Coríntios 11:25.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "antigo testamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:14 — "Em Cristo é abolido"</span>
+            <div class="greek-text">ἐν Χριστῷ καταργεῖται</div>
+            <p><strong>Análise:</strong> Em Cristo é tornado inativo, removido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em Cristo é abolido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:16 — "Quando se converterem ao Senhor"</span>
+            <div class="greek-text">ἡνίκα ἂν ἐπιστρέψῃ πρὸς Κύριον</div>
+            <p><strong>Análise:</strong> Quando se voltarem para o Senhor; ver Êxodo 34:34.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quando se converterem ao Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:17 — "O Senhor é o Espírito"</span>
+            <div class="greek-text">ὁ δὲ Κύριος τὸ Πνεῦμά ἐστιν</div>
+            <p><strong>Análise:</strong> A relação entre "Senhor" e "Espírito" nesta declaração é objeto de discussão interpretativa; a TBLH preserva a forma direta do texto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o Senhor é o Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:17 — "Aí há liberdade"</span>
+            <div class="greek-text">ἐκεῖ ἐλευθερία</div>
+            <p><strong>Análise:</strong> Liberdade no Espírito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aí há liberdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:18 — "Refletindo como um espelho"</span>
+            <div class="greek-text">κατοπτριζόμενοι</div>
+            <p><strong>Análise:</strong> Termo que pode ser entendido como "refletindo como em espelho" ou "contemplando como em espelho". O sentido exato é discutido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "refletindo como um espelho".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:18 — "Somos transformados na mesma imagem"</span>
+            <div class="greek-text">τὴν αὐτὴν εἰκόνα μεταμορφούμεθα</div>
+            <p><strong>Análise:</strong> Somos transformados na mesma imagem; a frase descreve uma transformação progressiva associada à glória do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "somos transformados na mesma imagem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:18 — "De glória em glória"</span>
+            <div class="greek-text">ἀπὸ δόξης εἰς δόξαν</div>
+            <p><strong>Análise:</strong> Literalmente "de glória em glória", expressão que descreve passagem ou progressão de uma glória para outra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "de glória em glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 3:18 — "Como pelo Espírito do Senhor"</span>
+            <div class="greek-text">καθάπερ ἀπὸ Κυρίου Πνεύματος</div>
+            <p><strong>Análise:</strong> Obra do Espírito do Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como pelo Espírito do Senhor".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 3 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 3 desenvolve a metáfora da carta e o contraste entre as alianças. Estrutura: 1) A carta de Cristo (v.1-6); 2) A glória do novo ministério (v.7-11); 3) O véu e a liberdade (v.12-18). Paulo apresenta a superioridade do ministério do Espírito sobre o da letra.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

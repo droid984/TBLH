@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 5</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 5</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Tabernáculo</span>
+                Do grego *skēnos* (σκῆνος). Tenda, habitação temporária.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Se enlouquecemos</span>
+                Do grego *exestēmen* (ἐξέστημεν). Verbo que pode indicar estar fora de si, ficar atônito ou agir como alguém fora de si.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">O amor de Cristo nos constrange</span>
+                Do grego *hē gar agapē tou Christou synechei hēmas* (ἡ γὰρ ἀγάπη τοῦ Χριστοῦ συνέχει ἡμᾶς). O amor de Cristo pressiona, constrange e direciona a conduta.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ele o fez pecado por nós</span>
+                Do grego *hyper hēmōn hamartian epoiēsen* (ὑπὲρ ἡμῶν ἁμαρτίαν ἐποίησεν). Expressão discutida; a TBLH mantém a formulação do texto.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Justiça de Deus</span>
+                Do grego *dikaiosynē Theou* (δικαιοσύνη Θεοῦ). Expressão ampla que pode indicar justiça relacionada a Deus, proveniente de Deus ou reconhecida diante de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nova criatura</span>
+                Do grego *kainē ktisis* (καινὴ κτίσις). Literalmente "nova criação"; descreve a nova condição daquele que está em Cristo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Segundo a carne</span>
+                Do grego *kata sarka* (κατὰ σάρκα). Avaliação segundo a condição ou perspectiva da carne.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Penhor do Espírito</span>
+                Do grego *arrabōna tou Pneumatos* (ἀρραβῶνα τοῦ Πνεύματος). Garantia antecipada dada por Deus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">5</div>
+
+    <div class="pericope">O Tabernáculo Celestial</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>orque sabemos que, se a nossa casa terrestre deste tabernáculo se desfizer, temos de Deus um edifício, uma casa não feita por mãos, eterna, nos céus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        E, por isso, também gememos, desejando ser revestidos da nossa habitação que é do céu;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        se, ao menos, estando vestidos, não formos achados nus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque também nós, os que estamos neste tabernáculo, gememos oprimidos; não porque queremos ser despidos, mas sim revestidos, para que o mortal seja absorvido pela vida.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Ora, aquele que nos preparou para isto mesmo é Deus, o qual também nos deu o penhor do Espírito.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Portanto, temos sempre confiança, sabendo que, enquanto estamos no corpo, estamos ausentes do Senhor;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        porque andamos por fé, e não por vista.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Mas temos confiança, e preferimos antes estar ausentes do corpo, e presentes com o Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Por isso também nos esforçamos para que, quer presentes, quer ausentes, lhe sejamos agradáveis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Porque é necessário que todos nós compareçamos diante do tribunal de Cristo, para que cada um receba segundo o que tiver feito por meio do corpo, quer bem, quer mal.
+    </p>
+
+    <div class="pericope">O Ministério da Reconciliação</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Portanto, conhecendo o temor do Senhor, persuadimos os homens; mas já somos manifestos a Deus, e espero que também nas vossas consciências sejamos manifestos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque não nos recomendamos outra vez a vós; mas damo-vos ocasião de vos gloriardes por nós, para que tenhais o que responder aos que se gloriam na aparência, e não no coração.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque, se enlouquecemos, é para Deus; e, se somos sóbrios, é para vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Pois o amor de Cristo nos constrange; julgando nós isto: que, se um morreu por todos, logo todos morreram.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E ele morreu por todos, para que os que vivem não vivam mais para si, mas para aquele que por eles morreu e ressuscitou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Assim que, daqui por diante, a ninguém conhecemos segundo a carne; e, ainda que tenhamos conhecido Cristo segundo a carne, agora, porém, já não o conhecemos assim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Portanto, se alguém está em Cristo, nova criatura é; as coisas velhas já passaram; eis que tudo se fez novo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E tudo isto provém de Deus, que nos reconciliou consigo mesmo por Jesus Cristo, e nos deu o ministério da reconciliação;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        a saber, que Deus estava em Cristo reconciliando consigo o mundo, não lhes imputando os seus pecados; e pôs em nós a palavra da reconciliação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Portanto, somos embaixadores da parte de Cristo, como se Deus vos exortasse por nosso meio; rogamo-vos, pois, da parte de Cristo, que vos reconcilieis com Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Àquele que não conheceu pecado, ele o fez pecado por nós; para que nele fôssemos feitos justiça de Deus.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:1 — "Casa terrestre deste tabernáculo"</span>
+            <div class="greek-text">ἡ ἐπίγειος ἡμῶν οἰκία τοῦ σκήνους</div>
+            <p><strong>Análise:</strong> Literalmente "a nossa casa terrestre do tabernáculo/tenda". Paulo usa a imagem de uma habitação terrestre e temporária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "casa terrestre deste tabernáculo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:1, 4 — "Tabernáculo"</span>
+            <div class="greek-text">σκῆνος</div>
+            <p><strong>Análise:</strong> Tenda, habitação temporária.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tabernáculo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:1 — "Edifício de Deus"</span>
+            <div class="greek-text">οἰκοδομὴν ἐκ Θεοῦ</div>
+            <p><strong>Análise:</strong> Construção que provém de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "edifício de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:1 — "Casa não feita por mãos"</span>
+            <div class="greek-text">οἰκίαν ἀχειροποίητον</div>
+            <p><strong>Análise:</strong> Habitação não construída por mãos humanas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "casa não feita por mãos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:2, 4 — "Gememos"</span>
+            <div class="greek-text">στενάζομεν</div>
+            <p><strong>Análise:</strong> Gemido de anseio ou sofrimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "gememos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:2 — "Revestidos da nossa habitação"</span>
+            <div class="greek-text">τὸ οἰκητήριον ἡμῶν τὸ ἐξ οὐρανοῦ ἐπενδύσασθαι</div>
+            <p><strong>Análise:</strong> Ser cobertos com a habitação celestial.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "revestidos da nossa habitação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:3 — "Estando vestidos, não formos achados nus"</span>
+            <div class="greek-text">εἴ γε καὶ ἐνδυσάμενοι οὐ γυμνοὶ εὑρεθησόμεθα</div>
+            <p><strong>Análise:</strong> Literalmente "tendo sido vestidos... não seremos achados nus". A relação entre estar vestido, despido e a habitação celestial é desenvolvida por Paulo nos vv.2–4.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "estando vestidos, não formos achados nus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:4 — "Oprimidos"</span>
+            <div class="greek-text">βαρούμενοι</div>
+            <p><strong>Análise:</strong> Carregados, sobrecarregados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "oprimidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:4 — "Não porque queremos ser despidos, mas sim revestidos"</span>
+            <div class="greek-text">οὐ θέλομεν ἐκδύσασθαι, ἀλλ' ἐπενδύσασθαι</div>
+            <p><strong>Análise:</strong> Preferência por ser revestido, não despido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não porque queremos ser despidos, mas sim revestidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:4 — "O mortal seja absorvido pela vida"</span>
+            <div class="greek-text">ἵνα καταποθῇ τὸ θνητὸν ὑπὸ τῆς ζωῆς</div>
+            <p><strong>Análise:</strong> Imagem do mortal sendo tragado/absorvido pela vida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o mortal seja absorvido pela vida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:5 — "Penhor do Espírito"</span>
+            <div class="greek-text">ἀρραβῶνα τοῦ Πνεύματος</div>
+            <p><strong>Análise:</strong> Garantia antecipada dada por Deus; mesma expressão de 1:22.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "penhor do Espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:6 — "Ausentes do Senhor"</span>
+            <div class="greek-text">ἐκδημοῦμεν ἀπὸ τοῦ Κυρίου</div>
+            <p><strong>Análise:</strong> Literalmente "estamos ausentes do Senhor". Paulo contrasta essa condição com estar presente com o Senhor no v.8.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ausentes do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:7 — "Andamos por fé, e não por vista"</span>
+            <div class="greek-text">διὰ πίστεως γὰρ περιπατοῦμεν, οὐ διὰ εἴδους</div>
+            <p><strong>Análise:</strong> Contraste entre fé e aparência/visão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "andamos por fé, e não por vista".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:8 — "Ausentes do corpo, e presentes com o Senhor"</span>
+            <div class="greek-text">ἐκδημῆσαι ἐκ τοῦ σώματος, καὶ ἐνδημῆσαι πρὸς τὸν Κύριον</div>
+            <p><strong>Análise:</strong> Ausência do corpo e presença com o Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ausentes do corpo, e presentes com o Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:10 — "Tribunal de Cristo"</span>
+            <div class="greek-text">βῆμα τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Tribunal ou assento de julgamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribunal de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:10 — "Segundo o que tiver feito por meio do corpo"</span>
+            <div class="greek-text">τὰ διὰ τοῦ σώματος</div>
+            <p><strong>Análise:</strong> As coisas feitas por meio do corpo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo o que tiver feito por meio do corpo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:11 — "Temor do Senhor"</span>
+            <div class="greek-text">φόβον τοῦ Κυρίου</div>
+            <p><strong>Análise:</strong> Literalmente "temor do Senhor". O termo *phobos* pode expressar temor, respeito ou reverência conforme o contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "temor do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:11 — "Persuadimos os homens"</span>
+            <div class="greek-text">ἀνθρώπους πείθομεν</div>
+            <p><strong>Análise:</strong> Procuramos convencer os homens.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "persuadimos os homens".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:11 — "Manifestos a Deus"</span>
+            <div class="greek-text">Θεῷ δὲ πεφανερώμεθα</div>
+            <p><strong>Análise:</strong> Conhecidos claramente por Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "manifestos a Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:12 — "Ocasião de vos gloriardes"</span>
+            <div class="greek-text">ἀφορμὴν διδόντες ὑμῖν καυχήματος</div>
+            <p><strong>Análise:</strong> Motivo para gloriar-se.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ocasião de vos gloriardes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:12 — "Na aparência, e não no coração"</span>
+            <div class="greek-text">ἐν προσώπῳ καὶ μὴ ἐν καρδίᾳ</div>
+            <p><strong>Análise:</strong> No que é exterior e não no coração.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "na aparência, e não no coração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:13 — "Se enlouquecemos"</span>
+            <div class="greek-text">εἴτε γὰρ ἐξέστημεν</div>
+            <p><strong>Análise:</strong> Verbo que pode indicar estar fora de si, ficar atônito ou agir como alguém fora de si. Paulo contrasta essa condição com a sobriedade no restante do versículo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se enlouquecemos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:14 — "O amor de Cristo nos constrange"</span>
+            <div class="greek-text">ἡ γὰρ ἀγάπη τοῦ Χριστοῦ συνέχει ἡμᾶς</div>
+            <p><strong>Análise:</strong> Verbo que pode expressar a ideia de pressionar, constranger, controlar ou impelir. No contexto, o amor de Cristo determina e direciona a conduta apresentada por Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o amor de Cristo nos constrange".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:14 — "Um morreu por todos, logo todos morreram"</span>
+            <div class="greek-text">εἷς ὑπὲρ πάντων ἀπέθανεν, ἄρα οἱ πάντες ἀπέθανον</div>
+            <p><strong>Análise:</strong> Paulo estabelece uma relação entre a morte de Cristo por todos e a morte dos que vivem para si mesmos, desenvolvendo essa ideia no v.15.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "um morreu por todos, logo todos morreram".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:15 — "Não vivam mais para si"</span>
+            <div class="greek-text">ἵνα οἱ ζῶντες μηκέτι ἑαυτοῖς ζῶσιν</div>
+            <p><strong>Análise:</strong> Nova vida direcionada a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não vivam mais para si".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:16 — "Segundo a carne"</span>
+            <div class="greek-text">κατὰ σάρκα</div>
+            <p><strong>Análise:</strong> Literalmente "segundo a carne". A expressão indica uma maneira de avaliar alguém segundo a condição ou perspectiva da carne.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo a carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:17 — "Nova criatura"</span>
+            <div class="greek-text">καινὴ κτίσις</div>
+            <p><strong>Análise:</strong> Literalmente "nova criação". A expressão descreve a nova condição daquele que está em Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nova criatura".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:17 — "As coisas velhas já passaram"</span>
+            <div class="greek-text">τὰ ἀρχαῖα παρῆλθεν</div>
+            <p><strong>Análise:</strong> O velho se foi.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "as coisas velhas já passaram".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:17 — "Tudo se fez novo"</span>
+            <div class="greek-text">γέγονεν καινὰ τὰ πάντα</div>
+            <p><strong>Análise:</strong> Tudo se tornou novo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tudo se fez novo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:18 — "Ministério da reconciliação"</span>
+            <div class="greek-text">διακονίαν τῆς καταλλαγῆς</div>
+            <p><strong>Análise:</strong> Serviço de reconciliação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministério da reconciliação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:19 — "Deus estava em Cristo reconciliando consigo o mundo"</span>
+            <div class="greek-text">Θεὸς ἦν ἐν Χριστῷ κόσμον καταλλάσσων ἑαυτῷ</div>
+            <p><strong>Análise:</strong> Paulo apresenta Deus como aquele que realiza a reconciliação em Cristo. A construção relaciona diretamente Deus, Cristo e a obra de reconciliação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus estava em Cristo reconciliando consigo o mundo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:19 — "Não lhes imputando os seus pecados"</span>
+            <div class="greek-text">μὴ λογιζόμενος αὐτοῖς τὰ παραπτώματα αὐτῶν</div>
+            <p><strong>Análise:</strong> Não lançando em conta as transgressões.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não lhes imputando os seus pecados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:19 — "Palavra da reconciliação"</span>
+            <div class="greek-text">τὸν λόγον τῆς καταλλαγῆς</div>
+            <p><strong>Análise:</strong> Mensagem da reconciliação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavra da reconciliação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:20 — "Embaixadores da parte de Cristo"</span>
+            <div class="greek-text">πρεσβεύομεν ὑπὲρ Χριστοῦ</div>
+            <p><strong>Análise:</strong> "Somos embaixadores por Cristo/em favor de Cristo". Paulo descreve sua função como representante ou embaixador de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "embaixadores da parte de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:20 — "Da parte de Cristo, que vos reconcilieis com Deus"</span>
+            <div class="greek-text">ὑπὲρ Χριστοῦ καταλλάγητε τῷ Θεῷ</div>
+            <p><strong>Análise:</strong> Apelo à reconciliação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "da parte de Cristo, que vos reconcilieis com Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:21 — "Àquele que não conheceu pecado"</span>
+            <div class="greek-text">τὸν μὴ γνόντα ἁμαρτίαν</div>
+            <p><strong>Análise:</strong> Literalmente "aquele que não conheceu pecado". A expressão descreve Cristo como aquele que não teve pecado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "àquele que não conheceu pecado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:21 — "Ele o fez pecado por nós"</span>
+            <div class="greek-text">ὑπὲρ ἡμῶν ἁμαρτίαν ἐποίησεν</div>
+            <p><strong>Análise:</strong> Literalmente "fez pecado por nós". O sentido de "pecado" nesta construção é discutido; a tradução mantém a formulação do texto sem reduzir antecipadamente a expressão a uma interpretação específica.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ele o fez pecado por nós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 5:21 — "Justiça de Deus"</span>
+            <div class="greek-text">δικαιοσύνη Θεοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "justiça de Deus". A expressão pode indicar justiça relacionada a Deus, proveniente de Deus ou reconhecida diante de Deus, conforme a interpretação da construção.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "justiça de Deus".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 5 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 5 desenvolve o tema do tabernáculo terrestre e do celestial, e o ministério da reconciliação. Estrutura: 1) O tabernáculo celestial (v.1-10); 2) O ministério da reconciliação (v.11-21). Paulo apresenta a esperança da vida eterna e a obra de reconciliação em Cristo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

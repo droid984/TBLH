@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 2</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 2</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Repreensão</span>
+                Do grego *epitimia* (ἐπιτιμία). Censura ou correção aplicada pela maioria.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Consumido</span>
+                Do grego *katapothē* (καταποθῇ). Imagem de alguém sendo dominado ou consumido por tristeza excessiva.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Nos faz triunfar</span>
+                Do grego *thriambeuonti* (θριαμβεύοντι). Verbo relacionado à imagem de uma procissão triunfal; o sentido exato da metáfora é discutido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Falsificam</span>
+                Do grego *kapēleuontes* (καπηλεύοντες). Verbo relacionado ao comércio desonesto, descrevendo aqueles que corrompem ou adulteram a palavra de Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Idôneo</span>
+                Do grego *hikanos* (ἱκανός). Apto, suficiente, capaz.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aprovação</span>
+                Do grego *dokimēn* (δοκιμήν). Prova, teste de fidelidade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Desígnios</span>
+                Do grego *noēmata* (νοήματα). Pensamentos, planos, intenções.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Bom aroma de Cristo</span>
+                Do grego *Christou euōdia* (Χριστοῦ εὐωδία). Fragrância agradável de Cristo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">2</div>
+
+    <div class="pericope">A Decisão de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">D</span>ecidi, porém, isto comigo mesmo: não ir outra vez até vós com tristeza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque, se eu vos entristeço, quem é que me alegrará, senão aquele que por mim foi entristecido?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E escrevi-vos isto mesmo, para que, quando eu for, não tenha tristeza da parte dos que deveriam alegrar-me; confiando em todos vós, de que a minha alegria é a de todos vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque, em muita tribulação e angústia do coração, vos escrevi, com muitas lágrimas, não para que vos entristecêsseis, mas para que conhecêsseis o amor que tenho abundantemente para convosco.
+    </p>
+
+    <div class="pericope">Perdão e Consolação</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E, se alguém causou tristeza, não me entristeceu a mim somente, mas, em parte, para não vos sobrecarregar, a todos vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Basta a esse tal esta repreensão feita pela maioria;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        de modo que, pelo contrário, deveis antes perdoar-lhe e consolá-lo, para que o tal não seja consumido por excessiva tristeza.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Portanto, rogo-vos que confirmeis para com ele o amor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Pois para isto também vos escrevi: para conhecer a vossa aprovação, se sois obedientes em tudo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E a quem perdoardes alguma coisa, também eu; porque também eu, se perdoei alguma coisa, a quem perdoei, por amor de vós o fiz na presença de Cristo;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        para que não sejamos vencidos por Satanás; pois não ignoramos os seus desígnios.
+    </p>
+
+    <div class="pericope">A Pregação do Evangelho</div>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Ora, quando cheguei a Trôade para pregar o evangelho de Cristo, e uma porta se me abriu no Senhor,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        não tive descanso no meu espírito, por não haver encontrado Tito, meu irmão; mas, despedindo-me deles, parti para a Macedônia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        E graças a Deus, que sempre nos faz triunfar em Cristo, e por nosso meio manifesta o aroma do seu conhecimento em todo lugar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Porque para Deus somos o bom aroma de Cristo, nos que são salvos e nos que perecem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Para estes, cheiro de morte para morte; e para aqueles, aroma de vida para vida. E para estas coisas quem é idôneo?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque nós não somos, como muitos, os que falsificam a palavra de Deus; antes, com sinceridade, como da parte de Deus, na presença de Deus, falamos em Cristo.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:1 — "Não ir outra vez até vós com tristeza"</span>
+            <div class="greek-text">τὸ μὴ πάλιν ἐν λύπῃ πρὸς ὑμᾶς ἐλθεῖν</div>
+            <p><strong>Análise:</strong> Decisão de Paulo de evitar uma visita dolorosa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não ir outra vez até vós com tristeza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:2 — "Quem é que me alegrará"</span>
+            <div class="greek-text">τίς ἐστιν ὁ εὐφραίνων με</div>
+            <p><strong>Análise:</strong> Pergunta retórica que relaciona a alegria de Paulo à condição dos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quem é que me alegrará".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:3 — "Escrevi-vos isto mesmo"</span>
+            <div class="greek-text">ἔγραψα ὑμῖν τοῦτο αὐτό</div>
+            <p><strong>Análise:</strong> Paulo se refere a uma carta que havia escrito anteriormente. A identificação dessa carta com a chamada "carta severa" mencionada em 7:8 é uma possibilidade discutida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escrevi-vos isto mesmo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:4 — "Muita tribulação e angústia do coração"</span>
+            <div class="greek-text">πολλῆς θλίψεως καὶ συνοχῆς καρδίας</div>
+            <p><strong>Análise:</strong> Expressão do sofrimento de Paulo ao escrever.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muita tribulação e angústia do coração".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:5 — "Se alguém causou tristeza"</span>
+            <div class="greek-text">εἰ δέ τις λελύπηκεν</div>
+            <p><strong>Análise:</strong> Paulo fala de alguém que havia causado tristeza à comunidade; tradicionalmente, esse indivíduo é associado ao ofensor mencionado no contexto da disciplina em Corinto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se alguém causou tristeza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:5 — "Não me entristeceu a mim somente"</span>
+            <div class="greek-text">οὐκ ἐμὲ λελύπηκεν, ἀλλὰ ἀπὸ μέρους</div>
+            <p><strong>Análise:</strong> Paulo indica que a ofensa atingiu também a comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não me entristeceu a mim somente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:6 — "Repreensão feita pela maioria"</span>
+            <div class="greek-text">ἡ ἐπιτιμία αὕτη ἡ ὑπὸ τῶν πλειόνων</div>
+            <p><strong>Análise:</strong> A repreensão ou censura aplicada pela maioria da igreja.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "repreensão feita pela maioria".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:7 — "Perdoar-lhe e consolá-lo"</span>
+            <div class="greek-text">χαρίσασθαι καὶ παρακαλέσαι</div>
+            <p><strong>Análise:</strong> Concessão de perdão e encorajamento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perdoar-lhe e consolá-lo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:7 — "Não seja consumido por excessiva tristeza"</span>
+            <div class="greek-text">μὴ τῇ περισσοτέρᾳ λύπῃ καταποθῇ</div>
+            <p><strong>Análise:</strong> Imagem de alguém sendo dominado ou consumido por tristeza excessiva.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não seja consumido por excessiva tristeza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:9 — "Aprovação"</span>
+            <div class="greek-text">δοκιμήν</div>
+            <p><strong>Análise:</strong> Prova, teste de fidelidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aprovação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:10 — "Na presença de Cristo"</span>
+            <div class="greek-text">ἐν προσώπῳ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "na presença de Cristo" ou "diante de Cristo".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "na presença de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:11 — "Não sejamos vencidos por Satanás"</span>
+            <div class="greek-text">μὴ πλεονεκτηθῶμεν ὑπὸ τοῦ Σατανᾶ</div>
+            <p><strong>Análise:</strong> Expressão relacionada à ideia de ser levado em vantagem ou explorado por Satanás.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não sejamos vencidos por Satanás".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:11 — "Desígnios"</span>
+            <div class="greek-text">νοήματα</div>
+            <p><strong>Análise:</strong> Pensamentos, planos, intenções de Satanás.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desígnios".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:12 — "Trôade"</span>
+            <div class="greek-text">Τρῳάδα</div>
+            <p><strong>Análise:</strong> Cidade portuária da Ásia Menor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Trôade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:12 — "Uma porta se me abriu no Senhor"</span>
+            <div class="greek-text">θύρα μοι ἀνεῳγμένη ἐν Κυρίῳ</div>
+            <p><strong>Análise:</strong> Oportunidade dada pelo Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "uma porta se me abriu no Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:13 — "Não tive descanso no meu espírito"</span>
+            <div class="greek-text">οὐκ ἔσχηκα ἄνεσιν τῷ πνεύματί μου</div>
+            <p><strong>Análise:</strong> Literalmente "não tive descanso/alívio no meu espírito".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não tive descanso no meu espírito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:13 — "Tito"</span>
+            <div class="greek-text">Τίτον</div>
+            <p><strong>Análise:</strong> Colaborador de Paulo, mencionado também em Gálatas 2:1-3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Tito".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:14 — "Sempre nos faz triunfar"</span>
+            <div class="greek-text">πάντοτε θριαμβεύοντι</div>
+            <p><strong>Análise:</strong> Verbo relacionado à imagem de uma procissão triunfal. O sentido exato da metáfora neste contexto é discutido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sempre nos faz triunfar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:14 — "Aroma do seu conhecimento"</span>
+            <div class="greek-text">τὴν ὀσμὴν τῆς γνώσεως αὐτοῦ</div>
+            <p><strong>Análise:</strong> Imagem do aroma associada à manifestação do conhecimento dele.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aroma do seu conhecimento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:15 — "Bom aroma de Cristo"</span>
+            <div class="greek-text">Χριστοῦ εὐωδία</div>
+            <p><strong>Análise:</strong> Fragrância agradável de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bom aroma de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:16 — "Cheiro de morte para morte"</span>
+            <div class="greek-text">ὀσμὴ θανάτου εἰς θάνατον</div>
+            <p><strong>Análise:</strong> Expressão que associa o aroma à morte em relação aos que perecem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cheiro de morte para morte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:16 — "Aroma de vida para vida"</span>
+            <div class="greek-text">ὀσμὴ ζωῆς εἰς ζωήν</div>
+            <p><strong>Análise:</strong> Expressão que associa o aroma à vida em relação aos que são salvos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aroma de vida para vida".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:16 — "Quem é idôneo?"</span>
+            <div class="greek-text">καὶ πρὸς ταῦτα τίς ἱκανός</div>
+            <p><strong>Análise:</strong> Pergunta retórica sobre quem é apto ou suficiente para tais coisas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quem é idôneo?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:17 — "Falsificam a palavra de Deus"</span>
+            <div class="greek-text">καπηλεύοντες τὸν λόγον τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Verbo relacionado ao comércio de mercadorias, especialmente com a ideia de comércio desonesto. No contexto, descreve aqueles que corrompem ou adulteram a palavra de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falsificam a palavra de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:17 — "Com sinceridade"</span>
+            <div class="greek-text">εἰλικρινείας</div>
+            <p><strong>Análise:</strong> Com sinceridade, pureza ou ausência de falsidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com sinceridade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 2:17 — "Como da parte de Deus, na presença de Deus"</span>
+            <div class="greek-text">ὡς ἐκ Θεοῦ, κατενώπιον τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Paulo apresenta sua proclamação como realizada diante de Deus e em Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como da parte de Deus, na presença de Deus".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 2 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 2 continua a defesa de Paulo e aborda o perdão ao ofensor. Estrutura: 1) A decisão de Paulo (v.1-4); 2) Perdão e consolação (v.5-11); 3) A pregação do evangelho (v.12-17). Paulo demonstra seu cuidado pastoral e a motivação do ministério.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

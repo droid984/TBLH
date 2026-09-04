@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 8</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 8</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Generosidade</span>
+                Do grego *haplotēs* (ἁπλότης). Termo que pode expressar simplicidade, singeleza, sinceridade ou generosidade; no contexto, refere-se à disposição generosa dos macedônios.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Deram-se a si mesmos</span>
+                Do grego *heautous edōkan* (ἑαυτοὺς ἔδωκαν). Entrega pessoal ao Senhor e aos cooperadores.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sinceridade do vosso amor</span>
+                Do grego *to tēs hymeteras agapēs gnēsion* (τὸ τῆς ὑμετέρας ἀγάπης γνήσιον). Genuíno, verdadeiro.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mensageiros das igrejas</span>
+                Do grego *apostoloi ekklēsiōn* (ἀπόστολοι ἐκκλησιῶν). Literalmente "enviados das igrejas".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Completar</span>
+                Do grego *epiteleō* (ἐπιτελέω). Levar a termo, concluir.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Prontidão de vontade</span>
+                Do grego *prothymia* (προθυμία). Disposição pronta para querer/fazer.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Glória de Cristo</span>
+                Do grego *doxa Christou* (δόξα Χριστοῦ). Honra e glória associadas a Cristo.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">8</div>
+
+    <div class="pericope">O Exemplo dos Macedônios</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">T</span>ambém, irmãos, vos fazemos conhecer a graça de Deus concedida às igrejas da Macedônia;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        porque, em grande prova de tribulação, a abundância do seu gozo e a sua profunda pobreza transbordaram nas riquezas da sua generosidade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Porque testifico que, segundo as suas posses, e ainda acima das suas posses, deram voluntariamente,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        pedindo-nos, com muita súplica, a graça de participarem deste serviço para com os santos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        E não somente fizeram como esperávamos, mas primeiramente deram-se a si mesmos ao Senhor, e a nós, pela vontade de Deus.
+    </p>
+
+    <div class="pericope">Exortação à Generosidade</div>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        De modo que pedimos a Tito que, assim como já havia começado, assim também completasse entre vós esta graça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Portanto, assim como em tudo abundais — em fé, e em palavra, e em conhecimento, e em toda diligência, e no vosso amor para conosco —, vede que também nesta graça abundeis.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Não digo isto como mandamento, mas para provar, pela diligência dos outros, a sinceridade do vosso amor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Porque conheceis a graça de nosso Senhor Jesus Cristo, que, sendo rico, por amor de vós se fez pobre, para que, pela sua pobreza, fôsseis enriquecidos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        E nisto dou o meu parecer; porque isto vos convém, a vós que desde o ano passado começastes, não somente a fazê-lo, mas também a querê-lo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Agora, porém, completai também o fazer, para que, assim como houve prontidão no querer, haja também o completar, segundo o que tendes.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Porque, se há prontidão de vontade, é aceita segundo o que alguém tem, e não segundo o que não tem.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Porque não digo isto para que os outros tenham alívio, e vós opressão;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        mas para que haja igualdade; no tempo presente, a vossa abundância supra a falta dos outros, para que também a sua abundância supra a vossa falta, e haja igualdade;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        como está escrito: <span class="fala-outro">O que muito colheu não teve demais; e o que pouco colheu não teve de menos.</span>
+    </p>
+
+    <div class="pericope">A Administração da Coleta</div>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas graças a Deus, que pôs no coração de Tito a mesma diligência por vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque, na verdade, aceitou a exortação; mas, sendo muito diligente, por sua própria vontade partiu para vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        E enviamos juntamente com ele o irmão cujo louvor no evangelho está espalhado por todas as igrejas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        E não somente isto, mas também foi escolhido pelas igrejas para ser nosso companheiro de viagem, com esta graça que é ministrada por nós para glória do mesmo Senhor, e prontidão do vosso ânimo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Evitando isto: que alguém nos censure por esta abundância que é ministrada por nós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        Pois procuramos o que é honesto, não somente diante do Senhor, mas também diante dos homens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">22</span>
+        E enviamos com eles o nosso irmão, que muitas vezes e em muitas coisas provamos ser diligente, e agora muito mais diligente, pela muita confiança que tem em vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">23</span>
+        Quanto a Tito, ele é meu companheiro e cooperador para convosco; quanto a nossos irmãos, são mensageiros das igrejas, e glória de Cristo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">24</span>
+        Portanto, mostrai para com eles, diante das igrejas, a prova do vosso amor, e da nossa glória a vosso respeito.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:1 — "Graça de Deus concedida às igrejas da Macedônia"</span>
+            <div class="greek-text">τὴν χάριν τοῦ Θεοῦ τὴν δεδομένην ἐν ταῖς ἐκκλησίαις τῆς Μακεδονίας</div>
+            <p><strong>Análise:</strong> Graça de Deus concedida às igrejas da Macedônia. O contexto mostra essa graça manifestada na disposição generosa dos macedônios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "graça de Deus concedida às igrejas da Macedônia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:2 — "Grande prova de tribulação"</span>
+            <div class="greek-text">ἐν πολλῇ δοκιμῇ θλίψεως</div>
+            <p><strong>Análise:</strong> Grande prova em meio à tribulação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "grande prova de tribulação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:2 — "Profunda pobreza"</span>
+            <div class="greek-text">ἡ κατὰ βάθους πτωχεία</div>
+            <p><strong>Análise:</strong> Pobreza extrema.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "profunda pobreza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:2 — "Riquezas da sua generosidade"</span>
+            <div class="greek-text">τὸν πλοῦτον τῆς ἁπλότητος αὐτῶν</div>
+            <p><strong>Análise:</strong> <em>Haplotēs</em> pode expressar simplicidade, singeleza, sinceridade ou generosidade. Neste contexto, refere-se à disposição generosa dos macedônios em contribuir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "riquezas da sua generosidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:3 — "Acima das suas posses"</span>
+            <div class="greek-text">παρὰ δύναμιν</div>
+            <p><strong>Análise:</strong> Além do que podiam.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "acima das suas posses".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:3 — "Deram voluntariamente"</span>
+            <div class="greek-text">αὐθαίρετοι</div>
+            <p><strong>Análise:</strong> Por iniciativa própria.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "deram voluntariamente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:4 — "Graça de participarem deste serviço"</span>
+            <div class="greek-text">τὴν χάριν καὶ τὴν κοινωνίαν τῆς διακονίας</div>
+            <p><strong>Análise:</strong> Graça e participação/comunhão no serviço. Paulo descreve a participação dos macedônios no serviço destinado aos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "graça de participarem deste serviço".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:5 — "Deram-se a si mesmos ao Senhor"</span>
+            <div class="greek-text">ἑαυτοὺς ἔδωκαν πρῶτον τῷ Κυρίῳ</div>
+            <p><strong>Análise:</strong> Literalmente "deram a si mesmos primeiro ao Senhor". Paulo apresenta essa entrega antes de mencionar a contribuição material.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "deram-se a si mesmos ao Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:6 — "Completasse entre vós esta graça"</span>
+            <div class="greek-text">ἐπιτελέσῃ εἰς ὑμᾶς καὶ τὴν χάριν ταύτην</div>
+            <p><strong>Análise:</strong> Levar a termo esta graça.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "completasse entre vós esta graça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:7 — "Em toda diligência"</span>
+            <div class="greek-text">ἐν πάσῃ σπουδῇ</div>
+            <p><strong>Análise:</strong> Em todo empenho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em toda diligência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:8 — "Sinceridade do vosso amor"</span>
+            <div class="greek-text">τὸ τῆς ὑμετέρας ἀγάπης γνήσιον</div>
+            <p><strong>Análise:</strong> Genuíno, verdadeiro ou sincero. Paulo fala da autenticidade do amor demonstrado pelos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinceridade do vosso amor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:9 — "Sendo rico, se fez pobre"</span>
+            <div class="greek-text">πλούσιος ὢν ἐπτώχευσεν</div>
+            <p><strong>Análise:</strong> Literalmente "sendo rico, tornou-se pobre". Paulo usa o contraste entre riqueza e pobreza para descrever a ação de Cristo em favor dos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sendo rico, se fez pobre".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:9 — "Pela sua pobreza, fôsseis enriquecidos"</span>
+            <div class="greek-text">ἡ ἐκείνου πτωχείᾳ ὑμεῖς πλουτήσητε</div>
+            <p><strong>Análise:</strong> Paulo apresenta o enriquecimento recebido pelos coríntios como resultado da pobreza de Cristo em favor deles. O texto não especifica aqui a natureza desse enriquecimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pela sua pobreza, fôsseis enriquecidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:10 — "Dou o meu parecer"</span>
+            <div class="greek-text">γνώμην δίδωμι</div>
+            <p><strong>Análise:</strong> Opinião ou conselho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dou o meu parecer".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:10 — "Desde o ano passado"</span>
+            <div class="greek-text">ἀπὸ πέρυσι</div>
+            <p><strong>Análise:</strong> Desde o ano anterior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "desde o ano passado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:11 — "Prontidão no querer"</span>
+            <div class="greek-text">ἡ προθυμία τοῦ θέλειν</div>
+            <p><strong>Análise:</strong> Disposição pronta para querer.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "prontidão no querer".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:11-12 — "Segundo o que tendes"</span>
+            <div class="greek-text">ἐκ τοῦ ἔχειν</div>
+            <p><strong>Análise:</strong> Conforme aquilo que se possui.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "segundo o que tendes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:12 — "Se há prontidão de vontade"</span>
+            <div class="greek-text">εἰ γὰρ ἡ προθυμία πρόκειται</div>
+            <p><strong>Análise:</strong> Disposição, prontidão ou boa vontade para querer/fazer.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se há prontidão de vontade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:12 — "É aceita"</span>
+            <div class="greek-text">εὐπρόσδεκτος</div>
+            <p><strong>Análise:</strong> Bem recebida, aceitável.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "é aceita".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:13 — "Alívio... opressão"</span>
+            <div class="greek-text">ἄνεσις... θλῖψις</div>
+            <p><strong>Análise:</strong> Contraste entre alívio e aflição/pressão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alívio... opressão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:14 — "Igualdade"</span>
+            <div class="greek-text">ἰσότης</div>
+            <p><strong>Análise:</strong> Igualdade, equidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "igualdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:14 — "Vossa abundância supra a falta dos outros"</span>
+            <div class="greek-text">ἐν τῷ νῦν καιρῷ τὸ ὑμῶν περίσσευμα εἰς τὸ ἐκείνων ὑστέρημα</div>
+            <p><strong>Análise:</strong> Paulo apresenta uma igualdade em que a abundância de uns supre a necessidade de outros, e vice-versa, conforme a situação descrita no contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vossa abundância supra a falta dos outros".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:15 — "O que muito colheu não teve demais"</span>
+            <div class="greek-text">ὁ τὸ πολὺ οὐκ ἐπλεόνασεν</div>
+            <p><strong>Análise:</strong> Citação de Êxodo 16:18, referindo-se ao maná no deserto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:16 — "Pôs no coração de Tito a mesma diligência"</span>
+            <div class="greek-text">τὴν αὐτὴν σπουδὴν ὑπὲρ ὑμῶν ἐν τῇ καρδίᾳ Τίτου</div>
+            <p><strong>Análise:</strong> Dedicação de Tito pelos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pôs no coração de Tito a mesma diligência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:17 — "Aceitou a exortação"</span>
+            <div class="greek-text">τὴν παράκλησιν ἐδέξατο</div>
+            <p><strong>Análise:</strong> Acolheu o apelo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "aceitou a exortação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:17 — "Partiu para vós"</span>
+            <div class="greek-text">ἐξῆλθεν πρὸς ὑμᾶς</div>
+            <p><strong>Análise:</strong> Foi ao encontro dos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "partiu para vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:18 — "Irmão cujo louvor no evangelho está espalhado"</span>
+            <div class="greek-text">τὸν ἀδελφὸν οὗ ὁ ἔπαινος ἐν τῷ εὐαγγελίῳ</div>
+            <p><strong>Análise:</strong> Companheiro anônimo de Paulo, elogiado por todas as igrejas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "irmão cujo louvor no evangelho está espalhado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:19 — "Escolhido pelas igrejas"</span>
+            <div class="greek-text">χειροτονηθεὶς ὑπὸ τῶν ἐκκλησιῶν</div>
+            <p><strong>Análise:</strong> Designado pelas igrejas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escolhido pelas igrejas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:19 — "Companheiro de viagem"</span>
+            <div class="greek-text">συνέκδημος</div>
+            <p><strong>Análise:</strong> Companheiro de jornada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "companheiro de viagem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:19 — "Graça que é ministrada por nós"</span>
+            <div class="greek-text">τῇ χάριτι τῇ διακονουμένῃ ὑφ' ἡμῶν</div>
+            <p><strong>Análise:</strong> Graça que é ministrada/servida por nós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "graça que é ministrada por nós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:20 — "Evitando isto"</span>
+            <div class="greek-text">στελλόμενοι τοῦτο</div>
+            <p><strong>Análise:</strong> Tomando cuidado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "evitando isto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:20 — "Que alguém nos censure"</span>
+            <div class="greek-text">μή τις ἡμᾶς μωμήσηται</div>
+            <p><strong>Análise:</strong> Para que ninguém nos acuse.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "que alguém nos censure".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:21 — "O que é honesto"</span>
+            <div class="greek-text">καλά</div>
+            <p><strong>Análise:</strong> Coisas boas, belas, honrosas ou corretas. No contexto, refere-se àquilo que é considerado correto diante do Senhor e dos homens.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o que é honesto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:21 — "Diante do Senhor... diante dos homens"</span>
+            <div class="greek-text">ἐνώπιον Κυρίου... ἐνώπιον ἀνθρώπων</div>
+            <p><strong>Análise:</strong> Literalmente "diante do Senhor... diante dos homens". A expressão destaca a preocupação de agir de modo correto diante de Deus e das pessoas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "diante do Senhor... diante dos homens".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:22 — "Nosso irmão"</span>
+            <div class="greek-text">τὸν ἀδελφὸν ἡμῶν</div>
+            <p><strong>Análise:</strong> Outro companheiro não nomeado de Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nosso irmão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:22 — "Muitas vezes e em muitas coisas provamos ser diligente"</span>
+            <div class="greek-text">πολλάκις ἐν πολλοῖς ἐδοκιμάσαμεν σπουδαῖον</div>
+            <p><strong>Análise:</strong> Testado e aprovado em muitas ocasiões.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muitas vezes e em muitas coisas provamos ser diligente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:23 — "Mensageiros das igrejas"</span>
+            <div class="greek-text">ἀπόστολοι ἐκκλησιῶν</div>
+            <p><strong>Análise:</strong> Literalmente "apóstolos das igrejas" ou "enviados das igrejas". O termo <em>apostolos</em> significa enviado/mensageiro e, neste contexto, refere-se aos irmãos enviados pelas igrejas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mensageiros das igrejas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:23 — "Glória de Cristo"</span>
+            <div class="greek-text">δόξα Χριστοῦ</div>
+            <p><strong>Análise:</strong> "Glória de Cristo". A expressão pode ser entendida em relação à honra e glória associadas a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "glória de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:24 — "Prova do vosso amor"</span>
+            <div class="greek-text">τὴν ἔνδειξιν τῆς ἀγάπης ὑμῶν</div>
+            <p><strong>Análise:</strong> Demonstração de amor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "prova do vosso amor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 8:24 — "Nossa glória a vosso respeito"</span>
+            <div class="greek-text">ἡμῶν καυχήσεως ὑπὲρ ὑμῶν</div>
+            <p><strong>Análise:</strong> Orgulho que expressamos a vosso respeito.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nossa glória a vosso respeito".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 8 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 8 trata da coleta para os santos e do exemplo dos macedônios. Estrutura: 1) O exemplo dos macedônios (v.1-5); 2) Exortação à generosidade (v.6-15); 3) A administração da coleta (v.16-24). Paulo exorta os coríntios a completarem a contribuição iniciada.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

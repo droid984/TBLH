@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 4</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 4</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Deus deste século</span>
+                Do grego *ho theos tou aiōnos toutou* (ὁ θεὸς τοῦ αἰῶνος τούτου). Literalmente "o deus desta era/época"; tradicionalmente entendido como referência a Satanás.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mortificação do Senhor Jesus</span>
+                Do grego *tēn nekrōsin tou Kyriou Iēsou* (τὴν νέκρωσιν τοῦ Κυρίου Ἰησοῦ). Termo relacionado a morte, mortificação ou colocação à morte.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Homem exterior / homem interior</span>
+                Contraste entre o desgaste físico e a renovação espiritual.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Não desfalecemos</span>
+                Do grego *ouk ekkakoumen* (οὐκ ἐκκακοῦμεν). Não perder o ânimo, não desanimar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Falsificando a palavra de Deus</span>
+                Do grego *dolountes ton logon tou Theou* (δολοῦντες τὸν λόγον τοῦ Θεοῦ). Adulterar, corromper ou falsificar; verbo diferente de 2:17.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Tesouro em vasos de barro</span>
+                Imagem de fragilidade humana contendo o precioso evangelho.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Peso eterno de glória</span>
+                Do grego *aiōnion baros doxēs* (αἰώνιον βάρος δόξης). Glória eterna em contraste com a leve tribulação.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">4</div>
+
+    <div class="pericope">O Ministério da Verdade</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">P</span>or isso, tendo este ministério, segundo a misericórdia que nos foi concedida, não desfalecemos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        antes, renunciamos às coisas ocultas, que são vergonhosas, não andando com astúcia, nem falsificando a palavra de Deus; mas, pela manifestação da verdade, recomendando-nos a toda consciência humana diante de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Mas, se o nosso evangelho ainda está encoberto, para os que perecem está encoberto;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        nos quais o deus deste século cegou os entendimentos dos incrédulos, para que não lhes resplandeça a luz do evangelho da glória de Cristo, o qual é a imagem de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Porque não nos pregamos a nós mesmos, mas a Cristo Jesus, o Senhor; e a nós mesmos, como vossos servos por causa de Jesus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Porque Deus, que disse: <span class="fala-outro">Das trevas resplandeça a luz,</span> é quem resplandeceu em nossos corações, para iluminação do conhecimento da glória de Deus, na face de Jesus Cristo.
+    </p>
+
+    <div class="pericope">Tesouro em Vasos de Barro</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        Temos, porém, este tesouro em vasos de barro, para que a excelência do poder seja de Deus, e não de nós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Em tudo somos atribulados, mas não angustiados; perplexos, mas não desesperados;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        perseguidos, mas não desamparados; abatidos, mas não destruídos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        levando sempre no corpo a mortificação do Senhor Jesus, para que também a vida de Jesus se manifeste em nosso corpo.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Pois nós, que vivemos, estamos sempre entregues à morte por causa de Jesus, para que também a vida de Jesus se manifeste em nossa carne mortal.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        De modo que a morte opera em nós, e a vida em vós.
+    </p>
+
+    <div class="pericope">Vivendo pela Fé</div>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        E temos o mesmo espírito de fé, conforme está escrito: <span class="fala-outro">Cri, por isso falei;</span> também nós cremos, por isso também falamos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Sabendo que aquele que ressuscitou o Senhor Jesus também nos ressuscitará por Jesus, e nos apresentará convosco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        Porque todas as coisas são por causa de vós, para que a graça, multiplicada por meio de muitos, faça abundar a ação de graças para glória de Deus.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Por isso não desfalecemos; mas, ainda que o nosso homem exterior se corrompa, o nosso homem interior, contudo, se renova de dia em dia.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Porque a nossa leve e momentânea tribulação produz para nós um peso eterno de glória, muito acima de toda comparação;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        não atentando nós nas coisas que se veem, mas nas que se não veem; porque as que se veem são temporais, e as que se não veem são eternas.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:1, 16 — "Não desfalecemos"</span>
+            <div class="greek-text">οὐκ ἐκκακοῦμεν</div>
+            <p><strong>Análise:</strong> Expressão que significa não perder o ânimo, não desanimar ou não desistir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não desfalecemos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:2 — "Renunciamos às coisas ocultas"</span>
+            <div class="greek-text">ἀπειπάμεθα τὰ κρυπτά</div>
+            <p><strong>Análise:</strong> Expressão relacionada a rejeitar ou renunciar às coisas ocultas. No contexto, Paulo contrasta essas práticas com a manifestação aberta da verdade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "renunciamos às coisas ocultas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:2 — "Astúcia"</span>
+            <div class="greek-text">πανουργία</div>
+            <p><strong>Análise:</strong> Malícia, esperteza, astúcia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "astúcia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:2 — "Falsificando a palavra de Deus"</span>
+            <div class="greek-text">δολοῦντες τὸν λόγον τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Literalmente relacionado a adulterar, corromper ou falsificar a palavra de Deus. O verbo é diferente daquele usado em 2 Coríntios 2:17.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "falsificando a palavra de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:2 — "Manifestação da verdade"</span>
+            <div class="greek-text">τῇ φανερώσει τῆς ἀληθείας</div>
+            <p><strong>Análise:</strong> Literalmente "manifestação da verdade". Paulo apresenta essa manifestação como meio pelo qual sua conduta é recomendada à consciência das pessoas diante de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "manifestação da verdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:2 — "A toda consciência humana"</span>
+            <div class="greek-text">πρὸς πᾶσαν συνείδησιν ἀνθρώπων</div>
+            <p><strong>Análise:</strong> Diante de toda consciência dos homens.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a toda consciência humana".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:3 — "Para os que perecem está encoberto"</span>
+            <div class="greek-text">ἐν τοῖς ἀπολλυμένοις ἐστὶν κεκαλυμμένον</div>
+            <p><strong>Análise:</strong> Oculto aos que se perdem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "para os que perecem está encoberto".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:4 — "Deus deste século"</span>
+            <div class="greek-text">ὁ θεὸς τοῦ αἰῶνος τούτου</div>
+            <p><strong>Análise:</strong> Literalmente "o deus desta era/época". No contexto, a expressão é tradicionalmente entendida como referência a Satanás, aquele que cega os entendimentos dos incrédulos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "deus deste século".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:4 — "Cegou os entendimentos"</span>
+            <div class="greek-text">ἐτύφλωσεν τὰ νοήματα</div>
+            <p><strong>Análise:</strong> Cegou as mentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cegou os entendimentos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:4 — "Incrédulos"</span>
+            <div class="greek-text">τῶν ἀπίστων</div>
+            <p><strong>Análise:</strong> Os que não creem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "incrédulos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:4 — "Evangelho da glória de Cristo"</span>
+            <div class="greek-text">τὸ εὐαγγέλιον τῆς δόξης τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Boas-novas da glória de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "evangelho da glória de Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:4 — "Imagem de Deus"</span>
+            <div class="greek-text">εἰκὼν τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Cristo como imagem de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "imagem de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:5 — "Não nos pregamos a nós mesmos"</span>
+            <div class="greek-text">οὐ γὰρ ἑαυτοὺς κηρύσσομεν</div>
+            <p><strong>Análise:</strong> O conteúdo da pregação não é o pregador.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não nos pregamos a nós mesmos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:5 — "Vossos servos por causa de Jesus"</span>
+            <div class="greek-text">δούλους ὑμῶν διὰ Ἰησοῦν</div>
+            <p><strong>Análise:</strong> Literalmente "servos de vocês por causa de Jesus". Paulo apresenta seu serviço aos coríntios como decorrente de sua relação com Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vossos servos por causa de Jesus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:6 — "Das trevas resplandeça a luz"</span>
+            <div class="greek-text">ἐκ σκότους φῶς λάμψει</div>
+            <p><strong>Análise:</strong> Referência a Gênesis 1:3.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:6 — "Resplandeceu em nossos corações"</span>
+            <div class="greek-text">ἔλαμψεν ἐν ταῖς καρδίαις ἡμῶν</div>
+            <p><strong>Análise:</strong> Paulo usa a imagem da luz para descrever a ação de Deus nos corações, relacionando-a à iluminação do conhecimento da glória de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "resplandeceu em nossos corações".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:6 — "Na face de Jesus Cristo"</span>
+            <div class="greek-text">ἐν προσώπῳ Ἰησοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> A glória de Deus manifestada em Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "na face de Jesus Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:7 — "Tesouro em vasos de barro"</span>
+            <div class="greek-text">θησαυρὸν ἐν ὀστρακίνοις σκεύεσιν</div>
+            <p><strong>Análise:</strong> Imagem de fragilidade humana contendo o precioso evangelho.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tesouro em vasos de barro".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:7 — "Excelência do poder"</span>
+            <div class="greek-text">ὑπερβολὴ τῆς δυνάμεως</div>
+            <p><strong>Análise:</strong> Grandeza superior do poder.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "excelência do poder".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:8 — "Atribulados... angustiados... perplexos... desesperados"</span>
+            <div class="greek-text">θλιβόμενοι... στενοχωρούμενοι... ἀπορούμενοι... ἐξαπορούμενοι</div>
+            <p><strong>Análise:</strong> Quatro pares de termos que descrevem aflições reais acompanhadas pela preservação de Paulo e seus cooperadores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos quatro termos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:9 — "Perseguidos... desamparados... abatidos... destruídos"</span>
+            <div class="greek-text">διωκόμενοι... ἐγκαταλειπόμενοι... καταβαλλόμενοι... ἀπολλύμενοι</div>
+            <p><strong>Análise:</strong> Continuação dos contrastes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos quatro termos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:10 — "Mortificação do Senhor Jesus"</span>
+            <div class="greek-text">τὴν νέκρωσιν τοῦ Κυρίου Ἰησοῦ</div>
+            <p><strong>Análise:</strong> Termo relacionado a morte, mortificação ou colocação à morte. No contexto, Paulo fala da experiência de sofrimento e morte enfrentada por causa de Jesus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mortificação do Senhor Jesus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:10-11 — "Vida de Jesus se manifeste"</span>
+            <div class="greek-text">ἡ ζωὴ τοῦ Ἰησοῦ φανερωθῇ</div>
+            <p><strong>Análise:</strong> Manifestação da vida de Jesus no corpo do ministro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vida de Jesus se manifeste".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:12 — "Morte opera em nós, e a vida em vós"</span>
+            <div class="greek-text">ὁ θάνατος ἐν ἡμῖν ἐνεργεῖται, ἡ δὲ ζωὴ ἐν ὑμῖν</div>
+            <p><strong>Análise:</strong> Paradoxo apostólico: o sofrimento do ministro resulta em vida para a igreja.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "morte opera em nós, e a vida em vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:13 — "Espírito de fé"</span>
+            <div class="greek-text">τὸ αὐτὸ πνεῦμα τῆς πίστεως</div>
+            <p><strong>Análise:</strong> Literalmente "o mesmo espírito da fé". Paulo relaciona esse espírito de fé à declaração: "Cri, por isso falei".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espírito de fé".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:13 — "Cri, por isso falei"</span>
+            <div class="greek-text">ἐπίστευσα, διὸ ἐλάλησα</div>
+            <p><strong>Análise:</strong> Citação do Salmo 116:10, usada por Paulo para expressar a relação entre fé e proclamação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:14 — "Ressuscitou o Senhor Jesus"</span>
+            <div class="greek-text">τὸν ἐγείραντα τὸν Κύριον Ἰησοῦν</div>
+            <p><strong>Análise:</strong> Confiança na ressurreição futura.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ressuscitou o Senhor Jesus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:16 — "Homem exterior... homem interior"</span>
+            <div class="greek-text">ὁ ἔξω ἡμῶν ἄνθρωπος... ὁ ἔσω ἡμῶν</div>
+            <p><strong>Análise:</strong> Paulo estabelece um contraste entre o homem exterior e o homem interior, ambos apresentados em relação ao desgaste e à renovação.</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "o nosso homem exterior... o nosso homem interior".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:16 — "Se corrompa"</span>
+            <div class="greek-text">διαφθείρεται</div>
+            <p><strong>Análise:</strong> Desgasta-se, deteriora-se.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se corrompa".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:17 — "Leve e momentânea tribulação"</span>
+            <div class="greek-text">τὸ παραυτίκα ἐλαφρὸν τῆς θλίψεως</div>
+            <p><strong>Análise:</strong> Tribulação passageira e leve.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "leve e momentânea tribulação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:17 — "Peso eterno de glória"</span>
+            <div class="greek-text">αἰώνιον βάρος δόξης</div>
+            <p><strong>Análise:</strong> Literalmente "peso eterno de glória".</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "peso eterno de glória".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:17 — "Muito acima de toda comparação"</span>
+            <div class="greek-text">καθ' ὑπερβολὴν εἰς ὑπερβολήν</div>
+            <p><strong>Análise:</strong> Construção intensiva que expressa uma grandeza extraordinariamente superior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "muito acima de toda comparação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:18 — "As que se veem são temporais"</span>
+            <div class="greek-text">τὰ γὰρ βλεπόμενα πρόσκαιρα</div>
+            <p><strong>Análise:</strong> Coisas visíveis são passageiras.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "as que se veem são temporais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 4:18 — "As que se não veem são eternas"</span>
+            <div class="greek-text">τὰ δὲ μὴ βλεπόμενα αἰώνια</div>
+            <p><strong>Análise:</strong> Coisas invisíveis são eternas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "as que se não veem são eternas".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 4 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 4 desenvolve o tema do ministério e suas dificuldades. Estrutura: 1) O ministério da verdade (v.1-6); 2) Tesouro em vasos de barro (v.7-12); 3) Vivendo pela fé (v.13-18). Paulo apresenta a fragilidade do ministro e a permanência da glória eterna.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

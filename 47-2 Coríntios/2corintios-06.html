@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 6</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 6</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Cooperando com ele</span>
+                Do grego *synergountes* (συνεργοῦντες). Trabalhando juntamente ou cooperando com Deus.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Entranhas</span>
+                Do grego *splanchna* (σπλάγχνα). Termo usado figuradamente para os afetos ou sentimentos interiores.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Jugo desigual</span>
+                Do grego *heterozygountes* (ἑτεροζυγοῦντες). Imagem de colocar sob o mesmo jugo elementos diferentes.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Não crentes</span>
+                Do grego *apistois* (ἀπίστοις). Literalmente "não crentes" ou "aqueles que não creem".
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Belial</span>
+                Nome de origem hebraica associado à ideia de inutilidade, perversidade ou maldade.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Templo do Deus vivente</span>
+                Do grego *naos Theou zōntos* (ναὸς Θεοῦ ζῶντος). Paulo aplica a linguagem do templo aos destinatários.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Senhor Todo-Poderoso</span>
+                Do grego *Kyrios Pantokratōr* (Κύριος Παντοκράτωρ). Título que expressa domínio e soberania abrangentes.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">6</div>
+
+    <div class="pericope">O Ministério da Reconciliação</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span> nós, cooperando com ele, também vos exortamos a que não recebais a graça de Deus em vão.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Porque ele diz: <span class="fala-outro">Em tempo aceitável te ouvi, e no dia da salvação te socorri.</span> Eis aqui agora o tempo aceitável; eis aqui agora o dia da salvação.
+    </p>
+
+    <div class="pericope">Recomendações do Ministério</div>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        Não dando escândalo em coisa alguma, para que o ministério não seja censurado;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        antes, em tudo nos recomendando como ministros de Deus: em muita paciência, em tribulações, em necessidades, em angústias,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        em açoites, em prisões, em tumultos, em trabalhos, em vigílias, em jejuns,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        em pureza, em conhecimento, em longanimidade, em bondade, no Espírito Santo, no amor não fingido,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        na palavra da verdade, no poder de Deus, pelas armas da justiça, à direita e à esquerda,
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        por honra e por desonra, por má fama e por boa fama; como enganadores, e sendo verdadeiros;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        como desconhecidos, e sendo bem conhecidos; como morrendo, e eis que vivemos; como castigados, e não mortos;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        como entristecidos, mas sempre alegres; como pobres, mas enriquecendo a muitos; como nada tendo, e possuindo tudo.
+    </p>
+
+    <div class="pericope">Exortação à Separação</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        A nossa boca está aberta para vós, ó coríntios; o nosso coração está dilatado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Não estais estreitados em nós; mas estais estreitados nas vossas entranhas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Ora, como justa retribuição — falo como a filhos —, dilatados também vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Não vos prendais a um jugo desigual com os não crentes; pois que sociedade tem a justiça com a injustiça? E que comunhão tem a luz com as trevas?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E que harmonia há entre Cristo e Belial? Ou que parte tem o crente com o não crente?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        E que acordo tem o templo de Deus com os ídolos? Pois vós sois o templo do Deus vivente; como Deus disse: <span class="fala-outro">Neles habitarei, e entre eles andarei; e serei o seu Deus, e eles serão o meu povo.</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Portanto, <span class="fala-outro">saí do meio deles, e apartai-vos, diz o Senhor; e não toqueis no imundo, e eu vos receberei;</span>
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        <span class="fala-outro">e serei para vós Pai, e vós sereis para mim filhos e filhas, diz o Senhor Todo-Poderoso.</span>
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:1 — "Cooperando com ele"</span>
+            <div class="greek-text">συνεργοῦντες</div>
+            <p><strong>Análise:</strong> "Trabalhando juntamente" ou "cooperando". O pronome refere-se àquele mencionado no contexto anterior (Deus).</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "cooperando com ele".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:1 — "Não recebais a graça de Deus em vão"</span>
+            <div class="greek-text">εἰς κενὸν τὴν χάριν τοῦ Θεοῦ δέξασθαι ὑμᾶς</div>
+            <p><strong>Análise:</strong> Receber a graça sem proveito, sem fruto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não recebais a graça de Deus em vão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:2 — "Em tempo aceitável te ouvi"</span>
+            <div class="greek-text">καιρῷ δεκτῷ ἐπήκουσά σου</div>
+            <p><strong>Análise:</strong> Citação de Isaías 49:8.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:2 — "Dia da salvação"</span>
+            <div class="greek-text">ἐν ἡμέρᾳ σωτηρίας ἐβοήθησά σοι</div>
+            <p><strong>Análise:</strong> Tempo do socorro divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dia da salvação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:3 — "Escândalo"</span>
+            <div class="greek-text">προσκοπή</div>
+            <p><strong>Análise:</strong> Tropeço, obstáculo; não dar ocasião de tropeço.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "escândalo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:3 — "Ministério não seja censurado"</span>
+            <div class="greek-text">μὴ μωμηθῇ ἡ διακονία</div>
+            <p><strong>Análise:</strong> Para que o serviço não seja reprovado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ministério não seja censurado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:4 — "Em muita paciência"</span>
+            <div class="greek-text">ἐν ὑπομονῇ πολλῇ</div>
+            <p><strong>Análise:</strong> Paciência perseverante.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "em muita paciência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:4 — "Tribulações, necessidades, angústias"</span>
+            <div class="greek-text">θλίψεσιν, ἀνάγκαις, στενοχωρίαις</div>
+            <p><strong>Análise:</strong> Três condições de sofrimento.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "tribulações, necessidades, angústias".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:5 — "Açoites, prisões, tumultos, trabalhos, vigílias, jejuns"</span>
+            <div class="greek-text">πληγαῖς, φυλακαῖς, ἀκαταστασίαις, κόποις, ἀγρυπνίαις, νηστείαις</div>
+            <p><strong>Análise:</strong> Seis situações de adversidade ministerial.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos seis termos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:6 — "Pureza"</span>
+            <div class="greek-text">ἁγνότητι</div>
+            <p><strong>Análise:</strong> Pureza, especialmente no sentido de conduta pura e íntegra.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pureza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:6 — "Longanimidade"</span>
+            <div class="greek-text">μακροθυμίᾳ</div>
+            <p><strong>Análise:</strong> Paciência longa; mesma raiz de 1 Coríntios 13:4.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "longanimidade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:6 — "Bondade"</span>
+            <div class="greek-text">χρηστότητι</div>
+            <p><strong>Análise:</strong> Benignidade, bondade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "bondade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:6 — "Amor não fingido"</span>
+            <div class="greek-text">ἀγάπῃ ἀνυποκρίτῳ</div>
+            <p><strong>Análise:</strong> Amor sem hipocrisia.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "amor não fingido".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:7 — "Palavra da verdade"</span>
+            <div class="greek-text">ἐν λόγῳ ἀληθείας</div>
+            <p><strong>Análise:</strong> Literalmente "em palavra de verdade". A expressão relaciona a palavra proclamada com a verdade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavra da verdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:7 — "Armas da justiça, à direita e à esquerda"</span>
+            <div class="greek-text">διὰ τῶν ὅπλων τῆς δικαιοσύνης τῶν δεξιῶν καὶ ἀριστερῶν</div>
+            <p><strong>Análise:</strong> Paulo usa a imagem de armas seguradas de ambos os lados. A expressão apresenta os instrumentos pelos quais os ministros enfrentam as circunstâncias descritas no contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "armas da justiça, à direita e à esquerda".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:8 — "Por honra e por desonra"</span>
+            <div class="greek-text">διὰ δόξης καὶ ἀτιμίας</div>
+            <p><strong>Análise:</strong> Em circunstâncias favoráveis ou adversas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por honra e por desonra".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:8 — "Como enganadores, e sendo verdadeiros"</span>
+            <div class="greek-text">ὡς πλάνοι καὶ ἀληθεῖς</div>
+            <p><strong>Análise:</strong> Contraste entre a aparência ou acusação atribuída aos ministros e aquilo que Paulo afirma sobre sua verdadeira condição.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como enganadores, e sendo verdadeiros".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:9 — "Como desconhecidos, e sendo bem conhecidos"</span>
+            <div class="greek-text">ὡς ἀγνοούμενοι καὶ ἐπιγινωσκόμενοι</div>
+            <p><strong>Análise:</strong> Novo contraste.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como desconhecidos, e sendo bem conhecidos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:9 — "Como castigados, e não mortos"</span>
+            <div class="greek-text">ὡς παιδευόμενοι καὶ μὴ θανατούμενοι</div>
+            <p><strong>Análise:</strong> Disciplinados, mas preservados da morte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como castigados, e não mortos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:10 — "Como entristecidos, mas sempre alegres"</span>
+            <div class="greek-text">ὡς λυπούμενοι, ἀεὶ δὲ χαίροντες</div>
+            <p><strong>Análise:</strong> Contraste entre tristeza e alegria interior.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como entristecidos, mas sempre alegres".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:10 — "Como pobres, mas enriquecendo a muitos"</span>
+            <div class="greek-text">ὡς πτωχοί, πολλοὺς δὲ πλουτίζοντες</div>
+            <p><strong>Análise:</strong> Contraste entre a condição de pobreza dos ministros e o enriquecimento proporcionado por seu ministério a muitos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como pobres, mas enriquecendo a muitos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:10 — "Como nada tendo, e possuindo tudo"</span>
+            <div class="greek-text">ὡς μηδὲν ἔχοντες, καὶ πάντα κατέχοντες</div>
+            <p><strong>Análise:</strong> Paradoxo final da lista.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "como nada tendo, e possuindo tudo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:11 — "Boca aberta"</span>
+            <div class="greek-text">τὸ στόμα ἡμῶν ἀνέῳγεν</div>
+            <p><strong>Análise:</strong> Franqueza de expressão.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "boca aberta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:11 — "Coração dilatado"</span>
+            <div class="greek-text">ἡ καρδία ἡμῶν πεπλάτυνται</div>
+            <p><strong>Análise:</strong> Relacionado a ampliar, alargar ou dilatar. Paulo utiliza a imagem de um coração ampliado para expressar a amplitude de sua afeição pelos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "coração dilatado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:12 — "Não estais estreitados em nós"</span>
+            <div class="greek-text">οὐ στενοχωρεῖσθε ἐν ἡμῖν</div>
+            <p><strong>Análise:</strong> Não estão restringidos por nossa parte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não estais estreitados em nós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:12 — "Estreitados nas vossas entranhas"</span>
+            <div class="greek-text">στενοχωρεῖσθε δὲ ἐν τοῖς σπλάγχνοις ὑμῶν</div>
+            <p><strong>Análise:</strong> Literalmente "nas vossas entranhas". O termo pode ser usado figuradamente para os afetos ou sentimentos interiores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "estreitados nas vossas entranhas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:13 — "Dilatados também vós"</span>
+            <div class="greek-text">πλατύνθητε καὶ ὑμεῖς</div>
+            <p><strong>Análise:</strong> Abri também vossos corações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "dilatados também vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:14 — "Jugo desigual"</span>
+            <div class="greek-text">ἑτεροζυγοῦντες</div>
+            <p><strong>Análise:</strong> Termo formado a partir da imagem de colocar sob o mesmo jugo elementos diferentes. Paulo utiliza a imagem para expressar uma associação incompatível.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "jugo desigual".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:14-15 — "Não crentes"</span>
+            <div class="greek-text">ἀπίστοις</div>
+            <p><strong>Análise:</strong> Literalmente "não crentes" ou "aqueles que não creem".</p>
+            <p><strong>Decisão TBLH:</strong> Adotada a tradução "não crentes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:14 — "Sociedade"</span>
+            <div class="greek-text">μετοχή</div>
+            <p><strong>Análise:</strong> Participação, associação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sociedade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:14 — "Comunhão"</span>
+            <div class="greek-text">κοινωνία</div>
+            <p><strong>Análise:</strong> Comunhão, partilha.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "comunhão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:15 — "Harmonia"</span>
+            <div class="greek-text">συμφώνησις</div>
+            <p><strong>Análise:</strong> Acordo, concordância.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "harmonia".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:15 — "Belial"</span>
+            <div class="greek-text">Βελιάλ</div>
+            <p><strong>Análise:</strong> Nome de origem hebraica associado à ideia de inutilidade, perversidade ou maldade. Aqui aparece em contraste direto com Cristo e é tradicionalmente entendido como uma designação de Satanás ou de uma figura que se opõe a Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a transliteração "Belial".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:15 — "Parte"</span>
+            <div class="greek-text">μερίς</div>
+            <p><strong>Análise:</strong> Porção, parte.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "parte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:16 — "Acordo"</span>
+            <div class="greek-text">συγκατάθεσις</div>
+            <p><strong>Análise:</strong> Consentimento, concordância.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "acordo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:16 — "Templo do Deus vivente"</span>
+            <div class="greek-text">ναὸς Θεοῦ ζῶντος</div>
+            <p><strong>Análise:</strong> Literalmente "templo do Deus vivo". Paulo aplica a linguagem do templo aos destinatários da carta, afirmando que Deus habita entre eles.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "templo do Deus vivente".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:16 — "Neles habitarei, e entre eles andarei"</span>
+            <div class="greek-text">ἐνοικήσω ἐν αὐτοῖς καὶ ἐμπεριπατήσω</div>
+            <p><strong>Análise:</strong> Citação de Levítico 26:11-12 e Ezequiel 37:27.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:16 — "Serei o seu Deus, e eles serão o meu povo"</span>
+            <div class="greek-text">ἔσομαι αὐτῶν Θεός, καὶ αὐτοὶ ἔσονταί μοι λαός</div>
+            <p><strong>Análise:</strong> Fórmula da aliança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:17 — "Saí do meio deles, e apartai-vos"</span>
+            <div class="greek-text">ἐξέλθατε ἐκ μέσου αὐτῶν καὶ ἀφορίσθητε</div>
+            <p><strong>Análise:</strong> Citação de Isaías 52:11.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a citação conforme o Textus Receptus.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:17 — "Não toqueis no imundo"</span>
+            <div class="greek-text">μὴ ἅπτεσθε ἀκαθάρτου</div>
+            <p><strong>Análise:</strong> Literalmente "não toqueis no impuro". A expressão faz parte da exortação para separar-se daquilo que é apresentado como impuro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não toqueis no imundo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:17 — "Eu vos receberei"</span>
+            <div class="greek-text">κἀγὼ εἰσδέξομαι ὑμᾶς</div>
+            <p><strong>Análise:</strong> Acolhimento divino.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "eu vos receberei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:18 — "Serei para vós Pai"</span>
+            <div class="greek-text">ἔσομαι ὑμῖν εἰς πατέρα</div>
+            <p><strong>Análise:</strong> Promessa de relação paterna.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "serei para vós Pai".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 6:18 — "Senhor Todo-Poderoso"</span>
+            <div class="greek-text">Κύριος Παντοκράτωρ</div>
+            <p><strong>Análise:</strong> Título que expressa domínio e soberania abrangentes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Senhor Todo-Poderoso".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 6 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 6 continua a defesa do ministério e a exortação à separação. Estrutura: 1) O ministério da reconciliação (v.1-2); 2) Recomendações do ministério (v.3-10); 3) Exortação à separação (v.11-18). Paulo exorta os coríntios à pureza e à separação do mundo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

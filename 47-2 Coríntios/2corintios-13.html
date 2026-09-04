@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 13</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 13</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Não pouparei</span>
+                Do grego *ou pheisomai* (οὐ φείσομαι). Não poupar, não deixar alguém sem a ação ou disciplina pretendida.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Reprovados</span>
+                Do grego *adokimoi* (ἀδόκιμοι). Não aprovados, reprovados; em contraste com *dokimazō*.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Aperfeiçoamento</span>
+                Do grego *katartisis* (κατάρτισις). Completar, restaurar, ajustar ou aperfeiçoar.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sede perfeitos</span>
+                Do grego *katartizesthe* (καταρτίζεσθε). Da mesma família de *katartisis* do v. 9.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Comunhão do Espírito Santo</span>
+                Do grego *hē koinōnia tou Hagiou Pneumatos* (ἡ κοινωνία τοῦ Ἁγίου Πνεύματος). Comunhão, participação ou compartilhamento do Espírito Santo.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Ósculo santo</span>
+                Do grego *en hagiō philēmati* (ἐν ἁγίῳ φιλήματι). Beijo santo; mesma expressão de 1 Coríntios 16:20.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">13</div>
+
+    <div class="pericope">Advertência Final</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">E</span>sta é a terceira vez que vou até vós. Por boca de duas ou três testemunhas será confirmada toda palavra.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Já o disse antes, e o digo outra vez, como quando estava presente pela segunda vez; e, estando agora ausente, o escrevo aos que pecaram anteriormente, e a todos os demais: que, se eu for outra vez, não pouparei;
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        visto que buscais uma prova de Cristo que fala em mim; o qual não é fraco para convosco, mas é poderoso entre vós.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        Porque, ainda que foi crucificado por fraqueza, vive, contudo, pelo poder de Deus. Porque também nós somos fracos nele, mas viveremos com ele pelo poder de Deus para convosco.
+    </p>
+
+    <div class="pericope">Exame Próprio</div>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        Examinai-vos a vós mesmos se estais na fé; provai-vos a vós mesmos. Ou não reconheceis a vós mesmos que Jesus Cristo está em vós? A menos que estejais reprovados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Mas espero que reconhecereis que nós não estamos reprovados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E rogo a Deus que não façais mal algum; não para que nós pareçamos aprovados, mas para que vós façais o bem, ainda que nós sejamos como reprovados.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Porque nada podemos contra a verdade, mas somente a favor da verdade.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        Pois nos alegramos quando nós estamos fracos, e vós estais fortes; e isto é o que pedimos: o vosso aperfeiçoamento.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Portanto, escrevo estas coisas estando ausente, para que, estando presente, não use de rigor, segundo a autoridade que o Senhor me deu para edificação, e não para destruição.
+    </p>
+
+    <div class="pericope">Saudações Finais</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Quanto ao mais, irmãos, alegrai-vos, sede perfeitos, sede consolados, sede de um mesmo parecer, vivei em paz; e o Deus de amor e de paz será convosco.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Saudai-vos uns aos outros com ósculo santo. Todos os santos vos saúdam.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        A graça do Senhor Jesus Cristo, e o amor de Deus, e a comunhão do Espírito Santo sejam com todos vós. Amém.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:1 — "Terceira vez que vou até vós"</span>
+            <div class="greek-text">τρίτον τοῦτο ἔρχομαι πρὸς ὑμᾶς</div>
+            <p><strong>Análise:</strong> Terceira visita anunciada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "terceira vez que vou até vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:1 — "Por boca de duas ou três testemunhas"</span>
+            <div class="greek-text">ἐπὶ στόματος δύο μαρτύρων καὶ τριῶν</div>
+            <p><strong>Análise:</strong> Fórmula relacionada ao princípio de confirmação por duas ou três testemunhas, encontrado no Antigo Testamento, especialmente em Deuteronômio 19:15.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "por boca de duas ou três testemunhas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:2 — "Não pouparei"</span>
+            <div class="greek-text">οὐ φείσομαι</div>
+            <p><strong>Análise:</strong> Não poupar, não deixar alguém sem a ação ou disciplina pretendida.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não pouparei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:3 — "Buscais uma prova de Cristo que fala em mim"</span>
+            <div class="greek-text">δοκιμὴν ζητεῖτε τοῦ ἐν ἐμοὶ λαλοῦντος Χριστοῦ</div>
+            <p><strong>Análise:</strong> Expressão em que Paulo apresenta Cristo como aquele que fala nele e os coríntios como buscando uma prova disso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "buscais uma prova de Cristo que fala em mim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:3 — "Não é fraco para convosco, mas é poderoso entre vós"</span>
+            <div class="greek-text">ὃς εἰς ὑμᾶς οὐκ ἀσθενεῖ, ἀλλὰ δυνατεῖ ἐν ὑμῖν</div>
+            <p><strong>Análise:</strong> Cristo não é fraco, mas poderoso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não é fraco para convosco, mas é poderoso entre vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:4 — "Foi crucificado por fraqueza"</span>
+            <div class="greek-text">ἐσταυρώθη ἐξ ἀσθενείας</div>
+            <p><strong>Análise:</strong> Expressão que relaciona a crucificação à "fraqueza"; o sentido preciso dessa construção é teologicamente denso.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "foi crucificado por fraqueza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:4 — "Vive, contudo, pelo poder de Deus"</span>
+            <div class="greek-text">ἀλλὰ ζῇ ἐκ δυνάμεως Θεοῦ</div>
+            <p><strong>Análise:</strong> Vive pelo poder de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vive, contudo, pelo poder de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:4 — "Somos fracos nele"</span>
+            <div class="greek-text">ἀσθενοῦμεν ἐν αὐτῷ</div>
+            <p><strong>Análise:</strong> Literalmente "somos fracos nele". A relação expressa por "nele" é deixada pelo texto sem especificação adicional.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "somos fracos nele".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:4 — "Viveremos com ele pelo poder de Deus"</span>
+            <div class="greek-text">ζησόμεθα σὺν αὐτῷ ἐκ δυνάμεως Θεοῦ</div>
+            <p><strong>Análise:</strong> Viveremos com ele pelo poder de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "viveremos com ele pelo poder de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:5 — "Examinai-vos a vós mesmos"</span>
+            <div class="greek-text">ἑαυτοὺς πειράζετε</div>
+            <p><strong>Análise:</strong> Examinai/provai a vós mesmos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "examinai-vos a vós mesmos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:5 — "Provai-vos a vós mesmos"</span>
+            <div class="greek-text">ἑαυτοὺς δοκιμάζετε</div>
+            <p><strong>Análise:</strong> Testai/aprovai a vós mesmos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "provai-vos a vós mesmos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:5 — "Jesus Cristo está em vós"</span>
+            <div class="greek-text">Ἰησοῦς Χριστὸς ἐν ὑμῖν</div>
+            <p><strong>Análise:</strong> Literalmente "Jesus Cristo em vós". A expressão afirma a presença de Cristo nos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Jesus Cristo está em vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:5-7 — "Reprovados"</span>
+            <div class="greek-text">ἀδόκιμοι</div>
+            <p><strong>Análise:</strong> Literalmente "não aprovados" ou "reprovados", em contraste com *dokimazō*, "provar/testar", usado no mesmo contexto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "reprovados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:7 — "Não façais mal algum"</span>
+            <div class="greek-text">μὴ ποιῆσαι ὑμᾶς κακὸν μηδέν</div>
+            <p><strong>Análise:</strong> Não fazer mal algum.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não façais mal algum".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:7 — "Pareçamos aprovados"</span>
+            <div class="greek-text">ἡμεῖς δόκιμοι φανῶμεν</div>
+            <p><strong>Análise:</strong> Pareçamos aprovados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pareçamos aprovados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:7 — "Sejamos como reprovados"</span>
+            <div class="greek-text">ἡμεῖς δὲ ὡς ἀδόκιμοι ὦμεν</div>
+            <p><strong>Análise:</strong> Sejamos como não aprovados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sejamos como reprovados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:8 — "Nada podemos contra a verdade"</span>
+            <div class="greek-text">οὐ δυνάμεθά τι κατὰ τῆς ἀληθείας</div>
+            <p><strong>Análise:</strong> Não temos poder contra a verdade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "nada podemos contra a verdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:8 — "Somente a favor da verdade"</span>
+            <div class="greek-text">ἀλλ' ὑπὲρ τῆς ἀληθείας</div>
+            <p><strong>Análise:</strong> Em favor da verdade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "somente a favor da verdade".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:9 — "Quando nós estamos fracos, e vós estais fortes"</span>
+            <div class="greek-text">ὅταν ἡμεῖς ἀσθενῶμεν, ὑμεῖς δὲ δυνατοὶ ἦτε</div>
+            <p><strong>Análise:</strong> Contraste entre a condição de Paulo e seus cooperadores e a condição dos coríntios, apresentado no contexto de sua relação apostólica com eles.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quando nós estamos fracos, e vós estais fortes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:9 — "Vosso aperfeiçoamento"</span>
+            <div class="greek-text">τὴν ὑμῶν κατάρτισιν</div>
+            <p><strong>Análise:</strong> Termo relacionado a completar, restaurar, ajustar ou aperfeiçoar. O contexto aponta para o estado de correção e restauração da comunidade.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vosso aperfeiçoamento".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:10 — "Não use de rigor"</span>
+            <div class="greek-text">μὴ ἀποτόμως χρήσωμαι</div>
+            <p><strong>Análise:</strong> Literalmente agir/falar de maneira severa ou rigorosa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não use de rigor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:10 — "Autoridade que o Senhor me deu"</span>
+            <div class="greek-text">τὴν ἐξουσίαν ἣν ἔδωκέν μοι ὁ Κύριος</div>
+            <p><strong>Análise:</strong> Autoridade concedida pelo Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "autoridade que o Senhor me deu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:10 — "Para edificação, e não para destruição"</span>
+            <div class="greek-text">εἰς οἰκοδομὴν καὶ οὐκ εἰς καθαίρεσιν</div>
+            <p><strong>Análise:</strong> Finalidade construtiva; mesma expressão de 10:8.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "para edificação, e não para destruição".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:11 — "Alegrai-vos"</span>
+            <div class="greek-text">χαίρετε</div>
+            <p><strong>Análise:</strong> Alegrai-vos; pode também funcionar como saudação em outros contextos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "alegrai-vos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:11 — "Sede perfeitos"</span>
+            <div class="greek-text">καταρτίζεσθε</div>
+            <p><strong>Análise:</strong> Da mesma família de *katartisis* do v. 9, com sentidos como ser completado, restaurado, ajustado ou aperfeiçoado. A tradução "sede perfeitos" preserva a forma tradicional e a relação com "aperfeiçoamento" do v. 9.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sede perfeitos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:11 — "Sede consolados"</span>
+            <div class="greek-text">παρακαλεῖσθε</div>
+            <p><strong>Análise:</strong> Sede consolados/exortados.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sede consolados".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:11 — "Sede de um mesmo parecer"</span>
+            <div class="greek-text">τὸ αὐτὸ φρονεῖτε</div>
+            <p><strong>Análise:</strong> Pensai a mesma coisa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sede de um mesmo parecer".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:11 — "Vivei em paz"</span>
+            <div class="greek-text">εἰρηνεύετε</div>
+            <p><strong>Análise:</strong> Vivei em paz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "vivei em paz".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:11 — "Deus de amor e de paz"</span>
+            <div class="greek-text">ὁ Θεὸς τῆς ἀγάπης καὶ εἰρήνης</div>
+            <p><strong>Análise:</strong> Deus de amor e paz.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "Deus de amor e de paz".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:12 — "Ósculo santo"</span>
+            <div class="greek-text">ἐν ἁγίῳ φιλήματι</div>
+            <p><strong>Análise:</strong> Com beijo santo; mesma expressão de 1 Coríntios 16:20.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "ósculo santo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:12 — "Todos os santos vos saúdam"</span>
+            <div class="greek-text">ἀσπάζονται ὑμᾶς οἱ ἅγιοι πάντες</div>
+            <p><strong>Análise:</strong> Saudação dos santos.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "todos os santos vos saúdam".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:13 — "A graça do Senhor Jesus Cristo"</span>
+            <div class="greek-text">ἡ χάρις τοῦ Κυρίου Ἰησοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Graça do Senhor Jesus Cristo. A frase final menciona Jesus Cristo, Deus e o Espírito Santo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a graça do Senhor Jesus Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:13 — "O amor de Deus"</span>
+            <div class="greek-text">ἡ ἀγάπη τοῦ Θεοῦ</div>
+            <p><strong>Análise:</strong> Amor de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o amor de Deus".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 13:13 — "A comunhão do Espírito Santo"</span>
+            <div class="greek-text">ἡ κοινωνία τοῦ Ἁγίου Πνεύματος</div>
+            <p><strong>Análise:</strong> Comunhão, participação ou compartilhamento do Espírito Santo. "Comunhão" preserva a amplitude do termo no contexto da bênção final.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a comunhão do Espírito Santo".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 13 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 13 conclui a epístola com advertências e saudações. Estrutura: 1) Advertência final (v.1-4); 2) Exame próprio (v.5-10); 3) Saudações finais (v.11-13). Paulo exorta os coríntios ao autoexame, à restauração e à paz, encerrando com a bênção trinitária.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

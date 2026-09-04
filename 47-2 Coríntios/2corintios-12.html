@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBLH — 2 Coríntios 12</title>
+    <!-- Fontes Acadêmicas e Clássicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fcfaf4;
+            --text-color: #2c2520;
+            --accent-red: #8c2738;
+            --accent-gold: #b8860b;
+            --border-color: #d9ceb8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Merriweather", Georgia, serif;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .book-header {
+            text-align: center;
+            border-bottom: 3px double var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tblh-brand {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin: 10px 0;
+            color: #1c1612;
+        }
+        .book-subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: #61564c;
+        }
+
+        .glossary-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: #fdfcf9;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .glossary-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .glossary-item {
+            font-size: 13px;
+        }
+        .glossary-term {
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .chapter-num {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--accent-red);
+            margin: 40px 0 20px 0;
+        }
+        .pericope {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #594f44;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+        .verse {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+        .v-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-red);
+            font-family: sans-serif;
+        }
+        .drop-cap {
+            float: left;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--accent-red);
+        }
+
+        .fala-deus { color: #0055b3; font-weight: 500; }
+        .fala-jesus { color: #b30000; font-weight: 500; }
+        .fala-celestial { color: #b8860b; font-weight: 500; }
+        .fala-demoniaca { color: #5d4037; font-weight: 500; }
+        .fala-sabedoria { color: #7a4fa3; font-weight: 500; }
+        .fala-outro { color: #6b6b6b; font-weight: 500; }
+        .fala-anjo { color: #b8860b; font-weight: 500; }
+
+        .apparatus-section {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px double var(--accent-red);
+        }
+        .apparatus-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .note-card {
+            background: #fff;
+            border: 1px solid #e0d8c8;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .note-trans { border-left: 4px solid var(--accent-gold); }
+        .greek-text {
+            font-family: "Merriweather", serif;
+            font-style: italic;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+        .hebrew-text {
+            font-family: "Noto Serif Hebrew", serif;
+            direction: rtl;
+            background: #f4f1ea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .note-hist { border-left: 4px solid #594f44; }
+        .note-prop { border-left: 4px solid var(--accent-red); background-color: #fdfcf9; }
+
+        .prop-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        .status-fulfilled { background: #e6f4ea; color: #1e7e34; }
+        .status-messianic { background: #e3f2fd; color: #0d47a1; }
+        .status-escatological { background: #fff3e0; color: #e65100; }
+        .status-partial { background: #f3e5f5; color: #6a1b9a; }
+
+        .note-label {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .cross-ref {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .cross-ref:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header class="book-header">
+        <div class="tblh-brand">Tradução Brasileira Literal Harmônica • TBLH</div>
+        <h1 class="book-title">2 CORÍNTIOS</h1>
+        <div class="book-subtitle">Texto Base: Texto Grego • Notas Exegéticas</div>
+    </header>
+
+    <section class="glossary-section">
+        <h3 class="glossary-title">Glossário de Termos do Capítulo 12</h3>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <span class="glossary-term">Indizíveis</span>
+                Do grego *arrēta* (ἄρρητα). Palavras que não podem ser pronunciadas ou expressas.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Espinho na carne</span>
+                Do grego *skolops tē sarki* (σκόλοψ τῇ σαρκί). Termo relacionado a espinho, objeto pontiagudo ou estaca; o sentido exato é discutido.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Habite em mim</span>
+                Do grego *episkēnōsē* (ἐπισκηνώσῃ). Termo relacionado a habitar ou estabelecer uma tenda sobre alguém.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Sinto prazer</span>
+                Do grego *eudokō* (εὐδοκῶ). Tenho prazer, sinto satisfação ou aprovação.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Inchaços</span>
+                Do grego *physiōseis* (φυσιώσεις). Orgulhos, inflações; mesmo termo usado em 1 Coríntios 4:18-19.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Mensageiro de Satanás</span>
+                Do grego *angelos Satana* (ἄγγελος Σατανᾶ). Enviado de Satanás; preserva a ambiguidade de *angelos*.
+            </div>
+            <div class="glossary-item">
+                <span class="glossary-term">Paraíso</span>
+                Do grego *paradeison* (παράδεισον). Lugar associado à presença e à bênção de Deus.
+            </div>
+        </div>
+    </section>
+
+    <div class="chapter-num">12</div>
+
+    <div class="pericope">Visões e Revelações</div>
+
+    <p class="verse">
+        <span class="v-num">1</span>
+        <span class="drop-cap">N</span>a verdade, não convém gloriar-me; mas passarei às visões e revelações do Senhor.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">2</span>
+        Conheço um homem em Cristo que, há catorze anos — se no corpo, não sei; se fora do corpo, não sei; Deus o sabe —, foi arrebatado até o terceiro céu.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">3</span>
+        E sei que esse homem — se no corpo, se fora do corpo, não sei; Deus o sabe —
+    </p>
+
+    <p class="verse">
+        <span class="v-num">4</span>
+        foi arrebatado ao paraíso, e ouviu palavras indizíveis, que não é lícito ao homem falar.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">5</span>
+        De tal homem me gloriarei; mas de mim mesmo não me gloriarei, senão nas minhas fraquezas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">6</span>
+        Porque, se quiser gloriar-me, não serei insensato, pois direi a verdade; mas abstenho-me, para que ninguém pense de mim mais do que vê em mim, ou de mim ouve.
+    </p>
+
+    <div class="pericope">O Espinho na Carne</div>
+
+    <p class="verse">
+        <span class="v-num">7</span>
+        E, para que não me exaltasse pela excelência das revelações, foi-me dado um espinho na carne, um mensageiro de Satanás, para me esbofetear, a fim de que não me exalte.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">8</span>
+        Acerca disto, três vezes roguei ao Senhor que o afastasse de mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">9</span>
+        E ele me disse: <span class="fala-jesus">A minha graça te basta; porque o meu poder se aperfeiçoa na fraqueza.</span> Portanto, de boa vontade antes me gloriarei nas minhas fraquezas, para que o poder de Cristo habite em mim.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">10</span>
+        Por isso sinto prazer nas fraquezas, nas injúrias, nas necessidades, nas perseguições, nas angústias por causa de Cristo; porque, quando estou fraco, então é que sou forte.
+    </p>
+
+    <div class="pericope">A Defesa de Paulo</div>
+
+    <p class="verse">
+        <span class="v-num">11</span>
+        Fui insensato ao gloriar-me; vós me obrigastes. Porque eu devia ser recomendado por vós, visto que em nada fui inferior aos mais excelentes apóstolos, ainda que nada sou.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">12</span>
+        Os sinais do apóstolo foram operados entre vós com toda paciência, por sinais, e prodígios, e maravilhas.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">13</span>
+        Pois em que fostes inferiores às outras igrejas, senão em que eu mesmo vos não fui pesado? Perdoai-me esta injustiça.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">14</span>
+        Eis que estou pronto para ir ter convosco pela terceira vez, e não vos serei pesado; porque não busco o que é vosso, mas a vós; pois não devem os filhos entesourar para os pais, mas os pais para os filhos.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">15</span>
+        E eu, de muito boa vontade, gastarei, e serei gasto pelas vossas almas; ainda que, amando-vos mais, seja menos amado.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">16</span>
+        Mas seja assim; eu não vos fui pesado; porém, sendo astuto, vos tomei com engano.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">17</span>
+        Acaso obtive de vós alguma vantagem por meio de algum daqueles que vos enviei?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">18</span>
+        Roguei a Tito, e enviei com ele o irmão. Porventura Tito obteve de vós alguma vantagem? Não andamos no mesmo espírito? Não seguimos as mesmas pegadas?
+    </p>
+
+    <p class="verse">
+        <span class="v-num">19</span>
+        Outra vez pensais que nos desculpamos convosco? Diante de Deus, em Cristo, falamos; e tudo isto, ó amados, para vossa edificação.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">20</span>
+        Porque temo que, quando chegar, não vos ache como eu quero, e eu seja achado por vós como não quereis; que haja contendas, invejas, iras, porfias, difamações, mexericos, inchaços, desordens.
+    </p>
+
+    <p class="verse">
+        <span class="v-num">21</span>
+        E temo que, quando eu voltar, o meu Deus me humilhe entre vós, e eu chore por muitos que pecaram anteriormente, e não se arrependeram da imundícia, e da imoralidade, e da dissolução que praticaram.
+    </p>
+
+    <section class="apparatus-section">
+        <h3 class="apparatus-title">Aparato Exegético &amp; Notas</h3>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:1 — "Visões e revelações do Senhor"</span>
+            <div class="greek-text">ὀπτασίας καὶ ἀποκαλύψεις Κυρίου</div>
+            <p><strong>Análise:</strong> Visões e revelações relacionadas ao Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "visões e revelações do Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:2 — "Conheço um homem em Cristo"</span>
+            <div class="greek-text">οἶδα ἄνθρωπον ἐν Χριστῷ</div>
+            <p><strong>Análise:</strong> Expressão pela qual Paulo fala de si mesmo de modo indireto.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "conheço um homem em Cristo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:2 — "Há catorze anos"</span>
+            <div class="greek-text">πρὸ ἐτῶν δεκατεσσάρων</div>
+            <p><strong>Análise:</strong> Catorze anos antes.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "há catorze anos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:2-3 — "Se no corpo... se fora do corpo"</span>
+            <div class="greek-text">εἴτε ἐν σώματι... εἴτε ἐκτὸς τοῦ σώματος</div>
+            <p><strong>Análise:</strong> Incerteza de Paulo quanto ao modo da experiência.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "se no corpo... se fora do corpo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:2, 4 — "Arrebatado"</span>
+            <div class="greek-text">ἁρπαγέντα</div>
+            <p><strong>Análise:</strong> Levado subitamente, arrebatado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "arrebatado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:2 — "Terceiro céu"</span>
+            <div class="greek-text">τρίτου οὐρανοῦ</div>
+            <p><strong>Análise:</strong> Literalmente "terceiro céu". Paulo não explica aqui a estrutura ou divisão dos céus, limitando-se a descrever o lugar para o qual o homem foi arrebatado.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "terceiro céu".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:4 — "Paraíso"</span>
+            <div class="greek-text">παράδεισον</div>
+            <p><strong>Análise:</strong> Termo de origem persa relacionado a jardim ou parque. No contexto bíblico, pode designar o lugar associado à presença e à bênção de Deus.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "paraíso".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:4 — "Palavras indizíveis"</span>
+            <div class="greek-text">ἄρρητα ῥήματα</div>
+            <p><strong>Análise:</strong> Expressão relacionada a palavras indizíveis, inexprimíveis ou que não podem ser pronunciadas.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "palavras indizíveis".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:4 — "Não é lícito ao homem falar"</span>
+            <div class="greek-text">ἃ οὐκ ἐξὸν ἀνθρώπῳ λαλῆσαι</div>
+            <p><strong>Análise:</strong> O que não é permitido ao homem falar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não é lícito ao homem falar".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:5 — "De tal homem me gloriarei"</span>
+            <div class="greek-text">ὑπὲρ τοῦ τοιούτου καυχήσομαι</div>
+            <p><strong>Análise:</strong> Gloriar-se de tal homem.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "de tal homem me gloriarei".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:7 — "Excelência das revelações"</span>
+            <div class="greek-text">τῇ ὑπερβολῇ τῶν ἀποκαλύψεων</div>
+            <p><strong>Análise:</strong> Grandeza extraordinária das revelações.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "excelência das revelações".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:7 — "Espinho na carne"</span>
+            <div class="greek-text">σκόλοψ τῇ σαρκί</div>
+            <p><strong>Análise:</strong> Termo relacionado a espinho, objeto pontiagudo ou estaca. O sentido exato da expressão é discutido.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "espinho na carne".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:7 — "Mensageiro de Satanás"</span>
+            <div class="greek-text">ἄγγελος Σατανᾶ</div>
+            <p><strong>Análise:</strong> Enviado de Satanás; expressão ligada ao espinho na carne, preservando a ambiguidade de *angelos*.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "mensageiro de Satanás".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:7 — "Me esbofetear"</span>
+            <div class="greek-text">ἵνα με κολαφίζῃ</div>
+            <p><strong>Análise:</strong> Para me esbofetear/ferir.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "me esbofetear".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:8 — "Três vezes roguei ao Senhor"</span>
+            <div class="greek-text">τρὶς τὸν Κύριον παρεκάλεσα</div>
+            <p><strong>Análise:</strong> Três vezes pedi ao Senhor.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "três vezes roguei ao Senhor".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:8 — "O afastasse de mim"</span>
+            <div class="greek-text">ἵνα ἀποστῇ ἀπ' ἐμοῦ</div>
+            <p><strong>Análise:</strong> Para que se apartasse de mim.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o afastasse de mim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:9 — "A minha graça te basta"</span>
+            <div class="greek-text">ἀρκεῖ σοι ἡ χάρις μου</div>
+            <p><strong>Análise:</strong> A minha graça é suficiente para ti.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "a minha graça te basta".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:9 — "O meu poder se aperfeiçoa na fraqueza"</span>
+            <div class="greek-text">ἡ γὰρ δύναμίς μου ἐν ἀσθενείᾳ τελειοῦται</div>
+            <p><strong>Análise:</strong> O poder se completa na fraqueza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o meu poder se aperfeiçoa na fraqueza".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:9 — "O poder de Cristo habite em mim"</span>
+            <div class="greek-text">ἐπισκηνώσῃ ἐπ' ἐμὲ ἡ δύναμις τοῦ Χριστοῦ</div>
+            <p><strong>Análise:</strong> Termo relacionado a habitar ou estabelecer uma tenda sobre alguém. A expressão preserva a ideia de habitação do poder de Cristo sobre Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o poder de Cristo habite em mim".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:10 — "Sinto prazer"</span>
+            <div class="greek-text">εὐδοκῶ</div>
+            <p><strong>Análise:</strong> Tenho prazer, sinto satisfação ou aprovação; no contexto, Paulo afirma ter prazer nas condições adversas por causa de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinto prazer".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:10 — "Injúrias, necessidades, perseguições, angústias"</span>
+            <div class="greek-text">ὕβρεσιν, ἀνάγκαις, διωγμοῖς, στενοχωρίαις</div>
+            <p><strong>Análise:</strong> Quatro condições adversas suportadas por causa de Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos quatro termos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:10 — "Quando estou fraco, então é que sou forte"</span>
+            <div class="greek-text">ὅταν γὰρ ἀσθενῶ, τότε δυνατός εἰμι</div>
+            <p><strong>Análise:</strong> Paradoxo da força na fraqueza.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "quando estou fraco, então é que sou forte".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:11 — "Fui insensato ao gloriar-me; vós me obrigastes"</span>
+            <div class="greek-text">γέγονα ἄφρων καυχώμενος, ὑμεῖς με ἠναγκάσατε</div>
+            <p><strong>Análise:</strong> Paulo atribui aos coríntios a necessidade de sua defesa.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "fui insensato ao gloriar-me; vós me obrigastes".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:12 — "Sinais do apóstolo"</span>
+            <div class="greek-text">τὰ σημεῖα τοῦ ἀποστόλου</div>
+            <p><strong>Análise:</strong> Literalmente "os sinais do apóstolo". O contexto associa esses sinais à atuação apostólica de Paulo entre os coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinais do apóstolo".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:12 — "Com toda paciência"</span>
+            <div class="greek-text">ἐν πάσῃ ὑπομονῇ</div>
+            <p><strong>Análise:</strong> Com toda perseverança.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "com toda paciência".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:12 — "Sinais, prodígios e maravilhas"</span>
+            <div class="greek-text">σημείοις, τέρασιν, δυνάμεσιν</div>
+            <p><strong>Análise:</strong> Três termos distintos usados para descrever manifestações extraordinárias associadas ao ministério apostólico.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sinais, prodígios e maravilhas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:13 — "Eu mesmo vos não fui pesado"</span>
+            <div class="greek-text">οὐ κατενάρκησα ὑμῶν</div>
+            <p><strong>Análise:</strong> Não fui um peso a vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "eu mesmo vos não fui pesado".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:13 — "Perdoai-me esta injustiça"</span>
+            <div class="greek-text">χαρίσασθέ μοι τὴν ἀδικίαν ταύτην</div>
+            <p><strong>Análise:</strong> Expressão irônica no contexto: Paulo chama de "injustiça" o fato de não ter sido um peso para os coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "perdoai-me esta injustiça".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:14 — "Terceira vez"</span>
+            <div class="greek-text">τρίτον τοῦτο</div>
+            <p><strong>Análise:</strong> Terceira visita planejada.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "terceira vez".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:14 — "Não busco o que é vosso, mas a vós"</span>
+            <div class="greek-text">οὐ ζητῶ τὰ ὑμῶν, ἀλλὰ ὑμᾶς</div>
+            <p><strong>Análise:</strong> Não busco os vossos bens, mas a vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não busco o que é vosso, mas a vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:14 — "Não devem os filhos entesourar para os pais"</span>
+            <div class="greek-text">οὐ γὰρ ὀφείλει τὰ τέκνα τοῖς γονεῦσιν θησαυρίζειν</div>
+            <p><strong>Análise:</strong> Princípio familiar citado por Paulo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não devem os filhos entesourar para os pais".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:15 — "Gastarei, e serei gasto pelas vossas almas"</span>
+            <div class="greek-text">δαπανήσω καὶ ἐκδαπανηθήσομαι ὑπὲρ τῶν ψυχῶν ὑμῶν</div>
+            <p><strong>Análise:</strong> Paulo usa dois verbos da mesma família, expressando a ideia de gastar seus recursos e de ser consumido/gasto em favor deles.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "gastarei, e serei gasto pelas vossas almas".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:16 — "Sendo astuto, vos tomei com engano"</span>
+            <div class="greek-text">ὑπάρχων πανοῦργος δόλῳ ὑμᾶς ἔλαβον</div>
+            <p><strong>Análise:</strong> Literalmente "sendo astuto, tomei-vos por engano". O contexto mostra que Paulo está tratando da acusação de que teria agido fraudulentamente.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "sendo astuto, vos tomei com engano".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:17 — "Obtive de vós alguma vantagem"</span>
+            <div class="greek-text">ἐπλεονέκτησα ὑμᾶς</div>
+            <p><strong>Análise:</strong> Tirar vantagem de vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "obtive de vós alguma vantagem".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:18 — "Roguei a Tito, e enviei com ele o irmão"</span>
+            <div class="greek-text">παρεκάλεσα Τίτον καὶ συναπέστειλα τὸν ἀδελφόν</div>
+            <p><strong>Análise:</strong> Referência ao envio de Tito e do companheiro.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "roguei a Tito, e enviei com ele o irmão".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:18 — "Não andamos no mesmo espírito? Não seguimos as mesmas pegadas?"</span>
+            <div class="greek-text">οὐ τῷ αὐτῷ πνεύματι περιεπατήσαμεν; οὐ τοῖς αὐτοῖς ἴχνεσιν;</div>
+            <p><strong>Análise:</strong> Consistência entre Paulo e seus cooperadores.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "não andamos no mesmo espírito? Não seguimos as mesmas pegadas?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:19 — "Pensais que nos desculpamos convosco?"</span>
+            <div class="greek-text">πάλιν δοκεῖτε ὅτι ἀπολογούμεθα ὑμῖν</div>
+            <p><strong>Análise:</strong> Pensais que estamos nos defendendo?</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "pensais que nos desculpamos convosco?".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:19 — "Diante de Deus, em Cristo, falamos"</span>
+            <div class="greek-text">κατενώπιον τοῦ Θεοῦ ἐν Χριστῷ λαλοῦμεν</div>
+            <p><strong>Análise:</strong> Fala diante de Deus em Cristo.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "diante de Deus, em Cristo, falamos".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:19 — "Para vossa edificação"</span>
+            <div class="greek-text">ὑπὲρ τῆς ὑμῶν οἰκοδομῆς</div>
+            <p><strong>Análise:</strong> Para edificação de vós.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "para vossa edificação".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:20 — "Contendas, invejas, iras, porfias, difamações, mexericos, inchaços, desordens"</span>
+            <div class="greek-text">ἔρεις, ζῆλοι, θυμοί, ἐριθεῖαι, καταλαλιαί, ψιθυρισμοί, φυσιώσεις, ἀκαταστασίαι</div>
+            <p><strong>Análise:</strong> Oito males que Paulo teme encontrar.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução dos oito termos.</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:21 — "O meu Deus me humilhe entre vós"</span>
+            <div class="greek-text">ταπεινώσῃ με ὁ Θεός μου πρὸς ὑμᾶς</div>
+            <p><strong>Análise:</strong> Humilhação de Paulo diante da situação.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "o meu Deus me humilhe entre vós".</p>
+        </div>
+
+        <div class="note-card note-trans">
+            <span class="note-label">2 Coríntios 12:21 — "Imundícia, imoralidade e dissolução"</span>
+            <div class="greek-text">ἀκαθαρσίᾳ, πορνείᾳ, ἀσελγείᾳ</div>
+            <p><strong>Análise:</strong> Três termos que descrevem impureza, imoralidade sexual e comportamento desenfreado. No contexto, os termos aparecem associados aos pecados praticados pelos coríntios.</p>
+            <p><strong>Decisão TBLH:</strong> Mantida a tradução "imundícia, imoralidade e dissolução".</p>
+        </div>
+
+        <div class="note-card note-hist">
+            <span class="note-label">2 Coríntios 12 — Estrutura do Capítulo</span>
+            <p><strong>Análise:</strong> O capítulo 12 aborda as visões de Paulo e o espinho na carne. Estrutura: 1) Visões e revelações (v.1-6); 2) O espinho na carne (v.7-10); 3) A defesa de Paulo (v.11-21). Paulo revela suas experiências extraordinárias e sua fraqueza para demonstrar a suficiência da graça de Cristo.</p>
+        </div>
+
+    </section>
+
+</body>
+</html>
